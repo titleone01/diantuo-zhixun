@@ -39,3 +39,7 @@ yarn-error.log*
 /outputs/
 /work/
 .codex-dev.*.log
+.codex-*-dev.*.log
+.codex-*.log
+/pages-dist/
+/.openai/audits/

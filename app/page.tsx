@@ -6,21 +6,23 @@ type WireKind = "main" | "control" | "earth";
 type Wire = { from: string; to: string; kind: WireKind };
 type Point = { x: number; y: number };
 
+const assetUrl = (path: string) => `${import.meta.env.BASE_URL ?? "/"}${path}`;
+
 const photoDevices = [
-  { code: "QF", name: "断路器", model: "NXB-125 3P", image: "/components/breaker.png", pins: [
+  { code: "QF", name: "断路器", model: "NXB-125 3P", image: "components/breaker.png", pins: [
     ["QF-L1", "L1", 22, 8], ["QF-L2", "L2", 50, 8], ["QF-L3", "L3", 78, 8],
     ["QF-U11", "U11", 22, 91], ["QF-V11", "V11", 50, 91], ["QF-W11", "W11", 78, 91],
   ] },
-  { code: "FU1", name: "主电路熔断器", model: "RT18-32 3P", image: "/components/fuse.jpg", pins: [
+  { code: "FU1", name: "主电路熔断器", model: "RT18-32 3P", image: "components/fuse.jpg", pins: [
     ["FU1-U11", "U11", 20, 8], ["FU1-V11", "V11", 50, 8], ["FU1-W11", "W11", 80, 8],
     ["FU1-U21", "U21", 20, 92], ["FU1-V21", "V21", 50, 92], ["FU1-W21", "W21", 80, 92],
   ] },
-  { code: "KM", name: "交流接触器", model: "NC1-0910", image: "/components/contactor.jpg", pins: [
+  { code: "KM", name: "交流接触器", model: "NC1-0910", image: "components/contactor.jpg", pins: [
     ["KM-U21", "U21", 42, 27], ["KM-V21", "V21", 59, 27], ["KM-W21", "W21", 75, 27],
     ["KM-U31", "U31", 42, 84], ["KM-V31", "V31", 59, 84], ["KM-W31", "W31", 75, 84],
     ["KM-13", "13", 89, 28], ["KM-14", "14", 88, 84], ["KM-A1", "A1", 25, 42], ["KM-A2", "A2", 25, 72],
   ] },
-  { code: "FR", name: "热继电器", model: "NR2-36", image: "/components/overload.jpg", pins: [
+  { code: "FR", name: "热继电器", model: "NR2-36", image: "components/overload.jpg", pins: [
     ["FR-U31", "U31", 31, 11], ["FR-V31", "V31", 51, 9], ["FR-W31", "W31", 73, 9],
     ["FR-U", "U", 28, 91], ["FR-V", "V", 50, 91], ["FR-W", "W", 72, 91],
     ["FR-95", "95", 88, 69], ["FR-96", "96", 68, 69],
@@ -159,8 +161,8 @@ export default function Home() {
           <p className="description">按照原理图连接主电路与控制电路，完成后通电检查。</p>
           <div className="schematic" aria-label="三相异步电动机自锁控制原理图">
             <div className="schematic-title">实训原理图 <span>点击可查看大图</span></div>
-            <button className="schematic-image" onClick={() => window.open("/schematic.png", "_blank")} aria-label="放大查看原理图">
-              <img src="/schematic.png" alt="三相异步电动机连续运行与自锁控制原理图" />
+            <button className="schematic-image" onClick={() => window.open(assetUrl("schematic.png"), "_blank")} aria-label="放大查看原理图">
+              <img src={assetUrl("schematic.png")} alt="三相异步电动机连续运行与自锁控制原理图" />
             </button>
           </div>
           <div className="task-progress">
@@ -214,7 +216,7 @@ export default function Home() {
               <article className={`photo-device pos-${device.code.toLowerCase()} ${energized && device.code === "KM" ? "engaged" : ""}`} key={device.code}>
                 <div className="photo-heading"><strong>{device.code}</strong><span>{device.name}</span><small>{device.model}</small></div>
                 <div className="photo-frame">
-                  <img src={device.image} alt={`${device.code} ${device.name}实物`} draggable="false" />
+                  <img src={assetUrl(device.image)} alt={`${device.code} ${device.name}实物`} draggable="false" />
                   {device.pins.map(([id, label, x, y]) => terminal(String(id), String(label), "photo-pin", { left: `${x}%`, top: `${y}%` }))}
                 </div>
               </article>
@@ -222,14 +224,14 @@ export default function Home() {
 
             <article className="photo-device pos-fu2 compact-photo">
               <div className="photo-heading"><strong>FU2</strong><span>控制电路熔断器</span><small>RT18-32</small></div>
-              <div className="photo-frame"><img src="/components/fuse.jpg" alt="FU2 控制电路熔断器实物" draggable="false" />
+              <div className="photo-frame"><img src={assetUrl("components/fuse.jpg")} alt="FU2 控制电路熔断器实物" draggable="false" />
                 {terminal("FU2-1", "1", "photo-pin", { left: "36%", top: "8%" })}{terminal("FU2-2", "2", "photo-pin", { left: "36%", top: "92%" })}
               </div>
             </article>
 
             <article className="button-station">
               <div className="photo-heading"><strong>SB1 / SB2</strong><span>停止、启动按钮</span><small>NP2</small></div>
-              <div className="photo-frame"><img src="/components/buttons.jpg" alt="红色停止按钮与绿色启动按钮实物" draggable="false" />
+              <div className="photo-frame"><img src={assetUrl("components/buttons.jpg")} alt="红色停止按钮与绿色启动按钮实物" draggable="false" />
                 <div className="button-label stop-label">SB1<br /><small>NC 常闭</small></div>
                 <div className="button-label start-label">SB2<br /><small>NO 常开</small></div>
                 {terminal("SB1-11", "11", "photo-pin", { left: "25%", top: "78%" })}{terminal("SB1-12", "12", "photo-pin", { left: "39%", top: "90%" })}
@@ -239,7 +241,7 @@ export default function Home() {
 
             <article className={`motor-photo ${energized ? "running" : ""}`}>
               <div className="photo-heading"><strong>M</strong><span>三相异步电动机</span><small>Y系列 / 380V</small></div>
-              <div className="photo-frame"><img src="/components/motor.jpg" alt="三相异步电动机与打开的接线盒" draggable="false" />
+              <div className="photo-frame"><img src={assetUrl("components/motor.jpg")} alt="三相异步电动机与打开的接线盒" draggable="false" />
                 {terminal("M-U", "U", "photo-pin", { left: "41%", top: "58%" })}{terminal("M-V", "V", "photo-pin", { left: "49%", top: "58%" })}{terminal("M-W", "W", "photo-pin", { left: "57%", top: "58%" })}{terminal("M-PE", "PE", "photo-pin earth-pin", { left: "35%", top: "76%" })}
               </div>
               {energized && <div className="running-badge">电动机运行中</div>}
@@ -247,7 +249,7 @@ export default function Home() {
 
             <article className="xt-photo">
               <div className="photo-heading"><strong>XT</strong><span>电源 / 接线端子排</span><small>UK2.5B</small></div>
-              <div className="photo-frame"><img src="/components/terminal-block.jpg" alt="XT DIN 导轨式接线端子排实物" draggable="false" />
+              <div className="photo-frame"><img src={assetUrl("components/terminal-block.jpg")} alt="XT DIN 导轨式接线端子排实物" draggable="false" />
                 {[["L1",8],["L2",24],["L3",40],["PE",56],["U",72],["V",84],["W",94]].map(([label, x]) => terminal(`XT-${label}`, String(label), `photo-pin ${label === "PE" ? "earth-pin" : ""}`, { left: `${x}%`, top: "60%" }))}
               </div>
             </article>

@@ -4,6 +4,10 @@
 
 当前演示以“三相异步电动机连续运行/自锁控制电路”为例，学生可对照原理图，在实物化元器件面板上完成主电路、控制电路和保护接地接线。
 
+## 在线测试
+
+[https://titleone01.github.io/diantuo-zhixun/](https://titleone01.github.io/diantuo-zhixun/)
+
 ## 已实现
 
 - 原理图查看与放大
