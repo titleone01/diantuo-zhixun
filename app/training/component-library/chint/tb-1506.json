@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.tb-1506",
+  "manufacturer": "CHINT",
+  "name": "六位接线端子排",
+  "model": "TB-1506",
+  "category": "terminal-block",
+  "referencePrefix": "XT",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": {
+    "kind": "gltf",
+    "path": "models/chint/tb-1506/CHINT_TB-1506_no-cover.glb",
+    "modelScale": 55.172414,
+    "sourceUnit": "meter",
+    "sourceFormat": "STEP",
+    "coverPolicy": "removed-for-wiring"
+  },
+  "footprint": { "width": 4.0, "depth": 1.214, "height": 0.828 },
+  "properties": { "ratedCurrentA": 15, "ratedVoltageV": 600, "poles": 6 },
+  "terminals": [
+    { "key": "L1", "label": "L1A", "position": [-1.2414, 0.4469, 0.3586], "sourcePosition3d": [-0.0225, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P1" },
+    { "key": "L1-B", "label": "L1B", "position": [-1.2414, 0.4469, -0.3586], "sourcePosition3d": [-0.0225, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P1" },
+    { "key": "L2", "label": "L2A", "position": [-0.7448, 0.4469, 0.3586], "sourcePosition3d": [-0.0135, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P2" },
+    { "key": "L2-B", "label": "L2B", "position": [-0.7448, 0.4469, -0.3586], "sourcePosition3d": [-0.0135, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P2" },
+    { "key": "L3", "label": "L3A", "position": [-0.2483, 0.4469, 0.3586], "sourcePosition3d": [-0.0045, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P3" },
+    { "key": "L3-B", "label": "L3B", "position": [-0.2483, 0.4469, -0.3586], "sourcePosition3d": [-0.0045, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P3" },
+    { "key": "U", "label": "UA", "position": [0.2483, 0.4469, 0.3586], "sourcePosition3d": [0.0045, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P4" },
+    { "key": "U-B", "label": "UB", "position": [0.2483, 0.4469, -0.3586], "sourcePosition3d": [0.0045, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P4" },
+    { "key": "V", "label": "VA", "position": [0.7448, 0.4469, 0.3586], "sourcePosition3d": [0.0135, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P5" },
+    { "key": "V-B", "label": "VB", "position": [0.7448, 0.4469, -0.3586], "sourcePosition3d": [0.0135, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P5" },
+    { "key": "W", "label": "WA", "position": [1.2414, 0.4469, 0.3586], "sourcePosition3d": [0.0225, 0.0081, 0.0065], "exitDirection": [0, 0, 1], "internalGroup": "P6" },
+    { "key": "W-B", "label": "WB", "position": [1.2414, 0.4469, -0.3586], "sourcePosition3d": [0.0225, 0.0081, -0.0065], "exitDirection": [0, 0, -1], "internalGroup": "P6" }
+  ]
+}

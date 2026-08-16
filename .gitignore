@@ -42,4 +42,5 @@ yarn-error.log*
 .codex-*-dev.*.log
 .codex-*.log
 /pages-dist/
+*.tsbuildinfo
 /.openai/audits/

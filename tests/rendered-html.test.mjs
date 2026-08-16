@@ -1,11 +1,6 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
-
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -13,79 +8,89 @@ async function render() {
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
   );
 }
 
-test("server-renders the starter loading skeleton", async () => {
+test("server-renders the minimal wiring workspace", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+  assert.match(html, /<title>电拓智训 \| 电气控制虚拟实训平台<\/title>/i);
+  assert.match(html, /电气器件库/);
+  assert.match(html, /TB-1506/);
+  assert.match(html, /NXB-125 3P/);
+  assert.match(html, /NC1-0910/);
+  assert.match(html, /单击放到空位，或拖到目标导轨/);
+  assert.match(html, /撤回/);
+  assert.match(html, /重做/);
+  assert.match(html, /本机自动保存/);
+  assert.doesNotMatch(html, /实训原理图/);
+  assert.doesNotMatch(html, /申请上电/);
+  assert.doesNotMatch(html, /保存进度/);
 });
-
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
+test("keeps component assets, scene instances, 3D rendering, and simulation separated", async () => {
+  const [page, catalog, store, canvas, analysis, packageJson, terminalAsset, router, architecture] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/training/scene/catalog.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/training/scene/store.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/training/scene/WiringScene.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/circuit-analysis.ts", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
+    readFile(new URL("../app/training/component-library/chint/tb-1506.json", import.meta.url), "utf8"),
+    readFile(new URL("../app/training/scene/routing.ts", import.meta.url), "utf8"),
+    readFile(new URL("../architecture/3d-wiring.md", import.meta.url), "utf8"),
   ]);
 
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
+  assert.match(page, /TrainingCanvas/);
+  assert.match(catalog, /componentLibrary/);
+  assert.match(catalog, /worldTerminalPosition/);
+  assert.match(store, /create<WiringSceneState>/);
+  assert.match(store, /addInstance/);
+  assert.match(store, /beginTerminal/);
+  assert.match(store, /finishTerminal/);
+  assert.match(store, /beginMoveInstance/);
+  assert.match(store, /hydrateScene/);
+  assert.match(canvas, /<Canvas/);
+  assert.match(canvas, /orthographic/);
+  assert.match(canvas, /application\/x-electrical-asset/);
+  assert.match(canvas, /localStorage/);
+  assert.match(canvas, /four-rail-cabinet/);
+  assert.doesNotMatch(canvas, /ReactFlow/);
+  assert.match(analysis, /export function analyzeCircuit/);
+  assert.match(packageJson, /"@react-three\/fiber"/);
+  assert.match(packageJson, /"@react-three\/drei"/);
+  assert.match(packageJson, /"zustand"/);
+  assert.match(packageJson, /"three"/);
+  assert.doesNotMatch(packageJson, /"@xyflow\/react"/);
+  assert.match(terminalAsset, /CHINT_TB-1506_no-cover\.glb/);
+  assert.match(terminalAsset, /"sourcePosition3d"/);
+  assert.match(terminalAsset, /"coverPolicy": "removed-for-wiring"/);
+  assert.match(router, /routeInDuctNetwork/);
+  assert.match(router, /nearestDuctEntry/);
+  assert.match(architecture, /单一 React Three Fiber 场景/);
+  assert.match(architecture, /资产不是实例/);
+});
 
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
-
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
-
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+test("component library assets expose stable 3D terminal contracts", async () => {
+  const urls = [
+    "../app/training/component-library/chint/tb-1506.json",
+    "../app/training/component-library/chint/nxb-125.json",
+    "../app/training/component-library/chint/nc1-0910.json",
+  ];
+  for (const url of urls) {
+    const asset = JSON.parse(await readFile(new URL(url, import.meta.url), "utf8"));
+    assert.equal(asset.schemaVersion, 1);
+    assert.equal(asset.mounting.type, "din-rail");
+    assert.ok(asset.terminals.length >= 6);
+    for (const terminal of asset.terminals) {
+      assert.equal(terminal.position.length, 3);
+      assert.equal(terminal.exitDirection.length, 3);
+      assert.ok(terminal.position.every(Number.isFinite));
+    }
+  }
 });

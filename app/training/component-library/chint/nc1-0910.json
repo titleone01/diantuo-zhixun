@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.nc1-0910",
+  "manufacturer": "CHINT",
+  "name": "交流接触器",
+  "model": "NC1-0910",
+  "category": "contactor",
+  "referencePrefix": "KM",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": { "kind": "procedural", "shape": "contactor" },
+  "footprint": { "width": 2.5, "depth": 1.7, "height": 1.5 },
+  "properties": { "poles": 3, "coilVoltageV": 220, "auxiliaryNO": 1 },
+  "terminals": [
+    { "key": "U21", "label": "U21", "position": [-0.72, 1.53, -0.56], "exitDirection": [0, 0, -1] },
+    { "key": "V21", "label": "V21", "position": [0, 1.53, -0.56], "exitDirection": [0, 0, -1] },
+    { "key": "W21", "label": "W21", "position": [0.72, 1.53, -0.56], "exitDirection": [0, 0, -1] },
+    { "key": "U31", "label": "U31", "position": [-0.72, 1.53, 0.56], "exitDirection": [0, 0, 1] },
+    { "key": "V31", "label": "V31", "position": [0, 1.53, 0.56], "exitDirection": [0, 0, 1] },
+    { "key": "W31", "label": "W31", "position": [0.72, 1.53, 0.56], "exitDirection": [0, 0, 1] },
+    { "key": "A1", "label": "A1", "position": [-1.05, 1.16, 0], "exitDirection": [-1, 0, 0] },
+    { "key": "A2", "label": "A2", "position": [1.05, 1.16, 0], "exitDirection": [1, 0, 0] }
+  ]
+}

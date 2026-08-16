@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.nxb-125-3p",
+  "manufacturer": "CHINT",
+  "name": "三极断路器",
+  "model": "NXB-125 3P",
+  "category": "circuit-breaker",
+  "referencePrefix": "QF",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": { "kind": "procedural", "shape": "breaker-3p" },
+  "footprint": { "width": 2.2, "depth": 1.4, "height": 1.4 },
+  "properties": { "poles": 3, "ratedCurrentA": 125, "ratedVoltageV": 400 },
+  "terminals": [
+    { "key": "L1", "label": "L1", "position": [-0.65, 1.43, -0.45], "exitDirection": [0, 0, -1] },
+    { "key": "L2", "label": "L2", "position": [0, 1.43, -0.45], "exitDirection": [0, 0, -1] },
+    { "key": "L3", "label": "L3", "position": [0.65, 1.43, -0.45], "exitDirection": [0, 0, -1] },
+    { "key": "U11", "label": "U11", "position": [-0.65, 1.43, 0.45], "exitDirection": [0, 0, 1] },
+    { "key": "V11", "label": "V11", "position": [0, 1.43, 0.45], "exitDirection": [0, 0, 1] },
+    { "key": "W11", "label": "W11", "position": [0.65, 1.43, 0.45], "exitDirection": [0, 0, 1] }
+  ]
+}

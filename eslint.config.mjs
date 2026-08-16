@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "dist/**",
     "out/**",
     "build/**",
+    "docs/**",
+    "pages-dist/**",
     "next-env.d.ts",
   ]),
   eslint.configs.recommended,
@@ -34,6 +36,13 @@ const eslintConfig = defineConfig([
       react: {
         version: "detect",
       },
+    },
+  },
+  {
+    files: ["app/training/scene/**/*.tsx"],
+    rules: {
+      // React Three Fiber JSX properties describe Three.js objects, not DOM attributes.
+      "react/no-unknown-property": "off",
     },
   },
 ]);
