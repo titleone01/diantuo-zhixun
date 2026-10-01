@@ -1,0 +1,25 @@
+.sim-motor-motion-artwork { display: block; overflow: visible; }
+.sim-motor-motion-artwork .sim-motor-motion-rotor {
+  transform-box: view-box;
+  animation-name: sim-motor-original-blades;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
+.sim-motor-motion-artwork[data-motor-active="true"] .sim-motor-motion-rotor { animation-play-state: running; }
+.sim-motor-motion-artwork .sim-motor-motion-static {
+  display: none;
+  fill: #326554;
+  stroke: #f4f8fb;
+  stroke-width: 3px;
+  paint-order: stroke;
+  font: 600 10px Arial, "Microsoft YaHei", sans-serif;
+}
+@keyframes sim-motor-original-blades {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-motor-motion-artwork .sim-motor-motion-rotor { animation: none !important; }
+  .sim-motor-motion-artwork .sim-motor-motion-static { display: block; }
+}

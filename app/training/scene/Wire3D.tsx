@@ -1,41 +1,14 @@
 "use client";
 
-import { Html } from "@react-three/drei";
-import { useMemo, useState } from "react";
+import { Html } from "@react-three/drei/web/Html.js";
+import { useEffect, useMemo, useState } from "react";
 import * as THREE from "three";
 import { resolveTerminal } from "./catalog";
 import { buildWireRoute } from "./routing";
 import { useWiringSceneStore } from "./store";
-import type { DeviceInstance, SceneWire, Vec3, WireKind } from "./types";
-
-const wireColors: Record<WireKind, string> = {
-  main: "#e0a400",
-  control: "#dc352d",
-  earth: "#218a45",
-};
-
-function createRoundedCurve(points: Vec3[], radius = 0.13) {
-  const vectors = points.map((point) => new THREE.Vector3(...point));
-  const path = new THREE.CurvePath<THREE.Vector3>();
-  let cursor = vectors[0].clone();
-
-  for (let index = 1; index < vectors.length - 1; index += 1) {
-    const previous = vectors[index - 1];
-    const current = vectors[index];
-    const next = vectors[index + 1];
-    const incoming = current.clone().sub(previous);
-    const outgoing = next.clone().sub(current);
-    const before = current.clone().add(incoming.clone().normalize().multiplyScalar(-Math.min(radius, incoming.length() / 2)));
-    const after = current.clone().add(outgoing.clone().normalize().multiplyScalar(Math.min(radius, outgoing.length() / 2)));
-    if (cursor.distanceToSquared(before) > 0.000001) path.add(new THREE.LineCurve3(cursor.clone(), before.clone()));
-    path.add(new THREE.QuadraticBezierCurve3(before, current.clone(), after));
-    cursor = after;
-  }
-
-  const end = vectors.at(-1)!;
-  if (cursor.distanceToSquared(end) > 0.000001) path.add(new THREE.LineCurve3(cursor, end));
-  return path;
-}
+import type { DeviceInstance, SceneWire, Vec3 } from "./types";
+import { createWireGeometry } from "./wire-geometry";
+import { DEFAULT_WIRE_STYLE, getWireColor, normalizeWireStyle } from "./wire-style";
 
 function WireLug({ position, color }: { position: Vec3; color: string }) {
   return (
@@ -82,14 +55,19 @@ export function Wire3D({ wire, instances, index }: { wire: SceneWire; instances:
   const selectedWireId = useWiringSceneStore((state) => state.selectedWireId);
   const selectWire = useWiringSceneStore((state) => state.selectWire);
   const points = useMemo(() => buildWireRoute(instances, wire, index), [index, instances, wire]);
-  const curve = useMemo(() => createRoundedCurve(points), [points]);
-  const color = wireColors[wire.kind];
+  const style = normalizeWireStyle(wire.style) ?? DEFAULT_WIRE_STYLE;
   const selected = selectedWireId === wire.id;
   const [hovered, setHovered] = useState(false);
   const from = useMemo(() => resolveTerminal(instances, wire.from), [instances, wire.from]);
   const to = useMemo(() => resolveTerminal(instances, wire.to), [instances, wire.to]);
+  const color = getWireColor(wire, from.terminal);
   const tagPosition = useMemo(() => labelPosition(points), [points]);
-  const tubeSegments = Math.max(48, points.length * 18);
+  const outlineGeometry = useMemo(() => createWireGeometry(points, style, selected ? 0.098 : 0.083), [points, selected, style]);
+  const wireGeometry = useMemo(() => createWireGeometry(points, style, selected ? 0.072 : 0.057), [points, selected, style]);
+  useEffect(() => () => {
+    outlineGeometry.dispose();
+    wireGeometry.dispose();
+  }, [outlineGeometry, wireGeometry]);
 
   return (
     <group
@@ -104,8 +82,7 @@ export function Wire3D({ wire, instances, index }: { wire: SceneWire; instances:
       }}
       onPointerOut={() => setHovered(false)}
     >
-      <mesh>
-        <tubeGeometry args={[curve, tubeSegments, selected ? 0.098 : 0.083, 10, false]} />
+      <mesh geometry={outlineGeometry}>
         <meshBasicMaterial
           color={selected ? "#ff7a32" : "#27343d"}
           side={THREE.BackSide}
@@ -113,8 +90,7 @@ export function Wire3D({ wire, instances, index }: { wire: SceneWire; instances:
           opacity={selected ? 0.95 : 0.78}
         />
       </mesh>
-      <mesh>
-        <tubeGeometry args={[curve, tubeSegments, selected ? 0.072 : 0.057, 10, false]} />
+      <mesh geometry={wireGeometry}>
         <meshStandardMaterial
           color={color}
           roughness={0.34}

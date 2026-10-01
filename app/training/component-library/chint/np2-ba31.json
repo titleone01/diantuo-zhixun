@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.np2-ba31",
+  "manufacturer": "CHINT",
+  "name": "绿色启动按钮（常开）",
+  "model": "NP2-BA31",
+  "category": "pushbutton-station",
+  "referencePrefix": "SB",
+  "mounting": { "type": "panel-screw" },
+  "geometry": {
+    "kind": "gltf",
+    "path": "models/chint/np2-ba/CHINT_NP2-BA.glb",
+    "modelScale": [0.05, 0.05, 0.05],
+    "modelPosition": [0.745, 1.7587, 0.995],
+    "modelRotation": [-1.5707963268, 0, 3.1415926536],
+    "materialProfile": "chint-np2-green",
+    "interactiveNodes": { "startButton": ["official-child-0002"] },
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP"
+  },
+  "physical": {
+    "scaleAuthority": "manufacturer-step-and-catalog",
+    "sceneUnitsPerMm": 0.05,
+    "dimensionsMm": { "width": 29.9, "depth": 54.3, "height": 39.8 },
+    "officialSource": "https://www.chint.net/products/93.html",
+    "catalogSource": "https://www.chintglobal.com/content/dam/chint/global/product-center/low-voltage/iec/industrial-control/push-button/np2/catalog/NP2-Pushbuttons-catalog.pdf"
+  },
+  "footprint": { "width": 1.495, "depth": 1.99, "height": 2.715 },
+  "properties": {
+    "color": "green",
+    "contactType": "1NO",
+    "mountingHoleMm": 22,
+    "mechanism": "momentary"
+  },
+  "interaction": {
+    "kind": "momentary-pushbutton",
+    "defaultState": "idle",
+    "action": "start",
+    "contactType": "NO",
+    "contactPair": ["13", "14"]
+  },
+  "terminals": [
+    { "key": "13", "label": "13/NO", "position": [-0.3725, 0.72, 0.4445], "sourcePosition3d": [22.35, 22.1885, -11.0092], "exitDirection": [-1, 0, 0] },
+    { "key": "14", "label": "14/NO", "position": [0.4325, 0.72, 0.413], "sourcePosition3d": [6.25, 25.3921, -11.6403], "exitDirection": [1, 0, 0] }
+  ]
+}

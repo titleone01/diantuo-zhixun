@@ -1,4 +1,4 @@
-export type CircuitWire = { from: string; to: string };
+export type CircuitWire = { from: string; to: string; kind?: "main" | "control" | "earth" };
 
 export type CircuitAnalysis = {
   energized: boolean;
@@ -125,5 +125,189 @@ export function analyzeCircuit(wires: CircuitWire[]): CircuitAnalysis {
     contactorEngaged: dangers.length === 0 && contactorEngaged,
     motorRunning: dangers.length === 0 && contactorEngaged && motorHasThreeDistinctPhases,
     dangers,
+  };
+}
+
+export type ContactPair = [string, string];
+
+export type DolCircuitModel = {
+  wires: CircuitWire[];
+  fixedConnections: ContactPair[];
+  additionalContacts?: ContactPair[];
+  phaseSources: [string, string, string];
+  protectiveEarthSource: string;
+  powerEnabled: boolean;
+  breaker: { closed: boolean; contacts: ContactPair[] };
+  startButton: { pressed: boolean; contact: ContactPair };
+  stopButton: { pressed: boolean; contact: ContactPair };
+  overload: { tripped: boolean; ncContact: ContactPair; noContact: ContactPair };
+  contactor: {
+    previouslyEngaged: boolean;
+    coil: ContactPair;
+    mainContacts: ContactPair[];
+    auxiliaryNO: ContactPair[];
+  };
+  motor: { phases: [string, string, string]; protectiveEarth: string };
+  protectedContacts: Array<{ contact: ContactPair; label: string }>;
+};
+
+export type DolCircuitAnalysis = {
+  powerAvailable: boolean;
+  contactorEngaged: boolean;
+  motorRunning: boolean;
+  protectiveEarthConnected: boolean;
+  phaseAtMotor: string[];
+  dangers: string[];
+  warnings: string[];
+};
+
+const phaseLabels = ["L1", "L2", "L3"] as const;
+
+const buildDolConnections = (model: DolCircuitModel, contacts: ContactPair[] = []) => (
+  buildConnections(model.wires, [...model.fixedConnections, ...contacts])
+);
+
+const sourcesAt = (graph: Connections, terminal: string, sources: [string, string, string]) => (
+  sources.filter((source) => graph.connected(terminal, source))
+);
+
+const findDolSourceDangers = (model: DolCircuitModel, graph: Connections) => {
+  const dangers: string[] = [];
+
+  for (let index = 0; index < model.phaseSources.length; index += 1) {
+    for (let other = index + 1; other < model.phaseSources.length; other += 1) {
+      if (graph.connected(model.phaseSources[index], model.phaseSources[other])) {
+        dangers.push(`${phaseLabels[index]} 与 ${phaseLabels[other]} 相间短路`);
+      }
+    }
+    if (graph.connected(model.phaseSources[index], model.protectiveEarthSource)
+      || graph.connected(model.phaseSources[index], model.motor.protectiveEarth)) {
+      dangers.push(`${phaseLabels[index]} 对保护地短路`);
+    }
+  }
+
+  return dangers;
+};
+
+export function analyzeDolCircuit(model: DolCircuitModel): DolCircuitAnalysis {
+  const wiringOnly = buildDolConnections(model);
+  // 旁路必须在排除器件正常内部触点后检查，避免把正常闭合误报为短接。
+  const bypasses = model.protectedContacts
+    .filter(({ contact }) => wiringOnly.connected(contact[0], contact[1]))
+    .map(({ label }) => label);
+  const controlContacts: ContactPair[] = [
+    ...(model.additionalContacts ?? []),
+    ...(model.breaker.closed ? model.breaker.contacts : []),
+    ...(!model.stopButton.pressed ? [model.stopButton.contact] : []),
+    ...(model.startButton.pressed ? [model.startButton.contact] : []),
+    ...(!model.overload.tripped ? [model.overload.ncContact] : [model.overload.noContact]),
+  ];
+  const contactorContacts = [
+    ...model.contactor.mainContacts,
+    ...model.contactor.auxiliaryNO,
+  ];
+  const controlGraph = buildDolConnections(model, [
+    ...controlContacts,
+    ...(model.contactor.previouslyEngaged ? contactorContacts : []),
+  ]);
+  const coilA = sourcesAt(controlGraph, model.contactor.coil[0], model.phaseSources);
+  const coilB = sourcesAt(controlGraph, model.contactor.coil[1], model.phaseSources);
+  // 已确认的 380V 线圈必须跨两个独立相线；同相、悬空或短路不能吸合。
+  const coilPowered = coilA.length === 1 && coilB.length === 1 && coilA[0] !== coilB[0];
+  const wouldEngage = model.powerEnabled && model.breaker.closed && !model.overload.tripped && coilPowered;
+  const powerGraph = buildDolConnections(model, [
+    ...controlContacts,
+    ...(wouldEngage ? contactorContacts : []),
+  ]);
+  // 合闸、按下按钮和吸合都会引入新的通路，不能只检查裸导线。
+  const dangers = [...new Set([
+    ...bypasses,
+    ...findDolSourceDangers(model, wiringOnly),
+    ...findDolSourceDangers(model, controlGraph),
+    ...findDolSourceDangers(model, powerGraph),
+  ])];
+  const powerAvailable = model.powerEnabled && dangers.length === 0;
+  const contactorEngaged = powerAvailable && wouldEngage;
+  const motorSources = model.motor.phases.map((terminal) => sourcesAt(powerGraph, terminal, model.phaseSources));
+  const phaseAtMotor = motorSources.map((found) => powerAvailable && found.length === 1
+    ? phaseLabels[model.phaseSources.indexOf(found[0])]
+    : "-");
+  const motorHasThreeDistinctPhases = motorSources.every((found) => found.length === 1)
+    && new Set(motorSources.flat()).size === model.phaseSources.length;
+  const protectiveEarthConnected = powerGraph.connected(
+    model.motor.protectiveEarth,
+    model.protectiveEarthSource,
+  );
+  const warnings: string[] = [];
+  if (!protectiveEarthConnected) warnings.push("M1 保护接地未接通");
+  if (model.overload.tripped) warnings.push("FR1 已动作：95-96 断开，复位前禁止再次启动");
+  if (model.powerEnabled && !model.breaker.closed) warnings.push("供电已允许，但 QF1 尚未合闸");
+  if (powerAvailable && model.breaker.closed && model.startButton.pressed && !coilPowered) {
+    warnings.push("KM1 线圈未获得两相 380V：检查停止、过载保护、启动支路与 A1/A2 接线");
+  }
+  if (contactorEngaged && !motorHasThreeDistinctPhases) {
+    warnings.push("M1 未获得完整三相电源：检查 QF1、KM1/FR1 与 X2 的主回路接线");
+  }
+
+  return {
+    powerAvailable,
+    contactorEngaged,
+    motorRunning: powerAvailable && contactorEngaged && motorHasThreeDistinctPhases,
+    protectiveEarthConnected,
+    phaseAtMotor,
+    dangers,
+    warnings,
+  };
+}
+
+export type DolStandardConnection = CircuitWire & { kind: "main" | "control" | "earth" };
+
+export const DOL_STANDARD_CONNECTIONS: DolStandardConnection[] = [
+  { from: "X1-L1B", to: "QF1-1", kind: "main" },
+  { from: "X1-L2B", to: "QF1-3", kind: "main" },
+  { from: "X1-L3B", to: "QF1-5", kind: "main" },
+  { from: "QF1-2", to: "KM1-1", kind: "main" },
+  { from: "QF1-4", to: "KM1-3", kind: "main" },
+  { from: "QF1-6", to: "KM1-5", kind: "main" },
+  { from: "KM1-T1", to: "X2-L1A", kind: "main" },
+  { from: "KM1-T2", to: "X2-L2A", kind: "main" },
+  { from: "KM1-T3", to: "X2-L3A", kind: "main" },
+  { from: "QF1-2", to: "SB1-11", kind: "control" },
+  { from: "SB1-12", to: "KM1-95", kind: "control" },
+  { from: "KM1-96", to: "SB2-13", kind: "control" },
+  { from: "SB2-14", to: "KM1-A1", kind: "control" },
+  { from: "KM1-A2", to: "QF1-4", kind: "control" },
+  { from: "KM1-13", to: "SB2-13", kind: "control" },
+  { from: "KM1-14", to: "SB2-14", kind: "control" },
+];
+
+export type DolWiringAssessment = {
+  correct: boolean;
+  completed: number;
+  total: number;
+  missing: DolStandardConnection[];
+  unexpected: CircuitWire[];
+  wrongKinds: CircuitWire[];
+};
+
+const connectionKey = ({ from, to }: CircuitWire) => [from, to].sort().join("<->");
+
+export function evaluateDolStandardAnswer(wires: CircuitWire[]): DolWiringAssessment {
+  const standard = new Map(DOL_STANDARD_CONNECTIONS.map((wire) => [connectionKey(wire), wire]));
+  const submitted = new Map(wires.map((wire) => [connectionKey(wire), wire]));
+  const missing = DOL_STANDARD_CONNECTIONS.filter((wire) => !submitted.has(connectionKey(wire)));
+  const unexpected = wires.filter((wire) => !standard.has(connectionKey(wire)));
+  const wrongKinds = wires.filter((wire) => {
+    const expected = standard.get(connectionKey(wire));
+    return expected !== undefined && wire.kind !== expected.kind;
+  });
+  const completed = DOL_STANDARD_CONNECTIONS.length - missing.length - wrongKinds.length;
+  return {
+    correct: missing.length === 0 && unexpected.length === 0 && wrongKinds.length === 0,
+    completed,
+    total: DOL_STANDARD_CONNECTIONS.length,
+    missing,
+    unexpected,
+    wrongKinds,
   };
 }

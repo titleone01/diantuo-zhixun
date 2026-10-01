@@ -1,0 +1,7 @@
+# Generate independent local secrets with: node scripts/bootstrap-admin.mjs --prepare
+BETTER_AUTH_SECRET=replace-with-at-least-32-random-characters
+BOOTSTRAP_SECRET=replace-with-another-random-secret
+APP_ORIGIN=http://localhost:3000
+# Optional fixed HTTPS address for a separate tunnel into the loopback Worker.
+# Its connector must preserve Host and X-Forwarded-Proto. No wildcard origins.
+# APP_PUBLIC_ORIGIN=https://train.example.com

@@ -42,5 +42,10 @@ yarn-error.log*
 .codex-*-dev.*.log
 .codex-*.log
 /pages-dist/
+/.local-training/
 *.tsbuildinfo
 /.openai/audits/
+/.local/
+/.dev.vars
+/.dev.vars.*
+!/.dev.vars.example

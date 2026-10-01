@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.jcuk-5n-3p-row",
+  "manufacturer": "CHINT",
+  "name": "三相导轨接线端子组",
+  "model": "JCUK-5N × 3",
+  "category": "terminal-block",
+  "referencePrefix": "X",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": {
+    "kind": "gltf-array",
+    "path": "models/chint/jcuk-5n/CHINT_JCUK-5N.glb",
+    "count": 3,
+    "spacing": [0.315, 0, 0],
+    "modelScale": [0.05, 0.05, 0.05],
+    "modelPosition": [0.1575, 1.1675, 0.00875],
+    "modelRotation": [1.5707963268, 0, -1.5707963268],
+    "materialProfile": "chint-terminal",
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP"
+  },
+  "physical": {
+    "scaleAuthority": "manufacturer-step",
+    "sceneUnitsPerMm": 0.05,
+    "dimensionsMm": { "width": 18.9, "depth": 46, "height": 43.2933 },
+    "officialSource": "https://www.chint.net/products/138"
+  },
+  "footprint": { "width": 0.945, "depth": 2.165, "height": 2.3 },
+  "properties": {
+    "poles": 3,
+    "terminalPitchMm": 6.3,
+    "mountingRail": "TH35",
+    "wireEntry": "two-sided"
+  },
+  "terminals": [
+    { "key": "L1A", "label": "L1/A", "position": [-0.315, 1.44, -0.326], "sourcePosition3d": [6.515, 4.8944, -2.4799], "exitDirection": [0, 0, -1], "internalGroup": "L1" },
+    { "key": "L1B", "label": "L1/B", "position": [-0.315, 1.44, 0.326], "sourcePosition3d": [-6.515, 4.8944, -2.4799], "exitDirection": [0, 0, 1], "internalGroup": "L1" },
+    { "key": "L2A", "label": "L2/A", "position": [0, 1.44, -0.326], "sourcePosition3d": [6.515, 4.8944, -2.4799], "exitDirection": [0, 0, -1], "internalGroup": "L2" },
+    { "key": "L2B", "label": "L2/B", "position": [0, 1.44, 0.326], "sourcePosition3d": [-6.515, 4.8944, -2.4799], "exitDirection": [0, 0, 1], "internalGroup": "L2" },
+    { "key": "L3A", "label": "L3/A", "position": [0.315, 1.44, -0.326], "sourcePosition3d": [6.515, 4.8944, -2.4799], "exitDirection": [0, 0, -1], "internalGroup": "L3" },
+    { "key": "L3B", "label": "L3/B", "position": [0.315, 1.44, 0.326], "sourcePosition3d": [-6.515, 4.8944, -2.4799], "exitDirection": [0, 0, 1], "internalGroup": "L3" }
+  ]
+}

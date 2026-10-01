@@ -1,0 +1,36 @@
+.dt-profile-library { min-width: 0; }
+.dt-profile-list-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; font-size: 14px; color: #6a7486; }
+.dt-profile-list-tools form { display: flex; align-items: center; gap: 10px; width: 100%; }
+.dt-profile-list-tools label { display: flex; gap: 8px; align-items: center; width: 280px; max-width: 70%; padding: 8px 12px; border: 1px solid #dce3eb; border-radius: 5px; background: white; }
+.dt-profile-list-tools input { min-width: 0; width: 100%; border: 0; padding: 0; outline: none; background: transparent; }
+.dt-profile-list-tools form > span { margin-left: auto; white-space: nowrap; }
+.dt-profile-draft-table { overflow-x: auto; min-height: 60px; }
+.dt-profile-draft-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.dt-profile-draft-table th { background: #f6f8fa; text-align: left; font-weight: 500; color: #536174; }
+.dt-profile-draft-table td,.dt-profile-draft-table th { padding: 13px 12px; border-bottom: 1px solid #ebedf1; }
+.dt-profile-draft-table td:first-child { min-width: 170px; }
+.dt-profile-draft-table td:nth-child(2) { color: #7c8694; white-space: nowrap; }
+.dt-profile-draft-table td:last-child { white-space: nowrap; }
+.dt-profile-draft-table td button { border: 0; background: transparent; color: #3478f6; padding: 4px 7px; }
+.dt-profile-draft-table td button.dt-danger-text { color: #e04e58; }
+.dt-profile-pagination { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 18px 0; color: #6c7889; font-size: 13px; }
+.dt-profile-pagination label { margin-right: auto; display: flex; align-items: center; gap: 7px; }
+.dt-profile-pagination select { padding: 4px; }
+.dt-profile-pagination button { display: grid; place-items: center; padding: 6px; }
+.dt-profile-publication-list { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
+.dt-profile-publication { display: flex; gap: 18px; padding: 16px; border: 1px solid #e5e9ee; border-radius: 8px; background: white; min-width: 0; content-visibility: auto; contain-intrinsic-size: auto 174px; }
+.dt-profile-publication-preview { flex: 0 0 240px; height: 140px; overflow: hidden; padding: 0; border: 0; border-radius: 5px; background: #f2f5f9; }
+.dt-profile-publication-preview svg { width: 100%; height: 100%; }
+.dt-profile-publication-info { display: flex; flex-direction: column; min-width: 0; align-items: flex-start; padding: 5px 0; }
+.dt-profile-publication-info .dt-card-title { text-align: left; overflow-wrap: anywhere; }
+.dt-profile-publication-info p { margin: 10px 0 5px; color: #687487; font-size: 13px; }
+.dt-profile-publication-info small { color: #919aaa; }
+.dt-profile-reaction-counts { margin-top: auto; padding-top: 10px; display: flex; gap: 18px; color: #8590a0; font-size: 13px; }
+.dt-profile-reaction-counts span { display: flex; align-items: center; gap: 5px; }
+.dt-profile-list-status,.dt-profile-load-sentinel { text-align: center; color: #8490a3; font-size: 13px; padding: 20px; }
+.dt-site .dt-profile { padding: 16px; gap: 16px; max-width: none; }
+.dt-profile-content { min-width: 0; }
+.dt-profile-content > .dt-tabs button { height: 48px; padding: 0 24px; font-size: 16px; }
+@media (min-width:1280px) { .dt-site .dt-profile { grid-template-columns: 366px minmax(0,1fr); } }
+@media (min-width:1536px) { .dt-profile-publication-list { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width:700px) { .dt-profile-publication-preview { flex-basis: 120px; height: 100px; } .dt-profile-publication { gap: 10px; padding: 10px; } .dt-profile-content > .dt-tabs { overflow-x: auto; } .dt-profile-content > .dt-tabs button { flex-shrink: 0; padding: 0 14px; } .dt-profile-list-tools form { flex-wrap: wrap; } }

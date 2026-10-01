@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.jcuk-5jd",
+  "manufacturer": "CHINT",
+  "name": "保护接地端子",
+  "model": "JCUK-5JD",
+  "category": "terminal-block",
+  "referencePrefix": "PE",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": {
+    "kind": "gltf",
+    "path": "models/chint/jcuk-5jd/CHINT_JCUK-5JD.glb",
+    "modelScale": [0.05, 0.05, 0.05],
+    "modelPosition": [0.1625, 1.85, 1.0625],
+    "modelRotation": [0, 1.5707963268, 0],
+    "materialProfile": "chint-pe",
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP"
+  },
+  "physical": {
+    "scaleAuthority": "manufacturer-step",
+    "sceneUnitsPerMm": 0.05,
+    "dimensionsMm": { "width": 6.5, "depth": 47.7, "height": 43 },
+    "officialSource": "https://www.chint.net/products/138"
+  },
+  "footprint": { "width": 0.325, "depth": 2.15, "height": 2.385 },
+  "properties": {
+    "terminalPitchMm": 6.5,
+    "mountingRail": "TH35",
+    "protectiveEarth": true
+  },
+  "terminals": [
+    { "key": "PEA", "label": "PE/A", "position": [0, 1.04, -0.35], "sourcePosition3d": [28.2702, 3.25, -16.8343], "exitDirection": [0, 0, -1], "internalGroup": "PE" },
+    { "key": "PEB", "label": "PE/B", "position": [0, 1.04, 0.35], "sourcePosition3d": [14.2702, 3.25, -16.8343], "exitDirection": [0, 0, 1], "internalGroup": "PE" }
+  ]
+}

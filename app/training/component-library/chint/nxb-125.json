@@ -7,15 +7,43 @@
   "category": "circuit-breaker",
   "referencePrefix": "QF",
   "mounting": { "type": "din-rail", "rail": "35mm" },
-  "geometry": { "kind": "procedural", "shape": "breaker-3p" },
-  "footprint": { "width": 2.2, "depth": 1.4, "height": 1.4 },
-  "properties": { "poles": 3, "ratedCurrentA": 125, "ratedVoltageV": 400 },
+  "geometry": {
+    "kind": "gltf",
+    "path": "models/chint/nxb-125/CHINT_NXB-125_3P.glb",
+    "modelScale": [0.05517, 0.05517, -0.05517],
+    "modelPosition": [-0.896, 4.441, -2.068],
+    "modelRotation": [0, 0, -1.5707963268],
+    "materialProfile": "chint-nxb",
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP"
+  },
+  "footprint": { "width": 4.44, "depth": 4.14, "height": 4.61 },
+  "properties": {
+    "poles": 3,
+    "frameRatedCurrentA": 125,
+    "ratedCurrentMinA": 63,
+    "ratedCurrentMaxA": 125,
+    "ratedVoltageV": 400,
+    "frequencyHz": "50/60",
+    "breakingCapacityKA": 10,
+    "tripCurve": "C",
+    "tripTechnology": "thermal-magnetic",
+    "mountingRail": "TH35-7.5",
+    "standard": "GB/T 14048.2; IEC 60947-2",
+    "terminalNumbering": "1-2, 3-4, 5-6",
+    "officialSource": "https://www.chint.net/products/393"
+  },
+  "interaction": {
+    "kind": "breaker-toggle",
+    "defaultState": "open",
+    "contactPairs": [["L1", "U11"], ["L2", "V11"], ["L3", "W11"]]
+  },
   "terminals": [
-    { "key": "L1", "label": "L1", "position": [-0.65, 1.43, -0.45], "exitDirection": [0, 0, -1] },
-    { "key": "L2", "label": "L2", "position": [0, 1.43, -0.45], "exitDirection": [0, 0, -1] },
-    { "key": "L3", "label": "L3", "position": [0.65, 1.43, -0.45], "exitDirection": [0, 0, -1] },
-    { "key": "U11", "label": "U11", "position": [-0.65, 1.43, 0.45], "exitDirection": [0, 0, 1] },
-    { "key": "V11", "label": "V11", "position": [0, 1.43, 0.45], "exitDirection": [0, 0, 1] },
-    { "key": "W11", "label": "W11", "position": [0.65, 1.43, 0.45], "exitDirection": [0, 0, 1] }
+    { "key": "L1", "label": "1/L1", "position": [-1.49, 4.61, -1.27], "sourcePosition3d": [-3, 14.5, -10.75], "exitDirection": [0, 0, -1] },
+    { "key": "L2", "label": "3/L2", "position": [0, 4.61, -1.27], "sourcePosition3d": [-3, 14.5, 16.25], "exitDirection": [0, 0, -1] },
+    { "key": "L3", "label": "5/L3", "position": [1.49, 4.61, -1.27], "sourcePosition3d": [-3, 14.5, 43.25], "exitDirection": [0, 0, -1] },
+    { "key": "U11", "label": "2/T1", "position": [-1.49, 4.61, 1.27], "sourcePosition3d": [-3, 60.5, -10.75], "exitDirection": [0, 0, 1] },
+    { "key": "V11", "label": "4/T2", "position": [0, 4.61, 1.27], "sourcePosition3d": [-3, 60.5, 16.25], "exitDirection": [0, 0, 1] },
+    { "key": "W11", "label": "6/T3", "position": [1.49, 4.61, 1.27], "sourcePosition3d": [-3, 60.5, 43.25], "exitDirection": [0, 0, 1] }
   ]
 }

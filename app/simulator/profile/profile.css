@@ -1,0 +1,6 @@
+.dt-password-modal { width: min(460px, 95vw); }
+.dt-password-modal > p { font-size: 13px; line-height: 1.8; }
+.dt-password-modal .dt-password-revoke { flex-direction: row; align-items: center; gap: 9px; font-size: 13px; }
+.dt-password-modal .dt-password-revoke input { accent-color: #3478f6; margin: 0; width: 16px; height: 16px; }
+.dt-password-modal .dt-error { margin-top: 16px; }
+.dt-password-modal .dt-modal-actions { margin-top: 22px; }

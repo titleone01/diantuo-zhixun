@@ -1,0 +1,70 @@
+/* Dimensions transcribed from the reference public frontend; see architecture/reference-layout.md. */
+.dt-site .dt-header { height: 64px; min-height: 64px; padding: 0 16px; gap: 24px; }
+.dt-site .dt-header .dt-brand { min-width: 220px; width: 220px; }
+.dt-site .dt-header nav { padding-left: 101px; gap: 8px; }
+.dt-site .dt-header nav a { padding: 8px; font-weight: 600; font-size: 16px; }
+.dt-site > .sim-editor { grid-template-columns: 360px minmax(0, 1fr); }
+.dt-site > .sim-editor.library-collapsed { grid-template-columns: 0 minmax(0, 1fr); }
+.dt-site .sim-editor .sim-library { padding: 16px 16px 0; }
+.dt-site .sim-editor .sim-library-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.dt-site .sim-editor .sim-library-heading h2 { margin: 0; font-size: 16px; }
+.dt-site .sim-editor .sim-search-toggle { border: 0; padding: 3px; background: transparent; color: #98a4b4; display: grid; place-items: center; }
+.dt-site .sim-editor .sim-library-tabs { gap: 8px; margin-bottom: 28px; }
+.dt-site .sim-editor .sim-library-tabs button { font-size: 14px; padding: 6px 10px; }
+.dt-site .sim-editor .sim-library-search { margin-bottom: 16px; }
+.dt-site .sim-editor .sim-library-grid { gap: 8px; padding-bottom: 24px; }
+.dt-site .sim-editor .sim-library-scroller h3 { font-size: 16px; margin: 0 0 12px; }
+.dt-site .sim-editor .sim-library-item { min-height: 110px; padding: 4px 2px; gap: 8px; border: 0; }
+.dt-site .sim-editor .sim-library-item .sim-device-artwork { width: 60px; height: 60px; }
+.dt-site .sim-editor .sim-library-item span { font-size: 14px; line-height: 20px; white-space: pre-line; }
+.dt-site .sim-editor .sim-library-note { display: none; }
+.dt-site .sim-editor .sim-workspace { grid-template-columns: minmax(0, 1fr); grid-template-rows: 57px minmax(0, 1fr) 24px; }
+.dt-site .sim-editor .sim-toolbar { gap: 8px; padding: 8px; overflow-x: auto; }
+.dt-site .sim-editor .sim-toolbar > * { flex-shrink: 0; }
+.dt-site .sim-editor .sim-toolbar .sim-button { height: 40px; min-height: 40px; font-size: 14px !important; padding: 8px 12px; }
+.dt-site .sim-editor .sim-line-select { font-size: 14px; }
+.dt-site .sim-editor .sim-line-select > span { display: inline; }
+.dt-site .sim-editor .sim-line-select select { width: 120px; height: 40px; font-size: 14px; }
+.dt-site .sim-editor .sim-toolbar .sim-export span, .dt-site .sim-editor .sim-toolbar .sim-import span { display: inline; }
+.dt-site .sim-editor .sim-toolbar .sim-history { order: 2; }
+.dt-site .sim-editor .sim-canvas-heading { display: none; }
+.dt-site .dt-document-disclosure { position: absolute; z-index: 12; top: 132px; left: 392px; width: min(700px, calc(100% - 424px)); height: auto; min-height: 0; margin: 0; padding: 0; border: 0; overflow: visible; background: transparent; display: block; }
+.dt-site .dt-document-disclosure > summary { display: inline-flex; max-width: min(100%, 330px); align-items: center; gap: 8px; color: #6b7788; font-size: 12px; padding: 7px 8px; cursor: pointer; border-radius: 4px; background: #f3f6fae6; list-style: none; }
+.dt-site .dt-document-disclosure > summary::-webkit-details-marker { display: none; }
+.dt-site .dt-document-disclosure > summary strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 500; }
+.dt-site .dt-document-disclosure > summary span { white-space: nowrap; font-size: 11px; color: #3478f6; }
+.dt-site .dt-document-disclosure[open] > summary { background: white; color: #3478f6; }
+.dt-site .dt-document-controls { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; min-width: 0; padding: 14px; margin: 5px 0 0; border: 1px solid #dbe3ef; border-radius: 6px; background: white; box-shadow: 0 6px 24px #2338501c; font-size: 12px; }
+.dt-site .dt-document-controls input { flex: 1; width: 210px; min-width: 160px; }
+.dt-site .dt-document-controls select { max-width: 100%; }
+.dt-site:has(.sim-editor.library-collapsed) .dt-document-disclosure { left: 38px; width: min(700px, calc(100% - 70px)); }
+@media (max-width: 1279px) {
+  .dt-site .dt-header { height: 56px; min-height: 56px; padding: 0 14px; gap: 14px; }
+  .dt-site .dt-header .dt-brand { min-width: 140px; width: 140px; }
+  .dt-site .dt-header .dt-brand strong { font-size: 21px; }
+  .dt-site .dt-header .dt-brand small { letter-spacing: 0; font-size: 9px; }
+  .dt-site .dt-header nav { padding-left: 18px; gap: 5px; }
+  .dt-site .dt-header nav a { font-size: 14px; padding: 7px; }
+  .dt-site > .sim-editor { grid-template-columns: 280px minmax(0, 1fr); }
+  .dt-site .sim-editor .sim-library { padding: 14px 12px 0; }
+  .dt-site .sim-editor .sim-library-tabs { gap: 5px; }
+  .dt-site .sim-editor .sim-library-tabs button { font-size: 12px; padding: 5px 7px; }
+  .dt-site .sim-editor .sim-library-item span { font-size: 12px; line-height: 18px; }
+  .dt-site .dt-document-disclosure { top: 124px; left: 312px; width: min(650px, calc(100% - 340px)); }
+}
+@media (max-width: 900px) {
+  .dt-site .dt-header { height: 105px; min-height: 105px; flex-shrink: 0; padding: 8px 14px 0; gap: 5px 14px; }
+  .dt-site .dt-header nav { padding-left: 0; }
+  .dt-site .dt-document-disclosure { top: 173px; }
+}
+@media (max-width: 767px) {
+  .dt-site .dt-header nav { padding-left: 0; }
+  .dt-site > .sim-editor { grid-template-columns: 0 minmax(0, 1fr); min-height: 0; }
+  .dt-site > .sim-editor.library-collapsed { grid-template-columns: 245px minmax(0, 1fr); }
+  .dt-site .sim-editor:not(.library-collapsed) .sim-library { visibility: hidden; }
+  .dt-site .sim-editor .sim-library-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dt-site .sim-editor .sim-library-item .sim-device-artwork { width: 50px; height: 50px; }
+  .dt-site .sim-editor .sim-library-item span { font-size: 11px; }
+  .dt-site .dt-document-disclosure { top: 209px; left: 35px; width: calc(100% - 50px); }
+  .dt-site:has(.sim-editor.library-collapsed) .dt-document-disclosure { display: none; }
+}

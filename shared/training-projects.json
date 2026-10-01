@@ -1,0 +1,12 @@
+[
+  { "id": "project-01", "name": "电动机点动控制电路", "simulation": "pending" },
+  { "id": "project-02", "name": "电动机连续运行控制电路", "simulation": "dol" },
+  { "id": "project-03", "name": "电动机点动与连续运行控制电路", "simulation": "pending" },
+  { "id": "project-04", "name": "电动机接触器互锁正反转控制电路", "simulation": "pending" },
+  { "id": "project-05", "name": "电动机双重联锁正反转控制电路", "simulation": "pending" },
+  { "id": "project-06", "name": "电动机自动往返控制电路", "simulation": "pending" },
+  { "id": "project-07", "name": "两台电动机顺序控制电路", "simulation": "pending" },
+  { "id": "project-08", "name": "电动机延时起动控制电路", "simulation": "pending" },
+  { "id": "project-09", "name": "Y-△降压起动控制电路", "simulation": "pending" },
+  { "id": "project-10", "name": "双速电机控制电路", "simulation": "pending" }
+]

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "assetId": "chint.nxb-63-3p",
+  "manufacturer": "CHINT",
+  "name": "三极小型断路器",
+  "model": "NXB-63 3P",
+  "category": "circuit-breaker",
+  "referencePrefix": "QF",
+  "mounting": { "type": "din-rail", "rail": "35mm" },
+  "geometry": {
+    "kind": "gltf",
+    "path": "models/chint/nxb-63/CHINT_NXB-63_3P.glb",
+    "modelScale": [0.05, 0.05, 0.05],
+    "modelPosition": [-1.12, 2.12, -0.055],
+    "modelRotation": [1.5707963268, 0, -1.5707963268],
+    "materialProfile": "chint-nxb",
+    "interactiveNodes": {
+      "breakerHandle": {
+        "nodeName": "2ZTD_256_458_ASM_1_1",
+        "pivot": [-8.5, 22.3, -19.1],
+        "axis": "y",
+        "openAngleRad": 0,
+        "closedAngleRad": -0.967
+      }
+    },
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP"
+  },
+  "physical": {
+    "scaleAuthority": "manufacturer",
+    "sceneUnitsPerMm": 0.05,
+    "dimensionsMm": { "width": 53.7, "depth": 74.962, "height": 81 },
+    "officialSource": "https://www.chint.net/products/387"
+  },
+  "calibration": {
+    "status": "official-model-video-calibrated",
+    "sourceFile": "NXB-63_3P_202404.stp",
+    "movingPartNode": "2ZTD_256_458_ASM_1_1",
+    "pivotEvidence": "STEP cylindrical surfaces share axis X=-8.5 mm, Y=19.1 mm along the three-pole width",
+    "motionEvidence": "CHINT official NXB-63 installation video 02:20-02:48; OFF is the STEP down-stop pose and ON rotates upward about 55.4 degrees",
+    "motionEvidenceUrl": "https://www.youtube.com/watch?v=K1yLrL_EoWg"
+  },
+  "footprint": { "width": 2.685, "depth": 4.05, "height": 3.7481 },
+  "properties": {
+    "poles": 3,
+    "ratedCurrentMinA": 1,
+    "ratedCurrentMaxA": 63,
+    "ratedVoltageV": 400,
+    "frequencyHz": "50/60",
+    "breakingCapacityKA": 6,
+    "tripCurve": "C",
+    "tripTechnology": "thermal-magnetic",
+    "mountingRail": "TH35-7.5",
+    "standard": "GB/T 10963.1; IEC 60898-1",
+    "terminalNumbering": "1-2, 3-4, 5-6"
+  },
+  "interaction": {
+    "kind": "breaker-toggle",
+    "defaultState": "open",
+    "contactPairs": [["1", "2"], ["3", "4"], ["5", "6"]]
+  },
+  "terminals": [
+    { "key": "1", "label": "1/L1", "position": [-0.895, 3.79, -1.6125], "sourcePosition3d": [32.25, -7.1, 4.45], "exitDirection": [0, 0, -1] },
+    { "key": "3", "label": "3/L2", "position": [0, 3.79, -1.6125], "sourcePosition3d": [32.25, -7.1, 22.35], "exitDirection": [0, 0, -1] },
+    { "key": "5", "label": "5/L3", "position": [0.895, 3.79, -1.6125], "sourcePosition3d": [32.25, -7.1, 40.25], "exitDirection": [0, 0, -1] },
+    { "key": "2", "label": "2/T1", "position": [-0.895, 3.79, 1.6125], "sourcePosition3d": [-32.25, -7.1, 4.45], "exitDirection": [0, 0, 1] },
+    { "key": "4", "label": "4/T2", "position": [0, 3.79, 1.6125], "sourcePosition3d": [-32.25, -7.1, 22.35], "exitDirection": [0, 0, 1] },
+    { "key": "6", "label": "6/T3", "position": [0.895, 3.79, 1.6125], "sourcePosition3d": [-32.25, -7.1, 40.25], "exitDirection": [0, 0, 1] }
+  ]
+}

@@ -1,17 +1,27 @@
 import { getAsset } from "./catalog";
+import { mmToScene } from "./scale";
 import type { DeviceInstance } from "./types";
 
-export const BOARD_WIDTH = 17;
-export const BOARD_DEPTH = 13.4;
+export const BOARD_WIDTH_MM = 600;
+export const BOARD_DEPTH_MM = 700;
+export const BOARD_WIDTH = mmToScene(BOARD_WIDTH_MM);
+export const BOARD_DEPTH = mmToScene(BOARD_DEPTH_MM);
 export const BOARD_HALF_WIDTH = BOARD_WIDTH / 2;
 export const BOARD_HALF_DEPTH = BOARD_DEPTH / 2;
-export const BOARD_EDGE_CLEARANCE = 0.48;
-export const DEVICE_GAP = 0.24;
+export const BOARD_EDGE_CLEARANCE = mmToScene(50);
+export const DEVICE_GAP = mmToScene(10);
+export const DIN_RAIL_FACE_WIDTH = mmToScene(35);
+export const DIN_RAIL_MOUNT_Y = mmToScene(5);
+export const WIRE_DUCT_FACE_WIDTH = mmToScene(30);
+export const WIRE_DUCT_WALL_HEIGHT = mmToScene(30);
+export const WIRE_DUCT_WIRE_HEIGHT = mmToScene(12);
+export const BOARD_HOLE_PITCH = mmToScene(25);
 
-// 参照用户提供的柜内模板：四层安装区、五条横线槽和左右两条竖线槽。
-export const RAIL_ROWS = [-4.7, -1.55, 1.55, 4.7] as const;
-export const WIRE_DUCT_ROWS = [-6.1, -3.15, 0, 3.15, 6.1] as const;
-export const WIRE_DUCT_COLUMNS = [-7.75, 7.75] as const;
+// 600 × 700 mm mounting plate: four usable 125 mm installation bands are
+// separated by five 30 mm wire ducts. Coordinates stay in the shared mm scale.
+export const RAIL_ROWS = [-245, -80, 80, 245].map(mmToScene) as readonly number[];
+export const WIRE_DUCT_ROWS = [-320, -165, 0, 165, 320].map(mmToScene) as readonly number[];
+export const WIRE_DUCT_COLUMNS = [-270, 270].map(mmToScene) as readonly number[];
 
 const clamp = (value: number, minimum: number, maximum: number) => Math.max(minimum, Math.min(maximum, value));
 
@@ -58,12 +68,22 @@ const freeXOnRail = (
 };
 
 export function clampToBoardAndRail(assetId: string, x: number, z: number): [number, number] {
-  const halfWidth = getAsset(assetId).footprint.width / 2;
+  const asset = getAsset(assetId);
+  const halfWidth = asset.footprint.width / 2;
   const boundedX = clamp(
     x,
     -BOARD_HALF_WIDTH + BOARD_EDGE_CLEARANCE + halfWidth,
     BOARD_HALF_WIDTH - BOARD_EDGE_CLEARANCE - halfWidth,
   );
+  if (asset.mounting.type === "panel-screw") {
+    const halfDepth = asset.footprint.depth / 2;
+    const boundedZ = clamp(
+      z,
+      -BOARD_HALF_DEPTH + BOARD_EDGE_CLEARANCE + halfDepth,
+      BOARD_HALF_DEPTH - BOARD_EDGE_CLEARANCE - halfDepth,
+    );
+    return [Math.round(boundedX * 20) / 20, Math.round(boundedZ * 20) / 20];
+  }
   return [Math.round(boundedX * 20) / 20, nearestRail(z)];
 }
 
@@ -74,6 +94,9 @@ export function findAvailablePlacement(
   instances: DeviceInstance[],
   options: { ignoredInstanceId?: string; tryOtherRails?: boolean } = {},
 ): [number, number] {
+  if (getAsset(assetId).mounting.type === "panel-screw") {
+    return clampToBoardAndRail(assetId, preferredX, preferredZ);
+  }
   const preferredRail = nearestRail(preferredZ);
   const rails = options.tryOtherRails
     ? [...RAIL_ROWS].sort((left, right) => Math.abs(left - preferredRail) - Math.abs(right - preferredRail))

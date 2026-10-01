@@ -1,0 +1,16 @@
+.dt-drawing-viewer { min-width: 0; width: 100%; background: #fff; }
+.dt-drawing-viewer .dt-drawing-viewer-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; padding: 8px 0 10px; }
+.dt-drawing-viewer .dt-drawing-viewer-toolbar button, .dt-drawing-viewer .dt-drawing-viewer-toolbar a { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 33px; padding: 6px 9px; border: 1px solid #d7e1ee; border-radius: 4px; background: #fff; color: #3478f6; font-size: 12px; text-decoration: none; cursor: pointer; }
+.dt-drawing-viewer .dt-drawing-viewer-toolbar button:disabled { opacity: .4; cursor: default; }
+.dt-drawing-viewer .dt-drawing-viewer-toolbar a { margin-left: auto; }
+.dt-drawing-viewer .dt-drawing-viewer-toolbar output { min-width: 43px; text-align: center; color: #65758b; font-size: 12px; font-variant-numeric: tabular-nums; }
+.dt-drawing-viewer .dt-drawing-viewer-viewport { position: relative; height: clamp(250px, 52dvh, 610px); width: 100%; overflow: auto; overscroll-behavior: contain; border: 1px solid #e1e7f0; border-radius: 5px; background: #f3f5f8; scrollbar-gutter: stable; cursor: grab; }
+.dt-drawing-viewer .dt-drawing-viewer-viewport:focus-visible { outline: 2px solid #9ac0ff; outline-offset: 2px; }
+.dt-drawing-viewer .dt-drawing-viewer-viewport.is-dragging { cursor: grabbing; user-select: none; }
+.dt-drawing-viewer .dt-drawing-viewer-content { margin: 12px auto; background: #fff; }
+.dt-drawing-viewer .dt-drawing-viewer-content > img { display: block; width: 100%; max-width: none; height: auto; max-height: none; background: #fff; user-select: none; -webkit-user-drag: none; }
+.dt-drawing-viewer .dt-drawing-viewer-message { padding: 20px; text-align: center; font-size: 12px; color: #738097; }
+.dt-drawing-viewer .dt-drawing-viewer-hint { margin: 6px 0 0; color: #8793a3; font-size: 11px; }
+.dt-drawing-viewer .dt-pdf-pagination { position: sticky; top: 0; left: 0; z-index: 2; max-width: var(--drawing-viewport-width); background: #fff; padding: 5px 0; }
+.dt-drawing-viewer .dt-pdf-original { display: none; }
+@media (max-width: 600px) { .dt-drawing-viewer .dt-drawing-viewer-toolbar { gap: 4px; } .dt-drawing-viewer .dt-drawing-viewer-toolbar button, .dt-drawing-viewer .dt-drawing-viewer-toolbar a { padding: 6px; font-size: 11px; } .dt-drawing-viewer .dt-drawing-viewer-viewport { height: 45dvh; min-height: 220px; } }

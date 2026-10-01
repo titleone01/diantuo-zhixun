@@ -1,11 +1,7 @@
 "use client";
 
-import { TrainingCanvas } from "./training/TrainingCanvas";
+import SimulatorApp from "./simulator/SimulatorApp";
 
 export default function Home() {
-  return (
-    <main className="wiring-mvp">
-      <TrainingCanvas />
-    </main>
-  );
+  return <SimulatorApp />;
 }

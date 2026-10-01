@@ -1,0 +1,15 @@
+.dt-reference-video { width: 100%; min-width: 0; }
+.dt-reference-video video { display: block; width: 100%; max-height: 58vh; aspect-ratio: 16 / 9; background: #121923; border-radius: 4px; }
+.dt-reference-video-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.dt-reference-video-controls button { display: inline-flex; align-items: center; gap: 4px; padding: 5px 6px; font-size: 11px; white-space: nowrap; }
+.dt-reference-video-controls label { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+.dt-reference-video-controls select { padding: 4px; border: 1px solid #dbe3ef; border-radius: 4px; background: white; color: #27364b; font-size: 12px; }
+.dt-reference-video .dt-reference-video-note { margin: 9px 0 0; color: #8793a4; font-size: 11px; line-height: 1.5; }
+.dt-reference-video-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; color: #b5473e; font-size: 12px; }
+.dt-reference-video-error button { padding: 4px 8px; font-size: 12px; }
+.dt-reference-video-empty { min-height: 180px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; color: #91a0b4; }
+.dt-reference-video-empty b { font-size: 15px; font-weight: 500; }
+.dt-reference-video-empty p { margin: 0; font-size: 12px; line-height: 1.6; }
+.dt-reference-preview-tabs { display: flex; gap: 16px; border-bottom: 1px solid #e2e8f0; margin-bottom: 16px; }
+.dt-reference-preview-tabs button { padding: 9px 4px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: #8491a4; }
+.dt-reference-preview-tabs button.active { border-bottom-color: #3478f6; color: #3478f6; }

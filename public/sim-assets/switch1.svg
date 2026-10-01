@@ -1,0 +1,23 @@
+<svg 
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="141.5px" height="201.5px">
+<path fill-rule="evenodd"  stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(236, 236, 236)"
+ d="M10.498,30.499 L130.499,30.499 C136.21,30.499 140.499,34.976 140.499,40.499 L140.499,160.499 C140.499,166.22 136.21,170.499 130.499,170.499 L10.498,170.499 C4.976,170.499 0.499,166.22 0.499,160.499 L0.499,40.499 C0.499,34.976 4.976,30.499 10.498,30.499 Z"/>
+<path fill-rule="evenodd"  stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(255, 255, 255)"
+ d="M6.499,53.499 L134.499,53.499 L134.499,150.499 L6.499,150.499 L6.499,53.499 Z"/>
+<path fill-rule="evenodd"  fill="rgb(199, 199, 199)"
+ d="M6.499,53.499 L134.499,53.499 L134.499,63.499 L6.499,63.499 L6.499,53.499 Z"/>
+<path fill-rule="evenodd"  stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(255, 93, 93)"
+ d="M62.499,73.499 L78.499,73.499 C80.155,73.499 81.499,74.842 81.499,76.499 C81.499,78.156 80.155,79.499 78.499,79.499 L62.499,79.499 C60.842,79.499 59.499,78.156 59.499,76.499 C59.499,74.842 60.842,73.499 62.499,73.499 Z"/>
+<text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="14px" x="79.5px" y="48.5px"><tspan font-size="14px" font-family="PingFang SC" fill="#333333">L</tspan></text>
+<text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="14px" x="79.5px" y="166.5px"><tspan font-size="14px" font-family="PingFang SC" fill="#333333">L&#49;</tspan></text>
+<path fill-rule="evenodd"  stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(255, 93, 93)"
+ d="M70.499,0.499 C76.22,0.499 80.499,4.976 80.499,10.499 C80.499,16.22 76.22,20.499 70.499,20.499 C64.976,20.499 60.499,16.22 60.499,10.499 C60.499,4.976 64.976,0.499 70.499,0.499 Z"/>
+<path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+ d="M70.499,6.499 C72.708,6.499 74.498,8.290 74.498,10.499 C74.498,12.708 72.708,14.499 70.499,14.499 C68.290,14.499 66.499,12.708 66.499,10.499 C66.499,8.290 68.290,6.499 70.499,6.499 Z"/>
+<path fill-rule="evenodd"  stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(124, 227, 153)"
+ d="M70.498,180.499 C76.22,180.499 80.499,184.976 80.499,190.499 C80.499,196.22 76.22,200.499 70.498,200.499 C64.976,200.499 60.499,196.22 60.499,190.499 C60.499,184.976 64.976,180.499 70.498,180.499 Z"/>
+<path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+ d="M70.498,186.499 C72.708,186.499 74.498,188.290 74.498,190.499 C74.498,192.708 72.708,194.499 70.498,194.499 C68.290,194.499 66.499,192.708 66.499,190.499 C66.499,188.290 68.290,186.499 70.498,186.499 Z"/>
+</svg>

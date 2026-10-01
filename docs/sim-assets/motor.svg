@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="280.5px" height="191.5px">
+    <defs>
+        <filter id="Filter_0">
+            <feOffset in="SourceAlpha" dx="0" dy="-4" />
+            <feGaussianBlur result="blurOut" stdDeviation="0" />
+            <feFlood flood-color="rgb(140, 140, 140)" result="floodOut" />
+            <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+            <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.36" />
+            </feComponentTransfer>
+            <feBlend mode="multiply" in2="SourceGraphic" />
+        </filter>
+        <filter id="Filter_1">
+            <feOffset in="SourceAlpha" dx="-4.232" dy="-12.292" />
+            <feGaussianBlur result="blurOut" stdDeviation="0" />
+            <feFlood flood-color="rgb(140, 140, 140)" result="floodOut" />
+            <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+            <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.36" />
+            </feComponentTransfer>
+            <feBlend mode="multiply" in2="SourceGraphic" />
+        </filter>
+        <filter id="Filter_2">
+            <feOffset in="SourceAlpha" dx="0" dy="-4" />
+            <feGaussianBlur result="blurOut" stdDeviation="0" />
+            <feFlood flood-color="rgb(140, 140, 140)" result="floodOut" />
+            <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+            <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.36" />
+            </feComponentTransfer>
+            <feBlend mode="multiply" in2="SourceGraphic" />
+        </filter>
+        <filter id="Filter_3">
+            <feOffset in="SourceAlpha" dx="0" dy="-4" />
+            <feGaussianBlur result="blurOut" stdDeviation="0" />
+            <feFlood flood-color="rgb(140, 140, 140)" result="floodOut" />
+            <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+            <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.36" />
+            </feComponentTransfer>
+            <feBlend mode="multiply" in2="SourceGraphic" />
+        </filter>
+        <filter id="Filter_4">
+            <feOffset in="SourceAlpha" dx="0" dy="-4" />
+            <feGaussianBlur result="blurOut" stdDeviation="0" />
+            <feFlood flood-color="rgb(140, 140, 140)" result="floodOut" />
+            <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+            <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.36" />
+            </feComponentTransfer>
+            <feBlend mode="multiply" in2="SourceGraphic" />
+        </filter>
+
+    </defs>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(119, 180, 248)"
+        d="M48.499,157.499 L186.499,131.499 L233.499,151.499 L95.499,178.499 L48.499,157.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M95.499,177.499 L233.499,151.499 L233.499,163.499 L95.499,189.499 L95.499,177.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M48.499,157.499 L96.499,177.499 L96.499,189.499 L48.499,169.499 L48.499,157.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M164.499,131.499 L204.499,123.499 L204.499,147.499 L164.499,155.499 L164.499,131.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M136.499,119.499 L165.499,131.499 L165.499,155.499 L136.499,143.499 L136.499,119.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M105.499,144.499 L145.499,136.499 L145.499,160.499 L105.499,168.499 L105.499,144.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(100, 151, 208)"
+        d="M77.499,132.499 L106.499,144.499 L106.499,168.499 L77.499,156.499 L77.499,132.499 Z" />
+    <g filter="url(#Filter_0)">
+        <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+            fill="rgb(119, 180, 248)"
+            d="M78.94,61.840 L190.294,41.659 C191.924,41.366 193.484,42.450 193.777,44.81 C194.71,45.711 192.986,47.271 191.356,47.564 L79.156,67.745 C77.526,68.39 75.966,66.955 75.672,65.324 C75.379,63.693 76.463,62.133 78.94,61.840 Z" />
+    </g>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(119, 180, 248)"
+        d="M207.249,133.102 C207.84,133.131 206.919,133.147 206.754,133.174 L206.757,133.190 L92.589,153.725 L76.657,65.147 L190.825,44.612 L190.827,44.628 C190.991,44.595 191.152,44.553 191.317,44.523 C210.69,41.150 228.838,58.245 233.238,82.705 C237.637,107.165 226.2,129.729 207.249,133.102 Z" />
+    <g filter="url(#Filter_1)">
+        <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+            fill="rgb(119, 180, 248)"
+            d="M92.586,153.709 L92.589,153.725 L92.538,153.719 C92.390,153.749 92.246,153.787 92.97,153.814 C88.173,154.520 84.250,154.318 80.456,153.352 C64.435,152.830 49.520,137.487 45.733,116.431 C41.946,95.375 50.580,75.796 65.415,69.725 C68.634,67.497 72.240,65.941 76.164,65.235 C76.313,65.209 76.462,65.194 76.610,65.170 L76.656,65.147 L76.659,65.163 C95.246,62.176 113.725,79.172 118.86,103.417 C122.447,127.662 111.49,150.32 92.586,153.709 Z" />
+    </g>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(56, 56, 56)"
+        d="M58.424,105.4 C61.142,104.515 64.59,108.85 64.939,112.976 C65.818,117.869 64.329,122.231 61.611,122.720 C58.893,123.209 55.976,119.639 55.97,114.747 C54.217,109.855 55.706,105.493 58.424,105.4 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(172, 172, 172)"
+        d="M49.291,110.711 L61.101,108.587 C62.732,108.293 64.291,109.377 64.585,111.8 L65.293,114.945 C65.586,116.576 64.502,118.135 62.871,118.429 L51.61,120.553 C49.430,120.846 47.870,119.762 47.577,118.132 L46.869,114.195 C46.576,112.564 47.660,111.4 49.291,110.711 Z" />
+    <g filter="url(#Filter_2)">
+        <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+            fill="rgb(119, 180, 248)"
+            d="M118.8,97.335 L230.207,77.154 C231.838,76.861 233.398,77.945 233.691,79.575 C233.984,81.206 232.900,82.766 231.270,83.59 L119.70,103.240 C117.439,103.533 115.880,102.449 115.587,100.819 C115.293,99.188 116.377,97.628 118.8,97.335 Z" />
+    </g>
+    <g filter="url(#Filter_3)">
+        <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+            fill="rgb(119, 180, 248)"
+            d="M115.799,130.246 L227.999,110.65 C229.629,109.771 231.189,110.856 231.482,112.486 C231.776,114.117 230.691,115.677 229.61,115.970 L116.861,136.151 C115.231,136.444 113.671,135.360 113.378,133.729 C113.84,132.99 114.169,130.539 115.799,130.246 Z" />
+    </g>
+    <g filter="url(#Filter_4)">
+        <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+            fill="rgb(119, 180, 248)"
+            d="M106.516,72.985 L218.715,52.804 C220.346,52.510 221.906,53.595 222.199,55.225 C222.492,56.856 221.408,58.416 219.778,58.709 L107.578,78.890 C105.947,79.183 104.388,78.99 104.94,76.468 C103.801,74.838 104.885,73.278 106.516,72.985 Z" />
+    </g>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 223, 93)"
+        d="M154.499,92.499 L135.499,92.499 C134.395,92.499 133.499,91.604 133.499,90.499 L133.499,21.499 C133.499,20.395 134.395,19.499 135.499,19.499 C136.604,19.499 137.499,20.395 137.499,21.499 L137.499,88.499 L154.499,88.499 C155.604,88.499 156.499,89.395 156.499,90.499 C156.499,91.604 155.604,92.499 154.499,92.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 223, 93)"
+        d="M135.499,0.499 C141.22,0.499 145.499,4.976 145.499,10.499 C145.499,16.22 141.22,20.499 135.499,20.499 C129.976,20.499 125.499,16.22 125.499,10.499 C125.499,4.976 129.976,0.499 135.499,0.499 Z" />
+    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M135.499,6.499 C137.708,6.499 139.499,8.290 139.499,10.499 C139.499,12.708 137.708,14.499 135.499,14.499 C133.290,14.499 131.499,12.708 131.499,10.499 C131.499,8.290 133.290,6.499 135.499,6.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M193.499,19.499 C194.604,19.499 195.499,20.395 195.499,21.499 L195.499,90.499 C195.499,91.604 194.604,92.499 193.499,92.499 C192.395,92.499 191.499,91.604 191.499,90.499 L191.499,21.499 C191.499,20.395 192.395,19.499 193.499,19.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M193.499,0.499 C199.22,0.499 203.499,4.976 203.499,10.499 C203.499,16.22 199.22,20.499 193.499,20.499 C187.976,20.499 183.499,16.22 183.499,10.499 C183.499,4.976 187.976,0.499 193.499,0.499 Z" />
+    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M193.499,6.499 C195.708,6.499 197.499,8.290 197.499,10.499 C197.499,12.708 195.708,14.499 193.499,14.499 C191.290,14.499 189.499,12.708 189.499,10.499 C189.499,8.290 191.290,6.499 193.499,6.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 93, 93)"
+        d="M251.499,92.499 L232.499,92.499 C231.395,92.499 230.499,91.604 230.499,90.499 C230.499,89.395 231.395,88.499 232.499,88.499 L249.499,88.499 L249.499,21.499 C249.499,20.395 250.395,19.499 251.499,19.499 C252.604,19.499 253.499,20.395 253.499,21.499 L253.499,90.499 C253.499,91.604 252.604,92.499 251.499,92.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 93, 93)"
+        d="M251.499,0.499 C257.22,0.499 261.499,4.976 261.499,10.499 C261.499,16.22 257.22,20.499 251.499,20.499 C245.976,20.499 241.499,16.22 241.499,10.499 C241.499,4.976 245.976,0.499 251.499,0.499 Z" />
+    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M251.499,6.499 C253.708,6.499 255.499,8.290 255.499,10.499 C255.499,12.708 253.708,14.499 251.499,14.499 C249.290,14.499 247.499,12.708 247.499,10.499 C247.499,8.290 249.290,6.499 251.499,6.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 223, 93)"
+        d="M262.499,106.499 C262.499,107.604 261.604,108.499 260.499,108.499 L238.499,108.499 C237.395,108.499 236.499,107.604 236.499,106.499 C236.499,105.395 237.395,104.499 238.499,104.499 L260.499,104.499 C261.604,104.499 262.499,105.395 262.499,106.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M261.806,109.499 C261.806,110.604 260.911,111.499 259.806,111.499 L238.499,111.499 C237.395,111.499 236.499,110.604 236.499,109.499 C236.499,108.395 237.395,107.499 238.499,107.499 L259.806,107.499 C260.911,107.499 261.806,108.395 261.806,109.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M279.499,109.499 C279.499,115.22 275.22,119.499 269.499,119.499 C263.977,119.499 259.499,115.22 259.499,109.499 C259.499,103.976 263.977,99.499 269.499,99.499 C275.22,99.499 279.499,103.976 279.499,109.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 223, 93)"
+        d="M276.499,109.499 C276.499,113.365 273.365,116.499 269.499,116.499 C265.633,116.499 262.499,113.365 262.499,109.499 C262.499,105.633 265.633,102.499 269.499,102.499 C273.365,102.499 276.499,105.633 276.499,109.499 Z" />
+    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M273.499,109.499 C273.499,111.708 271.708,113.499 269.499,113.499 C267.290,113.499 265.499,111.708 265.499,109.499 C265.499,107.290 267.290,105.499 269.499,105.499 C271.708,105.499 273.499,107.290 273.499,109.499 Z" />
+    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="14px" x="139.5px" y="36.297px">
+        <tspan font-size="14px" font-family="PingFang SC" fill="#333333">U</tspan>
+    </text>
+    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="14px" x="198.5px" y="36.5px">
+        <tspan font-size="14px" font-family="PingFang SC" fill="#333333">V</tspan>
+    </text>
+    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="14px" x="256.5px" y="36.5px">
+        <tspan font-size="14px" font-family="PingFang SC" fill="#333333">W</tspan>
+    </text>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 124, 124)"
+        d="M150.499,83.499 L231.499,68.499 L242.499,73.499 L161.499,89.499 L150.499,83.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(56, 56, 56)"
+        d="M161.499,88.499 L242.499,73.499 L242.499,121.499 L161.499,136.499 L161.499,88.499 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(81, 81, 81)"
+        d="M150.499,83.499 L162.499,88.499 L162.499,136.499 L150.499,131.499 L150.499,83.499 Z" />
+    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)"
+        transform="matrix( 0.97023809523809, -0.17261904761905, 0, 1,178.061011904762, 104.811869047619)"
+        font-size="14px">
+        <tspan>
+            <tspan font-size="14px" font-family="PingFang SC" fill="#FFFFFF">&#19977;&#39033;&#24322;&#27493;</tspan>
+            <tspan x="0" dy="1.2em" font-family="PingFang SC" fill="#FFFFFF">&#30005;&#21160;&#26426;</tspan>
+        </tspan>
+    </text>
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 177, 85)"
+        d="M44.769,107.543 C48.652,106.266 52.468,106.776 54.928,109.337 C55.240,109.661 55.511,110.16 55.762,110.385 C56.234,109.830 56.717,109.281 57.220,108.742 C65.994,99.352 77.194,94.915 86.328,96.241 C87.511,88.295 84.151,82.907 79.95,77.646 C73.662,71.992 67.539,69.407 59.247,70.414 C58.7,71.484 56.799,72.642 55.634,73.889 C45.999,84.202 42.69,97.518 44.769,107.543 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(255, 236, 130)"
+        d="M55.437,117.950 C54.416,121.908 51.927,124.845 48.444,125.535 C48.2,125.622 47.557,125.659 47.112,125.671 C47.324,126.367 47.525,127.70 47.707,127.785 C50.879,140.239 48.569,152.63 42.524,159.37 C48.575,164.322 54.924,164.400 62.82,162.983 C69.773,161.460 75.254,157.701 78.882,150.176 C78.650,148.554 78.327,146.912 77.906,145.259 C74.424,131.582 65.334,121.87 55.437,117.950 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(247, 201, 103)"
+        d="M46.484,123.61 C43.277,120.526 41.599,117.62 42.378,113.597 C42.477,113.158 42.623,112.736 42.792,112.324 C42.69,112.236 41.345,112.136 40.618,112.13 C27.945,109.874 18.68,102.977 14.137,94.627 C6.855,98.22 4.214,103.797 2.614,110.916 C0.894,118.565 2.114,125.99 7.528,131.461 C9.104,131.905 10.736,132.274 12.419,132.558 C26.335,134.908 39.610,130.842 46.484,123.61 Z" />
+    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(172, 172, 172)"
+        d="M48.499,104.499 C53.470,104.499 57.499,109.424 57.499,115.499 C57.499,121.574 53.470,126.499 48.499,126.499 C43.529,126.499 39.499,121.574 39.499,115.499 C39.499,109.424 43.529,104.499 48.499,104.499 Z" />
+</svg>

@@ -1,0 +1,27 @@
+.dt-reference-picker-backdrop { position: fixed; inset: 0; z-index: 180; background: #0d18285e; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.dt-reference-picker { width: min(1200px, 96vw); max-height: 92dvh; display: flex; flex-direction: column; border: 1px solid #e1e6ee; border-radius: 9px; background: #fff; color: #172234; box-shadow: 0 20px 80px #0003; font: 14px/1.5 Arial, "Microsoft YaHei", sans-serif; overflow: hidden; }
+.dt-reference-picker button,.dt-reference-picker input { font: inherit; }
+.dt-reference-picker button { cursor: pointer; border: 1px solid #dce3ed; border-radius: 5px; background: #fff; color: #172234; padding: 8px 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.dt-reference-picker button:hover { border-color: #90b7ff; background: #f4f8ff; }
+.dt-reference-picker button:disabled { opacity: .45; cursor: not-allowed; }
+.dt-reference-picker button:focus-visible,.dt-reference-picker input:focus-visible { outline: 2px solid #3478f6; outline-offset: 2px; }
+.dt-reference-picker > header { display: flex; align-items: center; gap: 16px; flex-shrink: 0; padding: 18px 24px; border-bottom: 1px solid #e1e6ee; }
+.dt-reference-picker h2 { font-size: 18px; line-height: 1.5; margin: 0; }
+.dt-reference-picker-search { display: flex; align-items: center; gap: 8px; width: 336px; margin-left: auto; border: 1px solid #dde4ed; border-radius: 5px; padding: 8px 12px; color: #8793a4; }
+.dt-reference-picker-search input { min-width: 0; width: 100%; border: 0; outline: 0; color: #172234; }
+.dt-reference-picker .dt-reference-picker-close { border: 0; padding: 4px; }
+.dt-reference-picker-content { overflow: auto; min-height: 0; padding: 20px 24px; scrollbar-gutter: stable; }
+.dt-reference-picker-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.dt-reference-picker-card { display: flex; align-items: center; gap: 8px; min-width: 0; border: 1px solid #e1e6ee; border-radius: 6px; padding: 16px; cursor: pointer; }
+.dt-reference-picker-card:hover { border-color: #93b6f3; }
+.dt-reference-picker-card.selected { border-color: #3478f6; box-shadow: inset 0 0 0 1px #3478f6; }
+.dt-reference-picker-card input { accent-color: #3478f6; margin: 0; width: 15px; height: 15px; flex: 0 0 auto; }
+.dt-reference-picker-card img { height: 160px; width: 0; flex: 1 1 0; min-width: 0; object-fit: contain; }
+.dt-reference-picker-card span { width: 80px; flex: 0 0 80px; overflow-wrap: anywhere; }
+.dt-reference-picker-empty { text-align: center; color: #8995a5; padding: 70px 10px; }
+.dt-reference-picker > footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 24px; border-top: 1px solid #e1e6ee; flex-shrink: 0; }
+.dt-reference-picker-pages,.dt-reference-picker-actions { display: flex; align-items: center; gap: 8px; }
+.dt-reference-picker-pages > span { font-size: 12px; color: #8995a5; margin-left: 5px; }
+.dt-reference-picker-pages button[aria-current="page"],.dt-reference-picker .dt-reference-picker-confirm { background: #3478f6; border-color: #3478f6; color: #fff; }
+@media(max-width:900px) { .dt-reference-picker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .dt-reference-picker-search { width: 256px; } }
+@media(max-width:600px) { .dt-reference-picker-backdrop { padding: 10px; } .dt-reference-picker > header { gap: 10px; padding: 14px; flex-wrap: wrap; } .dt-reference-picker h2 { flex: 1; } .dt-reference-picker-search { order: 3; width: 100%; box-sizing: border-box; } .dt-reference-picker-content { padding: 12px; } .dt-reference-picker-grid { grid-template-columns: 1fr; } .dt-reference-picker > footer { padding: 12px; } .dt-reference-picker-pages { gap: 5px; } .dt-reference-picker-pages button { padding: 7px 9px; } .dt-reference-picker-actions { margin-left: auto; } }

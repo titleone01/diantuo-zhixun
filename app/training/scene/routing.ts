@@ -1,6 +1,6 @@
 import { routeInDuctNetwork, type DuctAxis, type DuctEntry, type RoutePoint } from "../wire-routing";
 import { resolveTerminal } from "./catalog";
-import { WIRE_DUCT_COLUMNS, WIRE_DUCT_ROWS } from "./layout";
+import { WIRE_DUCT_COLUMNS, WIRE_DUCT_ROWS, WIRE_DUCT_WIRE_HEIGHT } from "./layout";
 import type { DeviceInstance, SceneWire, Vec3 } from "./types";
 
 const scale = 100;
@@ -12,7 +12,7 @@ const laneOffset = (index: number) => {
 };
 
 const point2d = (point: Vec3): RoutePoint => ({ x: point[0] * scale, y: point[2] * scale });
-const DUCT_WIRE_HEIGHT = 0.42;
+const DUCT_WIRE_HEIGHT = WIRE_DUCT_WIRE_HEIGHT;
 const APPROACH_HEIGHT = 0.72;
 
 type SceneDuctEntry = DuctEntry & { world: Vec3 };

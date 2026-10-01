@@ -1,0 +1,45 @@
+{
+  "note": "Visual teaching animation only; three original blade paths rotate while body, terminals, shaft and original hub stay fixed. Source SVG files are unchanged.",
+  "sources": [
+    {
+      "source": "../motor.svg",
+      "sha256": "57817bba5384b27b7fa681c7a12820ac0d06c5ec7115d0353561690466906195",
+      "viewBox": [
+        0,
+        0,
+        280.5,
+        191.5
+      ],
+      "bladeRootChildIndices": [
+        37,
+        38,
+        39
+      ],
+      "fixedHubRootChildIndex": 40,
+      "rotationCenter": [
+        48.499,
+        115.499
+      ]
+    },
+    {
+      "source": "../motor6.svg",
+      "sha256": "3b79de8a0ad98f099f0da60c8ad185273888ab5e4785af2c81cdbe3173e2c99c",
+      "viewBox": [
+        0,
+        0,
+        280.5,
+        211.5
+      ],
+      "bladeRootChildIndices": [
+        49,
+        50,
+        51
+      ],
+      "fixedHubRootChildIndex": 52,
+      "rotationCenter": [
+        48.498,
+        115.499
+      ]
+    }
+  ]
+}

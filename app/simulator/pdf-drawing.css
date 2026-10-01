@@ -1,0 +1,9 @@
+.dt-pdf-drawing { width: 100%; min-width: 0; color: #34445b; }
+.dt-pdf-drawing .dt-pdf-pagination { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 0 0 9px; }
+.dt-pdf-drawing .dt-pdf-pagination button, .dt-pdf-drawing .dt-pdf-message button { font: 11px Arial, "Microsoft YaHei", sans-serif; padding: 5px 8px; border: 1px solid #d7e1ee; border-radius: 4px; background: #fff; color: #3478f6; cursor: pointer; }
+.dt-pdf-drawing .dt-pdf-pagination button:disabled { opacity: .45; cursor: default; }
+.dt-pdf-drawing .dt-pdf-pagination span { font-size: 11px; white-space: nowrap; color: #65758b; }
+.dt-pdf-drawing canvas { display: block; width: 100%; height: auto; background: #fff; }
+.dt-pdf-drawing .dt-pdf-stage { position: relative; min-height: 120px; }
+.dt-pdf-drawing .dt-pdf-message { position: absolute; inset: 0; z-index: 1; background: #fffffff0; color: #7b8798; font-size: 12px; line-height: 1.7; padding: 16px 8px; margin: 0; overflow: auto; overflow-wrap: anywhere; }
+.dt-pdf-drawing .dt-pdf-original { display: inline-block; color: #3478f6; font-size: 10px; text-decoration: none; margin-top: 8px; }

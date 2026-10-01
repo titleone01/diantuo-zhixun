@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.4 96.4">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #515151;
+            }
+
+            .cls-1,
+            .cls-2,
+            .cls-3,
+            .cls-4,
+            .cls-5,
+            .cls-6,
+            .cls-7,
+            .cls-8,
+            .cls-9 {
+                fill-rule: evenodd;
+            }
+
+            .cls-1,
+            .cls-2,
+            .cls-3,
+            .cls-4,
+            .cls-5,
+            .cls-7,
+            .cls-8,
+            .cls-9 {
+                stroke: #000;
+                stroke-width: .4px;
+            }
+
+            .cls-2 {
+                fill: #ffdf5d;
+            }
+
+            .cls-10 {
+                fill: #333;
+            }
+
+            .cls-10,
+            .cls-11,
+            .cls-12,
+            .cls-13,
+            .cls-14 {
+                isolation: isolate;
+            }
+
+            .cls-10,
+            .cls-12,
+            .cls-13,
+            .cls-14 {
+                font-family: PingFangSC-Regular-GBpc-EUC-H, 'PingFang SC';
+            }
+
+            .cls-10,
+            .cls-13,
+            .cls-14 {
+                font-size: 4.8px;
+            }
+
+            .cls-3 {
+                fill: #ff5d5d;
+            }
+
+            .cls-4 {
+                fill: #7ce399;
+            }
+
+            .cls-5 {
+                fill: #6f7b88;
+            }
+
+            .cls-7 {
+                fill: #ececec;
+            }
+
+            .cls-12 {
+                font-size: 4px;
+            }
+
+            .cls-12,
+            .cls-14 {
+                fill: #ccc;
+            }
+
+            .cls-8 {
+                fill: #ff9e5d;
+            }
+
+            .cls-9 {
+                fill: #383838;
+            }
+        </style>
+    </defs>
+    <g id="_图层_1-2" data-name="图层 1">
+        <g id="_中间继电器AC02" data-name="中间继电器AC02">
+            <path class="cls-9"
+                d="M.2,95V1.4h48v93.6H.2ZM7.4,5c-1.55,0-2.8,1.25-2.8,2.8s1.25,2.8,2.8,2.8,2.8-1.25,2.8-2.8-1.25-2.8-2.8-2.8ZM41,84.61c-1.55,0-2.8,1.25-2.8,2.8s1.25,2.8,2.8,2.8,2.8-1.25,2.8-2.8-1.25-2.8-2.8-2.8Z" />
+            <path class="cls-9" d="M45.8,96.2V.2h2.4v96h-2.4ZM.2.2h2.4v96H.2V.2Z" />
+            <path class="cls-1"
+                d="M45.8,12.6v1.6h-9.6v10.4h-1.6v-10.4h-9.6v10.4h-1.6v-10.4h-9.6v10.4h-1.6v-10.4H2.6v-1.6h9.6V3H2.6v-1.6h9.6V.2h1.6v1.2h9.6V.2h1.6v1.2h9.6V.2h1.6v1.2h9.6v1.6h-9.6v9.6h9.6ZM23.4,3h-9.6v9.6h9.6V3ZM34.6,3h-9.6v9.6h9.6V3Z" />
+            <path class="cls-1"
+                d="M45.8,81v1.6h-9.6v13.6h-1.6v-13.6h-9.6v13.6h-1.6v-13.6h-9.6v13.6h-1.6v-13.6H2.6v-1.6h9.6v-9.6H2.6v-1.6h43.2v1.6h-9.6v9.6h9.6ZM23.4,71.4h-9.6v9.6h9.6v-9.6ZM34.6,71.4h-9.6v9.6h9.6v-9.6Z" />
+            <path class="cls-5" d="M2.6,23.8h43.2v42H2.6V23.8Z" />
+            <path class="cls-7" d="M4.2,25.4h40v34H4.2V25.4Z" />
+            <text class="cls-10" transform="translate(12.2 41.99)">
+                <tspan x="0" y="0">中间继电器</tspan>
+            </text>
+            <text class="cls-13" transform="translate(20.88 47.84)">
+                <tspan x="0" y="0">AC</tspan>
+            </text>
+            <g class="cls-11">
+                <text class="cls-14" transform="translate(18.6 69.42)">
+                    <tspan x="0" y="0">COM</tspan>
+                </text>
+            </g>
+            <path class="cls-2" d="M18.6,3.8c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M18.6,6.2c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-2" d="M29.8,3.8c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M29.8,6.2c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-2" d="M41,3.8c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M41,6.2c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-4" d="M7.4,15c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M7.4,17.4c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-4" d="M18.6,15c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M18.6,17.4c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-4" d="M29.8,15c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M29.8,17.4c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-4" d="M41,15c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M41,17.4c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-8" d="M7.4,72.2c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M7.4,74.6c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-8" d="M18.6,72.2c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M18.6,74.6c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-8" d="M29.8,72.2c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M29.8,74.6c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-8" d="M41,72.2c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M41,74.6c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-2" d="M7.4,83.4c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M7.4,85.8c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-3" d="M18.6,83.4c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M18.6,85.8c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <path class="cls-3" d="M29.8,83.4c2.21,0,4,1.79,4,4s-1.79,4-4,4-4-1.79-4-4,1.79-4,4-4Z" />
+            <path class="cls-6" d="M29.8,85.8c.88,0,1.6.72,1.6,1.6s-.72,1.6-1.6,1.6-1.6-.72-1.6-1.6.72-1.6,1.6-1.6Z" />
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(21.4 23.81)">
+                    <tspan x="0" y="0">NO</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(21.4 12.61)">
+                    <tspan x="0" y="0">NC</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(12.6 12.61)">
+                    <tspan x="0" y="0">3</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(32.6 12.61)">
+                    <tspan x="0" y="0">2</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(44.2 12.62)">
+                    <tspan x="0" y="0">1</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(1.4 23.81)">
+                    <tspan x="0" y="0">8</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(12.6 23.83)">
+                    <tspan x="0" y="0">7</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(.6 73.01)">
+                    <tspan x="0" y="0">12</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(11.8 73.02)">
+                    <tspan x="0" y="0">11</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(32.2 73.01)">
+                    <tspan x="0" y="0">10</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(45 73.01)">
+                    <tspan x="0" y="0">9</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(1.8 94.8)">
+                    <tspan x="0" y="0">4/NC</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(13.4 94.8)">
+                    <tspan x="0" y="0">14/A1</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(25.8 94.8)">
+                    <tspan x="0" y="0">13/A2</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(32.6 23.81)">
+                    <tspan x="0" y="0">6</tspan>
+                </text>
+            </g>
+            <g class="cls-11">
+                <text class="cls-12" transform="translate(44.6 23.81)">
+                    <tspan x="0" y="0">5</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

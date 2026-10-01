@@ -1,23 +1,81 @@
 {
   "schemaVersion": 1,
-  "assetId": "chint.nc1-0910",
+  "assetId": "chint.nc1-0910-nre8-25",
   "manufacturer": "CHINT",
-  "name": "交流接触器",
-  "model": "NC1-0910",
-  "category": "contactor",
+  "name": "交流接触器与热过载继电器组件",
+  "model": "NC1-0910 380V + NRE8-25 4–8A",
+  "category": "motor-starter",
   "referencePrefix": "KM",
   "mounting": { "type": "din-rail", "rail": "35mm" },
-  "geometry": { "kind": "procedural", "shape": "contactor" },
-  "footprint": { "width": 2.5, "depth": 1.7, "height": 1.5 },
-  "properties": { "poles": 3, "coilVoltageV": 220, "auxiliaryNO": 1 },
+  "geometry": {
+    "kind": "composite-gltf",
+    "sourceUnit": "millimeter",
+    "sourceFormat": "STEP",
+    "parts": [
+      {
+        "path": "models/chint/nc1-09-12/CHINT_NC1-09-12.glb",
+        "modelScale": [0.05, 0.05, 0.05],
+        "modelPosition": [-1.8511, 3.76, -2.0125],
+        "modelRotation": [1.5707963268, 0, 3.1415926536],
+        "materialProfile": "chint-white"
+      },
+      {
+        "path": "models/chint/nre8-25/CHINT_NRE8-25.glb",
+        "modelScale": [0.05, 0.05, 0.05],
+        "modelPosition": [1.125, 0.705, 2.95],
+        "modelRotation": [0, 3.1415926536, 0],
+        "materialProfile": "chint-white"
+      }
+    ]
+  },
+  "physical": {
+    "scaleAuthority": "manufacturer-step-and-catalog",
+    "sceneUnitsPerMm": 0.05,
+    "dimensionsMm": { "width": 45, "depth": 80.5, "height": 140 },
+    "officialSource": "https://www.chint.net/products/248",
+    "overloadOfficialSource": "https://www.chint.net/products/88",
+    "assemblyRule": "NRE8-25 plugs directly into the matching NC1 lower main terminals"
+  },
+  "footprint": { "width": 2.25, "depth": 7, "height": 4.025 },
+  "properties": {
+    "poles": 3,
+    "ratedOperationalCurrentA": 9,
+    "coilVoltageV": 380,
+    "coilFrequencyHz": 50,
+    "auxiliaryNO": 1,
+    "overloadRangeA": "4-8",
+    "overloadSettingRule": "set from M1 nameplate current",
+    "secondaryReference": "FR1"
+  },
+  "electrical": {
+    "coil": { "pair": ["A1", "A2"], "ratedVoltageV": 380 },
+    "mainContacts": [["1", "T1"], ["3", "T2"], ["5", "T3"]],
+    "auxiliaryNO": [["13", "14"]],
+    "overload": {
+      "ncPair": ["95", "96"],
+      "noPair": ["97", "98"],
+      "resetMode": "manual-or-automatic",
+      "evidence": {
+        "sourceUrl": "https://www.chintglobal.com/content/dam/chint/global/product-center/low-voltage/iec/industrial-control/thermal-over-load-relay/nre8/manual/2105-NRE8-Thermal%20Over-load%20Relay-Manual.pdf",
+        "figures": "Figure 11 relay panel layout; Figure 12 maintenance diagram",
+        "behavior": "test function changes 95-96 to 97-98; RESET restores the relay; manual and automatic reset modes are available"
+      }
+    }
+  },
   "terminals": [
-    { "key": "U21", "label": "U21", "position": [-0.72, 1.53, -0.56], "exitDirection": [0, 0, -1] },
-    { "key": "V21", "label": "V21", "position": [0, 1.53, -0.56], "exitDirection": [0, 0, -1] },
-    { "key": "W21", "label": "W21", "position": [0.72, 1.53, -0.56], "exitDirection": [0, 0, -1] },
-    { "key": "U31", "label": "U31", "position": [-0.72, 1.53, 0.56], "exitDirection": [0, 0, 1] },
-    { "key": "V31", "label": "V31", "position": [0, 1.53, 0.56], "exitDirection": [0, 0, 1] },
-    { "key": "W31", "label": "W31", "position": [0.72, 1.53, 0.56], "exitDirection": [0, 0, 1] },
-    { "key": "A1", "label": "A1", "position": [-1.05, 1.16, 0], "exitDirection": [-1, 0, 0] },
-    { "key": "A2", "label": "A2", "position": [1.05, 1.16, 0], "exitDirection": [1, 0, 0] }
+    { "key": "1", "label": "1/L1", "position": [-0.79, 4.08, -1.18], "exitDirection": [0, 0, -1] },
+    { "key": "3", "label": "3/L2", "position": [-0.26, 4.08, -1.18], "exitDirection": [0, 0, -1] },
+    { "key": "5", "label": "5/L3", "position": [0.26, 4.08, -1.18], "exitDirection": [0, 0, -1] },
+    { "key": "13", "label": "13/NO", "position": [0.80, 4.08, -1.18], "exitDirection": [0, 0, -1] },
+    { "key": "A1", "label": "A1", "position": [-0.80, 4.08, -1.72], "exitDirection": [0, 0, -1] },
+    { "key": "A2", "label": "A2", "position": [0.80, 4.08, 1.72], "exitDirection": [0, 0, 1] },
+    { "key": "14", "label": "14/NO", "position": [0.80, 4.08, 1.18], "exitDirection": [0, 0, 1] },
+    { "key": "T1", "label": "FR1 2/T1", "position": [-0.72, 4.02, 3.10], "exitDirection": [0, 0, 1] },
+    { "key": "T2", "label": "FR1 4/T2", "position": [0, 4.02, 3.10], "exitDirection": [0, 0, 1] },
+    { "key": "T3", "label": "FR1 6/T3", "position": [0.72, 4.02, 3.10], "exitDirection": [0, 0, 1] },
+    { "key": "95", "label": "FR1 95", "position": [-0.78, 4.02, 2.16], "exitDirection": [-1, 0, 0] },
+    { "key": "96", "label": "FR1 96", "position": [-0.26, 4.02, 2.16], "exitDirection": [0, 0, 1] },
+    { "key": "97", "label": "FR1 97", "position": [0.26, 4.02, 2.16], "exitDirection": [0, 0, 1] },
+    { "key": "98", "label": "FR1 98", "position": [0.78, 4.02, 2.16], "exitDirection": [1, 0, 0] }
   ]
 }

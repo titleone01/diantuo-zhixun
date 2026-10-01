@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { analyzeCircuit } from "../app/circuit-analysis.ts";
+import {
+  DOL_STANDARD_CONNECTIONS,
+  analyzeCircuit,
+  analyzeDolCircuit,
+  evaluateDolStandardAnswer,
+} from "../app/circuit-analysis.ts";
 
 const wire = (from, to) => ({ from, to });
 
@@ -71,4 +76,112 @@ test("accepts a safe phase permutation and still runs the motor", () => {
   assert.equal(result.contactorEngaged, true);
   assert.equal(result.motorRunning, true);
   assert.deepEqual(result.dangers, []);
+});
+
+const dolModel = (overrides = {}) => ({
+  wires: DOL_STANDARD_CONNECTIONS,
+  fixedConnections: [
+    ["X1-L1A", "X1-L1B"], ["X1-L2A", "X1-L2B"], ["X1-L3A", "X1-L3B"],
+    ["X2-L1A", "X2-L1B"], ["X2-L2A", "X2-L2B"], ["X2-L3A", "X2-L3B"],
+    ["PE1-PEA", "PE1-PEB"],
+  ],
+  phaseSources: ["X1-L1A", "X1-L2A", "X1-L3A"],
+  protectiveEarthSource: "PE1-PEA",
+  powerEnabled: true,
+  breaker: { closed: true, contacts: [["QF1-1", "QF1-2"], ["QF1-3", "QF1-4"], ["QF1-5", "QF1-6"]] },
+  startButton: { pressed: true, contact: ["SB2-13", "SB2-14"] },
+  stopButton: { pressed: false, contact: ["SB1-11", "SB1-12"] },
+  overload: { tripped: false, ncContact: ["KM1-95", "KM1-96"], noContact: ["KM1-97", "KM1-98"] },
+  contactor: {
+    previouslyEngaged: false,
+    coil: ["KM1-A1", "KM1-A2"],
+    mainContacts: [["KM1-1", "KM1-T1"], ["KM1-3", "KM1-T2"], ["KM1-5", "KM1-T3"]],
+    auxiliaryNO: [["KM1-13", "KM1-14"]],
+  },
+  motor: { phases: ["X2-L1B", "X2-L2B", "X2-L3B"], protectiveEarth: "PE1-PEB" },
+  protectedContacts: [
+    { contact: ["QF1-1", "QF1-2"], label: "QF1 第一极被短接" },
+    { contact: ["SB1-11", "SB1-12"], label: "SB1 停止按钮被短接" },
+    { contact: ["KM1-95", "KM1-96"], label: "FR1 95-96 被短接" },
+  ],
+  ...overrides,
+});
+
+test("runs M1 while SB2 is pressed on the complete DOL circuit", () => {
+  const result = analyzeDolCircuit(dolModel());
+
+  assert.equal(result.powerAvailable, true);
+  assert.equal(result.contactorEngaged, true);
+  assert.equal(result.motorRunning, true);
+  assert.equal(result.protectiveEarthConnected, true);
+  assert.deepEqual(result.phaseAtMotor, ["L1", "L2", "L3"]);
+});
+
+test("keeps KM1 engaged through 13-14 after SB2 is released", () => {
+  const model = dolModel();
+  const result = analyzeDolCircuit({
+    ...model,
+    startButton: { ...model.startButton, pressed: false },
+    contactor: { ...model.contactor, previouslyEngaged: true },
+  });
+
+  assert.equal(result.contactorEngaged, true);
+  assert.equal(result.motorRunning, true);
+});
+
+test("releases KM1 and stops M1 when SB1 is pressed", () => {
+  const model = dolModel();
+  const result = analyzeDolCircuit({
+    ...model,
+    startButton: { ...model.startButton, pressed: false },
+    stopButton: { ...model.stopButton, pressed: true },
+    contactor: { ...model.contactor, previouslyEngaged: true },
+  });
+
+  assert.equal(result.contactorEngaged, false);
+  assert.equal(result.motorRunning, false);
+});
+
+test("opens FR1 95-96 and stops M1 after an overload trip", () => {
+  const model = dolModel();
+  const result = analyzeDolCircuit({
+    ...model,
+    startButton: { ...model.startButton, pressed: false },
+    overload: { ...model.overload, tripped: true },
+    contactor: { ...model.contactor, previouslyEngaged: true },
+  });
+
+  assert.equal(result.contactorEngaged, false);
+  assert.equal(result.motorRunning, false);
+  assert.match(result.warnings.join(";"), /95-96 断开/);
+});
+
+test("permits safe non-standard wiring to energize without claiming that M1 runs", () => {
+  const result = analyzeDolCircuit(dolModel({ wires: [] }));
+
+  assert.equal(result.powerAvailable, true);
+  assert.equal(result.contactorEngaged, false);
+  assert.equal(result.motorRunning, false);
+  assert.deepEqual(result.dangers, []);
+});
+
+test("trips the DOL power permission on a phase-to-phase short", () => {
+  const result = analyzeDolCircuit(dolModel({
+    wires: [{ from: "X1-L1B", to: "X1-L2B", kind: "main" }],
+  }));
+
+  assert.equal(result.powerAvailable, false);
+  assert.equal(result.motorRunning, false);
+  assert.match(result.dangers.join(";"), /L1 与 L2 相间短路/);
+});
+
+test("scores the standard answer independently from power permission", () => {
+  const complete = evaluateDolStandardAnswer(DOL_STANDARD_CONNECTIONS);
+  const incomplete = evaluateDolStandardAnswer(DOL_STANDARD_CONNECTIONS.slice(0, -1));
+
+  assert.equal(complete.correct, true);
+  assert.equal(complete.completed, complete.total);
+  assert.equal(incomplete.correct, false);
+  assert.equal(incomplete.completed, incomplete.total - 1);
+  assert.equal(incomplete.missing.length, 1);
 });
