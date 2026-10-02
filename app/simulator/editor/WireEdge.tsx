@@ -37,7 +37,7 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
     data-from-world={JSON.stringify(endpoints.from)}
     data-to-world={JSON.stringify(endpoints.to)}
   >
-    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 3.2 : 2, opacity: data.running && !data.energized ? 0.52 : 1 }} />
+    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
     {selected && !data.running && (!wire.style || wire.style === "orthogonal") && <EdgeLabelRenderer>
       {points.map((point, index) => <button
         key={index}

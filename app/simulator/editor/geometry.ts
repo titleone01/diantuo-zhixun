@@ -4,11 +4,11 @@ import type { CircuitDocument, CircuitWire, Point, Terminal } from "../core/type
 const equal = (a: Point, b: Point) => a.x === b.x && a.y === b.y;
 
 export function terminalColor(terminal: Terminal): string {
-  if (terminal.electrical === "earth" || terminal.id === "PE") return "#75a846";
+  if (terminal.electrical === "earth" || terminal.id === "PE") return "#659f2f";
   if (terminal.electrical === "neutral" || terminal.id === "N") return "#3478f6";
-  if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e3b934";
-  if (["L2", "V", "3", "4", "23", "24"].includes(terminal.id)) return "#43b778";
-  if (["L3", "W", "5", "6", "11", "12"].includes(terminal.id)) return "#ec5960";
+  if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e7b000";
+  if (["L2", "V", "3", "4", "23", "24"].includes(terminal.id)) return "#20b963";
+  if (["L3", "W", "5", "6", "11", "12"].includes(terminal.id)) return "#f04452";
   return "#56616f";
 }
 

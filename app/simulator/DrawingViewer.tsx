@@ -1,28 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 import { ExternalLink, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import PdfDrawing from "./PdfDrawing";
 import "./drawing-viewer.css";
 
-type Props = { src: string; title: string; type?: string };
+export type DrawingZoom = { zoom: number; onZoomChange: (zoom: number) => void };
+type Props = { src?: string; title: string; type?: string; children?: ReactNode; contentKey?: string; compact?: boolean } & Partial<DrawingZoom>;
 
 /** A read-only viewer: private media keep their original authenticated URL. */
-export default function DrawingViewer({ src, title, type }: Props) {
+export default function DrawingViewer({ src, title, type, children, contentKey, compact = false, zoom: controlledZoom, onZoomChange }: Props) {
   const isPdf = type === "application/pdf";
   const viewport = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const drag = useRef<{ pointerId: number; x: number; y: number; left: number; top: number } | null>(null);
-  const [zoom, setZoom] = useState(1);
+  const [ownZoom, setOwnZoom] = useState(1);
+  const zoom = controlledZoom ?? ownZoom;
+  const setZoom = (value: number) => { if (onZoomChange) onZoomChange(value); else setOwnZoom(value); };
+  const changeZoom = useRef(setZoom); changeZoom.current = setZoom;
   const [bounds, setBounds] = useState({ width: 0, height: 0 });
   const [ratio, setRatio] = useState<number | null>(null);
   const [dragging, setDragging] = useState(false);
   const [imageState, setImageState] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
-    setZoom(1); setRatio(null); setImageState("loading"); drag.current = null; setDragging(false);
+    changeZoom.current(1); setRatio(null); setImageState("loading"); drag.current = null; setDragging(false);
     viewport.current?.scrollTo({ left: 0, top: 0 });
-  }, [src]);
+  }, [src, contentKey]);
   useEffect(() => {
     const element = viewport.current;
     if (!element) return;
@@ -32,19 +36,23 @@ export default function DrawingViewer({ src, title, type }: Props) {
   }, []);
   useEffect(() => {
     const element = content.current;
-    if (!isPdf || !element) return;
+    if ((!isPdf && src) || !element) return;
     // PdfDrawing renders each page locally. Its actual canvas dimensions let
     // fitting follow page orientation without loading a second PDF document.
     const measure = () => {
       const canvas = element.querySelector("canvas");
-      if (!canvas?.width || !canvas.height) return;
-      const next = canvas.width / canvas.height;
+      const svg = element.querySelector<SVGSVGElement>("svg:not(.lucide)");
+      const box = svg?.viewBox.baseVal;
+      const width = canvas?.width || box?.width, height = canvas?.height || box?.height;
+      if (!width || !height) return;
+      const next = width / height;
       setRatio(previous => previous === null || Math.abs(previous - next) > 0.005 ? next : previous);
     };
     measure(); const observer = new MutationObserver(measure);
-    observer.observe(element, { subtree: true, attributes: true, attributeFilter: ["width", "height"], childList: true });
+    observer.observe(element, { subtree: true, attributes: true, attributeFilter: ["width", "height", "viewBox"], childList: true });
     return () => observer.disconnect();
-  }, [src, isPdf]);
+  }, [src, isPdf, contentKey]);
+  useEffect(() => { if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 }); }, [zoom]);
 
   const availableWidth = Math.max(1, bounds.width - 24);
   const availableHeight = Math.max(1, bounds.height - 24 - (isPdf ? 76 : 0));
@@ -69,23 +77,23 @@ export default function DrawingViewer({ src, title, type }: Props) {
     drag.current = null; setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return <section className="dt-drawing-viewer" aria-label={`${title}大图查看`} style={{ "--drawing-viewport-width": `${availableWidth}px` } as CSSProperties}>
-    <div className="dt-drawing-viewer-toolbar">
-      <button type="button" aria-label="缩小原图" disabled={zoom <= 1} onClick={() => setZoom(value => Math.max(1, value - 0.25))}><ZoomOut size={17}/></button>
+  return <section className={`dt-drawing-viewer${compact ? " is-compact" : ""}`} aria-label={`${title}大图查看`} data-drawing-zoom={zoom} style={{ "--drawing-viewport-width": `${availableWidth}px` } as CSSProperties}>
+    {!compact && <div className="dt-drawing-viewer-toolbar">
+      <button type="button" aria-label="缩小原图" disabled={zoom <= 0.5} onClick={() => setZoom(Math.max(0.5, zoom - 0.25))}><ZoomOut size={17}/></button>
       <output aria-live="polite" aria-label="图纸缩放比例">{Math.round(zoom * 100)}%</output>
-      <button type="button" aria-label="放大原图" disabled={zoom >= 3} onClick={() => setZoom(value => Math.min(3, value + 0.25))}><ZoomIn size={17}/></button>
+      <button type="button" aria-label="放大原图" disabled={zoom >= 4} onClick={() => setZoom(Math.min(4, zoom + 0.25))}><ZoomIn size={17}/></button>
       <button type="button" onClick={fit}><Maximize2 size={15}/>适应窗口</button>
-      <a href={src} target="_blank" rel="noopener noreferrer"><ExternalLink size={15}/>查看原图</a>
-    </div>
+      {src && <a href={src} target="_blank" rel="noopener noreferrer"><ExternalLink size={15}/>查看原图</a>}
+    </div>}
     <div ref={viewport} className={`dt-drawing-viewer-viewport${dragging ? " is-dragging" : ""}`} role="region" aria-label="可滚动和拖动的图纸" tabIndex={0}
       onPointerDown={beginDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={() => { drag.current = null; setDragging(false); }}>
       <div ref={content} className="dt-drawing-viewer-content" style={{ width: bounds.width ? fittedWidth * zoom : "100%" }}>
-        {isPdf ? <PdfDrawing src={src} title={title}/> : <img key={src} src={src} alt={title} draggable={false}
+        {!src ? children : isPdf ? <PdfDrawing src={src} title={title}/> : <img key={src} src={src} alt={title} draggable={false}
           onLoad={event => { const image = event.currentTarget; setRatio(image.naturalWidth / Math.max(1, image.naturalHeight)); setImageState("ready"); }}
           onError={() => setImageState("error")}/>}
       </div>
-      {!isPdf && imageState !== "ready" && <p className="dt-drawing-viewer-message" role={imageState === "error" ? "alert" : "status"}>{imageState === "error" ? "图纸未能加载，请检查登录状态或重新打开。" : "正在加载原图…"}</p>}
+      {!!src && !isPdf && imageState !== "ready" && <p className="dt-drawing-viewer-message" role={imageState === "error" ? "alert" : "status"}>{imageState === "error" ? "图纸未能加载，请检查登录状态或重新打开。" : "正在加载原图…"}</p>}
     </div>
-    <p className="dt-drawing-viewer-hint">100% 为适应窗口 · 放大后可按住鼠标拖看，也可滚动查看</p>
+    {!compact && <p className="dt-drawing-viewer-hint">100% 为适应窗口 · 放大后可按住鼠标拖看，也可滚动查看</p>}
   </section>;
 }

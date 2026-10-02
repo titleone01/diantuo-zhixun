@@ -6,7 +6,7 @@ import { build } from "esbuild";
 
 // Bundle the same browser/server pure TypeScript modules, rather than copying their logic.
 const bundled = await build({stdin:{contents:'export * from "./engine";export * from "./lessons";export * from "./catalog";export * from "./validation";export * from "../editor/geometry";',resolveDir:fileURLToPath(new URL("../app/simulator/core/",import.meta.url))},bundle:true,format:"esm",platform:"node",write:false,logLevel:"silent"});
-const {simulate,initialRuntime,assessLesson,createLessonDocument,LESSONS,CATALOG,getDefinition,resolveTerminal,validateDocument,wireEndpoints,wireRoute,wirePath}=await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
+const {simulate,initialRuntime,assessLesson,createLessonDocument,LESSONS,CATALOG,getDefinition,componentSize,resolveTerminal,validateDocument,wireEndpoints,wireRoute,wirePath}=await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
 const wired = (id="motor-self-hold") => createLessonDocument(id,{wired:true});
 const connect=(doc,a,at,b,bt)=>doc.wires.push({id:`test-${doc.wires.length}`,from:{componentId:a,terminalId:at},to:{componentId:b,terminalId:bt},color:"#a855f7"});
 const has=(result,code)=>result.diagnostics.some(d=>d.code===code);
@@ -168,7 +168,7 @@ test("new simulator: sprites retain original aspect ratio and calibrated handles
     if(["supply","pe-terminal","wire-duct","wire-duct-vertical"].includes(def.type))continue;
     const source={"auxiliary-no":"contactor380","relay380":"relay220","motor-star-delta":"motor6","motor-dahlander":"motor6"}[def.type]??def.type;
     const svg=readFileSync(new URL(`../public/sim-assets/${source}.svg`,import.meta.url),"utf8");
-    const scale=def.type==="relay380"?2.5:def.type==="auxiliary-no"?1.5:1;
+    const scale=def.type==="relay380"?2.5:def.type==="auxiliary-no"?1.5:def.type==="terminal"?0.75:1;
     const crop=def.type==="auxiliary-no"?{x:112,y:31,width:39.5,height:137}:{x:0,y:0};
     const viewbox=svg.match(/viewBox="([^\"]+)"/)?.[1].split(/\s+/).map(Number);
     const width=Number(svg.match(/\bwidth="([\d.]+)(?:px)?"/)?.[1]??viewbox?.[2]);
@@ -198,6 +198,36 @@ test("new simulator: rendered wire routes use instance-local terminal coordinate
   for(let i=1;i<route.length;i++)assert.ok(route[i].x===route[i-1].x||route[i].y===route[i-1].y,"orthogonal segment");
   const reloaded=JSON.parse(JSON.stringify(doc));assert.deepEqual(wireEndpoints(reloaded,reloaded.wires[0]),moved);assert.equal(wirePath(reloaded,reloaded.wires[0]),wirePath(doc,wire));
   assert.equal(assessLesson(reloaded).status,"passed");
+});
+
+test('duct instance size survives validation and reload while schema 1 documents retain their default footprint',()=>{
+  for(const type of ['wire-duct','wire-duct-vertical']) {
+    const doc=small(device('duct',type)), duct=doc.components[1], definition=getDefinition(type);
+    assert.equal(validateDocument(doc).valid,true);
+    assert.deepEqual(componentSize(duct),{width:definition.width,height:definition.height});
+    for(const size of [{width:24,height:4000},{width:4000,height:24},{width:620.5,height:80.25}]) {
+      duct.size=size;const checked=validateDocument(JSON.parse(JSON.stringify(doc)));
+      assert.equal(checked.valid,true);assert.equal(checked.document.schemaVersion,1);
+      assert.deepEqual(componentSize(checked.document.components[1]),size);
+    }
+    for(const size of [{width:23.9,height:100},{width:100,height:4000.1},{width:NaN,height:100},{width:100},{width:100,height:100,depth:5}]) {
+      duct.size=size;assert.equal(validateDocument(doc).valid,false);
+    }
+  }
+  const doc=small(device('km','contactor380'));doc.components[1].size={width:100,height:100};
+  assert.equal(validateDocument(doc).valid,false,'electrical devices cannot acquire duct-only resize metadata');
+});
+
+test('compact terminal poles retain isolated electrical identities and exact scaled SVG coordinates',()=>{
+  const block=getDefinition('terminal'),pe=getDefinition('pe-terminal');
+  assert.equal(block.width,121.5*.75);assert.equal(block.height,101.5*.75);
+  assert.equal(pe.width,60.75*.75);assert.equal(pe.height,101.5*.75);
+  assert.deepEqual(block.terminals.map(pin=>[pin.id,pin.x,pin.y]),[['A',32.497*.75,27.498*.75],['B',32.497*.75,73.498*.75],['A2',88.497*.75,27.498*.75],['B2',88.497*.75,73.498*.75]]);
+  assert.deepEqual(pe.terminals.map(pin=>[pin.id,pin.x,pin.y]),block.terminals.slice(0,2).map(pin=>[pin.id,pin.x,pin.y]));
+  const doc=small(device('xt','terminal'),device('pe','pe-terminal'));
+  connect(doc,'source','L1','xt','A');connect(doc,'source','N','xt','A2');connect(doc,'source','PE','pe','A');
+  const result=simulate(doc);assert.equal(result.terminals['xt::B'].energized,true);
+  for(const key of ['source::N','source::PE','xt::B2','pe::A','pe::B'])assert.equal(result.terminals[key].energized,false,key);
 });
 
 test("new simulator: arbitrary crossings and drawing styles do not create electrical junctions",()=>{

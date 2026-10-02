@@ -1,4 +1,4 @@
-import { CATALOG } from "./catalog";
+import { CATALOG, DUCT_MAX_SIZE, DUCT_MIN_SIZE, isWireDuct } from "./catalog";
 import { getReferenceDrawing } from "./reference-drawings";
 import type { CircuitDocument } from "./types";
 
@@ -41,6 +41,7 @@ export function validateDocument(input: unknown): DocumentValidation {
     if (!definition) errors.push(`未知元件类型：${String(component.type).slice(0, 80)}`);
     if (!text(component.label, 80)) errors.push(`元件 ${component.id} 的名称无效`);
     if (!point(component.position)) errors.push(`元件 ${component.id} 的世界坐标无效`);
+    if (component.size !== undefined && (!isWireDuct(String(component.type)) || !record(component.size) || Object.keys(component.size).some(key => key !== "width" && key !== "height") || ![component.size.width, component.size.height].every(value => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`元件 ${component.id} 的线槽长宽须为 ${DUCT_MIN_SIZE} 至 ${DUCT_MAX_SIZE} 个世界单位`);
     if (component.linkedTo !== undefined && (component.type !== "auxiliary-no" || !safeId(component.linkedTo))) errors.push(`元件 ${component.id} 的辅助触点机械绑定无效`);
     if (component.settings !== undefined && (component.type !== "timer380" || !record(component.settings) || Object.keys(component.settings).some(key => key !== "delayMs") || typeof component.settings.delayMs !== "number" || !Number.isFinite(component.settings.delayMs) || component.settings.delayMs < 1 || component.settings.delayMs > 3_600_000)) errors.push(`元件 ${component.id} 的延时设置须为 1 至 3600000 毫秒`);
     ports.set(component.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));

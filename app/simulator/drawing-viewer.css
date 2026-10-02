@@ -13,4 +13,7 @@
 .dt-drawing-viewer .dt-drawing-viewer-hint { margin: 6px 0 0; color: #8793a3; font-size: 11px; }
 .dt-drawing-viewer .dt-pdf-pagination { position: sticky; top: 0; left: 0; z-index: 2; max-width: var(--drawing-viewport-width); background: #fff; padding: 5px 0; }
 .dt-drawing-viewer .dt-pdf-original { display: none; }
+.dt-drawing-viewer.is-compact { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.dt-drawing-viewer.is-compact .dt-drawing-viewer-viewport { flex: 1; height: auto; min-height: 0; border: 0; border-radius: 0; }
+.dt-drawing-viewer .dt-drawing-viewer-content > svg { display: block; width: 100%; height: auto; max-width: none; max-height: none; }
 @media (max-width: 600px) { .dt-drawing-viewer .dt-drawing-viewer-toolbar { gap: 4px; } .dt-drawing-viewer .dt-drawing-viewer-toolbar button, .dt-drawing-viewer .dt-drawing-viewer-toolbar a { padding: 6px; font-size: 11px; } .dt-drawing-viewer .dt-drawing-viewer-viewport { height: 45dvh; min-height: 220px; } }

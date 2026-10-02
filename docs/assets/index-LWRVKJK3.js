@@ -21727,7 +21727,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
           },
           [subscribe, value, getSnapshot]
         );
-        useEffect14(
+        useEffect15(
           function() {
             checkIfSnapshotChanged(inst) && forceUpdate({ inst });
             return subscribe(function() {
@@ -21753,7 +21753,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState16 = React2.useState, useEffect14 = React2.useEffect, useLayoutEffect2 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState16 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect2 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
@@ -21781,9 +21781,9 @@ var require_with_selector_development = __commonJS({
         return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef13 = React2.useRef, useEffect14 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
+      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef15 = React2.useRef, useEffect15 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
       exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-        var instRef = useRef13(null);
+        var instRef = useRef15(null);
         if (null === instRef.current) {
           var inst = { hasValue: false, value: null };
           instRef.current = inst;
@@ -21824,7 +21824,7 @@ var require_with_selector_development = __commonJS({
           [getSnapshot, getServerSnapshot, selector, isEqual]
         );
         var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
-        useEffect14(
+        useEffect15(
           function() {
             inst.hasValue = true;
             inst.value = value;
@@ -21852,11 +21852,11 @@ var require_with_selector = __commonJS({
 });
 
 // github-pages/main.tsx
-var import_react23 = __toESM(require_react(), 1);
+var import_react25 = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
 
 // app/simulator/SimulatorApp.tsx
-var import_react22 = __toESM(require_react(), 1);
+var import_react24 = __toESM(require_react(), 1);
 
 // node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 var import_react3 = __toESM(require_react(), 1);
@@ -22433,8 +22433,24 @@ var __iconData22 = {
 __iconData22.node;
 var Link = createLucideIcon(__iconData22);
 
-// node_modules/lucide-react/dist/esm/icons/log-out.mjs
+// node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
 var __iconData23 = {
+  name: "locate-fixed",
+  size: 24,
+  node: [
+    ["line", { x1: "2", x2: "5", y1: "12", y2: "12", key: "bvdh0s" }],
+    ["line", { x1: "19", x2: "22", y1: "12", y2: "12", key: "1tbv5k" }],
+    ["line", { x1: "12", x2: "12", y1: "2", y2: "5", key: "11lu5j" }],
+    ["line", { x1: "12", x2: "12", y1: "19", y2: "22", key: "x3vr5v" }],
+    ["circle", { cx: "12", cy: "12", r: "7", key: "fim9np" }],
+    ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+  ]
+};
+__iconData23.node;
+var LocateFixed = createLucideIcon(__iconData23);
+
+// node_modules/lucide-react/dist/esm/icons/log-out.mjs
+var __iconData24 = {
   name: "log-out",
   size: 24,
   node: [
@@ -22443,11 +22459,11 @@ var __iconData23 = {
     ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
   ]
 };
-__iconData23.node;
-var LogOut = createLucideIcon(__iconData23);
+__iconData24.node;
+var LogOut = createLucideIcon(__iconData24);
 
 // node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
-var __iconData24 = {
+var __iconData25 = {
   name: "maximize-2",
   size: 24,
   node: [
@@ -22457,20 +22473,34 @@ var __iconData24 = {
     ["path", { d: "M9 21H3v-6", key: "wtvkvv" }]
   ]
 };
-__iconData24.node;
-var Maximize2 = createLucideIcon(__iconData24);
+__iconData25.node;
+var Maximize2 = createLucideIcon(__iconData25);
+
+// node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
+var __iconData26 = {
+  name: "minimize-2",
+  size: 24,
+  node: [
+    ["path", { d: "m14 10 7-7", key: "oa77jy" }],
+    ["path", { d: "M20 10h-6V4", key: "mjg0md" }],
+    ["path", { d: "m3 21 7-7", key: "tjx5ai" }],
+    ["path", { d: "M4 14h6v6", key: "rmj7iw" }]
+  ]
+};
+__iconData26.node;
+var Minimize2 = createLucideIcon(__iconData26);
 
 // node_modules/lucide-react/dist/esm/icons/minus.mjs
-var __iconData25 = {
+var __iconData27 = {
   name: "minus",
   size: 24,
   node: [["path", { d: "M5 12h14", key: "1ays0h" }]]
 };
-__iconData25.node;
-var Minus = createLucideIcon(__iconData25);
+__iconData27.node;
+var Minus = createLucideIcon(__iconData27);
 
 // node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
-var __iconData26 = {
+var __iconData28 = {
   name: "panel-right-close",
   size: 24,
   node: [
@@ -22479,11 +22509,11 @@ var __iconData26 = {
     ["path", { d: "m8 9 3 3-3 3", key: "12hl5m" }]
   ]
 };
-__iconData26.node;
-var PanelRightClose = createLucideIcon(__iconData26);
+__iconData28.node;
+var PanelRightClose = createLucideIcon(__iconData28);
 
 // node_modules/lucide-react/dist/esm/icons/play.mjs
-var __iconData27 = {
+var __iconData29 = {
   name: "play",
   size: 24,
   node: [
@@ -22496,11 +22526,11 @@ var __iconData27 = {
     ]
   ]
 };
-__iconData27.node;
-var Play = createLucideIcon(__iconData27);
+__iconData29.node;
+var Play = createLucideIcon(__iconData29);
 
 // node_modules/lucide-react/dist/esm/icons/plus.mjs
-var __iconData28 = {
+var __iconData30 = {
   name: "plus",
   size: 24,
   node: [
@@ -22508,11 +22538,11 @@ var __iconData28 = {
     ["path", { d: "M12 5v14", key: "s699le" }]
   ]
 };
-__iconData28.node;
-var Plus = createLucideIcon(__iconData28);
+__iconData30.node;
+var Plus = createLucideIcon(__iconData30);
 
 // node_modules/lucide-react/dist/esm/icons/redo-2.mjs
-var __iconData29 = {
+var __iconData31 = {
   name: "redo-2",
   size: 24,
   node: [
@@ -22520,11 +22550,11 @@ var __iconData29 = {
     ["path", { d: "M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13", key: "6uklza" }]
   ]
 };
-__iconData29.node;
-var Redo2 = createLucideIcon(__iconData29);
+__iconData31.node;
+var Redo2 = createLucideIcon(__iconData31);
 
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconData30 = {
+var __iconData32 = {
   name: "refresh-cw",
   size: 24,
   node: [
@@ -22534,11 +22564,11 @@ var __iconData30 = {
     ["path", { d: "M8 16H3v5", key: "1cv678" }]
   ]
 };
-__iconData30.node;
-var RefreshCw = createLucideIcon(__iconData30);
+__iconData32.node;
+var RefreshCw = createLucideIcon(__iconData32);
 
 // node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
-var __iconData31 = {
+var __iconData33 = {
   name: "rotate-ccw",
   size: 24,
   node: [
@@ -22546,11 +22576,11 @@ var __iconData31 = {
     ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
   ]
 };
-__iconData31.node;
-var RotateCcw = createLucideIcon(__iconData31);
+__iconData33.node;
+var RotateCcw = createLucideIcon(__iconData33);
 
 // node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
-var __iconData32 = {
+var __iconData34 = {
   name: "rotate-cw",
   size: 24,
   node: [
@@ -22558,11 +22588,11 @@ var __iconData32 = {
     ["path", { d: "M21 3v5h-5", key: "1q7to0" }]
   ]
 };
-__iconData32.node;
-var RotateCw = createLucideIcon(__iconData32);
+__iconData34.node;
+var RotateCw = createLucideIcon(__iconData34);
 
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconData33 = {
+var __iconData35 = {
   name: "search",
   size: 24,
   node: [
@@ -22570,11 +22600,11 @@ var __iconData33 = {
     ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
   ]
 };
-__iconData33.node;
-var Search = createLucideIcon(__iconData33);
+__iconData35.node;
+var Search = createLucideIcon(__iconData35);
 
 // node_modules/lucide-react/dist/esm/icons/shield-check.mjs
-var __iconData34 = {
+var __iconData36 = {
   name: "shield-check",
   size: 24,
   node: [
@@ -22588,20 +22618,20 @@ var __iconData34 = {
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ]
 };
-__iconData34.node;
-var ShieldCheck = createLucideIcon(__iconData34);
+__iconData36.node;
+var ShieldCheck = createLucideIcon(__iconData36);
 
 // node_modules/lucide-react/dist/esm/icons/square.mjs
-var __iconData35 = {
+var __iconData37 = {
   name: "square",
   size: 24,
   node: [["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]]
 };
-__iconData35.node;
-var Square = createLucideIcon(__iconData35);
+__iconData37.node;
+var Square = createLucideIcon(__iconData37);
 
 // node_modules/lucide-react/dist/esm/icons/star.mjs
-var __iconData36 = {
+var __iconData38 = {
   name: "star",
   size: 24,
   node: [
@@ -22614,11 +22644,31 @@ var __iconData36 = {
     ]
   ]
 };
-__iconData36.node;
-var Star = createLucideIcon(__iconData36);
+__iconData38.node;
+var Star = createLucideIcon(__iconData38);
+
+// node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
+var __iconData39 = {
+  name: "triangle-alert",
+  size: 24,
+  node: [
+    [
+      "path",
+      {
+        d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
+        key: "wmoenq"
+      }
+    ],
+    ["path", { d: "M12 9v4", key: "juzpu7" }],
+    ["path", { d: "M12 17h.01", key: "p32p05" }]
+  ],
+  aliases: ["alert-triangle"]
+};
+__iconData39.node;
+var TriangleAlert = createLucideIcon(__iconData39);
 
 // node_modules/lucide-react/dist/esm/icons/undo-2.mjs
-var __iconData37 = {
+var __iconData40 = {
   name: "undo-2",
   size: 24,
   node: [
@@ -22626,11 +22676,11 @@ var __iconData37 = {
     ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
   ]
 };
-__iconData37.node;
-var Undo2 = createLucideIcon(__iconData37);
+__iconData40.node;
+var Undo2 = createLucideIcon(__iconData40);
 
 // node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconData38 = {
+var __iconData41 = {
   name: "user-round",
   size: 24,
   node: [
@@ -22639,11 +22689,11 @@ var __iconData38 = {
   ],
   aliases: ["user-2"]
 };
-__iconData38.node;
-var UserRound = createLucideIcon(__iconData38);
+__iconData41.node;
+var UserRound = createLucideIcon(__iconData41);
 
 // node_modules/lucide-react/dist/esm/icons/video.mjs
-var __iconData39 = {
+var __iconData42 = {
   name: "video",
   size: 24,
   node: [
@@ -22657,11 +22707,11 @@ var __iconData39 = {
     ["rect", { x: "2", y: "6", width: "14", height: "12", rx: "2", key: "158x01" }]
   ]
 };
-__iconData39.node;
-var Video = createLucideIcon(__iconData39);
+__iconData42.node;
+var Video = createLucideIcon(__iconData42);
 
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconData40 = {
+var __iconData43 = {
   name: "x",
   size: 24,
   node: [
@@ -22669,11 +22719,11 @@ var __iconData40 = {
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
   ]
 };
-__iconData40.node;
-var X = createLucideIcon(__iconData40);
+__iconData43.node;
+var X = createLucideIcon(__iconData43);
 
 // node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
-var __iconData41 = {
+var __iconData44 = {
   name: "zoom-in",
   size: 24,
   node: [
@@ -22683,11 +22733,11 @@ var __iconData41 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData41.node;
-var ZoomIn = createLucideIcon(__iconData41);
+__iconData44.node;
+var ZoomIn = createLucideIcon(__iconData44);
 
 // node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
-var __iconData42 = {
+var __iconData45 = {
   name: "zoom-out",
   size: 24,
   node: [
@@ -22696,11 +22746,11 @@ var __iconData42 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData42.node;
-var ZoomOut = createLucideIcon(__iconData42);
+__iconData45.node;
+var ZoomOut = createLucideIcon(__iconData45);
 
 // app/simulator/editor/SimulatorEditor.tsx
-var import_react13 = __toESM(require_react(), 1);
+var import_react16 = __toESM(require_react(), 1);
 var import_react_dom3 = __toESM(require_react_dom(), 1);
 
 // node_modules/@xyflow/react/dist/esm/index.js
@@ -28023,6 +28073,8 @@ var ResizeControlVariant;
   ResizeControlVariant2["Line"] = "line";
   ResizeControlVariant2["Handle"] = "handle";
 })(ResizeControlVariant || (ResizeControlVariant = {}));
+var XY_RESIZER_HANDLE_POSITIONS = ["top-left", "top-right", "bottom-left", "bottom-right"];
+var XY_RESIZER_LINE_POSITIONS = ["top", "right", "bottom", "left"];
 function getResizeDirection({ width, prevWidth, height, prevHeight, affectsX, affectsY }) {
   const deltaWidth = width - prevWidth;
   const deltaHeight = height - prevHeight;
@@ -31769,6 +31821,12 @@ function ResizeControl({ nodeId, position, variant = ResizeControlVariant.Handle
   }, children: children2 });
 }
 var NodeResizeControl = (0, import_react5.memo)(ResizeControl);
+function NodeResizer({ nodeId, isVisible = true, handleClassName, handleStyle, lineClassName, lineStyle, color: color2, minWidth = 10, minHeight = 10, maxWidth = Number.MAX_VALUE, maxHeight = Number.MAX_VALUE, keepAspectRatio = false, autoScale = true, shouldResize, onResizeStart, onResize, onResizeEnd }) {
+  if (!isVisible) {
+    return null;
+  }
+  return (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [XY_RESIZER_LINE_POSITIONS.map((position) => (0, import_jsx_runtime.jsx)(NodeResizeControl, { className: lineClassName, style: lineStyle, nodeId, position, variant: ResizeControlVariant.Line, color: color2, minWidth, minHeight, maxWidth, maxHeight, onResizeStart, keepAspectRatio, autoScale, shouldResize, onResize, onResizeEnd }, position)), XY_RESIZER_HANDLE_POSITIONS.map((position) => (0, import_jsx_runtime.jsx)(NodeResizeControl, { className: handleClassName, style: handleStyle, nodeId, position, color: color2, minWidth, minHeight, maxWidth, maxHeight, onResizeStart, keepAspectRatio, autoScale, shouldResize, onResize, onResizeEnd }, position))] });
+}
 
 // app/simulator/core/types.ts
 function documentMediaIds(document2) {
@@ -31779,6 +31837,10 @@ var terminalKey = (ref2) => `${ref2.componentId}::${ref2.terminalId}`;
 // app/simulator/core/catalog.ts
 var pin = (id2, x, y, side, electrical = "contact", label = id2) => ({ id: id2, label, x, y, side, electrical });
 var threeContacts = (control) => [["1", "2"], ["3", "4"], ["5", "6"]].map((terminals, i) => ({ id: `pole-${i + 1}`, terminals, control }));
+var compactTerminal = (definition) => ({ ...definition, width: definition.width * 0.75, height: definition.height * 0.75, terminals: definition.terminals.map((terminal) => ({ ...terminal, x: terminal.x * 0.75, y: terminal.y * 0.75 })) });
+var DUCT_MIN_SIZE = 24;
+var DUCT_MAX_SIZE = 4e3;
+var isWireDuct = (type) => type === "wire-duct" || type === "wire-duct-vertical";
 var contactor = (ratedVoltage) => ({
   type: ratedVoltage === 220 ? "contactor220" : "contactor380",
   name: `\u4EA4\u6D41\u63A5\u89E6\u5668\uFF08${ratedVoltage}V\uFF09`,
@@ -31825,8 +31887,8 @@ var CATALOG = [
   { type: "lamp", name: "\u7167\u660E\u706F\uFF08220V\uFF09", category: "lighting", width: 84.5, height: 159.5, terminals: [pin("L", 40.498, 148.499, "bottom", "load"), pin("N", 73.499, 107.499, "right", "neutral")], load: { kind: "lamp", terminals: ["L", "N"], ratedVoltage: 220 }, description: "220V \u793A\u610F\u706F\uFF1B\u76F8\u7EBF\u5E94\u7ECF\u8FC7\u5F00\u5173\uFF0C\u4E2D\u6027\u7EBF\u76F4\u63A5\u8FD4\u56DE\u3002" },
   { type: "motor", name: "\u4E09\u76F8\u5F02\u6B65\u7535\u673A", category: "industrial", width: 280.5, height: 191.5, terminals: [pin("U", 135.499, 10.499, "top", "load"), pin("V", 193.499, 10.499, "top", "load"), pin("W", 251.499, 10.499, "top", "load"), pin("PE", 269.499, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U", "V", "W"], ratedVoltage: 380 }, description: "380V \u4E09\u76F8\u7535\u673A\u4E0E\u72EC\u7ACB PE \u7AEF\u5B50\uFF1B\u53EA\u8868\u73B0\u53D7\u7535\u3001\u7F3A\u76F8\u548C\u76F8\u5E8F\uFF0C\u4E0D\u6A21\u62DF\u8F6C\u77E9\u6216\u6E29\u5347\u3002" },
   ...["motor-star-delta", "motor-dahlander"].map((type) => ({ type, name: type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A\uFF08Y / \u0394\uFF09" : "\u53CC\u901F\u7535\u673A\uFF08\u0394 / YY \u6559\u5B66\uFF09", category: "industrial", width: 280.5, height: 211.5, terminals: [pin("U1", 135.498, 10.499, "top", "load"), pin("V1", 193.498, 10.499, "top", "load"), pin("W1", 251.498, 10.499, "top", "load"), pin("U2", 135.498, 200.5, "bottom", "load"), pin("V2", 193.498, 200.5, "bottom", "load"), pin("W2", 251.498, 200.5, "bottom", "load"), pin("PE", 269.498, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U1", "V1", "W1", "U2", "V2", "W2"], ratedVoltage: 380, motorModel: type === "motor-star-delta" ? "star-delta" : "dahlander" }, description: type === "motor-star-delta" ? "\u539F\u7AD9\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF1B\u72EC\u7ACB\u7684\u4E09\u7EC4\u7ED5\u7EC4\u7528\u4E8E\u661F\u5F62/\u4E09\u89D2\u5F62\u6559\u5B66\u62D3\u6251\u5224\u5B9A\uFF0CPE\u5355\u72EC\u68C0\u67E5\u3002" : "\u590D\u7528\u539F\u7AD9\u901A\u7528\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF0C\u7535\u6C14\u6A21\u578B\u4E3A \u0394 / YY \u53CC\u901F\u6559\u5B66\u5B9A\u4E49\uFF1B\u6CA1\u6709\u5BA3\u79F0\u6E90\u7AD9\u5B58\u5728\u72EC\u7ACB\u53CC\u901F\u578B\u53F7\u3002" })),
-  { type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" },
-  { type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "earth"), pin("B", 32.497, 73.498, "bottom", "earth")], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" },
+  compactTerminal({ type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" }),
+  compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "earth"), pin("B", 32.497, 73.498, "bottom", "earth")], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
   { type: "wire-duct-vertical", name: "\u7EB5\u5411\u7EBF\u69FD", category: "terminals", width: 60, height: 420, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" }
 ];
@@ -31834,6 +31896,10 @@ function getDefinition(type) {
   const definition = CATALOG.find((entry) => entry.type === type);
   if (!definition) throw new Error(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${type}`);
   return definition;
+}
+function componentSize(component2) {
+  const definition = getDefinition(component2.type);
+  return isWireDuct(component2.type) && component2.size ? component2.size : { width: definition.width, height: definition.height };
 }
 function resolveTerminal(document2, ref2) {
   const component2 = document2.components.find((item) => item.id === ref2.componentId);
@@ -31862,7 +31928,7 @@ var isMotorCourse = (id2) => !!id2 && MOTOR_COURSES.some((lesson) => lesson.id =
 var INPUTS = ["1", "3", "5"];
 var OUTPUTS = ["2", "4", "6"];
 var PHASES = ["L1", "L2", "L3"];
-var COLORS = ["#e3b934", "#43b778", "#ed5656"];
+var COLORS = ["#e7b000", "#20b963", "#f04452"];
 function createMotorCourseDocument(id2, { wired = false } = {}) {
   const index2 = MOTOR_COURSES.findIndex((lesson) => lesson.id === id2);
   if (index2 < 0) throw new Error(`\u672A\u77E5\u7535\u673A\u8BFE\u7A0B\uFF1A${id2}`);
@@ -31870,7 +31936,7 @@ function createMotorCourseDocument(id2, { wired = false } = {}) {
   const add = (id3, type, label, x, y, extra = {}) => {
     components.push({ id: id3, type, label, position: { x, y }, ...extra });
   };
-  const net = (ports, color2 = "#e05252") => {
+  const net = (ports, color2 = "#f04452") => {
     for (let i = 1; i < ports.length; i++) wires.push({ id: `wire-${wires.length + 1}`, from: { componentId: ports[0][0], terminalId: ports[0][1] }, to: { componentId: ports[i][0], terminalId: ports[i][1] }, color: color2, style: "orthogonal" });
   };
   const join = (a, at, b, bt, color2) => net([[a, at], [b, bt]], color2);
@@ -31883,13 +31949,13 @@ function createMotorCourseDocument(id2, { wired = false } = {}) {
   const overload = (id3, x = 60, y = 835) => add(id3, "overload", id3.toUpperCase(), x, y);
   const motor = (id3, type = "motor", x = 0, y = 1110) => {
     add(id3, type, id3.toUpperCase(), x, y);
-    join("pe", "B", id3, "PE", "#65a30d");
+    join("pe", "B", id3, "PE", "#659f2f");
   };
   const auxiliary = (id3, linkedTo, x, y) => add(id3, "auxiliary-no", `${linkedTo.toUpperCase()} \u8F85\u52A9`, x, y, { linkedTo });
   add("source", "supply", "\u4E09\u76F8\u7535\u6E90", 40, 0);
   add("qf", "breaker3", "QF", 70, 115);
   add("pe", "pe-terminal", "PE", -100, 880);
-  join("source", "PE", "pe", "A", "#65a30d");
+  join("source", "PE", "pe", "A", "#659f2f");
   add("fu1", "fuse3", "FU1\uFF08\u4E09\u8054\uFF09", 50, 340);
   INPUTS.forEach((port, i) => {
     join("source", PHASES[i], "qf", port, COLORS[i]);
@@ -32094,7 +32160,7 @@ function createLessonDocument(id2, options = {}) {
   const lesson = getLesson(id2);
   if (!lesson) throw new Error(`\u672A\u77E5\u8BFE\u7A0B\uFF1A${id2}`);
   const wires = [];
-  const connect = (a, at, b, bt, color2 = "#ef4444") => wires.push({ id: `wire-${wires.length + 1}`, from: ref(a, at), to: ref(b, bt), color: color2, style: "orthogonal" });
+  const connect = (a, at, b, bt, color2 = "#f04452") => wires.push({ id: `wire-${wires.length + 1}`, from: ref(a, at), to: ref(b, bt), color: color2, style: "orthogonal" });
   let components;
   let roles;
   if (lesson.category === "industrial") {
@@ -32103,14 +32169,14 @@ function createLessonDocument(id2, options = {}) {
     if (selfHold) components.push(component("stop", "push-nc", "SB1", 465, 395));
     roles = { source: "source", breaker: "breaker", contactor: "km", overload: "fr", start: "start", motor: "motor", fuse: "fuse", earth: "pe", ...selfHold ? { stop: "stop" } : {} };
     ["L1", "L2", "L3"].forEach((phase3, i) => {
-      const input = String(i * 2 + 1), output = String(i * 2 + 2), color2 = ["#eab308", "#22c55e", "#ef4444"][i];
+      const input = String(i * 2 + 1), output = String(i * 2 + 2), color2 = ["#e7b000", "#20b963", "#f04452"][i];
       connect("source", phase3, "breaker", input, color2);
       connect("breaker", output, "km", input, color2);
       connect("km", output, "fr", input, color2);
       connect("fr", output, "motor", ["U", "V", "W"][i], color2);
     });
-    connect("source", "PE", "pe", "A", "#65a30d");
-    connect("pe", "B", "motor", "PE", "#65a30d");
+    connect("source", "PE", "pe", "A", "#659f2f");
+    connect("pe", "B", "motor", "PE", "#659f2f");
     connect("breaker", "2", "fuse", "1");
     if (selfHold) {
       connect("fuse", "2", "stop", "11");
@@ -32118,7 +32184,7 @@ function createLessonDocument(id2, options = {}) {
     } else connect("fuse", "2", "fr", "95");
     connect("fr", "96", "start", "23");
     connect("start", "24", "km", "A1");
-    connect("km", "A2", selfHold ? "breaker" : "source", selfHold ? "4" : "N", "#3b82f6");
+    connect("km", "A2", selfHold ? "breaker" : "source", selfHold ? "4" : "N", "#3478f6");
     if (selfHold) {
       connect("start", "23", "km", "13");
       connect("start", "24", "km", "14");
@@ -32130,7 +32196,7 @@ function createLessonDocument(id2, options = {}) {
     roles = { source: "source", breaker: "breaker", switchA: "switchA", lamp: "lamp", ...twoWay ? { switchB: "switchB" } : {} };
     connect("source", "L1", "breaker", "1");
     connect("breaker", "2", "switchA", twoWay ? "C" : "1");
-    connect("lamp", "N", "source", "N", "#3b82f6");
+    connect("lamp", "N", "source", "N", "#3478f6");
     if (twoWay) {
       connect("switchA", "1", "switchB", "1", "#f59e0b");
       connect("switchA", "2", "switchB", "2", "#f59e0b");
@@ -32210,6 +32276,7 @@ function validateDocument(input) {
     if (!definition) errors.push(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${String(component2.type).slice(0, 80)}`);
     if (!text(component2.label, 80)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u540D\u79F0\u65E0\u6548`);
     if (!point(component2.position)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u4E16\u754C\u5750\u6807\u65E0\u6548`);
+    if (component2.size !== void 0 && (!isWireDuct(String(component2.type)) || !record(component2.size) || Object.keys(component2.size).some((key3) => key3 !== "width" && key3 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
     if (component2.settings !== void 0 && (component2.type !== "timer380" || !record(component2.settings) || Object.keys(component2.settings).some((key3) => key3 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < 1 || component2.settings.delayMs > 36e5)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 3600000 \u6BEB\u79D2`);
     ports.set(component2.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));
@@ -33287,11 +33354,11 @@ function assessLesson(document2, lessonId = document2.lessonId) {
 // app/simulator/editor/geometry.ts
 var equal = (a, b) => a.x === b.x && a.y === b.y;
 function terminalColor(terminal) {
-  if (terminal.electrical === "earth" || terminal.id === "PE") return "#75a846";
+  if (terminal.electrical === "earth" || terminal.id === "PE") return "#659f2f";
   if (terminal.electrical === "neutral" || terminal.id === "N") return "#3478f6";
-  if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e3b934";
-  if (["L2", "V", "3", "4", "23", "24"].includes(terminal.id)) return "#43b778";
-  if (["L3", "W", "5", "6", "11", "12"].includes(terminal.id)) return "#ec5960";
+  if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e7b000";
+  if (["L2", "V", "3", "4", "23", "24"].includes(terminal.id)) return "#20b963";
+  if (["L3", "W", "5", "6", "11", "12"].includes(terminal.id)) return "#f04452";
   return "#56616f";
 }
 function wireEndpoints(document2, wire) {
@@ -33418,7 +33485,7 @@ function MotorMotionArtwork({ type, active, direction, speed, className = "" }) 
           transformOrigin: `${centerX}px 115.499px`,
           animationDirection: direction === "reverse" ? "reverse" : "normal",
           // These rates distinguish state visually; they are not mechanical RPM values.
-          animationDuration: speed === "high" ? "1.2s" : speed === "low" ? "2.4s" : "1.6s"
+          animationDuration: speed === "high" ? "0.4s" : speed === "low" ? "0.8s" : "0.6s"
         }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("image", { href: `${base}-blades.svg`, width: "280.5", height }) }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("image", { href: `${base}-hub.svg`, width: "280.5", height }),
         /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { className: "sim-motor-motion-static", x: centerX, y: "180", textAnchor: "middle", children: stateText })
@@ -33450,25 +33517,44 @@ function KnifeSwitchArtwork({ closed = false, className = "" }) {
   ] });
 }
 
-// app/simulator/editor/DeviceArtwork.tsx
+// app/simulator/editor/contactor-state-shapes.ts
+var contactorStateShapes = {
+  "contactor220": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n',
+  "contactor380": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n'
+};
+
+// app/simulator/editor/ContactorStateArtwork.tsx
 var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+function ContactorStateArtwork({ type, active, className = "" }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: `sim-device-artwork sim-contactor-artwork ${active ? "is-engaged" : ""} ${className}`, viewBox: "0 0 151.5 191.5", role: "img", "aria-label": `\u4EA4\u6D41\u63A5\u89E6\u5668 \xB7 ${active ? "\u5438\u5408" : "\u91CA\u653E"}`, "data-contactor-engaged": active, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("g", { dangerouslySetInnerHTML: { __html: contactorStateShapes[type] } }),
+    active && /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { className: "sim-contactor-state-text", "aria-hidden": "true", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "57.5", y: "98", textAnchor: "middle", children: "\u5438" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "94.5", y: "98", textAnchor: "middle", children: "\u5408" })
+    ] })
+  ] });
+}
+
+// app/simulator/editor/DeviceArtwork.tsx
+var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
 function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "" }) {
-  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
-  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
-  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(KnifeSwitchArtwork, { closed, className });
-  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
-  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { children: "\u7EBF\u69FD" }) });
-  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: "sim-supply-name", children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("b", { children: terminal.label }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
+  if (type === "contactor220" || type === "contactor380") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ContactorStateArtwork, { type, active, className });
+  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
+  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
+  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(KnifeSwitchArtwork, { closed, className });
+  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
+  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "\u7EBF\u69FD" }) });
+  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sim-supply-name", children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: terminal.label }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
     ] }, terminal.id)) })
   ] });
-  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
-  if (type === "auxiliary-no") return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("svg", { className: `sim-device-artwork ${className}`, viewBox: "112 31 39.5 137", role: "img", "aria-label": "\u63A5\u89E6\u5668\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u533A\u57DF", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("image", { href: `${"/diantuo-zhixun/"}sim-assets/contactor380.svg`, width: "151.5", height: "191.5" }) });
+  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
+  if (type === "auxiliary-no") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("svg", { className: `sim-device-artwork ${className}`, viewBox: "112 31 39.5 137", role: "img", "aria-label": "\u63A5\u89E6\u5668\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u533A\u57DF", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("image", { href: `${"/diantuo-zhixun/"}sim-assets/contactor380.svg`, width: "151.5", height: "191.5" }) });
   const asset = type === "relay380" ? "relay220" : type;
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
     "img",
     {
       className: `sim-device-artwork ${active ? "is-active" : ""} ${className}`,
@@ -33478,6 +33564,9 @@ function DeviceArtwork({ type, active = false, pressed = false, closed = false, 
     }
   );
 }
+
+// app/simulator/editor/DeviceNode.tsx
+var import_react7 = __toESM(require_react(), 1);
 
 // app/simulator/editor/labels.ts
 var LABELS = {
@@ -33513,11 +33602,20 @@ var runtimeLabel = (state) => LABELS[state ?? ""] ?? state ?? "\u672A\u5F97\u753
 var runtimeSummary = (result) => [runtimeLabel(result?.state), ...[result?.direction, result?.connection, result?.speed].filter((value) => !!value).map(runtimeLabel)].join(" \xB7 ");
 
 // app/simulator/editor/DeviceNode.tsx
-var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
 var sidePosition = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right };
 function DeviceNode({ data, selected: selected2 }) {
   const { component: component2, running, runtime, result, action } = data;
   const definition = getDefinition(component2.type);
+  const size = componentSize(component2);
+  const duct = isWireDuct(component2.type);
+  const contactor2 = component2.type === "contactor220" || component2.type === "contactor380";
+  const resizeActions = (0, import_react7.useRef)(data);
+  resizeActions.current = data;
+  const onResizeStart = (0, import_react7.useCallback)(() => resizeActions.current.beginResize?.(component2.id), [component2.id]);
+  const onResize = (0, import_react7.useCallback)((_event, bounds) => resizeActions.current.resize?.(component2.id, bounds), [component2.id]);
+  const onResizeEnd = (0, import_react7.useCallback)((_event, bounds) => resizeActions.current.resize?.(component2.id, bounds, true), [component2.id]);
+  const leads = data.document?.wires.flatMap((wire) => [wire.from, wire.to].filter((ref2) => ref2.componentId === component2.id).map((ref2) => ({ wire, terminal: definition.terminals.find((terminal) => terminal.id === ref2.terminalId) }))) ?? [];
   const faulty = data.diagnostics.some((d) => d.componentIds.includes(component2.id) && d.severity !== "info");
   const momentary = component2.type === "push-no" || component2.type === "push-nc" || component2.type === "limit-switch";
   const latching = component2.type === "push-latching-red" || component2.type === "push-latching-green";
@@ -33527,11 +33625,12 @@ function DeviceNode({ data, selected: selected2 }) {
   const closed = !!runtime.switches[component2.id];
   const pressed = !!runtime.pressed[component2.id];
   const dispatch2 = (type) => action({ type, componentId: component2.id });
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
     "div",
     {
       className: `sim-device-node ${selected2 ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""}`,
-      style: { width: definition.width, height: definition.height },
+      style: { width: size.width, height: size.height },
+      onPointerCancel: duct ? data.cancelResize : void 0,
       "data-device-id": component2.id,
       "data-component-type": component2.type,
       "data-world-x": component2.position.x,
@@ -33541,42 +33640,54 @@ function DeviceNode({ data, selected: selected2 }) {
       "data-runtime-connection": result?.connection,
       "data-runtime-speed": result?.speed,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DeviceArtwork, { type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "sim-device-caption", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: component2.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: definition.name }),
-          component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { children: [
+        duct && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
+        data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
+          const clip = `lead-${component2.id}-${wire.id}-${terminal.id}`;
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("circle", { cx: terminal.x, cy: terminal.y, r: "14" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: data.diagnostics.some((d) => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }) })
+          ] }, clip);
+        }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "sim-device-caption", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { children: component2.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: definition.name }),
+          component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { children: [
             "\u6559\u5B66\u53CC\u5EF6\u65F6 \xB7 ",
             (component2.settings?.delayMs ?? 3e3) / 1e3,
             " s"
           ] }),
-          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
+          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
         ] }),
         definition.terminals.map((terminal) => {
           const key3 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
           const state = data.terminalStates[key3];
           const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key3));
           const color2 = terminalColor(terminal);
-          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
             Handle,
             {
               id: terminal.id,
               type: "source",
               position: sidePosition[terminal.side],
-              isConnectable: !running,
+              isConnectable: !running && !data.readOnly,
               className: `sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""}`,
               style: { left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color2 },
               title: `${component2.label} \xB7 ${terminal.label}${state ? ` \xB7 ${state.potential}` : ""}`,
               "aria-label": `${component2.label} \u7AEF\u5B50 ${terminal.label}`,
               "data-terminal-key": key3,
+              "data-terminal-energized": running && !!state?.energized,
               "data-world-x": component2.position.x + terminal.x,
               "data-world-y": component2.position.y + terminal.y,
-              children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
+                !contactor2 && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
+              ]
             },
             terminal.id
           );
         }),
-        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
           "button",
           {
             className: `sim-actuator sim-push-actuator nodrag nopan ${component2.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`,
@@ -33612,27 +33723,27 @@ function DeviceNode({ data, selected: selected2 }) {
             children: component2.type === "limit-switch" ? pressed ? "\u5DF2\u6309\u4E0B" : "\u6309\u4F4F" : null
           }
         ),
-        !running && selected2 && component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("label", { className: "sim-device-setting nodrag nopan", onKeyDown: (event) => event.stopPropagation(), children: [
+        !running && selected2 && component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { className: "sim-device-setting nodrag nopan", onKeyDown: (event) => event.stopPropagation(), children: [
           "\u5EF6\u65F6",
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: "0.001", max: "3600", step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: "0.001", max: "3600", step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
             const seconds = event.currentTarget.valueAsNumber;
             if (Number.isFinite(seconds) && seconds >= 1e-3 && seconds <= 3600) data.configure(component2.id, { settings: { delayMs: Math.round(seconds * 1e3) } });
           } }),
           "\u79D2"
         ] }),
-        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", onKeyDown: (event) => event.stopPropagation(), children: [
+        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", onKeyDown: (event) => event.stopPropagation(), children: [
           "\u5173\u8054\u7EBF\u5708",
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
-            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("option", { value: item.id, children: item.label }, item.id))
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
+            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: item.id, children: item.label }, item.id))
           ] })
         ] }),
-        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
-        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
+        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
+        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
         ] }),
-        running && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
+        running && !contactor2 && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
           latching ? closed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77" : runtimeSummary(result),
           component2.type === "timer380" && result?.remainingMs !== void 0 && ` \xB7 ${(result.remainingMs / 1e3).toFixed(1)} s`
         ] })
@@ -33642,11 +33753,11 @@ function DeviceNode({ data, selected: selected2 }) {
 }
 
 // app/simulator/editor/WireEdge.tsx
-var import_react7 = __toESM(require_react(), 1);
-var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
+var import_react8 = __toESM(require_react(), 1);
+var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
 function WireEdge({ id: id2, data, selected: selected2 }) {
   const flow = useReactFlow();
-  const [dragged, setDragged] = (0, import_react7.useState)(null);
+  const [dragged, setDragged] = (0, import_react8.useState)(null);
   if (!data) return null;
   const points = [...data.wire.waypoints ?? []];
   if (dragged) points[dragged.index] = dragged.point;
@@ -33660,7 +33771,7 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
     const point2 = flow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
     setDragged({ index: index2, point: point2 });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
     "g",
     {
       className: `sim-wire ${selected2 ? "is-selected" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`,
@@ -33670,9 +33781,9 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       "data-from-world": JSON.stringify(endpoints.from),
       "data-to-world": JSON.stringify(endpoints.to),
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 3.2 : 2, opacity: data.running && !data.energized ? 0.52 : 1 } }),
-        selected2 && !data.running && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(EdgeLabelRenderer, { children: [
-          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        selected2 && !data.running && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(EdgeLabelRenderer, { children: [
+          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
             "button",
             {
               className: "sim-wire-waypoint nodrag nopan",
@@ -33702,7 +33813,7 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
             },
             index2
           )),
-          !points.length && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
+          !points.length && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
             event.stopPropagation();
             data.onWaypoints(id2, [anchor]);
           }, children: "\u6DFB\u52A0\u6298\u70B9" })
@@ -33762,19 +33873,22 @@ function createSimulationSession() {
   };
 }
 
+// app/simulator/DrawingViewer.tsx
+var import_react11 = __toESM(require_react(), 1);
+
 // app/simulator/PdfDrawing.tsx
-var import_react9 = __toESM(require_react(), 1);
-var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
+var import_react10 = __toESM(require_react(), 1);
+var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
 function PdfDrawing({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
-  const container = (0, import_react9.useRef)(null);
-  const canvas = (0, import_react9.useRef)(null);
-  const [width, setWidth] = (0, import_react9.useState)(0);
-  const [pdf, setPdf] = (0, import_react9.useState)(null);
-  const [pageNumber2, setPageNumber] = (0, import_react9.useState)(1);
-  const [state, setState] = (0, import_react9.useState)("loading");
-  const [error, setError] = (0, import_react9.useState)("");
-  const [retry, setRetry] = (0, import_react9.useState)(0);
-  (0, import_react9.useEffect)(() => {
+  const container = (0, import_react10.useRef)(null);
+  const canvas = (0, import_react10.useRef)(null);
+  const [width, setWidth] = (0, import_react10.useState)(0);
+  const [pdf, setPdf] = (0, import_react10.useState)(null);
+  const [pageNumber2, setPageNumber] = (0, import_react10.useState)(1);
+  const [state, setState] = (0, import_react10.useState)("loading");
+  const [error, setError] = (0, import_react10.useState)("");
+  const [retry, setRetry] = (0, import_react10.useState)(0);
+  (0, import_react10.useEffect)(() => {
     const element = container.current;
     if (!element) return;
     const measure = () => setWidth(Math.max(1, Math.floor(element.clientWidth)));
@@ -33783,7 +33897,7 @@ function PdfDrawing({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  (0, import_react9.useEffect)(() => {
+  (0, import_react10.useEffect)(() => {
     let active = true;
     let loadingTask;
     setPdf(null);
@@ -33821,7 +33935,7 @@ function PdfDrawing({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
       });
     };
   }, [src, retry]);
-  (0, import_react9.useEffect)(() => {
+  (0, import_react10.useEffect)(() => {
     if (!pdf || !width) return;
     let active = true;
     let task;
@@ -33859,28 +33973,170 @@ function PdfDrawing({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
       task?.cancel();
     };
   }, [pdf, pageNumber2, width]);
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "dt-pdf-pagination", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-pagination", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
-      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: () => setRetry((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D PDF" })
-      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
+      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: () => setRetry((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D PDF" })
+      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
+  ] });
+}
+
+// app/simulator/DrawingViewer.tsx
+var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
+function DrawingViewer({ src, title, type, children: children2, contentKey, compact = false, zoom: controlledZoom, onZoomChange }) {
+  const isPdf = type === "application/pdf";
+  const viewport = (0, import_react11.useRef)(null);
+  const content = (0, import_react11.useRef)(null);
+  const drag = (0, import_react11.useRef)(null);
+  const [ownZoom, setOwnZoom] = (0, import_react11.useState)(1);
+  const zoom = controlledZoom ?? ownZoom;
+  const setZoom = (value) => {
+    if (onZoomChange) onZoomChange(value);
+    else setOwnZoom(value);
+  };
+  const changeZoom = (0, import_react11.useRef)(setZoom);
+  changeZoom.current = setZoom;
+  const [bounds, setBounds] = (0, import_react11.useState)({ width: 0, height: 0 });
+  const [ratio, setRatio] = (0, import_react11.useState)(null);
+  const [dragging, setDragging] = (0, import_react11.useState)(false);
+  const [imageState, setImageState] = (0, import_react11.useState)("loading");
+  (0, import_react11.useEffect)(() => {
+    changeZoom.current(1);
+    setRatio(null);
+    setImageState("loading");
+    drag.current = null;
+    setDragging(false);
+    viewport.current?.scrollTo({ left: 0, top: 0 });
+  }, [src, contentKey]);
+  (0, import_react11.useEffect)(() => {
+    const element = viewport.current;
+    if (!element) return;
+    const measure = () => setBounds({ width: element.clientWidth, height: element.clientHeight });
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  (0, import_react11.useEffect)(() => {
+    const element = content.current;
+    if (!isPdf && src || !element) return;
+    const measure = () => {
+      const canvas = element.querySelector("canvas");
+      const svg = element.querySelector("svg:not(.lucide)");
+      const box = svg?.viewBox.baseVal;
+      const width = canvas?.width || box?.width, height = canvas?.height || box?.height;
+      if (!width || !height) return;
+      const next = width / height;
+      setRatio((previous) => previous === null || Math.abs(previous - next) > 5e-3 ? next : previous);
+    };
+    measure();
+    const observer = new MutationObserver(measure);
+    observer.observe(element, { subtree: true, attributes: true, attributeFilter: ["width", "height", "viewBox"], childList: true });
+    return () => observer.disconnect();
+  }, [src, isPdf, contentKey]);
+  (0, import_react11.useEffect)(() => {
+    if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 });
+  }, [zoom]);
+  const availableWidth = Math.max(1, bounds.width - 24);
+  const availableHeight = Math.max(1, bounds.height - 24 - (isPdf ? 76 : 0));
+  const fittedWidth = ratio ? Math.min(availableWidth, availableHeight * ratio) : availableWidth;
+  function fit() {
+    setZoom(1);
+    viewport.current?.scrollTo({ left: 0, top: 0 });
+  }
+  function beginDrag(event) {
+    if (event.button !== 0 || event.pointerType === "touch" || event.target.closest("button,a,input,select,textarea")) return;
+    const element = event.currentTarget;
+    if (element.scrollWidth <= element.clientWidth && element.scrollHeight <= element.clientHeight) return;
+    event.preventDefault();
+    element.focus({ preventScroll: true });
+    drag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, left: element.scrollLeft, top: element.scrollTop };
+    element.setPointerCapture(event.pointerId);
+    setDragging(true);
+  }
+  function moveDrag(event) {
+    const start2 = drag.current;
+    if (!start2 || start2.pointerId !== event.pointerId) return;
+    event.currentTarget.scrollLeft = start2.left - (event.clientX - start2.x);
+    event.currentTarget.scrollTop = start2.top - (event.clientY - start2.y);
+  }
+  function endDrag(event) {
+    if (drag.current?.pointerId !== event.pointerId) return;
+    drag.current = null;
+    setDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { className: `dt-drawing-viewer${compact ? " is-compact" : ""}`, "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, "data-drawing-zoom": zoom, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
+    !compact && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 0.5, onClick: () => setZoom(Math.max(0.5, zoom - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomOut, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+        Math.round(zoom * 100),
+        "%"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 4, onClick: () => setZoom(Math.min(4, zoom + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomIn, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("button", { type: "button", onClick: fit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Maximize2, { size: 15 }),
+        "\u9002\u5E94\u7A97\u53E3"
+      ] }),
+      src && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ExternalLink, { size: 15 }),
+        "\u67E5\u770B\u539F\u56FE"
+      ] })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+      "div",
+      {
+        ref: viewport,
+        className: `dt-drawing-viewer-viewport${dragging ? " is-dragging" : ""}`,
+        role: "region",
+        "aria-label": "\u53EF\u6EDA\u52A8\u548C\u62D6\u52A8\u7684\u56FE\u7EB8",
+        tabIndex: 0,
+        onPointerDown: beginDrag,
+        onPointerMove: moveDrag,
+        onPointerUp: endDrag,
+        onPointerCancel: endDrag,
+        onLostPointerCapture: () => {
+          drag.current = null;
+          setDragging(false);
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+            "img",
+            {
+              src,
+              alt: title,
+              draggable: false,
+              onLoad: (event) => {
+                const image = event.currentTarget;
+                setRatio(image.naturalWidth / Math.max(1, image.naturalHeight));
+                setImageState("ready");
+              },
+              onError: () => setImageState("error")
+            },
+            src
+          ) }),
+          !!src && !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
+        ]
+      }
+    ),
+    !compact && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
   ] });
 }
 
 // app/simulator/editor/FloatingSchematic.tsx
-var import_react11 = __toESM(require_react(), 1);
+var import_react13 = __toESM(require_react(), 1);
 
 // app/simulator/reference-video/ReferenceVideoPlayer.tsx
-var import_react10 = __toESM(require_react(), 1);
+var import_react12 = __toESM(require_react(), 1);
 
 // app/simulator/reference-video/controls.ts
 var VIDEO_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -33890,13 +34146,13 @@ function videoSeekTarget(currentTime, duration, seconds) {
 }
 
 // app/simulator/reference-video/ReferenceVideoPlayer.tsx
-var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
 function Player({ video }) {
-  const element = (0, import_react10.useRef)(null);
-  const [duration, setDuration] = (0, import_react10.useState)(0);
-  const [speed, setSpeed] = (0, import_react10.useState)(1);
-  const [failed, setFailed] = (0, import_react10.useState)(false);
-  (0, import_react10.useEffect)(() => {
+  const element = (0, import_react12.useRef)(null);
+  const [duration, setDuration] = (0, import_react12.useState)(0);
+  const [speed, setSpeed] = (0, import_react12.useState)(1);
+  const [failed, setFailed] = (0, import_react12.useState)(false);
+  (0, import_react12.useEffect)(() => {
     const media = element.current;
     if (media && media.getAttribute("src") !== video.url) media.setAttribute("src", video.url);
     return () => {
@@ -33913,8 +34169,8 @@ function Player({ video }) {
     const target = videoSeekTarget(media.currentTime, media.duration, seconds);
     if (target !== null) media.currentTime = target;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-reference-video", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-video", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
       "video",
       {
         ref: element,
@@ -33934,63 +34190,73 @@ function Player({ video }) {
         onError: () => setFailed(true)
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(RotateCcw, { size: 15 }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(RotateCcw, { size: 15 }),
         "\u540E\u9000 10 \u79D2"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { children: [
         "\u500D\u901F",
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
           const rate = Number(event.target.value);
           if (element.current) element.current.playbackRate = rate;
           setSpeed(rate);
-        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("option", { value: rate, children: [
+        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("option", { value: rate, children: [
           rate,
           "\xD7"
         ] }, rate)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
         "\u524D\u8FDB 10 \u79D2",
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(RotateCw, { size: 15 })
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(RotateCw, { size: 15 })
       ] })
     ] }),
-    failed && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: () => {
+    failed && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", onClick: () => {
         setFailed(false);
         element.current?.load();
       }, children: "\u91CD\u65B0\u52A0\u8F7D" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
   ] });
 }
 function ReferenceVideoPlayer({ video }) {
-  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-reference-video-empty", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Video, { size: 38 }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
+  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-video-empty", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Video, { size: 38 }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
 }
 
 // app/simulator/editor/FloatingSchematic.tsx
-var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
-function FloatingSchematic({ panelRef, boardRef, children: children2, documentKey, video, onChooseDrawing, selectionDisabled }) {
-  const [open, setOpen] = (0, import_react11.useState)(true);
-  const [tab, setTab] = (0, import_react11.useState)("schematic");
-  const [scale, setScale] = (0, import_react11.useState)(1);
-  const [offset, setOffset] = (0, import_react11.useState)({ x: 0, y: 0 });
-  const drag = (0, import_react11.useRef)(null);
-  const [dragging, setDragging] = (0, import_react11.useState)(false);
-  const constrain = (0, import_react11.useCallback)((point2) => {
+var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
+var DEFAULT_FRAME = { width: 560, height: 600 };
+var EDGES = { n: "\u4E0A\u8FB9", s: "\u4E0B\u8FB9", w: "\u5DE6\u8FB9", e: "\u53F3\u8FB9", nw: "\u5DE6\u4E0A\u89D2", ne: "\u53F3\u4E0A\u89D2", sw: "\u5DE6\u4E0B\u89D2", se: "\u53F3\u4E0B\u89D2" };
+function FloatingSchematic({ panelRef, boardRef, children: children2, documentKey, video, onChooseDrawing, selectionDisabled, zoom: controlledZoom, onZoomChange }) {
+  const [open, setOpen] = (0, import_react13.useState)(true);
+  const [tab, setTab] = (0, import_react13.useState)("schematic");
+  const [ownZoom, setOwnZoom] = (0, import_react13.useState)(1);
+  const zoom = controlledZoom ?? ownZoom;
+  const setZoom = (value) => {
+    if (onZoomChange) onZoomChange(value);
+    else setOwnZoom(value);
+  };
+  const [frame2, setFrame2] = (0, import_react13.useState)(DEFAULT_FRAME);
+  const [fullscreen, setFullscreen] = (0, import_react13.useState)(false);
+  const resizing = (0, import_react13.useRef)(null);
+  const [offset, setOffset] = (0, import_react13.useState)({ x: 0, y: 0 });
+  const drag = (0, import_react13.useRef)(null);
+  const [dragging, setDragging] = (0, import_react13.useState)(false);
+  const constrain = (0, import_react13.useCallback)((point2, size) => {
     const board = boardRef.current, panel = panelRef.current;
-    if (!board || !panel) return point2;
-    const width = panel.offsetWidth * scale, height = panel.offsetHeight * scale;
+    if (!board || !panel || fullscreen) return point2;
+    const width = size?.width ?? panel.offsetWidth, height = size?.height ?? panel.offsetHeight;
     const left = board.clientWidth - 20 - width, top = board.clientHeight - 70 - height;
-    return { x: Math.max(8 - left, Math.min(Math.max(8, board.clientWidth - width - 8) - left, point2.x)), y: Math.max(8 - top, Math.min(Math.max(8, board.clientHeight - height - 8) - top, point2.y)) };
-  }, [boardRef, panelRef, scale]);
-  (0, import_react11.useEffect)(() => {
+    return { x: Math.max(8 - left, Math.min(Math.max(8, board.clientWidth - width - 8) - left, point2.x)), y: Math.max(58 - top, Math.min(Math.max(58, board.clientHeight - height - 70) - top, point2.y)) };
+  }, [boardRef, panelRef, fullscreen]);
+  (0, import_react13.useEffect)(() => {
     const clamp2 = () => setOffset((previous) => {
       const next = constrain(previous);
       return next.x === previous.x && next.y === previous.y ? previous : next;
@@ -34001,22 +34267,60 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     if (panelRef.current) observer.observe(panelRef.current);
     return () => observer.disconnect();
   }, [constrain, boardRef, panelRef, open]);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react13.useEffect)(() => {
     setOpen(true);
     setTab("schematic");
   }, [documentKey]);
+  (0, import_react13.useEffect)(() => {
+    if (!fullscreen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [fullscreen]);
   function reset() {
-    setScale(1);
+    setZoom(1);
+    setFrame2(DEFAULT_FRAME);
     setOffset({ x: 0, y: 0 });
+    setFullscreen(false);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""}`, "data-window-scale": scale.toFixed(1), style: { transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`, maxHeight: `calc((100% - 16px) / ${scale})` }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+  function endResize(event, cancel = false) {
+    const start2 = resizing.current;
+    if (!start2 || start2.id !== event.pointerId) return;
+    if (cancel) {
+      setFrame2({ width: start2.width, height: start2.height });
+      setOffset(start2.offset);
+    }
+    resizing.current = null;
+    setDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
+    if (fullscreen && event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      setFullscreen(false);
+    }
+    if (fullscreen && event.key === "Tab") {
+      const items = [...event.currentTarget.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')].filter((item) => item.getClientRects().length);
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    }
+  }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
       "div",
       {
         className: "sim-diagram-header",
         onDoubleClick: reset,
         onPointerDown: (event) => {
-          if (event.button !== 0 || event.target.closest("button:not(.sim-diagram-drag)")) return;
+          if (fullscreen || event.button !== 0 || event.target.closest("button:not(.sim-diagram-drag)")) return;
           event.preventDefault();
           drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, startX: offset.x, startY: offset.y };
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -34042,15 +34346,15 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
             setTab("schematic");
             setOpen(true);
           }, children: "\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
             setTab("video");
             setOpen(true);
           }, children: "\u6559\u5B66\u89C6\u9891" }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
             const steps = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
             const step = steps[event.key];
             if (step) {
@@ -34058,38 +34362,73 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
               event.stopPropagation();
               setOffset((value) => constrain({ x: value.x + step[0], y: value.y + step[1] }));
             }
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(GripHorizontal, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Maximize2, { size: 15 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => setOpen(!open), children: open ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Plus, { size: 19 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(GripHorizontal, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(RotateCcw, { size: 15 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-fullscreen", "aria-label": fullscreen ? "\u9000\u51FA\u56FE\u7EB8\u5927\u56FE" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", title: fullscreen ? "\u9000\u51FA\u5927\u56FE \xB7 Esc" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", onClick: () => {
+            setFullscreen(!fullscreen);
+            setOpen(true);
+            setTab("schematic");
+          }, children: fullscreen ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Minimize2, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Maximize2, { size: 16 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => {
+            setFullscreen(false);
+            setOpen(!open);
+          }, children: open ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Plus, { size: 19 }) })
         ]
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(import_jsx_runtime10.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "sim-diagram-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
-        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "sim-guide", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("ol", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
+    open && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-diagram-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
+        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-guide", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("ol", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
         ] }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "sim-diagram-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(BookOpen, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7A97\u53E3\u7F29\u653E\u6BD4\u4F8B", children: [
-          Math.round(scale * 100),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-diagram-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(BookOpen, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-diagram-fit", "aria-label": "\u9002\u5E94\u56FE\u7EB8", disabled: tab !== "schematic", title: "\u9002\u5E94\u7A97\u53E3", onClick: () => {
+          if (tab === "schematic") setZoom(1);
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Maximize2, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+          Math.round(zoom * 100),
           "%"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: scale <= 0.5, onClick: () => setScale((value) => Math.max(0.5, Math.round((value - 0.1) * 10) / 10)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomOut, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: scale >= 2, onClick: () => setScale((value) => Math.min(2, Math.round((value + 0.1) * 10) / 10)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomIn, { size: 20 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: tab !== "schematic" || zoom <= 0.5, onClick: () => {
+          if (tab === "schematic") setZoom(Math.max(0.5, zoom - 0.25));
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ZoomOut, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: tab !== "schematic" || zoom >= 4, onClick: () => {
+          if (tab === "schematic") setZoom(Math.min(4, zoom + 0.25));
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ZoomIn, { size: 20 }) })
       ] })
-    ] })
+    ] }),
+    open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: `sim-diagram-resize sim-diagram-resize-${edge}`, "aria-label": `\u8C03\u6574\u56FE\u7EB8\u7A97\u53E3${label}`, onPointerDown: (event) => {
+      if (event.button !== 0 || !panelRef.current) return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.currentTarget.setPointerCapture(event.pointerId);
+      resizing.current = { id: event.pointerId, edge, x: event.clientX, y: event.clientY, width: panelRef.current.offsetWidth, height: panelRef.current.offsetHeight, offset };
+      setDragging(true);
+    }, onPointerMove: (event) => {
+      const start2 = resizing.current, board = boardRef.current;
+      if (!start2 || start2.id !== event.pointerId || !board) return;
+      const dx = event.clientX - start2.x, dy = event.clientY - start2.y;
+      const maxWidth = Math.max(180, board.clientWidth - 16), maxHeight = Math.max(160, board.clientHeight - 132);
+      const width = Math.min(maxWidth, Math.max(Math.min(320, maxWidth), start2.width + (edge.includes("w") ? -dx : edge.includes("e") ? dx : 0)));
+      const height = Math.min(maxHeight, Math.max(Math.min(260, maxHeight), start2.height + (edge.includes("n") ? -dy : edge.includes("s") ? dy : 0)));
+      setFrame2({ width, height });
+      setOffset(constrain({ x: start2.offset.x + (edge.includes("e") ? width - start2.width : 0), y: start2.offset.y + (edge.includes("s") ? height - start2.height : 0) }, { width, height }));
+    }, onPointerUp: (event) => endResize(event), onPointerCancel: (event) => endResize(event, true), onLostPointerCapture: () => {
+      resizing.current = null;
+      setDragging(false);
+    } }, edge))
   ] });
 }
 
@@ -34231,20 +34570,20 @@ function createReferenceDocument(id2) {
 }
 
 // app/simulator/ReferenceDrawingPicker.tsx
-var import_react12 = __toESM(require_react(), 1);
+var import_react14 = __toESM(require_react(), 1);
 var import_react_dom2 = __toESM(require_react_dom(), 1);
-var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
 var PAGE_SIZE = 9;
 function ReferenceDrawingPicker({ open, selectedId, onSelect, onClose, disabled = false }) {
-  const [candidate, setCandidate] = (0, import_react12.useState)(null);
-  const [query, setQuery] = (0, import_react12.useState)("");
-  const [keyword, setKeyword] = (0, import_react12.useState)("");
-  const [composing, setComposing] = (0, import_react12.useState)(false);
-  const [page, setPage] = (0, import_react12.useState)(1);
-  const searchInput = (0, import_react12.useRef)(null);
-  const dialog = (0, import_react12.useRef)(null);
-  const id2 = (0, import_react12.useId)();
-  (0, import_react12.useEffect)(() => {
+  const [candidate, setCandidate] = (0, import_react14.useState)(null);
+  const [query, setQuery] = (0, import_react14.useState)("");
+  const [keyword, setKeyword] = (0, import_react14.useState)("");
+  const [composing, setComposing] = (0, import_react14.useState)(false);
+  const [page, setPage] = (0, import_react14.useState)(1);
+  const searchInput = (0, import_react14.useRef)(null);
+  const dialog = (0, import_react14.useRef)(null);
+  const id2 = (0, import_react14.useId)();
+  (0, import_react14.useEffect)(() => {
     if (!open) return;
     setCandidate(selectedId !== void 0 && getReferenceDrawing(selectedId) ? selectedId : null);
     setQuery("");
@@ -34252,7 +34591,7 @@ function ReferenceDrawingPicker({ open, selectedId, onSelect, onClose, disabled 
     setPage(1);
     setComposing(false);
   }, [open, selectedId]);
-  (0, import_react12.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     if (!open || typeof document === "undefined") return;
     const trigger = document.activeElement;
     const keepFocusInside = (event) => {
@@ -34265,7 +34604,7 @@ function ReferenceDrawingPicker({ open, selectedId, onSelect, onClose, disabled 
       if (trigger?.isConnected) trigger.focus();
     };
   }, [open]);
-  (0, import_react12.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     if (!open || composing) return;
     const timer2 = setTimeout(() => {
       setKeyword(query.trim());
@@ -34282,9 +34621,9 @@ function ReferenceDrawingPicker({ open, selectedId, onSelect, onClose, disabled 
     onSelect(candidate);
     onClose();
   }
-  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "dt-reference-picker-backdrop", onPointerDown: (event) => {
+  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "dt-reference-picker-backdrop", onPointerDown: (event) => {
     if (event.target === event.currentTarget) event.preventDefault();
-  }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { ref: dialog, className: "dt-reference-picker", role: "dialog", "aria-modal": "true", "aria-labelledby": `${id2}-title`, onKeyDown: (event) => {
+  }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { ref: dialog, className: "dt-reference-picker", role: "dialog", "aria-modal": "true", "aria-labelledby": `${id2}-title`, onKeyDown: (event) => {
     event.stopPropagation();
     if (event.key === "Escape") {
       event.preventDefault();
@@ -34306,47 +34645,47 @@ function ReferenceDrawingPicker({ open, selectedId, onSelect, onClose, disabled 
       first.focus();
     }
   }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h2", { id: `${id2}-title`, children: "\u56FE\u7EB8\u9009\u62E9" }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { className: "dt-reference-picker-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Search, { size: 18 }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { ref: searchInput, "aria-label": "\u641C\u7D22\u53C2\u8003\u56FE\u7EB8", placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, maxLength: 100, onChange: (event) => setQuery(event.target.value), onCompositionStart: () => setComposing(true), onCompositionEnd: (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h2", { id: `${id2}-title`, children: "\u56FE\u7EB8\u9009\u62E9" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("label", { className: "dt-reference-picker-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Search, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { ref: searchInput, "aria-label": "\u641C\u7D22\u53C2\u8003\u56FE\u7EB8", placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, maxLength: 100, onChange: (event) => setQuery(event.target.value), onCompositionStart: () => setComposing(true), onCompositionEnd: (event) => {
           setQuery(event.currentTarget.value);
           setComposing(false);
         } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", className: "dt-reference-picker-close", "aria-label": "\u5173\u95ED\u56FE\u7EB8\u9009\u62E9", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(X, { size: 20 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", className: "dt-reference-picker-close", "aria-label": "\u5173\u95ED\u56FE\u7EB8\u9009\u62E9", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(X, { size: 20 }) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-picker-content", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "dt-reference-picker-grid", role: "radiogroup", "aria-label": "\u9009\u62E9\u53C2\u8003\u56FE\u7EB8", children: found.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((drawing) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { className: `dt-reference-picker-card ${candidate === drawing.id ? "selected" : ""}`, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { type: "radio", name: `${id2}-drawing`, value: drawing.id, checked: candidate === drawing.id, disabled, onChange: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-picker-content", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "dt-reference-picker-grid", role: "radiogroup", "aria-label": "\u9009\u62E9\u53C2\u8003\u56FE\u7EB8", children: found.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((drawing) => /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("label", { className: `dt-reference-picker-card ${candidate === drawing.id ? "selected" : ""}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("input", { type: "radio", name: `${id2}-drawing`, value: drawing.id, checked: candidate === drawing.id, disabled, onChange: () => {
           if (!disabled) setCandidate(drawing.id);
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("img", { src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/"), alt: "", loading: "lazy" }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: drawing.title })
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("img", { src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/"), alt: "", loading: "lazy" }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { children: drawing.title })
       ] }, drawing.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-reference-picker-empty", role: "status", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" })
+      !found.length && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { className: "dt-reference-picker-empty", role: "status", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("nav", { className: "dt-reference-picker-pages", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", disabled: currentPage === 1, onClick: () => setPage((value) => Math.max(1, value - 1)), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ChevronLeft, { size: 16 }),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("nav", { className: "dt-reference-picker-pages", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: currentPage === 1, onClick: () => setPage((value) => Math.max(1, value - 1)), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ChevronLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        Array.from({ length: pages }, (_, index2) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-current": currentPage === index2 + 1 ? "page" : void 0, onClick: () => setPage(index2 + 1), children: index2 + 1 }, index2)),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", disabled: currentPage === pages, onClick: () => setPage((value) => Math.min(pages, value + 1)), children: [
+        Array.from({ length: pages }, (_, index2) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", "aria-current": currentPage === index2 + 1 ? "page" : void 0, onClick: () => setPage(index2 + 1), children: index2 + 1 }, index2)),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: currentPage === pages, onClick: () => setPage((value) => Math.min(pages, value + 1)), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ChevronRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ChevronRight, { size: 16 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("span", { children: [
           "\u5171 ",
           found.length,
           " \u5F20"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-reference-picker-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", onClick: onClose, children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", className: "dt-reference-picker-confirm", disabled: disabled || candidate === null, onClick: confirm, children: "\u786E\u8BA4" })
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-picker-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: onClose, children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", className: "dt-reference-picker-confirm", disabled: disabled || candidate === null, onClick: confirm, children: "\u786E\u8BA4" })
       ] })
     ] })
   ] }) }), document.body);
@@ -34392,11 +34731,60 @@ function poolGroups(category, search) {
   }) })).filter((group) => group.items.length);
 }
 
+// app/simulator/editor/ShortCircuitAlert.tsx
+var import_react15 = __toESM(require_react(), 1);
+var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+function ShortCircuitAlert({ diagnostic: diagnostic2, onClose, onLocate }) {
+  const dialog = (0, import_react15.useRef)(null);
+  (0, import_react15.useEffect)(() => {
+    const previous = document.activeElement;
+    dialog.current?.querySelector("button")?.focus();
+    return () => {
+      if (previous?.isConnected) previous.focus({ preventScroll: true });
+    };
+  }, []);
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "sim-short-backdrop", children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { ref: dialog, className: "sim-short-dialog", role: "alertdialog", "aria-modal": "true", "aria-labelledby": "sim-short-title", "aria-describedby": "sim-short-description", onKeyDown: (event) => {
+    event.stopPropagation();
+    if (event.key === "Escape") {
+      event.preventDefault();
+      onClose();
+    }
+    if (event.key === "Tab") {
+      const buttons = [...event.currentTarget.querySelectorAll("button")];
+      const index2 = buttons.indexOf(document.activeElement);
+      event.preventDefault();
+      buttons[(index2 + (event.shiftKey ? buttons.length - 1 : 1)) % buttons.length]?.focus();
+    }
+  }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("button", { type: "button", onClick: onLocate, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(LocateFixed, { size: 17 }),
+        "\u5B9A\u4F4D\u6545\u969C"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", autoFocus: true, onClick: onClose, children: "\u786E\u5B9A" })
+    ] })
+  ] }) });
+}
+
+// app/simulator/editor/short-circuit-notice.ts
+var SHORT_CODES = /* @__PURE__ */ new Set(["PHASE_SHORT", "PHASE_NEUTRAL_SHORT", "PHASE_EARTH_SHORT"]);
+function shortCircuitDiagnostic(result) {
+  if (!result?.runtime.faultLatched) return null;
+  return (result.runtime.latchedDiagnostics ?? result.diagnostics).find((diagnostic2) => SHORT_CODES.has(diagnostic2.code)) ?? null;
+}
+function shortCircuitNoticeKey(generation, diagnostic2) {
+  return JSON.stringify([generation, diagnostic2.code, [...diagnostic2.terminalIds].sort(), [...diagnostic2.wireIds].sort()]);
+}
+
 // app/simulator/editor/SimulatorEditor.tsx
-var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
 var nodeTypes = { electrical: DeviceNode };
 var edgeTypes = { electrical: WireEdge };
-var COLORS2 = ["#e3b934", "#43b778", "#ec5960", "#3478f6", "#56616f", "#75a846"];
+var COLORS2 = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
 var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD" };
 var clone = (value) => JSON.parse(JSON.stringify(value));
 function parseImport(value) {
@@ -34407,51 +34795,55 @@ function parseImport(value) {
 function Workspace(props) {
   const { document: circuit, onDocumentChange, onSave, onPublish, onAssess, onImportDrawing, renderSchematic, readOnly = false } = props;
   const flow = useReactFlow();
-  const docRef = (0, import_react13.useRef)(circuit);
+  const docRef = (0, import_react16.useRef)(circuit);
   docRef.current = circuit;
-  const [category, setCategory] = (0, import_react13.useState)("all");
-  const [search, setSearch] = (0, import_react13.useState)("");
-  const [searchOpen, setSearchOpen] = (0, import_react13.useState)(false);
-  const [colorAnchor, setColorAnchor] = (0, import_react13.useState)({ left: 0, top: 0 });
-  const [libraryOpen, setLibraryOpen] = (0, import_react13.useState)(true);
-  const [selectedNodes, setSelectedNodes] = (0, import_react13.useState)([]);
-  const [selectedWires, setSelectedWires] = (0, import_react13.useState)([]);
-  const [past, setPast] = (0, import_react13.useState)([]);
-  const [future, setFuture] = (0, import_react13.useState)([]);
-  const [color2, setColor] = (0, import_react13.useState)(COLORS2[0]);
-  const [colorOverride, setColorOverride] = (0, import_react13.useState)(false);
-  const [wireStyle, setWireStyle] = (0, import_react13.useState)("orthogonal");
-  const [colorsOpen, setColorsOpen] = (0, import_react13.useState)(false);
-  const [running, setRunning] = (0, import_react13.useState)(false);
-  const [timerPaused, setTimerPaused] = (0, import_react13.useState)(false);
-  const [simulation, setSimulation] = (0, import_react13.useState)(null);
-  const sessionRef = (0, import_react13.useRef)(null);
+  const [category, setCategory] = (0, import_react16.useState)("all");
+  const [search, setSearch] = (0, import_react16.useState)("");
+  const [searchOpen, setSearchOpen] = (0, import_react16.useState)(false);
+  const [colorAnchor, setColorAnchor] = (0, import_react16.useState)({ left: 0, top: 0 });
+  const [libraryOpen, setLibraryOpen] = (0, import_react16.useState)(true);
+  const [selectedNodes, setSelectedNodes] = (0, import_react16.useState)([]);
+  const [selectedWires, setSelectedWires] = (0, import_react16.useState)([]);
+  const [past, setPast] = (0, import_react16.useState)([]);
+  const [future, setFuture] = (0, import_react16.useState)([]);
+  const [color2, setColor] = (0, import_react16.useState)(COLORS2[0]);
+  const [colorOverride, setColorOverride] = (0, import_react16.useState)(false);
+  const [wireStyle, setWireStyle] = (0, import_react16.useState)("orthogonal");
+  const [colorsOpen, setColorsOpen] = (0, import_react16.useState)(false);
+  const [running, setRunning] = (0, import_react16.useState)(false);
+  const [timerPaused, setTimerPaused] = (0, import_react16.useState)(false);
+  const [simulation, setSimulation] = (0, import_react16.useState)(null);
+  const sessionRef = (0, import_react16.useRef)(null);
   if (!sessionRef.current) sessionRef.current = createSimulationSession();
   const session = sessionRef.current;
   const sessionGeneration = session.generation;
-  const [assessment, setAssessment] = (0, import_react13.useState)(null);
-  const [panelOpen, setPanelOpen] = (0, import_react13.useState)(false);
-  const [panelTab, setPanelTab] = (0, import_react13.useState)("runtime");
-  const [drawing, setDrawing] = (0, import_react13.useState)(props.drawingUrl ?? "");
-  const [drawingPickerOpen, setDrawingPickerOpen] = (0, import_react13.useState)(false);
-  const [referenceSelectionRevision, setReferenceSelectionRevision] = (0, import_react13.useState)(0);
-  const drawingSelectionEpoch = (0, import_react13.useRef)(0);
-  const [message, setMessage] = (0, import_react13.useState)("");
-  const [busy, setBusy] = (0, import_react13.useState)("");
-  const [transferMode, setTransferMode] = (0, import_react13.useState)(null);
-  const [transferText, setTransferText] = (0, import_react13.useState)("");
-  const [transferNotice, setTransferNotice] = (0, import_react13.useState)("");
-  const transferInput = (0, import_react13.useRef)(null);
-  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react13.useState)(null);
-  const dragBefore = (0, import_react13.useRef)(null);
-  const assessmentRequest = (0, import_react13.useRef)(0);
-  const board = (0, import_react13.useRef)(null);
-  const diagramPanel = (0, import_react13.useRef)(null);
-  const importInput = (0, import_react13.useRef)(null);
-  const drawingInput = (0, import_react13.useRef)(null);
+  const [assessment, setAssessment] = (0, import_react16.useState)(null);
+  const [panelOpen, setPanelOpen] = (0, import_react16.useState)(false);
+  const [panelTab, setPanelTab] = (0, import_react16.useState)("runtime");
+  const [drawing, setDrawing] = (0, import_react16.useState)(props.drawingUrl ?? "");
+  const [drawingZoom, setDrawingZoom] = (0, import_react16.useState)(1);
+  const [drawingPickerOpen, setDrawingPickerOpen] = (0, import_react16.useState)(false);
+  const [referenceSelectionRevision, setReferenceSelectionRevision] = (0, import_react16.useState)(0);
+  const drawingSelectionEpoch = (0, import_react16.useRef)(0);
+  const [message, setMessage] = (0, import_react16.useState)("");
+  const [busy, setBusy] = (0, import_react16.useState)("");
+  const [transferMode, setTransferMode] = (0, import_react16.useState)(null);
+  const [transferText, setTransferText] = (0, import_react16.useState)("");
+  const [transferNotice, setTransferNotice] = (0, import_react16.useState)("");
+  const transferInput = (0, import_react16.useRef)(null);
+  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react16.useState)(null);
+  const dragBefore = (0, import_react16.useRef)(null);
+  const resizing = (0, import_react16.useRef)(null);
+  const [shortAlert, setShortAlert] = (0, import_react16.useState)(null);
+  const shownShort = (0, import_react16.useRef)("");
+  const assessmentRequest = (0, import_react16.useRef)(0);
+  const board = (0, import_react16.useRef)(null);
+  const diagramPanel = (0, import_react16.useRef)(null);
+  const importInput = (0, import_react16.useRef)(null);
+  const drawingInput = (0, import_react16.useRef)(null);
   const frozen = running || readOnly;
-  const initial = (0, import_react13.useMemo)(() => initialRuntime(circuit, false), [circuit]);
-  const frameInitialView = (0, import_react13.useCallback)(() => {
+  const initial = (0, import_react16.useMemo)(() => initialRuntime(circuit, false), [circuit]);
+  const frameInitialView = (0, import_react16.useCallback)(() => {
     const components = docRef.current.components;
     if (!components.length) {
       void flow.setViewport({ x: 50, y: 85, zoom: 0.78 });
@@ -34459,22 +34851,25 @@ function Workspace(props) {
     }
     const minX = Math.min(...components.map((component2) => component2.position.x));
     const minY = Math.min(...components.map((component2) => component2.position.y));
-    const maxX = Math.max(...components.map((component2) => component2.position.x + getDefinition(component2.type).width));
+    const maxX = Math.max(...components.map((component2) => component2.position.x + componentSize(component2).width));
     const boardWidth = board.current?.clientWidth ?? 1e3;
     const diagramWidth = diagramPanel.current?.offsetWidth ?? 332;
     const usableWidth = Math.max(240, boardWidth - diagramWidth - 70);
     const zoom = Math.max(0.68, Math.min(0.9, (usableWidth - 30) / Math.max(1, maxX - minX)));
     void flow.setViewport({ x: 35 + (usableWidth - (maxX - minX) * zoom) / 2 - minX * zoom, y: 85 - minY * zoom, zoom }, { duration: 180 });
   }, [flow]);
-  (0, import_react13.useEffect)(() => {
+  (0, import_react16.useEffect)(() => {
     props.onRunningChange?.(running);
   }, [running, props.onRunningChange]);
-  (0, import_react13.useEffect)(() => () => {
+  (0, import_react16.useEffect)(() => () => {
     props.onRunningChange?.(false);
   }, [props.onRunningChange]);
-  (0, import_react13.useEffect)(() => {
+  (0, import_react16.useEffect)(() => {
     assessmentRequest.current++;
     session.clear();
+    resizing.current = null;
+    shownShort.current = "";
+    setShortAlert(null);
     setPast([]);
     setFuture([]);
     setRunning(false);
@@ -34487,16 +34882,29 @@ function Workspace(props) {
     const timer2 = setTimeout(frameInitialView, 80);
     return () => clearTimeout(timer2);
   }, [props.documentKey, frameInitialView, session]);
-  (0, import_react13.useEffect)(() => () => session.clear(), [session]);
-  (0, import_react13.useEffect)(() => {
+  (0, import_react16.useEffect)(() => () => session.clear(), [session]);
+  (0, import_react16.useEffect)(() => {
+    const diagnostic2 = running ? shortCircuitDiagnostic(simulation) : null;
+    if (!diagnostic2) {
+      shownShort.current = "";
+      setShortAlert(null);
+      return;
+    }
+    const key3 = shortCircuitNoticeKey(sessionGeneration, diagnostic2);
+    if (shownShort.current !== key3) {
+      shownShort.current = key3;
+      setShortAlert(diagnostic2);
+    }
+  }, [running, simulation, sessionGeneration]);
+  (0, import_react16.useEffect)(() => {
     setDrawing(props.drawingUrl ?? "");
   }, [props.drawingUrl, props.documentKey]);
-  (0, import_react13.useEffect)(() => {
+  (0, import_react16.useEffect)(() => {
     if (!message) return;
     const timer2 = setTimeout(() => setMessage(""), 4500);
     return () => clearTimeout(timer2);
   }, [message]);
-  const changed = (0, import_react13.useCallback)((next) => {
+  const changed = (0, import_react16.useCallback)((next) => {
     if (frozen) return;
     const previous = docRef.current;
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
@@ -34507,19 +34915,20 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     onDocumentChange(next);
   }, [frozen, onDocumentChange]);
-  const undo = (0, import_react13.useCallback)(() => {
+  const undo = (0, import_react16.useCallback)(() => {
     if (frozen || !past.length) return;
-    const previous = past[past.length - 1];
-    setFuture((items) => [clone(docRef.current), ...items]);
+    const previous = past[past.length - 1], current = clone(docRef.current);
+    setFuture((items) => [current, ...items]);
     setPast((items) => items.slice(0, -1));
     setAssessment(null);
     setSimulation(null);
     setFocusedDiagnostic(null);
     onDocumentChange(previous);
   }, [frozen, onDocumentChange, past]);
-  const redo = (0, import_react13.useCallback)(() => {
+  const redo = (0, import_react16.useCallback)(() => {
     if (frozen || !future.length) return;
-    setPast((items) => [...items, clone(docRef.current)]);
+    const current = clone(docRef.current);
+    setPast((items) => [...items, current]);
     const next = future[0];
     setFuture((items) => items.slice(1));
     setAssessment(null);
@@ -34527,13 +34936,13 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     onDocumentChange(next);
   }, [frozen, future, onDocumentChange]);
-  const deleteSelected = (0, import_react13.useCallback)(() => {
+  const deleteSelected = (0, import_react16.useCallback)(() => {
     if (frozen) return;
     changed({ ...docRef.current, components: docRef.current.components.filter((component2) => !selectedNodes.includes(component2.id)).map((component2) => component2.linkedTo && selectedNodes.includes(component2.linkedTo) ? { ...component2, linkedTo: void 0 } : component2), wires: docRef.current.wires.filter((wire) => !selectedWires.includes(wire.id) && !selectedNodes.includes(wire.from.componentId) && !selectedNodes.includes(wire.to.componentId)), roles: docRef.current.roles ? Object.fromEntries(Object.entries(docRef.current.roles).filter(([, componentId]) => !selectedNodes.includes(componentId))) : void 0 });
     setSelectedNodes([]);
     setSelectedWires([]);
   }, [frozen, changed, selectedNodes, selectedWires]);
-  const action = (0, import_react13.useCallback)((nextAction) => {
+  const action = (0, import_react16.useCallback)((nextAction) => {
     if (!running) return;
     const result = session.dispatch(nextAction, sessionGeneration);
     if (!result) return;
@@ -34548,7 +34957,7 @@ function Workspace(props) {
     else (0, import_react_dom3.flushSync)(present);
   }, [running, session, sessionGeneration]);
   const hasTimers = circuit.components.some((component2) => component2.type === "timer380");
-  (0, import_react13.useEffect)(() => {
+  (0, import_react16.useEffect)(() => {
     if (!running || !hasTimers || timerPaused) return;
     const timer2 = setInterval(() => {
       if (session.current?.runtime.powerOn && session.current.supported && !session.current.runtime.faultLatched) action({ type: "advance-time", ms: 100 });
@@ -34605,12 +35014,38 @@ function Workspace(props) {
     const newColor = colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal);
     changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle }] });
   };
-  const onWaypoints = (0, import_react13.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
-  const configure = (0, import_react13.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
-  const linkedComponents = (0, import_react13.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || component2.type === "relay380").map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
-  const diagnostics = (0, import_react13.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const nodes = (0, import_react13.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: component2.type.startsWith("wire-duct") ? "sim-duct-flow-node" : void 0, zIndex: component2.type.startsWith("wire-duct") ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), width: getDefinition(component2.type).width, height: getDefinition(component2.type).height, data: { component: component2, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure } })), [circuit.components, selectedNodes, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure]);
-  const edges = (0, import_react13.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, diagnostics, simulation, onWaypoints]);
+  const onWaypoints = (0, import_react16.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
+  const configure = (0, import_react16.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
+  const beginResize = (0, import_react16.useCallback)((id2) => {
+    if (frozen || !isWireDuct(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
+    resizing.current = { id: id2, before: clone(docRef.current), documentKey: props.documentKey };
+  }, [frozen, props.documentKey]);
+  const resize = (0, import_react16.useCallback)((id2, bounds, finish = false) => {
+    const gesture = resizing.current;
+    if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds.x, bounds.y, bounds.width, bounds.height].every(Number.isFinite)) return;
+    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.width)), height: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.height)) };
+    const next = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, position: { x: bounds.x, y: bounds.y }, size } : component2) };
+    onDocumentChange(next);
+    setAssessment(null);
+    setSimulation(null);
+    setFocusedDiagnostic(null);
+    if (finish) {
+      if (JSON.stringify(gesture.before) !== JSON.stringify(next)) {
+        setPast((items) => [...items.slice(-79), gesture.before]);
+        setFuture([]);
+      }
+      resizing.current = null;
+    }
+  }, [frozen, props.documentKey, onDocumentChange]);
+  const cancelResize = (0, import_react16.useCallback)(() => {
+    const gesture = resizing.current;
+    resizing.current = null;
+    if (gesture && gesture.documentKey === props.documentKey && !frozen) onDocumentChange(gesture.before);
+  }, [frozen, props.documentKey, onDocumentChange]);
+  const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || component2.type === "relay380").map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
+  const diagnostics = (0, import_react16.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
+  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isWireDuct(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isWireDuct(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...componentSize(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
     if (selection2.length) setSelectedNodes((current) => {
@@ -34622,7 +35057,7 @@ function Workspace(props) {
       return [...next];
     });
     if (frozen) return;
-    const positions = changes.filter((change) => change.type === "position" && change.position);
+    const positions = changes.filter((change) => change.type === "position" && change.position && change.id !== resizing.current?.id);
     if (positions.length) {
       const next = { ...docRef.current, components: docRef.current.components.map((component2) => {
         const update = positions.find((change) => change.type === "position" && change.id === component2.id);
@@ -34725,12 +35160,15 @@ function Workspace(props) {
   const safetyDiagnostics = simulation?.diagnostics ?? [];
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
-  const drawingPreview = drawing ? props.drawingType === "application/pdf" ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PdfDrawing, { src: drawing, title: "\u7528\u6237\u5BFC\u5165\u7684 PDF \u63A5\u7EBF\u56FE" }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { src: drawing, alt: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE" }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-reference-preview", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h3", { children: referenceDrawing.title }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("img", { src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), alt: referenceDrawing.title })
-  ] }) : null;
-  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision) : drawingPreview ?? renderSchematic;
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, onKeyDown: (event) => {
+  const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
+  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
+  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision, viewerControls) : drawingPreview ?? renderSchematic;
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, onKeyDown: (event) => {
+    if (event.key === "Escape" && resizing.current) {
+      event.preventDefault();
+      cancelResize();
+      return;
+    }
     if (event.target.matches("input,textarea,select")) return;
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
       event.preventDefault();
@@ -34746,107 +35184,107 @@ function Workspace(props) {
       deleteSelected();
     }
   }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("aside", { className: "sim-library", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-library-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h2", { children: "\u7535\u5DE5\u63A7\u4EF6\u6C60" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("aside", { className: "sim-library", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-library-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { children: "\u7535\u5DE5\u63A7\u4EF6\u6C60" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
           setSearchOpen(!searchOpen);
           if (searchOpen) setSearch("");
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Search, { size: 16 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Search, { size: 16 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
       ] }),
-      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("label", { className: "sim-library-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Search, { size: 14 }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
+      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "sim-library-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Search, { size: 14 }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-library-scroller", children: [
-        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("section", { className: "sim-library-group", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h3", { children: group.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-library-scroller", children: [
+        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "sim-library-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h3", { children: group.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
             event.dataTransfer.setData("application/x-diantuo-component", definition.type);
             event.dataTransfer.effectAllowed = "copy";
           }, onClick: () => addComponent(definition.type), title: `${definition.description} \u70B9\u51FB\u6216\u62D6\u5165\u753B\u5E03`, "aria-label": `\u6DFB\u52A0${definition.name}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(DeviceArtwork, { type: definition.type }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DeviceArtwork, { type: definition.type }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
           ] }, definition.type)) })
         ] }, group.id)),
-        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
-        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-pending-library", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "PLC" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
+        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
+        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-pending-library", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "PLC" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("p", { className: "sim-library-note", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { className: "sim-library-note", children: [
         "\u70B9\u51FB\u6DFB\u52A0\u6216\u62D6\u5165\u753B\u5E03",
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("br", {}),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("br", {}),
         "\u6559\u5B66\u793A\u610F\u5143\u4EF6 \xB7 \u7AEF\u5B50\u53EF\u91CD\u590D\u63A5\u7EBF"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("section", { className: "sim-workspace", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-toolbar", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
-          running ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Play, { size: 14, fill: "currentColor" }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "sim-workspace", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-toolbar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
+          running ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Play, { size: 14, fill: "currentColor" }),
           running ? "\u7ED3\u675F\u4EFF\u771F" : "\u5F00\u59CB\u4EFF\u771F"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
           changed({ ...circuit, wires: [] });
           setSelectedWires([]);
         }, children: "\u5220\u9664\u6240\u6709\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-color-control", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-color-control", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
             const rect = event.currentTarget.getBoundingClientRect();
             setColorAnchor({ left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6 });
             setColorsOpen(!colorsOpen);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("i", { style: { backgroundColor: color2 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("i", { style: { backgroundColor: color2 } }),
             "\u8BBE\u7F6E\u5BFC\u7EBF\u989C\u8272"
           ] }),
-          colorsOpen && board.current && (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-color-swatches", children: [
-              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
+          colorsOpen && board.current && (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-color-swatches", children: [
+              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
                 setWireColor(item);
                 setColorsOpen(false);
               } }, item)),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
               setColorOverride(false);
               setColorsOpen(false);
             }, children: "\u65B0\u5BFC\u7EBF\u8DDF\u968F\u8D77\u70B9\u7AEF\u5B50\u989C\u8272" })
           ] }), board.current)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("label", { className: "sim-line-select", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
-            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "sim-line-select", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
+            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-history", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Undo2, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Redo2, { size: 18 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-history", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Undo2, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Redo2, { size: 18 }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "sim-toolbar-spacer" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Download, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "sim-toolbar-spacer" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Download, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(FolderOpen, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FolderOpen, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-canvas", ref: board, tabIndex: 0, onDragOver: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-canvas", ref: board, tabIndex: 0, onDragOver: (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = frozen ? "none" : "copy";
       }, onDrop: (event) => {
@@ -34854,7 +35292,7 @@ function Workspace(props) {
         const type = event.dataTransfer.getData("application/x-diantuo-component");
         if (CATALOG.some((item) => item.type === type)) addComponent(type, flow.screenToFlowPosition({ x: event.clientX, y: event.clientY }));
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
           index,
           {
             nodes,
@@ -34872,7 +35310,7 @@ function Workspace(props) {
               const terminal = component2 && getDefinition(component2.type).terminals.find((item) => item.id === params.handleId);
               if (terminal) setColor(terminalColor(terminal));
             },
-            connectionLineStyle: { stroke: color2, strokeWidth: 2 },
+            connectionLineStyle: { stroke: color2, strokeWidth: 3, vectorEffect: "non-scaling-stroke" },
             nodesDraggable: !frozen,
             nodesConnectable: !frozen,
             elementsSelectable: !running,
@@ -34884,9 +35322,10 @@ function Workspace(props) {
             defaultViewport: { x: 35, y: 85, zoom: 0.78 },
             fitViewOptions: { padding: 0.22, maxZoom: 0.92 },
             onNodeDragStart: () => {
-              dragBefore.current = clone(docRef.current);
+              if (!resizing.current) dragBefore.current = clone(docRef.current);
             },
             onNodeDragStop: (_event, node) => {
+              if (resizing.current || frozen) return;
               const finalDocument = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === node.id ? { ...component2, position: node.position } : component2) };
               if (dragBefore.current && JSON.stringify(dragBefore.current) !== JSON.stringify(finalDocument)) {
                 const previous = dragBefore.current;
@@ -34908,144 +35347,150 @@ function Workspace(props) {
             },
             "aria-label": "\u7535\u8DEF\u63A5\u7EBF\u753B\u5E03",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Controls, { showInteractive: false })
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Controls, { showInteractive: false })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5143\u4EF6\u5E93" : "\u5C55\u5F00\u5143\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ChevronRight, { size: 22 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-canvas-heading", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: circuit.title }),
-          running && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5143\u4EF6\u5E93" : "\u5C55\u5F00\u5143\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronRight, { size: 22 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-canvas-heading", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: circuit.title }),
+          running && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
         ] }),
-        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { children: [
+        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
             "\u6559\u5B66\u65F6\u95F4 ",
             ((simulation?.runtime.timeMs ?? 0) / 1e3).toFixed(1),
             " s",
             simulation?.supported === false ? " \xB7 \u5DF2\u6682\u505C" : ""
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-document-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(FileImage, { size: 15 }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-document-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FileImage, { size: 15 }),
             "\u4E0A\u4F20\u56FE\u7EB8"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: () => setDrawingPickerOpen(true), selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-diagram-empty", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(FileImage, { size: 38 }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: () => setDrawingPickerOpen(true), selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-diagram-empty", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FileImage, { size: 38 }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
         ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ShieldCheck, { size: 19 }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ShieldCheck, { size: 19 }),
           busy === "assess" ? "\u6B63\u5728\u68C0\u67E5\u2026" : "\u68C0\u67E5\u63A5\u7EBF"
         ] }),
-        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-diagnostics-header", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
+        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-diagnostics-header", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
               "\u5B89\u5168\u8BCA\u65AD",
-              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("i", { children: safetyDiagnostics.length })
+              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("i", { children: safetyDiagnostics.length })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(X, { size: 16 }) })
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 16 }) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-diagnostics-body", children: [
-            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_jsx_runtime12.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-diagnostics-body", children: [
+            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_jsx_runtime15.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
                   component2.label,
                   " \xB7 ",
                   getDefinition(component2.type).name
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
               ] }, component2.id)) }),
-              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
-            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_jsx_runtime12.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: diagnostic2.message }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ChevronRight, { size: 14 })
-            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-clear-state", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(CheckCheck, { size: 30 }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
+              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
+            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_jsx_runtime15.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: diagnostic2.message }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronRight, { size: 14 })
+            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-clear-state", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CheckCheck, { size: 30 }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
             ] }) }),
-            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_jsx_runtime12.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { children: [
+            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_jsx_runtime15.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
                   assessment.passed,
                   " / ",
                   assessment.total,
                   " \u9879\u52A8\u4F5C\u7B26\u5408\u8981\u6C42"
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ChevronRight, { size: 14 })
+              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) })
           ] })
         ] }),
-        message && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "sim-toast", role: "status", children: [
+        message && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "sim-toast", role: "status", children: [
           message,
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(X, { size: 14 }) })
-        ] })
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 14 }) })
+        ] }),
+        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setShortAlert(null), onLocate: () => {
+          setShortAlert(null);
+          setPanelOpen(true);
+          setPanelTab("safety");
+          focusDiagnostic(shortAlert);
+        } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("footer", { className: "sim-editor-footer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("i", { className: running ? "live" : "" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { className: "sim-editor-footer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("i", { className: running ? "live" : "" }),
           running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
           circuit.components.length,
           " \u4E2A\u5143\u4EF6",
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
           circuit.wires.length,
           " \u6839\u5BFC\u7EBF",
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
             setPanelOpen(!panelOpen);
             setPanelTab(running ? "runtime" : "safety");
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PanelRightClose, { size: 15 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PanelRightClose, { size: 15 }) })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ReferenceDrawingPicker, { open: drawingPickerOpen, selectedId: circuit.referenceDiagramId, disabled: frozen, onClose: () => setDrawingPickerOpen(false), onSelect: (id2) => {
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ReferenceDrawingPicker, { open: drawingPickerOpen, selectedId: circuit.referenceDiagramId, disabled: frozen, onClose: () => setDrawingPickerOpen(false), onSelect: (id2) => {
       if (frozen) return;
       drawingSelectionEpoch.current++;
       setDrawing("");
       setReferenceSelectionRevision((value) => value + 1);
       changed(selectReferenceDrawing(docRef.current, id2));
     } }),
-    transferMode && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "sim-transfer-backdrop", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("section", { className: "sim-transfer-dialog", role: "dialog", "aria-modal": "true", "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClick: (event) => event.stopPropagation(), onKeyDown: (event) => {
+    transferMode && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "sim-transfer-backdrop", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "sim-transfer-dialog", role: "dialog", "aria-modal": "true", "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClick: (event) => event.stopPropagation(), onKeyDown: (event) => {
       event.stopPropagation();
       if (event.key === "Escape") setTransferMode(null);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(X, { size: 18 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 18 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, autoFocus: true, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, autoFocus: true, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
         setTransferText(event.target.value);
         setTransferNotice("");
       }, placeholder: transferMode === "import" ? "\u5728\u6B64\u7C98\u8D34\u5B8C\u6574\u7535\u8DEF JSON" : void 0 }),
-      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button", onClick: async () => {
+      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button", onClick: async () => {
           try {
             await navigator.clipboard.writeText(transferText);
             setTransferNotice("\u7535\u8DEF JSON \u5DF2\u590D\u5236\u3002");
@@ -35055,19 +35500,19 @@ function Workspace(props) {
             setTransferNotice("\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u81EA\u52A8\u590D\u5236\u3002\u5DF2\u9009\u4E2D\u5168\u90E8 JSON\uFF0C\u8BF7\u6309 Ctrl+C \u590D\u5236\u3002");
           }
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Copy, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Copy, { size: 16 }),
           "\u590D\u5236 JSON"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Download, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Download, { size: 16 }),
           "\u4E0B\u8F7D JSON \u6587\u4EF6"
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(FolderOpen, { size: 16 }),
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FolderOpen, { size: 16 }),
           "\u9009\u62E9 JSON \u6587\u4EF6"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
           try {
             importDocument(transferText);
           } catch (error) {
@@ -35076,7 +35521,7 @@ function Workspace(props) {
         }, children: "\u5BFC\u5165\u7C98\u8D34\u5185\u5BB9" })
       ] }) })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file) return;
@@ -35087,7 +35532,7 @@ function Workspace(props) {
         setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
       }
     } }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file || frozen) return;
@@ -35117,32 +35562,32 @@ function Workspace(props) {
   ] });
 }
 function SimulatorEditor(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Workspace, { ...props }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Workspace, { ...props }) });
 }
 
 // app/simulator/editor/DocumentPreview.tsx
-var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 function DocumentPreview({ document: document2, className = "" }) {
-  const boxes = document2.components.map((component2) => ({ component: component2, definition: getDefinition(component2.type) }));
+  const boxes = document2.components.map((component2) => ({ component: component2, definition: componentSize(component2) }));
   const wirePoints = document2.wires.flatMap((wire) => wire.style === "curve" ? curveControlPoints(document2, wire) : wireRoute(document2, wire));
   const x = boxes.length ? Math.min(...boxes.map(({ component: component2 }) => component2.position.x), ...wirePoints.map((point2) => point2.x)) - 28 : 0;
   const y = boxes.length ? Math.min(...boxes.map(({ component: component2 }) => component2.position.y), ...wirePoints.map((point2) => point2.y)) - 28 : 0;
   const right = boxes.length ? Math.max(...boxes.map(({ component: component2, definition }) => component2.position.x + definition.width), ...wirePoints.map((point2) => point2.x)) + 28 : 500;
   const bottom = boxes.length ? Math.max(...boxes.map(({ component: component2, definition }) => component2.position.y + definition.height), ...wirePoints.map((point2) => point2.y)) + 43 : 300;
-  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("g", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(DeviceArtwork, { type: component2.type }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
+  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("g", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DeviceArtwork, { type: component2.type }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
   ] }, component2.id);
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
     boxes.filter(({ component: component2 }) => component2.type.startsWith("wire-duct")).map(device),
-    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 2.4, strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
+    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
     boxes.filter(({ component: component2 }) => !component2.type.startsWith("wire-duct")).map(device),
-    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
+    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
   ] });
 }
 
 // app/simulator/TrainingProjects.tsx
-var import_react16 = __toESM(require_react(), 1);
+var import_react18 = __toESM(require_react(), 1);
 var import_react_dom4 = __toESM(require_react_dom(), 1);
 
 // shared/training-projects.json
@@ -35177,162 +35622,32 @@ async function api(path, init2) {
 var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) });
 var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then((result) => result.assessment);
 
-// app/simulator/DrawingViewer.tsx
-var import_react15 = __toESM(require_react(), 1);
-var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
-function DrawingViewer({ src, title, type }) {
-  const isPdf = type === "application/pdf";
-  const viewport = (0, import_react15.useRef)(null);
-  const content = (0, import_react15.useRef)(null);
-  const drag = (0, import_react15.useRef)(null);
-  const [zoom, setZoom] = (0, import_react15.useState)(1);
-  const [bounds, setBounds] = (0, import_react15.useState)({ width: 0, height: 0 });
-  const [ratio, setRatio] = (0, import_react15.useState)(null);
-  const [dragging, setDragging] = (0, import_react15.useState)(false);
-  const [imageState, setImageState] = (0, import_react15.useState)("loading");
-  (0, import_react15.useEffect)(() => {
-    setZoom(1);
-    setRatio(null);
-    setImageState("loading");
-    drag.current = null;
-    setDragging(false);
-    viewport.current?.scrollTo({ left: 0, top: 0 });
-  }, [src]);
-  (0, import_react15.useEffect)(() => {
-    const element = viewport.current;
-    if (!element) return;
-    const measure = () => setBounds({ width: element.clientWidth, height: element.clientHeight });
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-  (0, import_react15.useEffect)(() => {
-    const element = content.current;
-    if (!isPdf || !element) return;
-    const measure = () => {
-      const canvas = element.querySelector("canvas");
-      if (!canvas?.width || !canvas.height) return;
-      const next = canvas.width / canvas.height;
-      setRatio((previous) => previous === null || Math.abs(previous - next) > 5e-3 ? next : previous);
-    };
-    measure();
-    const observer = new MutationObserver(measure);
-    observer.observe(element, { subtree: true, attributes: true, attributeFilter: ["width", "height"], childList: true });
-    return () => observer.disconnect();
-  }, [src, isPdf]);
-  const availableWidth = Math.max(1, bounds.width - 24);
-  const availableHeight = Math.max(1, bounds.height - 24 - (isPdf ? 76 : 0));
-  const fittedWidth = ratio ? Math.min(availableWidth, availableHeight * ratio) : availableWidth;
-  function fit() {
-    setZoom(1);
-    viewport.current?.scrollTo({ left: 0, top: 0 });
-  }
-  function beginDrag(event) {
-    if (event.button !== 0 || event.pointerType === "touch" || event.target.closest("button,a,input,select,textarea")) return;
-    const element = event.currentTarget;
-    if (element.scrollWidth <= element.clientWidth && element.scrollHeight <= element.clientHeight) return;
-    event.preventDefault();
-    element.focus({ preventScroll: true });
-    drag.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, left: element.scrollLeft, top: element.scrollTop };
-    element.setPointerCapture(event.pointerId);
-    setDragging(true);
-  }
-  function moveDrag(event) {
-    const start2 = drag.current;
-    if (!start2 || start2.pointerId !== event.pointerId) return;
-    event.currentTarget.scrollLeft = start2.left - (event.clientX - start2.x);
-    event.currentTarget.scrollTop = start2.top - (event.clientY - start2.y);
-  }
-  function endDrag(event) {
-    if (drag.current?.pointerId !== event.pointerId) return;
-    drag.current = null;
-    setDragging(false);
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("section", { className: "dt-drawing-viewer", "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 1, onClick: () => setZoom((value) => Math.max(1, value - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomOut, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
-        Math.round(zoom * 100),
-        "%"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 3, onClick: () => setZoom((value) => Math.min(3, value + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomIn, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("button", { type: "button", onClick: fit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 15 }),
-        "\u9002\u5E94\u7A97\u53E3"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ExternalLink, { size: 15 }),
-        "\u67E5\u770B\u539F\u56FE"
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-      "div",
-      {
-        ref: viewport,
-        className: `dt-drawing-viewer-viewport${dragging ? " is-dragging" : ""}`,
-        role: "region",
-        "aria-label": "\u53EF\u6EDA\u52A8\u548C\u62D6\u52A8\u7684\u56FE\u7EB8",
-        tabIndex: 0,
-        onPointerDown: beginDrag,
-        onPointerMove: moveDrag,
-        onPointerUp: endDrag,
-        onPointerCancel: endDrag,
-        onLostPointerCapture: () => {
-          drag.current = null;
-          setDragging(false);
-        },
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds.width ? fittedWidth * zoom : "100%" }, children: isPdf ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-            "img",
-            {
-              src,
-              alt: title,
-              draggable: false,
-              onLoad: (event) => {
-                const image = event.currentTarget;
-                setRatio(image.naturalWidth / Math.max(1, image.naturalHeight));
-                setImageState("ready");
-              },
-              onError: () => setImageState("error")
-            },
-            src
-          ) }),
-          !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
-        ]
-      }
-    ),
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
-  ] });
-}
-
 // app/simulator/TrainingProjects.tsx
-var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
 var LABELS3 = { schematic: "\u539F\u7406\u56FE", layout: "\u5143\u4EF6\u5E03\u7F6E\u56FE" };
 var projectMedia = (project, kind) => project.drawings ? project.drawings[kind] : kind === "schematic" ? project.media : null;
-function Drawing({ media, title }) {
-  return media.type === "application/pdf" ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(PdfDrawing, { src: media.url, title }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("img", { src: media.url, alt: title });
+function Drawing({ media, title, viewerControls }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
 }
-function TrainingProjects({ user, fallback, onUseDrawing, selectedProjectId, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
-  const [projects, setProjects] = (0, import_react16.useState)(training_projects_default.map((p) => ({ id: p.id, name: p.name, title: p.name, lessonId: null, drawingStatus: "pending", updatedAt: null, media: null })));
-  const [selected2, setSelected] = (0, import_react16.useState)("");
-  const [kind, setKind] = (0, import_react16.useState)("schematic");
-  const [error, setError] = (0, import_react16.useState)("");
-  const [busy, setBusy] = (0, import_react16.useState)(false);
-  const [refreshing, setRefreshing] = (0, import_react16.useState)(false);
-  const [enlarged, setEnlarged] = (0, import_react16.useState)(false);
-  const [toolsOpen, setToolsOpen] = (0, import_react16.useState)(false);
-  const toolsId = (0, import_react16.useId)();
-  const fileInput = (0, import_react16.useRef)(null);
-  const projectRequest = (0, import_react16.useRef)(0);
-  (0, import_react16.useEffect)(() => {
+function TrainingProjects({ user, fallback, viewerControls, onUseDrawing, selectedProjectId, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
+  const [projects, setProjects] = (0, import_react18.useState)(training_projects_default.map((p) => ({ id: p.id, name: p.name, title: p.name, lessonId: null, drawingStatus: "pending", updatedAt: null, media: null })));
+  const [selected2, setSelected] = (0, import_react18.useState)("");
+  const [kind, setKind] = (0, import_react18.useState)("schematic");
+  const [error, setError] = (0, import_react18.useState)("");
+  const [busy, setBusy] = (0, import_react18.useState)(false);
+  const [refreshing, setRefreshing] = (0, import_react18.useState)(false);
+  const [enlarged, setEnlarged] = (0, import_react18.useState)(false);
+  const [toolsOpen, setToolsOpen] = (0, import_react18.useState)(false);
+  const toolsId = (0, import_react18.useId)();
+  const fileInput = (0, import_react18.useRef)(null);
+  const projectRequest = (0, import_react18.useRef)(0);
+  (0, import_react18.useEffect)(() => {
     setSelected("");
     setKind("schematic");
     setEnlarged(false);
     setToolsOpen(false);
   }, [selectedProjectId, documentKey]);
-  (0, import_react16.useEffect)(() => {
+  (0, import_react18.useEffect)(() => {
     let active = true;
     const request = ++projectRequest.current;
     if (!STATIC_DEMO) api("/training-projects").then((r) => {
@@ -35349,7 +35664,7 @@ function TrainingProjects({ user, fallback, onUseDrawing, selectedProjectId, doc
   const media = project ? projectMedia(project, kind) : currentDrawings?.[currentKind];
   const title = `${project?.title || "\u5F53\u524D\u7EC3\u4E60"} \xB7 ${LABELS3[shownKind]}`;
   const hasSlots = !!project || !!currentDrawings;
-  (0, import_react16.useEffect)(() => {
+  (0, import_react18.useEffect)(() => {
     onPreviewContextChange?.(!hasSlots);
   }, [hasSlots, documentKey, onPreviewContextChange]);
   async function upload(file) {
@@ -35387,98 +35702,100 @@ function TrainingProjects({ user, fallback, onUseDrawing, selectedProjectId, doc
       setRefreshing(false);
     }
   }
-  const pending = /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-project-pending", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FileUp, { size: 30 }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("strong", { children: project?.name || "\u5F53\u524D\u7EC3\u4E60" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { children: [
+  const pending = /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-project-pending", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileUp, { size: 30 }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("strong", { children: project?.name || "\u5F53\u524D\u7EC3\u4E60" }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("p", { children: [
       LABELS3[shownKind],
       "\u5C1A\u672A\u4E0A\u4F20"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("small", { children: project && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: project && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "dt-training-projects", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "dt-training-projects", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
       toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8",
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
     ] }),
-    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project && (readOnly || !onSelectCurrentDrawing), onClick: () => {
+    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project && (readOnly || !onSelectCurrentDrawing), onClick: () => {
       setEnlarged(false);
       if (project) setKind(item);
       else if (!readOnly) onSelectCurrentDrawing?.(item);
     }, children: [
       LABELS3[item],
-      project && !projectMedia(project, item) || !project && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
+      project && !projectMedia(project, item) || !project && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
     ] }, item)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { children: [
         "\u9879\u76EE\u56FE\u7EB8",
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
           setSelected(e.target.value);
           setKind("schematic");
           setEnlarged(false);
           setError("");
+          setToolsOpen(false);
+          viewerControls?.onZoomChange(1);
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
-          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("option", { value: p.id, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
+          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("option", { value: p.id, children: [
             p.name,
             p.drawingStatus === "pending" ? " \xB7 \u5F85\u4E0A\u4F20" : ""
           ] }, p.id))
         ] })
       ] }),
-      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RefreshCw, { size: 13 }),
+      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(RefreshCw, { size: 13 }),
         refreshing ? "\u6B63\u5728\u5237\u65B0\u2026" : "\u5237\u65B0\u9879\u76EE\u56FE\u7EB8"
       ] }) }),
-      project && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-project-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(FileUp, { size: 15 }),
+      project && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-project-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileUp, { size: 15 }),
           busy ? `\u6B63\u5728\u4E0A\u4F20${LABELS3[kind]}\u2026` : `${media ? "\u66FF\u6362" : "\u4E0A\u4F20"}${LABELS3[kind]}`
         ] })
       ] }),
-      project && !project.lessonId && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
+      project && !project.lessonId && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { role: "alert", className: "dt-error", children: error }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project ? media ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Drawing, { media, title }) : pending : currentDrawings && !media ? pending : fallback }),
-    media && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Maximize2, { size: 14 }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { role: "alert", className: "dt-error", children: error }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project ? media ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
+    media && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Maximize2, { size: 14 }),
         "\u653E\u5927\u67E5\u770B"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ExternalLink, { size: 14 }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ExternalLink, { size: 14 }),
         "\u67E5\u770B\u539F\u56FE"
       ] }),
-      project && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
+      project && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
         if (!readOnly) {
           onUseDrawing(media.id, { ...project, media }, kind);
           setSelected("");
         }
       }, children: "\u7528\u4E8E\u5F53\u524D\u7EC3\u4E60" })
     ] }),
-    enlarged && media && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-training-projects dt-project-modal-root", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-project-zoom-backdrop", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "dt-project-zoom-dialog", role: "dialog", "aria-modal": "true", "aria-label": title, onClick: (event) => event.stopPropagation(), onKeyDown: (event) => {
+    enlarged && media && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-training-projects dt-project-modal-root", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-project-zoom-backdrop", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "dt-project-zoom-dialog", role: "dialog", "aria-modal": "true", "aria-label": title, onClick: (event) => event.stopPropagation(), onKeyDown: (event) => {
       event.stopPropagation();
       if (event.key === "Escape") setEnlarged(false);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("strong", { children: title }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 20 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("strong", { children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
     ] }) }) }), document.body)
   ] });
 }
 
 // app/simulator/ReferenceDrawings.tsx
-var import_react18 = __toESM(require_react(), 1);
+var import_react20 = __toESM(require_react(), 1);
 
 // app/simulator/CourseLibrary.tsx
-var import_react17 = __toESM(require_react(), 1);
-var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
+var import_react19 = __toESM(require_react(), 1);
+var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
 function CourseLibrary({ onPractice }) {
-  const [projects, setProjects] = (0, import_react17.useState)([]), [error, setError] = (0, import_react17.useState)(""), [loading, setLoading] = (0, import_react17.useState)(true);
-  const [query, setQuery] = (0, import_react17.useState)(""), [level, setLevel] = (0, import_react17.useState)("all"), [preview, setPreview] = (0, import_react17.useState)(null), [kind, setKind] = (0, import_react17.useState)("schematic");
-  (0, import_react17.useEffect)(() => {
+  const [projects, setProjects] = (0, import_react19.useState)([]), [error, setError] = (0, import_react19.useState)(""), [loading, setLoading] = (0, import_react19.useState)(true);
+  const [query, setQuery] = (0, import_react19.useState)(""), [level, setLevel] = (0, import_react19.useState)("all"), [preview, setPreview] = (0, import_react19.useState)(null), [kind, setKind] = (0, import_react19.useState)("schematic");
+  (0, import_react19.useEffect)(() => {
     let active = true;
     api("/training-projects").then((result) => {
       if (active) setProjects(result.items);
@@ -35495,67 +35812,67 @@ function CourseLibrary({ onPractice }) {
   const found = projects.filter((project) => (level === "all" || difficulty(project.id) === level) && project.name.includes(query));
   const media = preview?.drawings?.[kind] ?? (kind === "schematic" ? preview?.media : null);
   const lesson = preview?.lessonId ? getLesson(preview.lessonId) : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dt-reference-filter", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-reference-filter", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
         label,
         "(",
         projects.filter((project) => id2 === "all" || difficulty(project.id) === id2).length,
         ")"
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "dt-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { className: "dt-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
       ] })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "dt-error", role: "alert", children: error }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dt-reference-grid", children: found.map((project) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+    error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-error", role: "alert", children: error }),
+    loading && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-reference-grid", children: found.map((project) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { className: "dt-reference-card", onClick: () => {
       setPreview(project);
       setKind("schematic");
     }, children: [
-      project.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("img", { src: project.media.url, alt: project.name }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dt-empty", children: project.media ? "PDF \u539F\u7406\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: project.name })
+      project.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("img", { src: project.media.url, alt: project.name }) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-empty", children: project.media ? "PDF \u539F\u7406\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { children: project.name })
     ] }, project.id)) }),
-    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dt-modal-backdrop", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "dt-modal dt-reference-modal", role: "dialog", "aria-modal": "true", "aria-label": preview.name, onClick: (event) => event.stopPropagation(), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: preview.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 20 }) })
+    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
+    preview && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-modal-backdrop", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "dt-modal dt-reference-modal", role: "dialog", "aria-modal": "true", "aria-label": preview.name, onClick: (event) => event.stopPropagation(), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { children: preview.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
-      media ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "dt-empty", children: "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: lesson?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
+      media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-empty", children: "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { children: lesson?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { onClick: () => {
           onPractice(preview, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { className: "dt-primary", onClick: () => {
           onPractice(preview, false);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
     ] }) })
   ] });
 }
 
 // app/simulator/ReferenceDrawings.tsx
-var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
 var courses = { 13: "motor-jog", 14: "motor-self-hold", 12: "lighting-two-way", 11: "lighting-single" };
 var drawings = REFERENCE_DRAWINGS.map((drawing) => ({ ...drawing, lesson: courses[drawing.id], src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/") }));
 function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice }) {
-  const [category, setCategory] = (0, import_react18.useState)(STATIC_DEMO ? "industrial" : "courses");
-  const [level, setLevel] = (0, import_react18.useState)("all");
-  const [query, setQuery] = (0, import_react18.useState)("");
-  const [page, setPage] = (0, import_react18.useState)(1);
-  const [preview, setPreview] = (0, import_react18.useState)(null);
-  const [previewTab, setPreviewTab] = (0, import_react18.useState)("schematic");
+  const [category, setCategory] = (0, import_react20.useState)(STATIC_DEMO ? "industrial" : "courses");
+  const [level, setLevel] = (0, import_react20.useState)("all");
+  const [query, setQuery] = (0, import_react20.useState)("");
+  const [page, setPage] = (0, import_react20.useState)(1);
+  const [preview, setPreview] = (0, import_react20.useState)(null);
+  const [previewTab, setPreviewTab] = (0, import_react20.useState)("schematic");
   const inCategory = drawings.filter((d) => d.category === category);
   const found = inCategory.filter((d) => (level === "all" || d.level === level) && d.title.includes(query));
   const pages = Math.max(1, Math.ceil(found.length / 8));
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("main", { className: "dt-reference-library", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-reference-category", role: "tablist", "aria-label": "\u56FE\u7EB8\u5206\u7C7B", children: [...!STATIC_DEMO ? [["courses", "\u8BFE\u7A0B\u56FE\u7EB8", 10]] : [], ["industrial", "\u5DE5\u4E1A\u7535\u8DEF\u56FE\u7EB8", 16], ["lighting", "\u5BB6\u5EAD\u7535\u8DEF\u56FE\u7EB8", 2]].map(([id2, label, count]) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { role: "tab", "aria-selected": category === id2, className: category === id2 ? "active" : "", onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("main", { className: "dt-reference-library", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-reference-category", role: "tablist", "aria-label": "\u56FE\u7EB8\u5206\u7C7B", children: [...!STATIC_DEMO ? [["courses", "\u8BFE\u7A0B\u56FE\u7EB8", 10]] : [], ["industrial", "\u5DE5\u4E1A\u7535\u8DEF\u56FE\u7EB8", 16], ["lighting", "\u5BB6\u5EAD\u7535\u8DEF\u56FE\u7EB8", 2]].map(([id2, label, count]) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { role: "tab", "aria-selected": category === id2, className: category === id2 ? "active" : "", onClick: () => {
       setCategory(String(id2));
       setPage(1);
       setLevel("all");
@@ -35565,9 +35882,9 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
       count,
       ")"
     ] }, id2)) }),
-    category === "courses" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CourseLibrary, { onPractice: onProjectPractice }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-reference-filter", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { role: "tablist", "aria-label": "\u56FE\u7EB8\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u521D\u7EA7\u56FE\u7EB8"], ["intermediate", "\u4E2D\u7EA7\u56FE\u7EB8"], ["advanced", "\u9AD8\u7EA7\u56FE\u7EB8"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => {
+    category === "courses" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CourseLibrary, { onPractice: onProjectPractice }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-reference-filter", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { role: "tablist", "aria-label": "\u56FE\u7EB8\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u521D\u7EA7\u56FE\u7EB8"], ["intermediate", "\u4E2D\u7EA7\u56FE\u7EB8"], ["advanced", "\u9AD8\u7EA7\u56FE\u7EB8"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => {
           setLevel(id2);
           setPage(1);
         }, children: [
@@ -35576,53 +35893,53 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
           inCategory.filter((d) => id2 === "all" || d.level === id2).length,
           ")"
         ] }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Search, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, onChange: (e) => {
             setQuery(e.target.value);
             setPage(1);
           } })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-reference-grid", children: found.slice((page - 1) * 8, page * 8).map((d) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-reference-grid", children: found.slice((page - 1) * 8, page * 8).map((d) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "dt-reference-card", onClick: () => {
         setPreviewTab("schematic");
         setPreview(d);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("img", { src: d.src, alt: d.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: d.title })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("img", { src: d.src, alt: d.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: d.title })
       ] }, d.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("nav", { className: "dt-pagination", "aria-label": "\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { disabled: page === 1, onClick: () => setPage((p) => p - 1), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronLeft, { size: 14 }),
+      !found.length && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("nav", { className: "dt-pagination", "aria-label": "\u56FE\u7EB8\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { disabled: page === 1, onClick: () => setPage((p) => p - 1), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronLeft, { size: 14 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        Array.from({ length: pages }, (_, i) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: page === i + 1 ? "active" : "", onClick: () => setPage(i + 1), children: i + 1 }, i)),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { disabled: page === pages, onClick: () => setPage((p) => p + 1), children: [
+        Array.from({ length: pages }, (_, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: page === i + 1 ? "active" : "", onClick: () => setPage(i + 1), children: i + 1 }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { disabled: page === pages, onClick: () => setPage((p) => p + 1), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 14 })
         ] })
       ] })
     ] }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "dt-modal-backdrop", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "dt-modal dt-reference-modal", role: "dialog", "aria-modal": "true", "aria-label": preview.title, onClick: (e) => e.stopPropagation(), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h2", { children: preview.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 20 }) })
+    preview && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-modal-backdrop", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "dt-modal dt-reference-modal", role: "dialog", "aria-modal": "true", "aria-label": preview.title, onClick: (e) => e.stopPropagation(), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { children: preview.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-reference-preview-tabs", role: "tablist", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5185\u5BB9", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": previewTab === "schematic", className: previewTab === "schematic" ? "active" : "", onClick: () => setPreviewTab("schematic"), children: "\u63A5\u7EBF\u56FE" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": previewTab === "video", className: previewTab === "video" ? "active" : "", onClick: () => setPreviewTab("video"), children: "\u6559\u5B66\u89C6\u9891" })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-reference-preview-tabs", role: "tablist", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5185\u5BB9", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": previewTab === "schematic", className: previewTab === "schematic" ? "active" : "", onClick: () => setPreviewTab("schematic"), children: "\u63A5\u7EBF\u56FE" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": previewTab === "video", className: previewTab === "video" ? "active" : "", onClick: () => setPreviewTab("video"), children: "\u6559\u5B66\u89C6\u9891" })
       ] }),
-      previewTab === "schematic" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { src: preview.src, title: preview.title }, preview.id) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ReferenceVideoPlayer, { video: referenceVideoForDiagram(preview.id) }),
-      preview.id === 11 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "dt-hint", children: "\u539F\u56FE\u5305\u542B\u7535\u5EA6\u8868\u548C\u591A\u4E2A\u8D1F\u8F7D\u3002\u4E0B\u65B9\u793A\u8303\u53EA\u8986\u76D6\u5355\u63A7\u7167\u660E\u3002" }),
-      preview.id === 13 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "dt-hint", children: "\u6309\u539F\u7AD9\u56FE\u7406\u89E3\u70B9\u52A8\u903B\u8F91\uFF1B\u70B9\u52A8\u793A\u8303\u53E6\u68C0\u67E5\u4FDD\u62A4\u63A5\u5730\u4E0E\u8FC7\u8F7D\u4FDD\u62A4\u3002" }),
-      !preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "dt-hint", children: "\u53EF\u6309\u6B64\u53C2\u8003\u56FE\u63A5\u7EBF\uFF1B\u6B64\u56FE\u5C1A\u672A\u7ED1\u5B9A\u8BFE\u7A0B\u5224\u5B9A\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "dt-modal-actions", children: [
-        preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { onClick: () => {
+      previewTab === "schematic" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: preview.src, title: preview.title }, preview.id) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ReferenceVideoPlayer, { video: referenceVideoForDiagram(preview.id) }),
+      preview.id === 11 && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u539F\u56FE\u5305\u542B\u7535\u5EA6\u8868\u548C\u591A\u4E2A\u8D1F\u8F7D\u3002\u4E0B\u65B9\u793A\u8303\u53EA\u8986\u76D6\u5355\u63A7\u7167\u660E\u3002" }),
+      preview.id === 13 && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u6309\u539F\u7AD9\u56FE\u7406\u89E3\u70B9\u52A8\u903B\u8F91\uFF1B\u70B9\u52A8\u793A\u8303\u53E6\u68C0\u67E5\u4FDD\u62A4\u63A5\u5730\u4E0E\u8FC7\u8F7D\u4FDD\u62A4\u3002" }),
+      !preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u53EF\u6309\u6B64\u53C2\u8003\u56FE\u63A5\u7EBF\uFF1B\u6B64\u56FE\u5C1A\u672A\u7ED1\u5B9A\u8BFE\u7A0B\u5224\u5B9A\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-modal-actions", children: [
+        preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => {
           onPractice(preview.lesson, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-primary", onClick: () => {
           onReferencePractice(preview.id);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
@@ -35632,7 +35949,7 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_react19 = __toESM(require_react(), 1);
+var import_react21 = __toESM(require_react(), 1);
 
 // app/simulator/profile/change-password.ts
 var PASSWORD_MIN_LENGTH = 12;
@@ -35660,25 +35977,25 @@ function passwordChangeError(error) {
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
 function ChangePassword({ request, onChanged }) {
-  const [open, setOpen] = (0, import_react19.useState)(false);
-  const [fields, setFields] = (0, import_react19.useState)(emptyPasswordFields);
-  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react19.useState)(true);
-  const [busy, setBusy] = (0, import_react19.useState)(false);
-  const [error, setError] = (0, import_react19.useState)("");
-  const pending = (0, import_react19.useRef)(false);
-  const mounted = (0, import_react19.useRef)(true);
-  const currentInput = (0, import_react19.useRef)(null);
-  const trigger = (0, import_react19.useRef)(null);
-  const id2 = (0, import_react19.useId)();
-  (0, import_react19.useEffect)(() => {
+  const [open, setOpen] = (0, import_react21.useState)(false);
+  const [fields, setFields] = (0, import_react21.useState)(emptyPasswordFields);
+  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react21.useState)(true);
+  const [busy, setBusy] = (0, import_react21.useState)(false);
+  const [error, setError] = (0, import_react21.useState)("");
+  const pending = (0, import_react21.useRef)(false);
+  const mounted = (0, import_react21.useRef)(true);
+  const currentInput = (0, import_react21.useRef)(null);
+  const trigger = (0, import_react21.useRef)(null);
+  const id2 = (0, import_react21.useId)();
+  (0, import_react21.useEffect)(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
     };
   }, []);
-  (0, import_react19.useEffect)(() => {
+  (0, import_react21.useEffect)(() => {
     if (open) currentInput.current?.focus();
   }, [open]);
   function close() {
@@ -35722,48 +36039,48 @@ function ChangePassword({ request, onChanged }) {
       if (mounted.current) setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
       setFields(emptyPasswordFields());
       setError("");
       setRevokeOtherSessions(true);
       setOpen(true);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(KeyRound, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(KeyRound, { size: 16 }),
       "\u4FEE\u6539\u5BC6\u7801"
     ] }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-modal-backdrop", onClick: close, onKeyDown: (event) => {
+    open && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-modal-backdrop", onClick: close, onKeyDown: (event) => {
       if (event.key === "Escape") {
         event.stopPropagation();
         close();
       }
-    }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-labelledby": `${id2}-title`, "aria-describedby": `${id2}-hint`, className: "dt-modal dt-password-modal", onClick: (event) => event.stopPropagation(), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 20 }) })
+    }, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-labelledby": `${id2}-title`, "aria-describedby": `${id2}-hint`, className: "dt-modal dt-password-modal", onClick: (event) => event.stopPropagation(), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { htmlFor: `${id2}-current`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { htmlFor: `${id2}-current`, children: [
           "\u5F53\u524D\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { htmlFor: `${id2}-new`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { htmlFor: `${id2}-new`, children: [
           "\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
           "\u786E\u8BA4\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { className: "dt-password-revoke", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { className: "dt-password-revoke", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
           "\u540C\u65F6\u9000\u51FA\u5176\u4ED6\u8BBE\u5907\u4E0A\u7684\u767B\u5F55"
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-modal-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-modal-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
         ] })
       ] })
     ] }) })
@@ -35771,7 +36088,7 @@ function ChangePassword({ request, onChanged }) {
 }
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_react20 = __toESM(require_react(), 1);
+var import_react22 = __toESM(require_react(), 1);
 
 // app/simulator/profile/list-state.ts
 var PROFILE_PAGE_SIZE = 12;
@@ -35806,32 +36123,32 @@ var ProfileListRequests = class {
 };
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
 var LOCAL_KEY = "diantuo:simulator:demo:v1";
 var date = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 var blankPage = (pageSize) => ({ items: [], page: 1, pageSize, total: 0, totalPages: 1 });
 function ProfileLibrary({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }) {
-  const [query, setQuery] = (0, import_react20.useState)("");
-  const [search, setSearch] = (0, import_react20.useState)("");
-  const [page, setPage] = (0, import_react20.useState)(1);
-  const [pageSize, setPageSize] = (0, import_react20.useState)(tab === "drafts" ? 10 : 12);
-  const [result, setResult] = (0, import_react20.useState)(() => blankPage(pageSize));
-  const [loading, setLoading] = (0, import_react20.useState)(true);
-  const [error, setError] = (0, import_react20.useState)("");
-  const [retry, setRetry] = (0, import_react20.useState)(0);
-  const requests = (0, import_react20.useRef)(new ProfileListRequests());
-  const requestRef = (0, import_react20.useRef)(request);
+  const [query, setQuery] = (0, import_react22.useState)("");
+  const [search, setSearch] = (0, import_react22.useState)("");
+  const [page, setPage] = (0, import_react22.useState)(1);
+  const [pageSize, setPageSize] = (0, import_react22.useState)(tab === "drafts" ? 10 : 12);
+  const [result, setResult] = (0, import_react22.useState)(() => blankPage(pageSize));
+  const [loading, setLoading] = (0, import_react22.useState)(true);
+  const [error, setError] = (0, import_react22.useState)("");
+  const [retry, setRetry] = (0, import_react22.useState)(0);
+  const requests = (0, import_react22.useRef)(new ProfileListRequests());
+  const requestRef = (0, import_react22.useRef)(request);
   requestRef.current = request;
   const scope = { ownerId, session: refresh, tab, query, page, pageSize };
-  const scopeRef = (0, import_react20.useRef)(scope);
+  const scopeRef = (0, import_react22.useRef)(scope);
   scopeRef.current = scope;
-  const sentinel = (0, import_react20.useRef)(null);
-  (0, import_react20.useEffect)(() => {
+  const sentinel = (0, import_react22.useRef)(null);
+  (0, import_react22.useEffect)(() => {
     requests.current.invalidate();
     setPage(1);
     setResult(blankPage(pageSize));
   }, [refresh]);
-  (0, import_react20.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     const ticket = requests.current.begin(scopeRef.current);
     const accepts = () => requests.current.accepts(ticket, scopeRef.current);
     setLoading(true);
@@ -35863,7 +36180,7 @@ function ProfileLibrary({ ownerId, tab, refresh, busy, request, onOpenDraft, onD
     return () => requests.current.invalidate();
   }, [ownerId, tab, query, page, pageSize, refresh, retry]);
   const more = tab !== "drafts" && result.page < result.totalPages;
-  (0, import_react20.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (!more || loading || error || !sentinel.current || typeof IntersectionObserver === "undefined") return;
     let queued = false;
     const observer = new IntersectionObserver((entries) => {
@@ -35892,106 +36209,106 @@ function ProfileLibrary({ ownerId, tab, refresh, busy, request, onOpenDraft, onD
     setResult(blankPage(pageSize));
     setRetry((value) => value + 1);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { children: [
         result.total,
         " \u4EFD\u79C1\u6709\u8349\u7A3F"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { children: [
         "\u5171 ",
         result.total,
         " \u4E2A"
       ] })
     ] }) }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-error", role: "alert", children: [
+    error && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-error", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { onClick: () => {
         requests.current.invalidate();
         setRetry((value) => value + 1);
       }, children: "\u91CD\u8BD5" })
     ] }),
-    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("th", { children: "\u6807\u9898" }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("th", { children: "\u64CD\u4F5C" })
+    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("th", { children: "\u6807\u9898" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("th", { children: "\u64CD\u4F5C" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("td", { children: item.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("td", { children: date(item.updatedAt) }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("td", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
-            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("td", { children: item.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("td", { children: date(item.updatedAt) }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
           ] })
         ] }, item.id)) })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { children: [
           "\u6BCF\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
             requests.current.invalidate();
             setPageSize(Number(event.target.value));
             setPage(1);
-          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: size, children: size }, size)) }),
+          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("option", { value: size, children: size }, size)) }),
           "\u6761"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { children: [
           "\u7B2C ",
           result.page,
           " / ",
           result.totalPages,
           " \u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronLeft, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 16 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronLeft, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronRight, { size: 16 }) })
       ] })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("article", { className: "dt-profile-publication", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DocumentPreview, { document: item.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-profile-publication-info", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: item.author.name || item.author.username }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: date(item.createdAt) }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Heart, { size: 15 }),
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("article", { className: "dt-profile-publication", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DocumentPreview, { document: item.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-profile-publication-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { children: item.author.name || item.author.username }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("small", { children: date(item.createdAt) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Heart, { size: 15 }),
             item.likes
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Star, { size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Star, { size: 15 }),
             item.favorites
           ] })
         ] })
       ] })
     ] }, item.id)) }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
+    loading && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
       "\u6B63\u5728\u8BFB\u53D6",
       tab === "drafts" ? "\u8349\u7A3F" : tab === "favorites" ? "\u6536\u85CF" : "\u7535\u8DEF",
       "\u2026"
     ] }),
-    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-empty", children: [
-      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CircuitBoard, { size: 38 }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
-      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
-      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
+    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-empty", children: [
+      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(CircuitBoard, { size: 38 }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
+      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
+      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
     ] }),
-    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
-      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
-      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
+    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
+      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
+      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
     ] })
   ] });
 }
 
 // app/simulator/gallery/Gallery.tsx
-var import_react21 = __toESM(require_react(), 1);
+var import_react23 = __toESM(require_react(), 1);
 
 // app/simulator/gallery/route.ts
 var emptyGalleryRoute = () => ({ query: "", page: 1 });
@@ -36077,29 +36394,29 @@ var GalleryRequestState = class {
 };
 
 // app/simulator/gallery/Gallery.tsx
-var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
 var date2 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function Gallery({ request, onFork, onPractice, busy = false }) {
-  const [route, setRoute] = (0, import_react21.useState)(emptyGalleryRoute);
-  const [ready, setReady] = (0, import_react21.useState)(false);
-  const [search, setSearch] = (0, import_react21.useState)("");
-  const [page, setPage] = (0, import_react21.useState)(null);
-  const [loadedKey, setLoadedKey] = (0, import_react21.useState)("");
-  const [error, setError] = (0, import_react21.useState)("");
-  const [detail, setDetail] = (0, import_react21.useState)(null);
-  const [detailError, setDetailError] = (0, import_react21.useState)("");
-  const [feedback, setFeedback] = (0, import_react21.useState)("");
-  const [reload, setReload] = (0, import_react21.useState)(0);
-  const [pending, setPending] = (0, import_react21.useState)([]);
-  const pendingRef = (0, import_react21.useRef)(/* @__PURE__ */ new Set());
-  const requests = (0, import_react21.useRef)(new GalleryRequestState());
-  const mounted = (0, import_react21.useRef)(true);
-  const requestRef = (0, import_react21.useRef)(request);
+  const [route, setRoute] = (0, import_react23.useState)(emptyGalleryRoute);
+  const [ready, setReady] = (0, import_react23.useState)(false);
+  const [search, setSearch] = (0, import_react23.useState)("");
+  const [page, setPage] = (0, import_react23.useState)(null);
+  const [loadedKey, setLoadedKey] = (0, import_react23.useState)("");
+  const [error, setError] = (0, import_react23.useState)("");
+  const [detail, setDetail] = (0, import_react23.useState)(null);
+  const [detailError, setDetailError] = (0, import_react23.useState)("");
+  const [feedback, setFeedback] = (0, import_react23.useState)("");
+  const [reload, setReload] = (0, import_react23.useState)(0);
+  const [pending, setPending] = (0, import_react23.useState)([]);
+  const pendingRef = (0, import_react23.useRef)(/* @__PURE__ */ new Set());
+  const requests = (0, import_react23.useRef)(new GalleryRequestState());
+  const mounted = (0, import_react23.useRef)(true);
+  const requestRef = (0, import_react23.useRef)(request);
   requestRef.current = request;
   const listKey = galleryListPath(route);
   const shownPage = loadedKey === listKey ? page : null;
   const shownDetail = detail?.id === route.publicationId ? detail : null;
-  (0, import_react21.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     mounted.current = true;
     const read = () => {
       setRoute(galleryRouteFromSearch(location.search));
@@ -36116,17 +36433,17 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       removeEventListener(APP_LOCATION_CHANGED, read);
     };
   }, []);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     setSearch(route.query);
   }, [route.query]);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     requests.current.retain([
       ...page?.items.map((item) => item.id) ?? [],
       ...route.publicationId ? [route.publicationId] : [],
       ...pending.map((key3) => key3.slice(0, key3.lastIndexOf(":")))
     ]);
   }, [page, route.publicationId, pending]);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     if (!ready || STATIC_DEMO) return;
     const abort = new AbortController();
     let active = true;
@@ -36156,7 +36473,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       abort.abort();
     };
   }, [ready, listKey, reload]);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     setDetail(null);
     setDetailError("");
     setFeedback("");
@@ -36213,13 +36530,13 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   }
   function reactions2(item) {
     const waiting = pending.some((value) => value.startsWith(`${item.id}:`));
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Heart, { size: 16 }),
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Heart, { size: 16 }),
         item.likes
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Star, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Star, { size: 16 }),
         item.favorites
       ] })
     ] });
@@ -36232,75 +36549,75 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       if (mounted.current) setFeedback("\u590D\u5236\u5931\u8D25\uFF0C\u53EF\u76F4\u63A5\u590D\u5236\u6D4F\u89C8\u5668\u5730\u5740\u680F\u4E2D\u7684\u4F5C\u54C1\u94FE\u63A5");
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("main", { className: "dt-page dt-gallery", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-page-heading", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("main", { className: "dt-page dt-gallery", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-page-heading", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
         event.preventDefault();
         go({ query: search.trim(), page: 1 });
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearch(event.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearch(event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-tabs", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("span", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-tabs", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
         "\u6700\u65B0\u53D1\u5E03",
         shownPage ? ` \xB7 \u5171 ${shownPage.total} \u4E2A\u4F5C\u54C1` : ""
       ] })
     ] }),
-    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-empty", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ShieldCheck, { size: 44 }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-      route.query && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-gallery-query", children: [
+    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ShieldCheck, { size: 44 }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+      route.query && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-gallery-query", children: [
         "\u641C\u7D22\u201C",
         route.query,
         "\u201D",
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
       ] }),
-      error ? /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-empty", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
+      error ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
         const next = { ...route, publicationId: item.id };
-        return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("article", { className: "dt-circuit-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DocumentPreview, { document: item.document }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-card-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("article", { className: "dt-circuit-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: item.document }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-card-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { children: [
               item.author?.name || item.author?.username,
-              /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { children: date2(item.createdAt) })
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: date2(item.createdAt) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-card-actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-card-actions", children: [
               reactions2(item),
-              /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Copy, { size: 16 }),
                 "\u590D\u5236\u7EC3\u4E60"
               ] })
             ] })
           ] })
         ] }, item.id);
-      }) }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-empty", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CircuitBoard, { size: 45 }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
-        !route.query && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
+      }) }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CircuitBoard, { size: 45 }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
+        !route.query && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
       ] }),
-      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ArrowLeft, { size: 16 }),
+      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ArrowLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
           "\u7B2C ",
           shownPage.page,
           " / ",
@@ -36309,52 +36626,52 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
           shownPage.pageSize,
           " \u4E2A"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ArrowRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ArrowRight, { size: 16 })
         ] })
       ] })
     ] }),
-    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
-    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-modal-backdrop", onClick: closeDetail, onKeyDown: (event) => {
+    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
+    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-modal-backdrop", onClick: closeDetail, onKeyDown: (event) => {
       if (event.key === "Escape") closeDetail();
-    }, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-label": shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClick: (event) => event.stopPropagation(), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(X, { size: 20 }) })
+    }, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-label": shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClick: (event) => event.stopPropagation(), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 20 }) })
       ] }),
-      detailError ? /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: detailError }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { children: [
+      detailError ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: detailError }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { children: [
           "\u4F5C\u8005\uFF1A",
           shownDetail.author.name,
           " \xB7 ",
           date2(shownDetail.createdAt)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DocumentPreview, { document: shownDetail.document }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: shownDetail.document }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
           reactions2(shownDetail),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { onClick: () => void copyLink(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Link, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { onClick: () => void copyLink(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Link, { size: 16 }),
             "\u590D\u5236\u94FE\u63A5"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
       ] }),
-      feedback && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
+      feedback && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
     ] }) })
   ] });
 }
 
 // app/simulator/LessonSchematic.tsx
-var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
 function LessonSchematic({ lessonId = "motor-jog", compact = false }) {
   const base = "/diantuo-zhixun/";
   const supported = ["motor-jog", "motor-self-hold", "lighting-single", "lighting-two-way"].includes(lessonId);
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: `dt-schematic ${compact ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: `dt-schematic ${compact ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
 }
 
 // app/simulator/core/reference-entry.ts
@@ -36410,38 +36727,38 @@ function recoveryAfterSave(current, submitted, saved) {
 }
 
 // app/simulator/SimulatorApp.tsx
-var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
 var NAV = [{ id: "simulator", label: "\u6A21\u62DF\u7535\u8DEF", icon: House }, { id: "drawings", label: "\u56FE\u7EB8\u96C6", icon: BookOpen }, { id: "gallery", label: "\u4EFF\u771F\u5E7F\u573A", icon: Globe }, { id: "components", label: "\u5143\u5668\u4EF6\u767E\u79D1", icon: Boxes }, { id: "profile", label: "\u4E2A\u4EBA\u4E2D\u5FC3", icon: UserRound }];
 var date3 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 var LOCAL_KEY2 = "diantuo:simulator:demo:v1";
 var draftKey = (id2) => `diantuo:simulator:recovery:v1:${id2}`;
 function Modal({ title, children: children2, close }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-modal-backdrop", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-label": title, className: "dt-modal", onClick: (e) => e.stopPropagation(), children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: title }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 20 }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-modal-backdrop", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("section", { role: "dialog", "aria-modal": "true", "aria-label": title, className: "dt-modal", onClick: (e) => e.stopPropagation(), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(X, { size: 20 }) })
     ] }),
     children2
   ] }) });
 }
 function Brand() {
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-brand", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: "\u7535\u62D3\u667A\u8BAD" }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("small", { children: "\u7535\u6C14\u6570\u5B57\u4EFF\u771F\u5B9E\u8BAD\u7CFB\u7EDF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-brand", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("strong", { children: "\u7535\u62D3\u667A\u8BAD" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("small", { children: "\u7535\u6C14\u6570\u5B57\u4EFF\u771F\u5B9E\u8BAD\u7CFB\u7EDF" })
     ] })
   ] });
 }
 function Login({ ready }) {
-  const [username, setUsername] = (0, import_react22.useState)("");
-  const [password, setPassword] = (0, import_react22.useState)("");
-  const [name, setName] = (0, import_react22.useState)("");
-  const [token, setToken] = (0, import_react22.useState)("");
-  const [inviteValid, setInviteValid] = (0, import_react22.useState)(false);
-  const [busy, setBusy] = (0, import_react22.useState)(false);
-  const [error, setError] = (0, import_react22.useState)("");
-  (0, import_react22.useEffect)(() => {
+  const [username, setUsername] = (0, import_react24.useState)("");
+  const [password, setPassword] = (0, import_react24.useState)("");
+  const [name, setName] = (0, import_react24.useState)("");
+  const [token, setToken] = (0, import_react24.useState)("");
+  const [inviteValid, setInviteValid] = (0, import_react24.useState)(false);
+  const [busy, setBusy] = (0, import_react24.useState)(false);
+  const [error, setError] = (0, import_react24.useState)("");
+  (0, import_react24.useEffect)(() => {
     const value = new URLSearchParams(location.search).get("token");
     if (value) {
       setToken(value);
@@ -36468,85 +36785,85 @@ function Login({ ready }) {
       setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-login", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Brand, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-login", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Brand, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-login-body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { className: "dt-login-intro", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("h1", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-login-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("section", { className: "dt-login-intro", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("h1", { children: [
           "\u628A\u7535\u8DEF\u539F\u7406\uFF0C",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("br", {}),
           "\u63A5\u6210\u770B\u5F97\u89C1\u7684\u8FD0\u884C\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
           "\u9009\u62E9\u5668\u4EF6\u3001\u5B8C\u6210\u63A5\u7EBF\u3001\u64CD\u4F5C\u4EFF\u771F\u3002",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("br", {}),
           "\u5728\u6BCF\u4E00\u6B21\u542F\u52A8\u4E0E\u505C\u6B62\u4E2D\uFF0C\u7406\u89E3\u7535\u8DEF\u7684\u5DE5\u4F5C\u8FC7\u7A0B\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(LessonSchematic, { lessonId: "motor-self-hold" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "\u70B9\u52A8\u63A7\u5236 \xB7 \u81EA\u9501\u542F\u505C \xB7 \u5355\u63A7\u7167\u660E \xB7 \u53CC\u63A7\u7167\u660E" })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(LessonSchematic, { lessonId: "motor-self-hold" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u70B9\u52A8\u63A7\u5236 \xB7 \u81EA\u9501\u542F\u505C \xB7 \u5355\u63A7\u7167\u660E \xB7 \u53CC\u63A7\u7167\u660E" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
-        token && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
+        token && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { children: [
           "\u6635\u79F0",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { children: [
           "\u8D26\u53F7",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { children: [
           "\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("footer", { children: "\u7535\u62D3\u667A\u8BAD \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("footer", { children: "\u7535\u62D3\u667A\u8BAD \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
   ] });
 }
 function SimulatorApp({ initialSection = "simulator" }) {
-  const [editorRunning, setEditorRunning] = (0, import_react22.useState)(false);
-  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react22.useState)(true);
-  const [section, setSection] = (0, import_react22.useState)(initialSection);
-  const [user, setUser] = (0, import_react22.useState)(null);
-  const [loading, setLoading] = (0, import_react22.useState)(true);
-  const [document2, setDocument] = (0, import_react22.useState)(() => createLessonDocument("motor-jog", { wired: true }));
-  const [saved, setSaved] = (0, import_react22.useState)(null);
-  const [documentKey, setDocumentKey] = (0, import_react22.useState)("initial");
-  const [dirty, setDirty] = (0, import_react22.useState)(false);
-  const [notice, setNotice] = (0, import_react22.useState)("");
-  const [error, setError] = (0, import_react22.useState)("");
-  const [busy, setBusy] = (0, import_react22.useState)(false);
-  const [query, setQuery] = (0, import_react22.useState)("");
-  const [category, setCategory] = (0, import_react22.useState)("all");
-  const [difficulty, setDifficulty] = (0, import_react22.useState)("all");
-  const [previewLesson, setPreviewLesson] = (0, import_react22.useState)("");
-  const [componentDetail, setComponentDetail] = (0, import_react22.useState)(null);
-  const [publication, setPublication] = (0, import_react22.useState)(null);
-  const [profileTab, setProfileTab] = (0, import_react22.useState)("publications");
-  const [refresh, setRefresh] = (0, import_react22.useState)(0);
-  const [profileEdit, setProfileEdit] = (0, import_react22.useState)(false);
-  const [name, setName] = (0, import_react22.useState)("");
-  const [bio, setBio] = (0, import_react22.useState)("");
-  const [invites, setInvites] = (0, import_react22.useState)([]);
-  const [members, setMembers] = (0, import_react22.useState)([]);
-  const [inviteUrl, setInviteUrl] = (0, import_react22.useState)("");
-  const [conflict, setConflict] = (0, import_react22.useState)(false);
-  const [confirmAction, setConfirmAction] = (0, import_react22.useState)(null);
-  const boundary = (0, import_react22.useRef)(new WorkspaceBoundary());
-  const recoveredWorkspace = (0, import_react22.useRef)(false);
-  const publicationRequest = (0, import_react22.useRef)(0);
-  const working = (0, import_react22.useRef)({ document: document2, saved, dirty });
+  const [editorRunning, setEditorRunning] = (0, import_react24.useState)(false);
+  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react24.useState)(true);
+  const [section, setSection] = (0, import_react24.useState)(initialSection);
+  const [user, setUser] = (0, import_react24.useState)(null);
+  const [loading, setLoading] = (0, import_react24.useState)(true);
+  const [document2, setDocument] = (0, import_react24.useState)(() => createLessonDocument("motor-jog", { wired: true }));
+  const [saved, setSaved] = (0, import_react24.useState)(null);
+  const [documentKey, setDocumentKey] = (0, import_react24.useState)("initial");
+  const [dirty, setDirty] = (0, import_react24.useState)(false);
+  const [notice, setNotice] = (0, import_react24.useState)("");
+  const [error, setError] = (0, import_react24.useState)("");
+  const [busy, setBusy] = (0, import_react24.useState)(false);
+  const [query, setQuery] = (0, import_react24.useState)("");
+  const [category, setCategory] = (0, import_react24.useState)("all");
+  const [difficulty, setDifficulty] = (0, import_react24.useState)("all");
+  const [previewLesson, setPreviewLesson] = (0, import_react24.useState)("");
+  const [componentDetail, setComponentDetail] = (0, import_react24.useState)(null);
+  const [publication, setPublication] = (0, import_react24.useState)(null);
+  const [profileTab, setProfileTab] = (0, import_react24.useState)("publications");
+  const [refresh, setRefresh] = (0, import_react24.useState)(0);
+  const [profileEdit, setProfileEdit] = (0, import_react24.useState)(false);
+  const [name, setName] = (0, import_react24.useState)("");
+  const [bio, setBio] = (0, import_react24.useState)("");
+  const [invites, setInvites] = (0, import_react24.useState)([]);
+  const [members, setMembers] = (0, import_react24.useState)([]);
+  const [inviteUrl, setInviteUrl] = (0, import_react24.useState)("");
+  const [conflict, setConflict] = (0, import_react24.useState)(false);
+  const [confirmAction, setConfirmAction] = (0, import_react24.useState)(null);
+  const boundary = (0, import_react24.useRef)(new WorkspaceBoundary());
+  const recoveredWorkspace = (0, import_react24.useRef)(false);
+  const publicationRequest = (0, import_react24.useRef)(0);
+  const working = (0, import_react24.useRef)({ document: document2, saved, dirty });
   working.current = { document: document2, saved, dirty };
-  const [hydratedFor, setHydratedFor] = (0, import_react22.useState)(null);
+  const [hydratedFor, setHydratedFor] = (0, import_react24.useState)(null);
   function writeRecovery(ownerId, state) {
     try {
       localStorage.setItem(draftKey(ownerId), JSON.stringify(state));
@@ -36659,7 +36976,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     if (!boundary.current.acceptsSession(token)) throw new Error("\u8D26\u53F7\u5DF2\u5207\u6362\uFF0C\u5DF2\u5FFD\u7565\u65E7\u8BF7\u6C42\u7ED3\u679C");
     return result;
   }
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     let active = true;
     const readLocation = () => {
       const path = STATIC_DEMO ? location.hash.slice(1) : location.pathname.slice(1);
@@ -36687,7 +37004,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
       removeEventListener(APP_LOCATION_CHANGED, readLocation);
     };
   }, []);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!user) return;
     const token = boundary.current.capture();
     if (token.ownerId !== user.id) return;
@@ -36707,7 +37024,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }
     setHydratedFor(user.id);
   }, [user?.id]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!user || hydratedFor !== user.id || STATIC_DEMO) return;
     const intent = parseReferenceEntry(location.pathname, location.search);
     if (intent.kind === "none") return;
@@ -36727,7 +37044,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     if (decision === "confirm") setConfirmAction({ title: "\u6253\u5F00\u53C2\u8003\u56FE\u7EB8", message: "\u6B64\u94FE\u63A5\u5C06\u65B0\u5EFA\u4E03\u4E2A\u672A\u63A5\u7EBF\u5668\u4EF6\u3002\u5F53\u524D\u63A5\u7EBF\u5C1A\u672A\u4FDD\u5B58\uFF0C\u8BF7\u5148\u4FDD\u5B58\u9700\u8981\u4FDD\u7559\u7684\u5185\u5BB9\u3002", run: apply });
     else apply();
   }, [hydratedFor, user?.id]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!user || hydratedFor !== user.id || !dirty) return;
     const token = boundary.current.capture();
     const timer2 = setTimeout(() => {
@@ -36735,7 +37052,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }, 350);
     return () => clearTimeout(timer2);
   }, [document2, user?.id, hydratedFor, dirty, saved]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     const before = (event) => {
       const token = boundary.current.capture();
       if (working.current.dirty) {
@@ -36746,12 +37063,12 @@ function SimulatorApp({ initialSection = "simulator" }) {
     addEventListener("beforeunload", before);
     return () => removeEventListener("beforeunload", before);
   }, [hydratedFor]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!notice) return;
     const t = setTimeout(() => setNotice(""), 4500);
     return () => clearTimeout(t);
   }, [notice]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     setQuery("");
     setCategory("all");
     if (!user || STATIC_DEMO || section !== "profile" || profileTab !== "admin" || user.role !== "admin") return;
@@ -36888,64 +37205,64 @@ function SimulatorApp({ initialSection = "simulator" }) {
   }
   const filteredLessons = LESSONS.filter((l) => (category === "all" || l.category === category) && (difficulty === "all" || (difficulty === "basic" ? l.id !== "motor-self-hold" : l.id === "motor-self-hold")) && (l.title + l.description).includes(query));
   const filteredComponents = CATALOG.filter((c) => (category === "all" || c.category === category) && (c.name + c.description).includes(query));
-  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
+  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
   ] });
-  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Login, { ready: (member) => {
+  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Login, { ready: (member) => {
       switchAccount(member);
       setSection(location.pathname === "/gallery" ? "gallery" : "simulator");
     } }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
+    error && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
   ] });
-  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
+  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-site", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { className: "dt-header", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Brand, {}) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-site", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { className: "dt-header", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Brand, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
         e.preventDefault();
         navigate(id2);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon2, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Icon2, { size: 18 }),
         label
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: user.name })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: user.name })
       ] })
     ] }),
-    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-banner", role: "alert", children: [
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-banner", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 16 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(X, { size: 16 }) })
     ] }),
-    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("summary", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(FilePlusCorner, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: document2.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
+    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("summary", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(FilePlusCorner, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("strong", { children: document2.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
             const value = e.target.value;
             replace(() => value ? practiceLesson(value) : adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] }));
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
-            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: l.id, children: l.title }, l.id))
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
+            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("option", { value: l.id, children: l.title }, l.id))
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => replace(() => document2.referenceDiagramId && !document2.lessonId ? adopt(createReferenceDocument(document2.referenceDiagramId)) : practiceLesson(document2.lessonId || "motor-jog")), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: !document2.lessonId, onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => replace(() => document2.referenceDiagramId && !document2.lessonId ? adopt(createReferenceDocument(document2.referenceDiagramId)) : practiceLesson(document2.lessonId || "motor-jog")), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { disabled: !document2.lessonId, onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(SimulatorEditor, { referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(SimulatorEditor, { referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
       }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => assessLesson(doc, doc.lessonId) : assessOnServer, onImportDrawing: async (file) => {
         if (STATIC_DEMO) throw new Error("\u9759\u6001\u6F14\u793A\u8BF7\u4F7F\u7528\u7535\u8DEF JSON \u5BFC\u5165\uFF1B\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
         const token = boundary.current.capture();
@@ -36954,31 +37271,31 @@ function SimulatorApp({ initialSection = "simulator" }) {
         const r = await accountApi("/media", { method: "POST", body: form });
         if (!boundary.current.acceptsWorkspace(token)) throw new Error("\u5DE5\u4F5C\u533A\u5DF2\u5207\u6362\uFF0C\u56FE\u7EB8\u672A\u5E94\u7528\u5230\u5F53\u524D\u7535\u8DEF");
         return r.media;
-      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(TrainingProjects, { onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(LessonSchematic, { lessonId: document2.lessonId }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
+      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
     ] }),
-    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ReferenceDrawings, { onReferencePractice: (id2) => replace(() => adopt(createReferenceDocument(id2))), onPractice: (id2, wired) => replace(() => adopt(createLessonDocument(id2, { wired }))), onProjectPractice: (project, wired) => replace(() => openProjectCourse(project, wired)) }),
-    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
+    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ReferenceDrawings, { onReferencePractice: (id2) => replace(() => adopt(createReferenceDocument(id2))), onPractice: (id2, wired) => replace(() => adopt(createLessonDocument(id2, { wired }))), onProjectPractice: (project, wired) => replace(() => openProjectCourse(project, wired)) }),
+    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
       void run(() => forkPublication(id2));
     }) }, user.id),
-    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("main", { className: "dt-page", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-page-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
+    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("main", { className: "dt-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-page-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-encyclopedia", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DeviceArtwork, { type: c.type }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: c.name }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: c.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("small", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-encyclopedia", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DeviceArtwork, { type: c.type }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h3", { children: c.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: c.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("small", { children: [
               c.terminals.length,
               " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50\u3000\u67E5\u770B\u8BE6\u60C5 \u2192"
             ] })
@@ -36986,91 +37303,91 @@ function SimulatorApp({ initialSection = "simulator" }) {
         ] }, c.type)) })
       ] })
     ] }),
-    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("main", { className: "dt-profile", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("aside", { className: "dt-profile-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(UserRound, { size: 58 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: user.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { children: [
+    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("main", { className: "dt-profile", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("aside", { className: "dt-profile-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(UserRound, { size: 58 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: user.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
           "@",
           user.username
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("dl", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("dl", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => {
           setName(user.name);
           setBio(user.bio || "");
           setProfileEdit(true);
         }, children: "\u7F16\u8F91\u8D44\u6599" }),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { onClick: () => run(async () => {
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { onClick: () => run(async () => {
           await accountApi("/auth/sign-out", jsonBody({}));
           switchAccount(null);
         }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(LogOut, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(LogOut, { size: 16 }),
           "\u9000\u51FA\u767B\u5F55"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { className: "dt-profile-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
-        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-admin", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("section", { className: "dt-profile-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
+        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-admin", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
             const r = await accountApi("/invites", jsonBody({ expiresInHours: 168 }));
             setInviteUrl(r.invite.url);
             setRefresh((x) => x + 1);
           }), children: "\u521B\u5EFA\u9080\u8BF7" }),
-          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-invite-link", children: [
+          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { className: "dt-invite-link", children: [
             "\u590D\u5236\u9080\u8BF7\u94FE\u63A5",
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { onClick: () => run(async () => {
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { onClick: () => run(async () => {
               await navigator.clipboard.writeText(inviteUrl);
               setNotice("\u9080\u8BF7\u94FE\u63A5\u5DF2\u590D\u5236");
             }), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Copy, { size: 16 }),
               "\u590D\u5236"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u9080\u8BF7" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6709\u6548\u671F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u72B6\u6001" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u9080\u8BF7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u6709\u6548\u671F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u72B6\u6001" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: i.id.slice(0, 8) }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: date3(i.expiresAt) }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: i.consumedBy ? `\u5DF2\u88AB ${i.consumedBy} \u4F7F\u7528` : i.expiresAt < Date.now() ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" })
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: i.id.slice(0, 8) }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: date3(i.expiresAt) }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: i.consumedBy ? `\u5DF2\u88AB ${i.consumedBy} \u4F7F\u7528` : i.expiresAt < Date.now() ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" })
             ] }, i.id)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u89D2\u8272" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u72B6\u6001" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u64CD\u4F5C" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u89D2\u8272" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u72B6\u6001" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u64CD\u4F5C" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("td", { children: [
                 m.name,
                 "\uFF08",
                 m.username,
                 "\uFF09"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
-              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => run(async () => {
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => run(async () => {
                 await accountApi(`/members/${m.id}`, jsonBody({ disabled: !m.disabled }, "PATCH"));
                 setRefresh((x) => x + 1);
               }), children: m.disabled ? "\u6062\u590D" : "\u505C\u7528" }) })
             ] }, m.id)) })
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
           void run(() => openDraft(item));
         }), onOpenPublication: (id2) => {
           void run(() => viewPublication(id2));
@@ -37093,72 +37410,72 @@ function SimulatorApp({ initialSection = "simulator" }) {
         } }) }, `${user.id}:${profileTab}`)
       ] })
     ] }),
-    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: getLesson(previewLesson)?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
+    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: getLesson(previewLesson)?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           replace(() => adopt(createLessonDocument(id2, { wired: true })));
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           replace(() => adopt(createLessonDocument(id2)));
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
       ] })
     ] }),
-    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-component-detail", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DeviceArtwork, { type: componentDetail.type }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: componentDetail.description })
+    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-component-detail", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DeviceArtwork, { type: componentDetail.type }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: componentDetail.description })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6807\u8BC6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u7528\u9014" })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u6807\u8BC6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("th", { children: "\u7528\u9014" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: t.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: t.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: t.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: t.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
         ] }, t.id)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
     ] }),
-    publication && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { title: publication.title, close: () => {
+    publication && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { title: publication.title, close: () => {
       publicationRequest.current++;
       setPublication(null);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
         "\u4F5C\u8005\uFF1A",
         publication.author.name,
         " \xB7 ",
         date3(publication.createdAt)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: publication.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Heart, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DocumentPreview, { document: publication.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Heart, { size: 16 }),
           publication.liked ? "\u5DF2\u70B9\u8D5E" : "\u70B9\u8D5E",
           " ",
           publication.likes
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Star, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Star, { size: 16 }),
           publication.favorited ? "\u5DF2\u6536\u85CF" : "\u6536\u85CF",
           " ",
           publication.favorites
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
           void run(() => forkPublication(publication.id));
         }), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
     ] }),
-    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Modal, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { onSubmit: (e) => {
+    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Modal, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { onSubmit: (e) => {
       e.preventDefault();
       void run(async () => {
         if (STATIC_DEMO) setUser({ ...user, name, bio });
@@ -37170,54 +37487,54 @@ function SimulatorApp({ initialSection = "simulator" }) {
         setNotice("\u8D44\u6599\u5DF2\u66F4\u65B0");
       });
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { children: [
         "\u6635\u79F0",
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { children: [
         "\u4E2A\u4EBA\u7B7E\u540D",
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
     ] }) }),
-    conflict && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => run(async () => {
+    conflict && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => run(async () => {
           await save(true);
           setConflict(false);
         }), children: "\u5C06\u5F53\u524D\u5185\u5BB9\u53E6\u5B58\u4E3A\u526F\u672C" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
           if (saved) await openDraft(saved);
           setConflict(false);
         }), children: "\u52A0\u8F7D\u670D\u52A1\u5668\u6700\u65B0\u7248\u672C" })
       ] })
     ] }),
-    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: confirmAction.message }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: () => {
+    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: confirmAction.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: () => {
           const action = confirmAction;
           setConfirmAction(null);
           action.run();
         }, children: "\u7EE7\u7EED" })
       ] })
     ] }),
-    notice && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-toast", role: "status", children: notice })
+    notice && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-toast", role: "status", children: notice })
   ] });
 }
 
 // app/page.tsx
-var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 function Home() {
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(SimulatorApp, {});
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(SimulatorApp, {});
 }
 
 // github-pages/main.tsx
-var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
 (0, import_client.createRoot)(document.getElementById("root")).render(
-  /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(import_react23.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Home, {}) })
+  /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(import_react25.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Home, {}) })
 );
 /*! Bundled license information:
 
@@ -37332,8 +37649,10 @@ lucide-react/dist/esm/icons/heart.mjs:
 lucide-react/dist/esm/icons/house.mjs:
 lucide-react/dist/esm/icons/key-round.mjs:
 lucide-react/dist/esm/icons/link.mjs:
+lucide-react/dist/esm/icons/locate-fixed.mjs:
 lucide-react/dist/esm/icons/log-out.mjs:
 lucide-react/dist/esm/icons/maximize-2.mjs:
+lucide-react/dist/esm/icons/minimize-2.mjs:
 lucide-react/dist/esm/icons/minus.mjs:
 lucide-react/dist/esm/icons/panel-right-close.mjs:
 lucide-react/dist/esm/icons/play.mjs:
@@ -37346,6 +37665,7 @@ lucide-react/dist/esm/icons/search.mjs:
 lucide-react/dist/esm/icons/shield-check.mjs:
 lucide-react/dist/esm/icons/square.mjs:
 lucide-react/dist/esm/icons/star.mjs:
+lucide-react/dist/esm/icons/triangle-alert.mjs:
 lucide-react/dist/esm/icons/undo-2.mjs:
 lucide-react/dist/esm/icons/user-round.mjs:
 lucide-react/dist/esm/icons/video.mjs:

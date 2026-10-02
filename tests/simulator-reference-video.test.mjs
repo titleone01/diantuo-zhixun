@@ -24,7 +24,7 @@ const bundle = await build({
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'video-test' }));
     build.onLoad({ filter: /^jsx$/, namespace: 'video-test' }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment");export const jsx=(type,props,key)=>({type,props,key});export const jsxs=jsx;' }));
     build.onResolve({ filter: /^lucide-react$/ }, () => ({ path: 'icons', namespace: 'video-test' }));
-    build.onLoad({ filter: /^icons$/, namespace: 'video-test' }, () => ({ contents: 'export const RotateCcw=()=>null,RotateCw=()=>null,Video=()=>null,BookOpen=()=>null,GripHorizontal=()=>null,Maximize2=()=>null,Minus=()=>null,Plus=()=>null,ZoomIn=()=>null,ZoomOut=()=>null,ChevronLeft=()=>null,ChevronRight=()=>null,Search=()=>null,X=()=>null,FileUp=()=>null,ExternalLink=()=>null,RefreshCw=()=>null;' }));
+    build.onLoad({ filter: /^icons$/, namespace: 'video-test' }, () => ({ contents: 'export const RotateCcw=()=>null,RotateCw=()=>null,Video=()=>null,BookOpen=()=>null,GripHorizontal=()=>null,Maximize2=()=>null,Minimize2=()=>null,Minus=()=>null,Plus=()=>null,ZoomIn=()=>null,ZoomOut=()=>null,ChevronLeft=()=>null,ChevronRight=()=>null,Search=()=>null,X=()=>null,FileUp=()=>null,ExternalLink=()=>null,RefreshCw=()=>null;' }));
     build.onResolve({ filter: /\/(CourseLibrary|DrawingViewer|PdfDrawing)$/ }, () => ({ path: 'placeholder', namespace: 'video-test' }));
     build.onLoad({ filter: /^placeholder$/, namespace: 'video-test' }, () => ({ contents: 'export default ()=>null;' }));
     build.onResolve({ filter: /^react-dom$/ }, () => ({ path: 'portal', namespace: 'video-test' }));

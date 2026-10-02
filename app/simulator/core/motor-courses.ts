@@ -18,14 +18,14 @@ export const MOTOR_COURSES: LessonDefinition[] = TITLES.map((title, i) => ({id:`
 export const isMotorCourse = (id?: string) => !!id && MOTOR_COURSES.some(lesson => lesson.id === id);
 type Port = [string, string];
 const INPUTS = ['1','3','5'], OUTPUTS = ['2','4','6'], PHASES = ['L1','L2','L3'];
-const COLORS = ['#e3b934','#43b778','#ed5656'];
+const COLORS = ['#e7b000','#20b963','#f04452'];
 
 export function createMotorCourseDocument(id: string, {wired=false}: {wired?:boolean} = {}): CircuitDocument {
   const index = MOTOR_COURSES.findIndex(lesson => lesson.id === id);
   if (index < 0) throw new Error(`未知电机课程：${id}`);
   const n = index + 1, components: CircuitComponent[] = [], wires: CircuitWire[] = [];
   const add = (id:string,type:ComponentType,label:string,x:number,y:number,extra:Partial<CircuitComponent>={}) => {components.push({id,type,label,position:{x,y},...extra});};
-  const net = (ports:Port[], color='#e05252') => {
+  const net = (ports:Port[], color='#f04452') => {
     for(let i=1;i<ports.length;i++) wires.push({id:`wire-${wires.length+1}`,from:{componentId:ports[0][0],terminalId:ports[0][1]},to:{componentId:ports[i][0],terminalId:ports[i][1]},color,style:'orthogonal'});
   };
   const join = (a:string,at:string,b:string,bt:string,color?:string) => net([[a,at],[b,bt]],color);
@@ -33,10 +33,10 @@ export function createMotorCourseDocument(id: string, {wired=false}: {wired?:boo
   const button = (id:string,stop=false,x=650,y=400) => add(id,stop?'push-nc':'push-no',id.toUpperCase(),x,y);
   const contactor = (id:string,label=id.toUpperCase(),x=80,y=580) => {add(id,'contactor380',label,x,y);coil(id);};
   const overload = (id:string,x=60,y=835) => add(id,'overload',id.toUpperCase(),x,y);
-  const motor = (id:string,type:ComponentType='motor',x=0,y=1110) => {add(id,type,id.toUpperCase(),x,y);join('pe','B',id,'PE','#65a30d');};
+  const motor = (id:string,type:ComponentType='motor',x=0,y=1110) => {add(id,type,id.toUpperCase(),x,y);join('pe','B',id,'PE','#659f2f');};
   const auxiliary = (id:string,linkedTo:string,x:number,y:number) => add(id,'auxiliary-no',`${linkedTo.toUpperCase()} 辅助`,x,y,{linkedTo});
   add('source','supply','三相电源',40,0);add('qf','breaker3','QF',70,115);
-  add('pe','pe-terminal','PE',-100,880);join('source','PE','pe','A','#65a30d');
+  add('pe','pe-terminal','PE',-100,880);join('source','PE','pe','A','#659f2f');
   add('fu1','fuse3','FU1（三联）',50,340);
   INPUTS.forEach((port,i)=>{join('source',PHASES[i],'qf',port,COLORS[i]);join('qf',OUTPUTS[i],'fu1',port,COLORS[i]);});
   add('fu2a','fuse','FU2-1',500,115);add('fu2b','fuse','FU2-2',575,115);

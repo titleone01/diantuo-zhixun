@@ -8,8 +8,12 @@ const bundled = await build({
   bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent", define: { "import.meta.env.BASE_URL": '"/"' }, loader: { ".css": "empty" },
   plugins: [{ name: "node-ui-handles", setup(build) {
     // React Flow's DOM handle is outside this test; DeviceNode's real pointer/keyboard callbacks remain intact.
+    build.onResolve({ filter: /^react$/ }, () => ({ path: "hooks", namespace: "test-react" }));
+    build.onLoad({ filter: /.*/, namespace: "test-react" }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value;' }));
+    build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: "jsx", namespace: "test-jsx" }));
+    build.onLoad({ filter: /.*/, namespace: "test-jsx" }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment"),jsx=(type,props,key)=>({type,props,key}),jsxs=jsx;' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: "handles", namespace: "test-flow" }));
-    build.onLoad({ filter: /.*/, namespace: "test-flow" }, () => ({ contents: 'export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};export function Handle(){return null;}', loader: "js" }));
+    build.onLoad({ filter: /.*/, namespace: "test-flow" }, () => ({ contents: 'export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};export function Handle(){return null;}export function NodeResizer(){return null;}', loader: "js" }));
   } }],
 });
 const { createSimulationSession, DeviceNode, createLessonDocument } = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);

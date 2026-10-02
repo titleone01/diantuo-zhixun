@@ -1,10 +1,15 @@
-import type { CircuitDocument, ComponentDefinition, ComponentType, Terminal, TerminalRef } from "./types";
+import type { CircuitComponent, CircuitDocument, ComponentDefinition, ComponentSize, ComponentType, Terminal, TerminalRef } from "./types";
 import { terminalKey } from "./types";
 
 // Illustration coordinates from the circles in matching /sim-assets/*.svg files.
 // These are local model coordinates, not DOM positions or physical millimetres.
 const pin = (id: string, x: number, y: number, side: Terminal["side"], electrical: Terminal["electrical"] = "contact", label = id): Terminal => ({ id, label, x, y, side, electrical });
 const threeContacts = (control: "switch" | "coil") => ([ ["1", "2"], ["3", "4"], ["5", "6"] ] as [string,string][]).map((terminals, i) => ({ id: `pole-${i + 1}`, terminals, control }));
+// Scale artwork and its local electrical anchors together; IDs and internal bridges stay stable.
+const compactTerminal = (definition: ComponentDefinition): ComponentDefinition => ({ ...definition, width: definition.width * 0.75, height: definition.height * 0.75, terminals: definition.terminals.map(terminal => ({ ...terminal, x: terminal.x * 0.75, y: terminal.y * 0.75 })) });
+export const DUCT_MIN_SIZE = 24;
+export const DUCT_MAX_SIZE = 4000;
+export const isWireDuct = (type: string) => type === "wire-duct" || type === "wire-duct-vertical";
 const contactor = (ratedVoltage: 220 | 380): ComponentDefinition => ({
   type: ratedVoltage === 220 ? "contactor220" : "contactor380", name: `交流接触器（${ratedVoltage}V）`, category: "industrial", width: 151.5, height: 191.5,
   terminals: [pin("1",17.497,31.498,"top","contact","1/L1"),pin("3",56.497,31.498,"top","contact","3/L2"),pin("5",94.497,31.498,"top","contact","5/L3"),pin("2",17.497,159.498,"bottom","contact","2/T1"),pin("4",56.497,159.498,"bottom","contact","4/T2"),pin("6",94.497,159.498,"bottom","contact","6/T3"),pin("A1",37.497,10.498,"top","coil"),pin("A2_top",114.498,10.498,"top","coil","A2"),pin("A2",114.498,180.498,"bottom","coil"),pin("13",134.497,41.499,"right","contact","13NO"),pin("14",134.497,148.498,"right","contact","14NO"),pin("21",136.497,10.498,"top","contact","21NC"),pin("22",136.497,180.498,"bottom","contact","22NC")],
@@ -39,8 +44,8 @@ export const CATALOG: ComponentDefinition[] = [
   { type:"lamp",name:"照明灯（220V）",category:"lighting",width:84.5,height:159.5,terminals:[pin("L",40.498,148.499,"bottom","load"),pin("N",73.499,107.499,"right","neutral")],load:{kind:"lamp",terminals:["L","N"],ratedVoltage:220},description:"220V 示意灯；相线应经过开关，中性线直接返回。" },
   { type:"motor",name:"三相异步电机",category:"industrial",width:280.5,height:191.5,terminals:[pin("U",135.499,10.499,"top","load"),pin("V",193.499,10.499,"top","load"),pin("W",251.499,10.499,"top","load"),pin("PE",269.499,109.499,"right","earth")],load:{kind:"motor",terminals:["U","V","W"],ratedVoltage:380},description:"380V 三相电机与独立 PE 端子；只表现受电、缺相和相序，不模拟转矩或温升。" },
   ...(["motor-star-delta","motor-dahlander"] as const).map(type => ({type,name:type === "motor-star-delta" ? "六端子电机（Y / Δ）" : "双速电机（Δ / YY 教学）",category:"industrial" as const,width:280.5,height:211.5,terminals:[pin("U1",135.498,10.499,"top","load"),pin("V1",193.498,10.499,"top","load"),pin("W1",251.498,10.499,"top","load"),pin("U2",135.498,200.500,"bottom","load"),pin("V2",193.498,200.500,"bottom","load"),pin("W2",251.498,200.500,"bottom","load"),pin("PE",269.498,109.499,"right","earth")],load:{kind:"motor" as const,terminals:["U1","V1","W1","U2","V2","W2"],ratedVoltage:380 as const,motorModel:type === "motor-star-delta" ? "star-delta" as const : "dahlander" as const},description:type === "motor-star-delta" ? "原站六端子电机外观；独立的三组绕组用于星形/三角形教学拓扑判定，PE单独检查。" : "复用原站通用六端子电机外观，电气模型为 Δ / YY 双速教学定义；没有宣称源站存在独立双速型号。"})),
-  { type:"terminal",name:"双极接线端子",category:"terminals",width:121.5,height:101.5,terminals:[pin("A",32.497,27.498,"top","contact","1上"),pin("B",32.497,73.498,"bottom","contact","1下"),pin("A2",88.497,27.498,"top","contact","2上"),pin("B2",88.497,73.498,"bottom","contact","2下")],fixedConnections:[["A","B"],["A2","B2"]],description:"左列 A/B 相通，右列 A2/B2 相通；两极互相绝缘。" },
-  { type:"pe-terminal",name:"保护接地端子",category:"terminals",width:60.75,height:101.5,terminals:[pin("A",32.497,27.498,"top","earth"),pin("B",32.497,73.498,"bottom","earth")],fixedConnections:[["A","B"]],description:"永久保护连接示意，不能代替 N 返回导体。" },
+  compactTerminal({ type:"terminal",name:"双极接线端子",category:"terminals",width:121.5,height:101.5,terminals:[pin("A",32.497,27.498,"top","contact","1上"),pin("B",32.497,73.498,"bottom","contact","1下"),pin("A2",88.497,27.498,"top","contact","2上"),pin("B2",88.497,73.498,"bottom","contact","2下")],fixedConnections:[["A","B"],["A2","B2"]],description:"左列 A/B 相通，右列 A2/B2 相通；两极互相绝缘。" }),
+  compactTerminal({ type:"pe-terminal",name:"保护接地端子",category:"terminals",width:60.75,height:101.5,terminals:[pin("A",32.497,27.498,"top","earth"),pin("B",32.497,73.498,"bottom","earth")],fixedConnections:[["A","B"]],description:"永久保护连接示意，不能代替 N 返回导体。" }),
   { type:"wire-duct",name:"横向线槽",category:"terminals",width:420,height:60,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
   { type:"wire-duct-vertical",name:"纵向线槽",category:"terminals",width:60,height:420,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
 ];
@@ -48,6 +53,11 @@ export function getDefinition(type: ComponentType | string): ComponentDefinition
   const definition = CATALOG.find((entry) => entry.type === type);
   if (!definition) throw new Error(`未知元件类型：${type}`);
   return definition;
+}
+/** World-space footprint shared by the editor, framing and read-only previews. */
+export function componentSize(component: CircuitComponent): ComponentSize {
+  const definition = getDefinition(component.type);
+  return isWireDuct(component.type) && component.size ? component.size : { width: definition.width, height: definition.height };
 }
 export function resolveTerminal(document: CircuitDocument, ref: TerminalRef) {
   const component = document.components.find((item) => item.id === ref.componentId);

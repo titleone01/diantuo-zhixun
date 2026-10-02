@@ -17,7 +17,7 @@ export function createLessonDocument(id: string, options: { wired?: boolean } = 
   const lesson = getLesson(id);
   if (!lesson) throw new Error(`未知课程：${id}`);
   const wires: CircuitWire[] = [];
-  const connect = (a: string, at: string, b: string, bt: string, color = "#ef4444") => wires.push({id:`wire-${wires.length + 1}`,from:ref(a,at),to:ref(b,bt),color,style:"orthogonal"});
+  const connect = (a: string, at: string, b: string, bt: string, color = "#f04452") => wires.push({id:`wire-${wires.length + 1}`,from:ref(a,at),to:ref(b,bt),color,style:"orthogonal"});
   let components: CircuitComponent[];
   let roles: Record<string,string>;
   if (lesson.category === "industrial") {
@@ -26,22 +26,22 @@ export function createLessonDocument(id: string, options: { wired?: boolean } = 
     if (selfHold) components.push(component("stop","push-nc","SB1",465,395));
     roles = {source:"source",breaker:"breaker",contactor:"km",overload:"fr",start:"start",motor:"motor",fuse:"fuse",earth:"pe",...(selfHold?{stop:"stop"}:{})};
     ["L1","L2","L3"].forEach((phase,i) => {
-      const input = String(i*2+1), output = String(i*2+2), color = ["#eab308","#22c55e","#ef4444"][i];
+      const input = String(i*2+1), output = String(i*2+2), color = ["#e7b000","#20b963","#f04452"][i];
       connect("source",phase,"breaker",input,color); connect("breaker",output,"km",input,color); connect("km",output,"fr",input,color); connect("fr",output,"motor",["U","V","W"][i],color);
     });
-    connect("source","PE","pe","A","#65a30d"); connect("pe","B","motor","PE","#65a30d");
+    connect("source","PE","pe","A","#659f2f"); connect("pe","B","motor","PE","#659f2f");
     connect("breaker","2","fuse","1");
     if (selfHold) { connect("fuse","2","stop","11"); connect("stop","12","fr","95"); }
     else connect("fuse","2","fr","95");
     connect("fr","96","start","23"); connect("start","24","km","A1");
-    connect("km","A2",selfHold?"breaker":"source",selfHold?"4":"N","#3b82f6");
+    connect("km","A2",selfHold?"breaker":"source",selfHold?"4":"N","#3478f6");
     if (selfHold) {connect("start","23","km","13");connect("start","24","km","14");}
   } else {
     const twoWay=id==="lighting-two-way";
     components=[component("source","supply","电源",140,35),component("breaker","breaker1","QF1",210,170),component("switchA",twoWay?"switch2":"switch1","S1",160,445),component("lamp","lamp","EL1",525,185)];
     if(twoWay) components.push(component("switchB","switch2","S2",450,445));
     roles={source:"source",breaker:"breaker",switchA:"switchA",lamp:"lamp",...(twoWay?{switchB:"switchB"}:{})};
-    connect("source","L1","breaker","1");connect("breaker","2","switchA",twoWay?"C":"1");connect("lamp","N","source","N","#3b82f6");
+    connect("source","L1","breaker","1");connect("breaker","2","switchA",twoWay?"C":"1");connect("lamp","N","source","N","#3478f6");
     if(twoWay){connect("switchA","1","switchB","1","#f59e0b");connect("switchA","2","switchB","2","#f59e0b");connect("switchB","C","lamp","L");}
     else connect("switchA","2","lamp","L");
   }

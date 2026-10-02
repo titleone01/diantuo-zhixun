@@ -4,23 +4,25 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { createPortal, flushSync } from "react-dom";
 import { Background, BackgroundVariant, ConnectionMode, ConnectionLineType, Controls, ReactFlow, ReactFlowProvider, useReactFlow, type Connection, type EdgeChange, type NodeChange } from "@xyflow/react";
 import { CheckCheck, ChevronLeft, ChevronRight, Copy, Download, FileImage, FolderOpen, PanelRightClose, Play, Redo2, Search, ShieldCheck, Square, Undo2, X } from "lucide-react";
-import { CATALOG, getDefinition } from "../core/catalog";
+import { CATALOG, componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, isWireDuct } from "../core/catalog";
 import { initialRuntime, simulate } from "../core/engine";
 import { validateDocument } from "../core/validation";
-import type { CircuitComponent, CircuitDocument, ComponentType, Diagnostic, LessonAssessment, Point, SimulationAction, SimulationResult } from "../core/types";
+import type { CircuitComponent, CircuitDocument, ComponentSize, ComponentType, Diagnostic, LessonAssessment, Point, SimulationAction, SimulationResult } from "../core/types";
 import DeviceArtwork from "./DeviceArtwork";
 import DeviceNode, { type ElectricalNode } from "./DeviceNode";
 import WireEdge, { type ElectricalEdge } from "./WireEdge";
 import { terminalColor } from "./geometry";
 import { runtimeSummary } from "./labels";
 import { createSimulationSession } from "./simulation-session";
-import PdfDrawing from "../PdfDrawing";
+import DrawingViewer, { type DrawingZoom } from "../DrawingViewer";
 import FloatingSchematic from "./FloatingSchematic";
 import { referenceVideoForDocument } from "../reference-video/catalog";
 import { getReferenceDrawing, referenceDrawingImageUrl } from "../core/reference-drawings";
 import { selectReferenceDrawing } from "../core/reference-workspace";
 import ReferenceDrawingPicker from "../ReferenceDrawingPicker";
 import { poolGroups, poolLabel } from "./library-presentation";
+import ShortCircuitAlert from "./ShortCircuitAlert";
+import { shortCircuitDiagnostic, shortCircuitNoticeKey } from "./short-circuit-notice";
 import "../reference-layout.css";
 import "@xyflow/react/dist/style.css";
 import "./editor.css";
@@ -35,7 +37,7 @@ export type SimulatorEditorProps = {
   onImportDrawing?: (file: File) => Promise<{ id: string; url: string }>;
   drawingUrl?: string;
   drawingType?: "image/png" | "image/jpeg" | "image/webp" | "application/pdf";
-  renderSchematic?: ReactNode | ((drawingPreview: ReactNode, selectionRevision: number) => ReactNode);
+  renderSchematic?: ReactNode | ((drawingPreview: ReactNode, selectionRevision: number, viewerControls: DrawingZoom) => ReactNode);
   referenceVideoAllowed?: boolean;
   readOnly?: boolean;
   onRunningChange?: (running: boolean) => void;
@@ -43,7 +45,7 @@ export type SimulatorEditorProps = {
 
 const nodeTypes = { electrical: DeviceNode };
 const edgeTypes = { electrical: WireEdge };
-const COLORS = ["#e3b934", "#43b778", "#ec5960", "#3478f6", "#56616f", "#75a846"];
+const COLORS = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
 const LABELS: Record<ComponentType, string> = { supply: "电源", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD" };
 const clone = (value: CircuitDocument) => JSON.parse(JSON.stringify(value)) as CircuitDocument;
 
@@ -83,6 +85,7 @@ function Workspace(props: SimulatorEditorProps) {
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelTab, setPanelTab] = useState<"runtime" | "safety" | "lesson">("runtime");
   const [drawing, setDrawing] = useState(props.drawingUrl ?? "");
+  const [drawingZoom, setDrawingZoom] = useState(1);
   const [drawingPickerOpen, setDrawingPickerOpen] = useState(false);
   const [referenceSelectionRevision, setReferenceSelectionRevision] = useState(0);
   const drawingSelectionEpoch = useRef(0);
@@ -94,6 +97,9 @@ function Workspace(props: SimulatorEditorProps) {
   const transferInput = useRef<HTMLTextAreaElement | null>(null);
   const [focusedDiagnostic, setFocusedDiagnostic] = useState<Diagnostic | null>(null);
   const dragBefore = useRef<CircuitDocument | null>(null);
+  const resizing = useRef<{ id: string; before: CircuitDocument; documentKey?: string } | null>(null);
+  const [shortAlert, setShortAlert] = useState<Diagnostic | null>(null);
+  const shownShort = useRef("");
   const assessmentRequest = useRef(0);
   const board = useRef<HTMLDivElement | null>(null);
   const diagramPanel = useRef<HTMLDivElement | null>(null);
@@ -106,7 +112,7 @@ function Workspace(props: SimulatorEditorProps) {
     if (!components.length) { void flow.setViewport({ x: 50, y: 85, zoom: 0.78 }); return; }
     const minX = Math.min(...components.map(component => component.position.x));
     const minY = Math.min(...components.map(component => component.position.y));
-    const maxX = Math.max(...components.map(component => component.position.x + getDefinition(component.type).width));
+    const maxX = Math.max(...components.map(component => component.position.x + componentSize(component).width));
     // These DOM sizes only frame the viewport; electrical endpoints remain in document coordinates.
     const boardWidth = board.current?.clientWidth ?? 1000;
     const diagramWidth = diagramPanel.current?.offsetWidth ?? 332;
@@ -121,11 +127,19 @@ function Workspace(props: SimulatorEditorProps) {
   useEffect(() => {
     assessmentRequest.current++;
     session.clear();
+    resizing.current = null;
+    shownShort.current = ""; setShortAlert(null);
     setPast([]); setFuture([]); setRunning(false); setSimulation(null); setAssessment(null); setSelectedNodes([]); setSelectedWires([]); setFocusedDiagnostic(null); setTransferMode(null);
     const timer = setTimeout(frameInitialView, 80);
     return () => clearTimeout(timer);
   }, [props.documentKey, frameInitialView, session]);
   useEffect(() => () => session.clear(), [session]);
+  useEffect(() => {
+    const diagnostic = running ? shortCircuitDiagnostic(simulation) : null;
+    if (!diagnostic) { shownShort.current = ""; setShortAlert(null); return; }
+    const key = shortCircuitNoticeKey(sessionGeneration, diagnostic);
+    if (shownShort.current !== key) { shownShort.current = key; setShortAlert(diagnostic); }
+  }, [running, simulation, sessionGeneration]);
   useEffect(() => { setDrawing(props.drawingUrl ?? ""); }, [props.drawingUrl, props.documentKey]);
   useEffect(() => { if (!message) return; const timer = setTimeout(() => setMessage(""), 4500); return () => clearTimeout(timer); }, [message]);
 
@@ -140,13 +154,14 @@ function Workspace(props: SimulatorEditorProps) {
 
   const undo = useCallback(() => {
     if (frozen || !past.length) return;
-    const previous = past[past.length - 1];
-    setFuture(items => [clone(docRef.current), ...items]);
+    const previous = past[past.length - 1], current = clone(docRef.current);
+    setFuture(items => [current, ...items]);
     setPast(items => items.slice(0, -1)); setAssessment(null); setSimulation(null); setFocusedDiagnostic(null); onDocumentChange(previous);
   }, [frozen, onDocumentChange, past]);
   const redo = useCallback(() => {
     if (frozen || !future.length) return;
-    setPast(items => [...items, clone(docRef.current)]);
+    const current = clone(docRef.current);
+    setPast(items => [...items, current]);
     const next = future[0]; setFuture(items => items.slice(1)); setAssessment(null); setSimulation(null); setFocusedDiagnostic(null); onDocumentChange(next);
   }, [frozen, future, onDocumentChange]);
   const deleteSelected = useCallback(() => {
@@ -213,17 +228,36 @@ function Workspace(props: SimulatorEditorProps) {
   };
   const onWaypoints = useCallback((id: string, points: Point[]) => changed({ ...docRef.current, wires: docRef.current.wires.map(wire => wire.id === id ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = useCallback((id: string, patch: Pick<CircuitComponent, "linkedTo" | "settings">) => changed({ ...docRef.current, components: docRef.current.components.map(component => component.id === id ? { ...component, ...patch } : component) }), [changed]);
+  const beginResize = useCallback((id: string) => {
+    if (frozen || !isWireDuct(docRef.current.components.find(component => component.id === id)?.type ?? "")) return;
+    resizing.current = { id, before: clone(docRef.current), documentKey: props.documentKey };
+  }, [frozen, props.documentKey]);
+  const resize = useCallback((id: string, bounds: Point & ComponentSize, finish = false) => {
+    const gesture = resizing.current;
+    if (frozen || !gesture || gesture.id !== id || gesture.documentKey !== props.documentKey || ![bounds.x, bounds.y, bounds.width, bounds.height].every(Number.isFinite)) return;
+    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.width)), height: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.height)) };
+    const next = { ...docRef.current, components: docRef.current.components.map(component => component.id === id ? { ...component, position: { x: bounds.x, y: bounds.y }, size } : component) };
+    onDocumentChange(next); setAssessment(null); setSimulation(null); setFocusedDiagnostic(null);
+    if (finish) {
+      if (JSON.stringify(gesture.before) !== JSON.stringify(next)) { setPast(items => [...items.slice(-79), gesture.before]); setFuture([]); }
+      resizing.current = null;
+    }
+  }, [frozen, props.documentKey, onDocumentChange]);
+  const cancelResize = useCallback(() => {
+    const gesture = resizing.current; resizing.current = null;
+    if (gesture && gesture.documentKey === props.documentKey && !frozen) onDocumentChange(gesture.before);
+  }, [frozen, props.documentKey, onDocumentChange]);
   const linkedComponents = useMemo(() => circuit.components.filter(component => component.type === "contactor220" || component.type === "contactor380" || component.type === "relay380").map(({ id, label }) => ({ id, label })), [circuit.components]);
 
   const diagnostics = useMemo(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: component.type.startsWith("wire-duct") ? "sim-duct-flow-node" : undefined, zIndex: component.type.startsWith("wire-duct") ? 0 : 2, position: component.position, selected: selectedNodes.includes(component.id), width: getDefinition(component.type).width, height: getDefinition(component.type).height, data: { component, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure } })), [circuit.components, selectedNodes, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure]);
+  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: isWireDuct(component.type) ? "sim-duct-flow-node" : undefined, zIndex: isWireDuct(component.type) ? 0 : 2, position: component.position, selected: selectedNodes.includes(component.id), ...componentSize(component), style: componentSize(component), data: { component, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = useMemo<ElectricalEdge[]>(() => circuit.wires.map(wire => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, highlighted: diagnostics.some(diagnostic => diagnostic.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, diagnostics, simulation, onWaypoints]);
 
   const nodesChanged = (changes: NodeChange<ElectricalNode>[]) => {
     const selection = changes.filter(change => change.type === "select");
     if (selection.length) setSelectedNodes(current => { const next = new Set(current); for (const change of selection) if (change.type === "select") { if (change.selected) next.add(change.id); else next.delete(change.id); } return [...next]; });
     if (frozen) return;
-    const positions = changes.filter(change => change.type === "position" && change.position);
+    const positions = changes.filter(change => change.type === "position" && change.position && change.id !== resizing.current?.id);
     if (positions.length) {
       const next = { ...docRef.current, components: docRef.current.components.map(component => { const update = positions.find(change => change.type === "position" && change.id === component.id); return update?.type === "position" && update.position ? { ...component, position: update.position } : component; }) };
       onDocumentChange(next); setAssessment(null); setSimulation(null);
@@ -288,10 +322,12 @@ function Workspace(props: SimulatorEditorProps) {
   const safetyDiagnostics = simulation?.diagnostics ?? [];
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === undefined ? undefined : getReferenceDrawing(circuit.referenceDiagramId);
-  const drawingPreview = drawing ? props.drawingType === "application/pdf" ? <PdfDrawing src={drawing} title="用户导入的 PDF 接线图"/> : <img src={drawing} alt="用户导入的接线图"/> : referenceDrawing ? <div className="sim-reference-preview"><h3>{referenceDrawing.title}</h3><img src={referenceDrawingImageUrl(referenceDrawing.id, import.meta.env.BASE_URL || "/")} alt={referenceDrawing.title}/></div> : null;
-  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision) : drawingPreview ?? renderSchematic;
+  const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
+  const drawingPreview = drawing ? <DrawingViewer compact src={drawing} type={props.drawingType} title="用户导入的接线图" {...viewerControls}/> : referenceDrawing ? <DrawingViewer compact src={referenceDrawingImageUrl(referenceDrawing.id, import.meta.env.BASE_URL || "/")} title={referenceDrawing.title} {...viewerControls}/> : null;
+  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision, viewerControls) : drawingPreview ?? renderSchematic;
 
   return <div className={`sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`} data-simulation-events={running ? JSON.stringify(session.trace) : undefined} onKeyDown={event => {
+    if (event.key === "Escape" && resizing.current) { event.preventDefault(); cancelResize(); return; }
     if ((event.target as HTMLElement).matches("input,textarea,select")) return;
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") { event.preventDefault(); if (event.shiftKey) redo(); else undo(); }
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "y") { event.preventDefault(); redo(); }
@@ -324,11 +360,12 @@ function Workspace(props: SimulatorEditorProps) {
           onNodesChange={nodesChanged} onEdgesChange={edgesChanged} onConnect={connect}
           connectionMode={ConnectionMode.Loose} connectionLineType={wireStyle === "straight" ? ConnectionLineType.Straight : wireStyle === "curve" ? ConnectionLineType.Bezier : ConnectionLineType.Step}
           onConnectStart={(_event, params) => { if (colorOverride) return; const component = circuit.components.find(item => item.id === params.nodeId); const terminal = component && getDefinition(component.type).terminals.find(item => item.id === params.handleId); if (terminal) setColor(terminalColor(terminal)); }}
-          connectionLineStyle={{ stroke: color, strokeWidth: 2 }}
+          connectionLineStyle={{ stroke: color, strokeWidth: 3, vectorEffect: "non-scaling-stroke" }}
           nodesDraggable={!frozen} nodesConnectable={!frozen} elementsSelectable={!running}
           deleteKeyCode={null} minZoom={0.22} maxZoom={2} snapToGrid snapGrid={[8, 8]} defaultViewport={{ x: 35, y: 85, zoom: 0.78 }} fitViewOptions={{ padding: 0.22, maxZoom: 0.92 }}
-          onNodeDragStart={() => { dragBefore.current = clone(docRef.current); }}
+          onNodeDragStart={() => { if (!resizing.current) dragBefore.current = clone(docRef.current); }}
           onNodeDragStop={(_event, node) => {
+            if (resizing.current || frozen) return;
             const finalDocument = { ...docRef.current, components: docRef.current.components.map(component => component.id === node.id ? { ...component, position: node.position } : component) };
             if (dragBefore.current && JSON.stringify(dragBefore.current) !== JSON.stringify(finalDocument)) { const previous = dragBefore.current; setPast(items => [...items.slice(-79), previous]); setFuture([]); onDocumentChange(finalDocument); }
             dragBefore.current = null;
@@ -341,7 +378,7 @@ function Workspace(props: SimulatorEditorProps) {
         <div className="sim-canvas-heading"><span>{running ? "正在仿真" : "接线工作台"}</span><b>{circuit.title}</b>{running && <i className={simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live"}>{simulation?.runtime.faultLatched ? "故障中止" : simulation?.supported === false ? "此接法暂不支持" : "运行中"}</i>}</div>
         {running && hasTimers && <div className="sim-clock" aria-label="教学仿真时钟"><span>教学时间 {((simulation?.runtime.timeMs ?? 0) / 1000).toFixed(1)} s{simulation?.supported === false ? " · 已暂停" : ""}</span><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => setTimerPaused(value => !value)}>{timerPaused ? "继续计时" : "暂停计时"}</button><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => action({ type: "advance-time", ms: 1000 })}>推进 1 秒</button></div>}
         <div className="sim-document-actions"><button className="sim-button" disabled={frozen || !!busy} onClick={() => drawingInput.current?.click()}><FileImage size={15} />上传图纸</button><button className="sim-button" disabled={!onSave || !!busy} onClick={() => perform("save", onSave)}>{busy === "save" ? "保存中…" : "保存草稿"}</button><button className="sim-button sim-primary" disabled={!onPublish || !!busy || running} onClick={() => perform("publish", onPublish)}>发布电路</button></div>
-        <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={() => setDrawingPickerOpen(true)} selectionDisabled={frozen}>
+        <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} zoom={drawingZoom} onZoomChange={setDrawingZoom} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={() => setDrawingPickerOpen(true)} selectionDisabled={frozen}>
           <div className="sim-diagram-scaled">{schematicContent ?? <div className="sim-diagram-empty"><FileImage size={38}/><b>参考接线图</b><p>从图纸集选择课程，或上传自己的接线图。</p></div>}</div>
         </FloatingSchematic>
         <button className="sim-check-button" disabled={!!busy} onClick={checkCircuit}><ShieldCheck size={19} />{busy === "assess" ? "正在检查…" : "检查接线"}</button>
@@ -351,6 +388,7 @@ function Workspace(props: SimulatorEditorProps) {
           {panelTab === "lesson" && <>{!circuit.lessonId ? <p className="sim-empty">当前是自由接线。先从图纸集选择课程，系统才能判断目标动作是否完成。</p> : assessment ? <><div className={`sim-assessment-status ${assessment.status}`}><b>{assessment.status === "passed" ? "课程通过" : assessment.status === "incomplete" ? "尚未完成" : assessment.status === "unsupported" ? "暂不支持此接法" : "接线未通过"}</b><span>{assessment.passed} / {assessment.total} 项动作符合要求</span></div><ul className="sim-check-list">{assessment.checks.map(check => <li key={check.id} className={check.passed ? "passed" : "failed"}><span>{check.passed ? "通过" : "未通过"}</span>{check.label}</li>)}</ul>{lessonDiagnostics.map((diagnostic, index) => <button key={`${diagnostic.code}-${index}`} className={`sim-diagnostic-row ${diagnostic.severity}`} onClick={() => focusDiagnostic(diagnostic)}><b>定位</b><span>{diagnostic.message}</span><ChevronRight size={14} /></button>)}</> : <p className="sim-empty">{busy === "assess" ? "正在按课程顺序检查合闸、启停和保护动作…" : "点击「检查接线」，系统会在副本中执行课程动作，保留当前画布。"}</p>}</>}
         </div></section>}
         {message && <div className="sim-toast" role="status">{message}<button aria-label="关闭提示" onClick={() => setMessage("")}><X size={14} /></button></div>}
+        {shortAlert && <ShortCircuitAlert diagnostic={shortAlert} onClose={() => setShortAlert(null)} onLocate={() => { setShortAlert(null); setPanelOpen(true); setPanelTab("safety"); focusDiagnostic(shortAlert); }} />}
       </div>
       <footer className="sim-editor-footer"><span><i className={running ? "live" : ""} />{running ? "运行中 · 接线编辑已锁定" : "拖动端子接线 · 选中导线双击添加折点"}</span><span>{circuit.components.length} 个元件<span className="sim-footer-divider">·</span>{circuit.wires.length} 根导线<button aria-label="查看运行和诊断" onClick={() => { setPanelOpen(!panelOpen); setPanelTab(running ? "runtime" : "safety"); }}><PanelRightClose size={15} /></button></span></footer>
     </section>

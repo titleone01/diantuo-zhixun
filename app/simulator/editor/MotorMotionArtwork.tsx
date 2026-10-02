@@ -34,7 +34,7 @@ export default function MotorMotionArtwork({ type, active, direction, speed, cla
       transformOrigin: `${centerX}px 115.499px`,
       animationDirection: direction === "reverse" ? "reverse" : "normal",
       // These rates distinguish state visually; they are not mechanical RPM values.
-      animationDuration: speed === "high" ? "1.2s" : speed === "low" ? "2.4s" : "1.6s",
+      animationDuration: speed === "high" ? "0.4s" : speed === "low" ? "0.8s" : "0.6s",
     }}>
       <image href={`${base}-blades.svg`} width="280.5" height={height} />
     </g>

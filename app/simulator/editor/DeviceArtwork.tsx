@@ -4,8 +4,10 @@ import { terminalColor } from "./geometry";
 import SwitchMotionArtwork from "./SwitchMotionArtwork";
 import MotorMotionArtwork from "./MotorMotionArtwork";
 import KnifeSwitchArtwork from "./KnifeSwitchArtwork";
+import ContactorStateArtwork from "./ContactorStateArtwork";
 
 export default function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "" }: { type: ComponentType; active?: boolean; pressed?: boolean; closed?: boolean; direction?: "forward" | "reverse"; speed?: "low" | "high"; className?: string }) {
+  if (type === "contactor220" || type === "contactor380") return <ContactorStateArtwork type={type} active={active} className={className} />;
   if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return <SwitchMotionArtwork type={type} pressed={pressed} closed={closed} className={className} />;
   if (type === "push-latching-red" || type === "push-latching-green") return <SwitchMotionArtwork type={type} pressed={closed} className={className} />;
   if (type === "knife-switch3") return <KnifeSwitchArtwork closed={closed} className={className} />;

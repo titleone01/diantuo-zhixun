@@ -7,8 +7,10 @@ const bundled = await build({
   stdin: { contents: `export * from './app/simulator/core/engine';export * from './app/simulator/core/catalog';export * from './app/simulator/core/validation';export * from './app/simulator/editor/library-presentation';export * from './app/simulator/editor/knife-switch-shape';export * from './app/simulator/editor/KnifeSwitchArtwork';export * from './app/simulator/editor/switch-motion-shapes';export {default as DeviceNode} from './app/simulator/editor/DeviceNode';export {default as DeviceArtwork} from './app/simulator/editor/DeviceArtwork';`, resolveDir: process.cwd() },
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/"' },
   plugins: [{ name: 'component-ui', setup(build) {
+    build.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'component-test' }));
+    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value;' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: 'flow', namespace: 'component-test' }));
-    build.onLoad({ filter: /^flow$/, namespace: 'component-test' }, () => ({ contents: 'export const Handle="terminal-handle";export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};' }));
+    build.onLoad({ filter: /^flow$/, namespace: 'component-test' }, () => ({ contents: 'export const Handle="terminal-handle",NodeResizer="node-resizer";export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};' }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'component-test' }));
     build.onLoad({ filter: /^jsx$/, namespace: 'component-test' }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment");export const jsx=(type,props,key)=>({type,props,key});export const jsxs=jsx;' }));
   } }],
@@ -50,6 +52,19 @@ function renderNode(type, closed, action) {
 function renderArtwork(type, closed) {
   let node = DeviceArtwork({ type, closed }); while (typeof node.type === 'function') node = node.type(node.props); return node;
 }
+
+test('contactor state artwork preserves every original label and electrical circle while replacing only the four state-window colors and decorative slots',()=>{
+  for(const type of ['contactor220','contactor380']) {
+    const original=readFileSync(new URL(`../public/sim-assets/${type}.svg`,import.meta.url),'utf8');
+    const artwork=renderArtwork(type,false),body=artwork.props.children[0].props.dangerouslySetInnerHTML.__html;
+    assert.deepEqual(body.match(/<text\b[\s\S]*?<\/text>/g),original.match(/<text\b[\s\S]*?<\/text>/g));
+    const paths=text=>[...text.matchAll(/<path\b[^>]*>/g)].map(([path])=>path.match(/\bd="([^"]+)"/)[1]);
+    const before=paths(original),after=paths(body);assert.equal(after.length,before.length);
+    for(let i=0;i<before.length;i++)if(i!==2)assert.equal(after[i],before[i],`electrical shape ${type}/${i}`);
+    assert.equal(before[2].split(/(?=M)/).length,8);assert.equal(after[2].split(/(?=M)/).length,4);
+    assert.equal((body.match(/class="sim-contactor-state-region"/g)||[]).length,4);
+  }
+});
 
 test('knife switch conducts three isolated poles together and opens a running three-phase motor', () => {
   const doc = motorCircuit(), before = JSON.stringify(doc); assert.equal(validateDocument(doc).valid, true);
