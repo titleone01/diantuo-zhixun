@@ -44,3 +44,22 @@ export function persistRecovery(storage: Pick<Storage, 'getItem' | 'setItem'>, k
 export function recoveryAfterSave(current: CircuitDocument, submitted: CircuitDocument, saved: SavedCircuit): RecoveryState {
   return { document: current, saved, dirty: JSON.stringify(current) !== JSON.stringify(submitted) };
 }
+
+export type ParkedRecovery = { key: string; title: string; savedAt: number; state?: RecoveryState; error?: string };
+export function parkRecovery(storage: Pick<Storage, 'getItem' | 'setItem'>, ownerKey: string, state: RecoveryState): string {
+  const key = `${ownerKey}:parked:${Date.now()}:${crypto.randomUUID()}`;
+  persistRecovery(storage,key,state);
+  // Readback detects a storage implementation that silently dropped the write.
+  if(storage.getItem(key)!==JSON.stringify(state))throw new Error('本机暂存写入未确认，请保存或导出当前接线');
+  return key;
+}
+export function listParkedRecovery(storage: Pick<Storage,'key' | 'length' | 'getItem'>, ownerKey: string): ParkedRecovery[] {
+  const prefix=`${ownerKey}:parked:`, result: ParkedRecovery[]=[];
+  for(let i=0;i<storage.length;i++){
+    const key=storage.key(i);if(!key?.startsWith(prefix)||key.includes(':unreadable:'))continue;
+    const savedAt=Number(key.slice(prefix.length).split(':')[0])||0;
+    try{const state=readRecovery(storage.getItem(key));if(state)result.push({key,title:state.document.title,savedAt,state});}
+    catch(error){result.push({key,title:'损坏的暂存（原始记录已保留）',savedAt,error:error instanceof Error?error.message:'暂存读取失败'});}
+  }
+  return result.sort((a,b)=>b.savedAt-a.savedAt);
+}
