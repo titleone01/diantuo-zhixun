@@ -16,7 +16,7 @@ export function useRef(initial){const i=cursor++;return slots[i]??(slots[i]={cur
 export function useMemo(factory,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index]))slots[i]={deps,value:factory()};return slots[i].value;}
 export const useCallback=(callback,deps)=>useMemo(()=>callback,deps);
 export const useId=()=>useRef('editor-reference-test').current;
-export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
+export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||!deps||!old.deps||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
 export const useLayoutEffect=useEffect;`;
 const bundle = await build({
   stdin: { contents: `export {default as Editor} from './app/simulator/editor/SimulatorEditor';export {default as Picker} from './app/simulator/ReferenceDrawingPicker';export {default as Floating} from './app/simulator/editor/FloatingSchematic';export {default as Video} from './app/simulator/reference-video/ReferenceVideoPlayer';export * from './app/simulator/reference-video/catalog';export * from './app/simulator/core/lessons';export * from './app/simulator/core/validation';export {reset,begin,flush,unmount,deferFunctionalUpdates} from 'react';`, resolveDir: process.cwd() },
@@ -71,7 +71,9 @@ test('reference picker integration preserves graph, clears previous lesson/media
   try {
     const original = { ...example(), drawingMediaId: 'private-old', drawingMediaType: 'image/png', trainingProjectId: 'project-02', projectDrawings: { schematic: { mediaId: 'private-old', type: 'image/png' } }, drawingKind: 'schematic' };
     const before = structuredClone(original);
-    const ui = editor(original, { drawingUrl: '/api/media/private-old', drawingType: 'image/png' });
+    let preview;
+    const ui = editor(original, { drawingUrl: '/api/media/private-old', drawingType: 'image/png', renderSchematic: current => { preview = current; return current; } });
+    assert.equal(preview.props.src, '/api/media/private-old');
     const windowKey = ui.window().props.documentKey;
     ui.picker().props.onSelect(32); ui.render();
     const selected = structuredClone(ui.document());
@@ -81,6 +83,7 @@ test('reference picker integration preserves graph, clears previous lesson/media
     assert.equal(ui.window().props.video.diagramId, 32);
     assert.equal(ui.window().props.documentKey, windowKey, 'reference replacement does not reset the floating tab or collapse state');
     ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), before); assert.equal(ui.window().props.video, undefined);
+    assert.equal(preview?.props.src, '/api/media/private-old', 'undo restores the private drawing preview as well as its document reference');
     ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), selected); assert.equal(ui.window().props.video.diagramId, 32);
     assert.deepEqual(original, before, 'history does not mutate the document being replaced');
   } finally { restore(); }

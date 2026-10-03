@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type MouseEvent } from 'react';
 import { ArrowLeft, ArrowRight, CircuitBoard, Copy, Heart, Link, Search, ShieldCheck, Star, X } from 'lucide-react';
 import DocumentPreview from '../editor/DocumentPreview';
 import { jsonBody, STATIC_DEMO, type Publication } from '../api';
 import { APP_LOCATION_CHANGED, emptyGalleryRoute, galleryHref, galleryListPath, galleryRouteFromSearch, navigateAppLocation, type GalleryRoute } from './route';
 import { GalleryRequestState } from './request-state';
 import './gallery.css';
+import Modal from '../Modal';
 
 type Page = { items: Publication[]; page: number; pageSize: number; total: number; totalPages: number };
 type Props = {
@@ -16,34 +17,45 @@ type Props = {
   busy?: boolean;
 };
 const date = (value: string | number) => new Date(value).toLocaleString('zh-CN', { hour12: false });
+function subscribeLocation(changed: () => void) {
+  addEventListener('popstate', changed); addEventListener(APP_LOCATION_CHANGED, changed);
+  return () => { removeEventListener('popstate', changed); removeEventListener(APP_LOCATION_CHANGED, changed); };
+}
+const noopSubscribe = () => () => {};
 
 export default function Gallery({ request, onFork, onPractice, busy = false }: Props) {
-  const [route, setRoute] = useState<GalleryRoute>(emptyGalleryRoute);
-  const [ready, setReady] = useState(false);
-  const [search, setSearch] = useState('');
+  const ready = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const routeSearch = useSyncExternalStore(subscribeLocation, () => location.search, () => '');
+  const route = galleryRouteFromSearch(routeSearch);
+  const [searchState, setSearchState] = useState({ query: route.query, value: route.query });
+  const search = searchState.query === route.query ? searchState.value : route.query;
   const [page, setPage] = useState<Page | null>(null);
   const [loadedKey, setLoadedKey] = useState('');
-  const [error, setError] = useState('');
+  const [failure, setFailure] = useState({ key: '', message: '' });
   const [detail, setDetail] = useState<Publication | null>(null);
-  const [detailError, setDetailError] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [detailFailure, setDetailFailure] = useState({ key: '', message: '' });
+  const [feedbackState, setFeedbackState] = useState({ key: '', message: '' });
   const [reload, setReload] = useState(0);
   const [pending, setPending] = useState<string[]>([]);
   const pendingRef = useRef(new Set<string>());
   const requests = useRef(new GalleryRequestState());
   const mounted = useRef(true);
-  const requestRef = useRef(request); requestRef.current = request;
+  const requestRef = useRef(request);
+  useLayoutEffect(() => { requestRef.current = request; }, [request]);
   const listKey = galleryListPath(route);
   const shownPage = loadedKey === listKey ? page : null;
   const shownDetail = detail?.id === route.publicationId ? detail : null;
+  const errorKey = `${listKey}:${reload}`, detailKey = `${route.publicationId}:${reload}`;
+  const error = failure.key === errorKey ? failure.message : '';
+  const detailError = detailFailure.key === detailKey ? detailFailure.message : '';
+  const feedback = feedbackState.key === galleryHref(route) ? feedbackState.message : '';
+  const setFeedback = (message: string) => setFeedbackState({ key: galleryHref(route), message });
 
   useEffect(() => {
     mounted.current = true;
-    const read = () => { setRoute(galleryRouteFromSearch(location.search)); setReady(true); setFeedback(''); };
-    read(); addEventListener('popstate', read); addEventListener(APP_LOCATION_CHANGED, read);
-    return () => { mounted.current = false; requests.current.clear(); removeEventListener('popstate', read); removeEventListener(APP_LOCATION_CHANGED, read); };
+    const requestState = requests.current;
+    return () => { mounted.current = false; requestState.clear(); };
   }, []);
-  useEffect(() => { setSearch(route.query); }, [route.query]);
   useEffect(() => {
     requests.current.retain([
       ...(page?.items.map(item => item.id) ?? []),
@@ -54,8 +66,8 @@ export default function Gallery({ request, onFork, onPractice, busy = false }: P
   useEffect(() => {
     if (!ready || STATIC_DEMO) return;
     const abort = new AbortController(); let active = true;
-    const readVersion = requests.current.beginRead();
-    setError('');
+    const requestState = requests.current;
+    const readVersion = requestState.beginRead();
     void requestRef.current<Page>(listKey, { signal: abort.signal }).then(result => {
       if (!active || galleryListPath(galleryRouteFromSearch(location.search)) !== listKey) return;
       if (result.page !== route.page) {
@@ -65,20 +77,21 @@ export default function Gallery({ request, onFork, onPractice, busy = false }: P
         navigateAppLocation(galleryHref(corrected), { replace: true, state: history.state });
         return;
       }
+      setFailure({ key: errorKey, message: '' });
       setPage({ ...result, items: result.items.map(item => requests.current.acceptRead(item, readVersion)) }); setLoadedKey(listKey);
-    }).catch(failure => { if (active) { setPage(null); setLoadedKey(listKey); setError(failure instanceof Error ? failure.message : '作品加载失败，请重试'); } }).finally(() => requests.current.finishRead(readVersion));
-    return () => { active = false; requests.current.finishRead(readVersion); abort.abort(); };
-  }, [ready, listKey, reload]);
+    }).catch(failure => { if (active) { setPage(null); setLoadedKey(listKey); setFailure({ key: errorKey, message: failure instanceof Error ? failure.message : '作品加载失败，请重试' }); } }).finally(() => requestState.finishRead(readVersion));
+    return () => { active = false; requestState.finishRead(readVersion); abort.abort(); };
+  }, [ready, listKey, reload, route.page, errorKey]);
   useEffect(() => {
-    setDetail(null); setDetailError(''); setFeedback('');
     if (!ready || !route.publicationId || STATIC_DEMO) return;
     const abort = new AbortController(); let active = true;
-    const readVersion = requests.current.beginRead(route.publicationId);
+    const requestState = requests.current;
+    const readVersion = requestState.beginRead(route.publicationId);
     void requestRef.current<{ publication: Publication }>(`/publications/${encodeURIComponent(route.publicationId)}`, { signal: abort.signal }).then(result => {
       if (active && galleryRouteFromSearch(location.search).publicationId === route.publicationId) setDetail(requests.current.acceptRead(result.publication, readVersion));
-    }).catch(failure => { if (active) setDetailError(failure instanceof Error ? failure.message : '作品加载失败，请重试'); }).finally(() => requests.current.finishRead(readVersion));
-    return () => { active = false; requests.current.finishRead(readVersion); abort.abort(); };
-  }, [ready, route.publicationId, reload]);
+    }).catch(failure => { if (active) setDetailFailure({ key: detailKey, message: failure instanceof Error ? failure.message : '作品加载失败，请重试' }); }).finally(() => requestState.finishRead(readVersion));
+    return () => { active = false; requestState.finishRead(readVersion); abort.abort(); };
+  }, [ready, route.publicationId, reload, detailKey]);
 
   function go(next: GalleryRoute) {
     const href = galleryHref(next);
@@ -119,7 +132,7 @@ export default function Gallery({ request, onFork, onPractice, busy = false }: P
   }
 
   return <main className="dt-page dt-gallery">
-    <div className="dt-page-heading"><div><h1>仿真广场</h1><p>分享你的接线作品，发现更多电路思路</p></div><form className="dt-gallery-search" onSubmit={event => { event.preventDefault(); go({ query: search.trim(), page: 1 }); }}><label className="dt-search"><Search size={18}/><input aria-label="搜索成员电路" placeholder="搜索标题、说明或作者" maxLength={100} value={search} onChange={event => setSearch(event.target.value)}/></label><button type="submit" className="dt-primary" disabled={STATIC_DEMO}>搜索</button></form></div>
+    <div className="dt-page-heading"><div><h1>仿真广场</h1><p>分享你的接线作品，发现更多电路思路</p></div><form className="dt-gallery-search" onSubmit={event => { event.preventDefault(); go({ query: search.trim(), page: 1 }); }}><label className="dt-search"><Search size={18}/><input aria-label="搜索成员电路" placeholder="搜索标题、说明或作者" maxLength={100} value={search} onChange={event => setSearchState({ query: route.query, value: event.target.value })}/></label><button type="submit" className="dt-primary" disabled={STATIC_DEMO}>搜索</button></form></div>
     <div className="dt-tabs"><button className="active" onClick={() => go(emptyGalleryRoute())}>成员电路</button><span>最新发布{shownPage ? ` · 共 ${shownPage.total} 个作品` : ''}</span></div>
     {STATIC_DEMO ? <div className="dt-empty"><ShieldCheck size={44}/><h3>成员广场需要本地账号服务</h3><p>静态演示不上传、不展示私人草稿。</p></div> : <>
       {route.query && <div className="dt-gallery-query">搜索“{route.query}”<button onClick={() => go(emptyGalleryRoute())}>清除搜索</button></div>}
@@ -130,6 +143,6 @@ export default function Gallery({ request, onFork, onPractice, busy = false }: P
       {shownPage && shownPage.total > 0 && <nav className="dt-gallery-pagination" aria-label="广场分页"><button disabled={shownPage.page <= 1} onClick={() => go({ ...route, page: shownPage.page - 1, publicationId: undefined })}><ArrowLeft size={16}/>上一页</button><span>第 {shownPage.page} / {shownPage.totalPages} 页 · 每页 {shownPage.pageSize} 个</span><button disabled={shownPage.page >= shownPage.totalPages} onClick={() => go({ ...route, page: shownPage.page + 1, publicationId: undefined })}>下一页<ArrowRight size={16}/></button></nav>}
     </>}
     {feedback && !route.publicationId && <p className="dt-gallery-feedback" role="status">{feedback}</p>}
-    {route.publicationId && !STATIC_DEMO && <div className="dt-modal-backdrop" onClick={closeDetail} onKeyDown={event => { if (event.key === 'Escape') closeDetail(); }}><section role="dialog" aria-modal="true" aria-label={shownDetail?.title || '电路作品详情'} className="dt-modal dt-gallery-detail" onClick={event => event.stopPropagation()}><header><h2>{shownDetail?.title || '电路作品详情'}</h2><button aria-label="关闭作品详情" onClick={closeDetail}><X size={20}/></button></header>{detailError ? <div role="alert"><p>{detailError}</p><button onClick={() => setReload(value => value + 1)}>重新加载</button></div> : !shownDetail ? <p role="status">正在加载作品…</p> : <><p>作者：{shownDetail.author.name} · {date(shownDetail.createdAt)}</p><div className="dt-publication-preview"><DocumentPreview document={shownDetail.document}/></div><div className="dt-modal-actions">{reactions(shownDetail)}<button onClick={() => void copyLink()}><Link size={16}/>复制链接</button><button className="dt-primary" disabled={busy} onClick={() => onFork(shownDetail.id)}>复制到我的草稿并打开</button></div><p className="dt-hint">此作品保存的是发布时的独立接线快照。</p></>}{feedback && <p className="dt-gallery-feedback" role="status">{feedback}</p>}</section></div>}
+    {route.publicationId && !STATIC_DEMO && <Modal role="dialog" title={shownDetail?.title || '电路作品详情'} className="dt-modal dt-gallery-detail" onClose={closeDetail}><header><h2>{shownDetail?.title || '电路作品详情'}</h2><button aria-label="关闭作品详情" onClick={closeDetail}><X size={20}/></button></header>{detailError ? <div role="alert"><p>{detailError}</p><button onClick={() => setReload(value => value + 1)}>重新加载</button></div> : !shownDetail ? <p role="status">正在加载作品…</p> : <><p>作者：{shownDetail.author.name} · {date(shownDetail.createdAt)}</p><div className="dt-publication-preview"><DocumentPreview document={shownDetail.document}/></div><div className="dt-modal-actions">{reactions(shownDetail)}<button onClick={() => void copyLink()}><Link size={16}/>复制链接</button><button className="dt-primary" disabled={busy} onClick={() => onFork(shownDetail.id)}>复制到我的草稿并打开</button></div><p className="dt-hint">此作品保存的是发布时的独立接线快照。</p></>}{feedback && <p className="dt-gallery-feedback" role="status">{feedback}</p>}</Modal>}
   </main>;
 }

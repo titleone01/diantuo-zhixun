@@ -44,6 +44,7 @@ function mount(Component, props, media) {
   function render() {
     for (let index = 0; index < 10; index++) {
       begin(); tree = Component(props);
+      if (Component === TrainingProjects) tree = tree.type(tree.props);
       for (const node of all(tree, node => node.type === 'video')) if (media) node.props.ref.current = media;
       if (!flush()) return;
     }

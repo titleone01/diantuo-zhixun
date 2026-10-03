@@ -1,5 +1,5 @@
 import { Handle, NodeResizer, Position, type Node, type NodeProps } from "@xyflow/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import { componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, isWireDuct } from "../core/catalog";
 import { terminalKey } from "../core/types";
 import type { CircuitComponent, CircuitDocument, ComponentRuntime, ComponentSize, Diagnostic, Point, Runtime, SimulationAction, TerminalState } from "../core/types";
@@ -34,7 +34,8 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
   const size = componentSize(component);
   const duct = isWireDuct(component.type);
   const contactor = component.type === "contactor220" || component.type === "contactor380";
-  const resizeActions = useRef(data); resizeActions.current = data;
+  const resizeActions = useRef(data);
+  useLayoutEffect(()=>{resizeActions.current=data;},[data]);
   // XYFlow installs a drag listener per callback identity. Keep these stable
   // throughout a gesture even when document updates render the node again.
   const onResizeStart = useCallback(() => resizeActions.current.beginResize?.(component.id), [component.id]);
@@ -105,8 +106,8 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
       onKeyUp={event => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); dispatch("release"); } }}
       onBlur={() => dispatch("release")}
     >{component.type === "limit-switch" ? pressed ? "已按下" : "按住" : null}</button>}
-    {!running && selected && component.type === "timer380" && <label className="sim-device-setting nodrag nopan" onKeyDown={event => event.stopPropagation()}>延时<input aria-label={`${component.label} 延时秒数`} type="number" min="0.001" max="3600" step="0.001" value={(component.settings?.delayMs ?? 3000) / 1000} disabled={data.readOnly} onChange={event => { const seconds = event.currentTarget.valueAsNumber; if (Number.isFinite(seconds) && seconds >= 0.001 && seconds <= 3600) data.configure(component.id, { settings: { delayMs: Math.round(seconds * 1000) } }); }} />秒</label>}
-    {!running && selected && component.type === "auxiliary-no" && <label className="sim-device-setting sim-link-setting nodrag nopan" onKeyDown={event => event.stopPropagation()}>关联线圈<select aria-label={`${component.label} 关联线圈`} value={component.linkedTo ?? ""} disabled={data.readOnly} onChange={event => data.configure(component.id, { linkedTo: event.target.value || undefined })}><option value="">请选择 KM / KA</option>{data.linkedComponents.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>}
+    {!running && selected && component.type === "timer380" && <label className="sim-device-setting nodrag nopan">延时<input aria-label={`${component.label} 延时秒数`} type="number" min="0.001" max="3600" step="0.001" value={(component.settings?.delayMs ?? 3000) / 1000} disabled={data.readOnly} onChange={event => { const seconds = event.currentTarget.valueAsNumber; if (Number.isFinite(seconds) && seconds >= 0.001 && seconds <= 3600) data.configure(component.id, { settings: { delayMs: Math.round(seconds * 1000) } }); }} />秒</label>}
+    {!running && selected && component.type === "auxiliary-no" && <label className="sim-device-setting sim-link-setting nodrag nopan">关联线圈<select aria-label={`${component.label} 关联线圈`} value={component.linkedTo ?? ""} disabled={data.readOnly} onChange={event => data.configure(component.id, { linkedTo: event.target.value || undefined })}><option value="">请选择 KM / KA</option>{data.linkedComponents.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>}
     {running && toggle && <button className={`sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`} style={knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : undefined} onClick={() => dispatch("toggle")} aria-pressed={closed} title={latching ? closed ? "已按下 · 点击弹起" : "已弹起 · 点击按下" : closed ? "已合闸 · 点击分闸" : "已分闸 · 点击合闸"} aria-label={`${component.label} ${latching ? closed ? "弹起" : "按下" : closed ? "分闸" : "合闸"}`}>
       {breaker || knife || latching ? null : component.type === "switch2" ? "切换" : closed ? "分闸" : "合闸"}
     </button>}

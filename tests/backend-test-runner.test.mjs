@@ -39,7 +39,8 @@ test("cleanup guard permits only a direct runner-created temporary directory", (
 });
 
 test("local test subprocesses bypass proxy dispatchers without changing the parent environment", () => {
-  const original = { PATH: "runtime", HTTPS_PROXY: "private-proxy", http_proxy: "private-proxy", ALL_PROXY: "private-proxy", NO_PROXY: "localhost" };
-  assert.deepEqual(localOnlyEnvironment(original), { PATH: "runtime", NO_PROXY: "localhost" });
+  const original = { PATH: "runtime", HTTPS_PROXY: "private-proxy", http_proxy: "private-proxy", ALL_PROXY: "private-proxy", NO_PROXY: "localhost", WRANGLER_HIDE_BANNER: 'false' };
+  assert.deepEqual(localOnlyEnvironment(original), { PATH: "runtime", NO_PROXY: "localhost", WRANGLER_HIDE_BANNER: 'true' });
   assert.equal(original.HTTPS_PROXY, "private-proxy");
+  assert.equal(original.WRANGLER_HIDE_BANNER, 'false');
 });

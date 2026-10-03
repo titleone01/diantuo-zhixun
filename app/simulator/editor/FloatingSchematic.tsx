@@ -13,6 +13,8 @@ const EDGES = { n: '上边', s: '下边', w: '左边', e: '右边', nw: '左上�
 export default function FloatingSchematic({ panelRef, boardRef, children, documentKey, video, onChooseDrawing, selectionDisabled, zoom: controlledZoom, onZoomChange }: Props) {
   const [open, setOpen] = useState(true);
   const [tab, setTab] = useState<"schematic" | "video" | "guide">("schematic");
+  const [currentDocument, setCurrentDocument] = useState(documentKey);
+  if (currentDocument !== documentKey) { setCurrentDocument(documentKey); setOpen(true); setTab('schematic'); }
   const [ownZoom, setOwnZoom] = useState(1);
   const zoom = controlledZoom ?? ownZoom;
   const setZoom = (value: number) => { if (onZoomChange) onZoomChange(value); else setOwnZoom(value); };
@@ -37,7 +39,6 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     if (panelRef.current) observer.observe(panelRef.current);
     return () => observer.disconnect();
   }, [constrain, boardRef, panelRef, open]);
-  useEffect(() => { setOpen(true); setTab("schematic"); }, [documentKey]);
   useEffect(() => {
     if (!fullscreen) return;
     const previous = document.body.style.overflow; document.body.style.overflow = 'hidden';
@@ -51,6 +52,25 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     resizing.current = null; setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
+  const startResize = useCallback((event: PointerEvent<HTMLButtonElement>) => {
+    const edge = event.currentTarget.dataset.resizeEdge;
+    if (!edge) return;
+    if (event.button !== 0 || !panelRef.current) return;
+    event.preventDefault(); event.stopPropagation(); event.currentTarget.setPointerCapture(event.pointerId);
+    resizing.current = { id:event.pointerId, edge, x:event.clientX, y:event.clientY, width:panelRef.current.offsetWidth, height:panelRef.current.offsetHeight, offset };
+    setDragging(true);
+  }, [panelRef, offset]);
+  function moveResize(event: PointerEvent<HTMLButtonElement>) {
+    const start = resizing.current, board = boardRef.current;
+    if (!start || start.id !== event.pointerId || !board) return;
+    const edge=start.edge, dx=event.clientX-start.x, dy=event.clientY-start.y;
+    const maxWidth=Math.max(180,board.clientWidth-16), maxHeight=Math.max(160,board.clientHeight-132);
+    const width=Math.min(maxWidth,Math.max(Math.min(320,maxWidth),start.width+(edge.includes('w')?-dx:edge.includes('e')?dx:0)));
+    const height=Math.min(maxHeight,Math.max(Math.min(260,maxHeight),start.height+(edge.includes('n')?-dy:edge.includes('s')?dy:0)));
+    setFrame({width,height});
+    setOffset(constrain({x:start.offset.x+(edge.includes('e')?width-start.width:0),y:start.offset.y+(edge.includes('s')?height-start.height:0)},{width,height}));
+  }
+  function lostResizeCapture() { resizing.current=null; setDragging(false); }
   return <div ref={panelRef} className={`sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`} data-window-scale="1.0" data-drawing-zoom={zoom} role={fullscreen ? 'dialog' : undefined} aria-modal={fullscreen || undefined} aria-label={fullscreen ? '图纸大图查看' : undefined} style={fullscreen ? { transform: 'none' } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: frame.width, height: open ? frame.height : undefined, maxWidth: 'calc(100% - 16px)', maxHeight: 'calc(100% - 132px)' }} onKeyDown={event => {
     if (fullscreen && event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setFullscreen(false); }
     if (fullscreen && event.key === 'Tab') {
@@ -76,20 +96,6 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     </div>
     {open && <><div className="sim-diagram-content"><div hidden={tab !== "schematic"} style={{ height: "100%" }}>{children}</div>{tab === "video" ? <ReferenceVideoPlayer video={video}/> : tab === "guide" ? <div className="sim-guide"><h3>从接线到运行</h3><ol><li>把元件拖入画布，拖动圆形端子连接导线。</li><li>同一端子可连接多根线；交叉导线不会自动连通。</li><li>选中导线后双击添加折点，拖动折点调整走线。</li><li>开始仿真后合闸，操作按钮观察元件联动。</li><li>点击「检查接线」，分别查看安全和课程判定。</li></ol><p>运行期间暂停接线编辑。高亮表示导线带电；离散教学模型不计算真实电流大小。</p></div> : null}</div>
     <div className="sim-diagram-tools"><button className="sim-diagram-guide" aria-label="选择图纸" title="选择图纸" disabled={selectionDisabled || !onChooseDrawing} onClick={onChooseDrawing}><BookOpen size={20}/></button><button className="sim-diagram-help" aria-label="操作说明" title="操作说明" onClick={() => setTab("guide")}>?</button><button className="sim-diagram-fit" aria-label="适应图纸" disabled={tab !== 'schematic'} title="适应窗口" onClick={() => { if (tab === 'schematic') setZoom(1); }}><Maximize2 size={16}/></button><output aria-label="图纸缩放比例">{Math.round(zoom * 100)}%</output><button aria-label="缩小图纸" disabled={tab !== 'schematic' || zoom <= 0.5} onClick={() => { if (tab === 'schematic') setZoom(Math.max(0.5, zoom - 0.25)); }}><ZoomOut size={20}/></button><button aria-label="放大图纸" disabled={tab !== 'schematic' || zoom >= 4} onClick={() => { if (tab === 'schematic') setZoom(Math.min(4, zoom + 0.25)); }}><ZoomIn size={20}/></button></div></>}
-    {open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => <button key={edge} className={`sim-diagram-resize sim-diagram-resize-${edge}`} aria-label={`调整图纸窗口${label}`} onPointerDown={event => {
-      if (event.button !== 0 || !panelRef.current) return;
-      event.preventDefault(); event.stopPropagation(); event.currentTarget.setPointerCapture(event.pointerId);
-      resizing.current = { id: event.pointerId, edge, x: event.clientX, y: event.clientY, width: panelRef.current.offsetWidth, height: panelRef.current.offsetHeight, offset };
-      setDragging(true);
-    }} onPointerMove={event => {
-      const start = resizing.current, board = boardRef.current;
-      if (!start || start.id !== event.pointerId || !board) return;
-      const dx = event.clientX - start.x, dy = event.clientY - start.y;
-      const maxWidth = Math.max(180, board.clientWidth - 16), maxHeight = Math.max(160, board.clientHeight - 132);
-      const width = Math.min(maxWidth, Math.max(Math.min(320, maxWidth), start.width + (edge.includes('w') ? -dx : edge.includes('e') ? dx : 0)));
-      const height = Math.min(maxHeight, Math.max(Math.min(260, maxHeight), start.height + (edge.includes('n') ? -dy : edge.includes('s') ? dy : 0)));
-      setFrame({ width, height });
-      setOffset(constrain({ x: start.offset.x + (edge.includes('e') ? width - start.width : 0), y: start.offset.y + (edge.includes('s') ? height - start.height : 0) }, { width, height }));
-    }} onPointerUp={event => endResize(event)} onPointerCancel={event => endResize(event, true)} onLostPointerCapture={() => { resizing.current = null; setDragging(false); }} />)}
+    {open && !fullscreen && Object.entries(EDGES).map(([edge,label])=><button key={edge} data-resize-edge={edge} className={`sim-diagram-resize sim-diagram-resize-${edge}`} aria-label={`调整图纸窗口${label}`} onPointerDown={startResize} onPointerMove={moveResize} onPointerUp={event=>endResize(event)} onPointerCancel={event=>endResize(event,true)} onLostPointerCapture={lostResizeCapture}/>)}
   </div>;
 }

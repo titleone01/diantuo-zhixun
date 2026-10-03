@@ -13,7 +13,8 @@ export function unmount(){for(const slot of slots)slot?.cleanup?.();}
 export function useState(initial){const i=cursor++;if(!slots[i])slots[i]={value:typeof initial==='function'?initial():initial};return [slots[i].value,next=>{const value=typeof next==='function'?next(slots[i].value):next;if(!Object.is(value,slots[i].value)){slots[i].value=value;dirty=true;}}];}
 export function useRef(initial){const i=cursor++;return slots[i]??(slots[i]={current:initial});}
 export function useId(){return useRef('reference-picker-test').current;}
-export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}`;
+export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
+export const useLayoutEffect=useEffect;`;
 const bundle = await build({
   stdin: { contents: 'export {default as Picker} from "./ReferenceDrawingPicker";export {default as Library} from "./ReferenceDrawings";export * from "./core/reference-drawings";export {reset,begin,flush,unmount} from "react";', resolveDir: fileURLToPath(new URL('../app/simulator/', import.meta.url)) },
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/static-demo/"', '__STATIC_DEMO__': 'false' },
@@ -21,7 +22,7 @@ const bundle = await build({
     build.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'reference-ui-test' }));
     build.onLoad({ filter: /^hooks$/, namespace: 'reference-ui-test' }, () => ({ contents: hooks }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'reference-ui-test' }));
-    build.onLoad({ filter: /^jsx$/, namespace: 'reference-ui-test' }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment");export const jsx=(type,props)=>({type,props});export const jsxs=jsx;' }));
+    build.onLoad({ filter: /^jsx$/, namespace: 'reference-ui-test' }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment");export const jsx=(type,props,key)=>({type,props,key});export const jsxs=jsx;' }));
     build.onResolve({ filter: /^react-dom$/ }, () => ({ path: 'portal', namespace: 'reference-ui-test' }));
     build.onLoad({ filter: /^portal$/, namespace: 'reference-ui-test' }, () => ({ contents: 'export const createPortal=children=>children;' }));
     build.onResolve({ filter: /^lucide-react$/ }, () => ({ path: 'icons', namespace: 'reference-ui-test' }));
@@ -48,8 +49,20 @@ function environment() {
   return { listeners, tick: () => { const callbacks = [...timers.values()]; timers.clear(); callbacks.forEach(run => run()); }, restore: () => { unmount(); for (const key of Object.keys(previous)) { if (previous[key]) Object.defineProperty(globalThis, key, previous[key]); else delete globalThis[key]; } } };
 }
 function mount(Component, initialProps, attachRefs = () => {}) {
-  reset(); let props = initialProps, tree;
-  function render() { for (let index = 0; index < 15; index++) { begin(); tree = Component(props); attachRefs(tree); if (!flush()) return; } throw new Error('render did not settle'); }
+  reset(); let props = initialProps, tree, boundaryKey;
+  function render() { for (let index = 0; index < 15; index++) {
+    begin(); tree = Component(props);
+    if (Component === Picker) {
+      const nextKey = tree?.key;
+      if (!tree || boundaryKey !== nextKey) { reset(); begin(); }
+      boundaryKey = nextKey;
+      if (tree) tree = tree.type(tree.props);
+      for (const node of all(tree, node => node.props?.role === 'dialog')) node.props.ref.current = {
+        addEventListener: (type, listener) => document.addEventListener(type, listener), removeEventListener: (type, listener) => document.removeEventListener(type, listener), querySelectorAll: () => [], focus() {}, contains: () => true,
+      };
+    }
+    attachRefs(tree); if (!flush()) return;
+  } throw new Error('render did not settle'); }
   render();
   return { render, update: next => { props = { ...props, ...next }; render(); }, tree: () => tree, find: predicate => all(tree, predicate)[0], findAll: predicate => all(tree, predicate), button: title => all(tree, node => node.type === 'button' && text(node) === title)[0] };
 }
@@ -109,7 +122,7 @@ test('unknown/no selection and disabled state cannot confirm; backdrop does not 
     ui.button('确认').props.onClick(); assert.deepEqual(selected, []);
     const shade = ui.find(node => node.props?.className === 'dt-reference-picker-backdrop'); let prevented = false;
     shade.props.onPointerDown({ target: shade, currentTarget: shade, preventDefault() { prevented = true; } }); assert.equal(prevented, true); assert.equal(closed, 0);
-    ui.find(node => node.props?.role === 'dialog').props.onKeyDown({ key: 'Escape', stopPropagation() {}, preventDefault() {} }); assert.equal(closed, 1);
+    env.listeners.get('keydown')({ key: 'Escape', stopPropagation() {}, preventDefault() {} }); assert.equal(closed, 1);
   } finally { env.restore(); }
 });
 
@@ -119,7 +132,7 @@ test('modal isolates editor shortcuts, traps keyboard/programmatic focus, and re
     const element = () => ({ isConnected: true, focus() { document.activeElement = this; }, getClientRects: () => [{}] });
     const trigger = element(), search = element(), middle = element(), confirm = element();
     const controls = [search, middle, confirm];
-    const dialog = { contains: target => controls.includes(target), querySelectorAll: () => controls };
+    const dialog = { contains: target => controls.includes(target), querySelectorAll: () => controls, addEventListener: (type, listener) => env.listeners.set(type, listener), removeEventListener: type => env.listeners.delete(type) };
     trigger.focus(); let closed = 0;
     const ui = mount(Picker, { open: true, selectedId: 32, onSelect() {}, onClose: () => closed++ }, tree => {
       for (const node of all(tree, node => !!node.props?.ref)) node.props.ref.current = node.props.role === 'dialog' ? dialog : search;
@@ -127,7 +140,7 @@ test('modal isolates editor shortcuts, traps keyboard/programmatic focus, and re
     assert.equal(document.activeElement, search, 'opening focuses the search input');
     const key = (value, shiftKey = false) => {
       let stopped = false, prevented = false;
-      ui.find(node => node.props?.role === 'dialog').props.onKeyDown({ key: value, shiftKey, currentTarget: dialog, stopPropagation() { stopped = true; }, preventDefault() { prevented = true; } });
+      env.listeners.get('keydown')({ key: value, shiftKey, currentTarget: dialog, stopPropagation() { stopped = true; }, preventDefault() { prevented = true; } });
       assert.equal(stopped, true, `${value} must not reach the editor`); return prevented;
     };
     for (const value of ['Delete', 'Backspace', 'z', 'y']) assert.equal(key(value), false);

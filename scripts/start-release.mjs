@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { assertStopped, verifyArchive } from './release-tools.mjs';
+import { assertStopped, checkReleaseCompatibility, containedPath, verifyArchive } from './release-tools.mjs';
 import { launch, localOnlyEnvironment, unusedPort } from './backend-test-runner.mjs';
 
 // Explicit operator action only: no build, migrations, bootstrap, restore or tunnel changes.
@@ -14,10 +14,11 @@ const pointer = JSON.parse(await readFile(path.join(runtime, 'active-release.jso
 if (pointer.state !== path.join(runtime, 'state')) throw new Error('Runtime state pointer differs');
 const release = path.resolve(pointer.release), manifest = await verifyArchive(release, 'release');
 if (manifest.id !== pointer.releaseId) throw new Error('Active release identity differs');
+await checkReleaseCompatibility(release, pointer.state, manifest);
 const base = JSON.parse(await readFile(path.join(runtime, 'base-config.json'), 'utf8'));
 const template = JSON.parse(await readFile(path.join(release, 'runtime.json'), 'utf8'));
 if ([...(base.d1_databases ?? []), ...(base.r2_buckets ?? [])].some(binding => binding.remote === true)) throw new Error('Remote bindings are prohibited for this local runtime');
-const config = { ...base, compatibility_date: template.compatibility_date, compatibility_flags: template.compatibility_flags, main: path.join(release, template.main), no_bundle: false, find_additional_modules: false,
+const config = { ...base, compatibility_date: template.compatibility_date, compatibility_flags: template.compatibility_flags, main: containedPath(release, template.main), no_bundle: false, find_additional_modules: false,
   assets: { ...template.assets, directory: path.join(release, 'assets') },
   d1_databases: base.d1_databases.map(db => ({ ...db, migrations_dir: path.join(release, 'migrations') })),
 };

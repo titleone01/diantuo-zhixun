@@ -4,7 +4,8 @@ import { build } from 'esbuild';
 
 // Render/effect primitives are replaced; ProfileLibrary's real callbacks,
 // request guards, pagination and merge logic run against deferred responses.
-const hooks = `let slots=[],cursor=0,effects=[],dirty=false;
+const hooks = `export const useLayoutEffect=(effect,deps)=>useEffect(effect,deps);
+let slots=[],cursor=0,effects=[],dirty=false;
 export function unmount(){for(const slot of slots){slot?.cleanup?.();if(slot)slot.cleanup=null;}}
 export function reset(){unmount();slots=[];cursor=0;effects=[];dirty=false;}
 export function begin(){cursor=0;dirty=false;}
@@ -40,8 +41,9 @@ function mount(overrides = {}) {
     constructor(callback) { this.callback = callback; observers.push(this); } observe() {} disconnect() { this.disconnected = true; }
     fire() { this.callback([{ isIntersecting: true }]); }
   } });
+  let instanceKey;
   let props = { ownerId: 'a', tab: 'publications', refresh: 0, busy: false, request: (path, init) => new Promise((resolve, reject) => requests.push({ path, init, resolve, reject })), onOpenDraft: item => opened.push(item.id), onDeleteDraft() {}, onOpenPublication: id => opened.push(id), onNew() {}, ...overrides };
-  function render() { for (let i = 0; i < 15; i++) { begin(); tree = Library(props); for (const node of all(tree, node => !!node.props?.ref)) node.props.ref.current = {}; if (!flush()) return; } throw new Error('render did not settle'); }
+  function render() { for (let i = 0; i < 15; i++) { const boundary = Library(props); if (boundary.key !== instanceKey) { reset(); instanceKey = boundary.key; } begin(); tree = boundary.type(boundary.props); for (const node of all(tree, node => !!node.props?.ref)) node.props.ref.current = {}; if (!flush()) return; } throw new Error('render did not settle'); }
   render();
   return { requests, opened, observers, render, tree: () => tree, find: predicate => all(tree, predicate)[0], findAll: predicate => all(tree, predicate), button: label => all(tree, node => node.type === 'button' && (node.props['aria-label'] === label || text(node) === label))[0],
     // Mirror SimulatorApp's key={`${user.id}:${profileTab}`} boundary.

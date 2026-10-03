@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { KeyRound, X } from 'lucide-react';
 import { jsonBody } from '../api';
+import Modal from '../Modal';
 import { emptyPasswordFields, PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, passwordChangeError, validatePasswordChange, type PasswordFields } from './change-password';
 import './profile.css';
 
@@ -59,8 +60,7 @@ export default function ChangePassword({ request, onChanged }: Props) {
 
   return <>
     <button className="dt-password-entry" ref={trigger} onClick={() => { setFields(emptyPasswordFields()); setError(''); setRevokeOtherSessions(true); setOpen(true); }}><KeyRound size={16}/>修改密码</button>
-    {open && <div className="dt-modal-backdrop" onClick={close} onKeyDown={event => { if (event.key === 'Escape') { event.stopPropagation(); close(); } }}>
-      <section role="dialog" aria-modal="true" aria-labelledby={`${id}-title`} aria-describedby={`${id}-hint`} className="dt-modal dt-password-modal" onClick={event => event.stopPropagation()}>
+    {open && <Modal role="dialog" title="修改密码" className="dt-modal dt-password-modal" onClose={close}>
         <header><h2 id={`${id}-title`}>修改密码</h2><button aria-label="关闭修改密码" disabled={busy} onClick={close}><X size={20}/></button></header>
         <p id={`${id}-hint`}>新密码须为 12–128 个字符。修改成功后，当前浏览器保持登录。</p>
         <form noValidate onSubmit={submit} aria-busy={busy}>
@@ -71,7 +71,6 @@ export default function ChangePassword({ request, onChanged }: Props) {
           {error && <div role="alert" className="dt-error">{error}</div>}
           <div className="dt-modal-actions"><button type="button" disabled={busy} onClick={close}>取消</button><button className="dt-primary" type="submit" disabled={busy}>{busy ? '正在修改…' : '确认修改'}</button></div>
         </form>
-      </section>
-    </div>}
+      </Modal>}
   </>;
 }

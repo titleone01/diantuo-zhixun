@@ -3,7 +3,7 @@ import type { AppEnv, Member } from "./auth";
 import { ApiError, bodyJson, json, readBody, textField } from "./http";
 
 type DrawingKind = "schematic" | "layout";
-type Drawing = { projectId: string; kind: DrawingKind; title: string; mediaId: string; updatedAt: number; name: string; type: string; size: number };
+type Drawing = { projectId: string; kind: DrawingKind; title: string; mediaId: string; version: string; updatedAt: number; name: string; type: string; size: number };
 function drawingKind(value: unknown): DrawingKind {
   if (value === undefined) return "schematic";
   if (value !== "schematic" && value !== "layout") throw new ApiError(400, "INVALID_DRAWING_KIND", "图纸类型必须是原理图或布局图");
@@ -13,7 +13,7 @@ const selectDrawings = "SELECT d.*,m.name,m.type,m.size FROM training_drawings d
 function view(project: { id: string; name: string }, drawings: Drawing[]) {
   const schematic = drawings.find(drawing => drawing.kind === "schematic");
   const layout = drawings.find(drawing => drawing.kind === "layout");
-  const media = (drawing?: Drawing) => drawing ? { id: drawing.mediaId, url: `/api/media/${drawing.mediaId}`, name: drawing.name, type: drawing.type, size: drawing.size } : null;
+  const media = (drawing?: Drawing) => drawing ? { id: drawing.mediaId, version: drawing.version, url: `/api/media/${drawing.mediaId}`, name: drawing.name, type: drawing.type, size: drawing.size } : null;
   return {
     id: project.id, name: project.name, title: schematic?.title || layout?.title || project.name,
     lessonId: `motor-course-${project.id.slice(-2)}`,
@@ -35,19 +35,20 @@ export async function setTrainingDrawing(env: AppEnv, member: Member, id: string
     body = {};
   } else body = await bodyJson(request);
   const kind = drawingKind(body.kind);
+  if (!Object.hasOwn(body, "expectedVersion")) throw new ApiError(428, "DRAWING_PRECONDITION_REQUIRED", "图纸操作缺少版本条件，请刷新页面和图纸后重试");
+  const expected = body.expectedVersion === null ? null : textField(body.expectedVersion, "图纸版本", 1, 80);
   async function result() {
     const rows = await env.DB.prepare(`${selectDrawings} WHERE d.projectId=?`).bind(id).all<Drawing>();
     return json({ project: view(project!, rows.results) });
   }
   if (request.method === "DELETE") {
-    if (body.expectedMediaId === null) {
+    if (expected === null) {
       const current = await env.DB.prepare("SELECT mediaId FROM training_drawings WHERE projectId=? AND kind=?").bind(id, kind).first();
       if (current) throw new ApiError(409, "DRAWING_CONFLICT", "图纸已被更新，请重新读取后再操作");
-    } else if (body.expectedMediaId !== undefined) {
-      const expected = textField(body.expectedMediaId, "原图纸标识", 1, 80);
-      const deleted = await env.DB.prepare("DELETE FROM training_drawings WHERE projectId=? AND kind=? AND mediaId=?").bind(id, kind, expected).run();
+    } else {
+      const deleted = await env.DB.prepare("DELETE FROM training_drawings WHERE projectId=? AND kind=? AND version=?").bind(id, kind, expected).run();
       if (!deleted.meta.changes) throw new ApiError(409, "DRAWING_CONFLICT", "图纸已被更新，请重新读取后再操作");
-    } else await env.DB.prepare("DELETE FROM training_drawings WHERE projectId=? AND kind=?").bind(id, kind).run();
+    }
     return result();
   }
   const mediaId = textField(body.mediaId, "图纸文件", 1, 80);
@@ -57,17 +58,14 @@ export async function setTrainingDrawing(env: AppEnv, member: Member, id: string
   const previous = await env.DB.prepare("SELECT title FROM training_drawings WHERE projectId=? AND kind=?").bind(id, kind).first<{ title: string }>();
   const title = body.title === undefined ? previous?.title || project.name : textField(body.title, "图纸标题", 1, 100);
   const updatedAt = Date.now();
+  const version = crypto.randomUUID();
   let statement: D1PreparedStatement;
-  if (body.expectedMediaId === null) {
-    statement = env.DB.prepare("INSERT INTO training_drawings(projectId,kind,title,mediaId,updatedBy,updatedAt) VALUES(?,?,?,?,?,?) ON CONFLICT(projectId,kind) DO NOTHING")
-      .bind(id, kind, title, mediaId, member.id, updatedAt);
-  } else if (body.expectedMediaId !== undefined) {
-    const expected = textField(body.expectedMediaId, "原图纸标识", 1, 80);
-    statement = env.DB.prepare("UPDATE training_drawings SET title=?,mediaId=?,updatedBy=?,updatedAt=? WHERE projectId=? AND kind=? AND mediaId=?")
-      .bind(title, mediaId, member.id, updatedAt, id, kind, expected);
+  if (expected === null) {
+    statement = env.DB.prepare("INSERT INTO training_drawings(projectId,kind,title,mediaId,updatedBy,updatedAt,version) VALUES(?,?,?,?,?,?,?) ON CONFLICT(projectId,kind) DO NOTHING")
+      .bind(id, kind, title, mediaId, member.id, updatedAt, version);
   } else {
-    statement = env.DB.prepare("INSERT INTO training_drawings(projectId,kind,title,mediaId,updatedBy,updatedAt) VALUES(?,?,?,?,?,?) ON CONFLICT(projectId,kind) DO UPDATE SET title=excluded.title,mediaId=excluded.mediaId,updatedBy=excluded.updatedBy,updatedAt=excluded.updatedAt")
-      .bind(id, kind, title, mediaId, member.id, updatedAt);
+    statement = env.DB.prepare("UPDATE training_drawings SET title=?,mediaId=?,updatedBy=?,updatedAt=?,version=? WHERE projectId=? AND kind=? AND version=?")
+      .bind(title, mediaId, member.id, updatedAt, version, id, kind, expected);
   }
   if (!(await statement.run()).meta.changes) throw new ApiError(409, "DRAWING_CONFLICT", "图纸已被更新，请重新读取后再操作");
   return result();

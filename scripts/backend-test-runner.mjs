@@ -62,6 +62,9 @@ export function localOnlyEnvironment(environment) {
   // Wrangler's proxy dispatcher can retain a TCP handle after local D1 commands.
   // This runner only needs loopback; leave the user's process/system proxy intact.
   for (const key of Object.keys(result)) if (/^(http|https|all)_proxy$/i.test(key)) delete result[key];
+  // Wrangler 4's banner checks npm in the background; its race timeout does not
+  // cancel a stalled TLS socket. Local checks/startup must not depend on that request.
+  result.WRANGLER_HIDE_BANNER = 'true';
   return result;
 }
 

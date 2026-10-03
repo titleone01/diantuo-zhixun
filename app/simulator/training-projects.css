@@ -21,7 +21,7 @@
 .dt-training-projects .dt-project-view-actions { flex: 0 0 auto; margin: 6px 0 0; gap: 5px; }
 .dt-training-projects .dt-project-tools button, .dt-training-projects .dt-project-tools a { font-size: 11px; padding: 6px 7px; }
 .dt-training-projects .dt-project-pending small { text-align: center; line-height: 1.7; }
-.dt-training-projects .dt-project-zoom-backdrop { position: fixed; inset: 0; z-index: 300; background: #17203380; display: grid; place-items: center; padding: 24px; }
+.dt-training-projects.dt-project-zoom-backdrop { position: fixed; inset: 0; z-index: 300; background: #17203380; display: grid; place-items: center; padding: 24px; }
 .dt-training-projects .dt-project-zoom-dialog { width: min(1080px, 94vw); height: min(860px, 90dvh); background: #fff; border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 80px #17203340; }
 .dt-training-projects .dt-project-zoom-dialog header { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px 18px; border-bottom: 1px solid #e0e6ef; }
 .dt-training-projects .dt-project-zoom-dialog header strong { font-size: 15px; color: #34445b; }

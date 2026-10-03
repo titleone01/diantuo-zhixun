@@ -8,7 +8,7 @@ const bundled = await build({
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/"' },
   plugins: [{ name: 'component-ui', setup(build) {
     build.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'component-test' }));
-    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value;' }));
+    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value,useLayoutEffect=commit=>commit();' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: 'flow', namespace: 'component-test' }));
     build.onLoad({ filter: /^flow$/, namespace: 'component-test' }, () => ({ contents: 'export const Handle="terminal-handle",NodeResizer="node-resizer";export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};' }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'component-test' }));

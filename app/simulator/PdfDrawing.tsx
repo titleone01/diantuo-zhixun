@@ -7,7 +7,10 @@ import "./pdf-drawing.css";
 type Props = { src: string; title?: string };
 
 /** Render locally with PDF.js; no browser PDF extension or native iframe is required. */
-export default function PdfDrawing({ src, title = "PDF 接线图" }: Props) {
+export default function PdfDrawing(props: Props) {
+  return <PdfDrawingContent key={props.src} {...props}/>;
+}
+function PdfDrawingContent({ src, title = "PDF 接线图" }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const [width, setWidth] = useState(0);
@@ -30,7 +33,6 @@ export default function PdfDrawing({ src, title = "PDF 接线图" }: Props) {
   useEffect(() => {
     let active = true;
     let loadingTask: PDFDocumentLoadingTask | undefined;
-    setPdf(null); setPageNumber(1); setState("loading"); setError("");
     void (async () => {
       try {
         // Kept inside the browser effect so SSR never evaluates PDF.js DOM APIs.
@@ -61,11 +63,11 @@ export default function PdfDrawing({ src, title = "PDF 接线图" }: Props) {
     if (!pdf || !width) return;
     let active = true;
     let task: RenderTask | undefined;
-    setState("rendering"); setError("");
     void (async () => {
       try {
         const page = await pdf.getPage(pageNumber);
         if (!active) return;
+        setState("rendering"); setError("");
         const original = page.getViewport({ scale: 1 });
         const displayScale = width / original.width;
         const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -96,7 +98,7 @@ export default function PdfDrawing({ src, title = "PDF 接线图" }: Props) {
     <div className="dt-pdf-pagination"><button type="button" aria-label="PDF 上一页" disabled={!pdf || pageNumber <= 1} onClick={() => setPageNumber(page => Math.max(1, page - 1))}>上一页</button><span aria-live="polite">{pdf ? `${pageNumber} / ${pdf.numPages} 页` : "PDF 图纸"}</span><button type="button" aria-label="PDF 下一页" disabled={!pdf || pageNumber >= pdf.numPages} onClick={() => setPageNumber(page => Math.min(pdf?.numPages ?? 1, page + 1))}>下一页</button></div>
     <div className="dt-pdf-stage" aria-busy={state === "loading" || state === "rendering"}>
       <canvas ref={canvas} role="img" aria-label={`${title}，第 ${pageNumber} 页`} />
-      {state === "error" ? <div className="dt-pdf-message" role="alert"><p>{error}</p><button type="button" onClick={() => setRetry(value => value + 1)}>重新加载 PDF</button></div> : state !== "ready" && <p className="dt-pdf-message" role="status">{state === "loading" ? "正在加载 PDF…" : "正在绘制图纸…"}</p>}
+      {state === "error" ? <div className="dt-pdf-message" role="alert"><p>{error}</p><button type="button" onClick={() => { setPdf(null); setPageNumber(1); setState('loading'); setError(''); setRetry(value => value + 1); }}>重新加载 PDF</button></div> : state !== "ready" && <p className="dt-pdf-message" role="status">{state === "loading" ? "正在加载 PDF…" : "正在绘制图纸…"}</p>}
     </div>
     <a className="dt-pdf-original" href={src} target="_blank" rel="noreferrer">查看 PDF 原文件</a>
   </div>;

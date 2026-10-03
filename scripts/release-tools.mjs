@@ -3,7 +3,9 @@ import { execFileSync } from "node:child_process";
 import { cp, lstat, mkdir, mkdtemp, readFile, readdir, rename, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { build } from "esbuild";
+import ts from "typescript";
 import { buildLocalApp } from "./build-local-app.mjs";
 import { isolatedConfig, launch, localOnlyEnvironment } from "./backend-test-runner.mjs";
 
@@ -21,7 +23,7 @@ export function containedPath(directory, name) {
 export async function inventory(directory, omit = new Set()) {
   const files = Object.create(null);
   async function walk(base, prefix = "") {
-    for (const item of (await readdir(base, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
+    for (const item of (await readdir(base, { withFileTypes: true })).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
       const name = prefix + item.name;
       if (omit.has(name)) continue;
       const filename = containedPath(directory, name);
@@ -51,15 +53,23 @@ export async function verifyArchive(directory, kind) {
   if (manifest.format !== 1 || manifest.kind !== kind || !manifest.files || typeof manifest.files !== "object") throw new Error("Invalid archive manifest");
   for (const name of Object.keys(manifest.files)) containedPath(directory, name);
   const actual = await inventory(directory, new Set(["manifest.json"]));
-  if (JSON.stringify(actual) !== JSON.stringify(manifest.files)) throw new Error("Archive file hashes or inventory differ");
+  const names = Object.keys(actual).sort(), expectedNames = Object.keys(manifest.files).sort();
+  if (JSON.stringify(names) !== JSON.stringify(expectedNames) || names.some(name => actual[name].bytes !== manifest.files[name]?.bytes || actual[name].sha256 !== manifest.files[name]?.sha256)) throw new Error("Archive file hashes or inventory differ");
   return manifest;
 }
 
 async function sourceIdentity() {
   const files = {};
-  for (const directory of ["app", "worker", "db", "scripts", "shared", "github-pages", "architecture"]) {
-    const entries = await inventory(path.join(root, directory));
+  for (const directory of ["app", "worker", "db", "scripts", "shared", "github-pages", "architecture", "public", "tests", "e2e", ".github"]) {
+    let entries;
+    try { entries = await inventory(path.join(root, directory)); }
+    catch (error) { if (['e2e', '.github'].includes(directory) && error.code === 'ENOENT') continue; throw error; }
     for (const [name, value] of Object.entries(entries)) files[`${directory}/${name}`] = value.sha256;
+  }
+  for (const name of (await readdir(root)).sort()) {
+    if (name === '.gitignore' || name === '.dev.vars.example' || (!name.startsWith('.') && /\.(md|json|jsonc|ts|mjs)$/.test(name))) {
+      files[name] = sha256(await readFile(path.join(root, name)));
+    }
   }
   const sourceHash = sha256(JSON.stringify(files));
   try {
@@ -76,6 +86,7 @@ export async function buildRelease(directory) {
   const base = JSON.parse(await readFile(path.join(root, "wrangler.local.jsonc"), "utf8"));
   await buildLocalApp(path.join(directory, "assets"));
   await cp(path.join(root, "db", "migrations"), path.join(directory, "migrations"), { recursive: true });
+  await buildDocumentContract(directory);
   for (const name of ["package.json", "package-lock.json"]) await cp(path.join(root, name), path.join(directory, name));
   // The dry-run config is outside the project, so Wrangler cannot load production .dev.vars.
   const scratch = await mkdtemp(path.join(tmpdir(), "diantuo-release-build-"));
@@ -104,6 +115,58 @@ export async function buildRelease(directory) {
   return manifest;
 }
 
+/** Keep the target release's validator and recognized fields with its hashed payload. */
+export async function buildDocumentContract(directory) {
+  const result = await build({ stdin: { contents: 'export { CATALOG } from "./app/simulator/core/catalog"; export { validateDocument } from "./app/simulator/core/validation";', resolveDir: root }, bundle: true, platform: 'node', format: 'esm', write: false, logLevel: 'silent' });
+  const validator = result.outputFiles[0].text;
+  const { CATALOG } = await import(`data:text/javascript;base64,${Buffer.from(validator).toString('base64')}`);
+  const source = ts.createSourceFile('types.ts', await readFile(path.join(root, 'app/simulator/core/types.ts'), 'utf8'), ts.ScriptTarget.Latest, true);
+  const fields = {};
+  for (const [name, alias] of Object.entries({ document: 'CircuitDocument', component: 'CircuitComponent', wire: 'CircuitWire' })) {
+    const declaration = source.statements.find(statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === alias);
+    if (!declaration || !ts.isTypeLiteralNode(declaration.type) || declaration.type.members.some(member => !ts.isPropertySignature(member) || !member.name || !ts.isIdentifier(member.name))) throw new Error('Cannot derive document contract; review changed document types before release');
+    fields[name] = declaration.type.members.map(member => member.name.text).sort();
+  }
+  await writeFile(path.join(directory, 'document-validator.mjs'), validator);
+  await writeFile(path.join(directory, 'document-contract.json'), JSON.stringify({ format: 1, fields, components: CATALOG.map(component => ({ type: component.type, terminals: component.terminals.map(terminal => terminal.id) })) }, null, 2));
+}
+
+/** Check saved drafts and immutable publications without exposing document contents. */
+export async function checkReleaseCompatibility(release, state, manifest) {
+  if (!manifest.files['document-contract.json'] || !manifest.files['document-validator.mjs']) throw new Error('Release lacks a verifiable document contract; rebuild it before activation');
+  const contract = JSON.parse(await readFile(path.join(release, 'document-contract.json'), 'utf8'));
+  if (contract.format !== 1 || !contract.fields || !['document', 'component', 'wire'].every(kind => Array.isArray(contract.fields[kind])) || !Array.isArray(contract.components)) throw new Error('Invalid release document contract');
+  const { validateDocument } = await import(pathToFileURL(path.join(release, 'document-validator.mjs')).href);
+  if (typeof validateDocument !== 'function') throw new Error('Invalid release document validator');
+  const supported = new Map(contract.components.map(component => [component.type, new Set(component.terminals)]));
+  const knownFields = (value, kind) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).every(key => contract.fields[kind].includes(key));
+  const migrationNames = Object.keys(manifest.files).filter(name => name.startsWith('migrations/') && name.endsWith('.sql')).map(name => name.slice('migrations/'.length)).sort();
+  const { DatabaseSync } = await import('node:sqlite');
+  let schemaChecked = migrationNames.length === 0;
+  for (const name of Object.keys(await inventory(state)).filter(name => /\.(sqlite|sqlite3|db)$/.test(name))) {
+    const db = new DatabaseSync(containedPath(state, name), { readOnly: true });
+    try {
+      const tables = new Set(db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map(row => row.name));
+      if (migrationNames.length && tables.has('d1_migrations')) {
+        const applied = db.prepare('SELECT name FROM d1_migrations ORDER BY name').all().map(row => row.name);
+        if (JSON.stringify(applied) !== JSON.stringify(migrationNames)) throw new Error('Release and applied schema differ; require a reviewed compatibility decision before rollback');
+        schemaChecked = true;
+      }
+      for (const table of ['circuits', 'publications']) {
+        if (!tables.has(table)) continue;
+        for (const row of db.prepare(`SELECT document FROM ${table}`).iterate()) {
+          let document;
+          try { document = JSON.parse(row.document); } catch { throw new Error('Stored document is corrupt; activation refused and business state retained'); }
+          if (!knownFields(document, 'document') || !validateDocument(document).valid || document.components.some(component => !knownFields(component, 'component') || !supported.has(component.type)) || document.wires.some(wire => !knownFields(wire, 'wire'))) throw new Error('Target release cannot interpret stored documents; activation refused and business state retained');
+          const components = new Map(document.components.map(component => [component.id, component.type]));
+          if (document.wires.some(wire => ['from', 'to'].some(end => !supported.get(components.get(wire[end].componentId))?.has(wire[end].terminalId)))) throw new Error('Target release lacks stored terminals; activation refused and business state retained');
+        }
+      }
+    } finally { db.close(); }
+  }
+  if (!schemaChecked) throw new Error('Cannot verify applied schema before activation');
+}
+
 export async function assertStopped({ stopped, origin, leaseFile }) {
   if (stopped !== true || !origin || !leaseFile) throw new Error("Backup/activation requires explicit stop-writes acknowledgement, loopback origin and runtime lease");
   const url = new URL(origin);
@@ -127,6 +190,10 @@ export async function backupState(source, directory, options) {
   const src = path.resolve(source), dest = path.resolve(directory);
   const relative = path.relative(src, dest);
   if (!relative || (!path.isAbsolute(relative) && relative !== ".." && !relative.startsWith(`..${path.sep}`))) throw new Error("Backup must be outside the state directory");
+  if (options.privateDirectory) {
+    const fromPrivate = path.relative(path.resolve(options.privateDirectory), dest);
+    if (!fromPrivate || (!path.isAbsolute(fromPrivate) && fromPrivate !== '..' && !fromPrivate.startsWith(`..${path.sep}`))) throw new Error('Backup must be outside the private runtime directory');
+  }
   await emptyDestination(dest);
   const before = await inventory(src);
   await cp(src, path.join(dest, "state"), { recursive: true, dereference: false });
@@ -134,12 +201,19 @@ export async function backupState(source, directory, options) {
   if (JSON.stringify(before) !== JSON.stringify(after) || JSON.stringify(before) !== JSON.stringify(await inventory(path.join(dest, "state")))) throw new Error("State changed during backup; incomplete archive retained for inspection");
   if (options.privateConfig) await cp(options.privateConfig, path.join(dest, "private-config"));
   if (options.runtimeConfig) await cp(options.runtimeConfig, path.join(dest, "runtime-config.json"));
+  if (options.privateDirectory) {
+    const privateBefore = await inventory(options.privateDirectory);
+    await cp(options.privateDirectory, path.join(dest, 'private-runtime'), { recursive: true, dereference: false });
+    if (JSON.stringify(privateBefore) !== JSON.stringify(await inventory(options.privateDirectory)) || JSON.stringify(privateBefore) !== JSON.stringify(await inventory(path.join(dest, 'private-runtime')))) throw new Error('Private runtime changed during backup');
+  }
   const manifest = { format: 1, kind: "backup", createdAt: new Date().toISOString(), includesWal: true, files: await inventory(dest) };
   await writeFile(path.join(dest, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n", { mode: 0o600 });
   return manifest;
 }
 
 export async function restoreState(backup, destination) {
+  const relative = path.relative(path.resolve(backup), path.resolve(destination));
+  if (!relative || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith(`..${path.sep}`))) throw new Error('Restore destination must be outside the immutable backup');
   await verifyArchive(backup, "backup");
   await emptyDestination(destination);
   await cp(path.join(backup, "state"), path.join(destination, "state"), { recursive: true });
@@ -158,6 +232,8 @@ export async function restoreState(backup, destination) {
   catch (error) { if (error.code !== "ENOENT") throw error; }
   try { await cp(path.join(backup, "runtime-config.json"), path.join(destination, "base-config.json")); }
   catch (error) { if (error.code !== "ENOENT") throw error; }
+  try { await cp(path.join(backup, 'private-runtime'), path.join(destination, '.local'), { recursive: true }); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
   return { files: Object.keys(files).length, sqliteChecked: true };
 }
 
@@ -167,22 +243,7 @@ export async function activateRelease(release, runtime, options) {
   // Activation changes code only; never copies or rolls back business state.
   const state = path.join(path.resolve(runtime), "state");
   if (!(await lstat(state)).isDirectory()) throw new Error("Missing runtime state");
-  const migrationNames = Object.keys(manifest.files).filter(name => name.startsWith("migrations/") && name.endsWith(".sql")).map(name => name.slice("migrations/".length)).sort();
-  if (migrationNames.length) {
-    const { DatabaseSync } = await import("node:sqlite");
-    const databases = Object.keys(await inventory(state)).filter(name => /\.(sqlite|sqlite3|db)$/.test(name));
-    let checked = false;
-    for (const name of databases) {
-      const db = new DatabaseSync(containedPath(state, name), { readOnly: true });
-      try {
-        if (!db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='d1_migrations'").get()) continue;
-        const applied = db.prepare("SELECT name FROM d1_migrations ORDER BY name").all().map(row => row.name);
-        if (JSON.stringify(applied) !== JSON.stringify(migrationNames)) throw new Error("Release and applied schema differ; require a reviewed compatibility decision before rollback");
-        checked = true;
-      } finally { db.close(); }
-    }
-    if (!checked) throw new Error("Cannot verify applied schema before activation");
-  }
+  await checkReleaseCompatibility(release, state, manifest);
   const pointer = { format: 1, release: path.resolve(release), releaseId: manifest.id, state, activatedAt: new Date().toISOString() };
   const temporary = path.join(runtime, "active-release.tmp");
   await writeFile(temporary, JSON.stringify(pointer, null, 2) + "\n", { flag: "wx" });
@@ -214,14 +275,14 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     for (let index = 0; index < args.length; index++) {
       const name = args[index];
       if (name === "--stopped") flags.stopped = true;
-      else if (["--out", "--state", "--backup", "--release", "--runtime", "--origin", "--lease", "--private-config", "--runtime-config"].includes(name) && args[index + 1] && !args[index + 1].startsWith("--")) flags[name.slice(2)] = args[++index];
+      else if (["--out", "--state", "--backup", "--release", "--runtime", "--origin", "--lease", "--private-config", "--runtime-config", "--private-directory"].includes(name) && args[index + 1] && !args[index + 1].startsWith("--")) flags[name.slice(2)] = args[++index];
       else throw new Error("Invalid release-tool arguments");
     }
     const required = (...names) => { for (const name of names) if (!flags[name]) throw new Error(`Missing --${name}`); };
-    const stop = { stopped: flags.stopped, origin: flags.origin, leaseFile: flags.lease, privateConfig: flags["private-config"], runtimeConfig: flags["runtime-config"] };
+    const stop = { stopped: flags.stopped, origin: flags.origin, leaseFile: flags.lease, privateConfig: flags["private-config"], runtimeConfig: flags["runtime-config"], privateDirectory: flags['private-directory'] };
     if (command === "build") { required("out"); console.log(`Release verified: ${(await buildRelease(path.resolve(flags.out))).id}`); }
     else if (command === "verify") { required("release"); console.log(`Release verified: ${(await verifyArchive(flags.release, "release")).id}`); }
-    else if (command === "backup") { required("state", "out"); await backupState(flags.state, flags.out, stop); console.log("Offline backup verified"); }
+    else if (command === "backup") { required("state", "out", "private-config", "runtime-config"); await backupState(flags.state, flags.out, stop); console.log("Offline backup verified"); }
     else if (command === "restore") { required("backup", "out"); console.log(await restoreState(flags.backup, flags.out)); }
     else if (command === "activate") { required("release", "runtime"); await activateRelease(flags.release, flags.runtime, stop); console.log("Code pointer changed; business state retained"); }
     else throw new Error("Expected build, verify, backup, restore or activate");

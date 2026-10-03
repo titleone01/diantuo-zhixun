@@ -35,6 +35,21 @@ const eslintConfig = defineConfig([
   jsxA11y.flatConfigs.recommended,
   next.configs["core-web-vitals"],
   {
+    files: ["app/simulator/DrawingViewer.tsx"],
+    rules: {
+      // This labeled region scrolls with native arrow keys and must be reachable by Tab.
+      "jsx-a11y/no-noninteractive-tabindex": ["error", { roles: ["region"] }],
+    },
+  },
+  {
+    files: ["app/simulator/reference-video/ReferenceVideoPlayer.tsx"],
+    rules: {
+      // Upstream teaching videos have no verified caption assets. Keep the debt visible;
+      // do not fabricate an empty track to pretend captions exist.
+      "jsx-a11y/media-has-caption": "warn",
+    },
+  },
+  {
     languageOptions: {
       globals: {
         ...globals.browser,

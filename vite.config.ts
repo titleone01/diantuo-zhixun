@@ -11,7 +11,7 @@ export default defineConfig(async () => {
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= "false";
   process.env.WRANGLER_LOG_PATH ??= ".wrangler/logs";
-  process.env.MINIFLARE_REGISTRY_PATH ??= ".wrangler/registry";
+  process.env.WRANGLER_REGISTRY_PATH ??= ".wrangler/registry";
 
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
