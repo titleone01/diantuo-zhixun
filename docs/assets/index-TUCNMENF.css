@@ -242,6 +242,26 @@
   }
 }
 
+/* app/simulator/modal.css */
+.dt-modal-dismiss-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: default;
+  z-index: 0;
+}
+.dt-modal-focus-root {
+  position: relative;
+  z-index: 1;
+}
+.dt-modal-focus-root:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
 /* app/simulator/reference-video/reference-video.css */
 .dt-reference-video {
   width: 100%;
@@ -2047,17 +2067,17 @@ svg.react-flow__connectionline {
   background:
     repeating-linear-gradient(
       90deg,
-      #cbd2da 0 3px,
+      #66717d 0 3px,
       transparent 3px 15px) top / 100% 11px no-repeat,
     repeating-linear-gradient(
       90deg,
-      #cbd2da 0 3px,
+      #66717d 0 3px,
       transparent 3px 15px) bottom / 100% 11px no-repeat,
-    #e2e6ec;
-  box-shadow: inset 0 13px #f8fafb9c, inset 0 -13px #f8fafb9c;
+    #3f4853;
+  box-shadow: inset 0 13px #ffffff12, inset 0 -13px #ffffff12;
 }
 .sim-duct-artwork > span {
-  color: #83909f;
+  color: #e1e7ef;
   font-size: 10px;
   letter-spacing: 5px;
   line-height: 1;
@@ -2066,14 +2086,14 @@ svg.react-flow__connectionline {
   background:
     repeating-linear-gradient(
       0deg,
-      #cbd2da 0 3px,
+      #66717d 0 3px,
       transparent 3px 15px) left / 11px 100% no-repeat,
     repeating-linear-gradient(
       0deg,
-      #cbd2da 0 3px,
+      #66717d 0 3px,
       transparent 3px 15px) right / 11px 100% no-repeat,
-    #e2e6ec;
-  box-shadow: inset 13px 0 #f8fafb9c, inset -13px 0 #f8fafb9c;
+    #3f4853;
+  box-shadow: inset 13px 0 #ffffff12, inset -13px 0 #ffffff12;
 }
 .sim-duct-artwork.is-vertical > span {
   writing-mode: vertical-rl;
@@ -2191,8 +2211,8 @@ svg.react-flow__connectionline {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 4px;
-  height: 4px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #20262e;
   pointer-events: none;
@@ -3288,6 +3308,39 @@ svg.react-flow__connectionline {
     padding: 16px 24px;
   }
 }
+.sim-breaker-status {
+  fill: #22b865;
+}
+.sim-switch-motion.is-closed .sim-breaker-status {
+  fill: #f04452;
+}
+.sim-editor .sim-device-node.sim-motor-running.has-diagnostic {
+  outline-color: transparent;
+  box-shadow: none;
+}
+.sim-motor-diagnostic {
+  position: absolute;
+  right: 0;
+  bottom: -18px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #fff1cf;
+  color: #835600;
+  font-size: 10px;
+}
+.sim-routing-notice {
+  position: absolute;
+  left: 24px;
+  bottom: 76px;
+  max-width: 480px;
+  padding: 8px 12px;
+  border: 1px solid #e8c37a;
+  border-radius: 5px;
+  background: #fff8e7;
+  color: #805b20;
+  font-size: 12px;
+  z-index: 5;
+}
 
 /* app/simulator/training-projects.css */
 .dt-training-projects {
@@ -3440,7 +3493,7 @@ svg.react-flow__connectionline {
   text-align: center;
   line-height: 1.7;
 }
-.dt-training-projects .dt-project-zoom-backdrop {
+.dt-training-projects.dt-project-zoom-backdrop {
   position: fixed;
   inset: 0;
   z-index: 300;
