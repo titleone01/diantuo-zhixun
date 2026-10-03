@@ -1,6 +1,6 @@
 # 本轮加固逐文件清单
 
-共73个源码/配置/测试/文档文件。清单包括加固范围及共享文件回归补修；功能对话其他器件、布局、复制、走槽源文件由其独立交付，未以本清单覆盖。
+共74个源码/配置/测试/文档文件（含最终目标完成审查）。清单包括加固范围及共享文件回归补修；功能对话其他器件、布局、复制、走槽源文件由其独立交付，未以本清单覆盖。
 
 不含生成Pages、构建目录、node_modules、真实秘密、生产或测试数据库；旧目录及历史数据没有因清理而删除。逐文件SHA-256、集成前文件哈希、差异文件与验收时间保存在隔离交付manifest，可据此审查合并。
 
@@ -28,6 +28,7 @@
 - [app/simulator/training-projects.css](../app/simulator/training-projects.css)
 - [app/training/ProjectPanel.tsx](../app/training/ProjectPanel.tsx)
 - [architecture/dependency-audit-2026-10-03.md](../architecture/dependency-audit-2026-10-03.md)
+- [architecture/hardening-completion-audit-2026-10-04.md](../architecture/hardening-completion-audit-2026-10-04.md)
 - [architecture/hardening-change-list-2026-10-04.md](../architecture/hardening-change-list-2026-10-04.md)
 - [architecture/lint-warning-snapshot-2026-10-03.md](../architecture/lint-warning-snapshot-2026-10-03.md)
 - [architecture/local-runbook.md](../architecture/local-runbook.md)
