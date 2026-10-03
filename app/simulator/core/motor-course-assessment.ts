@@ -22,7 +22,9 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   const standard = createMotorCourseDocument(lessonId);
   const roles: Record<string, string> = {};
   const diagnostics: Diagnostic[] = [], checks: LessonCheck[] = [], trace: LessonTrace[] = [];
+  const combinedFuse = document.components.find(component => component.id === (document.roles?.fu2 ?? "fu2") && component.type === "fuse2");
   for (const [role, standardId] of Object.entries(standard.roles || {})) {
+    if (combinedFuse && /^fu2[ab]$/.test(role)) { roles.fu2 = combinedFuse.id; continue; }
     const expected = standard.components.find(component => component.id === standardId)!;
     const id = document.roles?.[role] || (document.components.some(component => component.id === standardId) ? standardId : undefined);
     const actual = document.components.find(component => component.id === id);
@@ -44,7 +46,7 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   if (new Set(Object.values(roles)).size !== Object.values(roles).length) diagnostics.push(issue("LESSON_ROLE_DUPLICATED", "不同图内位号不能绑定到同一个器件实例", [], "warning"));
   if (diagnostics.length) return { status: "incomplete", passed: 0, total: 1, checks: [{ id: "roles", label: "课程器件角色完整且类型正确", passed: false }], diagnostics };
   const assigned = new Set(Object.values(roles));
-  const uncovered = document.components.filter(component => !assigned.has(component.id) && (getDefinition(component.type).load || getDefinition(component.type).contacts?.some(contact => ["switch", "push", "overload"].includes(contact.control)) || component.type === "fuse" || component.type === "fuse3"));
+  const uncovered = document.components.filter(component => !assigned.has(component.id) && (getDefinition(component.type).load || getDefinition(component.type).contacts?.some(contact => ["switch", "push", "overload"].includes(contact.control)) || component.type === "fuse" || component.type === "fuse3" || component.type === "fuse2"));
   if (uncovered.length) return { status: "unsupported", passed: 0, total: 1, checks: [{ id: "coverage", label: "所声明的负载、开关和保护器件均在课程评估范围内", passed: false }], diagnostics: [issue("UNASSESSED_COMPONENTS", "存在未被本课程动作与保护检查覆盖的额外负载、控制或保护器件", uncovered.map(component => component.id))] };
   const motorRoles = Object.keys(roles).filter(role => getDefinition(document.components.find(component => component.id === roles[role])!.type).load?.kind === "motor");
   const frRoles = Object.keys(roles).filter(role => /^fr\d*$/.test(role));
@@ -217,7 +219,8 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   add("permanent-pe", "每台电机具有永久 PE 通路", motorRoles.every(role => protective.connected(key(roles[role], "PE"), key(roles.source, "PE"))), "PE_MISSING", motorRoles, "error");
   const fuseRoles = Object.keys(roles).filter(role => /^fu1[abc]?$/.test(role));
   const fusePoles = fuseRoles.flatMap(role => getDefinition(document.components.find(component => component.id === roles[role])!.type).fixedConnections!.map(terminals => ({role, terminals, id:`${roles[role]}:${terminals.join("-")}`})));
-  const controlFuses = Object.keys(roles).filter(role => /^fu2[ab]$/.test(role));
+  const controlFuses = Object.keys(roles).filter(role => /^fu2[ab]?$/.test(role));
+  const controlFusePoles = controlFuses.flatMap(role => getDefinition(document.components.find(component => component.id === roles[role])!.type).fixedConnections!.map(terminals => ({role,terminals,id:`${roles[role]}:${terminals.join("-")}`})));
   const usedFuses = new Set<string>(), usedFr = new Set<string>();
   const pathReported = new Set<string>();
   function pathFailure(code: string, label: string, probe: ReturnType<typeof buildCircuitNetwork>, terminal: string, guardedRoles: string[], sample: SimulationResult) {
@@ -300,7 +303,7 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
         pathFailure(isOverload ? "OVERLOAD_CONTROL_BYPASS" : "STOP_CONTROL_BYPASS", `${guard.toUpperCase()} 保护接点动作后此线圈仍有供电通路`, actuated, key(component.id, "A1"), [guard], sample);
       }
       for (const terminal of [key(component.id, "A1"), key(component.id, "A2")]) {
-        const qfProtected = !fromPhase(cut("qf"), terminal), hasFuse = controlFuses.some(fuse => !fromPhase(cut(fuse), terminal));
+        const qfProtected = !fromPhase(cut("qf"), terminal), hasFuse = controlFusePoles.some(pole => !fromPhase(cutFusePole(pole), terminal));
         controlProtected &&= fromPhase(net, terminal) && qfProtected && hasFuse;
         if (!qfProtected) pathFailure("CONTROL_PROTECTION_BYPASS", "控制导体绕过 QF", cut("qf"), terminal, ["qf"], sample);
         if (!hasFuse) { const bypassed = pathGuard(controlFuses, terminal); pathFailure("CONTROL_PROTECTION_BYPASS", "控制导体没有必要的 FU2 保护", bypassed ? cut(bypassed) : net, terminal, controlFuses, sample); }

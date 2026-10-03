@@ -4,6 +4,7 @@ import type { CircuitDocument, CircuitWire, Point, Terminal } from "../core/type
 const equal = (a: Point, b: Point) => a.x === b.x && a.y === b.y;
 
 export function terminalColor(terminal: Terminal): string {
+  if (terminal.color) return terminal.color;
   if (terminal.electrical === "earth" || terminal.id === "PE") return "#659f2f";
   if (terminal.electrical === "neutral" || terminal.id === "N") return "#3478f6";
   if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e7b000";

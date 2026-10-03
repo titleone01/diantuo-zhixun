@@ -46,7 +46,7 @@ export type SimulatorEditorProps = {
 const nodeTypes = { electrical: DeviceNode };
 const edgeTypes = { electrical: WireEdge };
 const COLORS = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
-const LABELS: Record<ComponentType, string> = { supply: "电源", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD" };
+const LABELS: Record<ComponentType, string> = { supply: "电源", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD" };
 const clone = (value: CircuitDocument) => JSON.parse(JSON.stringify(value)) as CircuitDocument;
 
 /** Imported circuits are checked again by the server on save and assessment. */
