@@ -6,7 +6,7 @@ export type DrawingAttachment = { mediaId: string; type: DrawingMediaType };
 export type ComponentType = "supply" | "breaker3" | "breaker1" | "knife-switch3" | "fuse" | "fuse3" | "fuse2" | "terminal-strip16" | "contactor220" | "contactor380" | "overload" | "push-no" | "push-nc" | "push-latching-red" | "push-latching-green" | "switch1" | "switch2" | "lamp" | "motor" | "terminal" | "pe-terminal" | "auxiliary-no" | "relay380" | "timer380" | "limit-switch" | "motor-star-delta" | "motor-dahlander" | "wire-duct" | "wire-duct-vertical";
 export type TerminalRef = { componentId: string; terminalId: string };
 export type CircuitComponent = { id: string; type: ComponentType; label: string; position: Point; size?: ComponentSize; linkedTo?: string; settings?: { delayMs: number } };
-export type CircuitWire = { id: string; from: TerminalRef; to: TerminalRef; color: string; waypoints?: Point[]; style?: "orthogonal" | "straight" | "curve" };
+export type CircuitWire = { id: string; from: TerminalRef; to: TerminalRef; color: string; waypoints?: Point[]; style?: "orthogonal" | "straight" | "curve"; routing?: "duct" };
 export type CircuitDocument = {
   schemaVersion: 1;
   title: string;

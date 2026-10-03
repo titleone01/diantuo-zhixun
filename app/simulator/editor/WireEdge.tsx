@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BaseEdge, EdgeLabelRenderer, useReactFlow, type Edge, type EdgeProps } from "@xyflow/react";
 import type { CircuitDocument, CircuitWire, Point } from "../core/types";
 import { wireEndpoints, wirePath, wireRoute } from "./geometry";
+import { ductWireRoute } from "./duct-routing";
 
 export type WireData = {
   document: CircuitDocument;
@@ -36,6 +37,8 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
     data-to-terminal={`${wire.to.componentId}::${wire.to.terminalId}`}
     data-from-world={JSON.stringify(endpoints.from)}
     data-to-world={JSON.stringify(endpoints.to)}
+    data-routing={wire.routing}
+    data-routing-status={wire.routing==="duct" ? ductWireRoute(data.document,wire).points ? "routed":"disconnected" : "manual"}
   >
     <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
     {selected && !data.running && (!wire.style || wire.style === "orthogonal") && <EdgeLabelRenderer>

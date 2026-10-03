@@ -24,6 +24,7 @@ import { poolGroups, poolLabel } from "./library-presentation";
 import ShortCircuitAlert from "./ShortCircuitAlert";
 import { shortCircuitDiagnostic, shortCircuitNoticeKey } from "./short-circuit-notice";
 import { copySelection, pasteSelection, type SelectionClipboard } from "./selection-clipboard";
+import { ductWireRoute } from "./duct-routing";
 import "../reference-layout.css";
 import "@xyflow/react/dist/style.css";
 import "./editor.css";
@@ -160,7 +161,7 @@ function Workspace(props: SimulatorEditorProps) {
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
     setPast(items => [...items.slice(-79), clone(previous)]);
     setFuture([]); setAssessment(null); setSimulation(null); setFocusedDiagnostic(null);
-    onDocumentChange(next);
+    docRef.current=next;onDocumentChange(next);
   }, [frozen, onDocumentChange]);
 
   const undo = useCallback(() => {
@@ -252,7 +253,7 @@ function Workspace(props: SimulatorEditorProps) {
     const sourceComponent = circuit.components.find(component => component.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find(terminal => terminal.id === from.terminalId);
     const newColor = colorOverride || !sourceTerminal ? color : terminalColor(sourceTerminal);
-    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle }] });
+    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle, routing:wireStyle==="straight"&&circuit.components.some(c=>isWireDuct(c.type))?"duct":undefined }] });
   };
   const onWaypoints = useCallback((id: string, points: Point[]) => changed({ ...docRef.current, wires: docRef.current.wires.map(wire => wire.id === id ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = useCallback((id: string, patch: Pick<CircuitComponent, "linkedTo" | "settings">) => changed({ ...docRef.current, components: docRef.current.components.map(component => component.id === id ? { ...component, ...patch } : component) }), [changed]);
@@ -300,7 +301,7 @@ function Workspace(props: SimulatorEditorProps) {
   };
   const setStyle = (next: "orthogonal" | "straight" | "curve") => {
     setWireStyle(next);
-    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map(wire => selectedWires.includes(wire.id) ? { ...wire, style: next } : wire) });
+    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map(wire => selectedWires.includes(wire.id) ? { ...wire, style: next, routing:next==="straight"&&circuit.components.some(c=>isWireDuct(c.type))?"duct":undefined } : wire) });
   };
   const selectedStyles = [...new Set(circuit.wires.filter(wire => selectedWires.includes(wire.id)).map(wire => wire.style ?? "orthogonal"))];
   const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? wireStyle;
@@ -365,6 +366,7 @@ function Workspace(props: SimulatorEditorProps) {
   };
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
+  const failedRoutes=circuit.wires.filter(wire=>wire.routing==="duct"&&!ductWireRoute(circuit,wire).points);
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === undefined ? undefined : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
@@ -398,6 +400,7 @@ function Workspace(props: SimulatorEditorProps) {
         <div className="sim-color-control"><button className="sim-button sim-outline" disabled={frozen} onClick={event => { const rect = event.currentTarget.getBoundingClientRect(); setColorAnchor({left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6}); setColorsOpen(!colorsOpen); }}><i style={{ backgroundColor: color }} />设置导线颜色</button>{colorsOpen && board.current && createPortal(<div className="sim-color-popover" style={{position:"fixed",left:colorAnchor.left,top:colorAnchor.top}}><div className="sim-color-swatches">{COLORS.map(item => <button aria-label={`选择导线颜色 ${item}`} key={item} style={{ backgroundColor: item }} className={color === item && colorOverride ? "active" : ""} onClick={() => { setWireColor(item); setColorsOpen(false); }} />)}<input aria-label="自定义导线颜色" type="color" value={color} onChange={event => setWireColor(event.target.value)} /></div><button className={`sim-auto-color ${!colorOverride ? "active" : ""}`} onClick={() => { setColorOverride(false); setColorsOpen(false); }}>新导线跟随起点端子颜色</button></div>, board.current)}</div>
         <label className="sim-line-select"><span>线条样式</span><select aria-label="线条样式" disabled={frozen} value={displayedWireStyle} onChange={event => setStyle(event.target.value as typeof wireStyle)}>{displayedWireStyle === "mixed" && <option value="mixed" disabled>多种样式</option>}<option value="orthogonal">自定义直角</option><option value="straight">直线</option><option value="curve">曲线</option></select></label>
         <div className="sim-history"><button aria-label="复制选中对象" title="复制 Ctrl+C · Shift 多选" disabled={frozen || !selectedNodes.length} onClick={copySelected}><Copy size={18}/></button><button aria-label="粘贴对象" title="粘贴 Ctrl+V" disabled={frozen || !canPaste} onClick={pasteSelected}>粘贴</button><button aria-label="撤销" title="撤销 Ctrl+Z" disabled={frozen || !past.length} onClick={undo}><Undo2 size={18} /></button><button aria-label="重做" title="重做 Ctrl+Shift+Z" disabled={frozen || !future.length} onClick={redo}><Redo2 size={18} /></button></div>
+        <button className="sim-button" disabled={frozen||!circuit.wires.length} onClick={()=>changed({...circuit,wires:circuit.wires.map(wire=>!selectedWires.length||selectedWires.includes(wire.id)?{...wire,style:"straight",routing:"duct"}:wire)})}>自动走线槽</button>
         <div className="sim-toolbar-spacer" />
         <button className="sim-button sim-export" onClick={() => openTransfer("export")}><Download size={16} /><span>导出图纸到本地</span></button>
         <button className="sim-button sim-import" disabled={frozen} onClick={() => openTransfer("import")}><FolderOpen size={16} /><span>导入本地保存的图纸</span></button>
@@ -424,6 +427,7 @@ function Workspace(props: SimulatorEditorProps) {
         ><Background variant={BackgroundVariant.Dots} gap={18} size={1} color="#ccd4de" /><Controls showInteractive={false} /></ReactFlow>
         <button className="sim-library-toggle" aria-label={libraryOpen ? "收起元件库" : "展开元件库"} onClick={() => setLibraryOpen(!libraryOpen)}>{libraryOpen ? <ChevronLeft size={22} /> : <ChevronRight size={22} />}</button>
         <div className="sim-canvas-heading"><span>{running ? "正在仿真" : "接线工作台"}</span><b>{circuit.title}</b>{running && <i className={simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live"}>{simulation?.runtime.faultLatched ? "故障中止" : simulation?.supported === false ? "此接法暂不支持" : "运行中"}</i>}</div>
+        {!!failedRoutes.length&&<div className="sim-routing-notice" role="status">{failedRoutes.length} 根导线未找到连通线槽，已保留原连接。请调整线槽连接。</div>}
         {running && hasTimers && <div className="sim-clock" aria-label="教学仿真时钟"><span>教学时间 {((simulation?.runtime.timeMs ?? 0) / 1000).toFixed(1)} s{simulation?.supported === false ? " · 已暂停" : ""}</span><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => setTimerPaused(value => !value)}>{timerPaused ? "继续计时" : "暂停计时"}</button><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => action({ type: "advance-time", ms: 1000 })}>推进 1 秒</button></div>}
         <div className="sim-document-actions"><button className="sim-button" disabled={frozen || !!busy} onClick={() => drawingInput.current?.click()}><FileImage size={15} />上传图纸</button><button className="sim-button" disabled={!onSave || !!busy} onClick={() => perform("save", onSave)}>{busy === "save" ? "保存中…" : "保存草稿"}</button><button className="sim-button sim-primary" disabled={!onPublish || !!busy || running} onClick={() => perform("publish", onPublish)}>发布电路</button></div>
         <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} zoom={drawingZoom} onZoomChange={setDrawingZoom} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={() => setDrawingPickerOpen(true)} selectionDisabled={frozen}>
