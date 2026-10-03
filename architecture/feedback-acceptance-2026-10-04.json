@@ -982,9 +982,136 @@
   },
   "limitations": [
     "Original screenshot stop-button failure and crash not reliably reproduced",
-    "Production migration/switch/restore and remote CI not executed",
+    "Production migration/switch/restore and public-network acceptance not executed; remote Linux CI now verified",
     "Intermittent local ProxyWorker connection-loss failures retained; latest pass does not prove elimination",
     "Capacity uses fresh HTTP connection per request and synthetic accounts; not sustained public/browser capacity",
     "Earlier manual observations partly misbucketed; final browser batch and course7 protection evidence correctly classified"
-  ]
+  ],
+  "postPushVerification": {
+    "verifiedAt": "2026-10-03T17:34:36Z",
+    "runtimeSourceChanged": false,
+    "testCommit": "19b10dbd3f71793b4ba313e635671b6ba145cffe",
+    "firstRemoteCi": {
+      "id": 37140413697,
+      "commit": "35eb15a1a15c67aed4ddad418a296d243fe9ff59",
+      "url": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37140413697",
+      "conclusion": "failure",
+      "cause": "CRLF/LF difference between original SVG and generated artwork in exact label comparison"
+    },
+    "correction": {
+      "file": "tests/simulator-source-components.test.mjs",
+      "scope": "normalize XML line endings and exercise LF/CRLF inputs; retain all label, electrical geometry and state assertions",
+      "originalAssetBytesChanged": false,
+      "localTargetedPassed": 12,
+      "localOfflinePassed": 452,
+      "localOfflineConditionalSkip": 1,
+      "changedFileLintErrors": 0,
+      "changedFileLintWarnings": 0
+    },
+    "remoteCi": {
+      "id": 37140814062,
+      "commit": "19b10dbd3f71793b4ba313e635671b6ba145cffe",
+      "url": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37140814062",
+      "conclusion": "success",
+      "check": {
+        "at": "2026-10-03T17:32:04.413Z",
+        "steps": [
+          {
+            "name": "TypeScript",
+            "code": 0,
+            "elapsedMs": 5873.56696
+          },
+          {
+            "name": "Lint",
+            "code": 0,
+            "elapsedMs": 8147.355552
+          },
+          {
+            "name": "Schema",
+            "code": 0,
+            "elapsedMs": 85.35533399999986
+          },
+          {
+            "name": "Production build",
+            "code": 0,
+            "elapsedMs": 8313.606831
+          },
+          {
+            "name": "Pages build",
+            "code": 0,
+            "elapsedMs": 544.0904330000012
+          },
+          {
+            "name": "Offline regressions",
+            "code": 0,
+            "elapsedMs": 11901.757129999998
+          },
+          {
+            "name": "Isolated backend",
+            "code": 0,
+            "elapsedMs": 12853.830596
+          },
+          {
+            "name": "Recovery/rollback",
+            "code": 0,
+            "elapsedMs": 23652.623502999995
+          },
+          {
+            "name": "Chromium browser",
+            "code": 0,
+            "elapsedMs": 53408.79712900001
+          },
+          {
+            "name": "Teaching capacity",
+            "code": 0,
+            "elapsedMs": 20186.317603999996
+          }
+        ]
+      },
+      "lint": {
+        "errors": 0,
+        "warnings": 11
+      },
+      "offline": {
+        "total": 453,
+        "passed": 452,
+        "conditionalSkip": 1,
+        "failed": 0
+      },
+      "backend": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "browser": {
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0
+      },
+      "capacity": {
+        "groups": 9,
+        "failedRequests": 0,
+        "platform": "linux",
+        "twoAccountDenial": true,
+        "saveConflict": true,
+        "workerResourceMetricsAvailable": false
+      },
+      "recovery": {
+        "verifiedAt": "2026-10-03T17:33:15.779Z",
+        "releaseV1": "c4cd7e3639e7d5796a8d3270ad095db1fc919366bdbf2e2c9d368e04ef0f175e",
+        "releaseV2": "f8536d1f69eba8a478b95cf447b0917a5ad7568874e2b3cfc70f63141e833f73",
+        "offline": {
+          "files": 28,
+          "sqliteChecked": true
+        },
+        "loginsDraftPublicationAttachmentsPermissions": true,
+        "rollbackRetainsLatestState": true,
+        "sourceIsolation": true,
+        "operatorEntryPoint": true,
+        "privateRuntimeRestored": true,
+        "nonemptyRestoreRefused": true
+      },
+      "sanitizedArtifactsDownloadedAndChecked": true
+    }
+  }
 }
