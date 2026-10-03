@@ -6,6 +6,7 @@ type Link={to:number;cost:number;points:Point[]};
 type Vertex={point:Point;links:Link[]};
 type Lane={id:string;rect:Rect;horizontal:boolean;nodes:number[]};
 type Network={lanes:Lane[];nodes:Vertex[]};
+type Entrance={lane:Lane;point:Point;points:Point[];cost:number};
 export type DuctRoute={points?:Point[];reason?:"no-ducts"|"disconnected"};
 const cache=new WeakMap<CircuitDocument,{signature:string;network:Network;routes:Map<string,DuctRoute>}>();
 const distance=(a:Point,b:Point)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
@@ -53,20 +54,37 @@ function buildNetwork(document:CircuitDocument):Network{
   }
   return {lanes,nodes};
 }
-function entrance(document:CircuitDocument,ref:TerminalRef,network:Network){
+/** The terminal lead may cross its own artwork; the remaining entrance may not. */
+function crossesInterior(a:Point,b:Point,rect:Rect):boolean{
+  if(a.x===b.x)return a.x>rect.x&&a.x<rect.x+rect.width&&Math.max(a.y,b.y)>rect.y&&Math.min(a.y,b.y)<rect.y+rect.height;
+  if(a.y===b.y)return a.y>rect.y&&a.y<rect.y+rect.height&&Math.max(a.x,b.x)>rect.x&&Math.min(a.x,b.x)<rect.x+rect.width;
+  return true;
+}
+function entrance(document:CircuitDocument,ref:TerminalRef,network:Network):Entrance|undefined{
   const {component,terminal,world}=resolveTerminal(document,ref),size=componentSize(component);
+  const rect={...component.position,...size};
   const exit=terminal.side==="top"?{x:world.x,y:component.position.y-12}:terminal.side==="bottom"?{x:world.x,y:component.position.y+size.height+12}:terminal.side==="left"?{x:component.position.x-12,y:world.y}:{x:component.position.x+size.width+12,y:world.y};
-  const candidates=network.lanes.map(lane=>{
+  const candidates:Entrance[]=[];
+  for(const lane of network.lanes){
     const point=project(lane,exit);
     const corner=terminal.side==="top"||terminal.side==="bottom"?{x:point.x,y:exit.y}:{x:exit.x,y:point.y};
-    const points=compact([world,exit,corner,point]);
-    return{lane,point,points,cost:points.slice(1).reduce((sum,p,i)=>sum+distance(points[i],p),0)};
-  });
+    const alternate=terminal.side==="top"||terminal.side==="bottom"?{x:exit.x,y:point.y}:{x:point.x,y:exit.y};
+    // Try either simple elbow, then both outer sides. The first, directed lead
+    // is retained even when the nearest duct lies behind the terminal's body.
+    const approaches:Point[][]=[[exit,corner,point],[exit,alternate,point]];
+    for(const x of [rect.x-12,rect.x+rect.width+12])approaches.push([exit,{x,y:exit.y},{x,y:point.y},point]);
+    for(const y of [rect.y-12,rect.y+rect.height+12])approaches.push([exit,{x:exit.x,y},{x:point.x,y},point]);
+    for(const approach of approaches){
+      if(approach.slice(1).some((next,i)=>crossesInterior(approach[i],next,rect)))continue;
+      const points=compact([world,...approach]);
+      candidates.push({lane,point,points,cost:points.slice(1).reduce((sum,p,i)=>sum+distance(points[i],p),0)});
+    }
+  }
   candidates.sort((a,b)=>a.cost-b.cost||a.lane.id.localeCompare(b.lane.id));
   return candidates[0];
 }
 /** Small binary heap avoids quadratic scans on large duct networks. */
-function shortest(network:Network,from:ReturnType<typeof entrance>,to:ReturnType<typeof entrance>):Point[]|undefined{
+function shortest(network:Network,from:Entrance,to:Entrance):Point[]|undefined{
   const source=network.nodes.length,target=source+1,extra=new Map<number,Link[]>();
   const vertex=(id:number)=>id===source?from.point:id===target?to.point:network.nodes[id].point;
   const add=(a:number,b:number)=>{
@@ -107,8 +125,8 @@ export function ductWireRoute(document:CircuitDocument,wire:CircuitWire):DuctRou
   let result:DuctRoute;
   if(!saved.network.lanes.length)result={reason:"no-ducts"};
   else{
-    const from=entrance(document,wire.from,saved.network),to=entrance(document,wire.to,saved.network),path=shortest(saved.network,from,to);
-    result=path?{points:compact([...from.points,...path,...[...to.points].reverse()])}:{reason:"disconnected"};
+    const from=entrance(document,wire.from,saved.network),to=entrance(document,wire.to,saved.network),path=from&&to?shortest(saved.network,from,to):undefined;
+    result=path&&from&&to?{points:compact([...from.points,...path,...[...to.points].reverse()])}:{reason:"disconnected"};
   }
   saved.routes.set(key,result);return result;
 }
