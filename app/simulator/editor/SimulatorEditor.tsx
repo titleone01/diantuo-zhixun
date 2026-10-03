@@ -74,7 +74,8 @@ function Workspace(props: SimulatorEditorProps) {
   const clipboard=useRef<SelectionClipboard | null>(null);
   const clipboardPastes=useRef(0);
   const [canPaste,setCanPaste]=useState(false);
-  useLayoutEffect(()=>{clipboard.current=null;clipboardPastes.current=0;setCanPaste(false);},[props.clipboardScope]);
+  const [clipboardOwner,setClipboardOwner]=useState<string | undefined>(undefined);
+  useLayoutEffect(()=>{clipboard.current=null;clipboardPastes.current=0;},[props.clipboardScope]);
   const [past, setPast] = useState<CircuitDocument[]>([]);
   const [future, setFuture] = useState<CircuitDocument[]>([]);
   const [color, setColor] = useState(COLORS[0]);
@@ -199,11 +200,11 @@ function Workspace(props: SimulatorEditorProps) {
     if(frozen)return;
     const selection=copySelection(docRef.current,selectedNodes);
     if(!selection.components.length){setMessage("请选择要复制的器件或线槽，可按 Shift 多选。");return;}
-    clipboard.current=selection;clipboardPastes.current=0;setCanPaste(true);
+    clipboard.current=selection;clipboardPastes.current=0;setCanPaste(true);setClipboardOwner(props.clipboardScope);
     setMessage(`已复制 ${selection.components.length} 个对象和 ${selection.wires.length} 根组内导线。`);
   };
   const pasteSelected=()=>{
-    if(frozen || !clipboard.current)return;
+    if(frozen || clipboardOwner!==props.clipboardScope || !clipboard.current)return;
     try{
       const pasted=pasteSelection(docRef.current,clipboard.current,32*(clipboardPastes.current+1));
       changed(pasted.document);clipboardPastes.current++;
@@ -399,7 +400,7 @@ function Workspace(props: SimulatorEditorProps) {
         <button className="sim-button sim-danger" disabled={frozen || !circuit.wires.length} onClick={() => { changed({ ...circuit, wires: [] }); setSelectedWires([]); }}>删除所有线</button>
         <div className="sim-color-control"><button className="sim-button sim-outline" disabled={frozen} onClick={event => { const rect = event.currentTarget.getBoundingClientRect(); setColorAnchor({left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6}); setColorsOpen(!colorsOpen); }}><i style={{ backgroundColor: color }} />设置导线颜色</button>{colorsOpen && board.current && createPortal(<div className="sim-color-popover" style={{position:"fixed",left:colorAnchor.left,top:colorAnchor.top}}><div className="sim-color-swatches">{COLORS.map(item => <button aria-label={`选择导线颜色 ${item}`} key={item} style={{ backgroundColor: item }} className={color === item && colorOverride ? "active" : ""} onClick={() => { setWireColor(item); setColorsOpen(false); }} />)}<input aria-label="自定义导线颜色" type="color" value={color} onChange={event => setWireColor(event.target.value)} /></div><button className={`sim-auto-color ${!colorOverride ? "active" : ""}`} onClick={() => { setColorOverride(false); setColorsOpen(false); }}>新导线跟随起点端子颜色</button></div>, board.current)}</div>
         <label className="sim-line-select"><span>线条样式</span><select aria-label="线条样式" disabled={frozen} value={displayedWireStyle} onChange={event => setStyle(event.target.value as typeof wireStyle)}>{displayedWireStyle === "mixed" && <option value="mixed" disabled>多种样式</option>}<option value="orthogonal">自定义直角</option><option value="straight">直线</option><option value="curve">曲线</option></select></label>
-        <div className="sim-history"><button aria-label="复制选中对象" title="复制 Ctrl+C · Shift 多选" disabled={frozen || !selectedNodes.length} onClick={copySelected}><Copy size={18}/></button><button aria-label="粘贴对象" title="粘贴 Ctrl+V" disabled={frozen || !canPaste} onClick={pasteSelected}>粘贴</button><button aria-label="撤销" title="撤销 Ctrl+Z" disabled={frozen || !past.length} onClick={undo}><Undo2 size={18} /></button><button aria-label="重做" title="重做 Ctrl+Shift+Z" disabled={frozen || !future.length} onClick={redo}><Redo2 size={18} /></button></div>
+        <div className="sim-history"><button aria-label="复制选中对象" title="复制 Ctrl+C · Shift 多选" disabled={frozen || !selectedNodes.length} onClick={copySelected}><Copy size={18}/></button><button aria-label="粘贴对象" title="粘贴 Ctrl+V" disabled={frozen || !canPaste || clipboardOwner!==props.clipboardScope} onClick={pasteSelected}>粘贴</button><button aria-label="撤销" title="撤销 Ctrl+Z" disabled={frozen || !past.length} onClick={undo}><Undo2 size={18} /></button><button aria-label="重做" title="重做 Ctrl+Shift+Z" disabled={frozen || !future.length} onClick={redo}><Redo2 size={18} /></button></div>
         <button className="sim-button" disabled={frozen||!circuit.wires.length} onClick={()=>changed({...circuit,wires:circuit.wires.map(wire=>!selectedWires.length||selectedWires.includes(wire.id)?{...wire,style:"straight",routing:"duct"}:wire)})}>自动走线槽</button>
         <div className="sim-toolbar-spacer" />
         <button className="sim-button sim-export" onClick={() => openTransfer("export")}><Download size={16} /><span>导出图纸到本地</span></button>
@@ -409,6 +410,10 @@ function Workspace(props: SimulatorEditorProps) {
         <ReactFlow<ElectricalNode, ElectricalEdge>
           nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes}
           onNodesChange={nodesChanged} onEdgesChange={edgesChanged} onConnect={connect}
+          onNodeClick={(event,node)=>{
+            if(running || !(event.shiftKey || event.ctrlKey || event.metaKey))return;
+            setSelectedNodes(selectedNodes.includes(node.id) ? selectedNodes.filter(id=>id!==node.id) : [...selectedNodes,node.id]);
+          }}
           connectionMode={ConnectionMode.Loose} connectionLineType={wireStyle === "straight" ? ConnectionLineType.Straight : wireStyle === "curve" ? ConnectionLineType.Bezier : ConnectionLineType.Step}
           onConnectStart={(_event, params) => { if (colorOverride) return; const component = circuit.components.find(item => item.id === params.nodeId); const terminal = component && getDefinition(component.type).terminals.find(item => item.id === params.handleId); if (terminal) setColor(terminalColor(terminal)); }}
           connectionLineStyle={{ stroke: color, strokeWidth: 3, vectorEffect: "non-scaling-stroke" }}
