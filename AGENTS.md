@@ -1,6 +1,6 @@
 # 电拓智训项目协作约束
 
-## 接手入口与当前运行边界 2026 年 10 月 3 日
+## 接手入口与当前运行边界 2026 年 10 月 4 日
 
 先读本文件、`architecture/3d-wiring.md`、`architecture/simulator-2d.md`、`architecture/local-runbook.md`。先检查 `git status --short` 和端口/PID，保留全部已有修改；多个 Agent 明确文件范围，构建、依赖安装和运行服务由一名负责人协调。
 
@@ -19,7 +19,7 @@
 
 ### 验证顺序
 
-每组小修复先读 diff、执行相关回归。最终执行 `npm run typecheck`、`npm run lint`、`npm run build`、`npm run build:pages`、`node --test tests/*.test.mjs`，再执行 `npm run test:backend`。Pages 应先构建再跑最终产物测试。lint 有已记录的存量 Hooks/无障碍问题，不得全局关闭规则伪造通过；汇报实际错误数和新改文件检查结果。
+每组小修复先读 diff、执行相关回归。最终执行 `npm run typecheck`、`npm run lint`、`npm run build`、`npm run build:pages`、`node --test tests/*.test.mjs`，再执行 `npm run test:backend`。Pages 应先构建再跑最终产物测试。合并副本lint已达到零错误，剩余图片、字幕及遗留导航警告逐条记录；不得全局关闭规则伪造通过，修改后须重新核对。
 
 后台测试默认隔离临时 Worker/D1/R2；`npm run test:backend -- --keep` 保留独立证据。针对既有站点的 `--url` + `--admin-file` 模式会写测试数据，必须有该环境的写入验收授权。`test-persistence` 须明确本次产物目录、管理员路径和地址，见运行手册；无变量时仍读取旧 `.local` 证据。它和 `test-training-drawings` 都不是无副作用的只读检查，不混用不同数据库的凭据/证据。
 
@@ -27,7 +27,17 @@
 
 ### 当前优先债务
 
-按 `project-health-report-2026-10-03.md` 更新状态：生产发布与恢复演练、剩余间接依赖安全公告、lint/无障碍及自动浏览器验收、迁移工具来源统一、课程负例与容量压测。不要为了消除长函数一次性重写引擎或编辑器。
+最新实施状态见`project-hardening-report-2026-10-04.md`；原`project-health-report-2026-10-03.md`及初始加固报告保留阶段历史。下一步优先正式维护窗口的业务备份恢复/发布切换、剩余间接依赖补丁、首次远端CI、长期浏览器容量与附件保留策略。不要为了消除长函数一次性重写引擎或编辑器。
+
+### 加固工具与接手入口
+
+新增事实见`architecture/project-hardening-report-2026-10-03.md`、`architecture/releases-and-recovery.md`及依赖台账，原报告保留历史结果。日常`npm run check`，完整隔离`check:extended`；单项`check:schema`、`test:recovery`、`test:browser`、`test:capacity`。Chromium单worker，CI只上传acceptance-public脱敏结果。
+
+- 图纸每槽version，PUT/DELETE强制expectedVersion（空槽null），缺失428/冲突409，不能删除条件绕过。0006正式迁移另行维护。
+- 发布与state分离；start:release不迁移/构建；回退保持最新state，跨迁移集合拒绝。激活和启动均用目标产物的校验器/器件端子字段契约检查草稿及作品，缺契约、损坏或新增不支持的数据拒绝回退。备份恢复先读手册，不覆盖非空目录。
+- test:recovery临时修改当前隔离副本worker/local.ts再finally恢复，禁止其他Agent同时修改该源码。构建/安装/恢复仍由一人协调。
+- db:generate仅输出.local/migration-candidates候选；SQL只追加db/migrations，保留旧drizzle目录及历史SQL。
+- 双对话声明目录/文件归属、交付增量和哈希；共享界面按差异合并，合并后再验证。剩余重点为生产真实恢复/切换、间接依赖、CI远端执行、课程负例、容量与附件生命周期。
 
 ## 2026-09-30 已确认的新主产品（优先于下方历史三维约束）
 
