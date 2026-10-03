@@ -52,7 +52,7 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
   const dispatch = (type: "press" | "release" | "toggle" | "trip-overload" | "reset-overload") => action({ type, componentId: component.id });
 
   return <div
-    className={`sim-device-node ${selected ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""}`}
+    className={`sim-device-node ${selected ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""} ${definition.load?.kind === "motor" && result?.active ? "sim-motor-running" : ""}`}
     style={{ width: size.width, height: size.height }}
     onPointerCancel={duct ? data.cancelResize : undefined}
     data-device-id={component.id}
@@ -67,9 +67,10 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     {duct && <NodeResizer isVisible={!!selected && !running && !data.readOnly} minWidth={DUCT_MIN_SIZE} minHeight={DUCT_MIN_SIZE} maxWidth={DUCT_MAX_SIZE} maxHeight={DUCT_MAX_SIZE} keepAspectRatio={false} handleClassName="sim-duct-resize-handle" lineClassName="sim-duct-resize-line" onResizeStart={onResizeStart} onResize={onResize} onResizeEnd={onResizeEnd} />}
     <DeviceArtwork type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
     {data.document && !!leads.length && <svg className="sim-terminal-leads" width={size.width} height={size.height} aria-hidden="true">
-      {leads.map(({ wire, terminal }) => { const clip = `lead-${component.id}-${wire.id}-${terminal.id}`; return <g key={clip}><defs><clipPath id={clip}><circle cx={terminal.x} cy={terminal.y} r="14" /></clipPath></defs><g clipPath={`url(#${clip})`}><path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke={data.diagnostics.some(d => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color} strokeWidth={data.selectedWireIds?.includes(wire.id) ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" /></g></g>; })}
+      {leads.map(({ wire, terminal }) => { const clip = `lead-${component.id}-${wire.id}-${terminal.id}`; return <g key={clip}><defs><clipPath id={clip}><rect x="0" y="0" width={size.width} height={size.height} /></clipPath></defs><g clipPath={`url(#${clip})`}><path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke={data.diagnostics.some(d => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color} strokeWidth={data.selectedWireIds?.includes(wire.id) ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" /></g></g>; })}
     </svg>}
     <div className="sim-device-caption"><b>{component.label}</b><span>{definition.name}</span>{component.type === "timer380" && <span>教学双延时 · {(component.settings?.delayMs ?? 3000) / 1000} s</span>}{component.type === "auxiliary-no" && <span>{data.linkedComponents.find(item => item.id === component.linkedTo)?.label ?? "未关联"}</span>}</div>
+    {faulty && definition.load?.kind === "motor" && <span className="sim-motor-diagnostic" role="status" title={data.diagnostics.filter(d => d.componentIds.includes(component.id)).map(d => d.message).join("；")}>诊断</span>}
     {definition.terminals.map(terminal => {
       const key = terminalKey({ componentId: component.id, terminalId: terminal.id });
       const state = data.terminalStates[key];

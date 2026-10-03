@@ -109,9 +109,9 @@
 .sim-editor .sim-library-item .sim-device-artwork.sim-pe-artwork { width: 43.7px; }
 .sim-pe-artwork { display: block; overflow: hidden; }
 .sim-pe-artwork > img { display: block; height: 100%; width: 200%; max-width: none; object-fit: fill; }
-.sim-duct-artwork { position: relative; display: flex !important; align-items: center; justify-content: center; border: 1px solid #b8c1cd; border-radius: 2px; background: repeating-linear-gradient(90deg, #cbd2da 0 3px, transparent 3px 15px) top / 100% 11px no-repeat, repeating-linear-gradient(90deg, #cbd2da 0 3px, transparent 3px 15px) bottom / 100% 11px no-repeat, #e2e6ec; box-shadow: inset 0 13px #f8fafb9c, inset 0 -13px #f8fafb9c; }
-.sim-duct-artwork > span { color: #83909f; font-size: 10px; letter-spacing: 5px; line-height: 1; }
-.sim-duct-artwork.is-vertical { background: repeating-linear-gradient(0deg, #cbd2da 0 3px, transparent 3px 15px) left / 11px 100% no-repeat, repeating-linear-gradient(0deg, #cbd2da 0 3px, transparent 3px 15px) right / 11px 100% no-repeat, #e2e6ec; box-shadow: inset 13px 0 #f8fafb9c, inset -13px 0 #f8fafb9c; }
+.sim-duct-artwork { position: relative; display: flex !important; align-items: center; justify-content: center; border: 1px solid #b8c1cd; border-radius: 2px; background: repeating-linear-gradient(90deg, #66717d 0 3px, transparent 3px 15px) top / 100% 11px no-repeat, repeating-linear-gradient(90deg, #66717d 0 3px, transparent 3px 15px) bottom / 100% 11px no-repeat, #3f4853; box-shadow: inset 0 13px #ffffff12, inset 0 -13px #ffffff12; }
+.sim-duct-artwork > span { color: #e1e7ef; font-size: 10px; letter-spacing: 5px; line-height: 1; }
+.sim-duct-artwork.is-vertical { background: repeating-linear-gradient(0deg, #66717d 0 3px, transparent 3px 15px) left / 11px 100% no-repeat, repeating-linear-gradient(0deg, #66717d 0 3px, transparent 3px 15px) right / 11px 100% no-repeat, #3f4853; box-shadow: inset 13px 0 #ffffff12, inset -13px 0 #ffffff12; }
 .sim-duct-artwork.is-vertical > span { writing-mode: vertical-rl; }
 .sim-editor .sim-library-item .sim-duct-artwork { width: 68px; height: 18px; margin: 28px 0 27px; background-size: 100% 4px, 100% 4px, auto; box-shadow: none; }
 .sim-editor .sim-library-item .sim-duct-artwork.is-vertical { width: 18px; height: 73px; margin: 0; background-size: 4px 100%, 4px 100%, auto; }
@@ -132,7 +132,7 @@
 .sim-editor .sim-terminal.react-flow__handle.is-energized { background: #fdf8d8; }
 .sim-editor .sim-terminal.react-flow__handle.has-diagnostic { border-color: #f04a4a !important; box-shadow: 0 0 0 5px #ef444433; }
 .sim-editor .sim-terminal.react-flow__handle { background: transparent; }
-.sim-terminal-indicator { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 4px; height: 4px; border-radius: 50%; background: #20262e; pointer-events: none; }
+.sim-terminal-indicator { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; border-radius: 50%; background: #20262e; pointer-events: none; }
 .sim-terminal[data-terminal-energized="true"] .sim-terminal-indicator { background: #fa202a; box-shadow: 0 0 0 1px #fff, 0 0 5px #ff3030; }
 .sim-terminal-leads { position: absolute; inset: 0; overflow: visible; pointer-events: none; z-index: 18; }
 .sim-contactor-artwork.is-engaged .sim-contactor-state-region { fill: #e84646; }
@@ -329,3 +329,8 @@
   .sim-editor .sim-diagram { width: min(386px, calc(100% - 40px)); }
   .sim-editor .sim-diagram-content { height: 260px; padding: 16px 24px; }
 }
+
+.sim-breaker-status { fill: #22b865; }
+.sim-switch-motion.is-closed .sim-breaker-status { fill: #f04452; }
+.sim-editor .sim-device-node.sim-motor-running.has-diagnostic { outline-color: transparent; box-shadow: none; }
+.sim-motor-diagnostic { position: absolute; right: 0; bottom: -18px; padding: 2px 7px; border-radius: 4px; background: #fff1cf; color: #835600; font-size: 10px; }

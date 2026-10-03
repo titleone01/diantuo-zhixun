@@ -3,7 +3,7 @@ import type { ComponentType } from "../core/types";
 
 // Match the reference pool order without registering unmodelled electrical devices.
 const household: ComponentType[] = ["switch1", "switch2", "lamp", "breaker1", "breaker3"];
-const industrial: ComponentType[] = ["fuse", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380", "timer380", "motor-dahlander"];
+const industrial: ComponentType[] = ["breaker1", "breaker3", "fuse", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380", "timer380", "motor-dahlander"];
 const helpers: ComponentType[] = ["supply", "terminal", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical"];
 export const poolLabel: Partial<Record<ComponentType, string>> = {
   switch1: "单开单控", switch2: "单开双控", lamp: "灯泡（220V）", breaker1: "空气开关（1P）", breaker3: "空气开关（3P）", fuse: "熔断器（FU）",
@@ -18,7 +18,7 @@ export function poolGroups(category: "all" | "industrial" | "lighting", search: 
   const groups = [
     { id: "lighting", title: "家庭电路组件", types: category === "industrial" ? [] : household },
     { id: "industrial", title: "工业电路组件", types: category === "lighting" ? [] : industrial },
-    { id: "helpers", title: "接线辅助", types: category === "industrial" ? [...helpers, "breaker1", "breaker3"] as ComponentType[] : helpers },
+    { id: "helpers", title: "接线辅助", types: helpers },
   ];
   return groups.map(group => ({ ...group, items: group.types.flatMap(type => {
     const item = definitions.get(type);

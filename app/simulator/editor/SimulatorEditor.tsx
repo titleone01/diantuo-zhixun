@@ -354,7 +354,7 @@ function Workspace(props: SimulatorEditorProps) {
     if (event.key === "Delete" || event.key === "Backspace") { event.preventDefault(); deleteSelected(); }
   }}>
     <aside className="sim-library">
-      <div className="sim-library-heading"><h2>电工控件池</h2><button className="sim-search-toggle" aria-label={searchOpen ? "收起元件搜索" : "展开元件搜索"} onClick={() => { setSearchOpen(!searchOpen); if(searchOpen) setSearch(""); }}><Search size={16}/></button></div>
+      <div className="sim-library-heading"><h2>器件库</h2><button className="sim-search-toggle" aria-label={searchOpen ? "收起元件搜索" : "展开元件搜索"} onClick={() => { setSearchOpen(!searchOpen); if(searchOpen) setSearch(""); }}><Search size={16}/></button></div>
       <div className="sim-library-tabs" role="tablist" aria-label="元件分类"><button role="tab" aria-selected={category === "all"} className={category === "all" ? "active" : ""} onClick={() => setCategory("all")}>全部</button><button role="tab" aria-selected={category === "lighting"} className={category === "lighting" ? "active" : ""} onClick={() => setCategory("lighting")}>家庭电路组件</button><button role="tab" aria-selected={category === "industrial"} className={category === "industrial" ? "active" : ""} onClick={() => setCategory("industrial")}>工业电路组件</button></div>
       {searchOpen && <label className="sim-library-search"><Search size={14} /><input placeholder="搜索元器件" aria-label="搜索元器件" value={search} onChange={event => setSearch(event.target.value)} /></label>}
       <div className="sim-library-scroller">{librarySections.map(group => <section key={group.id} className="sim-library-group"><h3>{group.title}</h3><div className="sim-library-grid">

@@ -30,6 +30,10 @@ export default function DocumentPreview({ document, className = "" }: { document
     {boxes.filter(({ component }) => component.type.startsWith("wire-duct")).map(device)}
     {document.wires.map(wire => <path key={wire.id} d={wirePath(document, wire)} fill="none" stroke={wire.color} strokeWidth={3} vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" />)}
     {boxes.filter(({ component }) => !component.type.startsWith("wire-duct")).map(device)}
+    {boxes.filter(({ component }) => !component.type.startsWith("wire-duct")).map(({component, definition}) => <g key={`leads-${component.id}`}>
+      <defs><clipPath id={`preview-leads-${component.id}`}><rect x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}/></clipPath></defs>
+      <g clipPath={`url(#preview-leads-${component.id})`}>{document.wires.filter(wire => wire.from.componentId === component.id || wire.to.componentId === component.id).map(wire => <path key={wire.id} d={wirePath(document,wire)} fill="none" stroke={wire.color} strokeWidth={3} vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round"/>)}</g>
+    </g>)}
     {!boxes.length && <text x="250" y="150" textAnchor="middle" fill="#8f9caf" fontSize="15">空白接线画布</text>}
   </svg>;
 }
