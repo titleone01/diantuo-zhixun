@@ -126,7 +126,9 @@ function Workspace(props: SimulatorEditorProps) {
     const boardWidth = board.current?.clientWidth ?? 1000;
     const diagramWidth = diagramPanel.current?.offsetWidth ?? 332;
     const usableWidth = Math.max(240, boardWidth - diagramWidth - 70);
-    const zoom = Math.max(0.68, Math.min(0.9, (usableWidth - 30) / Math.max(1, maxX - minX)));
+    const maxY = Math.max(...components.map(component => component.position.y + componentSize(component).height + 45));
+    const usableHeight = Math.max(240,(board.current?.clientHeight ?? 650)-160);
+    const zoom = Math.max(0.22, Math.min(0.9, (usableWidth - 30) / Math.max(1, maxX - minX),usableHeight / Math.max(1,maxY-minY)));
     void flow.setViewport({ x: 35 + (usableWidth - (maxX - minX) * zoom) / 2 - minX * zoom, y: 85 - minY * zoom, zoom }, { duration: 180 });
   }, [flow]);
 

@@ -1,5 +1,6 @@
 import type { CircuitComponent, CircuitDocument, CircuitWire, ComponentType, LessonDefinition, TerminalRef } from "./types";
-import { MOTOR_COURSES, createMotorCourseDocument, isMotorCourse } from "./motor-courses";
+import { MOTOR_COURSES, isMotorCourse } from "./motor-courses";
+import { createMotorPracticeDocument } from "./motor-practice-layout";
 
 export const LESSONS: LessonDefinition[] = [
   ...MOTOR_COURSES,
@@ -13,7 +14,7 @@ const component = (id: string, type: ComponentType, label: string, x: number, y:
 const ref = (componentId: string, terminalId: string): TerminalRef => ({componentId,terminalId});
 
 export function createLessonDocument(id: string, options: { wired?: boolean } = {}): CircuitDocument {
-  if (isMotorCourse(id)) return createMotorCourseDocument(id, options);
+  if (isMotorCourse(id)) return createMotorPracticeDocument(id, options);
   const lesson = getLesson(id);
   if (!lesson) throw new Error(`未知课程：${id}`);
   const wires: CircuitWire[] = [];

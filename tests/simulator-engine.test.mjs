@@ -183,7 +183,10 @@ test("new simulator: sprites retain original aspect ratio and calibrated handles
       const xs=pairs.map(p=>p[0]),ys=pairs.map(p=>p[1]),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
       return Math.abs((maxX-minX)-(maxY-minY))<0.02?[{x:((minX+maxX)/2-crop.x)*scale,y:((minY+maxY)/2-crop.y)*scale}]:[];
     });
-    for(const pin of def.terminals)assert.ok(circles.some(c=>Math.abs(c.x-pin.x)<0.01&&Math.abs(c.y-pin.y)<0.01),`${def.type}/${pin.id} must align to an actual vector circle center`);
+    // Each strip cell crops the original left pole and applies the same 0.75
+    // illustration transform as its catalog anchors.
+    const renderedCircles=def.type==="terminal-strip16"?Array.from({length:16},(_,i)=>circles.filter(c=>c.x<60.75).map(c=>({x:i*45.5625+c.x*0.75,y:c.y*0.75}))).flat():circles;
+    for(const pin of def.terminals)assert.ok(renderedCircles.some(c=>Math.abs(c.x-pin.x)<0.01&&Math.abs(c.y-pin.y)<0.01),`${def.type}/${pin.id} must align to an actual vector circle center`);
   }
 });
 
