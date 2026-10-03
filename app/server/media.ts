@@ -4,7 +4,7 @@ import { ApiError, json, readBody } from "./http";
 const MAX_UPLOAD = 20 * 1024 * 1024;
 function validSignature(bytes: Uint8Array, type: string): boolean {
   const ascii = (start: number, count: number) => String.fromCharCode(...bytes.slice(start, start + count));
-  if (type === "image/png") return bytes[0] === 137 && ascii(1, 3) === "PNG";
+  if (type === "image/png") return [137, 80, 78, 71, 13, 10, 26, 10].every((byte, index) => bytes[index] === byte);
   if (type === "image/jpeg") return bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255;
   if (type === "image/gif") return ["GIF87a", "GIF89a"].includes(ascii(0, 6));
   if (type === "image/webp") return ascii(0, 4) === "RIFF" && ascii(8, 4) === "WEBP";
@@ -16,14 +16,19 @@ function validSignature(bytes: Uint8Array, type: string): boolean {
 export async function uploadMedia(env: AppEnv, member: Member, request: Request): Promise<Response> {
   if (!request.headers.get("content-type")?.startsWith("multipart/form-data")) throw new ApiError(415, "MULTIPART_REQUIRED", "请通过文件上传提交附件");
   const bytes = await readBody(request, MAX_UPLOAD + 65536);
-  const form = await new Response(bytes, { headers: { "content-type": request.headers.get("content-type")! } }).formData();
+  let form: FormData;
+  try {
+    form = await new Response(bytes, { headers: { "content-type": request.headers.get("content-type")! } }).formData();
+  } catch {
+    throw new ApiError(400, "INVALID_MULTIPART", "文件上传格式无效，请重新选择文件后提交");
+  }
   const file = form.get("file");
   if (!(file instanceof File) || file.size < 1 || file.size > MAX_UPLOAD) throw new ApiError(400, "INVALID_FILE", "请选择不超过 20 MiB 的文件");
   const payload = new Uint8Array(await file.arrayBuffer());
   if (!validSignature(payload, file.type)) throw new ApiError(415, "UNSUPPORTED_FILE", "仅支持 PNG、JPEG、GIF、WebP、PDF、MP4、WebM 文件");
   const id = crypto.randomUUID();
   const objectKey = `${member.id}/${id}`;
-  const name = file.name.replace(/[\r\n\/\\]/g, "_").slice(0, 150) || "附件";
+  const name = file.name.replace(/[\r\n/\\]/g, "_").slice(0, 150) || "附件";
   await env.MEDIA.put(objectKey, payload, { httpMetadata: { contentType: file.type } });
   try {
     await env.DB.prepare("INSERT INTO media(id,ownerId,objectKey,name,type,size,createdAt) VALUES(?,?,?,?,?,?,?)").bind(id, member.id, objectKey, name, file.type, file.size, Date.now()).run();

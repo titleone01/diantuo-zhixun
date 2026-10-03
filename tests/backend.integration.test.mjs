@@ -3,8 +3,13 @@ import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createHash, randomBytes } from "node:crypto";
 import { build } from "esbuild";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const origin = process.env.DIANTUO_TEST_URL;
+const localDirectory = fileURLToPath(new URL("../.local/", import.meta.url));
+const adminPath = process.env.DIANTUO_TEST_ADMIN_PATH || path.join(localDirectory, "admin-access.json");
+const artifactDirectory = process.env.DIANTUO_TEST_ARTIFACT_DIR || localDirectory;
 const hash = value => createHash("sha256").update(value).digest("hex");
 const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlFQAAAAASUVORK5CYII=", "base64");
 function validPdf() {
@@ -17,7 +22,7 @@ function validPdf() {
   return Buffer.from(content);
 }
 test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapshots, assessment", { skip: !origin, timeout: 180000 }, async t => {
-  const adminCredentials = JSON.parse(await readFile(new URL("../.local/admin-access.json", import.meta.url), "utf8"));
+  const adminCredentials = JSON.parse(await readFile(adminPath, "utf8"));
   const built = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/engine";', resolveDir: process.cwd() }, bundle: true, write: false, format: "esm", platform: "node" });
   const { createLessonDocument, assessLesson } = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString("base64")}`);
   const fixture = createLessonDocument("motor-jog", { wired: true });
@@ -27,9 +32,9 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     cookies = new Map();
     async call(path, method = "GET", body, options = {}) {
       const headers = { cookie: [...this.cookies].map(([k, v]) => `${k}=${v}`).join("; "), ...(method !== "GET" ? { origin } : {}), ...options.headers };
-      if (body !== undefined && !(body instanceof FormData)) headers["content-type"] = "application/json";
+      if (body !== undefined && !(body instanceof FormData) && !headers["content-type"]) headers["content-type"] = "application/json";
       if (options.noOrigin) delete headers.origin;
-      const response = await fetch(`${origin}/api${path}`, { method, headers, ...(body !== undefined ? { body: body instanceof FormData ? body : JSON.stringify(body) } : {}) });
+      const response = await fetch(`${origin}/api${path}`, { method, headers, signal: AbortSignal.timeout(15000), ...(body !== undefined ? { body: body instanceof FormData ? body : JSON.stringify(body) } : {}) });
       for (const value of response.headers.getSetCookie()) {
         const [pair] = value.split(";"); const index = pair.indexOf("=");
         this.cookies.set(pair.slice(0, index), pair.slice(index + 1));
@@ -72,8 +77,8 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     const revoked = await invitation();
     assert.equal((await admin.call(`/invites/${revoked.id}`, "DELETE")).status, 200);
     assert.equal((await anonymous.call("/invites/accept", "POST", { token: revoked.token, ...newAccount("revoked") })).status, 410);
-    await mkdir(new URL("../.local/", import.meta.url), { recursive: true });
-    await writeFile(new URL("../.local/test-accounts.json", import.meta.url), JSON.stringify({ origin, accounts: [userA, userB] }, null, 2), { mode: 0o600 });
+    await mkdir(artifactDirectory, { recursive: true });
+    await writeFile(path.join(artifactDirectory, "test-accounts.json"), JSON.stringify({ origin, accounts: [userA, userB] }, null, 2), { mode: 0o600 });
   });
   let circuit;
   await t.test("private drafts reject other members; concurrent saves have exactly one winner", async () => {
@@ -107,6 +112,14 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     assert.equal((await a.call(`/circuits/${fork.data.circuit.id}`)).status, 404);
   });
   let mediaId;
+  await t.test("malformed multipart and incomplete PNG signatures are rejected", async () => {
+    const malformed = await a.call("/media", "POST", "not multipart", { headers: { "content-type": "multipart/form-data" } });
+    assert.equal(malformed.status, 400);
+    assert.equal(malformed.data.code, "INVALID_MULTIPART");
+    const form = new FormData();
+    form.append("file", new File([png.subarray(0, 4)], "truncated.png", { type: "image/png" }));
+    assert.equal((await a.call("/media", "POST", form)).status, 415);
+  });
   await t.test("R2 attachment stays private until explicitly included in publication", async () => {
     const form = new FormData();
     form.append("file", new File([png], "diagram.png", { type: "image/png" }));
@@ -265,5 +278,5 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     await b.login(userB);
   });
   const evidence = { at: new Date().toISOString(), origin, memberUsernames: [userA.username, userB.username], circuitId: circuit.id, circuitHash: hash(JSON.stringify(circuit.document)), publicationId: publication.id, mediaId, imageHash: hash(png), pdfId, pdfHash: hash(pdf) };
-  await writeFile(new URL("../.local/backend-acceptance.json", import.meta.url), JSON.stringify(evidence, null, 2));
+  await writeFile(path.join(artifactDirectory, "backend-acceptance.json"), JSON.stringify(evidence, null, 2));
 });

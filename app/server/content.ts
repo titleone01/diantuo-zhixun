@@ -17,10 +17,12 @@ export function revisionOf(body: Record<string, unknown>): number {
   return Number(body.revision);
 }
 export async function getCircuit(env: AppEnv, member: Member, id: string) {
-  const row = await env.DB.prepare("SELECT * FROM circuits WHERE id=? AND ownerId=?").bind(id, member.id).first<CircuitRow>();
+  // Read the draft and its attachments in one SQLite snapshot. Separate awaits
+  // could otherwise pair an old revision/document with a concurrent save's media.
+  const row = await env.DB.prepare("SELECT c.*,(SELECT json_group_array(cm.mediaId) FROM circuit_media cm WHERE cm.circuitId=c.id) mediaIds FROM circuits c WHERE c.id=? AND c.ownerId=?")
+    .bind(id, member.id).first<CircuitRow & { mediaIds: string }>();
   if (!row) throw new ApiError(404, "NOT_FOUND", "电路不存在或无权访问");
-  const media = await env.DB.prepare("SELECT mediaId FROM circuit_media WHERE circuitId=?").bind(id).all<{ mediaId: string }>();
-  return { id: row.id, title: row.title, document: JSON.parse(row.document) as unknown, revision: row.revision, createdAt: row.createdAt, updatedAt: row.updatedAt, forkedFrom: row.forkedFrom, mediaIds: media.results.map(x => x.mediaId) };
+  return { id: row.id, title: row.title, document: JSON.parse(row.document) as unknown, revision: row.revision, createdAt: row.createdAt, updatedAt: row.updatedAt, forkedFrom: row.forkedFrom, mediaIds: JSON.parse(row.mediaIds) as string[] };
 }
 export async function allowedMedia(env: AppEnv, member: Member, value: unknown): Promise<string[]> {
   if (value === undefined) return [];

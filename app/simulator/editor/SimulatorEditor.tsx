@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal, flushSync } from "react-dom";
 import { Background, BackgroundVariant, ConnectionMode, ConnectionLineType, Controls, ReactFlow, ReactFlowProvider, useReactFlow, type Connection, type EdgeChange, type NodeChange } from "@xyflow/react";
 import { CheckCheck, ChevronLeft, ChevronRight, Copy, Download, FileImage, FolderOpen, PanelRightClose, Play, Redo2, Search, ShieldCheck, Square, Undo2, X } from "lucide-react";
@@ -104,8 +104,11 @@ function Workspace(props: SimulatorEditorProps) {
   const board = useRef<HTMLDivElement | null>(null);
   const diagramPanel = useRef<HTMLDivElement | null>(null);
   const importInput = useRef<HTMLInputElement | null>(null);
+  const importRequest = useRef(0);
   const drawingInput = useRef<HTMLInputElement | null>(null);
   const frozen = running || readOnly;
+  const frozenRef = useRef(frozen);
+  useLayoutEffect(() => { frozenRef.current = frozen; }, [frozen]);
   const initial = useMemo(() => initialRuntime(circuit, false), [circuit]);
   const frameInitialView = useCallback(() => {
     const components = docRef.current.components;
@@ -295,6 +298,23 @@ function Workspace(props: SimulatorEditorProps) {
     changed(document); setSelectedNodes([]); setSelectedWires([]); setTransferMode(null); setMessage("电路已导入，可撤销本次导入。");
     setTimeout(frameInitialView, 80);
   };
+  const importFile = async (file: File) => {
+    if (frozenRef.current) return;
+    const request = ++importRequest.current;
+    const original = docRef.current;
+    const generation = session.generation;
+    try {
+      if (file.size > 5 * 1024 * 1024) throw new Error("电路文件不能超过 5 MB。");
+      const text = await file.text();
+      // File reads can finish after edits, another import, or a new simulation/workspace.
+      // The callback's captured frozen state cannot protect those later transitions.
+      if (request !== importRequest.current || original !== docRef.current || generation !== session.generation || frozenRef.current) {
+        setMessage("读取期间电路或仿真状态已变化，当前接线保持不变，请重新导入。");
+        return;
+      }
+      importDocument(text);
+    } catch (error) { setTransferNotice(error instanceof Error ? error.message : "导入失败。"); }
+  };
   const perform = async (key: string, callback?: () => Promise<void> | void) => {
     if (!callback || busy) return;
     setBusy(key);
@@ -394,7 +414,7 @@ function Workspace(props: SimulatorEditorProps) {
     </section>
     <ReferenceDrawingPicker open={drawingPickerOpen} selectedId={circuit.referenceDiagramId} disabled={frozen} onClose={() => setDrawingPickerOpen(false)} onSelect={id => { if (frozen) return; drawingSelectionEpoch.current++; setDrawing(""); setReferenceSelectionRevision(value => value + 1); changed(selectReferenceDrawing(docRef.current, id)); }}/>
     {transferMode && <div className="sim-transfer-backdrop" onClick={() => setTransferMode(null)}><section className="sim-transfer-dialog" role="dialog" aria-modal="true" aria-label={transferMode === "export" ? "导出电路 JSON" : "导入电路 JSON"} onClick={event => event.stopPropagation()} onKeyDown={event => { event.stopPropagation(); if (event.key === "Escape") setTransferMode(null); }}><header><h2>{transferMode === "export" ? "导出电路" : "导入电路"}</h2><button className="sim-button" aria-label="关闭电路文件窗口" onClick={() => setTransferMode(null)}><X size={18}/></button></header><p>{transferMode === "export" ? "以下 JSON 包含元件、端子连接和走线路径。可下载文件，或复制后另存为 .json 文件。" : "选择电路 JSON 文件，或粘贴完整内容。导入将替换当前画布，可撤销；保存时会更新当前草稿。如需独立草稿，请先关闭窗口并新建电路，再导入。"}</p><textarea ref={transferInput} aria-label={transferMode === "export" ? "导出的电路 JSON" : "待导入的电路 JSON"} spellCheck={false} autoFocus readOnly={transferMode === "export"} value={transferText} onChange={event => { setTransferText(event.target.value); setTransferNotice(""); }} placeholder={transferMode === "import" ? "在此粘贴完整电路 JSON" : undefined}/>{transferNotice && <p className="sim-transfer-notice" role="status">{transferNotice}</p>}<footer>{transferMode === "export" ? <><button className="sim-button" onClick={async () => { try { await navigator.clipboard.writeText(transferText); setTransferNotice("电路 JSON 已复制。"); } catch { transferInput.current?.focus(); transferInput.current?.select(); setTransferNotice("浏览器未允许自动复制。已选中全部 JSON，请按 Ctrl+C 复制。"); } }}><Copy size={16}/>复制 JSON</button><button className="sim-button sim-primary" onClick={exportDocument}><Download size={16}/>下载 JSON 文件</button></> : <><button className="sim-button" disabled={frozen} onClick={() => importInput.current?.click()}><FolderOpen size={16}/>选择 JSON 文件</button><button className="sim-button sim-primary" disabled={frozen || !transferText.trim()} onClick={() => { try { importDocument(transferText); } catch (error) { setTransferNotice(error instanceof Error ? error.message : "导入失败。"); } }}>导入粘贴内容</button></>}</footer></section></div>}
-    <input ref={importInput} type="file" accept="application/json,.json" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (!file) return; try { if (file.size > 5 * 1024 * 1024) throw new Error("电路文件不能超过 5 MB。"); importDocument(await file.text()); } catch (error) { setTransferNotice(error instanceof Error ? error.message : "导入失败。"); } }} />
+    <input ref={importInput} type="file" accept="application/json,.json" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (file) await importFile(file); }} />
     <input ref={drawingInput} type="file" accept="image/png,image/jpeg,image/webp" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (!file || frozen) return; const uploadEpoch = ++drawingSelectionEpoch.current, uploadDocument = docRef.current, uploadGeneration = session.generation; const stillCurrent = () => uploadEpoch === drawingSelectionEpoch.current && uploadDocument === docRef.current && uploadGeneration === session.generation; await perform("drawing", async () => { if (file.size > 10 * 1024 * 1024) throw new Error("图纸图片不能超过 10 MB。"); if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error("支持 PNG、JPEG 和 WebP 图片。"); if (onImportDrawing) { const uploaded = await onImportDrawing(file); if (!stillCurrent()) throw new Error("上传期间已切换图纸或编辑电路，当前接线保持不变，请重新上传。"); setDrawing(uploaded.url); changed({ ...docRef.current, referenceDiagramId: undefined, drawingMediaId: uploaded.id, drawingMediaType: file.type as "image/png" | "image/jpeg" | "image/webp", trainingProjectId: undefined, projectDrawings: undefined, drawingKind: undefined }); } else { const dataUrl = await new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(new Error("图片读取失败")); reader.readAsDataURL(file); }); if (!stillCurrent()) return; setDrawing(dataUrl); setMessage("已打开本地图纸预览；登录后上传可随草稿保存。"); } }); }} />
   </div>;
 }

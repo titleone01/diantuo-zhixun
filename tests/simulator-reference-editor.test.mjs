@@ -16,7 +16,8 @@ export function useRef(initial){const i=cursor++;return slots[i]??(slots[i]={cur
 export function useMemo(factory,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index]))slots[i]={deps,value:factory()};return slots[i].value;}
 export const useCallback=(callback,deps)=>useMemo(()=>callback,deps);
 export const useId=()=>useRef('editor-reference-test').current;
-export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}`;
+export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
+export const useLayoutEffect=useEffect;`;
 const bundle = await build({
   stdin: { contents: `export {default as Editor} from './app/simulator/editor/SimulatorEditor';export {default as Picker} from './app/simulator/ReferenceDrawingPicker';export {default as Floating} from './app/simulator/editor/FloatingSchematic';export {default as Video} from './app/simulator/reference-video/ReferenceVideoPlayer';export * from './app/simulator/reference-video/catalog';export * from './app/simulator/core/lessons';export * from './app/simulator/core/validation';export {reset,begin,flush,unmount,deferFunctionalUpdates} from 'react';`, resolveDir: process.cwd() },
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/"' },
@@ -138,6 +139,48 @@ test('slow uploads cannot replace a later reference confirmation, including a sa
       assert.equal(ui.document().drawingMediaId, undefined); assert.equal(ui.window().props.video.diagramId, chosenId);
       assert.ok(ui.find(node => node.props?.role === 'status'), 'the user is told the old upload was not applied');
     }
+  } finally { restore(); }
+});
+
+test('slow JSON imports cannot overwrite later edits, a running session, a replaced workspace or read-only state', async () => {
+  const restore = environment();
+  try {
+    for (const transition of ['edit', 'run', 'replace', 'read-only', 'unmount']) {
+      const original = example(), incoming = createLessonDocument('motor-jog', { wired: true });
+      const ui = editor(original);
+      let resolveText;
+      const text = new Promise(resolve => { resolveText = resolve; });
+      const input = ui.find(node => node.type === 'input' && node.props.accept === 'application/json,.json');
+      const pending = input.props.onChange({ target: { files: [{ size: 200, text: () => text }], value: 'slow.json' } });
+      if (transition === 'edit') { ui.picker().props.onSelect(32); ui.render(); }
+      else if (transition === 'run') { ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render(); }
+      else if (transition === 'replace') ui.update({ documentKey: 'another-workspace', document: incoming });
+      else if (transition === 'read-only') ui.update({ readOnly: true });
+      else unmount();
+      const count = ui.updates.length;
+      resolveText(JSON.stringify(incoming)); await pending;
+      assert.equal(ui.updates.length, count, `${transition}: stale file read must not change the document`);
+    }
+  } finally { restore(); }
+});
+
+test('the latest JSON file selection wins while a normal import remains undoable', async () => {
+  const restore = environment();
+  try {
+    const original = example(), incoming = createLessonDocument('motor-jog', { wired: true });
+    const ui = editor(original);
+    const input = ui.find(node => node.type === 'input' && node.props.accept === 'application/json,.json');
+    let resolveOld, resolveNew;
+    const oldText = new Promise(resolve => { resolveOld = resolve; });
+    const newText = new Promise(resolve => { resolveNew = resolve; });
+    const read = text => input.props.onChange({ target: { files: [{ size: 200, text: () => text }], value: 'circuit.json' } });
+    const oldRead = read(oldText), newRead = read(newText);
+    resolveOld(JSON.stringify({ ...original, title: 'Superseded selection' })); await oldRead;
+    assert.equal(ui.updates.length, 0, 'an earlier selection cannot win even when it finishes first');
+    resolveNew(JSON.stringify(incoming)); await newRead; ui.render();
+    assert.deepEqual(ui.document(), incoming);
+    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), original);
+    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), incoming);
   } finally { restore(); }
 });
 

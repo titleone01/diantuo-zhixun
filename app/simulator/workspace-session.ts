@@ -28,6 +28,18 @@ export function readRecovery(raw: string | null): RecoveryState | null {
   return { document: checked.document, saved: saved ?? null, dirty: recovery.dirty || !!saved && JSON.stringify(checked.document) !== JSON.stringify(saved.document) };
 }
 
+/** Never overwrite an unreadable recovery record until its exact bytes have a separate backup. */
+export function persistRecovery(storage: Pick<Storage, 'getItem' | 'setItem'>, key: string, state: RecoveryState): void {
+  const next = JSON.stringify(state);
+  const previous = storage.getItem(key);
+  if (previous) {
+    try { readRecovery(previous); }
+    catch { storage.setItem(`${key}:unreadable:${crypto.randomUUID()}`, previous); }
+  }
+  // If backing up fails (for example quota exceeded), this write is never reached.
+  storage.setItem(key, next);
+}
+
 /** Server acknowledgement applies to its snapshot, never to edits made while it was in flight. */
 export function recoveryAfterSave(current: CircuitDocument, submitted: CircuitDocument, saved: SavedCircuit): RecoveryState {
   return { document: current, saved, dirty: JSON.stringify(current) !== JSON.stringify(submitted) };

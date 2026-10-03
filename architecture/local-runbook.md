@@ -100,23 +100,38 @@ npm run build
 npm run build:pages
 ```
 
-运行中的真实成员站可执行：
+默认后台验收使用独立的临时 Worker、D1、R2、管理员与随机端口，不读取现有站点凭据，也不写入现有数据库：
 
 ```powershell
 npm run test:backend
+# 保留本次临时数据与证据，便于复核
+npm run test:backend -- --keep
 ```
 
-该测试通过管理员创建两个随机验收成员，验证邀请竞争、私有草稿隔离、版本冲突、发布快照、赞/收藏/派生草稿、R2 附件权限与 Range、有效 PDF 字节和预览头、服务端判分、十个共享图纸权限、退出登录和成员禁用。临时项目图纸关联会在测试结束时解除。测试账号和测试草稿会保留，便于浏览器复验；它们不是演示假数据。
+该测试通过管理员创建两个随机验收成员，验证邀请竞争、私有草稿隔离、版本冲突、发布快照、赞/收藏/派生草稿、R2 附件权限与 Range、无效 multipart/伪 PNG、PDF 字节和预览头、十课服务端判分、共享图纸权限、退出登录和成员禁用。临时项目图纸关联会在测试结束时解除。测试成功默认只清理本次临时目录；失败或使用 `--keep` 时保留目录，路径由终端输出。测试结束会停止本次 Worker，保留目录不等于服务仍在运行。
 
-实际 API 测试凭据位于 `.local/test-accounts.json`，证据位于 `.local/backend-acceptance.json`。普通 `node --test` 没有 `DIANTUO_TEST_URL` 时会跳过此集成测试，不能将该跳过计为通过。
+目录内的 `artifacts/test-accounts.json` 含本次测试凭据，`artifacts/backend-acceptance.json` 为证据，均不得公开分享。普通 `node --test` 没有 `DIANTUO_TEST_URL` 时会跳过此集成测试，不能将该跳过计为通过。
 
-先运行 API 测试，再停止并重新启动 Worker，然后运行：
+只有明确需要在现有站点创建验收数据时才显式指定地址与管理员文件，例如：
 
 ```powershell
-node scripts/test-persistence.mjs
+npm run test:backend -- --url http://localhost:3000 --admin-file .local/admin-access.json
 ```
 
-这会验证管理员和两个成员能重新登录，草稿、PNG、PDF 的 SHA-256 与重启前相同，另一成员仍被禁止读取私有草稿。证据写入 `.local/persistence-acceptance.json`。API 和哈希验收不替代浏览器中的实际拖线、开关动作、上传预览和仿真验收。
+这会在指定站点留下测试成员、草稿和作品，证据仍写入本次独立临时目录；它不是默认健康检查。隔离测试子进程移除继承的代理环境变量，以避免本机 D1 命令结束后代理句柄阻止退出；不更改父进程或系统代理。显式现有站点模式保留原代理环境。
+
+重启持久化验收脚本支持与集成测试相同的目录变量。先重启对应的隔离Worker（使用原配置、原 `--persist-to` 与原origin；不要为此重启现有业务服务），再指定本次保留目录：
+
+```powershell
+$env:DIANTUO_TEST_ARTIFACT_DIR = '<本次临时目录>/artifacts'
+$env:DIANTUO_TEST_ADMIN_PATH = '<本次临时目录>/admin-access.json'
+$env:DIANTUO_TEST_URL = 'http://127.0.0.1:<本次测试端口>'
+node scripts/test-persistence.mjs
+# 验收后清除当前终端的测试变量，避免影响其他命令
+Remove-Item Env:DIANTUO_TEST_ARTIFACT_DIR, Env:DIANTUO_TEST_ADMIN_PATH, Env:DIANTUO_TEST_URL
+```
+
+脚本验证三个账号登录、草稿与PNG/PDF的SHA-256、跨成员拒绝访问，并将 `persistence-acceptance.json` 写入选定产物目录；每个请求限时15秒。没有设置变量时，仍兼容旧 `.local/backend-acceptance.json`、`.local/test-accounts.json` 和 `.local/admin-access.json`，不能把不同数据库的证据和账号文件混用。本轮已在临时库重启后验证通过，未重启现有业务服务。这是同一临时库的重启验证，不是生产备份恢复演练。API和哈希验收不替代浏览器拖线、开关、上传预览与仿真验收。
 
 完整 API 契约见 `app/server/README.md`。生产配置需要正式 D1/R2、HTTPS 域名和单独秘密，不复用本地示例数据库标识。
 

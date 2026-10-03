@@ -208,6 +208,18 @@ for (const number of [8, 9]) test(`course ${number}: configurable delay and segm
   for (const ms of [300, 499, 1, 1]) segmented = simulate(document, segmented.runtime, { type: "advance-time", ms });
   assert.deepEqual(segmented.components, once.components); assert.deepEqual(segmented.runtime.contactors, once.runtime.contactors);
 });
+for (const number of [8, 9]) test(`course ${number}: minimum and maximum legal timer settings remain assessable`, () => {
+  for (const delayMs of [1, 3_600_000]) {
+    const document = wired(number);
+    document.components.find(component => component.id === "kt").settings.delayMs = delayMs;
+    assert.equal(validateDocument(document).valid, true);
+    const result = assess(document);
+    assert.equal(result.status, "passed", `${delayMs}ms: ${failures(result)}`);
+    assert.ok(result.trace.every(entry => entry.action?.type !== "advance-time" || entry.action.ms <= 3_600_000));
+    assert.equal(result.diagnostics.some(item => item.code === "INVALID_TIME_STEP"), false);
+  }
+});
+
 for (const number of [8, 9]) test(`course ${number}: ordered stop and deadline events at the boundary remain replayable`, () => {
   const document = wired(number); document.components.find(component => component.id === "kt").settings.delayMs = 800;
   let initial = simulate(document, initialRuntime(document));

@@ -1,5 +1,4 @@
 import { readFile, writeFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 
 // Separate the existing source paths; original SVG files and terminal coordinates stay intact.
 const definitions = {

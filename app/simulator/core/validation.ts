@@ -37,19 +37,22 @@ export function validateDocument(input: unknown): DocumentValidation {
   for (const [index, component] of input.components.entries()) {
     if (!record(component) || !safeId(component.id)) { errors.push(`第 ${index + 1} 个元件标识无效`); continue; }
     if (ports.has(component.id)) errors.push(`元件标识重复：${component.id}`);
-    const definition = CATALOG.find((entry) => entry.type === component.type);
-    if (!definition) errors.push(`未知元件类型：${String(component.type).slice(0, 80)}`);
+    // Invalid JSON fields may shadow toString/valueOf. Do not coerce untrusted
+    // objects while constructing a validation error or checking a type.
+    const type = typeof component.type === "string" ? component.type : undefined;
+    const definition = CATALOG.find((entry) => entry.type === type);
+    if (!definition) errors.push(`未知元件类型：${type?.slice(0, 80) ?? "类型必须为字符串"}`);
     if (!text(component.label, 80)) errors.push(`元件 ${component.id} 的名称无效`);
     if (!point(component.position)) errors.push(`元件 ${component.id} 的世界坐标无效`);
-    if (component.size !== undefined && (!isWireDuct(String(component.type)) || !record(component.size) || Object.keys(component.size).some(key => key !== "width" && key !== "height") || ![component.size.width, component.size.height].every(value => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`元件 ${component.id} 的线槽长宽须为 ${DUCT_MIN_SIZE} 至 ${DUCT_MAX_SIZE} 个世界单位`);
+    if (component.size !== undefined && (type === undefined || !isWireDuct(type) || !record(component.size) || Object.keys(component.size).some(key => key !== "width" && key !== "height") || ![component.size.width, component.size.height].every(value => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`元件 ${component.id} 的线槽长宽须为 ${DUCT_MIN_SIZE} 至 ${DUCT_MAX_SIZE} 个世界单位`);
     if (component.linkedTo !== undefined && (component.type !== "auxiliary-no" || !safeId(component.linkedTo))) errors.push(`元件 ${component.id} 的辅助触点机械绑定无效`);
     if (component.settings !== undefined && (component.type !== "timer380" || !record(component.settings) || Object.keys(component.settings).some(key => key !== "delayMs") || typeof component.settings.delayMs !== "number" || !Number.isFinite(component.settings.delayMs) || component.settings.delayMs < 1 || component.settings.delayMs > 3_600_000)) errors.push(`元件 ${component.id} 的延时设置须为 1 至 3600000 毫秒`);
     ports.set(component.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));
   }
   for (const component of input.components) {
-    if (!record(component) || component.type !== "auxiliary-no" || component.linkedTo === undefined) continue;
+    if (!record(component) || !safeId(component.id) || component.type !== "auxiliary-no" || component.linkedTo === undefined) continue;
     const owner = input.components.find(candidate => record(candidate) && candidate.id === component.linkedTo);
-    if (!record(owner) || !["contactor220", "contactor380", "relay380"].includes(String(owner.type))) errors.push(`辅助触点 ${String(component.id)} 必须绑定有效的接触器或中间继电器`);
+    if (!record(owner) || typeof owner.type !== "string" || !["contactor220", "contactor380", "relay380"].includes(owner.type)) errors.push(`辅助触点 ${component.id} 必须绑定有效的接触器或中间继电器`);
   }
   const wireIds = new Set<string>();
   const connected = new Set<string>();

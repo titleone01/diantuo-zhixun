@@ -1,4 +1,4 @@
-import "./chunk-NWFXF4UX.js";
+import "./chunk-MYXFJE25.js";
 
 // node_modules/pdfjs-dist/build/pdf.mjs
 var isNodeJS = typeof process === "object" && process + "" === "[object process]" && !process.versions.nw && !(process.versions.electron && process.type && process.type !== "browser");

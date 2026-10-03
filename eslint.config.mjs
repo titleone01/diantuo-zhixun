@@ -15,6 +15,16 @@ const eslintConfig = defineConfig([
     "build/**",
     "docs/**",
     "pages-dist/**",
+    // Runtime state, generated bundles and vendored browser libraries are not source.
+    ".local/**",
+    ".local-training/**",
+    ".wrangler/**",
+    ".vinext/**",
+    ".openai/**",
+    "outputs/**",
+    "work/**",
+    "coverage/**",
+    "public/sim-assets/pdfjs/**",
     "next-env.d.ts",
   ]),
   eslint.configs.recommended,
@@ -36,6 +46,10 @@ const eslintConfig = defineConfig([
       react: {
         version: "detect",
       },
+    },
+    rules: {
+      // Destructuring deliberately omits snapshot metadata before spreading the rest.
+      "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
     },
   },
   {

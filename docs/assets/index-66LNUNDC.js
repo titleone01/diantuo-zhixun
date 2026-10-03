@@ -1,7 +1,7 @@
 import {
   __commonJS,
   __toESM
-} from "./chunks/chunk-NWFXF4UX.js";
+} from "./chunks/chunk-MYXFJE25.js";
 
 // node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
@@ -969,7 +969,7 @@ var require_react_development = __commonJS({
       exports.useTransition = function() {
         return resolveDispatcher().useTransition();
       };
-      exports.version = "19.2.6";
+      exports.version = "19.2.8";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
@@ -1496,7 +1496,7 @@ var require_react_dom_development = __commonJS({
       exports.useFormStatus = function() {
         return resolveDispatcher().useHostTransitionStatus();
       };
-      exports.version = "19.2.6";
+      exports.version = "19.2.8";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
@@ -21288,9 +21288,9 @@ var require_react_dom_client_development = __commonJS({
       };
       (function() {
         var isomorphicReactPackageVersion = React2.version;
-        if ("19.2.6" !== isomorphicReactPackageVersion)
+        if ("19.2.8" !== isomorphicReactPackageVersion)
           throw Error(
-            'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.6\nLearn more: https://react.dev/warnings/version-mismatch")
+            'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.8\nLearn more: https://react.dev/warnings/version-mismatch")
           );
       })();
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
@@ -21314,10 +21314,10 @@ var require_react_dom_client_development = __commonJS({
       if (!(function() {
         var internals = {
           bundleType: 1,
-          version: "19.2.6",
+          version: "19.2.8",
           rendererPackageName: "react-dom",
           currentDispatcherRef: ReactSharedInternals,
-          reconcilerVersion: "19.2.6"
+          reconcilerVersion: "19.2.8"
         };
         internals.overrideHookState = overrideHookState;
         internals.overrideHookStateDeletePath = overrideHookStateDeletePath;
@@ -21408,7 +21408,7 @@ var require_react_dom_client_development = __commonJS({
         listenToAllSupportedEvents(container);
         return new ReactDOMHydrationRoot(initialChildren);
       };
-      exports.version = "19.2.6";
+      exports.version = "19.2.8";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
@@ -21719,7 +21719,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
           inst: { value, getSnapshot }
         });
         var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
-        useLayoutEffect2(
+        useLayoutEffect3(
           function() {
             inst.value = value;
             inst.getSnapshot = getSnapshot;
@@ -21753,7 +21753,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState16 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect2 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState16 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect3 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
@@ -32272,19 +32272,20 @@ function validateDocument(input) {
       continue;
     }
     if (ports.has(component2.id)) errors.push(`\u5143\u4EF6\u6807\u8BC6\u91CD\u590D\uFF1A${component2.id}`);
-    const definition = CATALOG.find((entry) => entry.type === component2.type);
-    if (!definition) errors.push(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${String(component2.type).slice(0, 80)}`);
+    const type = typeof component2.type === "string" ? component2.type : void 0;
+    const definition = CATALOG.find((entry) => entry.type === type);
+    if (!definition) errors.push(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${type?.slice(0, 80) ?? "\u7C7B\u578B\u5FC5\u987B\u4E3A\u5B57\u7B26\u4E32"}`);
     if (!text(component2.label, 80)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u540D\u79F0\u65E0\u6548`);
     if (!point(component2.position)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u4E16\u754C\u5750\u6807\u65E0\u6548`);
-    if (component2.size !== void 0 && (!isWireDuct(String(component2.type)) || !record(component2.size) || Object.keys(component2.size).some((key3) => key3 !== "width" && key3 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
+    if (component2.size !== void 0 && (type === void 0 || !isWireDuct(type) || !record(component2.size) || Object.keys(component2.size).some((key3) => key3 !== "width" && key3 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
     if (component2.settings !== void 0 && (component2.type !== "timer380" || !record(component2.settings) || Object.keys(component2.settings).some((key3) => key3 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < 1 || component2.settings.delayMs > 36e5)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 3600000 \u6BEB\u79D2`);
     ports.set(component2.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));
   }
   for (const component2 of input.components) {
-    if (!record(component2) || component2.type !== "auxiliary-no" || component2.linkedTo === void 0) continue;
+    if (!record(component2) || !safeId(component2.id) || component2.type !== "auxiliary-no" || component2.linkedTo === void 0) continue;
     const owner = input.components.find((candidate) => record(candidate) && candidate.id === component2.linkedTo);
-    if (!record(owner) || !["contactor220", "contactor380", "relay380"].includes(String(owner.type))) errors.push(`\u8F85\u52A9\u89E6\u70B9 ${String(component2.id)} \u5FC5\u987B\u7ED1\u5B9A\u6709\u6548\u7684\u63A5\u89E6\u5668\u6216\u4E2D\u95F4\u7EE7\u7535\u5668`);
+    if (!record(owner) || typeof owner.type !== "string" || !["contactor220", "contactor380", "relay380"].includes(owner.type)) errors.push(`\u8F85\u52A9\u89E6\u70B9 ${component2.id} \u5FC5\u987B\u7ED1\u5B9A\u6709\u6548\u7684\u63A5\u89E6\u5668\u6216\u4E2D\u95F4\u7EE7\u7535\u5668`);
   }
   const wireIds = /* @__PURE__ */ new Set();
   const connected = /* @__PURE__ */ new Set();
@@ -32565,7 +32566,8 @@ function assessMotorCourse(document2, lessonId) {
       step(interruption.interrupt, `\u8BA1\u65F6\u4E2D${interruption.name}\u52A8\u4F5C`);
       add(`timer-${interruption.name}-off`, `${interruption.name}\u52A8\u4F5C\u53D6\u6D88\u8BA1\u65F6\u5E76\u91CA\u653E\u7EBF\u5708`, allStopped() && allReleased(), "TIMER_RESET_INEFFECTIVE", ["kt", ...motorRoles], "error");
       step(interruption.reset, `${interruption.name}\u6062\u590D`);
-      wait(delayMs + 1);
+      wait(delayMs);
+      wait(1);
       add(`timer-${interruption.name}-reset`, `${interruption.name}\u6062\u590D\u540E\u65E7\u671F\u9650\u4E0D\u80FD\u4F7F\u7535\u673A\u542F\u52A8`, allStopped() && allReleased(), "UNEXPECTED_RESTART", ["kt", ...motorRoles], "error");
     }
   }
@@ -33906,7 +33908,7 @@ function PdfDrawing({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     setError("");
     void (async () => {
       try {
-        const pdfjs = await import("./chunks/pdf-5TRONQPN.js");
+        const pdfjs = await import("./chunks/pdf-XJT72RMM.js");
         if (!active) return;
         const base = "/diantuo-zhixun/";
         const assets = `${base.endsWith("/") ? base : `${base}/`}sim-assets/pdfjs/`;
@@ -34840,8 +34842,13 @@ function Workspace(props) {
   const board = (0, import_react16.useRef)(null);
   const diagramPanel = (0, import_react16.useRef)(null);
   const importInput = (0, import_react16.useRef)(null);
+  const importRequest = (0, import_react16.useRef)(0);
   const drawingInput = (0, import_react16.useRef)(null);
   const frozen = running || readOnly;
+  const frozenRef = (0, import_react16.useRef)(frozen);
+  (0, import_react16.useLayoutEffect)(() => {
+    frozenRef.current = frozen;
+  }, [frozen]);
   const initial = (0, import_react16.useMemo)(() => initialRuntime(circuit, false), [circuit]);
   const frameInitialView = (0, import_react16.useCallback)(() => {
     const components = docRef.current.components;
@@ -35115,6 +35122,23 @@ function Workspace(props) {
     setTransferMode(null);
     setMessage("\u7535\u8DEF\u5DF2\u5BFC\u5165\uFF0C\u53EF\u64A4\u9500\u672C\u6B21\u5BFC\u5165\u3002");
     setTimeout(frameInitialView, 80);
+  };
+  const importFile = async (file) => {
+    if (frozenRef.current) return;
+    const request = ++importRequest.current;
+    const original = docRef.current;
+    const generation = session.generation;
+    try {
+      if (file.size > 5 * 1024 * 1024) throw new Error("\u7535\u8DEF\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7 5 MB\u3002");
+      const text2 = await file.text();
+      if (request !== importRequest.current || original !== docRef.current || generation !== session.generation || frozenRef.current) {
+        setMessage("\u8BFB\u53D6\u671F\u95F4\u7535\u8DEF\u6216\u4EFF\u771F\u72B6\u6001\u5DF2\u53D8\u5316\uFF0C\u5F53\u524D\u63A5\u7EBF\u4FDD\u6301\u4E0D\u53D8\uFF0C\u8BF7\u91CD\u65B0\u5BFC\u5165\u3002");
+        return;
+      }
+      importDocument(text2);
+    } catch (error) {
+      setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
+    }
   };
   const perform = async (key3, callback) => {
     if (!callback || busy) return;
@@ -35524,13 +35548,7 @@ function Workspace(props) {
     /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
-      if (!file) return;
-      try {
-        if (file.size > 5 * 1024 * 1024) throw new Error("\u7535\u8DEF\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7 5 MB\u3002");
-        importDocument(await file.text());
-      } catch (error) {
-        setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
-      }
+      if (file) await importFile(file);
     } }),
     /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
@@ -35569,11 +35587,22 @@ function SimulatorEditor(props) {
 var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 function DocumentPreview({ document: document2, className = "" }) {
   const boxes = document2.components.map((component2) => ({ component: component2, definition: componentSize(component2) }));
-  const wirePoints = document2.wires.flatMap((wire) => wire.style === "curve" ? curveControlPoints(document2, wire) : wireRoute(document2, wire));
-  const x = boxes.length ? Math.min(...boxes.map(({ component: component2 }) => component2.position.x), ...wirePoints.map((point2) => point2.x)) - 28 : 0;
-  const y = boxes.length ? Math.min(...boxes.map(({ component: component2 }) => component2.position.y), ...wirePoints.map((point2) => point2.y)) - 28 : 0;
-  const right = boxes.length ? Math.max(...boxes.map(({ component: component2, definition }) => component2.position.x + definition.width), ...wirePoints.map((point2) => point2.x)) + 28 : 500;
-  const bottom = boxes.length ? Math.max(...boxes.map(({ component: component2, definition }) => component2.position.y + definition.height), ...wirePoints.map((point2) => point2.y)) + 43 : 300;
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  const include = (x2, y2) => {
+    minX = Math.min(minX, x2);
+    minY = Math.min(minY, y2);
+    maxX = Math.max(maxX, x2);
+    maxY = Math.max(maxY, y2);
+  };
+  for (const { component: component2, definition } of boxes) {
+    include(component2.position.x, component2.position.y);
+    include(component2.position.x + definition.width, component2.position.y + definition.height);
+  }
+  for (const wire of document2.wires) for (const point2 of wire.style === "curve" ? curveControlPoints(document2, wire) : wireRoute(document2, wire)) include(point2.x, point2.y);
+  const x = boxes.length ? minX - 28 : 0;
+  const y = boxes.length ? minY - 28 : 0;
+  const right = boxes.length ? maxX + 28 : 500;
+  const bottom = boxes.length ? maxY + 43 : 300;
   const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("g", { children: [
     /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DeviceArtwork, { type: component2.type }) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
@@ -35613,11 +35642,36 @@ var ApiError = class extends Error {
     this.code = code;
   }
 };
+var API_TIMEOUT_MS = 3e4;
 async function api(path, init2) {
-  const response = await fetch(`/api${path}`, { credentials: "same-origin", ...init2, headers: { ...init2?.body instanceof FormData ? {} : { "Content-Type": "application/json" }, ...init2?.headers } });
-  const body = await response.json().catch(() => ({ error: "\u670D\u52A1\u6682\u65F6\u4E0D\u53EF\u7528\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5" }));
-  if (!response.ok) throw new ApiError(String(body.error || body.message || "\u8BF7\u6C42\u5931\u8D25"), response.status, typeof body.code === "string" ? body.code : void 0);
-  return body;
+  const controller = new AbortController();
+  const cancel = () => controller.abort(init2?.signal?.reason);
+  if (init2?.signal?.aborted) cancel();
+  else init2?.signal?.addEventListener("abort", cancel, { once: true });
+  let timedOut = false;
+  const timer2 = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, API_TIMEOUT_MS);
+  try {
+    const headers = new Headers(init2?.headers);
+    if (!(init2?.body instanceof FormData) && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+    const response = await fetch(`/api${path}`, { credentials: "same-origin", ...init2, headers, signal: controller.signal });
+    const body = await response.json().catch(() => null);
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      throw new ApiError("\u670D\u52A1\u54CD\u5E94\u683C\u5F0F\u5F02\u5E38\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5", response.ok ? 502 : response.status, "INVALID_RESPONSE");
+    }
+    const result = body;
+    if (!response.ok) throw new ApiError(String(result.error || result.message || "\u8BF7\u6C42\u5931\u8D25"), response.status, typeof result.code === "string" ? result.code : void 0);
+    return result;
+  } catch (error) {
+    if (timedOut) throw new ApiError("\u8BF7\u6C42\u8D85\u65F6\uFF1B\u5982\u6B63\u5728\u4FDD\u5B58\uFF0C\u8BF7\u5148\u786E\u8BA4\u8349\u7A3F\u7ED3\u679C\u518D\u91CD\u8BD5", 408, "REQUEST_TIMEOUT");
+    if (init2?.signal?.aborted) throw init2.signal.reason;
+    throw error;
+  } finally {
+    clearTimeout(timer2);
+    init2?.signal?.removeEventListener("abort", cancel);
+  }
 }
 var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) });
 var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then((result) => result.assessment);
@@ -36722,6 +36776,18 @@ function readRecovery(raw) {
   if (saved != null && (typeof saved !== "object" || typeof saved.id !== "string" || !/^[a-zA-Z0-9_-]{1,80}$/.test(saved.id) || !Number.isInteger(saved.revision) || saved.revision < 1 || !validateDocument(saved.document).valid)) throw new Error("\u672C\u5730\u8349\u7A3F\u4FEE\u8BA2\u4FE1\u606F\u65E0\u6548\uFF0C\u672A\u81EA\u52A8\u8F7D\u5165");
   return { document: checked.document, saved: saved ?? null, dirty: recovery.dirty || !!saved && JSON.stringify(checked.document) !== JSON.stringify(saved.document) };
 }
+function persistRecovery(storage, key3, state) {
+  const next = JSON.stringify(state);
+  const previous = storage.getItem(key3);
+  if (previous) {
+    try {
+      readRecovery(previous);
+    } catch {
+      storage.setItem(`${key3}:unreadable:${crypto.randomUUID()}`, previous);
+    }
+  }
+  storage.setItem(key3, next);
+}
 function recoveryAfterSave(current, submitted, saved) {
   return { document: current, saved, dirty: JSON.stringify(current) !== JSON.stringify(submitted) };
 }
@@ -36844,7 +36910,6 @@ function SimulatorApp({ initialSection = "simulator" }) {
   const [busy, setBusy] = (0, import_react24.useState)(false);
   const [query, setQuery] = (0, import_react24.useState)("");
   const [category, setCategory] = (0, import_react24.useState)("all");
-  const [difficulty, setDifficulty] = (0, import_react24.useState)("all");
   const [previewLesson, setPreviewLesson] = (0, import_react24.useState)("");
   const [componentDetail, setComponentDetail] = (0, import_react24.useState)(null);
   const [publication, setPublication] = (0, import_react24.useState)(null);
@@ -36866,9 +36931,9 @@ function SimulatorApp({ initialSection = "simulator" }) {
   const [hydratedFor, setHydratedFor] = (0, import_react24.useState)(null);
   function writeRecovery(ownerId, state) {
     try {
-      localStorage.setItem(draftKey(ownerId), JSON.stringify(state));
+      persistRecovery(localStorage, draftKey(ownerId), state);
     } catch {
-      setError("\u6D4F\u89C8\u5668\u6062\u590D\u7A7A\u95F4\u4E0D\u8DB3\uFF0C\u8BF7\u53CA\u65F6\u4FDD\u5B58\u8349\u7A3F\u6216\u5BFC\u51FA\u7535\u8DEF");
+      setError("\u6D4F\u89C8\u5668\u6062\u590D\u8BB0\u5F55\u65E0\u6CD5\u5199\u5165\uFF0C\u539F\u8BB0\u5F55\u5DF2\u4FDD\u7559\uFF1B\u8BF7\u53CA\u65F6\u4FDD\u5B58\u8349\u7A3F\u6216\u5BFC\u51FA\u7535\u8DEF");
     }
   }
   function switchAccount(next) {
@@ -37203,7 +37268,6 @@ function SimulatorApp({ initialSection = "simulator" }) {
     setRefresh((value) => value + 1);
     setPublication((current) => current?.id === item.id ? result.publication : current);
   }
-  const filteredLessons = LESSONS.filter((l) => (category === "all" || l.category === category) && (difficulty === "all" || (difficulty === "basic" ? l.id !== "motor-self-hold" : l.id === "motor-self-hold")) && (l.title + l.description).includes(query));
   const filteredComponents = CATALOG.filter((c) => (category === "all" || c.category === category) && (c.name + c.description).includes(query));
   if (loading) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-loading", children: [
     /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Brand, {}),
@@ -37297,7 +37361,9 @@ function SimulatorApp({ initialSection = "simulator" }) {
             /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: c.description }),
             /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("small", { children: [
               c.terminals.length,
-              " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50\u3000\u67E5\u770B\u8BE6\u60C5 \u2192"
+              " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50",
+              "\u3000",
+              "\u67E5\u770B\u8BE6\u60C5 \u2192"
             ] })
           ] })
         ] }, c.type)) })

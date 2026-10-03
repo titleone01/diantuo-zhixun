@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 
 const bundle=await build({stdin:{contents:'export * from "./workspace-session";export * from "./core/lessons";',resolveDir:fileURLToPath(new URL('../app/simulator/',import.meta.url))},bundle:true,format:'esm',platform:'node',write:false,logLevel:'silent'});
-const {WorkspaceBoundary,readRecovery,recoveryAfterSave,createLessonDocument}=await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString('base64')}`);
+const {WorkspaceBoundary,readRecovery,persistRecovery,recoveryAfterSave,createLessonDocument}=await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString('base64')}`);
 const lesson=()=>createLessonDocument('motor-jog',{wired:true});
 const saved=(document,revision=1)=>({id:'my-draft',title:document.title,document,revision,createdAt:'2026-09-30',updatedAt:'2026-09-30'});
 
@@ -36,4 +36,27 @@ test('save completion: edits made during the request remain dirty and become the
   const acknowledgement=saved(submitted,2),next=recoveryAfterSave(current,submitted,acknowledgement);
   assert.equal(next.dirty,true);assert.equal(next.document.title,current.title);assert.equal(next.document.components[0].position.x,current.components[0].position.x);assert.equal(next.saved.revision,2);assert.deepEqual(next.saved.document,submitted);
   const second=recoveryAfterSave(current,structuredClone(current),saved(current,3));assert.equal(second.dirty,false);assert.equal(second.saved.revision,3);
+});
+
+test('recovery writes preserve unreadable historical bytes before replacing the working record',()=>{
+  const key='recovery:member-A',raw='{"document": broken historical data';
+  const values=new Map([[key,raw],['recovery:member-B','other account']]);
+  const storage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};
+  const next={document:lesson(),saved:null,dirty:true};
+  persistRecovery(storage,key,next);
+  const backups=[...values].filter(([name])=>name.startsWith(`${key}:unreadable:`));
+  assert.equal(backups.length,1);assert.equal(backups[0][1],raw);
+  assert.deepEqual(readRecovery(values.get(key)),next);
+  persistRecovery(storage,key,{...next,dirty:false});
+  assert.equal(values.size,3,'valid recovery does not create another backup');
+  assert.equal(values.get('recovery:member-B'),'other account');
+});
+
+test('recovery quota failure cannot overwrite the only unreadable copy',()=>{
+  const key='recovery:member-A',raw='old unreadable data',values=new Map([[key,raw]]);
+  const storage={getItem:key=>values.get(key)??null,setItem:(name,value)=>{
+    if(name!==key)throw new Error('QuotaExceededError');values.set(name,value);
+  }};
+  assert.throws(()=>persistRecovery(storage,key,{document:lesson(),saved:null,dirty:true}),/QuotaExceededError/);
+  assert.equal(values.get(key),raw);
 });

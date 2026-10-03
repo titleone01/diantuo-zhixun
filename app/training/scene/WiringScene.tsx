@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import * as THREE from "three";
 import { MapControls as MapControlsImpl } from "three/examples/jsm/controls/MapControls.js";
@@ -12,6 +12,7 @@ import { DeviceModel } from "./DeviceModels";
 import { resolveTerminal } from "./catalog";
 import { BOARD_DEPTH, BOARD_WIDTH } from "./layout";
 import { buildWireRoute } from "./routing";
+import { createScenePersistence, type ScenePersistence } from "./persistence";
 import { useWiringSceneStore } from "./store";
 import type { PersistedWiringScene } from "./store";
 import { Wire3D } from "./Wire3D";
@@ -172,7 +173,8 @@ function SceneToolbar() {
   );
 }
 
-function SceneStatus() {
+function SceneStatus({ persistence }: { persistence: ScenePersistence }) {
+  const storageStatus = useSyncExternalStore(persistence.subscribe, persistence.getSnapshot, persistence.getServerSnapshot);
   const message = useWiringSceneStore((state) => state.message);
   const instances = useWiringSceneStore((state) => state.instances);
   const wires = useWiringSceneStore((state) => state.wires);
@@ -193,7 +195,7 @@ function SceneStatus() {
   }), [instances, wires]);
   return (
     <footer className="scene-statusbar">
-      <b>操作提示</b><span>{message}</span><em>本机自动保存 · 器件 {instances.length} · 导线 {wires.length}</em>
+      <b>操作提示</b><span>{message}</span><em role={storageStatus.state === "blocked" ? "alert" : undefined}>{storageStatus.message} · 器件 {instances.length} · 导线 {wires.length}</em>
       <output className="scene-debug-output" data-wire-endpoints={JSON.stringify(debug)} aria-hidden="true" />
     </footer>
   );
@@ -224,37 +226,23 @@ export function WiringScene({ storageKey = "diantuo-wiring-scene-v2", simulation
   const undo = useWiringSceneStore((state) => state.undo);
   const redo = useWiringSceneStore((state) => state.redo);
   const syncRuntime = useWiringSceneStore((state) => state.syncRuntime);
-  const storageReadyRef = useRef(false);
+  const persistence = useMemo(() => createScenePersistence(storageKey), [storageKey]);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(storageKey);
-      if (stored) {
-        const scene = JSON.parse(stored) as PersistedWiringScene;
-        if (
-          scene.version === 2
-          && Array.isArray(scene.instances)
-          && Array.isArray(scene.wires)
-          && Array.isArray(scene.past)
-          && Array.isArray(scene.future)
-          && ["main", "control", "earth"].includes(scene.wireKind)
-        ) hydrateScene(scene);
-      }
-    } catch {
-      localStorage.removeItem(storageKey);
-    } finally {
-      storageReadyRef.current = true;
-    }
-  }, [hydrateScene, storageKey]);
+    persistence.load(hydrateScene);
+  }, [hydrateScene, persistence]);
 
   useEffect(() => {
-    if (!storageReadyRef.current) return;
+    if (persistence.getSnapshot().state !== "ready") return;
     const timer = window.setTimeout(() => {
+      // Hydration can replace the store after this render. Read the latest
+      // snapshot so the initial timer cannot overwrite it with the template.
+      const { instances, wires, wireKind, wireStyle, past, future } = useWiringSceneStore.getState();
       const scene: PersistedWiringScene = { version: 2, instances, wires, wireKind, wireStyle, past, future };
-      localStorage.setItem(storageKey, JSON.stringify(scene));
+      persistence.save(scene);
     }, 260);
     return () => window.clearTimeout(timer);
-  }, [future, instances, past, wireKind, wireStyle, wires, storageKey]);
+  }, [future, instances, past, wireKind, wireStyle, wires, persistence]);
 
   useEffect(() => {
     syncRuntime();
@@ -349,7 +337,7 @@ export function WiringScene({ storageKey = "diantuo-wiring-scene-v2", simulation
         {simulationEnabled ? <DolControlPanel /> : <section className="project-pending"><b>{selectedProjectName}</b><p>可在上方上传或查看本项目图纸。该项目的仿真回路尚未开放。</p><p>选择“电动机连续运行控制电路”可继续本轮直接启动训练。</p></section>}
       </aside>
       {!simulationEnabled && <div className="project-review-overlay"><b>{selectedProjectName}</b><span>图纸查看模式 · 当前接线已保留</span></div>}
-      <SceneStatus />
+      <SceneStatus persistence={persistence} />
     </section>
   );
 }

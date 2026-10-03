@@ -177,7 +177,9 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
     for (const interruption of interruptions) {
       fresh(`计时中${interruption.name}`); tap("sb1"); wait(Math.max(0, delayMs - 1)); step(interruption.interrupt, `计时中${interruption.name}动作`);
       add(`timer-${interruption.name}-off`, `${interruption.name}动作取消计时并释放线圈`, allStopped() && allReleased(), "TIMER_RESET_INEFFECTIVE", ["kt", ...motorRoles], "error");
-      step(interruption.reset, `${interruption.name}恢复`); wait(delayMs + 1);
+      // Keep each action within the engine's one-hour limit, including a legal
+      // one-hour timer setting; the following millisecond still probes after expiry.
+      step(interruption.reset, `${interruption.name}恢复`); wait(delayMs); wait(1);
       add(`timer-${interruption.name}-reset`, `${interruption.name}恢复后旧期限不能使电机启动`, allStopped() && allReleased(), "UNEXPECTED_RESTART", ["kt", ...motorRoles], "error");
     }
   }

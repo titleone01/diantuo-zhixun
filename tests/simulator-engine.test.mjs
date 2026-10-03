@@ -170,7 +170,7 @@ test("new simulator: sprites retain original aspect ratio and calibrated handles
     const svg=readFileSync(new URL(`../public/sim-assets/${source}.svg`,import.meta.url),"utf8");
     const scale=def.type==="relay380"?2.5:def.type==="auxiliary-no"?1.5:def.type==="terminal"?0.75:1;
     const crop=def.type==="auxiliary-no"?{x:112,y:31,width:39.5,height:137}:{x:0,y:0};
-    const viewbox=svg.match(/viewBox="([^\"]+)"/)?.[1].split(/\s+/).map(Number);
+    const viewbox=svg.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
     const width=Number(svg.match(/\bwidth="([\d.]+)(?:px)?"/)?.[1]??viewbox?.[2]);
     const height=Number(svg.match(/\bheight="([\d.]+)(?:px)?"/)?.[1]??viewbox?.[3]);
     assert.ok(Math.abs(def.width-(crop.width??width)*scale)<0.001,`${def.type} width`);assert.ok(Math.abs(def.height-(crop.height??height)*scale)<0.001,`${def.type} height`);

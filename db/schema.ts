@@ -1,4 +1,4 @@
-import { integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, primaryKey, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 // Public signup is disabled. Invitation acceptance creates user and credential
 // rows in one D1 transaction; Better Auth verifies passwords and owns sessions.
@@ -40,7 +40,7 @@ export const publications = sqliteTable("publications", {
 export const reactions = sqliteTable("reactions", {
   userId: text("userId").notNull().references(() => user.id), publicationId: text("publicationId").notNull().references(() => publications.id, { onDelete: "cascade" }),
   kind: text("kind").notNull(), createdAt: integer("createdAt").notNull(),
-}, table => [primaryKey({ columns: [table.userId, table.publicationId, table.kind] })]);
+}, table => [primaryKey({ columns: [table.userId, table.publicationId, table.kind] }), index("reactions_publication_kind").on(table.publicationId, table.kind)]);
 export const media = sqliteTable("media", {
   id: text("id").primaryKey(), ownerId: text("ownerId").notNull().references(() => user.id), objectKey: text("objectKey").notNull().unique(), name: text("name").notNull(),
   type: text("type").notNull(), size: integer("size").notNull(), createdAt: integer("createdAt").notNull(),
@@ -50,7 +50,7 @@ export const circuitMedia = sqliteTable("circuit_media", {
 }, table => [primaryKey({ columns: [table.circuitId, table.mediaId] })]);
 export const publicationMedia = sqliteTable("publication_media", {
   publicationId: text("publicationId").notNull().references(() => publications.id, { onDelete: "cascade" }), mediaId: text("mediaId").notNull().references(() => media.id),
-}, table => [primaryKey({ columns: [table.publicationId, table.mediaId] })]);
+}, table => [primaryKey({ columns: [table.publicationId, table.mediaId] }), index("publication_media_media").on(table.mediaId)]);
 export const assessments = sqliteTable("assessments", {
   id: text("id").primaryKey(), userId: text("userId").notNull().references(() => user.id), lessonId: text("lessonId").notNull(), documentHash: text("documentHash").notNull(),
   result: text("result").notNull(), createdAt: integer("createdAt").notNull(),

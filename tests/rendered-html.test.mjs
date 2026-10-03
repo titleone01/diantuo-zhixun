@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { libraryScope } from "../app/training/scene/library-scope.ts";
 
 async function publishedPageSource() {
   const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf8");
@@ -59,7 +58,9 @@ test("keeps component assets, scene instances, 3D rendering, and simulation sepa
   assert.match(canvas, /<Canvas/);
   assert.match(canvas, /orthographic/);
   assert.match(canvas, /application\/x-electrical-asset/);
-  assert.match(canvas, /localStorage/);
+  // Persistence behavior (including corrupt drafts and quota errors) is covered
+  // by scene-persistence.test.mjs; the canvas delegates to that boundary.
+  assert.match(canvas, /createScenePersistence\(storageKey\)/);
   assert.match(canvas, /four-rail-cabinet/);
   assert.match(canvas, /mouseButtons\.MIDDLE = THREE\.MOUSE\.PAN/);
   assert.match(canvas, /screenSpacePanning/);
