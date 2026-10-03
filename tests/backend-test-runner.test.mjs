@@ -28,6 +28,7 @@ test("isolated config preserves worker compatibility while separating all writab
   assert.notEqual(config.d1_databases[0].database_id, "production");
   assert.notEqual(config.r2_buckets[0].bucket_name, "production");
   assert.equal(base.assets.directory, ".local/app");
+  assert.notEqual(config.name, isolatedConfig(base, directory, projectRoot).name);
 });
 
 test("cleanup guard permits only a direct runner-created temporary directory", () => {

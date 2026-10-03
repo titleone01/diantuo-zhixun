@@ -277,6 +277,6 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     assert.equal((await admin.call(`/members/${target.id}`, "PATCH", { disabled: false })).status, 200);
     await b.login(userB);
   });
-  const evidence = { at: new Date().toISOString(), origin, memberUsernames: [userA.username, userB.username], circuitId: circuit.id, circuitHash: hash(JSON.stringify(circuit.document)), publicationId: publication.id, mediaId, imageHash: hash(png), pdfId, pdfHash: hash(pdf) };
+  const evidence = { at: new Date().toISOString(), origin, memberUsernames: [userA.username, userB.username], circuitId: circuit.id, circuitHash: hash(JSON.stringify(circuit.document)), publicationId: publication.id, publicationHash:hash(JSON.stringify(publication.document)), mediaId, imageHash: hash(png), pdfId, pdfHash: hash(pdf) };
   await writeFile(path.join(artifactDirectory, "backend-acceptance.json"), JSON.stringify(evidence, null, 2));
 });

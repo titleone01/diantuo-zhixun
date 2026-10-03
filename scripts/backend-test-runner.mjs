@@ -36,14 +36,16 @@ export function parseTestOptions(args) {
 }
 
 export function isolatedConfig(base, directory, projectRoot = root) {
+  const id = randomUUID();
+  const name = `diantuo-test-${id}`;
   return {
     ...base,
     $schema: undefined,
-    name: "diantuo-backend-test",
+    name,
     main: path.join(projectRoot, "worker", "local.ts"),
     assets: { ...base.assets, directory: path.join(directory, "assets") },
-    d1_databases: [{ binding: "DB", database_name: "diantuo-backend-test", database_id: randomUUID(), migrations_dir: path.join(projectRoot, "db", "migrations") }],
-    r2_buckets: [{ binding: "MEDIA", bucket_name: "diantuo-backend-test-media" }],
+    d1_databases: [{ binding: "DB", database_name: name, database_id: id, migrations_dir: path.join(projectRoot, "db", "migrations") }],
+    r2_buckets: [{ binding: "MEDIA", bucket_name: `${name}-media` }],
     observability: { enabled: false },
   };
 }
@@ -63,7 +65,7 @@ export function localOnlyEnvironment(environment) {
   return result;
 }
 
-async function unusedPort() {
+export async function unusedPort() {
   const listener = createServer();
   await new Promise((resolve, reject) => {
     listener.once("error", reject);
@@ -75,7 +77,7 @@ async function unusedPort() {
 }
 
 // Track only children launched by this runner; never kill a process found by port/name.
-function launch(args, cwd, env, timeoutMs) {
+export function launch(args, cwd, env, timeoutMs) {
   const child = spawn(process.execPath, args, { cwd, env, stdio: "inherit", windowsHide: true, detached: process.platform !== "win32" });
   let failure;
   const exited = new Promise(resolve => {
@@ -94,6 +96,8 @@ function launch(args, cwd, env, timeoutMs) {
         });
       } else {
         try { process.kill(-child.pid, "SIGTERM"); } catch (error) { if (error.code !== "ESRCH") throw error; }
+        const ended = await Promise.race([exited.then(() => true), delay(3000).then(() => false)]);
+        if (!ended) { try { process.kill(-child.pid, "SIGKILL"); } catch (error) { if (error.code !== "ESRCH") throw error; } }
       }
       await exited;
     })();
@@ -120,7 +124,7 @@ export async function runBackendTests(args) {
   const artifacts = path.join(directory, "artifacts");
   const env = {
     ...(options.url ? process.env : localOnlyEnvironment(process.env)), CI: "true", WRANGLER_SEND_METRICS: "false", WRANGLER_SEND_ERROR_REPORTS: "false", WRANGLER_WRITE_LOGS: "false",
-    WRANGLER_LOG_PATH: path.join(directory, "logs"), MINIFLARE_REGISTRY_PATH: path.join(directory, "registry"),
+    WRANGLER_LOG_PATH: path.join(directory, "logs"), WRANGLER_REGISTRY_PATH: path.join(directory, "registry"),
     DIANTUO_TEST_ARTIFACT_DIR: artifacts,
   };
   const launched = [];
