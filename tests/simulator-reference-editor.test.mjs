@@ -238,6 +238,27 @@ test('duct resizing commits one undo entry per gesture, supports redo and cancel
   } finally { restore(); }
 });
 
+test('prearranging a legacy board and routing all wires is one undoable operation and respects frozen workspaces', () => {
+  const restore = environment();
+  try {
+    const original = example(); original.components = original.components.filter(component => !component.type.startsWith('wire-duct'));
+    original.wires = original.wires.map(wire => ({ ...wire, style: 'orthogonal' }));
+    const ui = editor(original);
+    ui.button('预布线槽').props.onClick(); ui.render();
+    const arranged = structuredClone(ui.document());
+    assert.ok(arranged.components.some(component => component.type === 'wire-duct'));
+    assert.ok(arranged.wires.every(wire => wire.style === 'duct'));
+    assert.equal(validateDocument(arranged).valid, true);
+    assert.deepEqual(arranged.wires.map(({style, ...wire}) => wire), original.wires.map(({style, ...wire}) => wire));
+    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), original);
+    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), arranged);
+    ui.update({readOnly:true}); const count = ui.updates.length;
+    ui.button('导线全部入槽').props.onClick(); assert.equal(ui.updates.length, count);
+    ui.update({readOnly:false}); ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render();
+    ui.button('导线全部入槽').props.onClick(); assert.equal(ui.updates.length, count);
+  } finally { restore(); }
+});
+
 test('a live short warns once, confirming preserves the fault, and a fresh session warns again', () => {
   const restore=environment();
   try {

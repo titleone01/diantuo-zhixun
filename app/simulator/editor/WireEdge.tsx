@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BaseEdge, EdgeLabelRenderer, useReactFlow, type Edge, type EdgeProps } from "@xyflow/react";
 import type { CircuitDocument, CircuitWire, Point } from "../core/types";
 import { wireEndpoints, wirePath, wireRoute } from "./geometry";
+import { routeWireInDucts } from "../core/duct-routing";
 
 export type WireData = {
   document: CircuitDocument;
@@ -23,6 +24,8 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
   const endpoints = wireEndpoints(data.document, wire);
   const path = wirePath(data.document, wire);
   const route = wireRoute(data.document, wire);
+  const ductRoute = wire.style === "duct" ? routeWireInDucts(data.document, wire) : undefined;
+  const unrouted = ductRoute && ductRoute.status !== "routed";
   const longest = route.slice(1).map((point, index) => ({ from: route[index], to: point, length: Math.abs(point.x - route[index].x) + Math.abs(point.y - route[index].y) })).sort((a, b) => b.length - a.length)[0];
   const anchor = longest ? { x: (longest.from.x + longest.to.x) / 2, y: (longest.from.y + longest.to.y) / 2 } : endpoints.from;
   const updatePoint = (event: React.PointerEvent<HTMLButtonElement>, index: number) => {
@@ -36,8 +39,11 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
     data-to-terminal={`${wire.to.componentId}::${wire.to.terminalId}`}
     data-from-world={JSON.stringify(endpoints.from)}
     data-to-world={JSON.stringify(endpoints.to)}
+    data-routing-status={ductRoute?.status ?? "manual"}
+    data-route-world={JSON.stringify(ductRoute?.sections ?? [route])}
   >
-    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
+    {unrouted && <title>{ductRoute.message}</title>}
+    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", strokeDasharray: unrouted ? "5 4" : undefined }} />
     {selected && !data.running && (!wire.style || wire.style === "orthogonal") && <EdgeLabelRenderer>
       {points.map((point, index) => <button
         key={index}

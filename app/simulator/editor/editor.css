@@ -139,6 +139,9 @@
 .sim-contactor-state-text { fill: #fff; font: 800 16px Arial, "Microsoft YaHei", sans-serif; pointer-events: none; }
 .sim-editor .sim-duct-resize-handle { width: 9px; height: 9px; border: 1px solid #fff; background: #3478f6; z-index: 25; }
 .sim-editor .sim-duct-resize-line { border-color: #3478f6; z-index: 25; }
+.sim-routing-warning { position: absolute; left: 42px; bottom: 44px; z-index: 6; max-width: 440px; padding: 10px 14px; border: 1px solid #ecc979; border-radius: 6px; background: #fff8e5; color: #775115; font-size: 12px; box-shadow: 0 2px 8px #192f4820; pointer-events: none; }
+.sim-routing-warning b, .sim-routing-warning span { display: block; }
+.sim-routing-warning span { margin-top: 3px; line-height: 1.5; }
 .sim-editor .sim-terminal-label { position: absolute; font-size: 8px; line-height: 10px; color: #39485f; pointer-events: none; white-space: nowrap; background: #f5f8fbd9; padding: 0 1px; }
 .sim-editor .sim-terminal-top .sim-terminal-label { bottom: 11px; left: 50%; transform: translateX(-50%); }
 .sim-editor .sim-terminal-bottom .sim-terminal-label { top: 11px; left: 50%; transform: translateX(-50%); }

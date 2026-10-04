@@ -1,5 +1,6 @@
 import type { CircuitComponent, CircuitDocument, CircuitWire, ComponentType, LessonDefinition, TerminalRef } from "./types";
 import { MOTOR_COURSES, createMotorCourseDocument, isMotorCourse } from "./motor-courses";
+import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 
 export const LESSONS: LessonDefinition[] = [
   ...MOTOR_COURSES,
@@ -45,5 +46,5 @@ export function createLessonDocument(id: string, options: { wired?: boolean } = 
     if(twoWay){connect("switchA","1","switchB","1","#f59e0b");connect("switchA","2","switchB","2","#f59e0b");connect("switchB","C","lamp","L");}
     else connect("switchA","2","lamp","L");
   }
-  return {schemaVersion:1,title:lesson.title,lessonId:id,components,wires:options.wired?wires:[],roles};
+  return putWiresInDucts(arrangeTrainingDucts({schemaVersion:1,title:lesson.title,lessonId:id,components,wires:options.wired?wires:[],roles}));
 }

@@ -47,6 +47,14 @@ npm run start:tunnel
 
 两个终端均须保持运行，电脑需要开机、联网且不休眠。没有设置 Windows 开机自动启动。按 Ctrl+C 停止对应终端本次创建的服务或隧道；不要按程序名批量结束 Node、workerd 或 cloudflared，其他项目也可能使用它们。当前由助手后台启动的两组进程及日志位置记录在私密 `.local/remote-access-handoff.json` 中。
 
+### 2026-10-03 启动器的代理兼容修复
+
+本机网页正常而启动器提示“固定网址连接尚未就绪”时，应先检查隧道日志。本次失败来自 Meta 虚拟网卡：Cloudflare 隧道端点被解析成 `198.18.*` 虚拟 IP，连接出现 QUIC 超时及 HTTP/2 TLS EOF。公网恢复前，本机 API 已返回 200，不能将该错误判断为数据库或网页启动失败。
+
+`start:tunnel` 现在使用 HTTP/2。Windows 下自动选择具有默认 IPv4 路由的物理网卡，将本项目的连接绑定到该网卡；隧道启动器同时在随机 loopback UDP 端口运行专用 DNS 转发，将请求绑定到同一网卡后发给该网卡配置的 DNS。cloudflared 使用官方 `--edge-bind-address` 和 `--dns-resolver-addrs` 参数，继续动态查询 Cloudflare SRV/A/AAAA/TXT 记录，不固定 Cloudflare 节点 IP。DNS 转发随本次隧道结束而关闭，不修改系统 DNS、代理、路由或防火墙。
+
+健康隧道仍直接复用。节点在启动首分钟内主动断开时，启动器最多进行三次串行连接，并重新查询节点；正常停止、程序无法执行或已运行超过一分钟后的退出不触发此重试。若需要重新连接，先核对具体进程的项目路径及参数，再只停止本项目的连接；切勿按程序名批量终止。恢复原行为只需撤回 `scripts/start-tunnel.mjs` 的此次改动，保留数据与秘密文件，再启动原连接。公网验证仍只代表当时的设备与网络。
+
 `.dev.vars` 增加 `APP_PUBLIC_ORIGIN=https://train.titleone.space`，同时保留 `APP_ORIGIN=http://localhost:3000`。更改此文件后需重新启动本地服务。外网仅接受配置的 Host，要求 HTTPS，登录 Cookie 为 Secure、HttpOnly、SameSite=Lax，初始化管理员接口仅允许 loopback。不要把成员站直接改为监听公网地址。
 
 官方 cloudflared 程序保存在 `.local/tools/cloudflared.exe`；连接凭据保存在 `.local/network-access/tunnel-token.txt`，通过 `--token-file` 读取。`.local/` 已被 Git 忽略，秘密不会进入公开构建。请安全保存这两个文件；不要复制令牌到聊天、日志、截图或代码。换电脑时需复制数据库及秘密，并重新配置唯一的本机连接，不能同时给独立数据库开两个相同隧道副本。
