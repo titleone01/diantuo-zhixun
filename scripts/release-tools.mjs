@@ -122,7 +122,7 @@ export async function buildDocumentContract(directory) {
   const { CATALOG } = await import(`data:text/javascript;base64,${Buffer.from(validator).toString('base64')}`);
   const source = ts.createSourceFile('types.ts', await readFile(path.join(root, 'app/simulator/core/types.ts'), 'utf8'), ts.ScriptTarget.Latest, true);
   const fields = {};
-  for (const [name, alias] of Object.entries({ document: 'CircuitDocument', component: 'CircuitComponent', wire: 'CircuitWire' })) {
+  for (const [name, alias] of Object.entries({ document: 'CircuitDocument', component: 'CircuitComponent', wire: 'CircuitWire', point: 'Point', terminalRef: 'TerminalRef' })) {
     const declaration = source.statements.find(statement => ts.isTypeAliasDeclaration(statement) && statement.name.text === alias);
     if (!declaration || !ts.isTypeLiteralNode(declaration.type) || declaration.type.members.some(member => !ts.isPropertySignature(member) || !member.name || !ts.isIdentifier(member.name))) throw new Error('Cannot derive document contract; review changed document types before release');
     fields[name] = declaration.type.members.map(member => member.name.text).sort();
@@ -135,11 +135,14 @@ export async function buildDocumentContract(directory) {
 export async function checkReleaseCompatibility(release, state, manifest) {
   if (!manifest.files['document-contract.json'] || !manifest.files['document-validator.mjs']) throw new Error('Release lacks a verifiable document contract; rebuild it before activation');
   const contract = JSON.parse(await readFile(path.join(release, 'document-contract.json'), 'utf8'));
-  if (contract.format !== 1 || !contract.fields || !['document', 'component', 'wire'].every(kind => Array.isArray(contract.fields[kind])) || !Array.isArray(contract.components)) throw new Error('Invalid release document contract');
+  if (contract.format !== 1 || !contract.fields || !['document', 'component', 'wire'].every(kind => Array.isArray(contract.fields[kind])) || ['point', 'terminalRef'].some(kind => contract.fields[kind] !== undefined && !Array.isArray(contract.fields[kind])) || !Array.isArray(contract.components)) throw new Error('Invalid release document contract');
   const { validateDocument } = await import(pathToFileURL(path.join(release, 'document-validator.mjs')).href);
   if (typeof validateDocument !== 'function') throw new Error('Invalid release document validator');
   const supported = new Map(contract.components.map(component => [component.type, new Set(component.terminals)]));
-  const knownFields = (value, kind) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).every(key => contract.fields[kind].includes(key));
+  // Format-1 releases predating nested contracts used these schemaVersion-1 fields.
+  // Keep compatible old packages usable while refusing data they would silently ignore.
+  const legacyNestedFields = { point: ['x', 'y'], terminalRef: ['componentId', 'terminalId'] };
+  const knownFields = (value, kind) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).every(key => (contract.fields[kind] ?? legacyNestedFields[kind]).includes(key));
   const migrationNames = Object.keys(manifest.files).filter(name => name.startsWith('migrations/') && name.endsWith('.sql')).map(name => name.slice('migrations/'.length)).sort();
   const { DatabaseSync } = await import('node:sqlite');
   let schemaChecked = migrationNames.length === 0;
@@ -157,7 +160,7 @@ export async function checkReleaseCompatibility(release, state, manifest) {
         for (const row of db.prepare(`SELECT document FROM ${table}`).iterate()) {
           let document;
           try { document = JSON.parse(row.document); } catch { throw new Error('Stored document is corrupt; activation refused and business state retained'); }
-          if (!knownFields(document, 'document') || !validateDocument(document).valid || document.components.some(component => !knownFields(component, 'component') || !supported.has(component.type)) || document.wires.some(wire => !knownFields(wire, 'wire'))) throw new Error('Target release cannot interpret stored documents; activation refused and business state retained');
+          if (!knownFields(document, 'document') || !validateDocument(document).valid || document.components.some(component => !knownFields(component, 'component') || !knownFields(component.position, 'point') || !supported.has(component.type)) || document.wires.some(wire => !knownFields(wire, 'wire') || !knownFields(wire.from, 'terminalRef') || !knownFields(wire.to, 'terminalRef') || (wire.waypoints !== undefined && (!Array.isArray(wire.waypoints) || wire.waypoints.some(point => !knownFields(point, 'point')))))) throw new Error('Target release cannot interpret stored documents; activation refused and business state retained');
           const components = new Map(document.components.map(component => [component.id, component.type]));
           if (document.wires.some(wire => ['from', 'to'].some(end => !supported.get(components.get(wire[end].componentId))?.has(wire[end].terminalId)))) throw new Error('Target release lacks stored terminals; activation refused and business state retained');
         }
@@ -177,7 +180,7 @@ export async function assertStopped({ stopped, origin, leaseFile }) {
     try { process.kill(lease.pid, 0); throw new Error("Runtime lease still owns a live process"); }
     catch (error) { if (error.code !== "ESRCH") throw error; }
   } catch (error) { if (error.code !== "ENOENT") throw error; }
-  const response = await fetch(`${url.origin}/api/session`, { signal: AbortSignal.timeout(2000) }).catch(error => {
+  const response = await fetch(`${url.origin}/api/session`, { signal: AbortSignal.timeout(5000) }).catch(error => {
     // A timeout is not proof of stopped writes. Only a refused connection is accepted.
     if (error.cause?.code === "ECONNREFUSED") return null;
     throw new Error("Cannot confirm the writer is stopped");
@@ -188,6 +191,25 @@ export async function assertStopped({ stopped, origin, leaseFile }) {
 export async function backupState(source, directory, options) {
   await assertStopped(options);
   const src = path.resolve(source), dest = path.resolve(directory);
+  const runtimeRoots = new Set([path.dirname(src)]);
+  if (path.basename(path.dirname(src)) === '.wrangler') runtimeRoots.add(path.dirname(path.dirname(src)));
+  for (const configFile of [options.privateConfig, options.runtimeConfig]) if (configFile) runtimeRoots.add(path.dirname(path.resolve(configFile)));
+  const localDirectories = [];
+  for (const runtimeRoot of runtimeRoots) {
+    const localDirectory = path.join(runtimeRoot, '.local');
+    try {
+      if (!(await lstat(localDirectory)).isDirectory()) throw new Error('Runtime .local must be a directory');
+      localDirectories.push(localDirectory);
+    } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  }
+  if (localDirectories.length) {
+    if (!options.privateDirectory) throw Object.assign(new Error('Runtime .local exists; include it with --private-directory before creating a complete backup'), { code: 'PRIVATE_DIRECTORY_REQUIRED' });
+    const privateRoot = path.resolve(options.privateDirectory);
+    if (localDirectories.some(localDirectory => {
+      const relative = path.relative(privateRoot, localDirectory);
+      return path.isAbsolute(relative) || relative === '..' || relative.startsWith(`..${path.sep}`);
+    })) throw Object.assign(new Error('--private-directory must include every detected runtime .local; refusing an incomplete backup'), { code: 'PRIVATE_DIRECTORY_INCOMPLETE' });
+  }
   const relative = path.relative(src, dest);
   if (!relative || (!path.isAbsolute(relative) && relative !== ".." && !relative.startsWith(`..${path.sep}`))) throw new Error("Backup must be outside the state directory");
   if (options.privateDirectory) {
@@ -206,7 +228,7 @@ export async function backupState(source, directory, options) {
     await cp(options.privateDirectory, path.join(dest, 'private-runtime'), { recursive: true, dereference: false });
     if (JSON.stringify(privateBefore) !== JSON.stringify(await inventory(options.privateDirectory)) || JSON.stringify(privateBefore) !== JSON.stringify(await inventory(path.join(dest, 'private-runtime')))) throw new Error('Private runtime changed during backup');
   }
-  const manifest = { format: 1, kind: "backup", createdAt: new Date().toISOString(), includesWal: true, files: await inventory(dest) };
+  const manifest = { format: 1, kind: "backup", createdAt: new Date().toISOString(), includesWal: true, privateRuntime: { included: Boolean(options.privateDirectory), detectedLocalDirectories: localDirectories.length }, files: await inventory(dest) };
   await writeFile(path.join(dest, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n", { mode: 0o600 });
   return manifest;
 }
@@ -286,5 +308,13 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     else if (command === "restore") { required("backup", "out"); console.log(await restoreState(flags.backup, flags.out)); }
     else if (command === "activate") { required("release", "runtime"); await activateRelease(flags.release, flags.runtime, stop); console.log("Code pointer changed; business state retained"); }
     else throw new Error("Expected build, verify, backup, restore or activate");
-  } catch (error) { console.error(`Release tool failed: ${error.name} (no successful operation recorded)`); process.exitCode = 1; }
+  } catch (error) {
+    console.error(`Release tool failed: ${error.name} (no successful operation recorded)`);
+    const guidance = {
+      PRIVATE_DIRECTORY_REQUIRED: 'Runtime .local exists; provide --private-directory <runtime .local or enclosing private directory> for a complete backup.',
+      PRIVATE_DIRECTORY_INCOMPLETE: '--private-directory does not include runtime .local; select that directory or its enclosing private runtime directory.',
+    };
+    if (guidance[error.code]) console.error(guidance[error.code]);
+    process.exitCode = 1;
+  }
 }

@@ -2,7 +2,7 @@ import { componentSize, getDefinition, isWireDuct } from "./catalog";
 import type { CircuitComponent, CircuitDocument } from "./types";
 
 type LayoutReference = { file: string; rows: string[][]; buttons: string[]; limits?: string[] };
-const power = ["qf", "fu1", "fu2", "fu2a", "fu2b"];
+const power = ["qf", "fu1", "fu2"];
 /** Read from the user's ten layout PNGs, not generated from device count. */
 export const TRAINING_LAYOUT_REFERENCES: Record<string, LayoutReference> = {
   "motor-course-01": { file: "电动机点动控制电路布局图.png", rows: [power, ["km"], []], buttons: ["sb"] },
@@ -24,7 +24,7 @@ function referenceFor(document: CircuitDocument): LayoutReference {
   const own = document.lessonId && TRAINING_LAYOUT_REFERENCES[document.lessonId];
   if (own) return own;
   const ids = (types: string[]) => document.components.filter(component => types.includes(component.type)).map(component => component.id);
-  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse2", "fuse"]), ids(["contactor220", "contactor380", "relay380", "timer380", "auxiliary-no"]), ids(["overload", "terminal"])];
+  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "auxiliary-no"]), ids(["overload", "terminal"])];
   return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document.components.filter(component => buttonTypes.has(component.type)).map(component => component.id), limits: ids(["limit-switch"]) };
 }
 export const trainingLayoutReference = (document: CircuitDocument) => referenceFor(document).file;
@@ -39,7 +39,12 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   if (document.components.some(component => isWireDuct(component.type)) || !document.components.length) return document;
   const reference = referenceFor(document);
   const byId = new Map(document.components.map(component => [component.id, component]));
-  const resolve = (ids: string[]) => ids.map(id => byId.get(document.roles?.[id] ?? id)).filter((component): component is CircuitComponent => !!component);
+  const resolve = (ids: string[]) => ids.flatMap(id => {
+    const component = byId.get(document.roles?.[id] ?? id);
+    // New practices combine the two channels; legacy documents keep their original IDs.
+    if (id === "fu2" && !component) return ["fu2a", "fu2b"].map(key => byId.get(document.roles?.[key] ?? key)).filter((value): value is CircuitComponent => !!value);
+    return component ? [component] : [];
+  });
   const rows = reference.rows.map(resolve);
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
   const sources = document.components.filter(component => component.type === "supply");
@@ -71,14 +76,19 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   for (const component of limits) { positions.set(component.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE }); limitX += componentSize(component).width + 44; }
   let sourceX = 56;
   for (const component of sources) { positions.set(component.id, { x: sourceX, y: -componentSize(component).height - 65 }); sourceX += componentSize(component).width + 30; }
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
   let externalX = 56;
-  for (const component of [...earths, ...terminals]) {
-    positions.set(component.id, { x: externalX, y: bottom + 75 });
+  for (const component of terminalRow) {
+    positions.set(component.id, { x: externalX, y: terminalY });
     externalX += componentSize(component).width + SEPARATION;
   }
-  let loadX = 56;
-  const loadY = bottom + 75 + Math.max(0, ...[...earths, ...terminals].map(component => componentSize(component).height)) + 80;
-  for (const component of loads) { positions.set(component.id, { x: loadX, y: loadY }); loadX += componentSize(component).width + SEPARATION; }
+  // The board's outgoing XT/PE row precedes its external motors; keep space for bottom terminal leads.
+  const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map(component => componentSize(component).height)) + SEPARATION : 0);
+  externalX = 56;
+  for (const component of loads) {
+    positions.set(component.id, { x: externalX, y: loadY });
+    externalX += componentSize(component).width + SEPARATION;
+  }
   const ducts: CircuitComponent[] = [];
   const used = new Set(document.components.map(component => component.id));
   const add = (vertical: boolean, x: number, y: number, length: number) => {
@@ -95,5 +105,5 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
 }
 
 export function putWiresInDucts(document: CircuitDocument): CircuitDocument {
-  return { ...document, wires: document.wires.map(wire => ({ ...wire, style: "duct" })) };
+  return { ...document, wires: document.wires.map(wire => ({ ...wire, style: "orthogonal", routing: "duct" })) };
 }

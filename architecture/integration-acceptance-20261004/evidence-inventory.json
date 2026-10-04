@@ -1,0 +1,49 @@
+{
+  "at": "2026-10-04T04:01:22.732487+00:00",
+  "codeBaseline": "a0ecf1df34e011eccb9abd446339fa9f62efa682",
+  "files": [
+    {
+      "name": "check.json",
+      "sha256": "24b452c1825dff3eadc604cfb8a12683bbf6401862f07c2604b1590101ffc983",
+      "bytes": 1020
+    },
+    {
+      "name": "browser.json",
+      "sha256": "b341baf968165b4aabe254f6f6eacb88eec22ef61fc3674861c4cbd314ebaab0",
+      "bytes": 6687
+    },
+    {
+      "name": "capacity.json",
+      "sha256": "fa3286c2e3dcef7febc39ee4b7c92d6fc2f867be8be204c55b30080489ff1336",
+      "bytes": 7864
+    },
+    {
+      "name": "recovery.json",
+      "sha256": "d932f637b024b2ffb73cc0a4c70ffef41b16fe01cdfb7bfe741fd13ef18ee7e5",
+      "bytes": 1341
+    },
+    {
+      "name": "formal-drawings.json",
+      "sha256": "9ddf9f9f3e15d1876977580194eb8053a02d562f6d4b1f14732eba6da8dd8dcc",
+      "bytes": 8780
+    },
+    {
+      "name": "formal-source-identity.json",
+      "sha256": "d11a7a7d03acc020c93e9b4b6f47654ca87eec298bd3a5e17137a5514f14935c",
+      "bytes": 546
+    },
+    {
+      "name": "dependency-audit-full.json",
+      "sha256": "1c7d1e2941aaa150b75bf5210648671042535046f45ec52b832d0e3e7d16bd1f",
+      "bytes": 6307
+    },
+    {
+      "name": "dependency-audit-production.json",
+      "sha256": "d959a910e1fc70090a2a9a22f2e44e98b4f3663a514e9bc3bf445b29ff8d72d8",
+      "bytes": 2691
+    }
+  ],
+  "privateBusinessPayloadsPublished": false,
+  "privatePNGsPublished": false,
+  "realAccountCredentialsPublished": false
+}

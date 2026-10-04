@@ -4,7 +4,7 @@ import { build } from "esbuild";
 
 const bundled = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/duct-layout"; export * from "./app/simulator/core/duct-routing"; export * from "./app/simulator/core/validation"; export * from "./app/simulator/editor/geometry";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
 const { LESSONS, createLessonDocument, componentSize, isWireDuct, resolveTerminal, arrangeTrainingDucts, putWiresInDucts, routeWireInDucts, segmentInsideDucts, validateDocument, wirePath, TRAINING_LAYOUT_REFERENCES, trainingLayoutReference } = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
-const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type)).map(({ position, ...component }) => component), wires: document.wires.map(({ style, waypoints, ...wire }) => wire), roles: document.roles });
+const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type)).map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, waypoints, ...wire }) => wire), roles: document.roles });
 const overlaps = (a, b) => { const sa = componentSize(a), sb = componentSize(b); return a.position.x < b.position.x + sb.width && a.position.x + sa.width > b.position.x && a.position.y < b.position.y + sb.height && a.position.y + sa.height > b.position.y; };
 
 for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration have identical clear ducts and every wire stays in them`, () => {
@@ -31,7 +31,8 @@ for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration hav
   for (const duct of ducts) for (const component of document.components.filter(component => !isWireDuct(component.type))) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
   const before = JSON.stringify(document);
   for (const wire of document.wires) {
-    assert.equal(wire.style, "duct");
+    assert.equal(wire.style, "orthogonal");
+    assert.equal(wire.routing, "duct");
     const route = routeWireInDucts(document, wire);
     assert.equal(route.status, "routed", `${wire.id}: ${route.message}`);
     assert.deepEqual(route.sections[0][0], resolveTerminal(document, wire.from).world);

@@ -24,6 +24,18 @@ async function drag(page,locator,dx,dy,fraction={x:0.5,y:0.5}){
   await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+dx,y+dy,{steps:16});await page.mouse.up();
   if(before!==null&&(dx||dy))await expect.poll(()=>locator.getAttribute(`data-world-${axis}`)).not.toBe(before);
 }
+async function clearDuctPoint(locator) {
+  // Pick a genuinely exposed part of the duct, regardless of the wire ID's lane.
+  // Normal hover/click still verifies the hit; no forced pointer actions.
+  return locator.evaluate(element => {
+    const box=element.getBoundingClientRect();
+    for(const y of [0.02,0.98,0.2,0.8])for(const x of [0.25,0.5,0.75]){
+      const hit=document.elementFromPoint(box.x+box.width*x,box.y+box.height*y);
+      if(hit&&element.contains(hit))return {x,y};
+    }
+    throw new Error('The duct has no exposed drag point');
+  });
+}
 async function geometry(page){
   const wire=page.locator('.sim-wire');const values=await wire.evaluate(element=>({from:element.dataset.fromTerminal,to:element.dataset.toTerminal,a:JSON.parse(element.dataset.fromWorld),b:JSON.parse(element.dataset.toWorld),path:element.querySelector('.react-flow__edge-path').getAttribute('d')}));
   for(const [key,point] of [[values.from,values.a],[values.to,values.b]]){
@@ -38,14 +50,15 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
   const first=await geometry(page);expect(first.path.split('L').length).toBeGreaterThan(2);
   await drag(page,page.locator('[data-device-id="route-b"]'),20,35);await expect.poll(()=>wire.getAttribute('data-to-world')).not.toBe(JSON.stringify(first.b));
   const moved=await geometry(page),viewport=page.locator('.react-flow__viewport'),beforeZoom=await viewport.getAttribute('style');await page.locator('.react-flow__controls-zoomout').click();await expect.poll(()=>viewport.getAttribute('style')).not.toBe(beforeZoom);expect(await geometry(page)).toEqual(moved);
-  // The wire owns the duct center line; grab the visible upper part of the duct.
+  // Stable parallel lanes can occupy either side of the center.
+  // Grab an exposed area and require a real pointer hit on the duct.
   // Open a horizontal gap while each terminal still has its own nearest duct.
   // Moving the right duct far downward can legitimately route both ends via the left duct.
-  await drag(page,page.locator('[data-device-id="route-right"]'),60,0,{x:0.25,y:0.15});await expect(wire).toHaveAttribute('data-routing-status','disconnected');await expect(page.locator('.sim-routing-notice')).toContainText('已保留原连接');await geometry(page);
+  const right=page.locator('[data-device-id="route-right"]');await drag(page,right,60,0,await clearDuctPoint(right));await expect(wire).toHaveAttribute('data-routing-status','disconnected');await expect(page.locator('.sim-routing-notice')).toContainText('未连通');await geometry(page);
   await page.getByRole('button',{name:'撤销',exact:true}).click();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(moved);
-  const left=page.locator('[data-device-id="route-left"]'),box=await left.boundingBox();await left.click({position:{x:box.width*0.25,y:box.height*0.15}});const resize=page.locator('[data-id="route-left"] .sim-duct-resize-handle.bottom.right');await expect(resize).toBeVisible();await drag(page,resize,24,16);
+  const left=page.locator('[data-device-id="route-left"]'),box=await left.boundingBox(),point=await clearDuctPoint(left);await left.click({position:{x:box.width*point.x,y:box.height*point.y}});const resize=page.locator('[data-id="route-left"] .sim-duct-resize-handle.bottom.right');await expect(resize).toBeVisible();await drag(page,resize,24,16);
   await expect.poll(async()=>(await geometry(page)).path).not.toBe(moved.path);await expect(wire).toHaveAttribute('data-routing-status','routed');const resized=await geometry(page);
-  const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();expect((await response).status()).toBe(201);
+  const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();const saved=await response;expect(saved.status()).toBe(201);expect((await saved.json()).circuit.document.wires[0]).toMatchObject({style:'straight',routing:'duct'});
   await page.reload();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(resized);
 });
 test('repeated group paste and undo preserve a stable editable document',async({page})=>{

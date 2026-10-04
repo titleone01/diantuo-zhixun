@@ -1,7 +1,7 @@
 import type { CircuitComponent, CircuitDocument, CircuitWire, ComponentType, LessonDefinition, TerminalRef } from "./types";
 import { MOTOR_COURSES, isMotorCourse } from "./motor-courses";
-import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 import { createMotorPracticeDocument } from "./motor-practice-layout";
+import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 
 export const LESSONS: LessonDefinition[] = [
   ...MOTOR_COURSES,

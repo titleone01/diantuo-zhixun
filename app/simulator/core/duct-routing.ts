@@ -2,12 +2,13 @@ import { componentSize, isWireDuct, resolveTerminal } from "./catalog";
 import type { CircuitComponent, CircuitDocument, CircuitWire, Point } from "./types";
 
 type Rect = { left: number; top: number; right: number; bottom: number };
-type Duct = Rect & { vertical: boolean; pins: Point[] };
+type Duct = Rect & { id: string; vertical: boolean; pins: Point[] };
 type Link = { to: string; cost: number; points: Point[] };
 type Vertex = { point: Point; links: Link[] };
 type Network = { ducts: Duct[]; vertices: Map<string, Vertex> };
 type Entry = { duct: Duct; point: Point; lead: Point[]; length: number };
 export type DuctRoute = { status: "routed" | "missing" | "blocked" | "disconnected"; sections: Point[][]; trunk: Point[]; message?: string };
+const TERMINAL_CLEARANCE = 12;
 const key = (point: Point) => `${point.x},${point.y}`;
 const distance = (a: Point, b: Point) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
@@ -19,10 +20,10 @@ const cache = new WeakMap<CircuitComponent[], { signature: string; network: Netw
 const routeCache = new WeakMap<CircuitComponent[], { signature: string; routes: Map<string, DuctRoute> }>();
 
 function networkFor(components: CircuitComponent[]): Network {
-  const signature = components.filter(component => isWireDuct(component.type)).map(component => `${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}`).join("|");
+  const signature = components.filter(component => isWireDuct(component.type)).map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}`).join("|");
   const cached = cache.get(components);
   if (cached?.signature === signature) return cached.network;
-  const ducts: Duct[] = components.filter(component => isWireDuct(component.type)).map(component => ({ ...bounds(component), vertical: component.type === "wire-duct-vertical", pins: [] }));
+  const ducts: Duct[] = components.filter(component => isWireDuct(component.type)).sort((a, b) => a.id.localeCompare(b.id)).map(component => ({ ...bounds(component), id: component.id, vertical: component.type === "wire-duct-vertical", pins: [] }));
   const vertices = new Map<string, Vertex>();
   const vertex = (point: Point) => { const id = key(point); if (!vertices.has(id)) vertices.set(id, { point, links: [] }); return id; };
   const connect = (points: Point[]) => {
@@ -60,9 +61,15 @@ function crossesBody(a: Point, b: Point, rect: Rect): boolean {
   return a.y > rect.top + inset && a.y < rect.bottom - inset && Math.max(a.x, b.x) > rect.left + inset && Math.min(a.x, b.x) < rect.right - inset;
 }
 
-function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolveTerminal>, network: Network): Entry | undefined {
+function terminalLead(terminal: ReturnType<typeof resolveTerminal>): Point[] {
   const rect = bounds(terminal.component), side = terminal.terminal.side, world = terminal.world;
-  const escape = { x: side === "left" ? rect.left - 8 : side === "right" ? rect.right + 8 : world.x, y: side === "top" ? rect.top - 8 : side === "bottom" ? rect.bottom + 8 : world.y };
+  const escape = { x: side === "left" ? rect.left - TERMINAL_CLEARANCE : side === "right" ? rect.right + TERMINAL_CLEARANCE : world.x, y: side === "top" ? rect.top - TERMINAL_CLEARANCE : side === "bottom" ? rect.bottom + TERMINAL_CLEARANCE : world.y };
+  return [world, escape];
+}
+
+function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolveTerminal>, network: Network): Entry | undefined {
+  const rect = bounds(terminal.component), side = terminal.terminal.side;
+  const [world, escape] = terminalLead(terminal);
   const blockers = document.components.filter(component => !isWireDuct(component.type));
   const candidates: Entry[] = [];
   const consider = (duct: Duct, points: Point[]) => {
@@ -86,16 +93,16 @@ function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolve
     consider(duct, [world, escape, { x: escape.x, y: point.y }, point]);
     // External controls and motor tails turn around their bodies into the
     // existing reference board; they do not acquire additional ducts.
-    for (const x of [rect.left - 8, rect.right + 8]) {
+    for (const x of [rect.left - TERMINAL_CLEARANCE, rect.right + TERMINAL_CLEARANCE]) {
       const target = project(duct, { x, y: escape.y });
       consider(duct, [world, escape, { x, y: escape.y }, { x, y: target.y }, target]);
     }
-    for (const y of [rect.top - 8, rect.bottom + 8]) {
+    for (const y of [rect.top - TERMINAL_CLEARANCE, rect.bottom + TERMINAL_CLEARANCE]) {
       const target = project(duct, { x: escape.x, y });
       consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
     }
   }
-  return candidates.sort((a, b) => a.length - b.length)[0];
+  return candidates.sort((a, b) => a.length - b.length || a.duct.id.localeCompare(b.duct.id))[0];
 }
 
 /** Binary min-heap keeps the routing cost bounded for custom documents. */
@@ -201,9 +208,9 @@ export function routeWireInDucts(document: CircuitDocument, wire: CircuitWire): 
 function calculateRoute(document: CircuitDocument, wire: CircuitWire): DuctRoute {
   const source = resolveTerminal(document, wire.from), target = resolveTerminal(document, wire.to);
   const network = networkFor(document.components);
-  if (!network.ducts.length) return { status: "missing", sections: [[source.world], [target.world]], trunk: [], message: "请先布置线槽，再自动走线。" };
+  if (!network.ducts.length) return { status: "missing", sections: [terminalLead(source), terminalLead(target).reverse()], trunk: [], message: "请先布置线槽，再自动走线。" };
   const from = entryFor(document, source, network), to = entryFor(document, target, network);
-  const sections = [from?.lead ?? [source.world], [...(to?.lead ?? [target.world])].reverse()];
+  const sections = [from?.lead ?? terminalLead(source), [...(to?.lead ?? terminalLead(target))].reverse()];
   if (!from || !to) return { status: "blocked", sections, trunk: [], message: "端子出线方向没有可进入的线槽，或引出段被元件挡住，请调整元件或线槽。" };
   const shortest = shortestPath(document, network, from, to);
   if (!shortest) return { status: "disconnected", sections, trunk: [], message: "两端线槽未连通或槽内被元件挡住，请连接线槽或调整布局。" };

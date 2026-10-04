@@ -2289,29 +2289,6 @@ svg.react-flow__connectionline {
   border-color: #3478f6;
   z-index: 25;
 }
-.sim-routing-warning {
-  position: absolute;
-  left: 42px;
-  bottom: 44px;
-  z-index: 6;
-  max-width: 440px;
-  padding: 10px 14px;
-  border: 1px solid #ecc979;
-  border-radius: 6px;
-  background: #fff8e5;
-  color: #775115;
-  font-size: 12px;
-  box-shadow: 0 2px 8px #192f4820;
-  pointer-events: none;
-}
-.sim-routing-warning b,
-.sim-routing-warning span {
-  display: block;
-}
-.sim-routing-warning span {
-  margin-top: 3px;
-  line-height: 1.5;
-}
 .sim-editor .sim-terminal-label {
   position: absolute;
   font-size: 8px;
@@ -3394,7 +3371,7 @@ svg.react-flow__connectionline {
   position: absolute;
   left: 24px;
   bottom: 76px;
-  max-width: 480px;
+  max-width: min(480px, calc(100% - 48px));
   padding: 8px 12px;
   border: 1px solid #e8c37a;
   border-radius: 5px;
@@ -3402,6 +3379,15 @@ svg.react-flow__connectionline {
   color: #805b20;
   font-size: 12px;
   z-index: 5;
+  pointer-events: none;
+}
+.sim-routing-notice b,
+.sim-routing-notice span {
+  display: block;
+}
+.sim-routing-notice span {
+  margin-top: 3px;
+  line-height: 1.5;
 }
 
 /* app/simulator/training-projects.css */

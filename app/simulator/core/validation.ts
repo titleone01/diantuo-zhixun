@@ -6,7 +6,7 @@ export type DocumentValidation = { valid: boolean; errors: string[]; document?: 
 const record = (value: unknown): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value);
 const safeId = (value: unknown): value is string => typeof value === "string" && /^[a-zA-Z0-9_-]{1,80}$/.test(value) && !["__proto__", "constructor", "prototype"].includes(value);
 const text = (value: unknown, max: number) => typeof value === "string" && value.length > 0 && value.length <= max;
-const point = (value: unknown) => record(value) && typeof value.x === "number" && Number.isFinite(value.x) && Math.abs(value.x) <= 1_000_000 && typeof value.y === "number" && Number.isFinite(value.y) && Math.abs(value.y) <= 1_000_000;
+const point = (value: unknown) => record(value) && Object.keys(value).every(key => key === "x" || key === "y") && typeof value.x === "number" && Number.isFinite(value.x) && Math.abs(value.x) <= 1_000_000 && typeof value.y === "number" && Number.isFinite(value.y) && Math.abs(value.y) <= 1_000_000;
 const mediaType = (value: unknown) => typeof value === "string" && ["image/png", "image/jpeg", "image/webp", "application/pdf"].includes(value);
 
 /** Shared, non-mutating boundary for imports, persistence and server assessment. */
@@ -63,7 +63,7 @@ export function validateDocument(input: unknown): DocumentValidation {
     const endpoints: string[] = [];
     for (const name of ["from", "to"] as const) {
       const ref = wire[name];
-      if (!record(ref) || !safeId(ref.componentId) || !safeId(ref.terminalId) || !ports.get(ref.componentId)?.has(ref.terminalId)) errors.push(`导线 ${wire.id} 的 ${name} 端子不存在`);
+      if (!record(ref) || Object.keys(ref).some(key => key !== "componentId" && key !== "terminalId") || !safeId(ref.componentId) || !safeId(ref.terminalId) || !ports.get(ref.componentId)?.has(ref.terminalId)) errors.push(`导线 ${wire.id} 的 ${name} 端子不存在`);
       else endpoints.push(`${ref.componentId}::${ref.terminalId}`);
     }
     if (endpoints.length === 2) {
@@ -73,7 +73,7 @@ export function validateDocument(input: unknown): DocumentValidation {
       connected.add(key);
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`导线 ${wire.id} 颜色须为十六进制颜色`);
-    if (wire.style !== undefined && wire.style !== "duct" && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve") errors.push(`导线 ${wire.id} 样式无效`);
+    if (wire.style !== undefined && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve" && wire.style !== "duct") errors.push(`导线 ${wire.id} 样式无效`);
     if (wire.routing !== undefined && wire.routing !== "duct") errors.push(`导线 ${wire.id} 自动走线模式无效`);
     if (wire.waypoints !== undefined && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`导线 ${wire.id} 折点无效`);
   }
@@ -83,5 +83,11 @@ export function validateDocument(input: unknown): DocumentValidation {
       if (!safeId(role) || !safeId(componentId) || !ports.has(componentId)) errors.push(`课程角色 ${role.slice(0, 80)} 指向无效元件`);
     }
   }
-  return errors.length ? { valid: false, errors } : { valid: true, errors: [], document: input as CircuitDocument };
+  if (errors.length) return { valid: false, errors };
+  // Legacy imports encoded routing in style. Normalize only a fully valid
+  // document and return the copy so persistence never stores the legacy style.
+  const document = input.wires.some(wire => wire.style === "duct")
+    ? { ...input, wires: input.wires.map(wire => wire.style === "duct" ? { ...wire, style: "orthogonal", routing: "duct" } : wire) }
+    : input;
+  return { valid: true, errors: [], document: document as CircuitDocument };
 }

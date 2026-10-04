@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
+import { lstat, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -34,7 +35,8 @@ test("quiescent state backup includes WAL, checks hashes and code rollback retai
   const stop = { stopped: true, origin: `http://127.0.0.1:${await unusedPort()}`, leaseFile: path.join(directory, "absent-lease.json") };
   const backup = path.join(directory, "backup");
   await assert.rejects(backupState(state, backup, { ...stop, stopped: false }), /acknowledgement/);
-  await backupState(state, backup, stop);
+  const manifest = await backupState(state, backup, stop);
+  assert.deepEqual(manifest.privateRuntime, { included: false, detectedLocalDirectories: 0 });
   const restored = path.join(directory, "restored");
   await restoreState(backup, restored);
   assert.equal(await readFile(path.join(restored, "state/sample-wal"), "utf8"), "wal bytes");
@@ -59,6 +61,8 @@ test('activation and rollback check saved drafts, publications, terminals, field
   await buildDocumentContract(release);
   const contract = JSON.parse(await readFile(path.join(release, 'document-contract.json'), 'utf8'));
   assert.ok(contract.fields.wire.includes('from'));
+  assert.deepEqual(contract.fields.point, ['x', 'y']);
+  assert.deepEqual(contract.fields.terminalRef, ['componentId', 'terminalId']);
   assert.ok(contract.components.some(component => component.type === 'terminal' && component.terminals.includes('A')));
   await mkdir(path.join(release, 'migrations'));
   await writeFile(path.join(release, 'migrations/0001_test.sql'), '-- fixture migration');
@@ -107,4 +111,67 @@ test('private runtime files restore byte-for-byte without printing their content
   await backupState(state, backup, stop); await restoreState(backup, restored);
   assert.deepEqual(await readFile(path.join(restored, '.local/admin.json')), await readFile(path.join(privateDirectory, 'admin.json')));
   await verifyArchive(backup, 'backup');
+});
+
+test('backup refuses omitted or unrelated private directories before copying a runtime .local', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-required-private-test-'));
+  const runtime = path.join(directory, 'runtime'), state = path.join(runtime, '.wrangler/state'), local = path.join(runtime, '.local');
+  await mkdir(state, { recursive: true }); await mkdir(local); await writeFile(path.join(state, 'owned'), 'owned state');
+  await writeFile(path.join(local, 'marker.json'), '{"fixture":"private runtime record"}');
+  const stop = { stopped: true, origin: `http://127.0.0.1:${await unusedPort()}`, leaseFile: path.join(runtime, 'absent-lease') };
+  const omitted = path.join(directory, 'omitted-backup');
+  await assert.rejects(backupState(state, omitted, stop), error => error.code === 'PRIVATE_DIRECTORY_REQUIRED' && error.message.includes('--private-directory'));
+  await assert.rejects(lstat(omitted), error => error.code === 'ENOENT');
+  const privateConfig = path.join(runtime, '.dev.vars'), runtimeConfig = path.join(runtime, 'wrangler.json');
+  await writeFile(privateConfig, 'SYNTHETIC_FIXTURE=not-a-real-secret\n'); await writeFile(runtimeConfig, '{}');
+  const cli = spawnSync(process.execPath, [path.resolve(import.meta.dirname, '../scripts/release-tools.mjs'), 'backup', '--state', state, '--out', omitted, '--stopped', '--origin', stop.origin, '--lease', stop.leaseFile, '--private-config', privateConfig, '--runtime-config', runtimeConfig], { encoding: 'utf8', timeout: 10000 });
+  assert.equal(cli.status, 1); assert.match(cli.stderr, /Runtime \.local exists; provide --private-directory/);
+  assert.doesNotMatch(cli.stdout, /Offline backup verified/); assert.doesNotMatch(cli.stderr, /SYNTHETIC_FIXTURE/);
+  const unrelated = path.join(directory, 'unrelated'); await mkdir(unrelated);
+  await assert.rejects(backupState(state, path.join(directory, 'unrelated-backup'), { ...stop, privateDirectory: unrelated }), error => error.code === 'PRIVATE_DIRECTORY_INCOMPLETE');
+  const backup = path.join(directory, 'complete-backup');
+  const manifest = await backupState(state, backup, { ...stop, privateDirectory: local });
+  assert.deepEqual(manifest.privateRuntime, { included: true, detectedLocalDirectories: 1 });
+  const restored = path.join(directory, 'restored'); await restoreState(backup, restored);
+  assert.deepEqual(await readFile(path.join(restored, '.local/marker.json')), await readFile(path.join(local, 'marker.json')));
+  await verifyArchive(backup, 'backup');
+});
+
+test('legacy release contracts reject unknown nested fields without changing pointer or business state', async () => {
+  const { DatabaseSync } = await import('node:sqlite');
+  const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-legacy-nested-contract-'));
+  const runtime = path.join(directory, 'runtime'), state = path.join(runtime, 'state'), release = path.join(directory, 'release');
+  await mkdir(state, { recursive: true }); await mkdir(release);
+  await buildDocumentContract(release);
+  const contract = JSON.parse(await readFile(path.join(release, 'document-contract.json'), 'utf8'));
+  delete contract.fields.point; delete contract.fields.terminalRef;
+  await writeFile(path.join(release, 'document-contract.json'), JSON.stringify(contract));
+  // An old target validator accepted nested extras: the rollback guard must enforce
+  // schemaVersion-1 fields itself, rather than depending on today's stricter validator.
+  await writeFile(path.join(release, 'document-validator.mjs'), 'export function validateDocument() { return { valid: true }; }');
+  await writeFile(path.join(release, 'manifest.json'), JSON.stringify({ format: 1, kind: 'release', id: 'legacy-nested', files: await inventory(release) }));
+  const db = new DatabaseSync(path.join(state, 'fixture.sqlite'));
+  db.exec('CREATE TABLE circuits(document TEXT); CREATE TABLE publications(document TEXT)');
+  const document = { schemaVersion: 1, title: 'Legacy known fields', components: [{ id: 'a', type: 'terminal', label: 'A', position: { x: 0, y: 0 } }, { id: 'b', type: 'terminal', label: 'B', position: { x: 200, y: 0 } }], wires: [{ id: 'w', from: { componentId: 'a', terminalId: 'A' }, to: { componentId: 'b', terminalId: 'B' }, color: '#000000', waypoints: [{ x: 100, y: 20 }] }] };
+  db.prepare('INSERT INTO circuits VALUES(?)').run(JSON.stringify(document)); db.prepare('INSERT INTO publications VALUES(?)').run(JSON.stringify(document));
+  const stop = { stopped: true, origin: `http://127.0.0.1:${await unusedPort()}`, leaseFile: path.join(runtime, 'absent-lease') };
+  try {
+    await activateRelease(release, runtime, stop);
+    const pointer = await readFile(path.join(runtime, 'active-release.json'));
+    for (const [table, mutate] of [
+      ['circuits', value => { value.components[0].position.futureSemantic = 'new'; }],
+      ['publications', value => { value.wires[0].from.futureSemantic = 'new'; }],
+      ['publications', value => { value.wires[0].to.futureSemantic = 'new'; }],
+      ['publications', value => { value.wires[0].waypoints[0].futureSemantic = 'new'; }],
+    ]) {
+      const unknown = structuredClone(document); mutate(unknown);
+      db.prepare(`UPDATE ${table} SET document=?`).run(JSON.stringify(unknown));
+      const before = await stateBusinessDigest(state);
+      await assert.rejects(activateRelease(release, runtime, stop), /cannot interpret/);
+      assert.deepEqual(await readFile(path.join(runtime, 'active-release.json')), pointer);
+      assert.equal(await stateBusinessDigest(state), before);
+      db.prepare(`UPDATE ${table} SET document=?`).run(JSON.stringify(document));
+    }
+    await activateRelease(release, runtime, stop);
+  } finally { db.close(); }
 });

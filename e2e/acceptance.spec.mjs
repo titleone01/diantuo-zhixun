@@ -31,13 +31,16 @@ for (let number = 1; number <= 10; number++) {
     await login(page); const draft = fixture.drafts[`${lesson}:correct`]; await openDraft(page, draft);
     await page.getByRole('button', { name: '检查接线', exact: true }).click();
     await expect(page.locator('.sim-assessment-status')).toContainText('课程通过');
+    await page.getByRole('button', { name: '收起检查结果', exact: true }).click();
     await page.getByRole('button', { name: '开始仿真', exact: true }).click();
     if ([8, 9].includes(number)) await page.getByRole('button', { name: '暂停计时', exact: true }).click();
     const roles = draft.document.roles; await toggle(page, roles.qf);
     const motors = Object.keys(roles).filter(role => /^m\d?$/.test(role));
     for (const role of motors) await motor(page, roles[role], false);
     if (number === 1) {
-      const start = page.locator(`[data-device-id="${roles.sb}"] .sim-actuator`); await pressAndHold(page, start, () => motor(page, roles.m, true)); await motor(page, roles.m, false);
+      const start = page.locator(`[data-device-id="${roles.sb}"] .sim-actuator`);
+      await pressAndHold(page, start, async () => { await expect(start).toHaveAttribute('aria-pressed', 'true'); await motor(page, roles.m, true); });
+      await expect(start).toHaveAttribute('aria-pressed', 'false'); await motor(page, roles.m, false);
     } else if ([2, 3].includes(number)) { await tap(page, roles.sb2); await motor(page, roles.m, true); await tap(page, roles.sb1); await motor(page, roles.m, false); }
     else if ([4, 5, 6].includes(number)) {
       await tap(page, roles.sb1); await motor(page, roles.m, true); await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-direction', 'forward');

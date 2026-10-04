@@ -1,5 +1,4 @@
 import type { CircuitComponent, CircuitDocument, CircuitWire, ComponentType, LessonDefinition } from './types';
-import { arrangeTrainingDucts, putWiresInDucts } from './duct-layout';
 
 /** Transcribed from the user's ten schematic/placement pairs; source PNGs remain private R2 media. */
 const TITLES = ['电动机点动控制电路', '电动机连续运行控制电路', '电动机点动与连续运行控制电路', '电动机接触器互锁正反转控制电路', '电动机双重联锁正反转控制电路', '电动机自动往返控制电路', '两台电动机顺序控制电路', '电动机延时起动控制电路', 'Y-△降压起动控制电路', '双速电机控制电路'];
@@ -114,7 +113,7 @@ export function createMotorCourseDocument(id: string, {wired=false}: {wired?:boo
     net([['sb2','24'],['km1','14'],['sb3','11']]);join('sb3','12','km2','21');join('km2','22','km1','A1');
     net([['sb3','24'],['km2','14'],['sb2','11']]);join('sb2','12','km1','21');net([['km1','22'],['km2','A1'],['km3','A1']]);
   }
-  return putWiresInDucts(arrangeTrainingDucts({schemaVersion:1,title:TITLES[index],lessonId:id,trainingProjectId:`project-${String(n).padStart(2,'0')}`,components,wires:wired?wires:[],roles:Object.fromEntries(components.map(component=>[component.id,component.id]))}));
+  return {schemaVersion:1,title:TITLES[index],lessonId:id,trainingProjectId:`project-${String(n).padStart(2,'0')}`,components,wires:wired?wires:[],roles:Object.fromEntries(components.map(component=>[component.id,component.id]))};
 }
 
 for (const lesson of MOTOR_COURSES) lesson.componentTypes=[...new Set(createMotorCourseDocument(lesson.id).components.map(component=>component.type))];
