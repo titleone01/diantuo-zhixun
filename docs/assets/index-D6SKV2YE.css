@@ -3332,7 +3332,7 @@ svg.react-flow__connectionline {
   position: absolute;
   left: 24px;
   bottom: 76px;
-  max-width: 480px;
+  max-width: min(480px, calc(100% - 48px));
   padding: 8px 12px;
   border: 1px solid #e8c37a;
   border-radius: 5px;
@@ -3340,6 +3340,15 @@ svg.react-flow__connectionline {
   color: #805b20;
   font-size: 12px;
   z-index: 5;
+  pointer-events: none;
+}
+.sim-routing-notice b,
+.sim-routing-notice span {
+  display: block;
+}
+.sim-routing-notice span {
+  margin-top: 3px;
+  line-height: 1.5;
 }
 
 /* app/simulator/training-projects.css */

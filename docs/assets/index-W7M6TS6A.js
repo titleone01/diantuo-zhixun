@@ -164,12 +164,12 @@ var require_react_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      function ReactElement(type, key3, props, owner, debugStack, debugTask) {
+      function ReactElement(type, key4, props, owner, debugStack, debugTask) {
         var refProp = props.ref;
         type = {
           $$typeof: REACT_ELEMENT_TYPE,
           type,
-          key: key3,
+          key: key4,
           props,
           _owner: owner
         };
@@ -223,9 +223,9 @@ var require_react_development = __commonJS({
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      function escape(key3) {
+      function escape(key4) {
         var escaperLookup = { "=": "=0", ":": "=2" };
-        return "$" + key3.replace(/[=:]/g, function(match) {
+        return "$" + key4.replace(/[=:]/g, function(match) {
           return escaperLookup[match];
         });
       }
@@ -703,7 +703,7 @@ var require_react_development = __commonJS({
           throw Error(
             "The argument must be a React element, but you passed " + element + "."
           );
-        var props = assign({}, element.props), key3 = element.key, owner = element._owner;
+        var props = assign({}, element.props), key4 = element.key, owner = element._owner;
         if (null != config) {
           var JSCompiler_inline_result;
           a: {
@@ -717,7 +717,7 @@ var require_react_development = __commonJS({
             JSCompiler_inline_result = void 0 !== config.ref;
           }
           JSCompiler_inline_result && (owner = getOwner());
-          hasValidKey(config) && (checkKeyStringCoercion(config.key), key3 = "" + config.key);
+          hasValidKey(config) && (checkKeyStringCoercion(config.key), key4 = "" + config.key);
           for (propName in config)
             !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
         }
@@ -731,14 +731,14 @@ var require_react_development = __commonJS({
         }
         props = ReactElement(
           element.type,
-          key3,
+          key4,
           props,
           owner,
           element._debugStack,
           element._debugTask
         );
-        for (key3 = 2; key3 < arguments.length; key3++)
-          validateChildKeys(arguments[key3]);
+        for (key4 = 2; key4 < arguments.length; key4++)
+          validateChildKeys(arguments[key4]);
         return props;
       };
       exports.createContext = function(defaultValue) {
@@ -763,11 +763,11 @@ var require_react_development = __commonJS({
         for (var i = 2; i < arguments.length; i++)
           validateChildKeys(arguments[i]);
         i = {};
-        var key3 = null;
+        var key4 = null;
         if (null != config)
           for (propName in didWarnAboutOldJSXRuntime || !("__self" in config) || "key" in config || (didWarnAboutOldJSXRuntime = true, console.warn(
             "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
-          )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key3 = "" + config.key), config)
+          )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key4 = "" + config.key), config)
             hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i[propName] = config[propName]);
         var childrenLength = arguments.length - 2;
         if (1 === childrenLength) i.children = children2;
@@ -780,14 +780,14 @@ var require_react_development = __commonJS({
         if (type && type.defaultProps)
           for (propName in childrenLength = type.defaultProps, childrenLength)
             void 0 === i[propName] && (i[propName] = childrenLength[propName]);
-        key3 && defineKeyPropWarningGetter(
+        key4 && defineKeyPropWarningGetter(
           i,
           "function" === typeof type ? type.displayName || type.name || "Unknown" : type
         );
         var propName = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
         return ReactElement(
           type,
-          key3,
+          key4,
           i,
           getOwner(),
           propName ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
@@ -1269,20 +1269,20 @@ var require_react_dom_development = __commonJS({
         return "" + value;
       }
       function createPortal$1(children2, containerInfo, implementation) {
-        var key3 = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
+        var key4 = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
         try {
-          testStringCoercion(key3);
+          testStringCoercion(key4);
           var JSCompiler_inline_result = false;
         } catch (e) {
           JSCompiler_inline_result = true;
         }
         JSCompiler_inline_result && (console.error(
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          "function" === typeof Symbol && Symbol.toStringTag && key3[Symbol.toStringTag] || key3.constructor.name || "Object"
-        ), testStringCoercion(key3));
+          "function" === typeof Symbol && Symbol.toStringTag && key4[Symbol.toStringTag] || key4.constructor.name || "Object"
+        ), testStringCoercion(key4));
         return {
           $$typeof: REACT_PORTAL_TYPE,
-          key: null == key3 ? null : "" + key3,
+          key: null == key4 ? null : "" + key4,
           children: children2,
           containerInfo,
           implementation
@@ -1331,10 +1331,10 @@ var require_react_dom_development = __commonJS({
       );
       exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
       exports.createPortal = function(children2, container) {
-        var key3 = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
+        var key4 = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
         if (!container || 1 !== container.nodeType && 9 !== container.nodeType && 11 !== container.nodeType)
           throw Error("Target container is not a DOM element.");
-        return createPortal$1(children2, container, null, key3);
+        return createPortal$1(children2, container, null, key4);
       };
       exports.flushSync = function(fn) {
         var previousTransition = ReactSharedInternals.T, previousUpdatePriority = Internals.p;
@@ -1527,8 +1527,8 @@ var require_react_dom_client_development = __commonJS({
       }
       function copyWithSetImpl(obj, path, index2, value) {
         if (index2 >= path.length) return value;
-        var key3 = path[index2], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
-        updated[key3] = copyWithSetImpl(obj[key3], path, index2 + 1, value);
+        var key4 = path[index2], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
+        updated[key4] = copyWithSetImpl(obj[key4], path, index2 + 1, value);
         return updated;
       }
       function copyWithRename(obj, oldPath, newPath) {
@@ -1556,10 +1556,10 @@ var require_react_dom_client_development = __commonJS({
         return updated;
       }
       function copyWithDeleteImpl(obj, path, index2) {
-        var key3 = path[index2], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
+        var key4 = path[index2], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
         if (index2 + 1 === path.length)
-          return isArrayImpl(updated) ? updated.splice(key3, 1) : delete updated[key3], updated;
-        updated[key3] = copyWithDeleteImpl(obj[key3], path, index2 + 1);
+          return isArrayImpl(updated) ? updated.splice(key4, 1) : delete updated[key4], updated;
+        updated[key4] = copyWithDeleteImpl(obj[key4], path, index2 + 1);
         return updated;
       }
       function shouldSuspendImpl() {
@@ -1589,8 +1589,8 @@ var require_react_dom_client_development = __commonJS({
         });
         return array2.sort().join(", ");
       }
-      function createFiber(tag, pendingProps, key3, mode) {
-        return new FiberNode(tag, pendingProps, key3, mode);
+      function createFiber(tag, pendingProps, key4, mode) {
+        return new FiberNode(tag, pendingProps, key4, mode);
       }
       function scheduleRoot(root3, element) {
         root3.context === emptyContextObject && (updateContainerImpl(root3.current, 2, element, root3, null, null), flushSyncWork$1());
@@ -3476,30 +3476,30 @@ var require_react_dom_client_development = __commonJS({
           if (styles) {
             var expandedUpdates = {};
             if (prevStyles) {
-              for (var key3 in prevStyles)
-                if (prevStyles.hasOwnProperty(key3) && !styles.hasOwnProperty(key3))
-                  for (var longhands = shorthandToLonghand[key3] || [key3], i = 0; i < longhands.length; i++)
-                    expandedUpdates[longhands[i]] = key3;
+              for (var key4 in prevStyles)
+                if (prevStyles.hasOwnProperty(key4) && !styles.hasOwnProperty(key4))
+                  for (var longhands = shorthandToLonghand[key4] || [key4], i = 0; i < longhands.length; i++)
+                    expandedUpdates[longhands[i]] = key4;
             }
             for (var _key in styles)
               if (styles.hasOwnProperty(_key) && (!prevStyles || prevStyles[_key] !== styles[_key]))
-                for (key3 = shorthandToLonghand[_key] || [_key], longhands = 0; longhands < key3.length; longhands++)
-                  expandedUpdates[key3[longhands]] = _key;
+                for (key4 = shorthandToLonghand[_key] || [_key], longhands = 0; longhands < key4.length; longhands++)
+                  expandedUpdates[key4[longhands]] = _key;
             _key = {};
             for (var key$jscomp$0 in styles)
-              for (key3 = shorthandToLonghand[key$jscomp$0] || [key$jscomp$0], longhands = 0; longhands < key3.length; longhands++)
-                _key[key3[longhands]] = key$jscomp$0;
+              for (key4 = shorthandToLonghand[key$jscomp$0] || [key$jscomp$0], longhands = 0; longhands < key4.length; longhands++)
+                _key[key4[longhands]] = key$jscomp$0;
             key$jscomp$0 = {};
             for (var _key2 in expandedUpdates)
-              if (key3 = expandedUpdates[_key2], (longhands = _key[_key2]) && key3 !== longhands && (i = key3 + "," + longhands, !key$jscomp$0[i])) {
+              if (key4 = expandedUpdates[_key2], (longhands = _key[_key2]) && key4 !== longhands && (i = key4 + "," + longhands, !key$jscomp$0[i])) {
                 key$jscomp$0[i] = true;
                 i = console;
-                var value = styles[key3];
+                var value = styles[key4];
                 i.error.call(
                   i,
                   "%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.",
                   null == value || "boolean" === typeof value || "" === value ? "Removing" : "Updating",
-                  key3,
+                  key4,
                   longhands
                 );
               }
@@ -3562,9 +3562,9 @@ var require_react_dom_client_development = __commonJS({
         return true;
       }
       function validateProperties$2(type, props) {
-        var invalidProps = [], key3;
-        for (key3 in props)
-          validateProperty$1(type, key3) || invalidProps.push(key3);
+        var invalidProps = [], key4;
+        for (key4 in props)
+          validateProperty$1(type, key4) || invalidProps.push(key4);
         props = invalidProps.map(function(prop) {
           return "`" + prop + "`";
         }).join(", ");
@@ -3772,9 +3772,9 @@ var require_react_dom_client_development = __commonJS({
         return true;
       }
       function warnUnknownProperties(type, props, eventRegistry) {
-        var unknownProps = [], key3;
-        for (key3 in props)
-          validateProperty(type, key3, props[key3], eventRegistry) || unknownProps.push(key3);
+        var unknownProps = [], key4;
+        for (key4 in props)
+          validateProperty(type, key4, props[key4], eventRegistry) || unknownProps.push(key4);
         props = unknownProps.map(function(prop) {
           return "`" + prop + "`";
         }).join(", ");
@@ -4186,8 +4186,8 @@ var require_react_dom_client_development = __commonJS({
         return kind;
       }
       function addObjectToProperties(object, properties, indent, prefix3) {
-        for (var key3 in object)
-          hasOwnProperty.call(object, key3) && "_" !== key3[0] && addValueToProperties(key3, object[key3], properties, indent, prefix3);
+        for (var key4 in object)
+          hasOwnProperty.call(object, key4) && "_" !== key4[0] && addValueToProperties(key4, object[key4], properties, indent, prefix3);
       }
       function addValueToProperties(propertyName, value, properties, indent, prefix3) {
         switch (typeof value) {
@@ -4197,14 +4197,14 @@ var require_react_dom_client_development = __commonJS({
               break;
             } else {
               if (value.$$typeof === REACT_ELEMENT_TYPE) {
-                var typeName2 = getComponentNameFromType(value.type) || "\u2026", key3 = value.key;
+                var typeName2 = getComponentNameFromType(value.type) || "\u2026", key4 = value.key;
                 value = value.props;
                 var propsKeys = Object.keys(value), propsLength = propsKeys.length;
-                if (null == key3 && 0 === propsLength) {
+                if (null == key4 && 0 === propsLength) {
                   value = "<" + typeName2 + " />";
                   break;
                 }
-                if (3 > indent || 1 === propsLength && "children" === propsKeys[0] && null == key3) {
+                if (3 > indent || 1 === propsLength && "children" === propsKeys[0] && null == key4) {
                   value = "<" + typeName2 + " \u2026 />";
                   break;
                 }
@@ -4212,9 +4212,9 @@ var require_react_dom_client_development = __commonJS({
                   prefix3 + "\xA0\xA0".repeat(indent) + propertyName,
                   "<" + typeName2
                 ]);
-                null !== key3 && addValueToProperties(
+                null !== key4 && addValueToProperties(
                   "key",
-                  key3,
+                  key4,
                   properties,
                   indent + 1,
                   prefix3
@@ -4316,16 +4316,16 @@ var require_react_dom_client_development = __commonJS({
       }
       function addObjectDiffToProperties(prev, next, properties, indent) {
         var isDeeplyEqual = true;
-        for (key3 in prev)
-          key3 in next || (properties.push([
-            REMOVED + "\xA0\xA0".repeat(indent) + key3,
+        for (key4 in prev)
+          key4 in next || (properties.push([
+            REMOVED + "\xA0\xA0".repeat(indent) + key4,
             "\u2026"
           ]), isDeeplyEqual = false);
         for (var _key in next)
           if (_key in prev) {
-            var key3 = prev[_key];
+            var key4 = prev[_key];
             var nextValue = next[_key];
-            if (key3 !== nextValue) {
+            if (key4 !== nextValue) {
               if (0 === indent && "children" === _key)
                 isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key, properties.push(
                   [REMOVED + isDeeplyEqual, "\u2026"],
@@ -4333,21 +4333,21 @@ var require_react_dom_client_development = __commonJS({
                 );
               else {
                 if (!(3 <= indent)) {
-                  if ("object" === typeof key3 && "object" === typeof nextValue && null !== key3 && null !== nextValue && key3.$$typeof === nextValue.$$typeof)
+                  if ("object" === typeof key4 && "object" === typeof nextValue && null !== key4 && null !== nextValue && key4.$$typeof === nextValue.$$typeof)
                     if (nextValue.$$typeof === REACT_ELEMENT_TYPE) {
-                      if (key3.type === nextValue.type && key3.key === nextValue.key) {
-                        key3 = getComponentNameFromType(nextValue.type) || "\u2026";
+                      if (key4.type === nextValue.type && key4.key === nextValue.key) {
+                        key4 = getComponentNameFromType(nextValue.type) || "\u2026";
                         isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key;
-                        key3 = "<" + key3 + " \u2026 />";
+                        key4 = "<" + key4 + " \u2026 />";
                         properties.push(
-                          [REMOVED + isDeeplyEqual, key3],
-                          [ADDED + isDeeplyEqual, key3]
+                          [REMOVED + isDeeplyEqual, key4],
+                          [ADDED + isDeeplyEqual, key4]
                         );
                         isDeeplyEqual = false;
                         continue;
                       }
                     } else {
-                      var prevKind = Object.prototype.toString.call(key3), nextKind = Object.prototype.toString.call(nextValue);
+                      var prevKind = Object.prototype.toString.call(key4), nextKind = Object.prototype.toString.call(nextValue);
                       if (prevKind === nextKind && ("[object Object]" === nextKind || "[object Array]" === nextKind)) {
                         prevKind = [
                           UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
@@ -4356,7 +4356,7 @@ var require_react_dom_client_development = __commonJS({
                         properties.push(prevKind);
                         nextKind = properties.length;
                         addObjectDiffToProperties(
-                          key3,
+                          key4,
                           nextValue,
                           properties,
                           indent + 1
@@ -4364,16 +4364,16 @@ var require_react_dom_client_development = __commonJS({
                         continue;
                       }
                     }
-                  else if ("function" === typeof key3 && "function" === typeof nextValue && key3.name === nextValue.name && key3.length === nextValue.length && (prevKind = Function.prototype.toString.call(key3), nextKind = Function.prototype.toString.call(nextValue), prevKind === nextKind)) {
-                    key3 = "" === nextValue.name ? "() => {}" : nextValue.name + "() {}";
+                  else if ("function" === typeof key4 && "function" === typeof nextValue && key4.name === nextValue.name && key4.length === nextValue.length && (prevKind = Function.prototype.toString.call(key4), nextKind = Function.prototype.toString.call(nextValue), prevKind === nextKind)) {
+                    key4 = "" === nextValue.name ? "() => {}" : nextValue.name + "() {}";
                     properties.push([
                       UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
-                      key3 + " Referentially unequal function closure. Consider memoization."
+                      key4 + " Referentially unequal function closure. Consider memoization."
                     ]);
                     continue;
                   }
                 }
-                addValueToProperties(_key, key3, properties, indent, REMOVED);
+                addValueToProperties(_key, key4, properties, indent, REMOVED);
                 addValueToProperties(_key, nextValue, properties, indent, ADDED);
               }
               isDeeplyEqual = false;
@@ -4839,9 +4839,9 @@ var require_react_dom_client_development = __commonJS({
           fiber = sibling;
         } while (1);
       }
-      function FiberNode(tag, pendingProps, key3, mode) {
+      function FiberNode(tag, pendingProps, key4, mode) {
         this.tag = tag;
-        this.key = key3;
+        this.key = key4;
         this.sibling = this.child = this.return = this.stateNode = this.type = this.elementType = null;
         this.index = 0;
         this.refCleanup = this.ref = null;
@@ -4916,7 +4916,7 @@ var require_react_dom_client_development = __commonJS({
         }, workInProgress2.selfBaseDuration = current2.selfBaseDuration, workInProgress2.treeBaseDuration = current2.treeBaseDuration);
         return workInProgress2;
       }
-      function createFiberFromTypeAndProps(type, key3, pendingProps, owner, mode, lanes) {
+      function createFiberFromTypeAndProps(type, key4, pendingProps, owner, mode, lanes) {
         var fiberTag = 0, resolvedType = type;
         if ("function" === typeof type)
           shouldConstruct(type) && (fiberTag = 1), resolvedType = resolveFunctionForHotReloading(resolvedType);
@@ -4925,13 +4925,13 @@ var require_react_dom_client_development = __commonJS({
         else
           a: switch (type) {
             case REACT_ACTIVITY_TYPE:
-              return key3 = createFiber(31, pendingProps, key3, mode), key3.elementType = REACT_ACTIVITY_TYPE, key3.lanes = lanes, key3;
+              return key4 = createFiber(31, pendingProps, key4, mode), key4.elementType = REACT_ACTIVITY_TYPE, key4.lanes = lanes, key4;
             case REACT_FRAGMENT_TYPE:
               return createFiberFromFragment(
                 pendingProps.children,
                 mode,
                 lanes,
-                key3
+                key4
               );
             case REACT_STRICT_MODE_TYPE:
               fiberTag = 8;
@@ -4942,11 +4942,11 @@ var require_react_dom_client_development = __commonJS({
               return type = pendingProps, owner = mode, "string" !== typeof type.id && console.error(
                 'Profiler must specify an "id" of type `string` as a prop. Received the type `%s` instead.',
                 typeof type.id
-              ), key3 = createFiber(12, type, key3, owner | ProfileMode), key3.elementType = REACT_PROFILER_TYPE, key3.lanes = lanes, key3.stateNode = { effectDuration: 0, passiveEffectDuration: 0 }, key3;
+              ), key4 = createFiber(12, type, key4, owner | ProfileMode), key4.elementType = REACT_PROFILER_TYPE, key4.lanes = lanes, key4.stateNode = { effectDuration: 0, passiveEffectDuration: 0 }, key4;
             case REACT_SUSPENSE_TYPE:
-              return key3 = createFiber(13, pendingProps, key3, mode), key3.elementType = REACT_SUSPENSE_TYPE, key3.lanes = lanes, key3;
+              return key4 = createFiber(13, pendingProps, key4, mode), key4.elementType = REACT_SUSPENSE_TYPE, key4.lanes = lanes, key4;
             case REACT_SUSPENSE_LIST_TYPE:
-              return key3 = createFiber(19, pendingProps, key3, mode), key3.elementType = REACT_SUSPENSE_LIST_TYPE, key3.lanes = lanes, key3;
+              return key4 = createFiber(19, pendingProps, key4, mode), key4.elementType = REACT_SUSPENSE_LIST_TYPE, key4.lanes = lanes, key4;
             default:
               if ("object" === typeof type && null !== type)
                 switch (type.$$typeof) {
@@ -4979,12 +4979,12 @@ var require_react_dom_client_development = __commonJS({
               );
               resolvedType = null;
           }
-        key3 = createFiber(fiberTag, pendingProps, key3, mode);
-        key3.elementType = type;
-        key3.type = resolvedType;
-        key3.lanes = lanes;
-        key3._debugOwner = owner;
-        return key3;
+        key4 = createFiber(fiberTag, pendingProps, key4, mode);
+        key4.elementType = type;
+        key4.type = resolvedType;
+        key4.lanes = lanes;
+        key4._debugOwner = owner;
+        return key4;
       }
       function createFiberFromElement(element, mode, lanes) {
         mode = createFiberFromTypeAndProps(
@@ -5000,8 +5000,8 @@ var require_react_dom_client_development = __commonJS({
         mode._debugTask = element._debugTask;
         return mode;
       }
-      function createFiberFromFragment(elements, mode, lanes, key3) {
-        elements = createFiber(7, elements, key3, mode);
+      function createFiberFromFragment(elements, mode, lanes, key4) {
+        elements = createFiber(7, elements, key4, mode);
         elements.lanes = lanes;
         return elements;
       }
@@ -5798,8 +5798,8 @@ var require_react_dom_client_development = __commonJS({
       }
       function validateFragmentProps(element, fiber, returnFiber) {
         for (var keys = Object.keys(element.props), i = 0; i < keys.length; i++) {
-          var key3 = keys[i];
-          if ("children" !== key3 && "key" !== key3) {
+          var key4 = keys[i];
+          if ("children" !== key4 && "key" !== key4) {
             null === fiber && (fiber = createFiberFromElement(element, returnFiber.mode, 0), fiber._debugInfo = currentDebugInfo, fiber.return = returnFiber);
             runWithFiberInDEV(
               fiber,
@@ -5809,7 +5809,7 @@ var require_react_dom_client_development = __commonJS({
                   erroredKey
                 );
               },
-              key3
+              key4
             );
             break;
           }
@@ -5957,13 +5957,13 @@ var require_react_dom_client_development = __commonJS({
           current2._debugInfo = currentDebugInfo;
           return current2;
         }
-        function updateFragment(returnFiber, current2, fragment, lanes, key3) {
+        function updateFragment(returnFiber, current2, fragment, lanes, key4) {
           if (null === current2 || 7 !== current2.tag)
             return current2 = createFiberFromFragment(
               fragment,
               returnFiber.mode,
               lanes,
-              key3
+              key4
             ), current2.return = returnFiber, current2._debugOwner = returnFiber, current2._debugTask = returnFiber._debugTask, current2._debugInfo = currentDebugInfo, current2;
           current2 = useFiber(current2, fragment);
           current2.return = returnFiber;
@@ -6024,31 +6024,31 @@ var require_react_dom_client_development = __commonJS({
           return null;
         }
         function updateSlot(returnFiber, oldFiber, newChild, lanes) {
-          var key3 = null !== oldFiber ? oldFiber.key : null;
+          var key4 = null !== oldFiber ? oldFiber.key : null;
           if ("string" === typeof newChild && "" !== newChild || "number" === typeof newChild || "bigint" === typeof newChild)
-            return null !== key3 ? null : updateTextNode(returnFiber, oldFiber, "" + newChild, lanes);
+            return null !== key4 ? null : updateTextNode(returnFiber, oldFiber, "" + newChild, lanes);
           if ("object" === typeof newChild && null !== newChild) {
             switch (newChild.$$typeof) {
               case REACT_ELEMENT_TYPE:
-                return newChild.key === key3 ? (key3 = pushDebugInfo(newChild._debugInfo), returnFiber = updateElement(
+                return newChild.key === key4 ? (key4 = pushDebugInfo(newChild._debugInfo), returnFiber = updateElement(
                   returnFiber,
                   oldFiber,
                   newChild,
                   lanes
-                ), currentDebugInfo = key3, returnFiber) : null;
+                ), currentDebugInfo = key4, returnFiber) : null;
               case REACT_PORTAL_TYPE:
-                return newChild.key === key3 ? updatePortal(returnFiber, oldFiber, newChild, lanes) : null;
+                return newChild.key === key4 ? updatePortal(returnFiber, oldFiber, newChild, lanes) : null;
               case REACT_LAZY_TYPE:
-                return key3 = pushDebugInfo(newChild._debugInfo), newChild = resolveLazy(newChild), returnFiber = updateSlot(
+                return key4 = pushDebugInfo(newChild._debugInfo), newChild = resolveLazy(newChild), returnFiber = updateSlot(
                   returnFiber,
                   oldFiber,
                   newChild,
                   lanes
-                ), currentDebugInfo = key3, returnFiber;
+                ), currentDebugInfo = key4, returnFiber;
             }
             if (isArrayImpl(newChild) || getIteratorFn(newChild)) {
-              if (null !== key3) return null;
-              key3 = pushDebugInfo(newChild._debugInfo);
+              if (null !== key4) return null;
+              key4 = pushDebugInfo(newChild._debugInfo);
               returnFiber = updateFragment(
                 returnFiber,
                 oldFiber,
@@ -6056,16 +6056,16 @@ var require_react_dom_client_development = __commonJS({
                 lanes,
                 null
               );
-              currentDebugInfo = key3;
+              currentDebugInfo = key4;
               return returnFiber;
             }
             if ("function" === typeof newChild.then)
-              return key3 = pushDebugInfo(newChild._debugInfo), returnFiber = updateSlot(
+              return key4 = pushDebugInfo(newChild._debugInfo), returnFiber = updateSlot(
                 returnFiber,
                 oldFiber,
                 unwrapThenable(newChild),
                 lanes
-              ), currentDebugInfo = key3, returnFiber;
+              ), currentDebugInfo = key4, returnFiber;
             if (newChild.$$typeof === REACT_CONTEXT_TYPE)
               return updateSlot(
                 returnFiber,
@@ -6146,21 +6146,21 @@ var require_react_dom_client_development = __commonJS({
             case REACT_ELEMENT_TYPE:
             case REACT_PORTAL_TYPE:
               warnForMissingKey(returnFiber, workInProgress2, child);
-              var key3 = child.key;
-              if ("string" !== typeof key3) break;
+              var key4 = child.key;
+              if ("string" !== typeof key4) break;
               if (null === knownKeys) {
                 knownKeys = /* @__PURE__ */ new Set();
-                knownKeys.add(key3);
+                knownKeys.add(key4);
                 break;
               }
-              if (!knownKeys.has(key3)) {
-                knownKeys.add(key3);
+              if (!knownKeys.has(key4)) {
+                knownKeys.add(key4);
                 break;
               }
               runWithFiberInDEV(workInProgress2, function() {
                 console.error(
                   "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted \u2014 the behavior is unsupported and could change in a future version.",
-                  key3
+                  key4
                 );
               });
               break;
@@ -6307,10 +6307,10 @@ var require_react_dom_client_development = __commonJS({
               case REACT_ELEMENT_TYPE:
                 var prevDebugInfo = pushDebugInfo(newChild._debugInfo);
                 a: {
-                  for (var key3 = newChild.key; null !== currentFirstChild; ) {
-                    if (currentFirstChild.key === key3) {
-                      key3 = newChild.type;
-                      if (key3 === REACT_FRAGMENT_TYPE) {
+                  for (var key4 = newChild.key; null !== currentFirstChild; ) {
+                    if (currentFirstChild.key === key4) {
+                      key4 = newChild.type;
+                      if (key4 === REACT_FRAGMENT_TYPE) {
                         if (7 === currentFirstChild.tag) {
                           deleteRemainingChildren(
                             returnFiber,
@@ -6327,10 +6327,10 @@ var require_react_dom_client_development = __commonJS({
                           returnFiber = lanes;
                           break a;
                         }
-                      } else if (currentFirstChild.elementType === key3 || isCompatibleFamilyForHotReloading(
+                      } else if (currentFirstChild.elementType === key4 || isCompatibleFamilyForHotReloading(
                         currentFirstChild,
                         newChild
-                      ) || "object" === typeof key3 && null !== key3 && key3.$$typeof === REACT_LAZY_TYPE && resolveLazy(key3) === currentFirstChild.type) {
+                      ) || "object" === typeof key4 && null !== key4 && key4.$$typeof === REACT_LAZY_TYPE && resolveLazy(key4) === currentFirstChild.type) {
                         deleteRemainingChildren(
                           returnFiber,
                           currentFirstChild.sibling
@@ -6412,19 +6412,19 @@ var require_react_dom_client_development = __commonJS({
               ), currentDebugInfo = prevDebugInfo, returnFiber;
             if (getIteratorFn(newChild)) {
               prevDebugInfo = pushDebugInfo(newChild._debugInfo);
-              key3 = getIteratorFn(newChild);
-              if ("function" !== typeof key3)
+              key4 = getIteratorFn(newChild);
+              if ("function" !== typeof key4)
                 throw Error(
                   "An object is not an iterable. This error is likely caused by a bug in React. Please file an issue."
                 );
-              var newChildren = key3.call(newChild);
+              var newChildren = key4.call(newChild);
               if (newChildren === newChild) {
                 if (0 !== returnFiber.tag || "[object GeneratorFunction]" !== Object.prototype.toString.call(returnFiber.type) || "[object Generator]" !== Object.prototype.toString.call(newChildren))
                   didWarnAboutGenerators || console.error(
                     "Using Iterators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. You can also use an Iterable that can iterate multiple times over the same items."
                   ), didWarnAboutGenerators = true;
               } else
-                newChild.entries !== key3 || didWarnAboutMaps || (console.error(
+                newChild.entries !== key4 || didWarnAboutMaps || (console.error(
                   "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
                 ), didWarnAboutMaps = true);
               returnFiber = reconcileChildrenIterator(
@@ -8117,8 +8117,8 @@ var require_react_dom_client_development = __commonJS({
       }
       function warnOnInvalidCallback(callback) {
         if (null !== callback && "function" !== typeof callback) {
-          var key3 = String(callback);
-          didWarnOnInvalidCallback.has(key3) || (didWarnOnInvalidCallback.add(key3), console.error(
+          var key4 = String(callback);
+          didWarnOnInvalidCallback.has(key4) || (didWarnOnInvalidCallback.add(key4), console.error(
             "Expected the last optional `callback` argument to be a function. Instead received: %s.",
             callback
           ));
@@ -8427,8 +8427,8 @@ var require_react_dom_client_development = __commonJS({
         var ref2 = workInProgress2.ref;
         if ("ref" in nextProps) {
           var propsWithoutRef = {};
-          for (var key3 in nextProps)
-            "ref" !== key3 && (propsWithoutRef[key3] = nextProps[key3]);
+          for (var key4 in nextProps)
+            "ref" !== key4 && (propsWithoutRef[key4] = nextProps[key4]);
         } else propsWithoutRef = nextProps;
         prepareToReadContext(workInProgress2);
         nextProps = renderWithHooks(
@@ -8439,10 +8439,10 @@ var require_react_dom_client_development = __commonJS({
           ref2,
           renderLanes2
         );
-        key3 = checkDidRenderIdHook();
+        key4 = checkDidRenderIdHook();
         if (null !== current2 && !didReceiveUpdate)
           return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
-        isHydrating && key3 && pushMaterializedTreeId(workInProgress2);
+        isHydrating && key4 && pushMaterializedTreeId(workInProgress2);
         workInProgress2.flags |= 1;
         reconcileChildren(current2, workInProgress2, nextProps, renderLanes2);
         return workInProgress2.child;
@@ -15406,8 +15406,8 @@ var require_react_dom_client_development = __commonJS({
         clientText = normalizeMarkupForTextOrAttribute(clientText);
         return normalizeMarkupForTextOrAttribute(serverText) === clientText ? true : false;
       }
-      function setProp(domElement, tag, key3, value, props, prevValue) {
-        switch (key3) {
+      function setProp(domElement, tag, key4, value, props, prevValue) {
+        switch (key4) {
           case "children":
             if ("string" === typeof value)
               validateTextNesting(value, tag, false), "body" === tag || "textarea" === tag && "" === value || setTextContent(domElement, value);
@@ -15425,7 +15425,7 @@ var require_react_dom_client_development = __commonJS({
           case "viewBox":
           case "width":
           case "height":
-            setValueForKnownAttribute(domElement, key3, value);
+            setValueForKnownAttribute(domElement, key4, value);
             break;
           case "style":
             setValueForStyles(domElement, value, prevValue);
@@ -15437,36 +15437,36 @@ var require_react_dom_client_development = __commonJS({
             }
           case "src":
           case "href":
-            if ("" === value && ("a" !== tag || "href" !== key3)) {
-              "src" === key3 ? console.error(
+            if ("" === value && ("a" !== tag || "href" !== key4)) {
+              "src" === key4 ? console.error(
                 'An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string.',
-                key3,
-                key3
+                key4,
+                key4
               ) : console.error(
                 'An empty string ("") was passed to the %s attribute. To fix this, either do not render the element at all or pass null to %s instead of an empty string.',
-                key3,
-                key3
+                key4,
+                key4
               );
-              domElement.removeAttribute(key3);
+              domElement.removeAttribute(key4);
               break;
             }
             if (null == value || "function" === typeof value || "symbol" === typeof value || "boolean" === typeof value) {
-              domElement.removeAttribute(key3);
+              domElement.removeAttribute(key4);
               break;
             }
-            checkAttributeStringCoercion(value, key3);
+            checkAttributeStringCoercion(value, key4);
             value = sanitizeURL("" + value);
-            domElement.setAttribute(key3, value);
+            domElement.setAttribute(key4, value);
             break;
           case "action":
           case "formAction":
-            null != value && ("form" === tag ? "formAction" === key3 ? console.error(
+            null != value && ("form" === tag ? "formAction" === key4 ? console.error(
               "You can only pass the formAction prop to <input> or <button>. Use the action prop on <form>."
             ) : "function" === typeof value && (null == props.encType && null == props.method || didWarnFormActionMethod || (didWarnFormActionMethod = true, console.error(
               "Cannot specify a encType or method for a form that specifies a function as the action. React provides those automatically. They will get overridden."
             )), null == props.target || didWarnFormActionTarget || (didWarnFormActionTarget = true, console.error(
               "Cannot specify a target for a form that specifies a function as the action. The function will always be executed in the same window."
-            ))) : "input" === tag || "button" === tag ? "action" === key3 ? console.error(
+            ))) : "input" === tag || "button" === tag ? "action" === key4 ? console.error(
               "You can only pass the action prop to <form>. Use the formAction prop on <input> or <button>."
             ) : "input" !== tag || "submit" === props.type || "image" === props.type || didWarnFormActionType ? "button" !== tag || null == props.type || "submit" === props.type || didWarnFormActionType ? "function" === typeof value && (null == props.name || didWarnFormActionName || (didWarnFormActionName = true, console.error(
               'Cannot specify a "name" prop for a button that specifies a function as a formAction. React needs it to encode which action should be invoked. It will get overridden.'
@@ -15478,19 +15478,19 @@ var require_react_dom_client_development = __commonJS({
               'A button can only specify a formAction along with type="submit" or no type.'
             )) : (didWarnFormActionType = true, console.error(
               'An input can only specify a formAction along with type="submit" or type="image".'
-            )) : "action" === key3 ? console.error(
+            )) : "action" === key4 ? console.error(
               "You can only pass the action prop to <form>."
             ) : console.error(
               "You can only pass the formAction prop to <input> or <button>."
             ));
             if ("function" === typeof value) {
               domElement.setAttribute(
-                key3,
+                key4,
                 "javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
               );
               break;
             } else
-              "function" === typeof prevValue && ("formAction" === key3 ? ("input" !== tag && setProp(domElement, tag, "name", props.name, props, null), setProp(
+              "function" === typeof prevValue && ("formAction" === key4 ? ("input" !== tag && setProp(domElement, tag, "name", props.name, props, null), setProp(
                 domElement,
                 tag,
                 "formEncType",
@@ -15527,21 +15527,21 @@ var require_react_dom_client_development = __commonJS({
                 null
               )));
             if (null == value || "symbol" === typeof value || "boolean" === typeof value) {
-              domElement.removeAttribute(key3);
+              domElement.removeAttribute(key4);
               break;
             }
-            checkAttributeStringCoercion(value, key3);
+            checkAttributeStringCoercion(value, key4);
             value = sanitizeURL("" + value);
-            domElement.setAttribute(key3, value);
+            domElement.setAttribute(key4, value);
             break;
           case "onClick":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), domElement.onclick = noop$1);
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), domElement.onclick = noop$1);
             break;
           case "onScroll":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), listenToNonDelegatedEvent("scroll", domElement));
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), listenToNonDelegatedEvent("scroll", domElement));
             break;
           case "onScrollEnd":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), listenToNonDelegatedEvent("scrollend", domElement));
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), listenToNonDelegatedEvent("scrollend", domElement));
             break;
           case "dangerouslySetInnerHTML":
             if (null != value) {
@@ -15549,13 +15549,13 @@ var require_react_dom_client_development = __commonJS({
                 throw Error(
                   "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://react.dev/link/dangerously-set-inner-html for more information."
                 );
-              key3 = value.__html;
-              if (null != key3) {
+              key4 = value.__html;
+              if (null != key4) {
                 if (null != props.children)
                   throw Error(
                     "Can only set one of `children` or `props.dangerouslySetInnerHTML`."
                   );
-                domElement.innerHTML = key3;
+                domElement.innerHTML = key4;
               }
             }
             break;
@@ -15579,9 +15579,9 @@ var require_react_dom_client_development = __commonJS({
               domElement.removeAttribute("xlink:href");
               break;
             }
-            checkAttributeStringCoercion(value, key3);
-            key3 = sanitizeURL("" + value);
-            domElement.setAttributeNS(xlinkNamespace, "xlink:href", key3);
+            checkAttributeStringCoercion(value, key4);
+            key4 = sanitizeURL("" + value);
+            domElement.setAttributeNS(xlinkNamespace, "xlink:href", key4);
             break;
           case "contentEditable":
           case "spellCheck":
@@ -15591,12 +15591,12 @@ var require_react_dom_client_development = __commonJS({
           case "externalResourcesRequired":
           case "focusable":
           case "preserveAlpha":
-            null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key3), domElement.setAttribute(key3, "" + value)) : domElement.removeAttribute(key3);
+            null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key4), domElement.setAttribute(key4, "" + value)) : domElement.removeAttribute(key4);
             break;
           case "inert":
-            "" !== value || didWarnForNewBooleanPropsWithEmptyValue[key3] || (didWarnForNewBooleanPropsWithEmptyValue[key3] = true, console.error(
+            "" !== value || didWarnForNewBooleanPropsWithEmptyValue[key4] || (didWarnForNewBooleanPropsWithEmptyValue[key4] = true, console.error(
               "Received an empty string for a boolean attribute `%s`. This will treat the attribute as if it were false. Either pass `false` to silence this warning, or pass `true` if you used an empty string in earlier versions of React to indicate this attribute is true.",
-              key3
+              key4
             ));
           case "allowFullScreen":
           case "async":
@@ -15620,21 +15620,21 @@ var require_react_dom_client_development = __commonJS({
           case "scoped":
           case "seamless":
           case "itemScope":
-            value && "function" !== typeof value && "symbol" !== typeof value ? domElement.setAttribute(key3, "") : domElement.removeAttribute(key3);
+            value && "function" !== typeof value && "symbol" !== typeof value ? domElement.setAttribute(key4, "") : domElement.removeAttribute(key4);
             break;
           case "capture":
           case "download":
-            true === value ? domElement.setAttribute(key3, "") : false !== value && null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key3), domElement.setAttribute(key3, value)) : domElement.removeAttribute(key3);
+            true === value ? domElement.setAttribute(key4, "") : false !== value && null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key4), domElement.setAttribute(key4, value)) : domElement.removeAttribute(key4);
             break;
           case "cols":
           case "rows":
           case "size":
           case "span":
-            null != value && "function" !== typeof value && "symbol" !== typeof value && !isNaN(value) && 1 <= value ? (checkAttributeStringCoercion(value, key3), domElement.setAttribute(key3, value)) : domElement.removeAttribute(key3);
+            null != value && "function" !== typeof value && "symbol" !== typeof value && !isNaN(value) && 1 <= value ? (checkAttributeStringCoercion(value, key4), domElement.setAttribute(key4, value)) : domElement.removeAttribute(key4);
             break;
           case "rowSpan":
           case "start":
-            null == value || "function" === typeof value || "symbol" === typeof value || isNaN(value) ? domElement.removeAttribute(key3) : (checkAttributeStringCoercion(value, key3), domElement.setAttribute(key3, value));
+            null == value || "function" === typeof value || "symbol" === typeof value || isNaN(value) ? domElement.removeAttribute(key4) : (checkAttributeStringCoercion(value, key4), domElement.setAttribute(key4, value));
             break;
           case "popover":
             listenToNonDelegatedEvent("beforetoggle", domElement);
@@ -15728,11 +15728,11 @@ var require_react_dom_client_development = __commonJS({
               value
             ));
           default:
-            !(2 < key3.length) || "o" !== key3[0] && "O" !== key3[0] || "n" !== key3[1] && "N" !== key3[1] ? (key3 = getAttributeAlias(key3), setValueForAttribute(domElement, key3, value)) : registrationNameDependencies.hasOwnProperty(key3) && null != value && "function" !== typeof value && warnForInvalidEventListener(key3, value);
+            !(2 < key4.length) || "o" !== key4[0] && "O" !== key4[0] || "n" !== key4[1] && "N" !== key4[1] ? (key4 = getAttributeAlias(key4), setValueForAttribute(domElement, key4, value)) : registrationNameDependencies.hasOwnProperty(key4) && null != value && "function" !== typeof value && warnForInvalidEventListener(key4, value);
         }
       }
-      function setPropOnCustomElement(domElement, tag, key3, value, props, prevValue) {
-        switch (key3) {
+      function setPropOnCustomElement(domElement, tag, key4, value, props, prevValue) {
+        switch (key4) {
           case "style":
             setValueForStyles(domElement, value, prevValue);
             break;
@@ -15742,13 +15742,13 @@ var require_react_dom_client_development = __commonJS({
                 throw Error(
                   "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://react.dev/link/dangerously-set-inner-html for more information."
                 );
-              key3 = value.__html;
-              if (null != key3) {
+              key4 = value.__html;
+              if (null != key4) {
                 if (null != props.children)
                   throw Error(
                     "Can only set one of `children` or `props.dangerouslySetInnerHTML`."
                   );
-                domElement.innerHTML = key3;
+                domElement.innerHTML = key4;
               }
             }
             break;
@@ -15756,13 +15756,13 @@ var require_react_dom_client_development = __commonJS({
             "string" === typeof value ? setTextContent(domElement, value) : ("number" === typeof value || "bigint" === typeof value) && setTextContent(domElement, "" + value);
             break;
           case "onScroll":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), listenToNonDelegatedEvent("scroll", domElement));
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), listenToNonDelegatedEvent("scroll", domElement));
             break;
           case "onScrollEnd":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), listenToNonDelegatedEvent("scrollend", domElement));
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), listenToNonDelegatedEvent("scrollend", domElement));
             break;
           case "onClick":
-            null != value && ("function" !== typeof value && warnForInvalidEventListener(key3, value), domElement.onclick = noop$1);
+            null != value && ("function" !== typeof value && warnForInvalidEventListener(key4, value), domElement.onclick = noop$1);
             break;
           case "suppressContentEditableWarning":
           case "suppressHydrationWarning":
@@ -15773,16 +15773,16 @@ var require_react_dom_client_development = __commonJS({
           case "textContent":
             break;
           default:
-            if (registrationNameDependencies.hasOwnProperty(key3))
-              null != value && "function" !== typeof value && warnForInvalidEventListener(key3, value);
+            if (registrationNameDependencies.hasOwnProperty(key4))
+              null != value && "function" !== typeof value && warnForInvalidEventListener(key4, value);
             else
               a: {
-                if ("o" === key3[0] && "n" === key3[1] && (props = key3.endsWith("Capture"), tag = key3.slice(2, props ? key3.length - 7 : void 0), prevValue = domElement[internalPropsKey] || null, prevValue = null != prevValue ? prevValue[key3] : null, "function" === typeof prevValue && domElement.removeEventListener(tag, prevValue, props), "function" === typeof value)) {
-                  "function" !== typeof prevValue && null !== prevValue && (key3 in domElement ? domElement[key3] = null : domElement.hasAttribute(key3) && domElement.removeAttribute(key3));
+                if ("o" === key4[0] && "n" === key4[1] && (props = key4.endsWith("Capture"), tag = key4.slice(2, props ? key4.length - 7 : void 0), prevValue = domElement[internalPropsKey] || null, prevValue = null != prevValue ? prevValue[key4] : null, "function" === typeof prevValue && domElement.removeEventListener(tag, prevValue, props), "function" === typeof value)) {
+                  "function" !== typeof prevValue && null !== prevValue && (key4 in domElement ? domElement[key4] = null : domElement.hasAttribute(key4) && domElement.removeAttribute(key4));
                   domElement.addEventListener(tag, value, props);
                   break a;
                 }
-                key3 in domElement ? domElement[key3] = value : true === value ? domElement.setAttribute(key3, "") : setValueForAttribute(domElement, key3, value);
+                key4 in domElement ? domElement[key4] = value : true === value ? domElement.setAttribute(key4, "") : setValueForAttribute(domElement, key4, value);
               }
         }
       }
@@ -17551,8 +17551,8 @@ var require_react_dom_client_development = __commonJS({
       function getStyleKey(href) {
         return 'href="' + escapeSelectorAttributeValueInsideDoubleQuotes(href) + '"';
       }
-      function getStylesheetSelectorFromKey(key3) {
-        return 'link[rel="stylesheet"][' + key3 + "]";
+      function getStylesheetSelectorFromKey(key4) {
+        return 'link[rel="stylesheet"][' + key4 + "]";
       }
       function stylesheetPropsFromRawProps(rawProps) {
         return assign({}, rawProps, {
@@ -17560,20 +17560,20 @@ var require_react_dom_client_development = __commonJS({
           precedence: null
         });
       }
-      function preloadStylesheet(ownerDocument, key3, preloadProps, state) {
+      function preloadStylesheet(ownerDocument, key4, preloadProps, state) {
         ownerDocument.querySelector(
-          'link[rel="preload"][as="style"][' + key3 + "]"
-        ) ? state.loading = Loaded : (key3 = ownerDocument.createElement("link"), state.preload = key3, key3.addEventListener("load", function() {
+          'link[rel="preload"][as="style"][' + key4 + "]"
+        ) ? state.loading = Loaded : (key4 = ownerDocument.createElement("link"), state.preload = key4, key4.addEventListener("load", function() {
           return state.loading |= Loaded;
-        }), key3.addEventListener("error", function() {
+        }), key4.addEventListener("error", function() {
           return state.loading |= Errored;
-        }), setInitialProperties(key3, "link", preloadProps), markNodeAsHoistable(key3), ownerDocument.head.appendChild(key3));
+        }), setInitialProperties(key4, "link", preloadProps), markNodeAsHoistable(key4), ownerDocument.head.appendChild(key4));
       }
       function getScriptKey(src) {
         return '[src="' + escapeSelectorAttributeValueInsideDoubleQuotes(src) + '"]';
       }
-      function getScriptSelectorFromKey(key3) {
-        return "script[async]" + key3;
+      function getScriptSelectorFromKey(key4) {
+        return "script[async]" + key4;
       }
       function acquireResource(hoistableRoot, resource, props) {
         resource.count++;
@@ -17772,8 +17772,8 @@ var require_react_dom_client_development = __commonJS({
       function suspendResource(state, hoistableRoot, resource, props) {
         if ("stylesheet" === resource.type && ("string" !== typeof props.media || false !== matchMedia(props.media).matches) && (resource.state.loading & Inserted) === NotLoaded) {
           if (null === resource.instance) {
-            var key3 = getStyleKey(props.href), instance = hoistableRoot.querySelector(
-              getStylesheetSelectorFromKey(key3)
+            var key4 = getStyleKey(props.href), instance = hoistableRoot.querySelector(
+              getStylesheetSelectorFromKey(key4)
             );
             if (instance) {
               hoistableRoot = instance._p;
@@ -17785,7 +17785,7 @@ var require_react_dom_client_development = __commonJS({
             }
             instance = hoistableRoot.ownerDocument || hoistableRoot;
             props = stylesheetPropsFromRawProps(props);
-            (key3 = preloadPropsMap.get(key3)) && adoptPreloadPropsForStylesheet(props, key3);
+            (key4 = preloadPropsMap.get(key4)) && adoptPreloadPropsForStylesheet(props, key4);
             instance = instance.createElement("link");
             markNodeAsHoistable(instance);
             var linkInstance = instance;
@@ -18352,8 +18352,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return true;
       }
-      function attemptReplayContinuousQueuedEventInMap(queuedEvent, key3, map) {
-        attemptReplayContinuousQueuedEvent(queuedEvent) && map.delete(key3);
+      function attemptReplayContinuousQueuedEventInMap(queuedEvent, key4, map) {
+        attemptReplayContinuousQueuedEvent(queuedEvent) && map.delete(key4);
       }
       function replayUnblockedEvents() {
         hasScheduledReplayAttempt = false;
@@ -19421,8 +19421,8 @@ var require_react_dom_client_development = __commonJS({
       }, KeyboardEventInterface = assign({}, UIEventInterface, {
         key: function(nativeEvent) {
           if (nativeEvent.key) {
-            var key3 = normalizeKey[nativeEvent.key] || nativeEvent.key;
-            if ("Unidentified" !== key3) return key3;
+            var key4 = normalizeKey[nativeEvent.key] || nativeEvent.key;
+            if ("Unidentified" !== key4) return key4;
           }
           return "keypress" === nativeEvent.type ? (nativeEvent = getEventCharCode(nativeEvent), 13 === nativeEvent ? "Enter" : String.fromCharCode(nativeEvent)) : "keydown" === nativeEvent.type || "keyup" === nativeEvent.type ? translateToKey[nativeEvent.keyCode] || "Unidentified" : "";
         },
@@ -21052,31 +21052,31 @@ var require_react_dom_client_development = __commonJS({
             ) + '"]', "string" === typeof options.imageSizes && (preloadSelector += '[imagesizes="' + escapeSelectorAttributeValueInsideDoubleQuotes(
               options.imageSizes
             ) + '"]')) : preloadSelector += '[href="' + escapeSelectorAttributeValueInsideDoubleQuotes(href) + '"]' : preloadSelector += '[href="' + escapeSelectorAttributeValueInsideDoubleQuotes(href) + '"]';
-            var key3 = preloadSelector;
+            var key4 = preloadSelector;
             switch (as) {
               case "style":
-                key3 = getStyleKey(href);
+                key4 = getStyleKey(href);
                 break;
               case "script":
-                key3 = getScriptKey(href);
+                key4 = getScriptKey(href);
             }
-            preloadPropsMap.has(key3) || (href = assign(
+            preloadPropsMap.has(key4) || (href = assign(
               {
                 rel: "preload",
                 href: "image" === as && options && options.imageSrcSet ? void 0 : href,
                 as
               },
               options
-            ), preloadPropsMap.set(key3, href), null !== ownerDocument.querySelector(preloadSelector) || "style" === as && ownerDocument.querySelector(
-              getStylesheetSelectorFromKey(key3)
-            ) || "script" === as && ownerDocument.querySelector(getScriptSelectorFromKey(key3)) || (as = ownerDocument.createElement("link"), setInitialProperties(as, "link", href), markNodeAsHoistable(as), ownerDocument.head.appendChild(as)));
+            ), preloadPropsMap.set(key4, href), null !== ownerDocument.querySelector(preloadSelector) || "style" === as && ownerDocument.querySelector(
+              getStylesheetSelectorFromKey(key4)
+            ) || "script" === as && ownerDocument.querySelector(getScriptSelectorFromKey(key4)) || (as = ownerDocument.createElement("link"), setInitialProperties(as, "link", href), markNodeAsHoistable(as), ownerDocument.head.appendChild(as)));
           }
         },
         m: function(href, options) {
           previousDispatcher.m(href, options);
           var ownerDocument = globalDocument;
           if (ownerDocument && href) {
-            var as = options && "string" === typeof options.as ? options.as : "script", preloadSelector = 'link[rel="modulepreload"][as="' + escapeSelectorAttributeValueInsideDoubleQuotes(as) + '"][href="' + escapeSelectorAttributeValueInsideDoubleQuotes(href) + '"]', key3 = preloadSelector;
+            var as = options && "string" === typeof options.as ? options.as : "script", preloadSelector = 'link[rel="modulepreload"][as="' + escapeSelectorAttributeValueInsideDoubleQuotes(as) + '"][href="' + escapeSelectorAttributeValueInsideDoubleQuotes(href) + '"]', key4 = preloadSelector;
             switch (as) {
               case "audioworklet":
               case "paintworklet":
@@ -21084,9 +21084,9 @@ var require_react_dom_client_development = __commonJS({
               case "sharedworker":
               case "worker":
               case "script":
-                key3 = getScriptKey(href);
+                key4 = getScriptKey(href);
             }
-            if (!preloadPropsMap.has(key3) && (href = assign({ rel: "modulepreload", href }, options), preloadPropsMap.set(key3, href), null === ownerDocument.querySelector(preloadSelector))) {
+            if (!preloadPropsMap.has(key4) && (href = assign({ rel: "modulepreload", href }, options), preloadPropsMap.set(key4, href), null === ownerDocument.querySelector(preloadSelector))) {
               switch (as) {
                 case "audioworklet":
                 case "paintworklet":
@@ -21094,7 +21094,7 @@ var require_react_dom_client_development = __commonJS({
                 case "sharedworker":
                 case "worker":
                 case "script":
-                  if (ownerDocument.querySelector(getScriptSelectorFromKey(key3)))
+                  if (ownerDocument.querySelector(getScriptSelectorFromKey(key4)))
                     return;
               }
               as = ownerDocument.createElement("link");
@@ -21108,28 +21108,28 @@ var require_react_dom_client_development = __commonJS({
           previousDispatcher.X(src, options);
           var ownerDocument = globalDocument;
           if (ownerDocument && src) {
-            var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key3 = getScriptKey(src), resource = scripts.get(key3);
+            var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key4 = getScriptKey(src), resource = scripts.get(key4);
             resource || (resource = ownerDocument.querySelector(
-              getScriptSelectorFromKey(key3)
-            ), resource || (src = assign({ src, async: true }, options), (options = preloadPropsMap.get(key3)) && adoptPreloadPropsForScript(src, options), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
+              getScriptSelectorFromKey(key4)
+            ), resource || (src = assign({ src, async: true }, options), (options = preloadPropsMap.get(key4)) && adoptPreloadPropsForScript(src, options), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
               type: "script",
               instance: resource,
               count: 1,
               state: null
-            }, scripts.set(key3, resource));
+            }, scripts.set(key4, resource));
           }
         },
         S: function(href, precedence, options) {
           previousDispatcher.S(href, precedence, options);
           var ownerDocument = globalDocument;
           if (ownerDocument && href) {
-            var styles = getResourcesFromRoot(ownerDocument).hoistableStyles, key3 = getStyleKey(href);
+            var styles = getResourcesFromRoot(ownerDocument).hoistableStyles, key4 = getStyleKey(href);
             precedence = precedence || "default";
-            var resource = styles.get(key3);
+            var resource = styles.get(key4);
             if (!resource) {
               var state = { loading: NotLoaded, preload: null };
               if (resource = ownerDocument.querySelector(
-                getStylesheetSelectorFromKey(key3)
+                getStylesheetSelectorFromKey(key4)
               ))
                 state.loading = Loaded | Inserted;
               else {
@@ -21141,7 +21141,7 @@ var require_react_dom_client_development = __commonJS({
                   },
                   options
                 );
-                (options = preloadPropsMap.get(key3)) && adoptPreloadPropsForStylesheet(href, options);
+                (options = preloadPropsMap.get(key4)) && adoptPreloadPropsForStylesheet(href, options);
                 var link2 = resource = ownerDocument.createElement("link");
                 markNodeAsHoistable(link2);
                 setInitialProperties(link2, "link", href);
@@ -21164,7 +21164,7 @@ var require_react_dom_client_development = __commonJS({
                 count: 1,
                 state
               };
-              styles.set(key3, resource);
+              styles.set(key4, resource);
             }
           }
         },
@@ -21172,15 +21172,15 @@ var require_react_dom_client_development = __commonJS({
           previousDispatcher.M(src, options);
           var ownerDocument = globalDocument;
           if (ownerDocument && src) {
-            var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key3 = getScriptKey(src), resource = scripts.get(key3);
+            var scripts = getResourcesFromRoot(ownerDocument).hoistableScripts, key4 = getScriptKey(src), resource = scripts.get(key4);
             resource || (resource = ownerDocument.querySelector(
-              getScriptSelectorFromKey(key3)
-            ), resource || (src = assign({ src, async: true, type: "module" }, options), (options = preloadPropsMap.get(key3)) && adoptPreloadPropsForScript(src, options), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
+              getScriptSelectorFromKey(key4)
+            ), resource || (src = assign({ src, async: true, type: "module" }, options), (options = preloadPropsMap.get(key4)) && adoptPreloadPropsForScript(src, options), resource = ownerDocument.createElement("script"), markNodeAsHoistable(resource), setInitialProperties(resource, "link", src), ownerDocument.head.appendChild(resource)), resource = {
               type: "script",
               instance: resource,
               count: 1,
               state: null
-            }, scripts.set(key3, resource));
+            }, scripts.set(key4, resource));
           }
         }
       };
@@ -21546,12 +21546,12 @@ var require_react_jsx_runtime_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      function ReactElement(type, key3, props, owner, debugStack, debugTask) {
+      function ReactElement(type, key4, props, owner, debugStack, debugTask) {
         var refProp = props.ref;
         type = {
           $$typeof: REACT_ELEMENT_TYPE,
           type,
-          key: key3,
+          key: key4,
           props,
           _owner: owner
         };
@@ -23046,11 +23046,11 @@ function bindIndex(parent, group, enter, update, exit, data) {
     }
   }
 }
-function bindKey(parent, group, enter, update, exit, data, key3) {
+function bindKey(parent, group, enter, update, exit, data, key4) {
   var i, node, nodeByKeyValue = /* @__PURE__ */ new Map(), groupLength = group.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
   for (i = 0; i < groupLength; ++i) {
     if (node = group[i]) {
-      keyValues[i] = keyValue = key3.call(node, node.__data__, i, group) + "";
+      keyValues[i] = keyValue = key4.call(node, node.__data__, i, group) + "";
       if (nodeByKeyValue.has(keyValue)) {
         exit[i] = node;
       } else {
@@ -23059,7 +23059,7 @@ function bindKey(parent, group, enter, update, exit, data, key3) {
     }
   }
   for (i = 0; i < dataLength; ++i) {
-    keyValue = key3.call(parent, data[i], i, data) + "";
+    keyValue = key4.call(parent, data[i], i, data) + "";
     if (node = nodeByKeyValue.get(keyValue)) {
       update[i] = node;
       node.__data__ = data[i];
@@ -23077,13 +23077,13 @@ function bindKey(parent, group, enter, update, exit, data, key3) {
 function datum(node) {
   return node.__data__;
 }
-function data_default(value, key3) {
+function data_default(value, key4) {
   if (!arguments.length) return Array.from(this, datum);
-  var bind = key3 ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
+  var bind = key4 ? bindKey : bindIndex, parents = this._parents, groups = this._groups;
   if (typeof value !== "function") value = constant_default(value);
   for (var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j) {
     var parent = parents[j], group = groups[j], groupLength = group.length, data = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
-    bind(parent, group, enterGroup, updateGroup, exitGroup, data, key3);
+    bind(parent, group, enterGroup, updateGroup, exitGroup, data, key4);
     for (var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0) {
       if (previous = enterGroup[i0]) {
         if (i0 >= i1) i1 = i0 + 1;
@@ -23884,7 +23884,7 @@ function define_default(constructor, factory, prototype) {
 }
 function extend(parent, definition) {
   var prototype = Object.create(parent.prototype);
-  for (var key3 in definition) prototype[key3] = definition[key3];
+  for (var key4 in definition) prototype[key4] = definition[key4];
   return prototype;
 }
 
@@ -24956,12 +24956,12 @@ function attrTween(name, value) {
   return tween;
 }
 function attrTween_default(name, value) {
-  var key3 = "attr." + name;
-  if (arguments.length < 2) return (key3 = this.tween(key3)) && key3._value;
-  if (value == null) return this.tween(key3, null);
+  var key4 = "attr." + name;
+  if (arguments.length < 2) return (key4 = this.tween(key4)) && key4._value;
+  if (value == null) return this.tween(key4, null);
   if (typeof value !== "function") throw new Error();
   var fullname = namespace_default(name);
-  return this.tween(key3, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
+  return this.tween(key4, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
 // node_modules/d3-transition/src/transition/delay.js
@@ -25154,9 +25154,9 @@ function styleFunction2(name, interpolate, value) {
   };
 }
 function styleMaybeRemove(id2, name) {
-  var on0, on1, listener0, key3 = "style." + name, event = "end." + key3, remove2;
+  var on0, on1, listener0, key4 = "style." + name, event = "end." + key4, remove2;
   return function() {
-    var schedule = set2(this, id2), on = schedule.on, listener = schedule.value[key3] == null ? remove2 || (remove2 = styleRemove2(name)) : void 0;
+    var schedule = set2(this, id2), on = schedule.on, listener = schedule.value[key4] == null ? remove2 || (remove2 = styleRemove2(name)) : void 0;
     if (on !== on0 || listener0 !== listener) (on1 = (on0 = on).copy()).on(event, listener0 = listener);
     schedule.on = on1;
   };
@@ -25183,11 +25183,11 @@ function styleTween(name, value, priority) {
   return tween;
 }
 function styleTween_default(name, value, priority) {
-  var key3 = "style." + (name += "");
-  if (arguments.length < 2) return (key3 = this.tween(key3)) && key3._value;
-  if (value == null) return this.tween(key3, null);
+  var key4 = "style." + (name += "");
+  if (arguments.length < 2) return (key4 = this.tween(key4)) && key4._value;
+  if (value == null) return this.tween(key4, null);
   if (typeof value !== "function") throw new Error();
-  return this.tween(key3, styleTween(name, value, priority == null ? "" : priority));
+  return this.tween(key4, styleTween(name, value, priority == null ? "" : priority));
 }
 
 // node_modules/d3-transition/src/transition/text.js
@@ -25223,11 +25223,11 @@ function textTween(value) {
   return tween;
 }
 function textTween_default(value) {
-  var key3 = "text";
-  if (arguments.length < 1) return (key3 = this.tween(key3)) && key3._value;
-  if (value == null) return this.tween(key3, null);
+  var key4 = "text";
+  if (arguments.length < 1) return (key4 = this.tween(key4)) && key4._value;
+  if (value == null) return this.tween(key4, null);
   if (typeof value !== "function") throw new Error();
-  return this.tween(key3, textTween(value));
+  return this.tween(key4, textTween(value));
 }
 
 // node_modules/d3-transition/src/transition/transition.js
@@ -25566,10 +25566,10 @@ function zoom_default2() {
       }
       return this;
     },
-    zoom: function(key3, transform2) {
-      if (this.mouse && key3 !== "mouse") this.mouse[1] = transform2.invert(this.mouse[0]);
-      if (this.touch0 && key3 !== "touch") this.touch0[1] = transform2.invert(this.touch0[0]);
-      if (this.touch1 && key3 !== "touch") this.touch1[1] = transform2.invert(this.touch1[0]);
+    zoom: function(key4, transform2) {
+      if (this.mouse && key4 !== "mouse") this.mouse[1] = transform2.invert(this.mouse[0]);
+      if (this.touch0 && key4 !== "touch") this.touch0[1] = transform2.invert(this.touch0[0]);
+      if (this.touch1 && key4 !== "touch") this.touch1[1] = transform2.invert(this.touch1[0]);
       this.that.__zoom = transform2;
       this.emit("zoom");
       return this;
@@ -25948,8 +25948,8 @@ async function fitViewport({ nodes, width, height, panZoom, minZoom, maxZoom }, 
     return true;
   }
   const nodesToFit = getFitViewNodes(nodes, options);
-  const bounds = getInternalNodesBounds(nodesToFit);
-  const viewport = getViewportForBounds(bounds, width, height, options?.minZoom ?? minZoom, options?.maxZoom ?? maxZoom, options?.padding ?? 0.1);
+  const bounds2 = getInternalNodesBounds(nodesToFit);
+  const viewport = getViewportForBounds(bounds2, width, height, options?.minZoom ?? minZoom, options?.maxZoom ?? maxZoom, options?.padding ?? 0.1);
   await panZoom.setViewport(viewport, {
     duration: options?.duration,
     ease: options?.ease,
@@ -26052,9 +26052,9 @@ var calcAutoPanVelocity = (value, min, max) => {
   }
   return 0;
 };
-var calcAutoPan = (pos, bounds, speed = 15, distance3 = 40) => {
-  const xMovement = calcAutoPanVelocity(pos.x, distance3, bounds.width - distance3) * speed;
-  const yMovement = calcAutoPanVelocity(pos.y, distance3, bounds.height - distance3) * speed;
+var calcAutoPan = (pos, bounds2, speed = 15, distance3 = 40) => {
+  const xMovement = calcAutoPanVelocity(pos.x, distance3, bounds2.width - distance3) * speed;
+  const yMovement = calcAutoPanVelocity(pos.y, distance3, bounds2.height - distance3) * speed;
   return [xMovement, yMovement];
 };
 var getBoundsOfBoxes = (box1, box2) => ({
@@ -26167,9 +26167,9 @@ function parsePaddings(padding, width, height) {
   }
   return { top: 0, right: 0, bottom: 0, left: 0, x: 0, y: 0 };
 }
-function calculateAppliedPaddings(bounds, x, y, zoom, width, height) {
-  const { x: left, y: top } = rendererPointToPoint(bounds, [x, y, zoom]);
-  const { x: boundRight, y: boundBottom } = rendererPointToPoint({ x: bounds.x + bounds.width, y: bounds.y + bounds.height }, [x, y, zoom]);
+function calculateAppliedPaddings(bounds2, x, y, zoom, width, height) {
+  const { x: left, y: top } = rendererPointToPoint(bounds2, [x, y, zoom]);
+  const { x: boundRight, y: boundBottom } = rendererPointToPoint({ x: bounds2.x + bounds2.width, y: bounds2.y + bounds2.height }, [x, y, zoom]);
   const right = width - boundRight;
   const bottom = height - boundBottom;
   return {
@@ -26179,17 +26179,17 @@ function calculateAppliedPaddings(bounds, x, y, zoom, width, height) {
     bottom: Math.floor(bottom)
   };
 }
-var getViewportForBounds = (bounds, width, height, minZoom, maxZoom, padding) => {
+var getViewportForBounds = (bounds2, width, height, minZoom, maxZoom, padding) => {
   const p = parsePaddings(padding, width, height);
-  const xZoom = (width - p.x) / bounds.width;
-  const yZoom = (height - p.y) / bounds.height;
+  const xZoom = (width - p.x) / bounds2.width;
+  const yZoom = (height - p.y) / bounds2.height;
   const zoom = Math.min(xZoom, yZoom);
   const clampedZoom = clamp(zoom, minZoom, maxZoom);
-  const boundsCenterX = bounds.x + bounds.width / 2;
-  const boundsCenterY = bounds.y + bounds.height / 2;
+  const boundsCenterX = bounds2.x + bounds2.width / 2;
+  const boundsCenterY = bounds2.y + bounds2.height / 2;
   const x = width / 2 - boundsCenterX * clampedZoom;
   const y = height / 2 - boundsCenterY * clampedZoom;
-  const newPadding = calculateAppliedPaddings(bounds, x, y, clampedZoom, width, height);
+  const newPadding = calculateAppliedPaddings(bounds2, x, y, clampedZoom, width, height);
   const offset = {
     left: Math.min(newPadding.left - p.left, 0),
     top: Math.min(newPadding.top - p.top, 0),
@@ -26322,13 +26322,13 @@ function isInputDOMNode(event) {
   return isInput || !!target.closest(".nokey");
 }
 var isMouseEvent = (event) => "clientX" in event;
-var getEventPosition = (event, bounds) => {
+var getEventPosition = (event, bounds2) => {
   const isMouse = isMouseEvent(event);
   const evtX = isMouse ? event.clientX : event.touches?.[0].clientX;
   const evtY = isMouse ? event.clientY : event.touches?.[0].clientY;
   return {
-    x: evtX - (bounds?.left ?? 0),
-    y: evtY - (bounds?.top ?? 0)
+    x: evtX - (bounds2?.left ?? 0),
+    y: evtY - (bounds2?.top ?? 0)
   };
 };
 var getHandleBounds = (type, nodeElement, nodeBounds, zoom, nodeId) => {
@@ -26696,11 +26696,11 @@ function getHandlePosition(node, handle, fallbackPosition = Position.Left, cente
       return { x, y: y + height / 2 };
   }
 }
-function getHandle$1(bounds, handleId) {
-  if (!bounds) {
+function getHandle$1(bounds2, handleId) {
+  if (!bounds2) {
     return null;
   }
-  return (!handleId ? bounds[0] : bounds.find((d) => d.id === handleId)) || null;
+  return (!handleId ? bounds2[0] : bounds2.find((d) => d.id === handleId)) || null;
 }
 function getMarkerId(marker, id2) {
   if (!marker) {
@@ -26710,7 +26710,7 @@ function getMarkerId(marker, id2) {
     return marker;
   }
   const idPrefix = id2 ? `${id2}__` : "";
-  return `${idPrefix}${Object.keys(marker).sort().map((key3) => `${key3}=${marker[key3]}`).join("&")}`;
+  return `${idPrefix}${Object.keys(marker).sort().map((key4) => `${key4}=${marker[key4]}`).join("&")}`;
 }
 function createMarkerIds(edges, { id: id2, defaultColor, defaultMarkerStart, defaultMarkerEnd }) {
   const ids = /* @__PURE__ */ new Set();
@@ -26742,9 +26742,9 @@ var adoptUserNodesDefaultOptions = {
 };
 function mergeObjects(base, incoming) {
   const result = { ...base };
-  for (const key3 in incoming) {
-    if (incoming[key3] !== void 0) {
-      result[key3] = incoming[key3];
+  for (const key4 in incoming) {
+    if (incoming[key4] !== void 0) {
+      result[key4] = incoming[key4];
     }
   }
   return result;
@@ -27059,16 +27059,16 @@ async function panBy({ delta, panZoom, transform: transform2, translateExtent, w
   return transformChanged;
 }
 function addConnectionToLookup(type, connection, connectionKey, connectionLookup, nodeId, handleId) {
-  let key3 = nodeId;
-  const nodeMap = connectionLookup.get(key3) || /* @__PURE__ */ new Map();
-  connectionLookup.set(key3, nodeMap.set(connectionKey, connection));
-  key3 = `${nodeId}-${type}`;
-  const typeMap = connectionLookup.get(key3) || /* @__PURE__ */ new Map();
-  connectionLookup.set(key3, typeMap.set(connectionKey, connection));
+  let key4 = nodeId;
+  const nodeMap = connectionLookup.get(key4) || /* @__PURE__ */ new Map();
+  connectionLookup.set(key4, nodeMap.set(connectionKey, connection));
+  key4 = `${nodeId}-${type}`;
+  const typeMap = connectionLookup.get(key4) || /* @__PURE__ */ new Map();
+  connectionLookup.set(key4, typeMap.set(connectionKey, connection));
   if (handleId) {
-    key3 = `${nodeId}-${type}-${handleId}`;
-    const handleMap = connectionLookup.get(key3) || /* @__PURE__ */ new Map();
-    connectionLookup.set(key3, handleMap.set(connectionKey, connection));
+    key4 = `${nodeId}-${type}-${handleId}`;
+    const handleMap = connectionLookup.get(key4) || /* @__PURE__ */ new Map();
+    connectionLookup.set(key4, handleMap.set(connectionKey, connection));
   }
 }
 function updateConnectionLookup(connectionLookup, edgeLookup, edges) {
@@ -28510,8 +28510,8 @@ function shallow$1(objA, objB) {
   }
   if (objA instanceof Map && objB instanceof Map) {
     if (objA.size !== objB.size) return false;
-    for (const [key3, value] of objA) {
-      if (!Object.is(value, objB.get(key3))) {
+    for (const [key4, value] of objA) {
+      if (!Object.is(value, objB.get(key4))) {
         return false;
       }
     }
@@ -28907,9 +28907,9 @@ var useViewportHelper = () => {
       setCenter: async (x, y, options) => {
         return store.getState().setCenter(x, y, options);
       },
-      fitBounds: async (bounds, options) => {
+      fitBounds: async (bounds2, options) => {
         const { width, height, minZoom, maxZoom, panZoom } = store.getState();
-        const viewport = getViewportForBounds(bounds, width, height, minZoom, maxZoom, options?.padding ?? 0.1);
+        const viewport = getViewportForBounds(bounds2, width, height, minZoom, maxZoom, options?.padding ?? 0.1);
         if (!panZoom) {
           return false;
         }
@@ -30902,8 +30902,8 @@ function useNodeOrEdgeTypesWarning(nodeOrEdgeTypes = emptyTypes) {
   (0, import_react5.useEffect)(() => {
     if (true) {
       const usedKeys = /* @__PURE__ */ new Set([...Object.keys(typesRef.current), ...Object.keys(nodeOrEdgeTypes)]);
-      for (const key3 of usedKeys) {
-        if (typesRef.current[key3] !== nodeOrEdgeTypes[key3]) {
+      for (const key4 of usedKeys) {
+        if (typesRef.current[key4] !== nodeOrEdgeTypes[key4]) {
           store.getState().onError?.("002", errorMessages["error002"]());
           break;
         }
@@ -30955,10 +30955,10 @@ var getInitialState = ({ nodes, edges, defaultNodes, defaultEdges, width, height
   });
   let transform2 = [0, 0, 1];
   if (fitView && width && height) {
-    const bounds = getInternalNodesBounds(nodeLookup, {
+    const bounds2 = getInternalNodesBounds(nodeLookup, {
       filter: (node) => !!((node.width || node.initialWidth) && (node.height || node.initialHeight))
     });
-    const { x, y, zoom } = getViewportForBounds(bounds, width, height, minZoom, maxZoom, fitViewOptions?.padding ?? 0.1);
+    const { x, y, zoom } = getViewportForBounds(bounds2, width, height, minZoom, maxZoom, fitViewOptions?.padding ?? 0.1);
     transform2 = [x, y, zoom];
   }
   return {
@@ -32146,12 +32146,115 @@ function createMotorCourseDocument(id2, { wired = false } = {}) {
 }
 for (const lesson of MOTOR_COURSES) lesson.componentTypes = [...new Set(createMotorCourseDocument(lesson.id).components.map((component2) => component2.type))];
 
+// app/simulator/core/duct-layout.ts
+var power = ["qf", "fu1", "fu2"];
+var TRAINING_LAYOUT_REFERENCES = {
+  "motor-course-01": { file: "\u7535\u52A8\u673A\u70B9\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], []], buttons: ["sb"] },
+  "motor-course-02": { file: "\u7535\u52A8\u673A\u8FDE\u7EED\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2"] },
+  "motor-course-03": { file: "\u70B9\u52A8\u4E0E\u8FDE\u7EED\u8FD0\u884C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-04": { file: "\u63A5\u89E6\u5668\u4E92\u9501\u6B63\u53CD\u8F6C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-05": { file: "\u53CC\u91CD\u8054\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-06": { file: "\u81EA\u52A8\u5F80\u8FD4\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"], limits: ["sq1", "sq2", "sq3", "sq4"] },
+  "motor-course-07": { file: "\u987A\u5E8F\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km1_aux", "km2", "km2_aux"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
+  "motor-course-08": { file: "\u5EF6\u65F6\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["ka", "km", "kt"], ["fr"]], buttons: ["sb1", "sb2"] },
+  "motor-course-09": { file: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2"] },
+  "motor-course-10": { file: "\u53CC\u901F\u7535\u673A\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2", "km3"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] }
+};
+var buttonTypes = /* @__PURE__ */ new Set(["push-no", "push-nc", "push-latching-red", "push-latching-green", "switch1", "switch2"]);
+var loadTypes = /* @__PURE__ */ new Set(["motor", "motor-star-delta", "motor-dahlander", "lamp"]);
+function referenceFor(document2) {
+  const own = document2.lessonId && TRAINING_LAYOUT_REFERENCES[document2.lessonId];
+  if (own) return own;
+  const ids = (types) => document2.components.filter((component2) => types.includes(component2.type)).map((component2) => component2.id);
+  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "auxiliary-no"]), ids(["overload", "terminal"])];
+  return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document2.components.filter((component2) => buttonTypes.has(component2.type)).map((component2) => component2.id), limits: ids(["limit-switch"]) };
+}
+var DUCT_WIDTH = 32;
+var CLEARANCE = 40;
+var SEPARATION = 76;
+var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + (index2 ? component2.id === "fu2b" ? 16 : SEPARATION : 0), 0);
+function arrangeTrainingDucts(document2) {
+  if (document2.components.some((component2) => isWireDuct(component2.type)) || !document2.components.length) return document2;
+  const reference = referenceFor(document2);
+  const byId = new Map(document2.components.map((component2) => [component2.id, component2]));
+  const resolve = (ids) => ids.flatMap((id2) => {
+    const component2 = byId.get(document2.roles?.[id2] ?? id2);
+    if (id2 === "fu2" && !component2) return ["fu2a", "fu2b"].map((key4) => byId.get(document2.roles?.[key4] ?? key4)).filter((value) => !!value);
+    return component2 ? [component2] : [];
+  });
+  const rows = reference.rows.map(resolve);
+  const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
+  const sources = document2.components.filter((component2) => component2.type === "supply");
+  const loads = document2.components.filter((component2) => loadTypes.has(component2.type));
+  const earths = document2.components.filter((component2) => component2.type === "pe-terminal");
+  const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths].map((component2) => component2.id));
+  const terminals = document2.components.filter((component2) => !placed.has(component2.id));
+  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + DUCT_WIDTH));
+  const positions = /* @__PURE__ */ new Map();
+  const channels = [0];
+  let y = 0;
+  for (const [index2, row] of rows.entries()) {
+    const height = Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((component2) => componentSize(component2).height));
+    let x = DUCT_WIDTH / 2 + CLEARANCE;
+    for (const [column, component2] of row.entries()) {
+      if (column) x += component2.id === "fu2b" ? 16 : SEPARATION;
+      positions.set(component2.id, { x, y: y + DUCT_WIDTH / 2 + CLEARANCE });
+      x += componentSize(component2).width;
+    }
+    y += DUCT_WIDTH + CLEARANCE * 2 + height;
+    channels.push(y);
+  }
+  const bottom = y, sideX = width + 95;
+  let buttonY = Math.max(56, bottom - buttons.reduce((sum, component2) => sum + componentSize(component2).height + 28, -28));
+  for (const component2 of buttons) {
+    positions.set(component2.id, { x: sideX, y: buttonY });
+    buttonY += componentSize(component2).height + 28;
+  }
+  let limitX = sideX;
+  for (const component2 of limits) {
+    positions.set(component2.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE });
+    limitX += componentSize(component2).width + 44;
+  }
+  let sourceX = 56;
+  for (const component2 of sources) {
+    positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
+    sourceX += componentSize(component2).width + 30;
+  }
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
+  let externalX = 56;
+  for (const component2 of terminalRow) {
+    positions.set(component2.id, { x: externalX, y: terminalY });
+    externalX += componentSize(component2).width + SEPARATION;
+  }
+  const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map((component2) => componentSize(component2).height)) + SEPARATION : 0);
+  externalX = 56;
+  for (const component2 of loads) {
+    positions.set(component2.id, { x: externalX, y: loadY });
+    externalX += componentSize(component2).width + SEPARATION;
+  }
+  const ducts = [];
+  const used = new Set(document2.components.map((component2) => component2.id));
+  const add = (vertical, x, y2, length) => {
+    let id2 = `training-duct-${ducts.length + 1}`;
+    while (used.has(id2)) id2 += "-d";
+    used.add(id2);
+    ducts.push({ id: id2, type: vertical ? "wire-duct-vertical" : "wire-duct", label: `WD${ducts.length + 1}`, position: { x: vertical ? x - DUCT_WIDTH / 2 : x, y: vertical ? y2 : y2 - DUCT_WIDTH / 2 }, size: { width: vertical ? DUCT_WIDTH : length, height: vertical ? length : DUCT_WIDTH } });
+  };
+  for (const center of channels) add(false, -DUCT_WIDTH / 2, center, width + DUCT_WIDTH);
+  add(true, 0, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
+  add(true, width, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
+  if (width + DUCT_WIDTH > 4e3 || bottom + DUCT_WIDTH > 4e3 || document2.components.length + ducts.length > 200) throw new Error("\u5143\u4EF6\u8FC7\u591A\u6216\u5E03\u5C40\u8FC7\u5927\uFF0C\u8BF7\u6309\u53C2\u8003\u56FE\u5206\u7EC4\u8C03\u6574\u5E03\u5C40\u3002");
+  return { ...document2, components: [...document2.components.map((component2) => ({ ...component2, position: positions.get(component2.id) ?? component2.position })), ...ducts] };
+}
+function putWiresInDucts(document2) {
+  return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, style: "orthogonal", routing: "duct" })) };
+}
+
 // app/simulator/core/motor-practice-layout.ts
 function createMotorPracticeDocument(id2, options = {}) {
   const document2 = createMotorCourseDocument(id2, options);
-  const number = Number(id2.slice(-2));
-  document2.components = document2.components.filter((c) => c.id !== "fu2a" && c.id !== "fu2b");
-  document2.components.push({ id: "fu2", type: "fuse2", label: "FU2", position: { x: 570, y: 120 } });
+  document2.components = document2.components.filter((component2) => component2.id !== "fu2a" && component2.id !== "fu2b");
+  document2.components.push({ id: "fu2", type: "fuse2", label: "FU2", position: { x: 0, y: 0 } });
   if (document2.roles) {
     delete document2.roles.fu2a;
     delete document2.roles.fu2b;
@@ -32164,33 +32267,8 @@ function createMotorPracticeDocument(id2, options = {}) {
       ref2.terminalId = ref2.terminalId === "1" ? "3" : "4";
     }
   }
-  const positions = { source: { x: 60, y: -110 }, qf: { x: 80, y: 120 }, fu1: { x: 330, y: 120 }, fu2: { x: 570, y: 120 }, pe: { x: 1030, y: 1200 } };
-  const place = (ids, x, y, dx, dy = 0) => ids.forEach((key3, i) => positions[key3] = { x: x + i * dx, y: y + i * dy });
-  place(document2.components.filter((c) => c.type.startsWith("contactor")).map((c) => c.id), 80, 440, 230);
-  place(document2.components.filter((c) => c.type === "overload").map((c) => c.id), 100, 835, 280);
-  place(document2.components.filter((c) => c.type.startsWith("motor")).map((c) => c.id), 80, 1370, 420);
-  place(document2.components.filter((c) => c.type.startsWith("push-")).map((c) => c.id), 1050, 440, 0, 220);
-  place(document2.components.filter((c) => c.type === "limit-switch").map((c) => c.id), 740, 110, 100);
-  place(document2.components.filter((c) => c.type === "auxiliary-no").map((c) => c.id), 650, 465, 90);
-  if (number === 7) {
-    positions.sb1 = { x: 930, y: 440 };
-    positions.sb2 = { x: 1060, y: 440 };
-    positions.sb3 = { x: 930, y: 850 };
-    positions.sb4 = { x: 1060, y: 850 };
-  }
-  if (number === 8) {
-    positions.ka = { x: 80, y: 440 };
-    positions.km = { x: 310, y: 440 };
-    positions.kt = { x: 570, y: 440 };
-  }
-  if (number === 9) positions.kt = { x: 570, y: 835 };
-  document2.components = document2.components.map((c) => ({ ...c, position: positions[c.id] ?? c.position }));
-  const helper = (component2) => document2.components.push(component2);
-  helper({ id: "xt16", type: "terminal-strip16", label: "XT\uFF0816\u4F4D\uFF09", position: { x: 70, y: 1200 } });
-  for (const [i, y] of [50, 370, 740, 1080].entries()) helper({ id: `duct-h${i + 1}`, type: "wire-duct", label: `WD${i + 1}`, position: { x: 0, y }, size: { width: 1230, height: 36 } });
-  helper({ id: "duct-left", type: "wire-duct-vertical", label: "WD5", position: { x: 0, y: 50 }, size: { width: 36, height: 1066 } });
-  helper({ id: "duct-right", type: "wire-duct-vertical", label: "WD6", position: { x: 1194, y: 50 }, size: { width: 36, height: 1066 } });
-  return document2;
+  document2.components.push({ id: "xt16", type: "terminal-strip16", label: "XT\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } });
+  return putWiresInDucts(arrangeTrainingDucts(document2));
 }
 
 // app/simulator/core/lessons.ts
@@ -32252,7 +32330,7 @@ function createLessonDocument(id2, options = {}) {
       connect("switchB", "C", "lamp", "L");
     } else connect("switchA", "2", "lamp", "L");
   }
-  return { schemaVersion: 1, title: lesson.title, lessonId: id2, components, wires: options.wired ? wires : [], roles };
+  return putWiresInDucts(arrangeTrainingDucts({ schemaVersion: 1, title: lesson.title, lessonId: id2, components, wires: options.wired ? wires : [], roles }));
 }
 
 // app/simulator/core/reference-drawings.ts
@@ -32289,7 +32367,7 @@ function referenceDrawingImageUrl(id2, base = "/") {
 var record = (value) => !!value && typeof value === "object" && !Array.isArray(value);
 var safeId = (value) => typeof value === "string" && /^[a-zA-Z0-9_-]{1,80}$/.test(value) && !["__proto__", "constructor", "prototype"].includes(value);
 var text = (value, max) => typeof value === "string" && value.length > 0 && value.length <= max;
-var point = (value) => record(value) && typeof value.x === "number" && Number.isFinite(value.x) && Math.abs(value.x) <= 1e6 && typeof value.y === "number" && Number.isFinite(value.y) && Math.abs(value.y) <= 1e6;
+var point = (value) => record(value) && Object.keys(value).every((key4) => key4 === "x" || key4 === "y") && typeof value.x === "number" && Number.isFinite(value.x) && Math.abs(value.x) <= 1e6 && typeof value.y === "number" && Number.isFinite(value.y) && Math.abs(value.y) <= 1e6;
 var mediaType = (value) => typeof value === "string" && ["image/png", "image/jpeg", "image/webp", "application/pdf"].includes(value);
 function validateDocument(input) {
   const errors = [];
@@ -32299,7 +32377,7 @@ function validateDocument(input) {
   if (input.lessonId !== void 0 && !safeId(input.lessonId)) errors.push("\u8BFE\u7A0B\u6807\u8BC6\u65E0\u6548");
   if (input.referenceDiagramId !== void 0) {
     if (typeof input.referenceDiagramId !== "number" || !Number.isInteger(input.referenceDiagramId) || !getReferenceDrawing(input.referenceDiagramId)) errors.push("\u53C2\u8003\u56FE\u7EB8\u6807\u8BC6\u4E0D\u5728\u5DF2\u786E\u8BA4\u76EE\u5F55\u4E2D");
-    if (["drawingMediaId", "drawingMediaType", "drawingKind", "projectDrawings", "trainingProjectId"].some((key3) => input[key3] !== void 0)) errors.push("\u53C2\u8003\u56FE\u7EB8\u4E0D\u80FD\u4E0E\u79C1\u6709\u9644\u4EF6\u6216\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8\u6DF7\u7528");
+    if (["drawingMediaId", "drawingMediaType", "drawingKind", "projectDrawings", "trainingProjectId"].some((key4) => input[key4] !== void 0)) errors.push("\u53C2\u8003\u56FE\u7EB8\u4E0D\u80FD\u4E0E\u79C1\u6709\u9644\u4EF6\u6216\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8\u6DF7\u7528");
   }
   if (input.drawingMediaId !== void 0 && !safeId(input.drawingMediaId)) errors.push("\u56FE\u7EB8\u6587\u4EF6\u6807\u8BC6\u65E0\u6548");
   if (input.drawingMediaType !== void 0 && !mediaType(input.drawingMediaType)) errors.push("\u56FE\u7EB8\u6587\u4EF6\u7C7B\u578B\u65E0\u6548");
@@ -32308,7 +32386,7 @@ function validateDocument(input) {
     if (!record(input.projectDrawings)) errors.push("\u9879\u76EE\u56FE\u7EB8\u5FEB\u7167\u65E0\u6548");
     else for (const [kind, attachment] of Object.entries(input.projectDrawings)) {
       if (kind !== "schematic" && kind !== "layout") errors.push("\u9879\u76EE\u56FE\u7EB8\u5FEB\u7167\u5305\u542B\u672A\u77E5\u79CD\u7C7B");
-      if (!record(attachment) || !safeId(attachment.mediaId) || !mediaType(attachment.type) || Object.keys(attachment).some((key3) => key3 !== "mediaId" && key3 !== "type")) errors.push(`\u9879\u76EE\u56FE\u7EB8 ${kind.slice(0, 30)} \u7684\u9644\u4EF6\u65E0\u6548`);
+      if (!record(attachment) || !safeId(attachment.mediaId) || !mediaType(attachment.type) || Object.keys(attachment).some((key4) => key4 !== "mediaId" && key4 !== "type")) errors.push(`\u9879\u76EE\u56FE\u7EB8 ${kind.slice(0, 30)} \u7684\u9644\u4EF6\u65E0\u6548`);
     }
   }
   if (input.trainingProjectId !== void 0 && !safeId(input.trainingProjectId)) errors.push("\u8BAD\u7EC3\u9879\u76EE\u6807\u8BC6\u65E0\u6548");
@@ -32326,9 +32404,9 @@ function validateDocument(input) {
     if (!definition) errors.push(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${type?.slice(0, 80) ?? "\u7C7B\u578B\u5FC5\u987B\u4E3A\u5B57\u7B26\u4E32"}`);
     if (!text(component2.label, 80)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u540D\u79F0\u65E0\u6548`);
     if (!point(component2.position)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u4E16\u754C\u5750\u6807\u65E0\u6548`);
-    if (component2.size !== void 0 && (type === void 0 || !isWireDuct(type) || !record(component2.size) || Object.keys(component2.size).some((key3) => key3 !== "width" && key3 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
+    if (component2.size !== void 0 && (type === void 0 || !isWireDuct(type) || !record(component2.size) || Object.keys(component2.size).some((key4) => key4 !== "width" && key4 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
-    if (component2.settings !== void 0 && (component2.type !== "timer380" || !record(component2.settings) || Object.keys(component2.settings).some((key3) => key3 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < 1 || component2.settings.delayMs > 36e5)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 3600000 \u6BEB\u79D2`);
+    if (component2.settings !== void 0 && (component2.type !== "timer380" || !record(component2.settings) || Object.keys(component2.settings).some((key4) => key4 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < 1 || component2.settings.delayMs > 36e5)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 3600000 \u6BEB\u79D2`);
     ports.set(component2.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));
   }
   for (const component2 of input.components) {
@@ -32348,17 +32426,17 @@ function validateDocument(input) {
     const endpoints = [];
     for (const name of ["from", "to"]) {
       const ref2 = wire[name];
-      if (!record(ref2) || !safeId(ref2.componentId) || !safeId(ref2.terminalId) || !ports.get(ref2.componentId)?.has(ref2.terminalId)) errors.push(`\u5BFC\u7EBF ${wire.id} \u7684 ${name} \u7AEF\u5B50\u4E0D\u5B58\u5728`);
+      if (!record(ref2) || Object.keys(ref2).some((key4) => key4 !== "componentId" && key4 !== "terminalId") || !safeId(ref2.componentId) || !safeId(ref2.terminalId) || !ports.get(ref2.componentId)?.has(ref2.terminalId)) errors.push(`\u5BFC\u7EBF ${wire.id} \u7684 ${name} \u7AEF\u5B50\u4E0D\u5B58\u5728`);
       else endpoints.push(`${ref2.componentId}::${ref2.terminalId}`);
     }
     if (endpoints.length === 2) {
       if (endpoints[0] === endpoints[1]) errors.push(`\u5BFC\u7EBF ${wire.id} \u4E0D\u80FD\u8FDE\u63A5\u7AEF\u5B50\u81EA\u8EAB`);
-      const key3 = endpoints.sort().join("|");
-      if (connected.has(key3)) errors.push(`\u5BFC\u7EBF ${wire.id} \u4E0E\u5DF2\u6709\u8FDE\u63A5\u91CD\u590D`);
-      connected.add(key3);
+      const key4 = endpoints.sort().join("|");
+      if (connected.has(key4)) errors.push(`\u5BFC\u7EBF ${wire.id} \u4E0E\u5DF2\u6709\u8FDE\u63A5\u91CD\u590D`);
+      connected.add(key4);
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`\u5BFC\u7EBF ${wire.id} \u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272`);
-    if (wire.style !== void 0 && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve") errors.push(`\u5BFC\u7EBF ${wire.id} \u6837\u5F0F\u65E0\u6548`);
+    if (wire.style !== void 0 && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve" && wire.style !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u6837\u5F0F\u65E0\u6548`);
     if (wire.routing !== void 0 && wire.routing !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u81EA\u52A8\u8D70\u7EBF\u6A21\u5F0F\u65E0\u6548`);
     if (wire.waypoints !== void 0 && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`\u5BFC\u7EBF ${wire.id} \u6298\u70B9\u65E0\u6548`);
   }
@@ -32368,7 +32446,9 @@ function validateDocument(input) {
       if (!safeId(role) || !safeId(componentId) || !ports.has(componentId)) errors.push(`\u8BFE\u7A0B\u89D2\u8272 ${role.slice(0, 80)} \u6307\u5411\u65E0\u6548\u5143\u4EF6`);
     }
   }
-  return errors.length ? { valid: false, errors } : { valid: true, errors: [], document: input };
+  if (errors.length) return { valid: false, errors };
+  const document2 = input.wires.some((wire) => wire.style === "duct") ? { ...input, wires: input.wires.map((wire) => wire.style === "duct" ? { ...wire, style: "orthogonal", routing: "duct" } : wire) } : input;
+  return { valid: true, errors: [], document: document2 };
 }
 
 // app/simulator/core/motor-course-assessment.ts
@@ -33409,178 +33489,241 @@ function assessLesson(document2, lessonId = document2.lessonId) {
   return { status: unsupported ? "unsupported" : passed === checks.length ? "passed" : severe ? "failed" : "incomplete", passed, total: checks.length, checks, diagnostics: uniqueDiagnostics(diagnostics), trace };
 }
 
-// app/simulator/editor/duct-routing.ts
-var cache = /* @__PURE__ */ new WeakMap();
+// app/simulator/core/duct-routing.ts
+var TERMINAL_CLEARANCE = 12;
+var key3 = (point2) => `${point2.x},${point2.y}`;
 var distance2 = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-var clamp2 = (n, min, max) => Math.max(min, Math.min(max, n));
-var equal = (a, b) => a.x === b.x && a.y === b.y;
-function compact(points) {
-  const result = [];
-  for (const point2 of points) {
-    if (result.length && equal(point2, result[result.length - 1])) continue;
-    const a = result.at(-2), b = result.at(-1);
-    if (a && b && (a.x === b.x && b.x === point2.x && (b.y - a.y) * (point2.y - b.y) >= 0 || a.y === b.y && b.y === point2.y && (b.x - a.x) * (point2.x - b.x) >= 0)) result.pop();
-    result.push(point2);
-  }
-  return result;
-}
-function project(lane, point2) {
-  const r = lane.rect;
-  return lane.horizontal ? { x: clamp2(point2.x, r.x, r.x + r.width), y: r.y + r.height / 2 } : { x: r.x + r.width / 2, y: clamp2(point2.y, r.y, r.y + r.height) };
-}
-function buildNetwork(document2) {
-  const nodes = [], lanes = document2.components.filter((c) => isWireDuct(c.type)).sort((a, b) => a.id.localeCompare(b.id)).map((c) => ({ id: c.id, rect: { ...c.position, ...componentSize(c) }, horizontal: c.type === "wire-duct", nodes: [] }));
-  const add = (lane, point2) => {
-    const found = lane.nodes.find((index3) => equal(nodes[index3].point, point2));
-    if (found !== void 0) return found;
-    const index2 = nodes.length;
-    nodes.push({ point: point2, links: [] });
-    lane.nodes.push(index2);
-    return index2;
+var clamp2 = (value, min, max) => Math.max(min, Math.min(max, value));
+var compact = (points) => points.filter((point2, index2) => !index2 || distance2(point2, points[index2 - 1]) > 1e-6);
+var bounds = (component2) => {
+  const size = componentSize(component2);
+  return { left: component2.position.x, top: component2.position.y, right: component2.position.x + size.width, bottom: component2.position.y + size.height };
+};
+var project = (duct, point2) => duct.vertical ? { x: (duct.left + duct.right) / 2, y: clamp2(point2.y, duct.top, duct.bottom) } : { x: clamp2(point2.x, duct.left, duct.right), y: (duct.top + duct.bottom) / 2 };
+var along = (duct, point2) => duct.vertical ? point2.y : point2.x;
+var cache = /* @__PURE__ */ new WeakMap();
+var routeCache = /* @__PURE__ */ new WeakMap();
+function networkFor(components) {
+  const signature = components.filter((component2) => isWireDuct(component2.type)).map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}`).join("|");
+  const cached = cache.get(components);
+  if (cached?.signature === signature) return cached.network;
+  const ducts = components.filter((component2) => isWireDuct(component2.type)).sort((a, b) => a.id.localeCompare(b.id)).map((component2) => ({ ...bounds(component2), id: component2.id, vertical: component2.type === "wire-duct-vertical", pins: [] }));
+  const vertices = /* @__PURE__ */ new Map();
+  const vertex = (point2) => {
+    const id2 = key3(point2);
+    if (!vertices.has(id2)) vertices.set(id2, { point: point2, links: [] });
+    return id2;
   };
-  const link2 = (a, b, points) => {
-    const cost = points.slice(1).reduce((sum, p, i) => sum + distance2(points[i], p), 0);
-    nodes[a].links.push({ to: b, cost, points });
-    nodes[b].links.push({ to: a, cost, points: [...points].reverse() });
+  const connect = (points) => {
+    const first = points[0], last = points.at(-1);
+    const a = vertex(first), b = vertex(last);
+    if (a === b) return;
+    const cost = points.slice(1).reduce((sum, point2, index2) => sum + distance2(points[index2], point2), 0);
+    vertices.get(a).links.push({ to: b, cost, points });
+    vertices.get(b).links.push({ to: a, cost, points: [...points].reverse() });
   };
-  for (const lane of lanes) {
-    add(lane, project(lane, lane.rect));
-    add(lane, project(lane, { x: lane.rect.x + lane.rect.width, y: lane.rect.y + lane.rect.height }));
-  }
-  for (let i = 0; i < lanes.length; i++) for (let j = i + 1; j < lanes.length; j++) {
-    const a = lanes[i], b = lanes[j], left = Math.max(a.rect.x, b.rect.x), right = Math.min(a.rect.x + a.rect.width, b.rect.x + b.rect.width), top = Math.max(a.rect.y, b.rect.y), bottom = Math.min(a.rect.y + a.rect.height, b.rect.y + b.rect.height);
+  for (const duct of ducts) duct.pins.push(project(duct, { x: duct.left, y: duct.top }), project(duct, { x: duct.right, y: duct.bottom }));
+  for (let i = 0; i < ducts.length; i++) for (let j = i + 1; j < ducts.length; j++) {
+    const a = ducts[i], b = ducts[j];
+    const left = Math.max(a.left, b.left), right = Math.min(a.right, b.right), top = Math.max(a.top, b.top), bottom = Math.min(a.bottom, b.bottom);
     if (left > right || top > bottom) continue;
-    const joint = { x: (left + right) / 2, y: (top + bottom) / 2 }, ap = project(a, joint), bp = project(b, joint);
-    link2(add(a, ap), add(b, bp), compact([ap, joint, bp]));
+    const overlap = { x: (left + right) / 2, y: (top + bottom) / 2 };
+    const ap = project(a, overlap), bp = project(b, overlap);
+    a.pins.push(ap);
+    b.pins.push(bp);
+    connect(compact([ap, overlap, bp]));
   }
-  for (const lane of lanes) {
-    lane.nodes.sort((a, b) => lane.horizontal ? nodes[a].point.x - nodes[b].point.x : nodes[a].point.y - nodes[b].point.y);
-    for (let i = 1; i < lane.nodes.length; i++) {
-      const a = lane.nodes[i - 1], b = lane.nodes[i];
-      link2(a, b, [nodes[a].point, nodes[b].point]);
-    }
+  for (const duct of ducts) {
+    duct.pins = [...new Map(duct.pins.map((point2) => [key3(point2), point2])).values()].sort((a, b) => along(duct, a) - along(duct, b));
+    for (const point2 of duct.pins) vertex(point2);
+    for (let i = 1; i < duct.pins.length; i++) connect([duct.pins[i - 1], duct.pins[i]]);
   }
-  return { lanes, nodes };
+  const network2 = { ducts, vertices };
+  cache.set(components, { signature, network: network2 });
+  return network2;
 }
-function crossesInterior(a, b, rect) {
-  if (a.x === b.x) return a.x > rect.x && a.x < rect.x + rect.width && Math.max(a.y, b.y) > rect.y && Math.min(a.y, b.y) < rect.y + rect.height;
-  if (a.y === b.y) return a.y > rect.y && a.y < rect.y + rect.height && Math.max(a.x, b.x) > rect.x && Math.min(a.x, b.x) < rect.x + rect.width;
-  return true;
+function crossesBody(a, b, rect) {
+  const inset = 1e-3;
+  if (a.x === b.x) return a.x > rect.left + inset && a.x < rect.right - inset && Math.max(a.y, b.y) > rect.top + inset && Math.min(a.y, b.y) < rect.bottom - inset;
+  return a.y > rect.top + inset && a.y < rect.bottom - inset && Math.max(a.x, b.x) > rect.left + inset && Math.min(a.x, b.x) < rect.right - inset;
 }
-function entrance(document2, ref2, network2) {
-  const { component: component2, terminal, world } = resolveTerminal(document2, ref2), size = componentSize(component2);
-  const rect = { ...component2.position, ...size };
-  const exit = terminal.side === "top" ? { x: world.x, y: component2.position.y - 12 } : terminal.side === "bottom" ? { x: world.x, y: component2.position.y + size.height + 12 } : terminal.side === "left" ? { x: component2.position.x - 12, y: world.y } : { x: component2.position.x + size.width + 12, y: world.y };
+function terminalLead(terminal) {
+  const rect = bounds(terminal.component), side = terminal.terminal.side, world = terminal.world;
+  const escape = { x: side === "left" ? rect.left - TERMINAL_CLEARANCE : side === "right" ? rect.right + TERMINAL_CLEARANCE : world.x, y: side === "top" ? rect.top - TERMINAL_CLEARANCE : side === "bottom" ? rect.bottom + TERMINAL_CLEARANCE : world.y };
+  return [world, escape];
+}
+function entryFor(document2, terminal, network2) {
+  const rect = bounds(terminal.component), side = terminal.terminal.side;
+  const [world, escape] = terminalLead(terminal);
+  const blockers = document2.components.filter((component2) => !isWireDuct(component2.type));
   const candidates = [];
-  for (const lane of network2.lanes) {
-    const point2 = project(lane, exit);
-    const corner = terminal.side === "top" || terminal.side === "bottom" ? { x: point2.x, y: exit.y } : { x: exit.x, y: point2.y };
-    const alternate = terminal.side === "top" || terminal.side === "bottom" ? { x: exit.x, y: point2.y } : { x: point2.x, y: exit.y };
-    const approaches = [[exit, corner, point2], [exit, alternate, point2]];
-    for (const x of [rect.x - 12, rect.x + rect.width + 12]) approaches.push([exit, { x, y: exit.y }, { x, y: point2.y }, point2]);
-    for (const y of [rect.y - 12, rect.y + rect.height + 12]) approaches.push([exit, { x: exit.x, y }, { x: point2.x, y }, point2]);
-    for (const approach of approaches) {
-      if (approach.slice(1).some((next, i) => crossesInterior(approach[i], next, rect))) continue;
-      const points = compact([world, ...approach]);
-      candidates.push({ lane, point: point2, points, cost: points.slice(1).reduce((sum, p, i) => sum + distance2(points[i], p), 0) });
+  const consider = (duct, points) => {
+    const lead = compact(points), point2 = lead.at(-1);
+    if (lead.slice(1).some((next, index2) => blockers.some((component2) => (component2.id !== terminal.component.id || index2 > 0) && crossesBody(lead[index2], next, bounds(component2))))) return;
+    candidates.push({ duct, point: point2, lead, length: lead.slice(1).reduce((sum, next, index2) => sum + distance2(lead[index2], next), 0) });
+  };
+  for (const duct of network2.ducts) {
+    let edge;
+    if ((side === "top" || side === "bottom") && escape.x >= duct.left && escape.x <= duct.right) {
+      if (side === "top" && duct.top <= escape.y) edge = { x: escape.x, y: Math.min(escape.y, duct.bottom) };
+      if (side === "bottom" && duct.bottom >= escape.y) edge = { x: escape.x, y: Math.max(escape.y, duct.top) };
+    }
+    if ((side === "left" || side === "right") && escape.y >= duct.top && escape.y <= duct.bottom) {
+      if (side === "left" && duct.left <= escape.x) edge = { x: Math.min(escape.x, duct.right), y: escape.y };
+      if (side === "right" && duct.right >= escape.x) edge = { x: Math.max(escape.x, duct.left), y: escape.y };
+    }
+    if (edge) consider(duct, [world, escape, edge, project(duct, edge)]);
+    const point2 = project(duct, escape);
+    consider(duct, [world, escape, { x: point2.x, y: escape.y }, point2]);
+    consider(duct, [world, escape, { x: escape.x, y: point2.y }, point2]);
+    for (const x of [rect.left - TERMINAL_CLEARANCE, rect.right + TERMINAL_CLEARANCE]) {
+      const target = project(duct, { x, y: escape.y });
+      consider(duct, [world, escape, { x, y: escape.y }, { x, y: target.y }, target]);
+    }
+    for (const y of [rect.top - TERMINAL_CLEARANCE, rect.bottom + TERMINAL_CLEARANCE]) {
+      const target = project(duct, { x: escape.x, y });
+      consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
     }
   }
-  candidates.sort((a, b) => a.cost - b.cost || a.lane.id.localeCompare(b.lane.id));
-  return candidates[0];
+  return candidates.sort((a, b) => a.length - b.length || a.duct.id.localeCompare(b.duct.id))[0];
 }
-function shortest(network2, from, to) {
-  const source = network2.nodes.length, target = source + 1, extra = /* @__PURE__ */ new Map();
-  const vertex = (id2) => id2 === source ? from.point : id2 === target ? to.point : network2.nodes[id2].point;
-  const add = (a, b) => {
-    const points = [vertex(a), vertex(b)], cost = distance2(points[0], points[1]);
+var Queue = class {
+  constructor() {
+    this.items = [];
+  }
+  push(item) {
+    let index2 = this.items.length;
+    this.items.push(item);
+    while (index2 > 0) {
+      const parent = index2 - 1 >> 1;
+      if (this.items[parent].cost <= item.cost) break;
+      this.items[index2] = this.items[parent];
+      index2 = parent;
+    }
+    this.items[index2] = item;
+  }
+  pop() {
+    const first = this.items[0], last = this.items.pop();
+    if (this.items.length && last) {
+      let index2 = 0;
+      while (index2 * 2 + 1 < this.items.length) {
+        let child = index2 * 2 + 1;
+        if (child + 1 < this.items.length && this.items[child + 1].cost < this.items[child].cost) child++;
+        if (this.items[child].cost >= last.cost) break;
+        this.items[index2] = this.items[child];
+        index2 = child;
+      }
+      this.items[index2] = last;
+    }
+    return first;
+  }
+};
+function shortestPath(document2, network2, from, to) {
+  const extra = /* @__PURE__ */ new Map();
+  const link2 = (a, b, points) => {
+    const cost = points.slice(1).reduce((sum, point2, index2) => sum + distance2(points[index2], point2), 0);
     extra.set(a, [...extra.get(a) ?? [], { to: b, cost, points }]);
     extra.set(b, [...extra.get(b) ?? [], { to: a, cost, points: [...points].reverse() }]);
   };
-  for (const [id2, entry] of [[source, from], [target, to]]) {
-    const axis = entry.lane.horizontal ? "x" : "y", value = entry.point[axis], lane = entry.lane;
-    let left = 0, right = lane.nodes.length;
-    while (left < right) {
-      const mid = left + right >>> 1;
-      if (network2.nodes[lane.nodes[mid]].point[axis] < value) left = mid + 1;
-      else right = mid;
-    }
-    if (left > 0) add(id2, lane.nodes[left - 1]);
-    if (left < lane.nodes.length) add(id2, lane.nodes[left]);
+  for (const [id2, entry] of [["start", from], ["end", to]]) {
+    const value = along(entry.duct, entry.point);
+    const before = entry.duct.pins.filter((point2) => along(entry.duct, point2) <= value).at(-1);
+    const after = entry.duct.pins.find((point2) => along(entry.duct, point2) >= value);
+    for (const point2 of /* @__PURE__ */ new Set([before, after])) if (point2) link2(id2, key3(point2), [entry.point, point2]);
   }
-  if (from.lane === to.lane) add(source, target);
-  const distances = /* @__PURE__ */ new Map([[source, 0]]), previous = /* @__PURE__ */ new Map(), heap = [];
-  const order = (a, b) => a[0] - b[0] || a[1] - b[1];
-  const push = (item) => {
-    heap.push(item);
-    let index2 = heap.length - 1;
-    while (index2) {
-      const parent = index2 - 1 >>> 1;
-      if (order(heap[parent], item) <= 0) break;
-      heap[index2] = heap[parent];
-      index2 = parent;
-    }
-    heap[index2] = item;
-  };
-  const pop = () => {
-    const first = heap[0], last = heap.pop();
-    if (heap.length) {
-      let index2 = 0;
-      while (index2 * 2 + 1 < heap.length) {
-        let child = index2 * 2 + 1;
-        if (child + 1 < heap.length && order(heap[child + 1], heap[child]) < 0) child++;
-        if (order(last, heap[child]) <= 0) break;
-        heap[index2] = heap[child];
-        index2 = child;
+  if (from.duct === to.duct) link2("start", "end", [from.point, to.point]);
+  const bodies = document2.components.filter((component2) => !isWireDuct(component2.type)).map(bounds);
+  const queue = new Queue(), costs = /* @__PURE__ */ new Map([["start", 0]]), previous = /* @__PURE__ */ new Map();
+  queue.push({ id: "start", cost: 0 });
+  while (queue.items.length) {
+    const current = queue.pop();
+    if (current.cost !== costs.get(current.id)) continue;
+    if (current.id === "end") {
+      const pieces = [];
+      let id2 = "end";
+      while (id2 !== "start") {
+        const step = previous.get(id2);
+        pieces.unshift(step.points);
+        id2 = step.id;
       }
-      heap[index2] = last;
+      return compact(pieces.flat());
     }
-    return first;
-  };
-  push([0, source]);
-  while (heap.length) {
-    const [cost, id2] = pop();
-    if (cost !== distances.get(id2)) continue;
-    if (id2 === target) break;
-    for (const link2 of [...id2 < source ? network2.nodes[id2].links : [], ...extra.get(id2) ?? []]) {
-      const next = cost + link2.cost;
-      if (next >= (distances.get(link2.to) ?? Infinity)) continue;
-      distances.set(link2.to, next);
-      previous.set(link2.to, { from: id2, points: link2.points });
-      push([next, link2.to]);
+    for (const edge of [...network2.vertices.get(current.id)?.links ?? [], ...extra.get(current.id) ?? []]) {
+      if (edge.points.slice(1).some((point2, index2) => bodies.some((rect) => crossesBody(edge.points[index2], point2, rect)))) continue;
+      const cost = current.cost + edge.cost;
+      if (cost >= (costs.get(edge.to) ?? Infinity)) continue;
+      costs.set(edge.to, cost);
+      previous.set(edge.to, { id: current.id, points: edge.points });
+      queue.push({ id: edge.to, cost });
     }
   }
-  if (!distances.has(target)) return void 0;
-  const segments = [];
-  let current = target;
-  while (current !== source) {
-    const step = previous.get(current);
-    segments.push(step.points);
-    current = step.from;
+}
+function segmentInsideDucts(document2, a, b) {
+  if (a.x !== b.x && a.y !== b.y) return false;
+  const vertical = a.x === b.x, start2 = Math.min(vertical ? a.y : a.x, vertical ? b.y : b.x), end = Math.max(vertical ? a.y : a.x, vertical ? b.y : b.x);
+  const spans = document2.components.filter((component2) => isWireDuct(component2.type)).map(bounds).filter((rect) => vertical ? a.x >= rect.left && a.x <= rect.right : a.y >= rect.top && a.y <= rect.bottom).map((rect) => vertical ? [rect.top, rect.bottom] : [rect.left, rect.right]).sort((first, second) => first[0] - second[0]);
+  let covered = start2;
+  for (const [min, max] of spans) {
+    if (max < covered) continue;
+    if (min > covered + 1e-6) return false;
+    covered = Math.max(covered, max);
+    if (covered >= end - 1e-6) return true;
   }
-  return compact(segments.reverse().flat());
+  return false;
+}
+function laneRoute(document2, network2, wire, trunk) {
+  if (!trunk.length) return trunk;
+  let hash = 0;
+  for (const character of wire.id) hash = hash * 31 + character.charCodeAt(0) >>> 0;
+  const half = Math.min(14, ...network2.ducts.map((duct) => (duct.vertical ? duct.right - duct.left : duct.bottom - duct.top) / 2 - 5));
+  const offset = (hash % 9 - 4) * half / 4;
+  const shifted = trunk.map((point2) => ({ x: point2.x + offset, y: point2.y + offset }));
+  const first = trunk[0], last = trunk.at(-1), shiftedFirst = shifted[0], shiftedLast = shifted.at(-1);
+  const candidate = compact([first, { x: shiftedFirst.x, y: first.y }, ...shifted, { x: last.x, y: shiftedLast.y }, last]);
+  const bodies = document2.components.filter((component2) => !isWireDuct(component2.type)).map(bounds);
+  return candidate.slice(1).every((point2, index2) => segmentInsideDucts(document2, candidate[index2], point2) && !bodies.some((rect) => crossesBody(candidate[index2], point2, rect))) ? candidate : trunk;
+}
+function routeWireInDucts(document2, wire) {
+  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}`).join("|");
+  let cached = routeCache.get(document2.components);
+  if (cached?.signature !== signature) {
+    cached = { signature, routes: /* @__PURE__ */ new Map() };
+    routeCache.set(document2.components, cached);
+  }
+  const id2 = `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
+  const previous = cached.routes.get(id2);
+  if (previous) return previous;
+  const route = calculateRoute(document2, wire);
+  cached.routes.set(id2, route);
+  return route;
+}
+function calculateRoute(document2, wire) {
+  const source = resolveTerminal(document2, wire.from), target = resolveTerminal(document2, wire.to);
+  const network2 = networkFor(document2.components);
+  if (!network2.ducts.length) return { status: "missing", sections: [terminalLead(source), terminalLead(target).reverse()], trunk: [], message: "\u8BF7\u5148\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u8D70\u7EBF\u3002" };
+  const from = entryFor(document2, source, network2), to = entryFor(document2, target, network2);
+  const sections = [from?.lead ?? terminalLead(source), [...to?.lead ?? terminalLead(target)].reverse()];
+  if (!from || !to) return { status: "blocked", sections, trunk: [], message: "\u7AEF\u5B50\u51FA\u7EBF\u65B9\u5411\u6CA1\u6709\u53EF\u8FDB\u5165\u7684\u7EBF\u69FD\uFF0C\u6216\u5F15\u51FA\u6BB5\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5143\u4EF6\u6216\u7EBF\u69FD\u3002" };
+  const shortest = shortestPath(document2, network2, from, to);
+  if (!shortest) return { status: "disconnected", sections, trunk: [], message: "\u4E24\u7AEF\u7EBF\u69FD\u672A\u8FDE\u901A\u6216\u69FD\u5185\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8FDE\u63A5\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" };
+  const trunk = laneRoute(document2, network2, wire, shortest);
+  return { status: "routed", sections: [compact([...from.lead, ...trunk, ...[...to.lead].reverse()])], trunk };
+}
+
+// app/simulator/editor/duct-routing.ts
+function usesDuctRouting(wire) {
+  return wire.routing === "duct" || wire.style === "duct";
 }
 function ductWireRoute(document2, wire) {
-  const signature = JSON.stringify(document2.components.map((c) => [c.id, c.type, c.position, c.size]));
-  let saved = cache.get(document2);
-  if (!saved || saved.signature !== signature) {
-    saved = { signature, network: buildNetwork(document2), routes: /* @__PURE__ */ new Map() };
-    cache.set(document2, saved);
-  }
-  const key3 = JSON.stringify([wire.from, wire.to]);
-  const cached = saved.routes.get(key3);
-  if (cached) return cached;
-  let result;
-  if (!saved.network.lanes.length) result = { reason: "no-ducts" };
-  else {
-    const from = entrance(document2, wire.from, saved.network), to = entrance(document2, wire.to, saved.network), path = from && to ? shortest(saved.network, from, to) : void 0;
-    result = path && from && to ? { points: compact([...from.points, ...path, ...[...to.points].reverse()]) } : { reason: "disconnected" };
-  }
-  saved.routes.set(key3, result);
-  return result;
+  const route = routeWireInDucts(document2, wire);
+  return {
+    ...route,
+    ...route.status === "routed" ? { points: route.sections[0] } : { reason: route.status === "missing" ? "no-ducts" : "disconnected" }
+  };
 }
 
 // app/simulator/editor/geometry.ts
-var equal2 = (a, b) => a.x === b.x && a.y === b.y;
+var equal = (a, b) => a.x === b.x && a.y === b.y;
 function terminalColor(terminal) {
   if (terminal.color) return terminal.color;
   if (terminal.electrical === "earth" || terminal.id === "PE") return "#659f2f";
@@ -33597,10 +33740,7 @@ function wireEndpoints(document2, wire) {
   };
 }
 function wireRoute(document2, wire) {
-  if (wire.routing === "duct") {
-    const routed = ductWireRoute(document2, wire);
-    if (routed.points) return routed.points;
-  }
+  if (usesDuctRouting(wire)) return ductWireRoute(document2, wire).sections.flat();
   const source = resolveTerminal(document2, wire.from);
   const target = resolveTerminal(document2, wire.to);
   if (wire.style === "straight" || wire.style === "curve") return [source.world, target.world];
@@ -33611,8 +33751,8 @@ function wireRoute(document2, wire) {
     for (const next of [...wire.waypoints, target.world]) {
       const last = points[points.length - 1];
       const corner = horizontal ? { x: next.x, y: last.y } : { x: last.x, y: next.y };
-      if (!equal2(last, corner)) points.push(corner);
-      if (!equal2(points[points.length - 1], next)) points.push(next);
+      if (!equal(last, corner)) points.push(corner);
+      if (!equal(points[points.length - 1], next)) points.push(next);
       horizontal = !horizontal;
     }
   } else if (horizontalFirst) {
@@ -33622,7 +33762,7 @@ function wireRoute(document2, wire) {
     const y = (source.world.y + target.world.y) / 2;
     points.push({ x: source.world.x, y }, { x: target.world.x, y }, target.world);
   }
-  return points.filter((point2, index2) => index2 === 0 || !equal2(point2, points[index2 - 1]));
+  return points.filter((point2, index2) => index2 === 0 || !equal(point2, points[index2 - 1]));
 }
 function curveControlPoints(document2, wire) {
   const source = resolveTerminal(document2, wire.from);
@@ -33634,10 +33774,7 @@ function curveControlPoints(document2, wire) {
   return [source.world, first, second, target.world];
 }
 function wirePath(document2, wire) {
-  if (wire.routing === "duct") {
-    const routed = ductWireRoute(document2, wire);
-    if (routed.points) return routed.points.map((point2, index2) => `${index2 === 0 ? "M" : "L"} ${point2.x} ${point2.y}`).join(" ");
-  }
+  if (usesDuctRouting(wire)) return ductWireRoute(document2, wire).sections.map((section) => section.map((point2, index2) => `${index2 === 0 ? "M" : "L"} ${point2.x} ${point2.y}`).join(" ")).join(" ");
   if (wire.style === "curve") {
     const [source, first, second, target] = curveControlPoints(document2, wire);
     return `M ${source.x} ${source.y} C ${first.x} ${first.y} ${second.x} ${second.y} ${target.x} ${target.y}`;
@@ -33852,8 +33989,8 @@ function DeviceNode({ data, selected: selected2 }) {
     resizeActions.current = data;
   }, [data]);
   const onResizeStart = (0, import_react7.useCallback)(() => resizeActions.current.beginResize?.(component2.id), [component2.id]);
-  const onResize = (0, import_react7.useCallback)((_event, bounds) => resizeActions.current.resize?.(component2.id, bounds), [component2.id]);
-  const onResizeEnd = (0, import_react7.useCallback)((_event, bounds) => resizeActions.current.resize?.(component2.id, bounds, true), [component2.id]);
+  const onResize = (0, import_react7.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2), [component2.id]);
+  const onResizeEnd = (0, import_react7.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2, true), [component2.id]);
   const leads = data.document?.wires.flatMap((wire) => [wire.from, wire.to].filter((ref2) => ref2.componentId === component2.id).map((ref2) => ({ wire, terminal: definition.terminals.find((terminal) => terminal.id === ref2.terminalId) }))) ?? [];
   const faulty = data.diagnostics.some((d) => d.componentIds.includes(component2.id) && d.severity !== "info");
   const momentary = component2.type === "push-no" || component2.type === "push-nc" || component2.type === "limit-switch";
@@ -33900,9 +34037,9 @@ function DeviceNode({ data, selected: selected2 }) {
         ] }),
         faulty && definition.load?.kind === "motor" && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-motor-diagnostic", role: "status", title: data.diagnostics.filter((d) => d.componentIds.includes(component2.id)).map((d) => d.message).join("\uFF1B"), children: "\u8BCA\u65AD" }),
         definition.terminals.map((terminal) => {
-          const key3 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
-          const state = data.terminalStates[key3];
-          const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key3));
+          const key4 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
+          const state = data.terminalStates[key4];
+          const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key4));
           const color2 = terminalColor(terminal);
           return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
             Handle,
@@ -33915,7 +34052,7 @@ function DeviceNode({ data, selected: selected2 }) {
               style: { left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color2 },
               title: `${component2.label} \xB7 ${terminal.label}${state ? ` \xB7 ${state.potential}` : ""}`,
               "aria-label": `${component2.label} \u7AEF\u5B50 ${terminal.label}`,
-              "data-terminal-key": key3,
+              "data-terminal-key": key4,
               "data-terminal-energized": running && !!state?.energized,
               "data-world-x": component2.position.x + terminal.x,
               "data-world-y": component2.position.y + terminal.y,
@@ -34021,10 +34158,10 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       "data-from-world": JSON.stringify(endpoints.from),
       "data-to-world": JSON.stringify(endpoints.to),
       "data-routing": wire.routing,
-      "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).points ? "routed" : "disconnected" : "manual",
+      "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual",
       children: [
         /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
-        selected2 && !data.running && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(EdgeLabelRenderer, { children: [
+        selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(EdgeLabelRenderer, { children: [
           points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
             "button",
             {
@@ -34257,7 +34394,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
   (0, import_react11.useLayoutEffect)(() => {
     changeZoom.current = onZoomChange;
   }, [onZoomChange]);
-  const [bounds, setBounds] = (0, import_react11.useState)({ width: 0, height: 0 });
+  const [bounds2, setBounds] = (0, import_react11.useState)({ width: 0, height: 0 });
   const [ratio, setRatio] = (0, import_react11.useState)(null);
   const [dragging, setDragging] = (0, import_react11.useState)(false);
   const [imageState, setImageState] = (0, import_react11.useState)("loading");
@@ -34294,8 +34431,8 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
   (0, import_react11.useEffect)(() => {
     if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 });
   }, [zoom]);
-  const availableWidth = Math.max(1, bounds.width - 24);
-  const availableHeight = Math.max(1, bounds.height - 24 - (isPdf ? 76 : 0));
+  const availableWidth = Math.max(1, bounds2.width - 24);
+  const availableHeight = Math.max(1, bounds2.height - 24 - (isPdf ? 76 : 0));
   const fittedWidth = ratio ? Math.min(availableWidth, availableHeight * ratio) : availableWidth;
   function fit() {
     setZoom(1);
@@ -34357,7 +34494,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds2.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
             "img",
             {
               src,
@@ -35143,7 +35280,7 @@ function Workspace(props) {
   const [future, setFuture] = (0, import_react16.useState)([]);
   const [color2, setColor] = (0, import_react16.useState)(COLORS2[0]);
   const [colorOverride, setColorOverride] = (0, import_react16.useState)(false);
-  const [wireStyle, setWireStyle] = (0, import_react16.useState)("orthogonal");
+  const [wireStyle, setWireStyle] = (0, import_react16.useState)("duct");
   const [colorsOpen, setColorsOpen] = (0, import_react16.useState)(false);
   const [colorHost, setColorHost] = (0, import_react16.useState)(null);
   const [running, setRunning] = (0, import_react16.useState)(false);
@@ -35353,8 +35490,8 @@ function Workspace(props) {
   };
   const addComponent = (type, point2) => {
     if (frozen) return;
-    const bounds = board.current?.getBoundingClientRect();
-    const position = point2 ?? flow.screenToFlowPosition({ x: (bounds?.left ?? 300) + (bounds?.width ?? 900) * 0.4, y: (bounds?.top ?? 120) + (bounds?.height ?? 600) * 0.4 });
+    const bounds2 = board.current?.getBoundingClientRect();
+    const position = point2 ?? flow.screenToFlowPosition({ x: (bounds2?.left ?? 300) + (bounds2?.width ?? 900) * 0.4, y: (bounds2?.top ?? 120) + (bounds2?.height ?? 600) * 0.4 });
     const prefix2 = LABELS2[type];
     let index2 = 1;
     while (circuit.components.some((component2) => component2.label === `${prefix2}${index2}`)) index2++;
@@ -35376,7 +35513,10 @@ function Workspace(props) {
     const sourceComponent = circuit.components.find((component2) => component2.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find((terminal) => terminal.id === from.terminalId);
     const newColor = colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal);
-    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle, routing: wireStyle === "straight" && circuit.components.some((c) => isWireDuct(c.type)) ? "duct" : void 0 }] });
+    const hasDucts2 = circuit.components.some((component2) => isWireDuct(component2.type));
+    const automatic = wireStyle === "duct" && hasDucts2;
+    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] });
+    if (wireStyle === "duct" && !hasDucts2) setMessage("\u5C1A\u672A\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u65B0\u5BFC\u7EBF\u4F7F\u7528\u81EA\u5B9A\u4E49\u76F4\u89D2\uFF1B\u53EF\u5148\u9884\u5E03\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u5165\u69FD\u3002");
   };
   const onWaypoints = (0, import_react16.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = (0, import_react16.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
@@ -35384,11 +35524,11 @@ function Workspace(props) {
     if (frozen || !isWireDuct(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
     resizing.current = { id: id2, before: clone2(docRef.current), documentKey: props.documentKey };
   }, [frozen, props.documentKey]);
-  const resize = (0, import_react16.useCallback)((id2, bounds, finish = false) => {
+  const resize = (0, import_react16.useCallback)((id2, bounds2, finish = false) => {
     const gesture = resizing.current;
-    if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds.x, bounds.y, bounds.width, bounds.height].every(Number.isFinite)) return;
-    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.width)), height: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds.height)) };
-    const next = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, position: { x: bounds.x, y: bounds.y }, size } : component2) };
+    if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds2.x, bounds2.y, bounds2.width, bounds2.height].every(Number.isFinite)) return;
+    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.width)), height: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.height)) };
+    const next = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, position: { x: bounds2.x, y: bounds2.y }, size } : component2) };
     onDocumentChange(next);
     setAssessment(null);
     setSimulation(null);
@@ -35409,7 +35549,7 @@ function Workspace(props) {
   const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || component2.type === "relay380").map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
   const diagnostics = (0, import_react16.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
   const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isWireDuct(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isWireDuct(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...componentSize(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
-  const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, diagnostics, simulation, onWaypoints]);
+  const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
     if (selection2.length) setSelectedNodes((current) => {
@@ -35448,11 +35588,24 @@ function Workspace(props) {
     if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map((wire) => selectedWires.includes(wire.id) ? { ...wire, color: next } : wire) });
   };
   const setStyle = (next) => {
+    if (frozen) return;
     setWireStyle(next);
-    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map((wire) => selectedWires.includes(wire.id) ? { ...wire, style: next, routing: next === "straight" && circuit.components.some((c) => isWireDuct(c.type)) ? "duct" : void 0 } : wire) });
+    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map((wire) => selectedWires.includes(wire.id) ? { ...wire, style: next === "duct" ? "orthogonal" : next, routing: next === "duct" ? "duct" : void 0 } : wire) });
   };
-  const selectedStyles = [...new Set(circuit.wires.filter((wire) => selectedWires.includes(wire.id)).map((wire) => wire.style ?? "orthogonal"))];
-  const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? wireStyle;
+  const hasDucts = circuit.components.some((component2) => isWireDuct(component2.type));
+  const selectedStyles = [...new Set(circuit.wires.filter((wire) => selectedWires.includes(wire.id)).map((wire) => wire.routing === "duct" ? "duct" : wire.style ?? "orthogonal"))];
+  const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? (wireStyle === "duct" && !hasDucts ? "orthogonal" : wireStyle);
+  const arrangeDucts = () => {
+    if (frozen) return;
+    try {
+      changed(putWiresInDucts(arrangeTrainingDucts(docRef.current)));
+      setWireStyle("duct");
+      setMessage(hasDucts ? "\u5DF2\u5207\u6362\u81EA\u52A8\u8D70\u7EBF\uFF1B\u672A\u5165\u69FD\u7684\u5BFC\u7EBF\u4F1A\u6301\u7EED\u663E\u793A\u63D0\u793A\uFF0C\u53EF\u64A4\u9500\u3002" : "\u5DF2\u6309\u8BFE\u7A0B\u5E03\u5C40\u9884\u5E03\u7EBF\u69FD\uFF0C\u63A5\u7EBF\u540E\u81EA\u52A8\u5165\u69FD\uFF1B\u53EF\u64A4\u9500\u3002");
+      if (!hasDucts) setTimeout(frameInitialView, 80);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "\u7EBF\u69FD\u5E03\u7F6E\u5931\u8D25\u3002");
+    }
+  };
   const openTransfer = (mode) => {
     setTransferText(mode === "export" ? JSON.stringify(circuit, null, 2) : "");
     setTransferNotice("");
@@ -35497,9 +35650,9 @@ function Workspace(props) {
       setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
     }
   };
-  const perform = async (key3, callback) => {
+  const perform = async (key4, callback) => {
     if (!callback || busy) return;
-    setBusy(key3);
+    setBusy(key4);
     try {
       await callback();
     } catch (error) {
@@ -35539,7 +35692,8 @@ function Workspace(props) {
   };
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
-  const failedRoutes = circuit.wires.filter((wire) => wire.routing === "duct" && !ductWireRoute(circuit, wire).points);
+  const routingProblems = (0, import_react16.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed"), [circuit]);
+  const noDuctFallback = wireStyle === "duct" && !hasDucts && circuit.wires.length > 0 && !routingProblems.length;
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
@@ -35664,18 +35818,19 @@ function Workspace(props) {
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
           /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
             displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "duct", disabled: !hasDucts, children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
             /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
             /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
             /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
           ] })
         ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-history", children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 18 }) }),
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Undo2, { size: 18 }) }),
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Redo2, { size: 18 }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen || !circuit.wires.length, onClick: () => changed({ ...circuit, wires: circuit.wires.map((wire) => !selectedWires.length || selectedWires.includes(wire.id) ? { ...wire, style: "straight", routing: "duct" } : wire) }), children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-toolbar-spacer" }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
@@ -35745,7 +35900,7 @@ function Workspace(props) {
               if (frozen) return;
               event.stopPropagation();
               const wire = circuit.wires.find((item) => item.id === edge.id);
-              if (wire && (!wire.style || wire.style === "orthogonal")) onWaypoints(wire.id, [...wire.waypoints ?? [], flow.screenToFlowPosition({ x: event.clientX, y: event.clientY })]);
+              if (wire && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal")) onWaypoints(wire.id, [...wire.waypoints ?? [], flow.screenToFlowPosition({ x: event.clientX, y: event.clientY })]);
             },
             onPaneClick: () => {
               board.current?.focus();
@@ -35765,10 +35920,14 @@ function Workspace(props) {
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: circuit.title }),
           running && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
         ] }),
-        !!failedRoutes.length && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-routing-notice", role: "status", children: [
-          failedRoutes.length,
-          " \u6839\u5BFC\u7EBF\u672A\u627E\u5230\u8FDE\u901A\u7EBF\u69FD\uFF0C\u5DF2\u4FDD\u7559\u539F\u8FDE\u63A5\u3002\u8BF7\u8C03\u6574\u7EBF\u69FD\u8FDE\u63A5\u3002"
+        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("b", { children: [
+            routingProblems.length,
+            " \u6839\u5BFC\u7EBF\u6682\u672A\u5165\u69FD"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
         ] }),
+        noDuctFallback && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: "\u5C1A\u672A\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u65B0\u5BFC\u7EBF\u4F7F\u7528\u81EA\u5B9A\u4E49\u76F4\u89D2\uFF1B\u53EF\u5148\u9884\u5E03\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u5165\u69FD\u3002" }),
         running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
             "\u6559\u5B66\u65F6\u95F4 ",
@@ -35864,7 +36023,7 @@ function Workspace(props) {
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { className: "sim-editor-footer", children: [
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: running ? "live" : "" }),
-          running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
+          running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u5E03\u7F6E" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
           circuit.components.length,
@@ -36884,7 +37043,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
     requests.current.retain([
       ...page?.items.map((item) => item.id) ?? [],
       ...route.publicationId ? [route.publicationId] : [],
-      ...pending.map((key3) => key3.slice(0, key3.lastIndexOf(":")))
+      ...pending.map((key4) => key4.slice(0, key4.lastIndexOf(":")))
     ]);
   }, [page, route.publicationId, pending]);
   (0, import_react23.useEffect)(() => {
@@ -36952,9 +37111,9 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
     else navigateAppLocation(galleryHref(next), { replace: true });
   }
   async function reactTo(item, kind) {
-    const key3 = `${item.id}:${kind}`;
+    const key4 = `${item.id}:${kind}`;
     if ([...pendingRef.current].some((value) => value.startsWith(`${item.id}:`))) return;
-    pendingRef.current.add(key3);
+    pendingRef.current.add(key4);
     setPending([...pendingRef.current]);
     setFeedback("");
     try {
@@ -36967,7 +37126,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
     } catch (failure2) {
       if (mounted.current) setFeedback(failure2 instanceof Error ? failure2.message : "\u64CD\u4F5C\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5");
     } finally {
-      pendingRef.current.delete(key3);
+      pendingRef.current.delete(key4);
       if (mounted.current) setPending([...pendingRef.current]);
     }
   }
@@ -37163,38 +37322,38 @@ function readRecovery(raw) {
   if (saved != null && (typeof saved !== "object" || typeof saved.id !== "string" || !/^[a-zA-Z0-9_-]{1,80}$/.test(saved.id) || !Number.isInteger(saved.revision) || saved.revision < 1 || !validateDocument(saved.document).valid)) throw new Error("\u672C\u5730\u8349\u7A3F\u4FEE\u8BA2\u4FE1\u606F\u65E0\u6548\uFF0C\u672A\u81EA\u52A8\u8F7D\u5165");
   return { document: checked.document, saved: saved ?? null, dirty: recovery.dirty || !!saved && JSON.stringify(checked.document) !== JSON.stringify(saved.document) };
 }
-function persistRecovery(storage, key3, state) {
+function persistRecovery(storage, key4, state) {
   const next = JSON.stringify(state);
-  const previous = storage.getItem(key3);
+  const previous = storage.getItem(key4);
   if (previous) {
     try {
       readRecovery(previous);
     } catch {
-      storage.setItem(`${key3}:unreadable:${crypto.randomUUID()}`, previous);
+      storage.setItem(`${key4}:unreadable:${crypto.randomUUID()}`, previous);
     }
   }
-  storage.setItem(key3, next);
+  storage.setItem(key4, next);
 }
 function recoveryAfterSave(current, submitted, saved) {
   return { document: current, saved, dirty: JSON.stringify(current) !== JSON.stringify(submitted) };
 }
 function parkRecovery(storage, ownerKey, state) {
-  const key3 = `${ownerKey}:parked:${Date.now()}:${crypto.randomUUID()}`;
-  persistRecovery(storage, key3, state);
-  if (storage.getItem(key3) !== JSON.stringify(state)) throw new Error("\u672C\u673A\u6682\u5B58\u5199\u5165\u672A\u786E\u8BA4\uFF0C\u8BF7\u4FDD\u5B58\u6216\u5BFC\u51FA\u5F53\u524D\u63A5\u7EBF");
-  return key3;
+  const key4 = `${ownerKey}:parked:${Date.now()}:${crypto.randomUUID()}`;
+  persistRecovery(storage, key4, state);
+  if (storage.getItem(key4) !== JSON.stringify(state)) throw new Error("\u672C\u673A\u6682\u5B58\u5199\u5165\u672A\u786E\u8BA4\uFF0C\u8BF7\u4FDD\u5B58\u6216\u5BFC\u51FA\u5F53\u524D\u63A5\u7EBF");
+  return key4;
 }
 function listParkedRecovery(storage, ownerKey) {
   const prefix2 = `${ownerKey}:parked:`, result = [];
   for (let i = 0; i < storage.length; i++) {
-    const key3 = storage.key(i);
-    if (!key3?.startsWith(prefix2) || key3.includes(":unreadable:")) continue;
-    const savedAt = Number(key3.slice(prefix2.length).split(":")[0]) || 0;
+    const key4 = storage.key(i);
+    if (!key4?.startsWith(prefix2) || key4.includes(":unreadable:")) continue;
+    const savedAt = Number(key4.slice(prefix2.length).split(":")[0]) || 0;
     try {
-      const state = readRecovery(storage.getItem(key3));
-      if (state) result.push({ key: key3, title: state.document.title, savedAt, state });
+      const state = readRecovery(storage.getItem(key4));
+      if (state) result.push({ key: key4, title: state.document.title, savedAt, state });
     } catch (error) {
-      result.push({ key: key3, title: "\u635F\u574F\u7684\u6682\u5B58\uFF08\u539F\u59CB\u8BB0\u5F55\u5DF2\u4FDD\u7559\uFF09", savedAt, error: error instanceof Error ? error.message : "\u6682\u5B58\u8BFB\u53D6\u5931\u8D25" });
+      result.push({ key: key4, title: "\u635F\u574F\u7684\u6682\u5B58\uFF08\u539F\u59CB\u8BB0\u5F55\u5DF2\u4FDD\u7559\uFF09", savedAt, error: error instanceof Error ? error.message : "\u6682\u5B58\u8BFB\u53D6\u5931\u8D25" });
     }
   }
   return result.sort((a, b) => b.savedAt - a.savedAt);

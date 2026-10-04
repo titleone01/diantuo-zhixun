@@ -178,5 +178,20 @@ try {
   const publicEvidence = path.resolve(import.meta.dirname, '../.local/acceptance-public'); await mkdir(publicEvidence, { recursive: true });
   await writeFile(path.join(publicEvidence, 'recovery.json'), JSON.stringify(result, null, 2));
   console.log(`恢复及版本回退演练通过；脱敏结果：${path.join(directory, "recovery-result.json")}`);
-} catch (error) { console.error(`Recovery rehearsal failed: ${error.name}; retained at ${directory}`); process.exitCode = 1; }
+} catch (error) {
+  const privateReport = path.join(directory, 'private-error.json');
+  const seen = new WeakSet();
+  const diagnostic = JSON.stringify({ failedAt: new Date().toISOString(), error }, (_key, value) => {
+    if (value && typeof value === 'object') {
+      if (seen.has(value)) return '[Circular]';
+      seen.add(value);
+      if (value instanceof Error) return Object.fromEntries(Object.getOwnPropertyNames(value).map(name => [name, value[name]]));
+    }
+    return value;
+  }, 2);
+  try { await writeFile(privateReport, diagnostic + '\n', { mode: 0o600 }); }
+  catch { console.error('Could not write the private recovery diagnostic.'); }
+  console.error(`Recovery rehearsal failed: ${error.name}; private diagnostic: ${privateReport}`);
+  process.exitCode = 1;
+}
 finally { await operator?.stop(); await restored?.stop(); await original?.stop(); }

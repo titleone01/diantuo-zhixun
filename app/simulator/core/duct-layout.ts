@@ -76,9 +76,17 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   for (const component of limits) { positions.set(component.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE }); limitX += componentSize(component).width + 44; }
   let sourceX = 56;
   for (const component of sources) { positions.set(component.id, { x: sourceX, y: -componentSize(component).height - 65 }); sourceX += componentSize(component).width + 30; }
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
   let externalX = 56;
-  for (const component of [...earths, ...terminals, ...loads]) {
-    positions.set(component.id, { x: externalX, y: bottom + 75 });
+  for (const component of terminalRow) {
+    positions.set(component.id, { x: externalX, y: terminalY });
+    externalX += componentSize(component).width + SEPARATION;
+  }
+  // The board's outgoing XT/PE row precedes its external motors; keep space for bottom terminal leads.
+  const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map(component => componentSize(component).height)) + SEPARATION : 0);
+  externalX = 56;
+  for (const component of loads) {
+    positions.set(component.id, { x: externalX, y: loadY });
     externalX += componentSize(component).width + SEPARATION;
   }
   const ducts: CircuitComponent[] = [];
