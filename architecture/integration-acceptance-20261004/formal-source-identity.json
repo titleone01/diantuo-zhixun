@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "head": "a0ecf1df34e011eccb9abd446339fa9f62efa682",
+  "sourceClean": true,
+  "sourceHash": "d8dd7f0b6dc0127c807eea37550b028b090ac69e313d8f390f6d50a0321bf800",
+  "releaseId": "730d099cdbde4e6a9704267305c03f0678c4e5f91a3b017d07c736a0b1eca59e",
+  "sameSourceAsActualMainCandidateRelease": true,
+  "sourceImages": 20,
+  "browserImages": 20,
+  "memberReads": 40,
+  "anonymousMediaDenied": 20,
+  "anonymousListDenied": true,
+  "repeatedImportUploads": 0,
+  "steps": 15,
+  "completedAt": "2026-10-04T03:57:36.820Z"
+}

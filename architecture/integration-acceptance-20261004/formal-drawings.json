@@ -1,0 +1,293 @@
+{
+  "at": "2026-10-04T03:57:21.836Z",
+  "status": "passed",
+  "scope": "20 original local PNGs; fresh isolated DB and two synthetic members; no production writes",
+  "tests": [
+    {
+      "title": "Build current code into an isolated release",
+      "status": "passed",
+      "durationMs": 2453
+    },
+    {
+      "title": "Import and hash-read twenty original PNGs",
+      "status": "passed",
+      "durationMs": 1166
+    },
+    {
+      "title": "Two synthetic members read forty matching PNGs; twenty anonymous media requests and list are denied",
+      "status": "passed",
+      "durationMs": 834
+    },
+    {
+      "title": "Repeating the import preserves all associations and uploads zero duplicates",
+      "status": "passed",
+      "durationMs": 656
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-01",
+      "status": "passed",
+      "durationMs": 292
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-02",
+      "status": "passed",
+      "durationMs": 186
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-03",
+      "status": "passed",
+      "durationMs": 220
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-04",
+      "status": "passed",
+      "durationMs": 218
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-05",
+      "status": "passed",
+      "durationMs": 213
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-06",
+      "status": "passed",
+      "durationMs": 219
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-07",
+      "status": "passed",
+      "durationMs": 203
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-08",
+      "status": "passed",
+      "durationMs": 238
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-09",
+      "status": "passed",
+      "durationMs": 196
+    },
+    {
+      "title": "Chromium loads the original schematic and layout for project-10",
+      "status": "passed",
+      "durationMs": 200
+    },
+    {
+      "title": "Source PNGs retain their original hashes after import and browser readback",
+      "status": "passed",
+      "durationMs": 6
+    }
+  ],
+  "images": [
+    {
+      "projectId": "project-01",
+      "kind": "schematic",
+      "name": "电动机点动控制电路原理图.png",
+      "sha256": "d38f8e97085252e78b5452220ab6ff567d1e691ac42b6f0ec8f151f1b14c4c49",
+      "bytes": 109739,
+      "browserDecoded": true,
+      "width": 881,
+      "height": 744
+    },
+    {
+      "projectId": "project-01",
+      "kind": "layout",
+      "name": "电动机点动控制电路布局图.png",
+      "sha256": "c487640ac85f73b29405157a4f6acae3be82c25715eba6ce5a697224239c2fc0",
+      "bytes": 46670,
+      "browserDecoded": true,
+      "width": 658,
+      "height": 529
+    },
+    {
+      "projectId": "project-02",
+      "kind": "schematic",
+      "name": "电动机连续运行控制电路原理图.png",
+      "sha256": "e3e7b8ed6375960231a3bebc3c05c5383d8c72299ae8d53190a5419ad4ddeb44",
+      "bytes": 36600,
+      "browserDecoded": true,
+      "width": 735,
+      "height": 707
+    },
+    {
+      "projectId": "project-02",
+      "kind": "layout",
+      "name": "电动机连续运行控制电路布局图.png",
+      "sha256": "8580e48b9e13709f933d057fd298016e6fe62d0f25d214723415d43f513e7dc8",
+      "bytes": 52547,
+      "browserDecoded": true,
+      "width": 676,
+      "height": 493
+    },
+    {
+      "projectId": "project-03",
+      "kind": "schematic",
+      "name": "点动与连续运行电路原理图.png",
+      "sha256": "c445f89a61f65ded18f2d5eefaf760ee36c7d2c5e09dbf22b2bfd14cbbf48585",
+      "bytes": 39347,
+      "browserDecoded": true,
+      "width": 818,
+      "height": 746
+    },
+    {
+      "projectId": "project-03",
+      "kind": "layout",
+      "name": "点动与连续运行电路布局图.png",
+      "sha256": "5097201b6635db0595f357df15493e175f6e434ded5c070a52e070719487ac46",
+      "bytes": 54056,
+      "browserDecoded": true,
+      "width": 618,
+      "height": 461
+    },
+    {
+      "projectId": "project-04",
+      "kind": "schematic",
+      "name": "接触器互锁正反转电路原理图.png",
+      "sha256": "ca9bb6301db6c61e3922ca905e6ca2534fdd5fc63fa5c6d3b24ca849cc4c5af1",
+      "bytes": 32435,
+      "browserDecoded": true,
+      "width": 734,
+      "height": 673
+    },
+    {
+      "projectId": "project-04",
+      "kind": "layout",
+      "name": "接触器互锁正反转电路布局图.png",
+      "sha256": "d2a990842f1bfe04643290a59891ad1a6758d8262e80003038320ef1775eae9a",
+      "bytes": 43917,
+      "browserDecoded": true,
+      "width": 674,
+      "height": 615
+    },
+    {
+      "projectId": "project-05",
+      "kind": "schematic",
+      "name": "双重联锁正反转控制电路原理图.png",
+      "sha256": "2d2e52d67cee1ee4093991d40e031e4b8ae96144f28b9d9430c46133242c4821",
+      "bytes": 49071,
+      "browserDecoded": true,
+      "width": 735,
+      "height": 678
+    },
+    {
+      "projectId": "project-05",
+      "kind": "layout",
+      "name": "双重联锁正反转控制电路布局图.png",
+      "sha256": "d2a990842f1bfe04643290a59891ad1a6758d8262e80003038320ef1775eae9a",
+      "bytes": 43917,
+      "browserDecoded": true,
+      "width": 674,
+      "height": 615
+    },
+    {
+      "projectId": "project-06",
+      "kind": "schematic",
+      "name": "自动往返控制电路原理图.png",
+      "sha256": "5cb3026e1abae3b75f831d9d20dda7a71d56d6639c257e5474677740e3179ba6",
+      "bytes": 44027,
+      "browserDecoded": true,
+      "width": 784,
+      "height": 672
+    },
+    {
+      "projectId": "project-06",
+      "kind": "layout",
+      "name": "自动往返控制电路布局图.png",
+      "sha256": "091b420981acb595b358c29612cc2809439672a439a7f05f8bafb5237040bba8",
+      "bytes": 40232,
+      "browserDecoded": true,
+      "width": 680,
+      "height": 531
+    },
+    {
+      "projectId": "project-07",
+      "kind": "schematic",
+      "name": "顺序控制电路原理图.png",
+      "sha256": "68327ec3bb0daa2f4a21a8c4cd5e11a8eb24729036694077f619813d6cc912ba",
+      "bytes": 388326,
+      "browserDecoded": true,
+      "width": 1420,
+      "height": 1020
+    },
+    {
+      "projectId": "project-07",
+      "kind": "layout",
+      "name": "顺序控制电路布局图.png",
+      "sha256": "8c651303439282e7f95bf83b79425bab10047d237391df7a61a3b7c1dbbb511e",
+      "bytes": 50242,
+      "browserDecoded": true,
+      "width": 577,
+      "height": 528
+    },
+    {
+      "projectId": "project-08",
+      "kind": "schematic",
+      "name": "延时起动控制电路原理图.png",
+      "sha256": "a699788422020d38a7cfaf5dcfc65f14fcadeed68144045ee2c1c4f0046e6fb2",
+      "bytes": 123852,
+      "browserDecoded": true,
+      "width": 844,
+      "height": 614
+    },
+    {
+      "projectId": "project-08",
+      "kind": "layout",
+      "name": "延时起动控制电路布局图.png",
+      "sha256": "ae77fe094f7bdf4fa2113a014aa3e01f77e93736fcdd511e1e1b4696cb6005e6",
+      "bytes": 41716,
+      "browserDecoded": true,
+      "width": 534,
+      "height": 452
+    },
+    {
+      "projectId": "project-09",
+      "kind": "schematic",
+      "name": "Y-△降压起动控制电路原理图.png",
+      "sha256": "1f4b0fac855c6c2ec259df4700e88bf802910e006d06d9a78296e445402c2edf",
+      "bytes": 34913,
+      "browserDecoded": true,
+      "width": 764,
+      "height": 487
+    },
+    {
+      "projectId": "project-09",
+      "kind": "layout",
+      "name": "Y-△降压起动控制电路布局图.png",
+      "sha256": "e40a23446929d906603a1a017ef20bcf835647eb2b4382ea924243a11b0a92a7",
+      "bytes": 39169,
+      "browserDecoded": true,
+      "width": 656,
+      "height": 531
+    },
+    {
+      "projectId": "project-10",
+      "kind": "schematic",
+      "name": "双速电机运行控制电路原理图.png",
+      "sha256": "8e7ec4259871e0bd0476affcc24b05af486d59d03bf39210e4f42bb63617ed18",
+      "bytes": 44391,
+      "browserDecoded": true,
+      "width": 887,
+      "height": 592
+    },
+    {
+      "projectId": "project-10",
+      "kind": "layout",
+      "name": "双速电机运行控制电路布局图.png",
+      "sha256": "1b5b9918f7adc668c84b8a9a9c264b7851de93f60cd78bedf6634cdcb682e4ff",
+      "bytes": 39034,
+      "browserDecoded": true,
+      "width": 656,
+      "height": 530
+    }
+  ],
+  "origin": "http://127.0.0.1:52954",
+  "memberReads": 40,
+  "anonymousMediaDenied": 20,
+  "anonymousListDenied": true,
+  "sourceImages": 20,
+  "browserImages": 20,
+  "importUploads": 20,
+  "repeatedImportUploads": 0,
+  "completedAt": "2026-10-04T03:57:36.820Z"
+}

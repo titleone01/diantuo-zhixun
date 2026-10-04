@@ -1,0 +1,673 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-04T04:04:13.971429+00:00",
+  "conclusion": "Local integrated acceptance and actual MAIN code/runtime/data-preservation verification passed; dependency and explicitly stated test boundaries remain.",
+  "productCodeBaseline": "a0ecf1df34e011eccb9abd446339fa9f62efa682",
+  "reportOnlyChangesDoNotChangeProductBaseline": true,
+  "all35RisksCleared": false,
+  "checks": {
+    "extendedExitCode": 0,
+    "extendedStages": 10,
+    "offlinePassed": 519,
+    "offlineConditionalBackendFixtureSkipped": 1,
+    "backendPassed": 25,
+    "browserPassed": 38,
+    "browserFailed": 0,
+    "browserSkipped": 0,
+    "courseBrowserCases": 20,
+    "newIntegratedBrowserCases": 9,
+    "capacityGroups": 9,
+    "capacityFailures": 0,
+    "capacity30LargeP95Ms": 4108.6466,
+    "capacityP95Method": "per member POST create -> GET read -> PUT save total; oversized only POST correctly rejected 413, no scoring load"
+  },
+  "formal": {
+    "status": "passed",
+    "head": "a0ecf1df34e011eccb9abd446339fa9f62efa682",
+    "sourceCleanAtBuild": true,
+    "sourceHash": "d8dd7f0b6dc0127c807eea37550b028b090ac69e313d8f390f6d50a0321bf800",
+    "releaseId": "730d099cdbde4e6a9704267305c03f0678c4e5f91a3b017d07c736a0b1eca59e",
+    "sameSourceAsActualMainCandidateRelease": true,
+    "sourceImages": 20,
+    "browserImages": 20,
+    "memberReads": 40,
+    "anonymousMediaDenied": 20,
+    "anonymousListDenied": true,
+    "repeatedImportUploads": 0,
+    "sourceHashesUnchanged": true
+  },
+  "actualMain": {
+    "helperExitedBeforeIndependentVerification": true,
+    "loopbackListenerOwnedByMain": true,
+    "anonymousSession200UserNull": true,
+    "htmlAndJavascriptByteHashesMatchBuiltMain": true,
+    "sourceClean": true,
+    "migration0006AppliedNoPending": true,
+    "businessCountsDocumentsRevisionsAssociationsRetained": true,
+    "r2BytesRetained": true,
+    "existingDocumentsCompatible": true,
+    "authRowsRead": false,
+    "productionAccountsCreated": false,
+    "bootstrapPerformed": false,
+    "oldDatabaseRestored": false
+  },
+  "dependencyResidual": {
+    "matrixId": "H08",
+    "status": "residual-risk",
+    "high": 7,
+    "moderate": 4,
+    "critical": 0,
+    "productionHigh": 0,
+    "productionModerate": 4,
+    "independentVulnerabilityCountNotEqualToPropagationCount": true,
+    "compatiblePatchForRemainingChainsVerified": false
+  },
+  "goals": [
+    {
+      "id": "F01",
+      "goal": "QF/FU/KM/FR/M端子连续引线、红绿指示、8px带电点、电机风叶与缺PE诊断",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/editor/DeviceNode.tsx",
+        "app/simulator/editor/DocumentPreview.tsx",
+        "app/simulator/editor/geometry.ts",
+        "tests/simulator-source-components.test.mjs"
+      ],
+      "evidence": "真实拖线、器件移动、缩放、重载世界端点相等",
+      "conclusionAndBoundary": "本地交互通过；8px线头/全部运行视觉细项由协调者汇总",
+      "manualAcceptance": {
+        "entry": "编辑器→五类器件→合分闸/仿真；在移动、缩放后对照端子引线与预览",
+        "expected": "引线与世界端点连贯；手柄I/O保留；运行风叶方向/速度正确；缺PE拒绝"
+      }
+    },
+    {
+      "id": "F02",
+      "goal": "FU2四端子两路独立、旧FU2兼容；XT16上下导通、位间绝缘、32端子",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/catalog.ts",
+        "tests/simulator-feedback-devices.test.mjs",
+        "tests/ten-motor-lessons.test.mjs"
+      ],
+      "evidence": "十课FU2双通道和XT16；blank/example/clear实际浏览器",
+      "conclusionAndBoundary": "本地通过；旧双单极兼容结合离线回归",
+      "manualAcceptance": {
+        "entry": "器件库→双联FU2/XT16；逐通道接线、隔离相邻位",
+        "expected": "两通道分别导通、不串接；XT每位上下导通、位间绝缘；旧快照可保存"
+      }
+    },
+    {
+      "id": "F03",
+      "goal": "十课空白预排单一六槽/FU2/XT16，保留四基础课、示范与空白边界",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/lessons.ts",
+        "app/simulator/core/duct-layout.ts",
+        "app/simulator/core/motor-practice-layout.ts",
+        "tests/simulator-training-layout.test.mjs"
+      ],
+      "evidence": "十课六槽、新/示范/清空同布局、已有槽不重复、一撤销",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "课程→01至10新练习→示范→清空→预布撤销",
+        "expected": "空白无导线；四横二竖仅一次；FU2位置正确；示范/清空保持同一布局"
+      }
+    },
+    {
+      "id": "F04",
+      "goal": "统一世界坐标自动走槽、确定性最短连通路径、端点和预览一致；方向/断槽回退不改拓扑",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/duct-routing.ts",
+        "app/simulator/editor/duct-routing.ts",
+        "app/simulator/editor/geometry.ts",
+        "app/simulator/editor/WireEdge.tsx",
+        "tests/simulator-duct-routing.test.mjs"
+      ],
+      "evidence": "真拖线和三条不同自动轨道、断槽/无槽fallback、电气端点不变",
+      "conclusionAndBoundary": "本地通过；全部路由边界结合引擎回归",
+      "manualAcceptance": {
+        "entry": "真实端子拖线→移动器件/槽→调尺寸→缩放→保存重载→断槽",
+        "expected": "入口不穿本体；长段在实际槽体内；断槽显示两段引线/提示；电气连接不变"
+      }
+    },
+    {
+      "id": "F05",
+      "goal": "单/组Ctrl+C/V、八次连续粘贴、32世界单位偏移、新ID/位号、内线/尺寸/设置保留、一次undo/redo",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/editor/selection-clipboard.ts",
+        "app/simulator/editor/SimulatorEditor.tsx",
+        "tests/simulator-feedback-workspace.test.mjs",
+        "e2e/acceptance.spec.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "Ctrl+C/V、内部ID重映射、跨图八次粘贴/undo/redo、运行隔离",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "Shift组选择→按钮及Ctrl+C/V→8粘贴/撤销重做→换文档/账号→仿真",
+        "expected": "组内连线和辅助触点重映射；组外绑定/roles/runtime不复制；换文档保留剪贴板、换账号清空；只读/仿真禁贴"
+      }
+    },
+    {
+      "id": "F06",
+      "goal": "切课/新建前按账号停放未保存草稿；恢复、配额/损坏保留；revision/writeId保护与不可变发布",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/workspace-session.ts",
+        "app/simulator/SimulatorApp.tsx",
+        "tests/simulator-feedback-workspace.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "未保存课程停放/恢复、配额失败与损坏恢复字节保留",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "修改未保存→切课→本机暂存恢复；模拟配额满→再切课；双账号切换",
+        "expected": "暂存失败保留活动画布/旧恢复字节；草稿附件剪贴板账号隔离；409不覆盖赢家"
+      }
+    },
+    {
+      "id": "F07",
+      "goal": "schemaVersion1/原SVG/旧3D保留；legacy style:duct非突变规范化为orthogonal+routing:duct；旧手工折点保留",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/validation.ts",
+        "app/simulator/core/types.ts",
+        "tests/simulator-validation.test.mjs",
+        "tests/simulator-training-layout.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "旧style导入、canonical实际API和保存回读、手动路径保留",
+      "conclusionAndBoundary": "本地通过；全部历史文档字段结合契约回归",
+      "manualAcceptance": {
+        "entry": "导入legacy JSON→导出→API保存/读取→刷新；切手工样式",
+        "expected": "规范化输出保留waypoints且输入不变；未知routing/Point/TerminalRef键400；无新增草稿副作用"
+      }
+    },
+    {
+      "id": "F08",
+      "goal": "历史十项反馈与1366×768/1920×1080操作可达性",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "architecture/chat-feedback-acceptance-2026-10-02.md",
+        "tests/simulator-source-components.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "两种桌面尺寸、现有真实路由交互",
+      "conclusionAndBoundary": "本地通过所列场景；短路重复提示等由针对性回归单列",
+      "manualAcceptance": {
+        "entry": "两窗口尺寸→库、保存、仿真、图纸、停止/复位；复查历史反馈",
+        "expected": "控件可达；不会靠强制停止掩盖电气保护问题"
+      }
+    },
+    {
+      "id": "F09",
+      "goal": "库直显1P/3P与称谓/无障碍统一；18参考图、原资源、20正式PNG保存及显示/权限",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/editor/library-presentation.ts",
+        "app/simulator/ReferenceDrawings.tsx",
+        "scripts/test-formal-drawings.mjs",
+        "tests/simulator-reference-drawings.test.mjs"
+      ],
+      "evidence": "干净稳定A的正式20原图、40成员哈希读取、20匿名拒绝与20实际浏览器显示；原图源hash不变",
+      "conclusionAndBoundary": "图纸通过；器件库数量/历史3D保留属于源码清单证据",
+      "manualAcceptance": {
+        "entry": "图纸集→十课两槽→20原PNG显示；两成员读哈希、匿名拒绝、重复导入",
+        "expected": "20张均解码完整、媒体ID匹配；40成员哈希/20匿名媒体拒绝；源PNG哈希不变；不公开私图"
+      }
+    },
+    {
+      "id": "F10",
+      "goal": "私图A→参考图→撤销预览恢复；JSON/modal焦点与键盘隔离；短路提醒次数",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/DrawingViewer.tsx",
+        "app/simulator/editor/SimulatorEditor.tsx",
+        "app/simulator/Modal.tsx",
+        "tests/simulator-reference-editor.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "PNG参考切换及Undo预览、实际PDF.js、Modal键盘、迟到JSON",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "上传合成PNG/PDF→选参考图→撤销；Modal内复制/删除/撤销；短路复位/新会话",
+        "expected": "私图预览恢复、实际PDF像素可见；Modal键盘不穿透；同短路确认只提示一次，新会话再提示"
+      }
+    },
+    {
+      "id": "H01",
+      "goal": "发布UI/Worker与运行state隔离；源码/lock/hash身份；start:release不构建/迁移/bootstrap",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/release-tools.mjs",
+        "scripts/start-release.mjs",
+        "scripts/test-recovery.mjs"
+      ],
+      "evidence": "完整构建/恢复通过；MAIN源码A、helper退出后持续在线、目录归属及HTML/JS与本次构建一致",
+      "conclusionAndBoundary": "本地与实际运行入口核对通过；没有把helper短时成功代替持续在线证明",
+      "manualAcceptance": {
+        "entry": "隔离发布→激活→start:release；改变隔离开发源码再读已发布接口",
+        "expected": "归档完整性与源码隔离；operator实际入口读取指定发布包"
+      }
+    },
+    {
+      "id": "H02",
+      "goal": "停写完整state/WAL/私有记录备份；拒绝遗漏.local/非空/损坏目标；离线恢复与最新业务保留",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/release-tools.mjs",
+        "tests/release-tools.test.mjs",
+        "scripts/test-recovery.mjs"
+      ],
+      "evidence": "独立恢复演练关键标志true；实际MAIN停写一致性备份、预检和迁移后数据/R2保留收据核对",
+      "conclusionAndBoundary": "隔离恢复与真实备份/保留核对通过；未向真实MAIN恢复旧库，不能声称已做真实业务恢复演练",
+      "manualAcceptance": {
+        "entry": "合成运行目录有.local时省private-directory→应拒绝；完整备份→新目录恢复",
+        "expected": "拒绝前不创建备份；新业务反证与哈希/权限保留；无.local正常情况有manifest记录"
+      }
+    },
+    {
+      "id": "H03",
+      "goal": "目标实际validator与嵌套合同扫描草稿/作品；未知数据/损坏/迁移不兼容拒绝，指针/state不变",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/release-tools.mjs",
+        "app/simulator/core/validation.ts",
+        "tests/release-tools.test.mjs",
+        "tests/simulator-validation.test.mjs"
+      ],
+      "evidence": "实际legacy归一与未知嵌套键拒绝；恢复阶段目标契约验证",
+      "conclusionAndBoundary": "本地通过；跨版本全部电气算法语义不在此保证",
+      "manualAcceptance": {
+        "entry": "合成草稿/作品加入未知嵌套字段、删端子、损坏JSON→激活/启动；合法旧合同",
+        "expected": "拒绝不改state/指针；旧format1保守嵌套门禁保留合法旧包；最新业务回退成功"
+      }
+    },
+    {
+      "id": "H04",
+      "goal": "每project/kind独立opaque version；PUT/DELETE强制expectedVersion、428/409、ABA/标题竞争保护；0006追加",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/server/training-projects.ts",
+        "app/simulator/TrainingProjects.tsx",
+        "db/migrations/0006_training_drawing_versions.sql",
+        "tests/backend-drawing-versions.test.mjs"
+      ],
+      "evidence": "隔离后台退出0、正式图重复关联不变；MAIN的0006应用后无待迁移，业务图纸关联保留",
+      "conclusionAndBoundary": "本地及实际迁移通过；没有向真实业务槽写竞争测试数据，冲突细项来自隔离后台",
+      "manualAcceptance": {
+        "entry": "两管理员同槽改标题/替换/删除重建；空槽null；另一槽并行改",
+        "expected": "缺条件428、冲突409，同槽一成功；两槽独立，媒体归属从会话判断"
+      }
+    },
+    {
+      "id": "H05",
+      "goal": "临时Worker/D1/R2/端口/registry/账号隔离；只停自有children；不读生产凭据",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/backend-test-runner.mjs",
+        "scripts/isolated-fixture.mjs",
+        "scripts/test-browser.mjs",
+        "scripts/test-formal-drawings.mjs"
+      ],
+      "evidence": "所有浏览器/正式图/容量使用自有隔离库；已运行孩子finally结束",
+      "conclusionAndBoundary": "本地隔离通过；本报告未读取生产秘密",
+      "manualAcceptance": {
+        "entry": "查看每次独立目录/随机端口；结束测试后核自有lease与监听",
+        "expected": "隔离配置，不抢3000，不按名称停止他人服务；失败证据留在私有Temp"
+      }
+    },
+    {
+      "id": "H06",
+      "goal": "db/migrations唯一执行源；schema表列默认PK索引FK一致；历史0001–0005语义保留/0006新增",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/check-schema.mjs",
+        "db/schema.ts",
+        "drizzle.config.ts",
+        "tests/schema-consistency.test.mjs"
+      ],
+      "evidence": "最终Schema步骤退出0",
+      "conclusionAndBoundary": "本地通过；工具不能证明全部CHECK/SQL语义",
+      "manualAcceptance": {
+        "entry": "check:schema；在合成库删索引/增列/改FK后应发现",
+        "expected": "当前14表6迁移匹配；候选SQL不直接进入生产执行目录"
+      }
+    },
+    {
+      "id": "H07",
+      "goal": "全仓lint不禁规则造通过；异步会话/ref/effect及统一Modal焦点/滚动锁",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/Modal.tsx",
+        "eslint.config.mjs",
+        "architecture/lint-warning-snapshot-2026-10-03.md",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "最终Lint退出0；Modal焦点/键盘和异步会话边界浏览器通过",
+      "conclusionAndBoundary": "本地通过；保留既有非阻塞警告，未禁用规则",
+      "manualAcceptance": {
+        "entry": "Modal Tab循环/Escape返回；迟到导入/换账号；再跑最终lint",
+        "expected": "当前checkpoint0错误11警告有台账；Modal键不触发编辑器写操作"
+      }
+    },
+    {
+      "id": "H08",
+      "goal": "兼容依赖/锁文件、fflate补丁、PDF资产配套；保留未修风险",
+      "status": "residual-risk",
+      "files": [
+        "package.json",
+        "package-lock.json",
+        "architecture/dependency-audit-2026-10-03.md",
+        "tests/dependency-zip-regression.test.mjs"
+      ],
+      "evidence": "兼容补丁和依赖台账；npm audit总11项",
+      "conclusionAndBoundary": "**残留：7high+4moderate，无已核实兼容补丁；生产树仍4moderate**",
+      "manualAcceptance": {
+        "entry": "隔离npm ci/audit/omit-dev；核PDF.js版本和worker；复核公告链",
+        "expected": "已有补丁回归；当次仍11传播项(7high4moderate)，omit-dev4moderate，不报清零"
+      }
+    },
+    {
+      "id": "H09",
+      "goal": "统一检查/CI/本地云端SHA一致，脱敏报告与最终源绑定",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/check-project.mjs",
+        ".github/workflows/check.yml",
+        "e2e/sanitized-reporter.mjs"
+      ],
+      "evidence": "A的完整check:extended退出0；公开报告脱敏",
+      "conclusionAndBoundary": "本地完整检查通过；此提交的远端CI以GitHub checks为准，提交后另验远端引用与结果",
+      "manualAcceptance": {
+        "entry": "最终本地提交→既有远端→ls-remote→CI run→读回HEAD与报告",
+        "expected": "全步骤单独可追踪；当前只有前7步+恢复03通过，旧19b10db绿CI非本次整合CI"
+      }
+    },
+    {
+      "id": "H10",
+      "goal": "Chromium单worker/零重试；十课、真拖线、双账号/冲突/损坏/迟到JSON/复制强制验收",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "playwright.config.mjs",
+        "e2e/acceptance.spec.mjs",
+        "e2e/feedback-routing.spec.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "完整Chromium38通过、0失败、0跳过",
+      "conclusionAndBoundary": "本地通过；不把缺PE替代所有保护负例",
+      "manualAcceptance": {
+        "entry": "运行统一browser并逐项检查测试名/0skip/失败私有证据",
+        "expected": "复制按钮缺失必须失败；新PDF/平行线/8次粘贴/切课/两窗口用例准备完成"
+      }
+    },
+    {
+      "id": "H11",
+      "goal": "1/10/30本机有限负载，小/可存大/超750KB；请求失败/资源，禁止自动重试写",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "scripts/test-capacity.mjs",
+        "scripts/test-fixtures.mjs"
+      ],
+      "evidence": "最终9组1/10/30容量全0失败、413正确拒绝、资源采样",
+      "conclusionAndBoundary": "有限基线通过；长期/公网/附件增长未验",
+      "manualAcceptance": {
+        "entry": "运行隔离capacity九组；读HTTP状态/失败率/p95/Worker资源",
+        "expected": "586KB大文档能存，3.72MB预期413；1/10/30未失败才通过；历史ProxyWorker500保留"
+      }
+    },
+    {
+      "id": "C01",
+      "goal": "点动：KM+1按钮、无FR，合闸不自启，按运行松停，断控制导体停",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "app/simulator/core/motor-course-assessment.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "真实鼠标按住/释放、合闸不自启、正确评分和缺PE拒绝",
+      "conclusionAndBoundary": "所列浏览器场景通过；更多控制断路/缺相负例另判",
+      "manualAcceptance": {
+        "entry": "01示范→检查→合QF→按住SB/松开；缺PE/缺相负例",
+        "expected": "真实运行/评分和拒绝均符合01契约，不套旧点动FR规则"
+      }
+    },
+    {
+      "id": "C02",
+      "goal": "连续：KM/FR启停，自锁；停止/FR TEST停、RESET/失压不自启、停止优先",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "连续启动/停止、正确评分和缺PE拒绝",
+      "conclusionAndBoundary": "所列浏览器场景通过；FR/停止优先/失压恢复另判",
+      "manualAcceptance": {
+        "entry": "02启动→松开→停止；FR TEST/RESET及断电恢复",
+        "expected": "自锁正确、停止优先；保护不靠强制停止掩盖"
+      }
+    },
+    {
+      "id": "C03",
+      "goal": "点动连续：3按钮，NO/NC先断后合；连续/点动转换、FR/停止有效",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "连续模式启动/停止、正确评分和缺PE拒绝",
+      "conclusionAndBoundary": "所列浏览器场景通过；点动连续交替细项另判",
+      "manualAcceptance": {
+        "entry": "03连续自锁→点动按住/松开→停止/FR",
+        "expected": "点动松开停止，不利用旧KM状态重自锁"
+      }
+    },
+    {
+      "id": "C04",
+      "goal": "接触器互锁：2KM/FR/3按钮，运行中反向受阻；先停后反向对称",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "正向、先停后反向、方向正确、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；运行中反向互锁负例另判",
+      "manualAcceptance": {
+        "entry": "04正转→直接反向→停→反向；错误互锁负例",
+        "expected": "符合04接触器互锁，不无意加入05按钮互锁；QF/QS按原约定"
+      }
+    },
+    {
+      "id": "C05",
+      "goal": "双重联锁：3复合按钮；反向先断旧KM再合新KM，同时按钮不得同得电",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "两向运行、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；双按钮同时按及错接负例另判",
+      "manualAcceptance": {
+        "entry": "05正转→反向复合按钮→松开保持；同时按钮/旁路负例",
+        "expected": "两KM不重叠、方向对称，不靠硬编码动画掩盖错误"
+      }
+    },
+    {
+      "id": "C06",
+      "goal": "自动往返：2KM/FR/3按钮/4SQ；SQ1反、SQ2正，SQ3/4方向限制",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "两向运行、SQ2换向、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；SQ1/3/4与FR另判",
+      "manualAcceptance": {
+        "entry": "06手动触发SQ1/2，再SQ3/4；停止/FR",
+        "expected": "限位切向后保持、两端对称；手动教学限位不冒称实体往返"
+      }
+    },
+    {
+      "id": "C07",
+      "goal": "顺序：2KM/2FR/2M及关联辅助触点，先M1再M2，先停M2后M1",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "M1先M2后、先停M2再停M1、未启M1拒启M2及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；越序停/FR两机另判",
+      "manualAcceptance": {
+        "entry": "07先尝试M2→启动M1再M2→尝试先停M1→顺序停止",
+        "expected": "不能越序启停，任一FR停两机；独立触点不复用同螺丝"
+      }
+    },
+    {
+      "id": "C08",
+      "goal": "延时：KA/KM/KT/FR；KA自锁/KT计时，到时KM自锁后KA/KT释放",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "3秒受控步进延时、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；计时中断/旧期限恢复另判",
+      "manualAcceptance": {
+        "entry": "08启→暂停/推进秒数→到时；中途停/FR/断电再启",
+        "expected": "到期切换正确，旧期限不在恢复后自启，最大延时合法步进"
+      }
+    },
+    {
+      "id": "C09",
+      "goal": "Y-Δ：3KM/FR/KT/2功能按钮，起动星形到期先断Y再合Δ；六端绕组与负例",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "star到delta、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；错误绕组/重叠/失压另判",
+      "manualAcceptance": {
+        "entry": "09星起→推进到Δ→停止后重计；缺相/星点接N/PE/重叠负例",
+        "expected": "U1-W2/V1-U2/W1-V2，先断后合、KT释放；原额外SB3契约保留"
+      }
+    },
+    {
+      "id": "C10",
+      "goal": "Δ/YY双速：3KM/FR/3按钮六端M，低KM1、高KM2+KM3，自锁/方向/保护",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/motor-courses.ts",
+        "tests/ten-motor-lessons.test.mjs",
+        "e2e/acceptance.spec.mjs"
+      ],
+      "evidence": "low到high、停止及评分",
+      "conclusionAndBoundary": "所列浏览器场景通过；KM3错误/相序/旁路另判",
+      "manualAcceptance": {
+        "entry": "10低速→高速→停止/FR/失压；缺KM3/控制旁路/相序负例",
+        "expected": "两模式按双速契约，FR旁路不能掩盖，不按09独立绕组解释"
+      }
+    },
+    {
+      "id": "T01",
+      "goal": "按十课图源预布四横二竖单一布局；新FU2及XT16位置正确，空白无导线",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/duct-layout.ts",
+        "app/simulator/core/lessons.ts",
+        "app/simulator/core/motor-practice-layout.ts",
+        "tests/simulator-training-layout.test.mjs"
+      ],
+      "evidence": "十课新练习/清空六槽，未误载示范导线",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "十课新/重置→预布→撤销→示范→清空；已有自定义槽再预布",
+        "expected": "无重复12槽；FU2在保护层；既有槽/手工位置保留；一步撤销"
+      }
+    },
+    {
+      "id": "T02",
+      "goal": "学生真实拖线自动入槽；移动器件/槽、调尺寸、缩放、保存重载端点一致",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/editor/SimulatorEditor.tsx",
+        "app/simulator/editor/geometry.ts",
+        "app/simulator/editor/WireEdge.tsx",
+        "e2e/feedback-routing.spec.mjs"
+      ],
+      "evidence": "真实拖线、移动/调整槽、缩放、保存/重载端点",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "课程预布→真实鼠标端子拖线→移动/尺寸/缩放→保存重载",
+        "expected": "世界端点一致，槽内段覆盖实际槽体，编辑器与作品预览路径一致"
+      }
+    },
+    {
+      "id": "T03",
+      "goal": "预布与示范/清空/新建/暂存协同；初始化仅一次，保存旧图不悄改用户练习",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/SimulatorApp.tsx",
+        "app/simulator/core/lessons.ts",
+        "app/simulator/workspace-session.ts",
+        "tests/simulator-reference-editor.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "新/示范/清空布局、停放恢复与配额保留",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "旧图/新建/课程示范/清空→撤销；未存草稿切课→暂存恢复/配额失败",
+        "expected": "旧图保留，示范及空白布置一致；失败保留当前练习，无第二阶段叠槽"
+      }
+    },
+    {
+      "id": "T04",
+      "goal": "多线稳定独立轨迹、断/遮挡/无槽回退及旧手工折点；不增加电气节点",
+      "status": "verified-for-listed-scope-with-stated-boundary",
+      "files": [
+        "app/simulator/core/duct-routing.ts",
+        "tests/simulator-duct-routing.test.mjs",
+        "e2e/integrated-acceptance.spec.mjs"
+      ],
+      "evidence": "多轨道重复、断槽提示、移除槽、无槽真拖线、canonical兼容",
+      "conclusionAndBoundary": "本地通过",
+      "manualAcceptance": {
+        "entry": "至少3条平行线→反复移动/重载→断槽/无槽/入口遮挡→恢复手工",
+        "expected": "各线确定性轨迹、端点/拓扑不变；两段可见回退与持续提示，不穿本体"
+      }
+    }
+  ],
+  "evidence": {
+    "check": "integration-acceptance-20261004/check.json",
+    "browser": "integration-acceptance-20261004/browser.json",
+    "capacity": "integration-acceptance-20261004/capacity.json",
+    "recovery": "integration-acceptance-20261004/recovery.json",
+    "formal": "integration-acceptance-20261004/formal-drawings.json",
+    "formalSourceIdentity": "integration-acceptance-20261004/formal-source-identity.json"
+  },
+  "limits": [
+    "Ten-course browser PE negatives do not replace all motor protection/interlock/timing/winding negatives; reconcile engine and backend cases separately",
+    "Isolated restore plus actual stopped backup and data preservation do not claim a real-business production restore exercise",
+    "Finite local capacity does not establish long-term tunnel, thirty-browser or attachment-growth capacity",
+    "H08 residual dependency findings remain"
+  ],
+  "remoteVerification": "This commit remote CI is authoritative in GitHub checks; normal push, full remote ref and run result are verified separately after the documentation commit. Future commit IDs are not embedded here.",
+  "privacy": {
+    "realBusinessCountsIncluded": false,
+    "privateConfigurationHashesIncluded": false,
+    "machineProcessIdsIncluded": false,
+    "privateRuntimePathsIncluded": false,
+    "credentialsOrCookiesIncluded": false,
+    "originalImageBytesIncluded": false
+  }
+}

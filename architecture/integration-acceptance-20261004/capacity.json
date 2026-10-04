@@ -1,0 +1,326 @@
+{
+  "at": "2026-10-04T03:38:01.449Z",
+  "node": "v24.16.0",
+  "platform": "win32",
+  "scope": "isolated local Worker; no tunnel or production accounts",
+  "connections": "one HTTP connection per request; no write retries",
+  "samples": [
+    {
+      "document": "small",
+      "expectedStatus": 200,
+      "jsonBytes": 4724,
+      "members": 1,
+      "operationsPerMember": 3,
+      "elapsedMs": 86.02080000000205,
+      "p50Ms": 85.8647000000019,
+      "p95Ms": 85.8647000000019,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 118767616,
+        "clientCpu": {
+          "user": 1375000,
+          "system": 1062000
+        },
+        "workerTree": {
+          "rssBytes": 626724864,
+          "cpuMs": 10437.5
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 113930240,
+        "clientCpu": {
+          "user": 1453000,
+          "system": 1078000
+        },
+        "workerTree": {
+          "rssBytes": 616685568,
+          "cpuMs": 10718.75
+        }
+      }
+    },
+    {
+      "document": "small",
+      "expectedStatus": 200,
+      "jsonBytes": 4724,
+      "members": 10,
+      "operationsPerMember": 3,
+      "elapsedMs": 408.8703999999998,
+      "p50Ms": 337.744999999999,
+      "p95Ms": 407.38950000000114,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 113946624,
+        "clientCpu": {
+          "user": 1453000,
+          "system": 1078000
+        },
+        "workerTree": {
+          "rssBytes": 601088000,
+          "cpuMs": 10968.75
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 115056640,
+        "clientCpu": {
+          "user": 1546000,
+          "system": 1109000
+        },
+        "workerTree": {
+          "rssBytes": 613687296,
+          "cpuMs": 11531.25
+        }
+      }
+    },
+    {
+      "document": "small",
+      "expectedStatus": 200,
+      "jsonBytes": 4724,
+      "members": 30,
+      "operationsPerMember": 3,
+      "elapsedMs": 1037.0813999999991,
+      "p50Ms": 850.1385000000009,
+      "p95Ms": 1033.4040999999997,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 115056640,
+        "clientCpu": {
+          "user": 1546000,
+          "system": 1125000
+        },
+        "workerTree": {
+          "rssBytes": 613310464,
+          "cpuMs": 11890.625
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 120963072,
+        "clientCpu": {
+          "user": 1687000,
+          "system": 1218000
+        },
+        "workerTree": {
+          "rssBytes": 662061056,
+          "cpuMs": 13296.875
+        }
+      }
+    },
+    {
+      "document": "large",
+      "expectedStatus": 200,
+      "jsonBytes": 586099,
+      "members": 1,
+      "operationsPerMember": 3,
+      "elapsedMs": 234.5422000000035,
+      "p50Ms": 234.48969999999827,
+      "p95Ms": 234.48969999999827,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 120971264,
+        "clientCpu": {
+          "user": 1687000,
+          "system": 1218000
+        },
+        "workerTree": {
+          "rssBytes": 662147072,
+          "cpuMs": 13515.625
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 140705792,
+        "clientCpu": {
+          "user": 1828000,
+          "system": 1312000
+        },
+        "workerTree": {
+          "rssBytes": 687128576,
+          "cpuMs": 13937.5
+        }
+      }
+    },
+    {
+      "document": "large",
+      "expectedStatus": 200,
+      "jsonBytes": 586099,
+      "members": 10,
+      "operationsPerMember": 3,
+      "elapsedMs": 1488.9238000000041,
+      "p50Ms": 1210.396799999995,
+      "p95Ms": 1454.3887000000032,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 142356480,
+        "clientCpu": {
+          "user": 1828000,
+          "system": 1312000
+        },
+        "workerTree": {
+          "rssBytes": 687128576,
+          "cpuMs": 13984.375
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 306900992,
+        "clientCpu": {
+          "user": 2609000,
+          "system": 1406000
+        },
+        "workerTree": {
+          "rssBytes": 808747008,
+          "cpuMs": 15968.75
+        }
+      }
+    },
+    {
+      "document": "large",
+      "expectedStatus": 200,
+      "jsonBytes": 586099,
+      "members": 30,
+      "operationsPerMember": 3,
+      "elapsedMs": 4235.3313999999955,
+      "p50Ms": 3676.3614000000016,
+      "p95Ms": 4108.6466,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 308473856,
+        "clientCpu": {
+          "user": 2609000,
+          "system": 1406000
+        },
+        "workerTree": {
+          "rssBytes": 808787968,
+          "cpuMs": 16140.625
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 449318912,
+        "clientCpu": {
+          "user": 4765000,
+          "system": 1859000
+        },
+        "workerTree": {
+          "rssBytes": 945618944,
+          "cpuMs": 21953.125
+        }
+      }
+    },
+    {
+      "document": "oversized",
+      "expectedStatus": 413,
+      "jsonBytes": 3722099,
+      "members": 1,
+      "operationsPerMember": 1,
+      "elapsedMs": 82.43549999999959,
+      "p50Ms": 82.41549999999552,
+      "p95Ms": 82.41549999999552,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 450826240,
+        "clientCpu": {
+          "user": 4765000,
+          "system": 1859000
+        },
+        "workerTree": {
+          "rssBytes": 943980544,
+          "cpuMs": 22218.75
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 461996032,
+        "clientCpu": {
+          "user": 4781000,
+          "system": 1890000
+        },
+        "workerTree": {
+          "rssBytes": 944484352,
+          "cpuMs": 22609.375
+        }
+      }
+    },
+    {
+      "document": "oversized",
+      "expectedStatus": 413,
+      "jsonBytes": 3722099,
+      "members": 10,
+      "operationsPerMember": 1,
+      "elapsedMs": 586.9952000000048,
+      "p50Ms": 427.8325999999943,
+      "p95Ms": 558.556700000001,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 465719296,
+        "clientCpu": {
+          "user": 4812000,
+          "system": 1890000
+        },
+        "workerTree": {
+          "rssBytes": 944488448,
+          "cpuMs": 22765.625
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 247218176,
+        "clientCpu": {
+          "user": 5078000,
+          "system": 1953000
+        },
+        "workerTree": {
+          "rssBytes": 890404864,
+          "cpuMs": 23375
+        }
+      }
+    },
+    {
+      "document": "oversized",
+      "expectedStatus": 413,
+      "jsonBytes": 3722099,
+      "members": 30,
+      "operationsPerMember": 1,
+      "elapsedMs": 1977.2756000000008,
+      "p50Ms": 1179.017399999997,
+      "p95Ms": 1469.9441000000006,
+      "failures": 0,
+      "failureDetails": [],
+      "failureRate": 0,
+      "resourcesBefore": {
+        "clientRssBytes": 251817984,
+        "clientCpu": {
+          "user": 5109000,
+          "system": 1968000
+        },
+        "workerTree": {
+          "rssBytes": 890494976,
+          "cpuMs": 23546.875
+        }
+      },
+      "resourcesAfter": {
+        "clientRssBytes": 410525696,
+        "clientCpu": {
+          "user": 6078000,
+          "system": 2109000
+        },
+        "workerTree": {
+          "rssBytes": 968896512,
+          "cpuMs": 25484.375
+        }
+      }
+    }
+  ],
+  "twoAccountDenial": true,
+  "saveConflict": true
+}

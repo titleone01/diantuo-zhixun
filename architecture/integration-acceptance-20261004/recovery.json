@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-10-04T03:36:20.537Z",
+  "releaseV1": "cc85c7acf2e3144a3a7289c33d5a767c8c15b7c64d774d071363c8303988579d",
+  "releaseV2": "377f998236070f29721d221b89bcd4c93e2e122fe1fc5324f4bf2edfa6cdde57",
+  "offline": {
+    "files": 28,
+    "sqliteChecked": true
+  },
+  "loginsDraftPublicationAttachmentsPermissions": true,
+  "rollbackRetainsLatestState": true,
+  "latestBusinessAfterBackup": {
+    "updatedRevision": 2,
+    "updatedHash": "05b2ed82f69444e5201210bcdff256679910eff1d6948d75aa2c0b006edfc2c7",
+    "newDraftRevision": 1,
+    "newDraftHash": "be4bf555f442123dcbf53ef01dd6edbdc9ead48b9b9cacdb59460c0ca05b7157",
+    "publicationRevision": 1,
+    "publicationHash": "be4bf555f442123dcbf53ef01dd6edbdc9ead48b9b9cacdb59460c0ca05b7157",
+    "attachmentHashes": [
+      "b305227aa934c9c49bc2d4c6d29bce19e61958f4976527c1f0d0671d230009e1",
+      "b305227aa934c9c49bc2d4c6d29bce19e61958f4976527c1f0d0671d230009e1",
+      "638b24962bda31288a6dbc75e396ea5ee1fa534addcb6e94faa75ed5a5d3a017"
+    ],
+    "permissionsRetained": true,
+    "stalePreBackupRevisionRejected": true,
+    "oldBackupRetainsOriginalRevision": true,
+    "newBusinessAbsentFromOldBackup": true,
+    "operatorEntryPointVerified": true
+  },
+  "sourceIsolation": true,
+  "operatorEntryPoint": true,
+  "privateRuntimeRestored": true,
+  "nonemptyRestoreRefused": true
+}
