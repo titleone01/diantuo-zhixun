@@ -180,7 +180,7 @@ export async function assertStopped({ stopped, origin, leaseFile }) {
     try { process.kill(lease.pid, 0); throw new Error("Runtime lease still owns a live process"); }
     catch (error) { if (error.code !== "ESRCH") throw error; }
   } catch (error) { if (error.code !== "ENOENT") throw error; }
-  const response = await fetch(`${url.origin}/api/session`, { signal: AbortSignal.timeout(2000) }).catch(error => {
+  const response = await fetch(`${url.origin}/api/session`, { signal: AbortSignal.timeout(5000) }).catch(error => {
     // A timeout is not proof of stopped writes. Only a refused connection is accepted.
     if (error.cause?.code === "ECONNREFUSED") return null;
     throw new Error("Cannot confirm the writer is stopped");
