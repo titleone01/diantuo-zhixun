@@ -3,6 +3,10 @@ import path from 'node:path';
 export default class SanitizedReporter {
   results = [];
   privateFailures = [];
+  onStepBegin(test, result, step) {
+    // Only these static labels are public; errors and fixture values stay private.
+    if (step.category === 'test.step' && step.title.startsWith('routing: ')) console.log(`[browser-step] ${step.title}`);
+  }
   onTestEnd(test, result) {
     this.results.push({ title: test.title, status: result.status, durationMs: result.duration, errors: result.errors.map(error => ({ name: error.name || 'TestFailure' })) });
     console.log(`[browser] ${result.status}: ${test.title}`);
