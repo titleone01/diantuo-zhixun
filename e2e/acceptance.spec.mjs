@@ -157,9 +157,7 @@ test('reference picker traps focus and prevents editor keyboard deletion', async
 });
 test('Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste', async ({ page }) => {
   await login(page); await openDraft(page, fixture.drafts.clipboard);
-  // The feature chat supplies this capability; its absence is an explicit skip
-  // in the older hardening-only snapshot, and must be resolved after integration.
-  test.skip(await page.getByRole('button', { name: '复制选中对象', exact: true }).count() === 0, 'Clipboard feature is supplied by the parallel feature branch');
+  await expect(page.getByRole('button', { name: '复制选中对象', exact: true })).toBeVisible();
   const count = () => page.locator('[data-device-id]').count();
   const exportDocument = async () => {
     await page.getByRole('button', { name: '导出图纸到本地', exact: true }).click();

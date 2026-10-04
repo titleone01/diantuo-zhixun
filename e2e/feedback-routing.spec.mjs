@@ -31,7 +31,7 @@ async function geometry(page){
   }return values;
 }
 test('duct routing follows real drag, movement, resize, disconnect, save and reload',async({page})=>{
-  await open(page);await page.getByLabel('线条样式',{exact:true}).selectOption('straight');
+  await open(page);await page.getByLabel('线条样式',{exact:true}).selectOption('duct');
   const a=page.locator('[data-terminal-key="route-a::A"]'),b=page.locator('[data-terminal-key="route-b::A"]');await a.hover();await b.hover();const aa=await a.boundingBox(),bb=await b.boundingBox();
   await page.mouse.move(aa.x+aa.width/2,aa.y+aa.height/2);await page.mouse.down();await page.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2,{steps:20});await page.mouse.up();
   const wire=page.locator('.sim-wire');await expect(wire).toHaveCount(1);await expect(wire).toHaveAttribute('data-routing','duct');await expect(wire).toHaveAttribute('data-routing-status','routed');
@@ -41,7 +41,7 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
   // The wire owns the duct center line; grab the visible upper part of the duct.
   // Open a horizontal gap while each terminal still has its own nearest duct.
   // Moving the right duct far downward can legitimately route both ends via the left duct.
-  await drag(page,page.locator('[data-device-id="route-right"]'),60,0,{x:0.25,y:0.15});await expect(wire).toHaveAttribute('data-routing-status','disconnected');await expect(page.locator('.sim-routing-notice')).toContainText('已保留原连接');await geometry(page);
+  await drag(page,page.locator('[data-device-id="route-right"]'),60,0,{x:0.25,y:0.15});await expect(wire).toHaveAttribute('data-routing-status','disconnected');await expect(page.locator('.sim-routing-notice')).toContainText('未连通');await geometry(page);
   await page.getByRole('button',{name:'撤销',exact:true}).click();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(moved);
   const left=page.locator('[data-device-id="route-left"]'),box=await left.boundingBox();await left.click({position:{x:box.width*0.25,y:box.height*0.15}});const resize=page.locator('[data-id="route-left"] .sim-duct-resize-handle.bottom.right');await expect(resize).toBeVisible();await drag(page,resize,24,16);
   await expect.poll(async()=>(await geometry(page)).path).not.toBe(moved.path);await expect(wire).toHaveAttribute('data-routing-status','routed');const resized=await geometry(page);

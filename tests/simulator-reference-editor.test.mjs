@@ -241,6 +241,101 @@ test('duct resizing commits one undo entry per gesture, supports redo and cancel
   } finally { restore(); }
 });
 
+test('prelayout and all-wires routing preserve the graph, existing duct positions and manual bends with one undo', () => {
+  const restore = environment();
+  try {
+    const base = example();
+    const original = JSON.parse(JSON.stringify({ ...base, components: base.components.filter(component => !component.type.startsWith('wire-duct')), wires: base.wires.map(wire => ({ ...wire, style: 'orthogonal', routing: undefined, waypoints: [{ x: 420, y: 80 }] })) }));
+    const before = structuredClone(original), ui = editor(original);
+    ui.button('预布线槽').props.onClick(); ui.render();
+    const arranged = structuredClone(ui.document());
+    assert.equal(arranged.components.filter(component => component.type.startsWith('wire-duct')).length, 6);
+    assert.deepEqual(arranged.wires.map(({ style, routing, ...wire }) => wire), before.wires.map(({ style, routing, ...wire }) => wire));
+    assert.ok(arranged.wires.every(wire => wire.style === 'orthogonal' && wire.routing === 'duct'));
+    assert.equal(validateDocument(arranged).valid, true);
+    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), before);
+    assert.equal(ui.button('撤销').props.disabled, true, 'prelayout and conversion are one operation');
+    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), arranged);
+    const custom = { ...arranged, components: arranged.components.map(component => component.type.startsWith('wire-duct') ? { ...component, position: { x: component.position.x + 13, y: component.position.y + 21 }, size: { width: 384, height: 72 } } : component), wires: before.wires };
+    const existing = editor(custom);
+    existing.button('导线全部入槽').props.onClick(); existing.render();
+    assert.deepEqual(existing.document().components, custom.components, 'existing saved positions and sizes must not be rearranged');
+    const count = existing.updates.length;
+    existing.button('导线全部入槽').props.onClick(); existing.render();
+    assert.equal(existing.updates.length, count, 'repeating the same operation is idempotent');
+    existing.button('撤销').props.onClick(); existing.render(); assert.deepEqual(existing.document(), custom);
+    assert.equal(existing.button('撤销').props.disabled, true);
+    assert.deepEqual(original, before, 'the original object is never rewritten');
+  } finally { restore(); }
+});
+
+test('automatic and all three manual styles remain distinct and restore preserved waypoints', () => {
+  const restore = environment();
+  try {
+    const base = example(), bends = [{ x: 300, y: 88 }, { x: 450, y: 88 }];
+    const original = { ...base, components: [...base.components.filter(component => !component.type.startsWith('wire-duct')), { id: 'custom-duct', type: 'wire-duct', label: 'WD1', position: { x: 80, y: 70 }, size: { width: 600, height: 64 } }], wires: base.wires.map(wire => ({ ...wire, style: 'orthogonal', routing: undefined, waypoints: bends })) };
+    const ui = editor(original), targetId = original.wires[0].id;
+    const flow = () => ui.find(node => Array.isArray(node.props?.edges));
+    flow().props.onEdgesChange([{ type: 'select', id: targetId, selected: true }]); ui.render();
+    const select = () => ui.find(node => node.type === 'select' && node.props['aria-label'] === '线条样式');
+    select().props.onChange({ target: { value: 'duct' } }); ui.render();
+    assert.equal(select().props.value, 'duct');
+    const automatic = structuredClone(ui.document());
+    assert.equal(automatic.wires[0].style, 'orthogonal'); assert.equal(automatic.wires[0].routing, 'duct');
+    assert.deepEqual(automatic.wires[0].waypoints, bends);
+    for (const style of ['straight', 'curve', 'orthogonal']) {
+      select().props.onChange({ target: { value: style } }); ui.render();
+      const wire = ui.document().wires[0];
+      assert.equal(select().props.value, style); assert.equal(wire.style, style); assert.equal(wire.routing, undefined);
+      assert.deepEqual(wire.waypoints, bends, `${style} retains the manual path`);
+    }
+    const count = ui.updates.length;
+    select().props.onChange({ target: { value: 'orthogonal' } }); ui.render(); assert.equal(ui.updates.length, count);
+    flow().props.onEdgesChange([{ type: 'select', id: targetId, selected: false }]); ui.render();
+    select().props.onChange({ target: { value: 'duct' } }); ui.render();
+    flow().props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' }); ui.render();
+    assert.equal(ui.document().wires.at(-1).style, 'orthogonal'); assert.equal(ui.document().wires.at(-1).routing, 'duct');
+    assert.equal(validateDocument(ui.document()).valid, true);
+    ui.button('撤销').props.onClick(); ui.render(); assert.equal(ui.document().wires.length, original.wires.length);
+  } finally { restore(); }
+});
+
+test('missing duct feedback survives toast dismissal and reload while no-duct new wires use a manual path', () => {
+  const restore = environment();
+  try {
+    const base = example();
+    const saved = { ...base, components: base.components.filter(component => !component.type.startsWith('wire-duct')), wires: base.wires.map(wire => ({ ...wire, style: 'orthogonal', routing: 'duct' })) };
+    const ui = editor(saved);
+    const notice = () => ui.find(node => node.props?.['aria-label'] === '自动走线提示');
+    assert.ok(notice(), 'a saved failed route immediately exposes persistent feedback');
+    ui.find(node => Array.isArray(node.props?.nodes)).props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' }); ui.render();
+    assert.equal(ui.document().wires.at(-1).style, 'orthogonal'); assert.equal(ui.document().wires.at(-1).routing, undefined);
+    assert.ok(ui.button('关闭提示')); ui.button('关闭提示').props.onClick(); ui.render(); assert.ok(notice());
+    const loaded = editor(structuredClone(ui.document()));
+    assert.ok(loaded.find(node => node.props?.['aria-label'] === '自动走线提示'), 'feedback is derived from saved geometry on reload');
+    assert.deepEqual(saved.components, base.components.filter(component => !component.type.startsWith('wire-duct')), 'opening a legacy graph does not rearrange it');
+  } finally { restore(); }
+});
+
+test('prelayout, style changes and new connections refuse running and read-only callbacks', () => {
+  const restore = environment();
+  try {
+    const base = example();
+    for (const state of ['read-only', 'running']) {
+      const ui = editor(base, { readOnly: state === 'read-only' });
+      if (state === 'running') { ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render(); }
+      const count = ui.updates.length;
+      const layout = ui.button('导线全部入槽') ?? ui.button('预布线槽');
+      assert.equal(layout.props.disabled, true); layout.props.onClick();
+      const select = ui.find(node => node.type === 'select' && node.props['aria-label'] === '线条样式');
+      assert.equal(select.props.disabled, true); select.props.onChange({ target: { value: 'duct' } });
+      ui.find(node => Array.isArray(node.props?.nodes)).props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' });
+      assert.equal(ui.updates.length, count);
+      assert.deepEqual(ui.document(), base);
+    }
+  } finally { restore(); }
+});
+
 test('a live short warns once, confirming preserves the fault, and a fresh session warns again', () => {
   const restore=environment();
   try {
