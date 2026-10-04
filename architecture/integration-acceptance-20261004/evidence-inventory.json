@@ -9,8 +9,8 @@
     },
     {
       "name": "browser.json",
-      "sha256": "b341baf968165b4aabe254f6f6eacb88eec22ef61fc3674861c4cbd314ebaab0",
-      "bytes": 6687
+      "sha256": "b6a93585a670e333f4ab8704f860a24bef03cb21e16c5e0bed79143760369e15",
+      "bytes": 6684
     },
     {
       "name": "capacity.json",
@@ -45,5 +45,7 @@
   ],
   "privateBusinessPayloadsPublished": false,
   "privatePNGsPublished": false,
-  "realAccountCredentialsPublished": false
+  "realAccountCredentialsPublished": false,
+  "updatedAt": "2026-10-04T04:32:12.109283+00:00",
+  "browserTestRevision": "68f586877748654ba31c32d180d68123daea852d"
 }
