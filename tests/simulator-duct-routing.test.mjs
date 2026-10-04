@@ -1,109 +1,82 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { build } from "esbuild";
+import {build} from "esbuild";
+import {fileURLToPath} from "node:url";
+const bundled=await build({stdin:{contents:'export * from "./editor/duct-routing";export * from "./editor/geometry";export * from "./core/catalog";export * from "./core/validation";export * from "./core/motor-practice-layout";',resolveDir:fileURLToPath(new URL("../app/simulator/",import.meta.url))},bundle:true,platform:"node",format:"esm",write:false,logLevel:"silent"});
+const {ductWireRoute,wireRoute,wirePath,wireEndpoints,validateDocument,createMotorPracticeDocument,getDefinition}=await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
+const component=(id,type,x,y,size)=>({id,type,label:id,position:{x,y},...(size?{size}:{})});
+const doc=()=>({schemaVersion:1,title:"线槽",components:[component("a","terminal",100,10),component("b","terminal",700,400),component("top","wire-duct",0,130,{width:850,height:40}),component("bottom","wire-duct",0,310,{width:850,height:40}),component("bridge","wire-duct-vertical",0,130,{width:40,height:220})],wires:[]});
+const wire={id:"w",from:{componentId:"a",terminalId:"B"},to:{componentId:"b",terminalId:"A"},style:"straight",routing:"duct",color:"#123"};
+test("connected network follows deterministic shortest duct path; endpoints survive move/resize/reload",()=>{
+  const document=doc(),first=ductWireRoute(document,wire);assert.ok(first.points);const ends=wireEndpoints(document,wire);
+  assert.deepEqual(first.points[0],ends.from);assert.deepEqual(first.points.at(-1),ends.to);assert.ok(first.points.some(p=>p.x===20));
+  assert.deepEqual(wireRoute(document,wire),first.points);assert.equal(validateDocument({...document,wires:[wire]}).valid,true);
+  assert.deepEqual(ductWireRoute(structuredClone(document),wire),first);
+  document.components[0].position.x+=70;document.components[2].size.width+=20;
+  const moved=ductWireRoute(document,wire);assert.notDeepEqual(moved.points,first.points);assert.deepEqual(moved.points[0],wireEndpoints(document,wire).from);
+  assert.equal(wirePath(JSON.parse(JSON.stringify(document)),wire),wirePath(document,wire));
+  const reordered={...document,components:[...document.components].reverse()};assert.deepEqual(ductWireRoute(reordered,wire),moved);
+});
+test("disconnected nearest entrances keep electrical connection and manual geometry; legacy wires never opt in",()=>{
+  const document=doc();document.components=document.components.filter(c=>c.id!=="bridge");
+  assert.equal(ductWireRoute(document,wire).reason,"disconnected");assert.deepEqual(wireRoute(document,wire),Object.values(wireEndpoints(document,wire)));
+  const legacy={...wire,routing:undefined};assert.deepEqual(wireRoute(doc(),legacy),Object.values(wireEndpoints(doc(),legacy)));
+  document.components=document.components.filter(c=>!c.type.startsWith("wire-duct"));assert.equal(ductWireRoute(document,wire).reason,"no-ducts");
+  assert.equal(validateDocument({...document,wires:[{...wire,routing:"invented"}]}).valid,false);
+});
+test("touching duct rectangles connect even when their center lines do not intersect",()=>{
+  const document=doc();document.components=document.components.filter(c=>c.id!=="bridge");
+  document.components.push(component("bridge","wire-duct-vertical",835,170,{width:40,height:140}));
+  assert.ok(ductWireRoute(document,wire).points);
+});
 
-const bundled = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/duct-layout"; export * from "./app/simulator/core/duct-routing"; export * from "./app/simulator/core/validation"; export * from "./app/simulator/editor/geometry";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
-const { LESSONS, createLessonDocument, componentSize, isWireDuct, resolveTerminal, arrangeTrainingDucts, putWiresInDucts, routeWireInDucts, segmentInsideDucts, validateDocument, wirePath, TRAINING_LAYOUT_REFERENCES, trainingLayoutReference } = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
-const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type)).map(({ position, ...component }) => component), wires: document.wires.map(({ style, waypoints, ...wire }) => wire), roles: document.roles });
-const overlaps = (a, b) => { const sa = componentSize(a), sb = componentSize(b); return a.position.x < b.position.x + sb.width && a.position.x + sa.width > b.position.x && a.position.y < b.position.y + sb.height && a.position.y + sa.height > b.position.y; };
-
-for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration have identical clear ducts and every wire stays in them`, () => {
-  const practice = createLessonDocument(lesson.id), document = createLessonDocument(lesson.id, { wired: true });
-  assert.equal(practice.wires.length, 0);
-  assert.deepEqual(practice.components, document.components);
-  assert.equal(validateDocument(document).valid, true);
-  const ducts = document.components.filter(component => isWireDuct(component.type));
-  assert.equal(ducts.length, 6, "use the reference's four horizontal and two vertical channels only");
-  assert.equal(ducts.filter(component => component.type === "wire-duct").length, 4);
-  assert.equal(ducts.filter(component => component.type === "wire-duct-vertical").length, 2);
-  const reference = TRAINING_LAYOUT_REFERENCES[lesson.id];
-  if (reference) {
-    assert.equal(trainingLayoutReference(document), reference.file);
-    const horizontal = ducts.filter(component => component.type === "wire-duct");
-    for (const [index, ids] of reference.rows.entries()) for (const id of ids) {
-      const component = document.components.find(component => component.id === id);
-      assert.ok(component.position.y > horizontal[index].position.y + componentSize(horizontal[index]).height);
-      assert.ok(component.position.y + componentSize(component).height < horizontal[index + 1].position.y);
-    }
-    const right = Math.max(...ducts.map(component => component.position.x + componentSize(component).width));
-    for (const id of [...reference.buttons, ...(reference.limits ?? [])]) assert.ok(document.components.find(component => component.id === id).position.x > right, "controls stay external as drawn");
-  } else assert.equal(trainingLayoutReference(document), "电动机连续运行控制电路布局图.png", "missing layout borrows the documented existing layout");
-  for (const duct of ducts) for (const component of document.components.filter(component => !isWireDuct(component.type))) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
-  const before = JSON.stringify(document);
-  for (const wire of document.wires) {
-    assert.equal(wire.style, "duct");
-    const route = routeWireInDucts(document, wire);
-    assert.equal(route.status, "routed", `${wire.id}: ${route.message}`);
-    assert.deepEqual(route.sections[0][0], resolveTerminal(document, wire.from).world);
-    assert.deepEqual(route.sections[0].at(-1), resolveTerminal(document, wire.to).world);
-    for (let index = 1; index < route.trunk.length; index++) assert.ok(segmentInsideDucts(document, route.trunk[index - 1], route.trunk[index]), `${wire.id}: internal segment escaped ducts`);
+function assertNoBodyReentry(document,ref,points){
+  const body=document.components.find(c=>c.id===ref.componentId),definition=getDefinition(body.type);
+  const left=body.position.x,right=left+definition.width,top=body.position.y,bottom=top+definition.height;
+  const terminal=definition.terminals.find(t=>t.id===ref.terminalId);
+  const [start,first]=points;
+  if(terminal.side==="bottom"){assert.equal(first.x,start.x);assert.ok(first.y>=bottom+12);}
+  if(terminal.side==="top"){assert.equal(first.x,start.x);assert.ok(first.y<=top-12);}
+  if(terminal.side==="left"){assert.equal(first.y,start.y);assert.ok(first.x<=left-12);}
+  if(terminal.side==="right"){assert.equal(first.y,start.y);assert.ok(first.x>=right+12);}
+  const ducts=document.components.filter(c=>c.type.startsWith("wire-duct"));
+  const entryIndex=points.findIndex((point,i)=>i>0&&ducts.some(duct=>{
+    const size=duct.size??getDefinition(duct.type);
+    return point.x>=duct.position.x&&point.x<=duct.position.x+size.width&&point.y>=duct.position.y&&point.y<=duct.position.y+size.height;
+  }));
+  assert.ok(entryIndex>0,"entrance reaches a duct");
+  for(let i=1;i<entryIndex;i++){
+    const a=points[i],b=points[i+1];assert.ok(a.x===b.x||a.y===b.y,"entrance remains orthogonal");
+    const crosses=a.x===b.x?a.x>left&&a.x<right&&Math.max(a.y,b.y)>top&&Math.min(a.y,b.y)<bottom:a.y>top&&a.y<bottom&&Math.max(a.x,b.x)>left&&Math.min(a.x,b.x)<right;
+    assert.equal(crosses,false,`${ref.componentId}.${ref.terminalId} re-enters its own body at segment ${i}`);
   }
-  assert.equal(JSON.stringify(document), before, "routing is presentation and must not edit the circuit");
+}
+
+for(const course of ["motor-course-01","motor-course-09","motor-course-10"])test(`${course}: lower XT and motor terminals leave outward without returning through their bodies`,()=>{
+  const document=createMotorPracticeDocument(course),motor=document.components.find(c=>c.type.startsWith("motor"));
+  const from={componentId:"xt16",terminalId:"B1"},to={componentId:motor.id,terminalId:course==="motor-course-01"?"U":"U2"};
+  const routed={...wire,from,to},route=ductWireRoute(document,routed);
+  assert.ok(route.points);assertNoBodyReentry(document,from,route.points);assertNoBodyReentry(document,to,[...route.points].reverse());
+  assert.deepEqual(route.points[0],wireEndpoints(document,routed).from);assert.deepEqual(route.points.at(-1),wireEndpoints(document,routed).to);
+  assert.deepEqual(ductWireRoute(JSON.parse(JSON.stringify(document)),routed),route);
 });
 
-test("a legacy graph can be arranged and routed without replacing IDs, manual hints, attachments or custom ducts", () => {
-  const full = createLessonDocument("motor-course-09", { wired: true });
-  const legacy = { ...full, components: full.components.filter(component => !isWireDuct(component.type)), drawingMediaId: "own-drawing", drawingMediaType: "image/png", wires: full.wires.map(wire => ({ ...wire, style: "orthogonal", waypoints: [{ x: 12, y: 34 }] })) };
-  const before = JSON.stringify(legacy), arranged = putWiresInDucts(arrangeTrainingDucts(legacy));
-  assert.deepEqual(graph(arranged), graph(legacy));
-  assert.equal(arranged.drawingMediaId, legacy.drawingMediaId);
-  assert.deepEqual(arranged.wires[0].waypoints, legacy.wires[0].waypoints);
-  assert.equal(JSON.stringify(legacy), before);
-  assert.equal(arrangeTrainingDucts(arranged), arranged, "repeat arrangement preserves every custom position and size");
+for(const [side,type,terminalId,duct] of [
+  ["top","terminal","A",component("lane","wire-duct",0,300,{width:800,height:40})],
+  ["bottom","terminal","B",component("lane","wire-duct",0,0,{width:800,height:40})],
+  ["left","push-no","11",component("lane","wire-duct-vertical",400,0,{width:40,height:800})],
+  ["right","push-no","12",component("lane","wire-duct-vertical",0,0,{width:40,height:800})],
+])test(`${side} terminal retains its exit direction when the duct is on the opposite side`,()=>{
+  const document={schemaVersion:1,title:"反向入槽",components:[component("source",type,100,100),component("target","terminal",600,600),duct],wires:[]};
+  const from={componentId:"source",terminalId},to={componentId:"target",terminalId:"A"},routed={...wire,from,to};
+  const route=ductWireRoute(document,routed);assert.ok(route.points);assertNoBodyReentry(document,from,route.points);
+  assert.deepEqual(route.points[0],wireEndpoints(document,routed).from);assert.deepEqual(route.points.at(-1),wireEndpoints(document,routed).to);
 });
 
-const fixture = () => ({ schemaVersion: 1, title: "连通线槽测试", components: [
-  { id: "a", type: "terminal", label: "XT1", position: { x: 80, y: 60 } },
-  { id: "b", type: "terminal", label: "XT2", position: { x: 380, y: 260 } },
-  { id: "top", type: "wire-duct", label: "WD1", position: { x: 0, y: 0 }, size: { width: 500, height: 40 } },
-  { id: "bottom", type: "wire-duct", label: "WD2", position: { x: 0, y: 200 }, size: { width: 500, height: 40 } },
-  { id: "left", type: "wire-duct-vertical", label: "WD3", position: { x: 0, y: 0 }, size: { width: 40, height: 240 } },
-  { id: "right", type: "wire-duct-vertical", label: "WD4", position: { x: 460, y: 0 }, size: { width: 40, height: 240 } },
-], wires: [{ id: "route", from: { componentId: "a", terminalId: "A" }, to: { componentId: "b", terminalId: "A" }, color: "#f04452", style: "duct" }] });
-
-test("route chooses the shorter connected trunk, keeps stable lanes, and ignores manual waypoints", () => {
-  const document = fixture(), wire = document.wires[0];
-  const route = routeWireInDucts(document, wire);
-  assert.equal(route.status, "routed");
-  assert.ok(route.trunk.some(point => point.x >= 460), "the right trunk is shorter than going via x=20");
-  assert.ok(!route.trunk.some(point => point.x < 40));
-  wire.waypoints = [{ x: 999, y: 999 }];
-  assert.deepEqual(routeWireInDucts(document, wire), route);
-  assert.deepEqual(routeWireInDucts(JSON.parse(JSON.stringify(document)), wire), route, "JSON reload preserves the same route");
-  assert.deepEqual(graph(document).wires, graph(JSON.parse(JSON.stringify(document))).wires);
-});
-
-test("moving devices or resizing and moving ducts recomputes world endpoints and routes", () => {
-  const document = fixture(), wire = document.wires[0], before = routeWireInDucts(document, wire);
-  document.components[0].position.x += 36;
-  let route = routeWireInDucts(document, wire);
-  assert.equal(route.status, "routed");
-  assert.notDeepEqual(route.sections[0][0], before.sections[0][0]);
-  assert.deepEqual(route.sections[0][0], resolveTerminal(document, wire.from).world);
-  document.components.find(component => component.id === "right").position.x = 560;
-  route = routeWireInDucts(document, wire);
-  assert.equal(route.status, "routed");
-  assert.ok(route.trunk.some(point => point.x <= 40), "moving the right duct disconnects it, so the connected left path is used");
-  document.components.find(component => component.id === "left").size.height = 100;
-  route = routeWireInDucts(document, wire);
-  assert.equal(route.status, "disconnected", "resized rectangles invalidate the network cache even in mutable test fixtures");
-  assert.equal((wirePath(document, wire).match(/M /g) ?? []).length, 2, "unconnected leads are separate SVG subpaths, never a cross-board fallback");
-});
-
-test("missing or obstructed ducts give explicit presentation errors without changing the electrical graph", () => {
-  const document = fixture(), wire = document.wires[0];
-  document.components = document.components.filter(component => !isWireDuct(component.type));
-  assert.equal(routeWireInDucts(document, wire).status, "missing");
-  const blocked = fixture(); blocked.components.push({ id: "block", type: "terminal", label: "挡住入槽的元件", position: { x: 80, y: 0 } });
-  const before = JSON.stringify(blocked);
-  assert.equal(routeWireInDucts(blocked, blocked.wires[0]).status, "blocked");
-  assert.equal(JSON.stringify(blocked), before);
-});
-
-test("manual straight, curve and waypoint routes retain the existing behavior", () => {
-  const document = fixture(), original = JSON.stringify(document);
-  assert.ok(wirePath(document, { ...document.wires[0], style: "curve" }).includes(" C "));
-  assert.equal((wirePath(document, { ...document.wires[0], style: "straight" }).match(/L /g) ?? []).length, 1);
-  assert.ok(wirePath(document, { ...document.wires[0], style: "orthogonal", waypoints: [{ x: 999, y: 888 }] }).includes("999"));
-  assert.equal(JSON.stringify(document), original);
+test("a duct entrance inside the source body falls back without losing the electrical connection",()=>{
+  const document=doc();document.components=document.components.filter(c=>!c.type.startsWith("wire-duct"));
+  document.components.push(component("inside","wire-duct",110,40,{width:60,height:24}));
+  assert.equal(ductWireRoute(document,wire).reason,"disconnected");
+  assert.deepEqual(wireRoute(document,wire),Object.values(wireEndpoints(document,wire)));
+  assert.deepEqual(wire.from,{componentId:"a",terminalId:"B"});assert.deepEqual(wire.to,{componentId:"b",terminalId:"A"});
 });

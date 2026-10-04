@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { ChevronLeft, ChevronRight, CircuitBoard, FolderOpen, Heart, Search, Star } from 'lucide-react';
 import { STATIC_DEMO, type Publication, type SavedCircuit } from '../api';
 import DocumentPreview from '../editor/DocumentPreview';
@@ -24,26 +24,32 @@ const LOCAL_KEY = 'diantuo:simulator:demo:v1';
 const date = (value: string) => new Date(value).toLocaleString('zh-CN', { hour12: false });
 const blankPage = (pageSize: number): ProfilePage<Item> => ({ items: [], page: 1, pageSize, total: 0, totalPages: 1 });
 
-export default function ProfileLibrary({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }: Props) {
+export default function ProfileLibrary(props: Props) {
+  return <ProfileLibraryContent key={`${props.ownerId}:${props.tab}:${props.refresh}`} {...props}/>;
+}
+function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }: Props) {
   const [query, setQuery] = useState('');
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(tab === 'drafts' ? 10 : 12);
   const [result, setResult] = useState(() => blankPage(pageSize));
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [completedKey, setCompletedKey] = useState('');
+  const [failure, setFailure] = useState({ key: '', message: '' });
   const [retry, setRetry] = useState(0);
   const requests = useRef(new ProfileListRequests());
-  const requestRef = useRef(request); requestRef.current = request;
+  const requestRef = useRef(request);
   const scope: ProfileListScope = { ownerId, session: refresh, tab, query, page, pageSize };
-  const scopeRef = useRef(scope); scopeRef.current = scope;
+  const scopeRef = useRef(scope);
+  useLayoutEffect(() => { requestRef.current = request; scopeRef.current = { ownerId, session: refresh, tab, query, page, pageSize }; }, [request, ownerId, refresh, tab, query, page, pageSize]);
+  const loadKey = JSON.stringify([ownerId, refresh, tab, query, page, pageSize, retry]);
+  const loading = completedKey !== loadKey;
+  const error = failure.key === loadKey ? failure.message : '';
   const sentinel = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { requests.current.invalidate(); setPage(1); setResult(blankPage(pageSize)); }, [refresh]);
   useEffect(() => {
-    const ticket = requests.current.begin(scopeRef.current);
+    const requestState = requests.current;
+    const ticket = requestState.begin(scopeRef.current);
     const accepts = () => requests.current.accepts(ticket, scopeRef.current);
-    setLoading(true); setError('');
     const load = async (): Promise<ProfilePage<Item>> => {
       if (!STATIC_DEMO) return requestRef.current(profileListPath(tab, query, page, pageSize));
       if (tab !== 'drafts') return blankPage(pageSize);
@@ -62,10 +68,10 @@ export default function ProfileLibrary({ ownerId, tab, refresh, busy, request, o
       }
       setResult(previous => ({ ...next, items: tab === 'drafts' || page === 1 ? next.items : [...new Map([...previous.items, ...next.items].map(item => [item.id, item])).values()] }));
       if (tab === 'drafts' && next.page !== page) setPage(next.page);
-    }).catch(reason => { if (accepts()) setError(reason instanceof Error ? reason.message : '读取失败，请重试'); })
-      .finally(() => { if (accepts()) setLoading(false); });
-    return () => requests.current.invalidate();
-  }, [ownerId, tab, query, page, pageSize, refresh, retry]);
+    }).catch(reason => { if (accepts()) setFailure({ key: loadKey, message: reason instanceof Error ? reason.message : '读取失败，请重试' }); })
+      .finally(() => { if (accepts()) setCompletedKey(loadKey); });
+    return () => requestState.invalidate();
+  }, [ownerId, tab, query, page, pageSize, refresh, retry, loadKey]);
 
   const more = tab !== 'drafts' && result.page < result.totalPages;
   useEffect(() => {

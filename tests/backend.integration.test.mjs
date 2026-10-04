@@ -23,8 +23,8 @@ function validPdf() {
 }
 test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapshots, assessment", { skip: !origin, timeout: 180000 }, async t => {
   const adminCredentials = JSON.parse(await readFile(adminPath, "utf8"));
-  const built = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/engine";', resolveDir: process.cwd() }, bundle: true, write: false, format: "esm", platform: "node" });
-  const { createLessonDocument, assessLesson } = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString("base64")}`);
+  const built = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/motor-courses"; export * from "./app/simulator/core/engine";', resolveDir: process.cwd() }, bundle: true, write: false, format: "esm", platform: "node" });
+  const { createLessonDocument, createMotorCourseDocument, assessLesson } = await import(`data:text/javascript;base64,${Buffer.from(built.outputFiles[0].text).toString("base64")}`);
   const fixture = createLessonDocument("motor-jog", { wired: true });
   const suffix = `${Date.now().toString(36)}${randomBytes(2).toString("hex")}`;
   const newAccount = label => ({ username: `qa_${label}_${suffix}`.slice(0, 30), name: `验收成员 ${label.toUpperCase()}`, password: randomBytes(18).toString("base64url") });
@@ -193,24 +193,30 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
       assert.equal(result.status, 200); assert.equal(result.data.assessment.status, "passed");
       assert.deepEqual(result.data.assessment, expected);
       assert.equal(result.data.documentHash, hash(JSON.stringify(document)));
+      const legacy=createMotorCourseDocument(lessonId,{wired:true});
+      const archived=await b.call("/assess","POST",{document:legacy,lessonId});
+      assert.equal(archived.status,200); assert.equal(archived.data.assessment.status,"passed");
+      assert.deepEqual(archived.data.assessment,JSON.parse(JSON.stringify(assessLesson(legacy,lessonId))));
+      assert.equal(archived.data.documentHash,hash(JSON.stringify(legacy)));
       const invalid = { ...document, wires: [] };
       const rejected = await a.call("/assess", "POST", { document: invalid, lessonId, assessment: { status: "passed", passed: 999 } });
       assert.equal(rejected.status, 200); assert.notEqual(rejected.data.assessment.status, "passed");
     });
   });
   await t.test("server rejects held low/high requests bypassing FR's NC even when control supply crosses its fixed main pole", async () => {
-    for (const start of ["sb2", "sb3"]) {
-      const lessonId = "motor-course-10", document = createLessonDocument(lessonId, { wired: true });
+    for (const legacy of [false,true]) for (const start of ["sb2", "sb3"]) {
+      const lessonId = "motor-course-10", document = legacy ? createMotorCourseDocument(lessonId,{wired:true}) : createLessonDocument(lessonId, { wired: true });
+      const controlFuse=document.roles.fu2 ?? document.roles.fu2a;
       const removeAt = (component, terminal) => { document.wires = document.wires.filter(wire => ![wire.from, wire.to].some(port => port.componentId === component && port.terminalId === terminal)); };
       let counter = 0;
       const connect = (from, fromTerminal, to, toTerminal) => document.wires.push({ id: `qa-fr-${counter++}`, from: { componentId: from, terminalId: fromTerminal }, to: { componentId: to, terminalId: toTerminal }, color: "#8866cc" });
-      removeAt("fu2a", "1");
+      removeAt(controlFuse, "1");
       for (const [component, terminal] of [["fr", "95"], ["fr", "96"], ["sb1", "11"], ["sb1", "12"]]) removeAt(component, terminal);
-      connect("fr", "2", "fu2a", "1"); connect("fu2a", "2", "sb1", "11"); connect("sb1", "12", "fr", "95");
+      connect("fr", "2", controlFuse, "1"); connect(controlFuse, "2", "sb1", "11"); connect("sb1", "12", "fr", "95");
       for (const [component, terminal] of [["km1", "13"], ["km2", "13"], ["sb2", "23"], ["sb3", "23"]]) connect(component === start ? "sb1" : "fr", component === start ? "12" : "96", component, terminal);
       const expected = JSON.parse(JSON.stringify(assessLesson(document, lessonId)));
       assert.equal(expected.status, "failed");
-      const result = await a.call("/assess", "POST", { document, lessonId, assessment: { status: "passed", passed: 999 } });
+      const result = await (legacy ? b : a).call("/assess", "POST", { document, lessonId, assessment: { status: "passed", passed: 999 } });
       assert.equal(result.status, 200); assert.deepEqual(result.data.assessment, expected);
       assert.ok(result.data.assessment.diagnostics.some(item => item.code === "OVERLOAD_CONTROL_BYPASS"));
     }
@@ -223,7 +229,7 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     const slot = listed.data.items.find(item => !item.drawings.schematic && !item.drawings.layout);
     if (!slot) { drawingTest.skip("existing user drawings fill every slot; do not overwrite them"); return; }
     assert.equal((await a.call(`/training-projects/${slot.id}`, "PUT", { mediaId })).status, 403);
-    assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId })).status, 403);
+    assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId, expectedVersion: null })).status, 403);
     const form = new FormData();
     form.append("file", new File([Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlFQAAAAASUVORK5CYII=", "base64")], "qa-permission-only.png", { type: "image/png" }));
     const uploaded = await admin.call("/media", "POST", form);
@@ -233,10 +239,22 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     const layoutUpload = await admin.call("/media", "POST", layoutForm); assert.equal(layoutUpload.status, 201);
     const layoutId = layoutUpload.data.media.id;
     assert.equal((await b.call(`/media/${drawingId}`)).status, 404);
+    let schematicVersion = null, layoutVersion = null;
+    let completed = false;
     try {
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: drawingId, expectedMediaId: null })).status, 200);
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, kind: "layout", expectedMediaId: null })).status, 200);
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, expectedMediaId: null })).status, 409);
+      const schematic = await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: drawingId, expectedVersion: null });
+      assert.equal(schematic.status, 200); schematicVersion = schematic.data.project.drawings.schematic.version;
+      const layout = await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, kind: "layout", expectedVersion: null });
+      assert.equal(layout.status, 200); layoutVersion = layout.data.project.drawings.layout.version;
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, expectedVersion: null })).status, 409);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: drawingId })).status, 428);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", {})).status, 428);
+      const oldVersion = schematicVersion;
+      const titles = await Promise.all(["并发标题甲", "并发标题乙"].map(title => admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: drawingId, title, expectedVersion: oldVersion })));
+      assert.deepEqual(titles.map(result => result.status).sort(), [200, 409]);
+      schematicVersion = titles.find(result => result.status === 200).data.project.drawings.schematic.version;
+      assert.notEqual(schematicVersion, oldVersion);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", { expectedVersion: oldVersion })).status, 409);
       assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, kind: "invalid" })).status, 400);
       assert.equal((await a.call(`/training-projects/${slot.id}`, "PUT", { mediaId, kind: "layout" })).status, 403);
       assert.equal((await a.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout" })).status, 403);
@@ -247,14 +265,26 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
       assert.equal((await b.call(`/media/${layoutId}`)).status, 200);
       assert.equal((await anonymous.call(`/media/${layoutId}`)).status, 401);
       assert.equal((await anonymous.call(`/media/${drawingId}`)).status, 401);
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout" })).status, 200);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout", expectedVersion: layoutVersion })).status, 200);
+      const removedVersion = layoutVersion; layoutVersion = null;
       const remaining = (await b.call("/training-projects")).data.items.find(item => item.id === slot.id);
       assert.equal(remaining.drawings.layout, null); assert.equal(remaining.drawings.schematic.id, drawingId);
       assert.equal((await b.call(`/media/${layoutId}`)).status, 404);
       assert.equal((await b.call(`/media/${drawingId}`)).status, 200);
+      const recreated = await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, kind: "layout", expectedVersion: null });
+      assert.equal(recreated.status, 200); layoutVersion = recreated.data.project.drawings.layout.version;
+      assert.notEqual(layoutVersion, removedVersion);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "PUT", { mediaId: layoutId, kind: "layout", expectedVersion: removedVersion })).status, 409);
+      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout", expectedVersion: removedVersion })).status, 409);
+      completed = true;
     } finally {
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE")).status, 200);
-      assert.equal((await admin.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout" })).status, 200);
+      const cleanup = await Promise.allSettled([
+        admin.call(`/training-projects/${slot.id}`, "DELETE", { expectedVersion: schematicVersion }),
+        admin.call(`/training-projects/${slot.id}`, "DELETE", { kind: "layout", expectedVersion: layoutVersion }),
+      ]);
+      const statuses = cleanup.map(item => item.status === 'fulfilled' ? item.value.status : item.reason?.name ?? 'Error');
+      if (completed) assert.deepEqual(statuses, [200, 200]);
+      else if (statuses.some(status => status !== 200)) console.warn(`Drawing cleanup retained conflicting test slots: ${JSON.stringify(statuses)}`);
     }
     assert.equal((await b.call(`/media/${drawingId}`)).status, 404);
     assert.equal((await b.call("/training-projects")).data.items.find(item => item.id === slot.id).drawingStatus, "pending");
@@ -277,6 +307,6 @@ test("real D1/R2, invitation auth, two-user isolation, atomic revisions, snapsho
     assert.equal((await admin.call(`/members/${target.id}`, "PATCH", { disabled: false })).status, 200);
     await b.login(userB);
   });
-  const evidence = { at: new Date().toISOString(), origin, memberUsernames: [userA.username, userB.username], circuitId: circuit.id, circuitHash: hash(JSON.stringify(circuit.document)), publicationId: publication.id, mediaId, imageHash: hash(png), pdfId, pdfHash: hash(pdf) };
+  const evidence = { at: new Date().toISOString(), origin, memberUsernames: [userA.username, userB.username], circuitId: circuit.id, circuitHash: hash(JSON.stringify(circuit.document)), publicationId: publication.id, publicationHash: hash(JSON.stringify(publication.document)), mediaId, imageHash: hash(png), pdfId, pdfHash: hash(pdf) };
   await writeFile(path.join(artifactDirectory, "backend-acceptance.json"), JSON.stringify(evidence, null, 2));
 });

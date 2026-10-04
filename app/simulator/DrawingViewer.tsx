@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 import { ExternalLink, Maximize2, ZoomIn, ZoomOut } from "lucide-react";
 import PdfDrawing from "./PdfDrawing";
 import "./drawing-viewer.css";
@@ -9,7 +9,10 @@ export type DrawingZoom = { zoom: number; onZoomChange: (zoom: number) => void }
 type Props = { src?: string; title: string; type?: string; children?: ReactNode; contentKey?: string; compact?: boolean } & Partial<DrawingZoom>;
 
 /** A read-only viewer: private media keep their original authenticated URL. */
-export default function DrawingViewer({ src, title, type, children, contentKey, compact = false, zoom: controlledZoom, onZoomChange }: Props) {
+export default function DrawingViewer(props: Props) {
+  return <DrawingViewerContent key={`${props.src ?? ''}:${props.type ?? ''}:${props.contentKey ?? ''}`} {...props}/>;
+}
+function DrawingViewerContent({ src, title, type, children, contentKey, compact = false, zoom: controlledZoom, onZoomChange }: Props) {
   const isPdf = type === "application/pdf";
   const viewport = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
@@ -17,14 +20,15 @@ export default function DrawingViewer({ src, title, type, children, contentKey, 
   const [ownZoom, setOwnZoom] = useState(1);
   const zoom = controlledZoom ?? ownZoom;
   const setZoom = (value: number) => { if (onZoomChange) onZoomChange(value); else setOwnZoom(value); };
-  const changeZoom = useRef(setZoom); changeZoom.current = setZoom;
+  const changeZoom = useRef(onZoomChange);
+  useLayoutEffect(() => { changeZoom.current = onZoomChange; }, [onZoomChange]);
   const [bounds, setBounds] = useState({ width: 0, height: 0 });
   const [ratio, setRatio] = useState<number | null>(null);
   const [dragging, setDragging] = useState(false);
   const [imageState, setImageState] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
-    changeZoom.current(1); setRatio(null); setImageState("loading"); drag.current = null; setDragging(false);
+    changeZoom.current?.(1);
     viewport.current?.scrollTo({ left: 0, top: 0 });
   }, [src, contentKey]);
   useEffect(() => {
@@ -85,7 +89,7 @@ export default function DrawingViewer({ src, title, type, children, contentKey, 
       <button type="button" onClick={fit}><Maximize2 size={15}/>适应窗口</button>
       {src && <a href={src} target="_blank" rel="noopener noreferrer"><ExternalLink size={15}/>查看原图</a>}
     </div>}
-    <div ref={viewport} className={`dt-drawing-viewer-viewport${dragging ? " is-dragging" : ""}`} role="region" aria-label="可滚动和拖动的图纸" tabIndex={0}
+    <div ref={viewport} className={`dt-drawing-viewer-viewport${dragging ? " is-dragging" : ""}`} role="region" aria-label="可滚动和拖动的图纸，方向键滚动" tabIndex={0}
       onPointerDown={beginDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={() => { drag.current = null; setDragging(false); }}>
       <div ref={content} className="dt-drawing-viewer-content" style={{ width: bounds.width ? fittedWidth * zoom : "100%" }}>
         {!src ? children : isPdf ? <PdfDrawing src={src} title={title}/> : <img key={src} src={src} alt={title} draggable={false}

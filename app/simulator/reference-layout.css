@@ -29,6 +29,8 @@
 .dt-site .sim-editor .sim-toolbar .sim-history { order: 2; }
 .dt-site .sim-editor .sim-canvas-heading { display: none; }
 .dt-site .dt-document-disclosure { position: absolute; z-index: 12; top: 132px; left: 392px; width: min(700px, calc(100% - 424px)); height: auto; min-height: 0; margin: 0; padding: 0; border: 0; overflow: visible; background: transparent; display: block; }
+.dt-site .dt-document-disclosure { pointer-events: none; }
+.dt-site .dt-document-disclosure > summary, .dt-site .dt-document-controls { pointer-events: auto; }
 .dt-site .dt-document-disclosure > summary { display: inline-flex; max-width: min(100%, 330px); align-items: center; gap: 8px; color: #6b7788; font-size: 12px; padding: 7px 8px; cursor: pointer; border-radius: 4px; background: #f3f6fae6; list-style: none; }
 .dt-site .dt-document-disclosure > summary::-webkit-details-marker { display: none; }
 .dt-site .dt-document-disclosure > summary strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 500; }

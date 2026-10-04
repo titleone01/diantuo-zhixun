@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 // Exercise Gallery's actual event/effect callbacks with controlled promise
 // completion. Only rendering primitives, icons and previews are replaced.
-const hooks = `let slots=[],cursor=0,effects=[],dirty=false;
+const hooks = `export function useSyncExternalStore(subscribe,getSnapshot){const [,set]=useState(0);useEffect(()=>subscribe(()=>set(n=>n+1)),[subscribe]);return getSnapshot();}
+export const useLayoutEffect=(effect,deps)=>useEffect(effect,deps);
+let slots=[],cursor=0,effects=[],dirty=false;
 export function reset(){unmount();slots=[];cursor=0;effects=[];dirty=false;}
 export function begin(){cursor=0;dirty=false;}
 export function flush(){for(const run of effects.splice(0))run();return dirty;}

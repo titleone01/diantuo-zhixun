@@ -73,7 +73,8 @@ export function validateDocument(input: unknown): DocumentValidation {
       connected.add(key);
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`导线 ${wire.id} 颜色须为十六进制颜色`);
-    if (wire.style !== undefined && (typeof wire.style !== "string" || !["duct", "orthogonal", "straight", "curve"].includes(wire.style))) errors.push(`导线 ${wire.id} 样式无效`);
+    if (wire.style !== undefined && wire.style !== "duct" && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve") errors.push(`导线 ${wire.id} 样式无效`);
+    if (wire.routing !== undefined && wire.routing !== "duct") errors.push(`导线 ${wire.id} 自动走线模式无效`);
     if (wire.waypoints !== undefined && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`导线 ${wire.id} 折点无效`);
   }
   if (input.roles !== undefined) {

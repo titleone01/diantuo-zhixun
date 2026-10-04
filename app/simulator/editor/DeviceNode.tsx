@@ -1,5 +1,5 @@
 import { Handle, NodeResizer, Position, type Node, type NodeProps } from "@xyflow/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import { componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, isWireDuct } from "../core/catalog";
 import { terminalKey } from "../core/types";
 import type { CircuitComponent, CircuitDocument, ComponentRuntime, ComponentSize, Diagnostic, Point, Runtime, SimulationAction, TerminalState } from "../core/types";
@@ -34,7 +34,8 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
   const size = componentSize(component);
   const duct = isWireDuct(component.type);
   const contactor = component.type === "contactor220" || component.type === "contactor380";
-  const resizeActions = useRef(data); resizeActions.current = data;
+  const resizeActions = useRef(data);
+  useLayoutEffect(()=>{resizeActions.current=data;},[data]);
   // XYFlow installs a drag listener per callback identity. Keep these stable
   // throughout a gesture even when document updates render the node again.
   const onResizeStart = useCallback(() => resizeActions.current.beginResize?.(component.id), [component.id]);
@@ -52,7 +53,7 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
   const dispatch = (type: "press" | "release" | "toggle" | "trip-overload" | "reset-overload") => action({ type, componentId: component.id });
 
   return <div
-    className={`sim-device-node ${selected ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""}`}
+    className={`sim-device-node ${selected ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""} ${definition.load?.kind === "motor" && result?.active ? "sim-motor-running" : ""}`}
     style={{ width: size.width, height: size.height }}
     onPointerCancel={duct ? data.cancelResize : undefined}
     data-device-id={component.id}
@@ -67,9 +68,10 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     {duct && <NodeResizer isVisible={!!selected && !running && !data.readOnly} minWidth={DUCT_MIN_SIZE} minHeight={DUCT_MIN_SIZE} maxWidth={DUCT_MAX_SIZE} maxHeight={DUCT_MAX_SIZE} keepAspectRatio={false} handleClassName="sim-duct-resize-handle" lineClassName="sim-duct-resize-line" onResizeStart={onResizeStart} onResize={onResize} onResizeEnd={onResizeEnd} />}
     <DeviceArtwork type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
     {data.document && !!leads.length && <svg className="sim-terminal-leads" width={size.width} height={size.height} aria-hidden="true">
-      {leads.map(({ wire, terminal }) => { const clip = `lead-${component.id}-${wire.id}-${terminal.id}`; return <g key={clip}><defs><clipPath id={clip}><circle cx={terminal.x} cy={terminal.y} r="14" /></clipPath></defs><g clipPath={`url(#${clip})`}><path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke={data.diagnostics.some(d => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color} strokeWidth={data.selectedWireIds?.includes(wire.id) ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" /></g></g>; })}
+      {leads.map(({ wire, terminal }) => { const clip = `lead-${component.id}-${wire.id}-${terminal.id}`; return <g key={clip}><defs><clipPath id={clip}><rect x="0" y="0" width={size.width} height={size.height} /></clipPath></defs><g clipPath={`url(#${clip})`}><path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke={data.diagnostics.some(d => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color} strokeWidth={data.selectedWireIds?.includes(wire.id) ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" /></g></g>; })}
     </svg>}
     <div className="sim-device-caption"><b>{component.label}</b><span>{definition.name}</span>{component.type === "timer380" && <span>教学双延时 · {(component.settings?.delayMs ?? 3000) / 1000} s</span>}{component.type === "auxiliary-no" && <span>{data.linkedComponents.find(item => item.id === component.linkedTo)?.label ?? "未关联"}</span>}</div>
+    {faulty && definition.load?.kind === "motor" && <span className="sim-motor-diagnostic" role="status" title={data.diagnostics.filter(d => d.componentIds.includes(component.id)).map(d => d.message).join("；")}>诊断</span>}
     {definition.terminals.map(terminal => {
       const key = terminalKey({ componentId: component.id, terminalId: terminal.id });
       const state = data.terminalStates[key];
@@ -104,8 +106,8 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
       onKeyUp={event => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); dispatch("release"); } }}
       onBlur={() => dispatch("release")}
     >{component.type === "limit-switch" ? pressed ? "已按下" : "按住" : null}</button>}
-    {!running && selected && component.type === "timer380" && <label className="sim-device-setting nodrag nopan" onKeyDown={event => event.stopPropagation()}>延时<input aria-label={`${component.label} 延时秒数`} type="number" min="0.001" max="3600" step="0.001" value={(component.settings?.delayMs ?? 3000) / 1000} disabled={data.readOnly} onChange={event => { const seconds = event.currentTarget.valueAsNumber; if (Number.isFinite(seconds) && seconds >= 0.001 && seconds <= 3600) data.configure(component.id, { settings: { delayMs: Math.round(seconds * 1000) } }); }} />秒</label>}
-    {!running && selected && component.type === "auxiliary-no" && <label className="sim-device-setting sim-link-setting nodrag nopan" onKeyDown={event => event.stopPropagation()}>关联线圈<select aria-label={`${component.label} 关联线圈`} value={component.linkedTo ?? ""} disabled={data.readOnly} onChange={event => data.configure(component.id, { linkedTo: event.target.value || undefined })}><option value="">请选择 KM / KA</option>{data.linkedComponents.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>}
+    {!running && selected && component.type === "timer380" && <label className="sim-device-setting nodrag nopan">延时<input aria-label={`${component.label} 延时秒数`} type="number" min="0.001" max="3600" step="0.001" value={(component.settings?.delayMs ?? 3000) / 1000} disabled={data.readOnly} onChange={event => { const seconds = event.currentTarget.valueAsNumber; if (Number.isFinite(seconds) && seconds >= 0.001 && seconds <= 3600) data.configure(component.id, { settings: { delayMs: Math.round(seconds * 1000) } }); }} />秒</label>}
+    {!running && selected && component.type === "auxiliary-no" && <label className="sim-device-setting sim-link-setting nodrag nopan">关联线圈<select aria-label={`${component.label} 关联线圈`} value={component.linkedTo ?? ""} disabled={data.readOnly} onChange={event => data.configure(component.id, { linkedTo: event.target.value || undefined })}><option value="">请选择 KM / KA</option>{data.linkedComponents.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>}
     {running && toggle && <button className={`sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`} style={knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : undefined} onClick={() => dispatch("toggle")} aria-pressed={closed} title={latching ? closed ? "已按下 · 点击弹起" : "已弹起 · 点击按下" : closed ? "已合闸 · 点击分闸" : "已分闸 · 点击合闸"} aria-label={`${component.label} ${latching ? closed ? "弹起" : "按下" : closed ? "分闸" : "合闸"}`}>
       {breaker || knife || latching ? null : component.type === "switch2" ? "切换" : closed ? "分闸" : "合闸"}
     </button>}

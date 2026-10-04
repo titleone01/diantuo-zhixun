@@ -45,6 +45,10 @@ export async function runPersistenceTest(environment = process.env) {
   assert.equal(circuitResponse.status, 200);
   const circuit = await circuitResponse.json();
   assert.equal(hash(JSON.stringify(circuit.circuit.document)), evidence.circuitHash);
+  const publicationResponse = await persistenceFetch(`${origin}/api/publications/${evidence.publicationId}`, { headers: { cookie: memberCookies[1] } });
+  assert.equal(publicationResponse.status, 200);
+  const publication = await publicationResponse.json();
+  if (evidence.publicationHash) assert.equal(hash(JSON.stringify(publication.publication.document)), evidence.publicationHash);
   for (const [id, expected] of [[evidence.mediaId, evidence.imageHash], [evidence.pdfId, evidence.pdfHash]]) {
     const response = await persistenceFetch(`${origin}/api/media/${id}`, { headers: { cookie } });
     assert.equal(response.status, 200);
@@ -55,7 +59,7 @@ export async function runPersistenceTest(environment = process.env) {
     const response = await persistenceFetch(`${origin}/api/auth/sign-out`, { method: "POST", headers: { origin, cookie: sessionCookie, "content-type": "application/json" }, body: "{}" });
     assert.equal(response.status, 200);
   }
-  const result = { verifiedAt: new Date().toISOString(), origin, logins: 3, circuitId: evidence.circuitId, circuitHash: evidence.circuitHash, imageHash: evidence.imageHash, pdfHash: evidence.pdfHash, otherMemberDenied: true };
+  const result = { verifiedAt: new Date().toISOString(), origin, logins: 3, circuitId: evidence.circuitId, circuitHash: evidence.circuitHash, publicationHash: hash(JSON.stringify(publication.publication.document)), imageHash: evidence.imageHash, pdfHash: evidence.pdfHash, otherMemberDenied: true };
   await writeFile(path.join(artifactDirectory, "persistence-acceptance.json"), `${JSON.stringify(result, null, 2)}\n`);
   console.log("重启后验证通过：管理员和两个成员登录，草稿、PNG、PDF 的 SHA-256 与重启前相同，另一成员仍不能读取私有草稿。");
 }

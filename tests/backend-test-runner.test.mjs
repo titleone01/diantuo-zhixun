@@ -28,6 +28,7 @@ test("isolated config preserves worker compatibility while separating all writab
   assert.notEqual(config.d1_databases[0].database_id, "production");
   assert.notEqual(config.r2_buckets[0].bucket_name, "production");
   assert.equal(base.assets.directory, ".local/app");
+  assert.notEqual(config.name, isolatedConfig(base, directory, projectRoot).name);
 });
 
 test("cleanup guard permits only a direct runner-created temporary directory", () => {
@@ -38,7 +39,8 @@ test("cleanup guard permits only a direct runner-created temporary directory", (
 });
 
 test("local test subprocesses bypass proxy dispatchers without changing the parent environment", () => {
-  const original = { PATH: "runtime", HTTPS_PROXY: "private-proxy", http_proxy: "private-proxy", ALL_PROXY: "private-proxy", NO_PROXY: "localhost" };
-  assert.deepEqual(localOnlyEnvironment(original), { PATH: "runtime", NO_PROXY: "localhost" });
+  const original = { PATH: "runtime", HTTPS_PROXY: "private-proxy", http_proxy: "private-proxy", ALL_PROXY: "private-proxy", NO_PROXY: "localhost", WRANGLER_HIDE_BANNER: 'false' };
+  assert.deepEqual(localOnlyEnvironment(original), { PATH: "runtime", NO_PROXY: "localhost", WRANGLER_HIDE_BANNER: 'true' });
   assert.equal(original.HTTPS_PROXY, "private-proxy");
+  assert.equal(original.WRANGLER_HIDE_BANNER, 'false');
 });

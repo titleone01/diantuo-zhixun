@@ -1,0 +1,811 @@
+{
+  "at": "2026-10-04T04:09:40.454Z",
+  "scope": "integrated code; isolated Worker/D1/R2; original production checkout and database retained",
+  "sourceParents": [
+    "91bb6371d56a071eabd16c54531ccbad2e704e04",
+    "04ba063723ad4f2afe93023985c7522f964ea6e7"
+  ],
+  "baselineMain": "65167e1a3a8faa80572f2adc3fc904a5614c9d26",
+  "check": {
+    "at": "2026-10-04T04:01:14.970Z",
+    "steps": [
+      {
+        "name": "TypeScript",
+        "code": 0,
+        "elapsedMs": 2528.1954
+      },
+      {
+        "name": "Lint",
+        "code": 0,
+        "elapsedMs": 7946.717900000001
+      },
+      {
+        "name": "Schema",
+        "code": 0,
+        "elapsedMs": 158.83299999999872
+      },
+      {
+        "name": "Production build",
+        "code": 0,
+        "elapsedMs": 7721.9655999999995
+      },
+      {
+        "name": "Pages build",
+        "code": 0,
+        "elapsedMs": 945.6756999999998
+      },
+      {
+        "name": "Offline regressions",
+        "code": 0,
+        "elapsedMs": 8488.778699999999
+      },
+      {
+        "name": "Isolated backend",
+        "code": 0,
+        "elapsedMs": 12367.691299999999
+      },
+      {
+        "name": "Recovery/rollback",
+        "code": 0,
+        "elapsedMs": 27054.708199999994
+      },
+      {
+        "name": "Chromium browser",
+        "code": 0,
+        "elapsedMs": 89844.5896
+      },
+      {
+        "name": "Teaching capacity",
+        "code": 0,
+        "elapsedMs": 52088.041
+      }
+    ]
+  },
+  "offline": {
+    "passed": 476,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "backend suite is executed separately with isolated bindings"
+  },
+  "backend": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "at": "2026-10-04T04:03:51.392Z",
+    "status": "passed",
+    "browser": "Chromium",
+    "workers": 1,
+    "scope": "isolated fixture accounts, no production data",
+    "tests": [
+      {
+        "title": "motor-course-01: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1471,
+        "errors": []
+      },
+      {
+        "title": "motor-course-01: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 936,
+        "errors": []
+      },
+      {
+        "title": "motor-course-02: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1544,
+        "errors": []
+      },
+      {
+        "title": "motor-course-02: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1013,
+        "errors": []
+      },
+      {
+        "title": "motor-course-03: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1476,
+        "errors": []
+      },
+      {
+        "title": "motor-course-03: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1120,
+        "errors": []
+      },
+      {
+        "title": "motor-course-04: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1758,
+        "errors": []
+      },
+      {
+        "title": "motor-course-04: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1095,
+        "errors": []
+      },
+      {
+        "title": "motor-course-05: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1756,
+        "errors": []
+      },
+      {
+        "title": "motor-course-05: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1108,
+        "errors": []
+      },
+      {
+        "title": "motor-course-06: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 2036,
+        "errors": []
+      },
+      {
+        "title": "motor-course-06: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1149,
+        "errors": []
+      },
+      {
+        "title": "motor-course-07: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 2153,
+        "errors": []
+      },
+      {
+        "title": "motor-course-07: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1094,
+        "errors": []
+      },
+      {
+        "title": "motor-course-08: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1697,
+        "errors": []
+      },
+      {
+        "title": "motor-course-08: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1010,
+        "errors": []
+      },
+      {
+        "title": "motor-course-09: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1905,
+        "errors": []
+      },
+      {
+        "title": "motor-course-09: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1066,
+        "errors": []
+      },
+      {
+        "title": "motor-course-10: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1774,
+        "errors": []
+      },
+      {
+        "title": "motor-course-10: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1149,
+        "errors": []
+      },
+      {
+        "title": "motor-course-02: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1720,
+        "errors": []
+      },
+      {
+        "title": "motor-course-03: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1773,
+        "errors": []
+      },
+      {
+        "title": "motor-course-04: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1904,
+        "errors": []
+      },
+      {
+        "title": "motor-course-05: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1755,
+        "errors": []
+      },
+      {
+        "title": "motor-course-06: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 2635,
+        "errors": []
+      },
+      {
+        "title": "motor-course-07: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 2439,
+        "errors": []
+      },
+      {
+        "title": "motor-course-08: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 2077,
+        "errors": []
+      },
+      {
+        "title": "motor-course-09: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1868,
+        "errors": []
+      },
+      {
+        "title": "motor-course-10: protection and contract boundary actions",
+        "status": "passed",
+        "durationMs": 1935,
+        "errors": []
+      },
+      {
+        "title": "real terminal drag, device move, zoom and reload retain world endpoints",
+        "status": "passed",
+        "durationMs": 2153,
+        "errors": []
+      },
+      {
+        "title": "two browser accounts cannot open each other private drafts",
+        "status": "passed",
+        "durationMs": 1239,
+        "errors": []
+      },
+      {
+        "title": "corrupt recovery bytes survive a storage quota failure",
+        "status": "passed",
+        "durationMs": 1571,
+        "errors": []
+      },
+      {
+        "title": "two windows surface a save conflict without overwriting the winner",
+        "status": "passed",
+        "durationMs": 1840,
+        "errors": []
+      },
+      {
+        "title": "late JSON import cannot replace a newer simulation session",
+        "status": "passed",
+        "durationMs": 946,
+        "errors": []
+      },
+      {
+        "title": "reference picker traps focus and prevents editor keyboard deletion",
+        "status": "passed",
+        "durationMs": 1166,
+        "errors": []
+      },
+      {
+        "title": "Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste",
+        "status": "passed",
+        "durationMs": 1525,
+        "errors": []
+      },
+      {
+        "title": "formal course picker creates ten editable blank practices and saves separate drafts",
+        "status": "passed",
+        "durationMs": 4330,
+        "errors": []
+      },
+      {
+        "title": "course change preserves unsaved original identity and isolates recovery and clipboard across accounts",
+        "status": "passed",
+        "durationMs": 2219,
+        "errors": []
+      },
+      {
+        "title": "rendered breaker colors, energized dot size and motor outline retain unsafe-wiring diagnostics",
+        "status": "passed",
+        "durationMs": 1474,
+        "errors": []
+      },
+      {
+        "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+        "status": "passed",
+        "durationMs": 3180,
+        "errors": []
+      },
+      {
+        "title": "repeated group paste and undo preserve a stable editable document",
+        "status": "passed",
+        "durationMs": 2111,
+        "errors": []
+      },
+      {
+        "title": "integrated layout: titles, controls and drawings at 1920x1080",
+        "status": "passed",
+        "durationMs": 2792,
+        "errors": []
+      },
+      {
+        "title": "integrated layout: titles, controls and drawings at 1366x768",
+        "status": "passed",
+        "durationMs": 2518,
+        "errors": []
+      },
+      {
+        "title": "integrated layout: titles, controls and drawings at 1024x768",
+        "status": "passed",
+        "durationMs": 2518,
+        "errors": []
+      }
+    ]
+  },
+  "capacity": {
+    "at": "2026-10-04T04:04:01.228Z",
+    "node": "v24.16.0",
+    "platform": "win32",
+    "scope": "isolated local Worker; no tunnel or production accounts",
+    "connections": "one HTTP connection per request; no write retries",
+    "samples": [
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 4287,
+        "members": 1,
+        "operationsPerMember": 3,
+        "elapsedMs": 43.10320000000138,
+        "p50Ms": 43.0049999999992,
+        "p95Ms": 43.0049999999992,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 117358592,
+          "clientCpu": {
+            "user": 1218000,
+            "system": 828000
+          },
+          "workerTree": {
+            "rssBytes": 682086400,
+            "cpuMs": 8281.25
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 118099968,
+          "clientCpu": {
+            "user": 1234000,
+            "system": 843000
+          },
+          "workerTree": {
+            "rssBytes": 636665856,
+            "cpuMs": 8500
+          }
+        }
+      },
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 4287,
+        "members": 10,
+        "operationsPerMember": 3,
+        "elapsedMs": 286.85280000000057,
+        "p50Ms": 284.6901999999973,
+        "p95Ms": 286.1205000000009,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 118276096,
+          "clientCpu": {
+            "user": 1234000,
+            "system": 843000
+          },
+          "workerTree": {
+            "rssBytes": 640962560,
+            "cpuMs": 8750
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 115933184,
+          "clientCpu": {
+            "user": 1343000,
+            "system": 859000
+          },
+          "workerTree": {
+            "rssBytes": 657670144,
+            "cpuMs": 9234.375
+          }
+        }
+      },
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 4287,
+        "members": 30,
+        "operationsPerMember": 3,
+        "elapsedMs": 779.6310999999987,
+        "p50Ms": 699.6949000000022,
+        "p95Ms": 776.1359999999986,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 116072448,
+          "clientCpu": {
+            "user": 1359000,
+            "system": 859000
+          },
+          "workerTree": {
+            "rssBytes": 658149376,
+            "cpuMs": 9328.125
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 122990592,
+          "clientCpu": {
+            "user": 1437000,
+            "system": 921000
+          },
+          "workerTree": {
+            "rssBytes": 712720384,
+            "cpuMs": 10484.375
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 1,
+        "operationsPerMember": 3,
+        "elapsedMs": 169.1818000000021,
+        "p50Ms": 169.16399999999703,
+        "p95Ms": 169.16399999999703,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 123142144,
+          "clientCpu": {
+            "user": 1453000,
+            "system": 921000
+          },
+          "workerTree": {
+            "rssBytes": 670040064,
+            "cpuMs": 10609.375
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 142602240,
+          "clientCpu": {
+            "user": 1500000,
+            "system": 937000
+          },
+          "workerTree": {
+            "rssBytes": 689790976,
+            "cpuMs": 10921.875
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 10,
+        "operationsPerMember": 3,
+        "elapsedMs": 1212.3144999999968,
+        "p50Ms": 1077.8185000000012,
+        "p95Ms": 1188.7682999999997,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 144211968,
+          "clientCpu": {
+            "user": 1500000,
+            "system": 937000
+          },
+          "workerTree": {
+            "rssBytes": 687222784,
+            "cpuMs": 10984.375
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 317263872,
+          "clientCpu": {
+            "user": 2046000,
+            "system": 1046000
+          },
+          "workerTree": {
+            "rssBytes": 782831616,
+            "cpuMs": 12609.375
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 30,
+        "operationsPerMember": 3,
+        "elapsedMs": 3632.040199999996,
+        "p50Ms": 2926.5607999999993,
+        "p95Ms": 3531.423499999997,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 318763008,
+          "clientCpu": {
+            "user": 2046000,
+            "system": 1062000
+          },
+          "workerTree": {
+            "rssBytes": 782843904,
+            "cpuMs": 12687.5
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 579330048,
+          "clientCpu": {
+            "user": 3640000,
+            "system": 1437000
+          },
+          "workerTree": {
+            "rssBytes": 999600128,
+            "cpuMs": 16953.125
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 1,
+        "operationsPerMember": 1,
+        "elapsedMs": 54.489800000003015,
+        "p50Ms": 54.46970000000147,
+        "p95Ms": 54.46970000000147,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 580005888,
+          "clientCpu": {
+            "user": 3640000,
+            "system": 1437000
+          },
+          "workerTree": {
+            "rssBytes": 999604224,
+            "cpuMs": 17093.75
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 591179776,
+          "clientCpu": {
+            "user": 3671000,
+            "system": 1437000
+          },
+          "workerTree": {
+            "rssBytes": 1000689664,
+            "cpuMs": 17328.125
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 10,
+        "operationsPerMember": 1,
+        "elapsedMs": 474.01029999999446,
+        "p50Ms": 308.2943000000014,
+        "p95Ms": 380.6166999999987,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 594907136,
+          "clientCpu": {
+            "user": 3671000,
+            "system": 1453000
+          },
+          "workerTree": {
+            "rssBytes": 1000738816,
+            "cpuMs": 17390.625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 246558720,
+          "clientCpu": {
+            "user": 3937000,
+            "system": 1500000
+          },
+          "workerTree": {
+            "rssBytes": 989990912,
+            "cpuMs": 17984.375
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 30,
+        "operationsPerMember": 1,
+        "elapsedMs": 1417.1551999999938,
+        "p50Ms": 875.0244000000021,
+        "p95Ms": 1260.091999999997,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 251129856,
+          "clientCpu": {
+            "user": 3953000,
+            "system": 1515000
+          },
+          "workerTree": {
+            "rssBytes": 991707136,
+            "cpuMs": 18140.625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 404058112,
+          "clientCpu": {
+            "user": 4562000,
+            "system": 1703000
+          },
+          "workerTree": {
+            "rssBytes": 1013583872,
+            "cpuMs": 19312.5
+          }
+        }
+      }
+    ],
+    "twoAccountDenial": true,
+    "saveConflict": true
+  },
+  "historicalCapacityFailures": [
+    {
+      "file": "capacity-2026-10-04T03-23-32.558Z.json",
+      "at": "2026-10-04T03:23:32.558Z",
+      "samples": [
+        {
+          "document": "large",
+          "members": 30,
+          "failures": 1,
+          "failureDetails": [
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "capacity-2026-10-04T03-31-34.658Z.json",
+      "at": "2026-10-04T03:31:34.658Z",
+      "samples": [
+        {
+          "document": "large",
+          "members": 30,
+          "failures": 2,
+          "failureDetails": [
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            },
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "capacity-2026-10-04T03-34-49.832Z.json",
+      "at": "2026-10-04T03:34:49.832Z",
+      "samples": [
+        {
+          "document": "small",
+          "members": 30,
+          "failures": 4,
+          "failureDetails": [
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            },
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            },
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            },
+            {
+              "failed": true,
+              "error": "AssertionError",
+              "stage": "create",
+              "status": 500
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "formalDrawings": {
+    "verifiedAt": "2026-10-04T03:38:09.727Z",
+    "origin": "http://127.0.0.1:64257",
+    "projects": 10,
+    "sourceImages": 20,
+    "memberReads": 40,
+    "anonymousDenied": 20,
+    "allHashesMatch": true,
+    "sourceDirectory": "C:\\Users\\admin\\Desktop\\电气控制技术课程图纸10\\电气控制技术课程图纸10"
+  },
+  "backup": {
+    "root": "E:/vibecoding/电拓智训-backups/20261003-211256",
+    "checkpoint": "f173825458a2cdcb0890b5a3d335840f28cd4688",
+    "branch": "codex/backup-before-feedback-20261003-211256",
+    "tag": "codex/pre-feedback-20261003-211256",
+    "files": 1568,
+    "bytes": 326166979,
+    "currentHashMismatches": 0,
+    "bundleVerified": true,
+    "originalConsistency": {
+      "verifiedAt": "2026-10-03T13:12:59.952Z",
+      "sourceStable": true,
+      "files": 1568,
+      "bytes": 326166979,
+      "databases": [
+        {
+          "path": "private/.wrangler/state/v3/cache/miniflare-CacheObject/metadata.sqlite",
+          "valid": true
+        },
+        {
+          "path": "private/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/faaf2b0445ab934c3aac48ddf0cdfade8f9bac050be98993748742cdd2cb05fb.sqlite",
+          "valid": true
+        },
+        {
+          "path": "private/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/metadata.sqlite",
+          "valid": true
+        },
+        {
+          "path": "private/.wrangler/state/v3/r2/miniflare-R2BucketObject/6d14805f1c0af9f06e3fce288bc3da43d94b8fd4e95cbc4501a272dc9094312b.sqlite",
+          "valid": true
+        },
+        {
+          "path": "private/.wrangler/state/v3/r2/miniflare-R2BucketObject/metadata.sqlite",
+          "valid": true
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Historical ProxyWorker 500s are retained and not claimed fixed by this passing sample.",
+    "Original red-stop incident requires the actual draft and action sequence.",
+    "No production schema migration, source switch or remote deployment was performed.",
+    "Current npm audit has 7 high and 4 moderate findings; lint has 11 pre-existing warnings."
+  ]
+}

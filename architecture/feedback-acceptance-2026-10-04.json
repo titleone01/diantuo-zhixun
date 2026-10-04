@@ -1,0 +1,1117 @@
+{
+  "at": "2026-10-03T17:09:50.218Z",
+  "scope": "isolated local Worker/D1/R2; original production origin and state preserved",
+  "branch": "codex/simulator-feedback-20261003",
+  "baseline": "f173825458a2cdcb0890b5a3d335840f28cd4688",
+  "codeCommit": "0a2eb518df450a77b51a1ae6891a9dcc54c10b39",
+  "pagesCommit": "ef435f22baa6dc918adb30c8b219216cc1d82af3",
+  "handoff": {
+    "verifiedFiles": 72,
+    "omitted": "architecture/local-runbook.md retained feature additions",
+    "mismatches": []
+  },
+  "finalCheck": {
+    "at": "2026-10-03T16:55:10.088Z",
+    "steps": [
+      {
+        "name": "TypeScript",
+        "code": 0,
+        "elapsedMs": 3609.5232
+      },
+      {
+        "name": "Lint",
+        "code": 0,
+        "elapsedMs": 7648.466900000001
+      },
+      {
+        "name": "Schema",
+        "code": 0,
+        "elapsedMs": 147.03329999999914
+      },
+      {
+        "name": "Production build",
+        "code": 0,
+        "elapsedMs": 10759.418300000001
+      },
+      {
+        "name": "Pages build",
+        "code": 0,
+        "elapsedMs": 815.7632999999987
+      },
+      {
+        "name": "Offline regressions",
+        "code": 0,
+        "elapsedMs": 7515.796200000001
+      },
+      {
+        "name": "Isolated backend",
+        "code": 0,
+        "elapsedMs": 11618.898400000002
+      }
+    ]
+  },
+  "combinedExtended": {
+    "at": "2026-10-03T16:43:40.991Z",
+    "steps": [
+      {
+        "name": "TypeScript",
+        "code": 0,
+        "elapsedMs": 2068.6765
+      },
+      {
+        "name": "Lint",
+        "code": 0,
+        "elapsedMs": 7261.161400000001
+      },
+      {
+        "name": "Schema",
+        "code": 0,
+        "elapsedMs": 129.66070000000036
+      },
+      {
+        "name": "Production build",
+        "code": 0,
+        "elapsedMs": 7303.3676
+      },
+      {
+        "name": "Pages build",
+        "code": 0,
+        "elapsedMs": 595.8316999999988
+      },
+      {
+        "name": "Offline regressions",
+        "code": 0,
+        "elapsedMs": 7438.970400000002
+      },
+      {
+        "name": "Isolated backend",
+        "code": 0,
+        "elapsedMs": 12579.209899999998
+      },
+      {
+        "name": "Recovery/rollback",
+        "code": 0,
+        "elapsedMs": 25098.824699999997
+      },
+      {
+        "name": "Chromium browser",
+        "code": 0,
+        "elapsedMs": 52190.2933
+      },
+      {
+        "name": "Teaching capacity",
+        "code": 0,
+        "elapsedMs": 50355.5597
+      }
+    ]
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 11,
+    "baselineErrors": 77,
+    "baselineWarnings": 21
+  },
+  "offline": {
+    "total": 453,
+    "passed": 452,
+    "failed": 0,
+    "skipped": 1,
+    "skipReason": "Backend integration environment omitted in offline run; dedicated backend group separately passed"
+  },
+  "backend": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "at": "2026-10-03T16:45:35.088Z",
+    "status": "passed",
+    "browser": "Chromium",
+    "workers": 1,
+    "scope": "isolated fixture accounts, no production data",
+    "tests": [
+      {
+        "title": "motor-course-01: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1300,
+        "errors": []
+      },
+      {
+        "title": "motor-course-01: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 915,
+        "errors": []
+      },
+      {
+        "title": "motor-course-02: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1269,
+        "errors": []
+      },
+      {
+        "title": "motor-course-02: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 904,
+        "errors": []
+      },
+      {
+        "title": "motor-course-03: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1304,
+        "errors": []
+      },
+      {
+        "title": "motor-course-03: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 978,
+        "errors": []
+      },
+      {
+        "title": "motor-course-04: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1488,
+        "errors": []
+      },
+      {
+        "title": "motor-course-04: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 909,
+        "errors": []
+      },
+      {
+        "title": "motor-course-05: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1467,
+        "errors": []
+      },
+      {
+        "title": "motor-course-05: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 933,
+        "errors": []
+      },
+      {
+        "title": "motor-course-06: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1773,
+        "errors": []
+      },
+      {
+        "title": "motor-course-06: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1012,
+        "errors": []
+      },
+      {
+        "title": "motor-course-07: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 2033,
+        "errors": []
+      },
+      {
+        "title": "motor-course-07: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1164,
+        "errors": []
+      },
+      {
+        "title": "motor-course-08: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1793,
+        "errors": []
+      },
+      {
+        "title": "motor-course-08: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1032,
+        "errors": []
+      },
+      {
+        "title": "motor-course-09: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1927,
+        "errors": []
+      },
+      {
+        "title": "motor-course-09: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1071,
+        "errors": []
+      },
+      {
+        "title": "motor-course-10: standard controls and passed assessment",
+        "status": "passed",
+        "durationMs": 1493,
+        "errors": []
+      },
+      {
+        "title": "motor-course-10: missing protective earth is rejected",
+        "status": "passed",
+        "durationMs": 1016,
+        "errors": []
+      },
+      {
+        "title": "real terminal drag, device move, zoom and reload retain world endpoints",
+        "status": "passed",
+        "durationMs": 2012,
+        "errors": []
+      },
+      {
+        "title": "two browser accounts cannot open each other private drafts",
+        "status": "passed",
+        "durationMs": 1227,
+        "errors": []
+      },
+      {
+        "title": "corrupt recovery bytes survive a storage quota failure",
+        "status": "passed",
+        "durationMs": 1647,
+        "errors": []
+      },
+      {
+        "title": "two windows surface a save conflict without overwriting the winner",
+        "status": "passed",
+        "durationMs": 1997,
+        "errors": []
+      },
+      {
+        "title": "late JSON import cannot replace a newer simulation session",
+        "status": "passed",
+        "durationMs": 995,
+        "errors": []
+      },
+      {
+        "title": "reference picker traps focus and prevents editor keyboard deletion",
+        "status": "passed",
+        "durationMs": 1023,
+        "errors": []
+      },
+      {
+        "title": "Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste",
+        "status": "passed",
+        "durationMs": 1271,
+        "errors": []
+      },
+      {
+        "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+        "status": "passed",
+        "durationMs": 2855,
+        "errors": []
+      },
+      {
+        "title": "repeated group paste and undo preserve a stable editable document",
+        "status": "passed",
+        "durationMs": 1763,
+        "errors": []
+      }
+    ]
+  },
+  "capacity": {
+    "at": "2026-10-03T16:45:45.109Z",
+    "node": "v24.16.0",
+    "platform": "win32",
+    "scope": "isolated local Worker; no tunnel or production accounts",
+    "connections": "one HTTP connection per request; no write retries",
+    "samples": [
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 3648,
+        "members": 1,
+        "operationsPerMember": 3,
+        "elapsedMs": 44.688100000001214,
+        "p50Ms": 44.55789999999979,
+        "p95Ms": 44.55789999999979,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 111587328,
+          "clientCpu": {
+            "user": 984000,
+            "system": 656000
+          },
+          "workerTree": {
+            "rssBytes": 669974528,
+            "cpuMs": 7265.625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 108122112,
+          "clientCpu": {
+            "user": 1000000,
+            "system": 671000
+          },
+          "workerTree": {
+            "rssBytes": 620838912,
+            "cpuMs": 7437.5
+          }
+        }
+      },
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 3648,
+        "members": 10,
+        "operationsPerMember": 3,
+        "elapsedMs": 263.4418000000005,
+        "p50Ms": 245.41820000000007,
+        "p95Ms": 262.1902999999984,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 108134400,
+          "clientCpu": {
+            "user": 1000000,
+            "system": 687000
+          },
+          "workerTree": {
+            "rssBytes": 623808512,
+            "cpuMs": 7625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 109805568,
+          "clientCpu": {
+            "user": 1015000,
+            "system": 703000
+          },
+          "workerTree": {
+            "rssBytes": 643719168,
+            "cpuMs": 8046.875
+          }
+        }
+      },
+      {
+        "document": "small",
+        "expectedStatus": 200,
+        "jsonBytes": 3648,
+        "members": 30,
+        "operationsPerMember": 3,
+        "elapsedMs": 729.0030000000006,
+        "p50Ms": 719.6373999999996,
+        "p95Ms": 726.2367000000013,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 109879296,
+          "clientCpu": {
+            "user": 1015000,
+            "system": 703000
+          },
+          "workerTree": {
+            "rssBytes": 644902912,
+            "cpuMs": 8140.625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 115539968,
+          "clientCpu": {
+            "user": 1250000,
+            "system": 781000
+          },
+          "workerTree": {
+            "rssBytes": 705343488,
+            "cpuMs": 9109.375
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 1,
+        "operationsPerMember": 3,
+        "elapsedMs": 157.59870000000228,
+        "p50Ms": 157.5825999999979,
+        "p95Ms": 157.5825999999979,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 115544064,
+          "clientCpu": {
+            "user": 1265000,
+            "system": 781000
+          },
+          "workerTree": {
+            "rssBytes": 705368064,
+            "cpuMs": 9187.5
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 131510272,
+          "clientCpu": {
+            "user": 1312000,
+            "system": 796000
+          },
+          "workerTree": {
+            "rssBytes": 725872640,
+            "cpuMs": 9359.375
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 10,
+        "operationsPerMember": 3,
+        "elapsedMs": 1175.5815000000002,
+        "p50Ms": 1130.780999999999,
+        "p95Ms": 1159.9071999999978,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 132935680,
+          "clientCpu": {
+            "user": 1312000,
+            "system": 796000
+          },
+          "workerTree": {
+            "rssBytes": 724217856,
+            "cpuMs": 9468.75
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 252043264,
+          "clientCpu": {
+            "user": 1734000,
+            "system": 843000
+          },
+          "workerTree": {
+            "rssBytes": 818806784,
+            "cpuMs": 10765.625
+          }
+        }
+      },
+      {
+        "document": "large",
+        "expectedStatus": 200,
+        "jsonBytes": 586099,
+        "members": 30,
+        "operationsPerMember": 3,
+        "elapsedMs": 3545.3314000000028,
+        "p50Ms": 2788.164700000001,
+        "p95Ms": 3490.1289000000033,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 253587456,
+          "clientCpu": {
+            "user": 1750000,
+            "system": 843000
+          },
+          "workerTree": {
+            "rssBytes": 818810880,
+            "cpuMs": 10875
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 394240000,
+          "clientCpu": {
+            "user": 3171000,
+            "system": 1203000
+          },
+          "workerTree": {
+            "rssBytes": 957460480,
+            "cpuMs": 14937.5
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 1,
+        "operationsPerMember": 1,
+        "elapsedMs": 74.83870000000024,
+        "p50Ms": 74.81530000000203,
+        "p95Ms": 74.81530000000203,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 395616256,
+          "clientCpu": {
+            "user": 3171000,
+            "system": 1203000
+          },
+          "workerTree": {
+            "rssBytes": 957755392,
+            "cpuMs": 15015.625
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 406786048,
+          "clientCpu": {
+            "user": 3203000,
+            "system": 1203000
+          },
+          "workerTree": {
+            "rssBytes": 958267392,
+            "cpuMs": 15125
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 10,
+        "operationsPerMember": 1,
+        "elapsedMs": 490.286500000002,
+        "p50Ms": 354.25329999999667,
+        "p95Ms": 434.5054999999993,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 410509312,
+          "clientCpu": {
+            "user": 3218000,
+            "system": 1203000
+          },
+          "workerTree": {
+            "rssBytes": 958267392,
+            "cpuMs": 15250
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 463646720,
+          "clientCpu": {
+            "user": 3375000,
+            "system": 1281000
+          },
+          "workerTree": {
+            "rssBytes": 995885056,
+            "cpuMs": 15890.625
+          }
+        }
+      },
+      {
+        "document": "oversized",
+        "expectedStatus": 413,
+        "jsonBytes": 3722099,
+        "members": 30,
+        "operationsPerMember": 1,
+        "elapsedMs": 1320.2609000000011,
+        "p50Ms": 930.2013999999981,
+        "p95Ms": 1244.0488000000041,
+        "failures": 0,
+        "failureDetails": [],
+        "failureRate": 0,
+        "resourcesBefore": {
+          "clientRssBytes": 468283392,
+          "clientCpu": {
+            "user": 3390000,
+            "system": 1281000
+          },
+          "workerTree": {
+            "rssBytes": 995889152,
+            "cpuMs": 15968.75
+          }
+        },
+        "resourcesAfter": {
+          "clientRssBytes": 582877184,
+          "clientCpu": {
+            "user": 3968000,
+            "system": 1421000
+          },
+          "workerTree": {
+            "rssBytes": 968704000,
+            "cpuMs": 17281.25
+          }
+        }
+      }
+    ],
+    "twoAccountDenial": true,
+    "saveConflict": true
+  },
+  "formalDrawings": {
+    "projects": 10,
+    "sourceImages": 20,
+    "memberReads": 40,
+    "anonymousDenied": 20,
+    "allHashesMatch": true,
+    "displayed": 20,
+    "allMediaIdsMatch": true,
+    "views": [
+      {
+        "course": 1,
+        "kind": "schematic",
+        "complete": true,
+        "width": 881,
+        "height": 744
+      },
+      {
+        "course": 1,
+        "kind": "layout",
+        "complete": true,
+        "width": 658,
+        "height": 529
+      },
+      {
+        "course": 2,
+        "kind": "schematic",
+        "complete": true,
+        "width": 735,
+        "height": 707
+      },
+      {
+        "course": 2,
+        "kind": "layout",
+        "complete": true,
+        "width": 676,
+        "height": 493
+      },
+      {
+        "course": 3,
+        "kind": "schematic",
+        "complete": true,
+        "width": 818,
+        "height": 746
+      },
+      {
+        "course": 3,
+        "kind": "layout",
+        "complete": true,
+        "width": 618,
+        "height": 461
+      },
+      {
+        "course": 4,
+        "kind": "schematic",
+        "complete": true,
+        "width": 734,
+        "height": 673
+      },
+      {
+        "course": 4,
+        "kind": "layout",
+        "complete": true,
+        "width": 674,
+        "height": 615
+      },
+      {
+        "course": 5,
+        "kind": "schematic",
+        "complete": true,
+        "width": 735,
+        "height": 678
+      },
+      {
+        "course": 5,
+        "kind": "layout",
+        "complete": true,
+        "width": 674,
+        "height": 615
+      },
+      {
+        "course": 6,
+        "kind": "schematic",
+        "complete": true,
+        "width": 784,
+        "height": 672
+      },
+      {
+        "course": 6,
+        "kind": "layout",
+        "complete": true,
+        "width": 680,
+        "height": 531
+      },
+      {
+        "course": 7,
+        "kind": "schematic",
+        "complete": true,
+        "width": 1420,
+        "height": 1020
+      },
+      {
+        "course": 7,
+        "kind": "layout",
+        "complete": true,
+        "width": 577,
+        "height": 528
+      },
+      {
+        "course": 8,
+        "kind": "schematic",
+        "complete": true,
+        "width": 844,
+        "height": 614
+      },
+      {
+        "course": 8,
+        "kind": "layout",
+        "complete": true,
+        "width": 534,
+        "height": 452
+      },
+      {
+        "course": 9,
+        "kind": "schematic",
+        "complete": true,
+        "width": 764,
+        "height": 487
+      },
+      {
+        "course": 9,
+        "kind": "layout",
+        "complete": true,
+        "width": 656,
+        "height": 531
+      },
+      {
+        "course": 10,
+        "kind": "schematic",
+        "complete": true,
+        "width": 887,
+        "height": 592
+      },
+      {
+        "course": 10,
+        "kind": "layout",
+        "complete": true,
+        "width": 656,
+        "height": 530
+      }
+    ]
+  },
+  "presets": [
+    {
+      "course": 1,
+      "objects": 15,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 2,
+      "objects": 17,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 3,
+      "objects": 18,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 4,
+      "objects": 19,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 5,
+      "objects": 19,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 6,
+      "objects": 23,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 7,
+      "objects": 24,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 8,
+      "objects": 19,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 9,
+      "objects": 20,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    },
+    {
+      "course": 10,
+      "objects": 20,
+      "wires": 0,
+      "fuse2Ports": 4,
+      "terminalStripPorts": 32
+    }
+  ],
+  "additionalBrowserProtection": [
+    {
+      "course": 7,
+      "action": "M1未启动时请求M2",
+      "motors": [
+        {
+          "active": false,
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "启动M1",
+      "motors": [
+        {
+          "active": true,
+          "direction": "forward",
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "启动M2",
+      "motors": [
+        {
+          "active": true,
+          "direction": "forward",
+          "id": "m1"
+        },
+        {
+          "active": true,
+          "direction": "forward",
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "FR1脱扣",
+      "motors": [
+        {
+          "active": false,
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "FR1复位不自行重启",
+      "motors": [
+        {
+          "active": false,
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "重新依次启动",
+      "motors": [
+        {
+          "active": true,
+          "direction": "forward",
+          "id": "m1"
+        },
+        {
+          "active": true,
+          "direction": "forward",
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "FR2脱扣",
+      "motors": [
+        {
+          "active": false,
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    },
+    {
+      "course": 7,
+      "action": "FR2复位不自行重启",
+      "motors": [
+        {
+          "active": false,
+          "id": "m1"
+        },
+        {
+          "active": false,
+          "id": "m2"
+        }
+      ]
+    }
+  ],
+  "preservedAssets": {
+    "baselineFiles": 67,
+    "changedBaselineFiles": [],
+    "sourceImages": 20,
+    "changedSourceImages": []
+  },
+  "limitations": [
+    "Original screenshot stop-button failure and crash not reliably reproduced",
+    "Production migration/switch/restore and public-network acceptance not executed; remote Linux CI now verified",
+    "Intermittent local ProxyWorker connection-loss failures retained; latest pass does not prove elimination",
+    "Capacity uses fresh HTTP connection per request and synthetic accounts; not sustained public/browser capacity",
+    "Earlier manual observations partly misbucketed; final browser batch and course7 protection evidence correctly classified"
+  ],
+  "postPushVerification": {
+    "verifiedAt": "2026-10-03T17:34:36Z",
+    "runtimeSourceChanged": false,
+    "testCommit": "19b10dbd3f71793b4ba313e635671b6ba145cffe",
+    "firstRemoteCi": {
+      "id": 37140413697,
+      "commit": "35eb15a1a15c67aed4ddad418a296d243fe9ff59",
+      "url": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37140413697",
+      "conclusion": "failure",
+      "cause": "CRLF/LF difference between original SVG and generated artwork in exact label comparison"
+    },
+    "correction": {
+      "file": "tests/simulator-source-components.test.mjs",
+      "scope": "normalize XML line endings and exercise LF/CRLF inputs; retain all label, electrical geometry and state assertions",
+      "originalAssetBytesChanged": false,
+      "localTargetedPassed": 12,
+      "localOfflinePassed": 452,
+      "localOfflineConditionalSkip": 1,
+      "changedFileLintErrors": 0,
+      "changedFileLintWarnings": 0
+    },
+    "remoteCi": {
+      "id": 37140814062,
+      "commit": "19b10dbd3f71793b4ba313e635671b6ba145cffe",
+      "url": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37140814062",
+      "conclusion": "success",
+      "check": {
+        "at": "2026-10-03T17:32:04.413Z",
+        "steps": [
+          {
+            "name": "TypeScript",
+            "code": 0,
+            "elapsedMs": 5873.56696
+          },
+          {
+            "name": "Lint",
+            "code": 0,
+            "elapsedMs": 8147.355552
+          },
+          {
+            "name": "Schema",
+            "code": 0,
+            "elapsedMs": 85.35533399999986
+          },
+          {
+            "name": "Production build",
+            "code": 0,
+            "elapsedMs": 8313.606831
+          },
+          {
+            "name": "Pages build",
+            "code": 0,
+            "elapsedMs": 544.0904330000012
+          },
+          {
+            "name": "Offline regressions",
+            "code": 0,
+            "elapsedMs": 11901.757129999998
+          },
+          {
+            "name": "Isolated backend",
+            "code": 0,
+            "elapsedMs": 12853.830596
+          },
+          {
+            "name": "Recovery/rollback",
+            "code": 0,
+            "elapsedMs": 23652.623502999995
+          },
+          {
+            "name": "Chromium browser",
+            "code": 0,
+            "elapsedMs": 53408.79712900001
+          },
+          {
+            "name": "Teaching capacity",
+            "code": 0,
+            "elapsedMs": 20186.317603999996
+          }
+        ]
+      },
+      "lint": {
+        "errors": 0,
+        "warnings": 11
+      },
+      "offline": {
+        "total": 453,
+        "passed": 452,
+        "conditionalSkip": 1,
+        "failed": 0
+      },
+      "backend": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "browser": {
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0
+      },
+      "capacity": {
+        "groups": 9,
+        "failedRequests": 0,
+        "platform": "linux",
+        "twoAccountDenial": true,
+        "saveConflict": true,
+        "workerResourceMetricsAvailable": false
+      },
+      "recovery": {
+        "verifiedAt": "2026-10-03T17:33:15.779Z",
+        "releaseV1": "c4cd7e3639e7d5796a8d3270ad095db1fc919366bdbf2e2c9d368e04ef0f175e",
+        "releaseV2": "f8536d1f69eba8a478b95cf447b0917a5ad7568874e2b3cfc70f63141e833f73",
+        "offline": {
+          "files": 28,
+          "sqliteChecked": true
+        },
+        "loginsDraftPublicationAttachmentsPermissions": true,
+        "rollbackRetainsLatestState": true,
+        "sourceIsolation": true,
+        "operatorEntryPoint": true,
+        "privateRuntimeRestored": true,
+        "nonemptyRestoreRefused": true
+      },
+      "sanitizedArtifactsDownloadedAndChecked": true
+    }
+  }
+}

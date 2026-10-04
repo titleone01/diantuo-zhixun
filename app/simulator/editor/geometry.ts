@@ -1,10 +1,12 @@
 import { resolveTerminal } from "../core/catalog";
 import { routeWireInDucts } from "../core/duct-routing";
 import type { CircuitDocument, CircuitWire, Point, Terminal } from "../core/types";
+import { ductWireRoute } from "./duct-routing";
 
 const equal = (a: Point, b: Point) => a.x === b.x && a.y === b.y;
 
 export function terminalColor(terminal: Terminal): string {
+  if (terminal.color) return terminal.color;
   if (terminal.electrical === "earth" || terminal.id === "PE") return "#659f2f";
   if (terminal.electrical === "neutral" || terminal.id === "N") return "#3478f6";
   if (["L1", "U", "1", "2"].includes(terminal.id)) return "#e7b000";
@@ -24,6 +26,7 @@ export function wireEndpoints(document: CircuitDocument, wire: CircuitWire) {
 /** Waypoints are world-space drawing hints; they never add electrical junctions. */
 export function wireRoute(document: CircuitDocument, wire: CircuitWire): Point[] {
   if (wire.style === "duct") return routeWireInDucts(document, wire).sections.flat();
+  if(wire.routing==="duct"){const routed=ductWireRoute(document,wire);if(routed.points)return routed.points;}
   const source = resolveTerminal(document, wire.from);
   const target = resolveTerminal(document, wire.to);
   if (wire.style === "straight" || wire.style === "curve") return [source.world, target.world];
@@ -60,6 +63,7 @@ export function curveControlPoints(document: CircuitDocument, wire: CircuitWire)
 
 export function wirePath(document: CircuitDocument, wire: CircuitWire): string {
   if (wire.style === "duct") return routeWireInDucts(document, wire).sections.map(section => section.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ")).join(" ");
+  if(wire.routing==="duct"){const routed=ductWireRoute(document,wire);if(routed.points)return routed.points.map((point,index)=>`${index===0?"M":"L"} ${point.x} ${point.y}`).join(" ");}
   if (wire.style === "curve") {
     const [source, first, second, target] = curveControlPoints(document, wire);
     return `M ${source.x} ${source.y} C ${first.x} ${first.y} ${second.x} ${second.y} ${target.x} ${target.y}`;

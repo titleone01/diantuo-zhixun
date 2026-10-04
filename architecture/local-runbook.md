@@ -1,6 +1,25 @@
 # 成员站本地运行手册
 
+## 2026-10-04 聊天反馈功能与验收入口
+
+本轮功能与回退记录见 [反馈改造交付报告](feedback-implementation-2026-10-04.md)。正式课程新练习自动预排器件、双联 FU2、16位端子排及线槽，初始无接线；器件及线槽可以调整。旧草稿保持兼容。
+
+“器件库”提供 1P/3P 空气开关、双联熔断器和16位端子排。Shift 多选，使用复制/粘贴按钮或 Ctrl+C/Ctrl+V；尺寸和组内导线保留，一次粘贴可一次撤销。仿真与只读状态禁止粘贴。切换课程或新建前会保留未保存接线，恢复入口为“课程与草稿 → 本机暂存”，按账号隔离。
+
+新导线选择“直线”且画布存在连通线槽时自动沿槽；旧线可用“自动走线槽”启用。无法连通会显示保留原连接的提示。深灰线槽不制造电气接点，槽内线路重叠不表示互相导通。
+
+图纸工具默认仍兼容既有管理员路径。隔离验收必须指定同一次运行的地址、临时管理员和证据目录，禁止拿生产凭据测试另一数据库：
+
+```powershell
+node scripts/import-training-drawings.mjs --directory "<二十张正式PNG目录>" --url "http://127.0.0.1:<测试端口>" --admin-file "<临时运行目录>/admin-access.json" --artifact-dir "<临时运行目录>/artifacts"
+node scripts/test-training-drawings.mjs --url "http://127.0.0.1:<测试端口>" --artifact-dir "<同一临时运行目录>/artifacts"
+```
+
+第二条读取该目录中的导入清单和 `test-accounts.json`，要求两个不同成员；账号记录含 origin 时须与目标匹配。工具核对20图SHA-256和成员/匿名权限，不自动重试写入。输出目录含测试凭据，不能公开分享。
+
 当前成员站采用 React 界面、Cloudflare Worker API、Better Auth 登录、D1 数据库和私有 R2 附件。业务数据保存在本机；2026-09-30 经用户确认，通过独立 Cloudflare Tunnel 提供固定 HTTPS 入口。建议 Node.js 24，最低版本见 `package.json`。
+
+版本化运行、停写备份、空新目录恢复及保留最新state的代码回退见[发布恢复手册](releases-and-recovery.md)。现有启动方式仍保留，正式切换尚未实施。`start:release`不会构建、迁移或初始化；日常检查用`npm run check`，完整隔离验收用`check:extended`。
 
 ## 启动和停止
 

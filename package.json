@@ -15,6 +15,14 @@
     "legacy:build:local": "node scripts/build-pages.mjs --base / --out-dir pages-dist",
     "legacy:start:local": "node server/local-server.mjs",
     "test:backend": "node scripts/test-multiuser.mjs",
+    "check": "node scripts/check-project.mjs",
+    "check:extended": "node scripts/check-project.mjs --extended",
+    "check:schema": "node scripts/check-schema.mjs",
+    "test:recovery": "node scripts/test-recovery.mjs",
+    "test:browser": "node scripts/test-browser.mjs",
+    "test:capacity": "node scripts/test-capacity.mjs",
+    "release": "node scripts/release-tools.mjs",
+    "start:release": "node scripts/start-release.mjs",
     "start": "vinext start",
     "test": "npm run build && node --test tests/*.test.mjs",
     "typecheck": "tsc --noEmit",
@@ -35,18 +43,19 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
-    "@cloudflare/workers-types": "^4.20260702.1",
+    "@cloudflare/vite-plugin": "1.62.5",
+    "@cloudflare/workers-types": "5.20261003.1",
     "@eslint/js": "9.39.4",
-    "@next/eslint-plugin-next": "16.2.6",
+    "@next/eslint-plugin-next": "16.3.8",
     "@openai/sites-vite-plugin": "0.1.0",
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/three": "^0.185.0",
     "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
+    "@vitejs/plugin-rsc": "0.5.34",
     "drizzle-kit": "0.31.10",
     "esbuild": "^0.28.1",
     "eslint": "9.39.4",
@@ -58,9 +67,12 @@
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.59.3",
-    "vinext": "1.0.0-beta.2",
+    "vinext": "1.0.1",
     "vite": "8.0.16",
-    "wrangler": "4.92.0"
+    "wrangler": "4.147.0"
   },
-  "type": "module"
+  "type": "module",
+  "overrides": {
+    "fflate@>=0.7.0 <0.7.5": "0.7.5"
+  }
 }

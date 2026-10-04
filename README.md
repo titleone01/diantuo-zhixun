@@ -2,7 +2,7 @@
 
 面向职业院校的二维电气接线训练成员站。当前主产品位于 `app/simulator/`：邀请登录后，学员选择课程或参考图纸，在 React Flow 画布放置器件、连接端子、操作离散仿真、检查课程、保存私有草稿或发布成员可见的独立快照。
 
-主要训练范围是十套电机控制课程，另保留点动、自锁、单控和双控照明四个基础示例。目录包含 27 种可放置对象（25 种电气器件、2 种线槽）。这是教学模型，不计算真实电磁、热或机械瞬态，不代表厂家安装尺寸或实际设备安全认证。
+主要训练范围是十套电机控制课程，另保留点动、自锁、单控和双控照明四个基础示例。目录包含 29 种可放置对象（27 种电气器件、2 种线槽）。这是教学模型，不计算真实电磁、热或机械瞬态，不代表厂家安装尺寸或实际设备安全认证。
 
 旧三维模块、原始素材和历史存档独立保留，不自动转换为二维数据。项目仍处于试运行阶段，自动测试通过不等于所有接法、设备或网络验收完成。
 
@@ -86,6 +86,16 @@ npm run test:backend
 
 ## 当前维护边界
 
-重点是可复现发布与恢复演练、剩余依赖公告处置、源码 Hooks/无障碍 lint 债务、课程负例矩阵及大文档性能测量。`db:generate` 输出到历史 `drizzle/`，与实际 `db/migrations/` 尚未统一，禁止将生成结果直接当生产迁移执行。
+已增加版本产物、停写备份/恢复、代码回退及严格图纸版本条件，见[发布恢复手册](architecture/releases-and-recovery.md)。正式迁移与源站切换仍须安排维护窗口。
+
+日常执行`npm run check`：类型、lint、schema、生产构建、Pages、离线与隔离后台。`npm run check:extended`追加恢复、Chromium和容量验收。先执行`npx playwright install chromium`；Linux CI加`--with-deps`。单项命令是`check:schema`、`test:recovery`、`test:browser`、`test:capacity`。单worker浏览器使用新建测试账号，只有`.local/acceptance-public/`脱敏结果可上传，临时凭据、状态和失败上下文不公开。
+
+`db/migrations/`是唯一执行来源。`db:generate`输出`.local/migration-candidates/`，人工审核为新增SQL后执行`check:schema`与隔离迁移；历史`drizzle/`保留。比对表、列、默认值、主键、索引和外键，历史TEXT主键非空声明差异归一化；CHECK约束不在自动比对范围。
+
+浏览器脱敏结果保留在`acceptance-public/browser-history/`；详细失败只写测试专属私有目录，不能上传。隔离运行器关闭Wrangler版本提示，避免其未取消的网络更新检查阻塞本地命令退出；仍使用锁文件指定版本。
+
+剩余依赖处置见[安全台账](architecture/dependency-audit-2026-10-03.md)，本轮合并副本证据见[加固报告](architecture/project-hardening-report-2026-10-04.md)。最终分支合并后仍须核对文件哈希与验收结果。
 
 本轮修复、验证、未决问题和下一步见 [项目优化报告](architecture/project-health-report-2026-10-03.md)。历史验收保留原日期，不能当作当前实时上线状态。
+
+2026-10-04 聊天反馈功能、备份回退点及最终隔离验收见 [反馈交付报告](architecture/feedback-implementation-2026-10-04.md) 和 [逐项脱敏记录](architecture/feedback-acceptance-2026-10-04.json)。十课新练习自动预排器件、双联 FU2、16 位端子排和线槽；初始无导线，允许编辑、复制和接线。本轮交付功能分支，正式源站切换按维护窗口执行。

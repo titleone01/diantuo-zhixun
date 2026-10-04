@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { workspaceRequest, type Account, type Session, type TrainingProject } from "./workspace-api";
+import Modal from '../simulator/Modal';
 
 export function ProjectPanel({ session, projects, selectedId, onSelect, onRefresh, onPreview }: {
   session: Session | null;
@@ -59,7 +60,7 @@ export function ProjectPanel({ session, projects, selectedId, onSelect, onRefres
     <div className="workspace-account-actions">
       {admin && <button type="button" disabled={busy} onClick={() => accounts ? setAccounts(null) : void perform(refreshAccounts)}>管理学员</button>}
       {session && <button type="button" disabled={busy} onClick={() => void perform(async () => {
-        await workspaceRequest("/api/logout", { method: "POST", headers: csrf }); window.location.assign("/login");
+        await workspaceRequest("/api/logout", { method: "POST", headers: csrf }); window.location.assign(new URL('/login', window.location.origin).href);
       })}>退出登录</button>}
     </div>
     {accounts && <div className="account-management">
@@ -88,13 +89,13 @@ export function ProjectPanel({ session, projects, selectedId, onSelect, onRefres
 
 export function DrawingPreview({ project, onClose }: { project: TrainingProject; onClose: () => void }) {
   const source = `/api/projects/${project.id}/drawing?v=${encodeURIComponent(project.drawing?.updatedAt ?? "")}`;
-  return <div className="drawing-preview-layer" role="dialog" aria-modal="true" aria-label={`${project.name}图纸`} onKeyDown={(event) => { if (event.key === "Escape") onClose(); }}>
+  return <Modal title={`${project.name}图纸`} onClose={onClose} backdropClass="drawing-preview-layer" className="drawing-preview-modal">
     <section className="drawing-preview">
-      <header><b>{project.name}</b><button type="button" autoFocus onClick={onClose}>关闭图纸</button></header>
+      <header><b>{project.name}</b><button type="button" onClick={onClose}>关闭图纸</button></header>
       {project.drawing?.mime === "application/pdf"
         ? <iframe title={`${project.name} PDF 图纸`} src={source} />
         : <img src={source} alt={`${project.name}图纸`} />}
       <a href={source} target="_blank" rel="noreferrer">在浏览器中打开原图纸</a>
     </section>
-  </div>;
+  </Modal>;
 }

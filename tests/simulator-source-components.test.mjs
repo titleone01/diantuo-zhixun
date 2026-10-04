@@ -8,7 +8,7 @@ const bundled = await build({
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/"' },
   plugins: [{ name: 'component-ui', setup(build) {
     build.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'component-test' }));
-    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value;' }));
+    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value,useLayoutEffect=commit=>commit();' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: 'flow', namespace: 'component-test' }));
     build.onLoad({ filter: /^flow$/, namespace: 'component-test' }, () => ({ contents: 'export const Handle="terminal-handle",NodeResizer="node-resizer";export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};' }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'component-test' }));
@@ -57,7 +57,11 @@ test('contactor state artwork preserves every original label and electrical circ
   for(const type of ['contactor220','contactor380']) {
     const original=readFileSync(new URL(`../public/sim-assets/${type}.svg`,import.meta.url),'utf8');
     const artwork=renderArtwork(type,false),body=artwork.props.children[0].props.dangerouslySetInnerHTML.__html;
-    assert.deepEqual(body.match(/<text\b[\s\S]*?<\/text>/g),original.match(/<text\b[\s\S]*?<\/text>/g));
+    // SVG/XML line endings can differ between the original bytes and generated TS.
+    const labels=svg=>svg.replace(/\r\n?/g,'\n').match(/<text\b[\s\S]*?<\/text>/g);
+    for (const lineEnding of ['\n', '\r\n']) {
+      assert.deepEqual(labels(body),labels(original.replace(/\r\n?/g,'\n').replaceAll('\n',lineEnding)));
+    }
     const paths=text=>[...text.matchAll(/<path\b[^>]*>/g)].map(([path])=>path.match(/\bd="([^"]+)"/)[1]);
     const before=paths(original),after=paths(body);assert.equal(after.length,before.length);
     for(let i=0;i<before.length;i++)if(i!==2)assert.equal(after[i],before[i],`electrical shape ${type}/${i}`);

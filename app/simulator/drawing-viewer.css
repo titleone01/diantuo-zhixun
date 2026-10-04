@@ -17,3 +17,11 @@
 .dt-drawing-viewer.is-compact .dt-drawing-viewer-viewport { flex: 1; height: auto; min-height: 0; border: 0; border-radius: 0; }
 .dt-drawing-viewer .dt-drawing-viewer-content > svg { display: block; width: 100%; height: auto; max-width: none; max-height: none; }
 @media (max-width: 600px) { .dt-drawing-viewer .dt-drawing-viewer-toolbar { gap: 4px; } .dt-drawing-viewer .dt-drawing-viewer-toolbar button, .dt-drawing-viewer .dt-drawing-viewer-toolbar a { padding: 6px; font-size: 11px; } .dt-drawing-viewer .dt-drawing-viewer-viewport { height: 45dvh; min-height: 220px; } }
+
+/* Keep course actions visible while only the drawing/video area scrolls. */
+.dt-reference-modal { display: flex; flex-direction: column; height: min(820px, 90dvh); overflow: hidden; }
+.dt-reference-modal > header, .dt-reference-modal > .dt-tabs, .dt-reference-modal > .dt-reference-preview-tabs, .dt-reference-modal > p, .dt-reference-modal > .dt-modal-actions { flex-shrink: 0; }
+.dt-reference-modal > .dt-drawing-viewer { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.dt-reference-modal .dt-drawing-viewer-viewport { flex: 1; height: auto; min-height: 120px; }
+.dt-reference-modal > .dt-reference-video { flex: 1; min-height: 0; overflow: auto; }
+.dt-reference-modal > .dt-modal-actions { margin-top: 12px; }

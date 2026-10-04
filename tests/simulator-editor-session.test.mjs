@@ -9,7 +9,7 @@ const bundled = await build({
   plugins: [{ name: "node-ui-handles", setup(build) {
     // React Flow's DOM handle is outside this test; DeviceNode's real pointer/keyboard callbacks remain intact.
     build.onResolve({ filter: /^react$/ }, () => ({ path: "hooks", namespace: "test-react" }));
-    build.onLoad({ filter: /.*/, namespace: "test-react" }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value;' }));
+    build.onLoad({ filter: /.*/, namespace: "test-react" }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value,useLayoutEffect=commit=>commit();' }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: "jsx", namespace: "test-jsx" }));
     build.onLoad({ filter: /.*/, namespace: "test-jsx" }, () => ({ contents: 'export const Fragment=Symbol.for("react.fragment"),jsx=(type,props,key)=>({type,props,key}),jsxs=jsx;' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: "handles", namespace: "test-flow" }));

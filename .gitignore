@@ -49,3 +49,5 @@ yarn-error.log*
 /.dev.vars
 /.dev.vars.*
 !/.dev.vars.example
+/test-results/
+/playwright-report/

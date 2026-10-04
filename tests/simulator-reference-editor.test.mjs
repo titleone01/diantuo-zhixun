@@ -16,7 +16,7 @@ export function useRef(initial){const i=cursor++;return slots[i]??(slots[i]={cur
 export function useMemo(factory,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index]))slots[i]={deps,value:factory()};return slots[i].value;}
 export const useCallback=(callback,deps)=>useMemo(()=>callback,deps);
 export const useId=()=>useRef('editor-reference-test').current;
-export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
+export function useEffect(effect,deps){const i=cursor++;const old=slots[i];if(!old||!deps||!old.deps||deps.some((value,index)=>value!==old.deps[index])){slots[i]={deps};effects.push(()=>{old?.cleanup?.();slots[i].cleanup=effect();});}}
 export const useLayoutEffect=useEffect;`;
 const bundle = await build({
   stdin: { contents: `export {default as Editor} from './app/simulator/editor/SimulatorEditor';export {default as Picker} from './app/simulator/ReferenceDrawingPicker';export {default as Floating} from './app/simulator/editor/FloatingSchematic';export {default as Video} from './app/simulator/reference-video/ReferenceVideoPlayer';export * from './app/simulator/reference-video/catalog';export * from './app/simulator/core/lessons';export * from './app/simulator/core/validation';export {reset,begin,flush,unmount,deferFunctionalUpdates} from 'react';`, resolveDir: process.cwd() },
@@ -29,7 +29,7 @@ const bundle = await build({
     build.onResolve({ filter: /^react-dom$/ }, () => ({ path: 'portal', namespace: 'reference-editor-test' }));
     build.onLoad({ filter: /^portal$/, namespace: 'reference-editor-test' }, () => ({ contents: 'export const createPortal=value=>value;export const flushSync=fn=>fn();' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: 'flow', namespace: 'reference-editor-test' }));
-    build.onLoad({ filter: /^flow$/, namespace: 'reference-editor-test' }, () => ({ contents: 'export const Background=()=>null,Controls=()=>null,ReactFlow=()=>null,ReactFlowProvider=()=>null;export const BackgroundVariant={Dots:"dots"},ConnectionMode={Loose:"loose"},ConnectionLineType={Straight:"straight",Bezier:"bezier",Step:"step"};const flow={setViewport(){},fitView(){},screenToFlowPosition:p=>p};export const useReactFlow=()=>flow;' }));
+    build.onLoad({ filter: /^flow$/, namespace: 'reference-editor-test' }, () => ({ contents: 'export const Background=()=>null,ControlButton=()=>null,Controls=()=>null,ReactFlow=()=>null,ReactFlowProvider=()=>null;export const BackgroundVariant={Dots:"dots"},ConnectionMode={Loose:"loose"},ConnectionLineType={Straight:"straight",Bezier:"bezier",Step:"step"};const flow={setViewport(){},fitView(){},screenToFlowPosition:p=>p};export const useReactFlow=()=>flow;' }));
     build.onResolve({ filter: /^lucide-react$/ }, () => ({ path: 'icons', namespace: 'reference-editor-test' }));
     build.onLoad({ filter: /^icons$/, namespace: 'reference-editor-test' }, () => ({ contents: 'export const ExternalLink=()=>null,AlertTriangle=()=>null,LocateFixed=()=>null,CheckCheck=()=>null,ChevronLeft=()=>null,ChevronRight=()=>null,Copy=()=>null,Download=()=>null,FileImage=()=>null,FolderOpen=()=>null,PanelRightClose=()=>null,Play=()=>null,Redo2=()=>null,Search=()=>null,ShieldCheck=()=>null,Square=()=>null,Undo2=()=>null,X=()=>null,BookOpen=()=>null,GripHorizontal=()=>null,Maximize2=()=>null,Minimize2=()=>null,Minus=()=>null,Plus=()=>null,ZoomIn=()=>null,ZoomOut=()=>null,RotateCcw=()=>null,RotateCw=()=>null,Video=()=>null;' }));
     build.onResolve({ filter: /\/(DeviceArtwork|DeviceNode|WireEdge|PdfDrawing)$/ }, () => ({ path: 'artwork', namespace: 'reference-editor-test' }));
@@ -66,12 +66,35 @@ function editor(document, extra = {}) {
 }
 const example = () => createLessonDocument('motor-self-hold', { wired: true });
 
+test('copied objects cannot be pasted in read-only or running editors and are cleared by account changes', () => {
+  const restore = environment();
+  try {
+    const original = example();
+    const ui = editor(original, { clipboardScope: 'account-a:session-1' });
+    ui.find(node => typeof node.props?.onNodesChange === 'function').props.onNodesChange([{ type: 'select', id: original.components[0].id, selected: true }]);
+    ui.render(); ui.button('复制选中对象').props.onClick(); ui.render();
+    assert.equal(ui.button('粘贴对象').props.disabled, false);
+    ui.update({ readOnly: true });
+    assert.equal(ui.button('粘贴对象').props.disabled, true);
+    ui.button('粘贴对象').props.onClick(); assert.equal(ui.updates.length, 0);
+    ui.update({ readOnly: false });
+    ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render();
+    assert.equal(ui.button('粘贴对象').props.disabled, true);
+    ui.button('粘贴对象').props.onClick(); assert.equal(ui.updates.length, 0);
+    ui.update({ clipboardScope: 'account-b:session-2' });
+    assert.equal(ui.button('粘贴对象').props.disabled, true);
+    assert.deepEqual(ui.document(), original);
+  } finally { restore(); }
+});
+
 test('reference picker integration preserves graph, clears previous lesson/media, and undo/redo restores exact documents', () => {
   const restore = environment();
   try {
     const original = { ...example(), drawingMediaId: 'private-old', drawingMediaType: 'image/png', trainingProjectId: 'project-02', projectDrawings: { schematic: { mediaId: 'private-old', type: 'image/png' } }, drawingKind: 'schematic' };
     const before = structuredClone(original);
-    const ui = editor(original, { drawingUrl: '/api/media/private-old', drawingType: 'image/png' });
+    let preview;
+    const ui = editor(original, { drawingUrl: '/api/media/private-old', drawingType: 'image/png', renderSchematic: current => { preview = current; return current; } });
+    assert.equal(preview.props.src, '/api/media/private-old');
     const windowKey = ui.window().props.documentKey;
     ui.picker().props.onSelect(32); ui.render();
     const selected = structuredClone(ui.document());
@@ -81,6 +104,7 @@ test('reference picker integration preserves graph, clears previous lesson/media
     assert.equal(ui.window().props.video.diagramId, 32);
     assert.equal(ui.window().props.documentKey, windowKey, 'reference replacement does not reset the floating tab or collapse state');
     ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), before); assert.equal(ui.window().props.video, undefined);
+    assert.equal(preview?.props.src, '/api/media/private-old', 'undo restores the private drawing preview as well as its document reference');
     ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), selected); assert.equal(ui.window().props.video.diagramId, 32);
     assert.deepEqual(original, before, 'history does not mutate the document being replaced');
   } finally { restore(); }
