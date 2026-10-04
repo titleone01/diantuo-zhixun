@@ -73,3 +73,5 @@
 - 维护阅读：[本地运行手册](local-runbook.md)、[加固报告](project-hardening-report-2026-10-04.md)、[功能实施报告](feedback-implementation-2026-10-04.md)、[依赖风险台账](dependency-audit-2026-10-03.md)。
 
 实际业务备份/迁移/启动收据保留在本地，不公开真实业务计数、私有配置哈希、机器进程ID、运行秘密、原始私有payload或原图字节。最终公开证据只记录数据保持boolean和隔离测试数量。
+
+远端历史记录：7f4bba1 的原线槽交互用例曾整项超时，另37项浏览器测试通过；保留[失败CI](https://github.com/titleone01/diantuo-zhixun/actions/runs/37176114003)。加入仅含固定名称的步骤诊断后，68f5868 的[完整CI](https://github.com/titleone01/diantuo-zhixun/actions/runs/37176995406)通过，本地整套38项也再次通过。尚未确认首次超时根因，不能将诊断记录称为产品缺陷修复；60秒、零重试和全部断言保持原标准。此后文档提交仍须单独验证其精确SHA的CI。

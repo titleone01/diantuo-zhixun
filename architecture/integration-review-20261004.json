@@ -382,7 +382,7 @@
       "conclusionAndBoundary": "本地完整检查通过；此提交的远端CI以GitHub checks为准，提交后另验远端引用与结果",
       "manualAcceptance": {
         "entry": "最终本地提交→既有远端→ls-remote→CI run→读回HEAD与报告",
-        "expected": "全步骤单独可追踪；当前只有前7步+恢复03通过，旧19b10db绿CI非本次整合CI"
+        "expected": "完整检查、实际主目录、远端分支和CI必须对应最终提交；不以其他SHA或部分阶段通过替代。历史单项超时保留记录，后续通过不能证明根因已确认。"
       }
     },
     {
@@ -669,5 +669,15 @@
     "privateRuntimePathsIncluded": false,
     "credentialsOrCookiesIncluded": false,
     "originalImageBytesIncluded": false
+  },
+  "ciObservation": {
+    "failedHead": "7f4bba1e9ca17c14d3b774aecf0c3144d8810ed0",
+    "failedRun": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37176114003",
+    "failedScope": "one original duct routing browser test timed out; 37 others passed",
+    "subsequentPassedHead": "68f586877748654ba31c32d180d68123daea852d",
+    "subsequentPassedRun": "https://github.com/titleone01/diantuo-zhixun/actions/runs/37176995406",
+    "rootCauseConfirmed": false,
+    "diagnostics": "static named test steps only; timeout, retries and all assertions retained",
+    "finalCI": "Use checks on this final commit; verify final main and remote SHA separately."
   }
 }

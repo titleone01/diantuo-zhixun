@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-04T03:37:50.072Z",
+  "at": "2026-10-04T04:29:11.539Z",
   "status": "passed",
   "browser": "Chromium",
   "workers": 1,
@@ -8,229 +8,229 @@
     {
       "title": "motor-course-01: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 1691,
+      "durationMs": 1577,
       "errors": []
     },
     {
       "title": "motor-course-01: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1118,
+      "durationMs": 979,
       "errors": []
     },
     {
       "title": "motor-course-02: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 1622,
+      "durationMs": 1409,
       "errors": []
     },
     {
       "title": "motor-course-02: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1155,
+      "durationMs": 1045,
       "errors": []
     },
     {
       "title": "motor-course-03: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 1774,
+      "durationMs": 1520,
       "errors": []
     },
     {
       "title": "motor-course-03: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1193,
+      "durationMs": 1074,
       "errors": []
     },
     {
       "title": "motor-course-04: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2055,
+      "durationMs": 1796,
       "errors": []
     },
     {
       "title": "motor-course-04: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1175,
+      "durationMs": 1142,
       "errors": []
     },
     {
       "title": "motor-course-05: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2055,
+      "durationMs": 1852,
       "errors": []
     },
     {
       "title": "motor-course-05: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1169,
+      "durationMs": 1059,
       "errors": []
     },
     {
       "title": "motor-course-06: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2539,
+      "durationMs": 2063,
       "errors": []
     },
     {
       "title": "motor-course-06: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1445,
+      "durationMs": 1123,
       "errors": []
     },
     {
       "title": "motor-course-07: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2354,
+      "durationMs": 2112,
       "errors": []
     },
     {
       "title": "motor-course-07: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1284,
+      "durationMs": 1068,
       "errors": []
     },
     {
       "title": "motor-course-08: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2023,
+      "durationMs": 1789,
       "errors": []
     },
     {
       "title": "motor-course-08: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1208,
+      "durationMs": 1056,
       "errors": []
     },
     {
       "title": "motor-course-09: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2325,
+      "durationMs": 2041,
       "errors": []
     },
     {
       "title": "motor-course-09: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1412,
+      "durationMs": 1196,
       "errors": []
     },
     {
       "title": "motor-course-10: standard controls and passed assessment",
       "status": "passed",
-      "durationMs": 2204,
+      "durationMs": 1751,
       "errors": []
     },
     {
       "title": "motor-course-10: missing protective earth is rejected",
       "status": "passed",
-      "durationMs": 1211,
+      "durationMs": 1029,
       "errors": []
     },
     {
       "title": "real terminal drag, device move, zoom and reload retain world endpoints",
       "status": "passed",
-      "durationMs": 2051,
+      "durationMs": 2065,
       "errors": []
     },
     {
       "title": "two browser accounts cannot open each other private drafts",
       "status": "passed",
-      "durationMs": 1422,
+      "durationMs": 1186,
       "errors": []
     },
     {
       "title": "corrupt recovery bytes survive a storage quota failure",
       "status": "passed",
-      "durationMs": 1700,
+      "durationMs": 1567,
       "errors": []
     },
     {
       "title": "two windows surface a save conflict without overwriting the winner",
       "status": "passed",
-      "durationMs": 2170,
+      "durationMs": 1860,
       "errors": []
     },
     {
       "title": "late JSON import cannot replace a newer simulation session",
       "status": "passed",
-      "durationMs": 1153,
+      "durationMs": 993,
       "errors": []
     },
     {
       "title": "reference picker traps focus and prevents editor keyboard deletion",
       "status": "passed",
-      "durationMs": 1107,
+      "durationMs": 997,
       "errors": []
     },
     {
       "title": "Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste",
       "status": "passed",
-      "durationMs": 1543,
+      "durationMs": 1412,
       "errors": []
     },
     {
       "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
       "status": "passed",
-      "durationMs": 3213,
+      "durationMs": 2992,
       "errors": []
     },
     {
       "title": "repeated group paste and undo preserve a stable editable document",
       "status": "passed",
-      "durationMs": 2123,
+      "durationMs": 1828,
       "errors": []
     },
     {
       "title": "integrated: ten blank courses share six-duct layouts and FU2/XT16, clear and examples keep one layout",
       "status": "passed",
-      "durationMs": 9678,
+      "durationMs": 7912,
       "errors": []
     },
     {
       "title": "integrated: legacy duct import and canonical routing save and reload without losing manual paths",
       "status": "passed",
-      "durationMs": 2061,
+      "durationMs": 1822,
       "errors": []
     },
     {
       "title": "integrated: cross-document group paste remains one undo operation and running interruptions cannot edit it",
       "status": "passed",
-      "durationMs": 3538,
+      "durationMs": 3060,
       "errors": []
     },
     {
       "title": "integrated: switching an unsaved course preserves its parked circuit and failed quota preserves the active document",
       "status": "passed",
-      "durationMs": 1806,
+      "durationMs": 1569,
       "errors": []
     },
     {
       "title": "integrated: upload reference and undo restore the authenticated PNG preview and modal keys leave wiring intact",
       "status": "passed",
-      "durationMs": 1799,
+      "durationMs": 1591,
       "errors": []
     },
     {
       "title": "integrated: essential editing controls remain reachable at 1366x768",
       "status": "passed",
-      "durationMs": 1581,
+      "durationMs": 1320,
       "errors": []
     },
     {
       "title": "integrated: essential editing controls remain reachable at 1920x1080",
       "status": "passed",
-      "durationMs": 1689,
+      "durationMs": 1377,
       "errors": []
     },
     {
       "title": "integrated: three automatic wires keep separate repeatable tracks and their electrical endpoints through broken or missing ducts",
       "status": "passed",
-      "durationMs": 3528,
+      "durationMs": 3255,
       "errors": []
     },
     {
       "title": "integrated: an isolated member PDF upload renders actual PDF.js pixels and reload retains the private preview",
       "status": "passed",
-      "durationMs": 1763,
+      "durationMs": 1539,
       "errors": []
     }
   ]
