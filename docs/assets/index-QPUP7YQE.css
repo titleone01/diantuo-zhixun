@@ -241,7 +241,7 @@
     min-height: 220px;
   }
 }
-.dt-reference-modal {
+.dt-modal.dt-reference-modal {
   display: flex;
   flex-direction: column;
   height: min(820px, 90dvh);

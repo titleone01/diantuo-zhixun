@@ -235,6 +235,33 @@ test('floating reference changes retain video tab, drawing zoom, position and co
   } finally { restore(); }
 });
 
+test('floating resize cancellation restores responsive or manual sizing intent, including exactly 560', () => {
+  const restore = environment();
+  try {
+    const panel = { offsetWidth: 479, offsetHeight: 600 };
+    const ui = mount(Floating, { panelRef: { current: panel }, boardRef: { current: { clientWidth: 1006, clientHeight: 900 } }, children: 'drawing' });
+    const handle = () => ui.find(node => node.props?.['data-resize-edge'] === 'w');
+    const button = label => ui.find(node => node.type === 'button' && node.props['aria-label'] === label);
+    const responsive = ui.tree().props.style.width;
+    let captured = false;
+    const target = { dataset: { resizeEdge: 'w' }, setPointerCapture() { captured = true; }, hasPointerCapture() { return captured; }, releasePointerCapture() { captured = false; } };
+    const event = x => ({ pointerId: 1, button: 0, clientX: x, clientY: 200, currentTarget: target, preventDefault() {}, stopPropagation() {} });
+    handle().props.onPointerDown(event(100)); handle().props.onPointerMove(event(19)); ui.render();
+    assert.equal(ui.tree().props.style.width, 560);
+    handle().props.onPointerCancel(event(19)); ui.render();
+    assert.equal(ui.tree().props.style.width, responsive, 'cancelled first resize retains responsive sizing');
+    handle().props.onPointerDown(event(100)); handle().props.onPointerMove(event(19)); ui.render();
+    handle().props.onPointerUp(event(19)); ui.render(); panel.offsetWidth = 560;
+    assert.equal(ui.tree().props.style.width, 560, 'committed 560 is a manual size');
+    handle().props.onPointerDown(event(100)); handle().props.onPointerMove(event(40)); ui.render();
+    assert.equal(ui.tree().props.style.width, 620);
+    handle().props.onPointerCancel(event(40)); ui.render();
+    assert.equal(ui.tree().props.style.width, 560, 'cancelled later resize retains the previous manual size');
+    button('复位图纸窗口').props.onClick(); ui.render();
+    assert.equal(ui.tree().props.style.width, responsive, 'explicit reset restores responsive sizing');
+  } finally { restore(); }
+});
+
 test('duct resizing commits one undo entry per gesture, supports redo and cancel, and refuses frozen edits', () => {
   const restore = environment();
   try {

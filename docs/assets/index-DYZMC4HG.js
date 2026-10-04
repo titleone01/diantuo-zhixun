@@ -34685,6 +34685,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     else setOwnZoom(value);
   };
   const [frame2, setFrame2] = (0, import_react14.useState)(DEFAULT_FRAME);
+  const [responsiveWidth, setResponsiveWidth] = (0, import_react14.useState)(true);
   const [fullscreen, setFullscreen] = (0, import_react14.useState)(false);
   const resizing = (0, import_react14.useRef)(null);
   const [offset, setOffset] = (0, import_react14.useState)({ x: 0, y: 0 });
@@ -34719,6 +34720,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
   function reset() {
     setZoom(1);
     setFrame2(DEFAULT_FRAME);
+    setResponsiveWidth(true);
     setOffset({ x: 0, y: 0 });
     setFullscreen(false);
   }
@@ -34727,6 +34729,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     if (!start2 || start2.id !== event.pointerId) return;
     if (cancel) {
       setFrame2({ width: start2.width, height: start2.height });
+      setResponsiveWidth(start2.responsiveWidth);
       setOffset(start2.offset);
     }
     resizing.current = null;
@@ -34740,9 +34743,9 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     event.preventDefault();
     event.stopPropagation();
     event.currentTarget.setPointerCapture(event.pointerId);
-    resizing.current = { id: event.pointerId, edge, x: event.clientX, y: event.clientY, width: panelRef.current.offsetWidth, height: panelRef.current.offsetHeight, offset };
+    resizing.current = { id: event.pointerId, edge, x: event.clientX, y: event.clientY, width: panelRef.current.offsetWidth, height: panelRef.current.offsetHeight, responsiveWidth, offset };
     setDragging(true);
-  }, [panelRef, offset]);
+  }, [panelRef, offset, responsiveWidth]);
   function moveResize(event) {
     const start2 = resizing.current, board = boardRef.current;
     if (!start2 || start2.id !== event.pointerId || !board) return;
@@ -34751,13 +34754,14 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     const width = Math.min(maxWidth, Math.max(Math.min(320, maxWidth), start2.width + (edge.includes("w") ? -dx : edge.includes("e") ? dx : 0)));
     const height = Math.min(maxHeight, Math.max(Math.min(260, maxHeight), start2.height + (edge.includes("n") ? -dy : edge.includes("s") ? dy : 0)));
     setFrame2({ width, height });
+    setResponsiveWidth(false);
     setOffset(constrain({ x: start2.offset.x + (edge.includes("e") ? width - start2.width : 0), y: start2.offset.y + (edge.includes("s") ? height - start2.height : 0) }, { width, height }));
   }
   function lostResizeCapture() {
     resizing.current = null;
     setDragging(false);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: frame2.width === DEFAULT_FRAME.width ? "min(560px, max(320px, calc(50% - 24px)))" : frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
     if (fullscreen && event.key === "Escape") {
       event.preventDefault();
       event.stopPropagation();

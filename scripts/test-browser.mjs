@@ -14,6 +14,16 @@ const release = path.join(directory, 'release'); await buildRelease(release);
 const fixture = await createFixture({ release, directory: path.join(directory, 'runtime') });
 try {
   const admin = new TestClient(fixture.origin); await admin.login(JSON.parse(await readFile(fixture.adminFile, 'utf8')));
+  // The browser suite owns this temporary course association and all media bytes.
+  const drawing = await readFile(path.join(root, 'public/schematic.png'));
+  const form = new FormData(); form.append('file', new Blob([drawing], { type: 'image/png' }), 'synthetic-modal.png');
+  const uploaded = await fetch(`${fixture.origin}/api/media`, { method: 'POST', headers: { cookie: admin.cookie, origin: fixture.origin }, body: form });
+  assert.equal(uploaded.status, 201); const media = (await uploaded.json()).media;
+  const linked = await admin.call('/training-projects/project-01', 'PUT', { mediaId: media.id, kind: 'schematic', expectedVersion: null });
+  assert.equal(linked.status, 200);
+  const projects = await admin.call('/training-projects'); assert.equal(projects.status, 200);
+  const project = projects.data.items.find(item => item.id === 'project-01'); assert(project);
+  const modalCourse = { id: project.id, name: project.name };
   const { LESSONS, createLessonDocument } = await lessonFunctions();
   const accounts = [];
   for (let index = 0; index < 2; index++) {
@@ -43,7 +53,7 @@ try {
   drafts.clipboard = { title: clipboard.title, id: copied.data.circuit.id, document: clipboard };
   const conflict = await client.call('/circuits', 'POST', { title: 'Browser conflict', document: { ...wiring, title: 'Browser conflict' } }); assert.equal(conflict.status, 201);
   drafts.conflict = { title: 'Browser conflict', id: conflict.data.circuit.id, document: conflict.data.circuit.document };
-  const dataFile = path.join(directory, 'browser-fixture.json'); await writeFile(dataFile, JSON.stringify({ accounts, drafts }), { mode: 0o600 });
+  const dataFile = path.join(directory, 'browser-fixture.json'); await writeFile(dataFile, JSON.stringify({ accounts, drafts, modalCourse }), { mode: 0o600 });
   await fixture.run([path.join(root, 'node_modules/playwright/cli.js'), 'test', '--config', path.join(root, 'playwright.config.mjs'), ...filter], { DIANTUO_TEST_URL: fixture.origin, DIANTUO_BROWSER_FIXTURE: dataFile, DIANTUO_BROWSER_PRIVATE_OUTPUT: path.join(directory, 'private-results') }, 900000);
 } catch (error) { console.error(`浏览器验收失败（${error.name}）；测试专属证据目录：${directory}`); process.exitCode = 1; }
 finally { await fixture.stop(); }

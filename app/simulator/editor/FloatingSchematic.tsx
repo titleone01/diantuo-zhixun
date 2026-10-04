@@ -19,8 +19,9 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
   const zoom = controlledZoom ?? ownZoom;
   const setZoom = (value: number) => { if (onZoomChange) onZoomChange(value); else setOwnZoom(value); };
   const [frame, setFrame] = useState(DEFAULT_FRAME);
+  const [responsiveWidth, setResponsiveWidth] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
-  const resizing = useRef<{ id: number; edge: string; x: number; y: number; width: number; height: number; offset: { x: number; y: number } } | null>(null);
+  const resizing = useRef<{ id: number; edge: string; x: number; y: number; width: number; height: number; responsiveWidth: boolean; offset: { x: number; y: number } } | null>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ id: number; x: number; y: number; startX: number; startY: number } | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -44,11 +45,11 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     const previous = document.body.style.overflow; document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = previous; };
   }, [fullscreen]);
-  function reset() { setZoom(1); setFrame(DEFAULT_FRAME); setOffset({ x: 0, y: 0 }); setFullscreen(false); }
+  function reset() { setZoom(1); setFrame(DEFAULT_FRAME); setResponsiveWidth(true); setOffset({ x: 0, y: 0 }); setFullscreen(false); }
   function endResize(event: PointerEvent<HTMLButtonElement>, cancel = false) {
     const start = resizing.current;
     if (!start || start.id !== event.pointerId) return;
-    if (cancel) { setFrame({ width: start.width, height: start.height }); setOffset(start.offset); }
+    if (cancel) { setFrame({ width: start.width, height: start.height }); setResponsiveWidth(start.responsiveWidth); setOffset(start.offset); }
     resizing.current = null; setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
@@ -57,9 +58,9 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     if (!edge) return;
     if (event.button !== 0 || !panelRef.current) return;
     event.preventDefault(); event.stopPropagation(); event.currentTarget.setPointerCapture(event.pointerId);
-    resizing.current = { id:event.pointerId, edge, x:event.clientX, y:event.clientY, width:panelRef.current.offsetWidth, height:panelRef.current.offsetHeight, offset };
+    resizing.current = { id:event.pointerId, edge, x:event.clientX, y:event.clientY, width:panelRef.current.offsetWidth, height:panelRef.current.offsetHeight, responsiveWidth, offset };
     setDragging(true);
-  }, [panelRef, offset]);
+  }, [panelRef, offset, responsiveWidth]);
   function moveResize(event: PointerEvent<HTMLButtonElement>) {
     const start = resizing.current, board = boardRef.current;
     if (!start || start.id !== event.pointerId || !board) return;
@@ -68,10 +69,11 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     const width=Math.min(maxWidth,Math.max(Math.min(320,maxWidth),start.width+(edge.includes('w')?-dx:edge.includes('e')?dx:0)));
     const height=Math.min(maxHeight,Math.max(Math.min(260,maxHeight),start.height+(edge.includes('n')?-dy:edge.includes('s')?dy:0)));
     setFrame({width,height});
+    setResponsiveWidth(false);
     setOffset(constrain({x:start.offset.x+(edge.includes('e')?width-start.width:0),y:start.offset.y+(edge.includes('s')?height-start.height:0)},{width,height}));
   }
   function lostResizeCapture() { resizing.current=null; setDragging(false); }
-  return <div ref={panelRef} className={`sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`} data-window-scale="1.0" data-drawing-zoom={zoom} role={fullscreen ? 'dialog' : undefined} aria-modal={fullscreen || undefined} aria-label={fullscreen ? '图纸大图查看' : undefined} style={fullscreen ? { transform: 'none' } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: frame.width === DEFAULT_FRAME.width ? "min(560px, max(320px, calc(50% - 24px)))" : frame.width, height: open ? frame.height : undefined, maxWidth: 'calc(100% - 16px)', maxHeight: 'calc(100% - 132px)' }} onKeyDown={event => {
+  return <div ref={panelRef} className={`sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`} data-window-scale="1.0" data-drawing-zoom={zoom} role={fullscreen ? 'dialog' : undefined} aria-modal={fullscreen || undefined} aria-label={fullscreen ? '图纸大图查看' : undefined} style={fullscreen ? { transform: 'none' } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame.width, height: open ? frame.height : undefined, maxWidth: 'calc(100% - 16px)', maxHeight: 'calc(100% - 132px)' }} onKeyDown={event => {
     if (fullscreen && event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setFullscreen(false); }
     if (fullscreen && event.key === 'Tab') {
       const items = [...event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')].filter(item => item.getClientRects().length);
