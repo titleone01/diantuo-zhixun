@@ -911,7 +911,7 @@
   }
 }
 
-/* node_modules/@xyflow/react/dist/style.css */
+/* E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/style.css */
 .react-flow {
   direction: ltr;
   --xy-edge-stroke-default: #b1b1b7;
@@ -3413,22 +3413,63 @@ svg.react-flow__connectionline {
       #83919a 20px);
   border: 1px solid #71808a;
 }
-.sim-timer-controls {
+.sim-editor .sim-timer-controls {
   position: absolute;
   top: 74%;
-  left: 16%;
-  width: 68%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   gap: 5px;
 }
-.sim-timer-controls button {
-  font-size: 10px;
+.sim-editor .sim-timer-controls > button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
   border: 1px solid #858b8c;
-  border-radius: 12px;
+  border-radius: 4px;
   background: #f1f1ed;
-  padding: 2px 10px;
-  cursor: pointer;
+  color: #303538;
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.sim-editor .sim-timer-controls > button:nth-child(2) {
+  width: 40px;
+}
+.sim-editor .sim-timer-setting {
+  left: calc(100% + 12px);
+  top: 44%;
+  transform: translateY(-50%);
+  gap: 6px;
+}
+.sim-editor .sim-timer-setting label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sim-editor .sim-timer-setting input {
+  width: 66px;
+  font-size: 11px;
+}
+.sim-editor .sim-timer-setting > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1;
 }
 .sim-legacy-timer-warning {
   position: absolute;
@@ -5329,7 +5370,7 @@ svg.react-flow__connectionline {
   }
 }
 
-/* node_modules/tailwindcss/index.css */
+/* E:/vibecoding/电拓智训/node_modules/tailwindcss/index.css */
 @media source(none) {
   @layer theme, base, components, utilities;
   @layer theme {
