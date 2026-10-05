@@ -41,3 +41,45 @@ test('feedback 20261005: numeric KT screen, ON UP, pause step, loss and restart'
 test('feedback 20261005: explicit legacy upgrade creates a copy and leaves original snapshot intact',async({page})=>{
  await login(page);const d={schemaVersion:1,title:'Browser feedback legacy',components:[{id:'s',type:'supply',label:'电源',position:{x:0,y:0}},{id:'kt',type:'timer380',label:'KT',position:{x:350,y:120},settings:{delayMs:3000}}],wires:[{id:'one',from:{componentId:'s',terminalId:'L1'},to:{componentId:'kt',terminalId:'A1'},color:'#203040'},{id:'two',from:{componentId:'s',terminalId:'L2'},to:{componentId:'kt',terminalId:'A2'},color:'#203040'}]};await importDocument(page,d);const saving=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();const old=(await (await saving).json()).circuit;await disclosure(page);await page.getByRole('button',{name:'升级继电器并另存副本',exact:true}).click();await page.getByRole('button',{name:'取消',exact:true}).click();await expect(page.locator('[data-component-type="timer380"]')).toHaveCount(1);await page.getByRole('button',{name:'升级继电器并另存副本',exact:true}).click();const upgraded=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'升级并保存副本',exact:true}).click();const copy=(await (await upgraded).json()).circuit;expect(copy.id).not.toBe(old.id);expect(copy.document.wires.map(w=>w.to.terminalId)).toEqual(['2','7']);await expect(page.locator('[data-component-type="timer380-8pin"]')).toHaveCount(1);expect((await (await page.request.get(`/api/circuits/${old.id}`)).json()).circuit.document).toEqual(old.document);
 });
+
+test('timer layout: compact controls leave artwork and terminals clear', async ({page}) => {
+ await login(page);
+ await importDocument(page,{schemaVersion:1,title:'调时界面验收',components:[
+  {id:'ka',type:'relay380-jzc1-22',label:'KA1',position:{x:40,y:100}},
+  {id:'kt',type:'timer380-8pin',label:'KT1',position:{x:290,y:100},settings:{delayMs:4000}},
+  {id:'legacy',type:'timer380',label:'KT2',position:{x:730,y:100},settings:{delayMs:3000}}
+ ],wires:[]});
+ for(const id of ['kt','legacy']) {
+  const node=page.locator(`[data-device-id="${id}"]`), label=id==='kt'?'KT1':'KT2';
+  await node.click({position:{x:30,y:80}});
+  await expect(node.locator('.sim-timer-setting')).toHaveCount(0);
+  const checkLayout=async()=>{
+   const box=await node.boundingBox(), controls=await node.locator('.sim-timer-controls').boundingBox();
+   expect(controls.height/box.height).toBeLessThan(.10);
+   const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+   for(const terminal of await node.locator('[data-terminal-key]').all()) expect(intersects(controls,await terminal.boundingBox())).toBe(false);
+   expect(intersects(controls,await node.locator('[data-timer-seconds]').boundingBox())).toBe(false);
+   for(const button of await node.locator('.sim-timer-controls button').all()) expect(await button.evaluate(e=>getComputedStyle(e).whiteSpace)).toBe('nowrap');
+  };
+  await checkLayout();
+  await node.getByRole('button',{name:`${label} 增加延时`,exact:true}).click();
+  await expect(node.locator('[data-timer-seconds]')).toHaveText(id==='kt'?'5.000 s':'4.000 s');
+  await node.getByRole('button',{name:`${label} 减少延时`,exact:true}).click();
+  await node.getByRole('button',{name:`${label} 设置时间`,exact:true}).click();
+  const input=node.getByRole('spinbutton',{name:`${label} 延时秒数`,exact:true});
+  await expect(input).toBeFocused();
+  const panel=await node.locator('.sim-timer-setting').boundingBox(), box=await node.boundingBox();
+  expect(panel.x).toBeGreaterThan(box.x+box.width);
+  await input.fill('4.125');await expect(node.locator('[data-timer-seconds]')).toHaveText('4.125 s');
+  await node.getByRole('button',{name:`${label} 关闭时间设置`,exact:true}).click();
+  await expect(node.locator('.sim-timer-setting')).toHaveCount(0);
+  await node.getByRole('button',{name:`${label} 设置时间`,exact:true}).click();await input.press('Escape');
+  await expect(node.locator('.sim-timer-setting')).toHaveCount(0);
+  await page.locator('.react-flow__controls-zoomin').click();await checkLayout();
+  await page.locator('.react-flow__controls-zoomout').click();
+ }
+ await page.locator('.sim-canvas').screenshot({path:path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT,'timer-layout.png')});
+ await page.getByRole('button',{name:'开始仿真',exact:true}).click();
+ await expect(page.locator('.sim-timer-controls')).toHaveCount(0);
+ await expect(page.locator('.sim-timer-setting')).toHaveCount(0);
+});
