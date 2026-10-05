@@ -22,3 +22,11 @@
 当前正式站由 `.wrangler/active-release.json` 指向锁定发布包，端口 3000 原监听 PID 为 31152。因此源码修改和隔离通过不代表正式页面已更新。新包准备后，正式停写、完整 state/WAL/私有配置备份、兼容核验、激活及重启按 `releases-and-recovery.md` 执行；没有修改现网账号、图纸、草稿或数据库，没有远程部署或另建公网入口。
 
 本次未执行十课全部浏览器运行、生产切换、生产备份恢复或长期容量验收。不能用四项定向浏览器结果替代这些门禁。
+
+## 并行计时器改动整合
+
+交付前发现原工作目录由另一个聊天推进到 `codex/timer-controls-layout` / `d2528b0`，且该聊天正在执行用户授权的正式更新。本轮拒绝覆盖或变更其工作目录，正式服务仍由该聊天负责。
+
+在隔离分支 `codex/duct-entry-fix-20261005` 合入 `d2528b0`，重新构建 Pages，并重跑 typecheck、lint、build、全回归、隔离后台，结果仍为 567 通过/1 条件跳过、后台 25/25、lint 0 错误/11 警告。Chromium 增加计时器紧凑布局验收后共五项全部通过。
+
+单项修复提交为 `ace4282`；先前单项发布包 `C:/Users/admin/diantuo-production/20261005-duct-entry-fix/release` 不包含并行计时器改动。应交付合并后新包 `C:/Users/admin/diantuo-production/20261005-duct-entry-fix-combined/release`，不要直接激活旧包覆盖计时器更新。两个版本均不含生产数据或秘密。

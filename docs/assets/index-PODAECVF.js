@@ -34321,20 +34321,25 @@ function DeviceNode({ data, selected: selected2 }) {
         ),
         !running && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-timer-controls nodrag nopan", children: [
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u51CF\u5C11\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.max(TIMER_MIN_MS, Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) - 1e3)) } }), children: "\u2212" }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u8BBE\u7F6E\u65F6\u95F4`, onClick: () => {
-            setSettingsOpen(true);
-            timerInput.current?.focus();
-          }, children: "\u8BBE\u7F6E" }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u8BBE\u7F6E\u65F6\u95F4`, "aria-expanded": settingsOpen, onClick: () => setSettingsOpen((open) => !open), children: "\u8BBE\u7F6E" }),
           /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u589E\u52A0\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) + 1e3) } }), children: "+" })
         ] }),
         timer2 && (component2.settings?.delayMs ?? 3e3) > 3e5 && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-legacy-timer-warning", children: "\u5386\u53F2\u8BBE\u7F6E\u8D85\u8FC75\u5206\u949F\uFF1B\u539F\u503C\u4FDD\u7559\uFF0C\u8BF7\u8C03\u6574\u540E\u5347\u7EA7" }),
-        !running && (selected2 || settingsOpen) && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "sim-device-setting nodrag nopan", children: [
-          "\u5EF6\u65F6",
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { ref: timerInput, "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: TIMER_MIN_MS / 1e3, max: TIMER_MAX_MS / 1e3, step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
-            const seconds = event.currentTarget.valueAsNumber;
-            if (Number.isFinite(seconds) && seconds >= TIMER_MIN_MS / 1e3 && seconds <= TIMER_MAX_MS / 1e3) data.configure(component2.id, { settings: { delayMs: Math.round(seconds * 1e3) } });
-          } }),
-          "\u79D2"
+        !running && settingsOpen && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-setting sim-timer-setting nodrag nopan", role: "group", "aria-label": `${component2.label} \u65F6\u95F4\u8BBE\u7F6E`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { children: [
+            "\u5EF6\u65F6",
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { ref: timerInput, onKeyDown: (event) => {
+              if (event.key === "Escape") {
+                event.stopPropagation();
+                setSettingsOpen(false);
+              }
+            }, "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: TIMER_MIN_MS / 1e3, max: TIMER_MAX_MS / 1e3, step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
+              const seconds = event.currentTarget.valueAsNumber;
+              if (Number.isFinite(seconds) && seconds >= TIMER_MIN_MS / 1e3 && seconds <= TIMER_MAX_MS / 1e3) data.configure(component2.id, { settings: { delayMs: Math.round(seconds * 1e3) } });
+            } }),
+            "\u79D2"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", "aria-label": `${component2.label} \u5173\u95ED\u65F6\u95F4\u8BBE\u7F6E`, onClick: () => setSettingsOpen(false), children: "\xD7" })
         ] }),
         !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", children: [
           "\u5173\u8054\u7EBF\u5708",
