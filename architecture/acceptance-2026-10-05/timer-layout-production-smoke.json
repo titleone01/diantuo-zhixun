@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-05T09:37:10.484Z",
+  "releaseId": "8511ec7c91be1501187644524c653efc94218596d0e4e95e9ee999080209cb80",
+  "origins": [
+    {
+      "origin": "http://127.0.0.1:3000",
+      "resources": [
+        {
+          "path": "/",
+          "status": 200,
+          "sha256": "1f5fdcd486fff2a5b9d395a3a988dc198a9a88374387b30ef316b4b7c4a352c8",
+          "matchesRelease": true
+        },
+        {
+          "path": "/assets/app-E4OPTFZL.css",
+          "status": 200,
+          "sha256": "211642b296d6f3a707900740e9ad66134bbcc0e4877aee833268004b654c4a92",
+          "matchesRelease": true
+        },
+        {
+          "path": "/assets/app-HXTNN2KP.js",
+          "status": 200,
+          "sha256": "279b03d08e0c560b3dadeaf9df637c8efce3e0319f53c7a7832ec7a585f8095c",
+          "matchesRelease": true
+        },
+        {
+          "path": "/api/session",
+          "status": 200
+        },
+        {
+          "path": "/api/circuits",
+          "status": 401
+        },
+        {
+          "path": "/api/training-projects",
+          "status": 401
+        }
+      ]
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "resources": [
+        {
+          "path": "/",
+          "status": 200,
+          "sha256": "1f5fdcd486fff2a5b9d395a3a988dc198a9a88374387b30ef316b4b7c4a352c8",
+          "matchesRelease": true
+        },
+        {
+          "path": "/assets/app-E4OPTFZL.css",
+          "status": 200,
+          "sha256": "211642b296d6f3a707900740e9ad66134bbcc0e4877aee833268004b654c4a92",
+          "matchesRelease": true
+        },
+        {
+          "path": "/assets/app-HXTNN2KP.js",
+          "status": 200,
+          "sha256": "279b03d08e0c560b3dadeaf9df637c8efce3e0319f53c7a7832ec7a585f8095c",
+          "matchesRelease": true
+        },
+        {
+          "path": "/api/session",
+          "status": 200
+        },
+        {
+          "path": "/api/circuits",
+          "status": 401
+        },
+        {
+          "path": "/api/training-projects",
+          "status": 401
+        }
+      ]
+    }
+  ],
+  "tunnelReady": true,
+  "browser": {
+    "loginRendered": true,
+    "pageErrors": [],
+    "authenticatedUserTested": false
+  }
+}

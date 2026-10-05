@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-05T09:38:03.3492577+00:00",
+  "businessTablesUnchanged": true,
+  "attachmentsUnchanged": true,
+  "sqliteIntegrity": "ok",
+  "foreignKeyErrors": 0,
+  "users": 42,
+  "circuits": 57,
+  "publications": 46,
+  "trainingDrawings": 20,
+  "media": 66,
+  "backup": "C:\\Users\\admin\\diantuo-production\\20261005-173231-timer-layout\\backup",
+  "restoreVerified": true
+}
