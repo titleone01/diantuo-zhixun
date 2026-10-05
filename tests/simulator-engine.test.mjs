@@ -165,7 +165,7 @@ test("new simulator: the two visible terminal-block poles are insulated from one
 test("new simulator: sprites retain original aspect ratio and calibrated handles stay inside each drawing",()=>{
   for(const def of CATALOG){
     for(const pin of def.terminals){assert.ok(pin.x>=0&&pin.x<=def.width,`${def.type}/${pin.id} x`);assert.ok(pin.y>=0&&pin.y<=def.height,`${def.type}/${pin.id} y`);}
-    if(["supply","pe-terminal","wire-duct","wire-duct-vertical"].includes(def.type))continue;
+    if(["supply","pe-terminal","wire-duct","wire-duct-vertical","din-rail","relay380-jzc1-22","timer380-8pin"].includes(def.type))continue;
     const source={"auxiliary-no":"contactor380","relay380":"relay220","motor-star-delta":"motor6","motor-dahlander":"motor6"}[def.type]??def.type;
     const svg=readFileSync(new URL(`../public/sim-assets/${source}.svg`,import.meta.url),"utf8");
     const scale=def.type==="relay380"?2.5:def.type==="auxiliary-no"?1.5:def.type==="terminal"?0.75:1;

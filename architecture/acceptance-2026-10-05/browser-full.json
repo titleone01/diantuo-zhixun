@@ -1,0 +1,379 @@
+{
+  "at": "2026-10-05T08:37:00.179Z",
+  "status": "failed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "motor-course-01: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1571,
+      "errors": []
+    },
+    {
+      "title": "motor-course-01: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 997,
+      "errors": []
+    },
+    {
+      "title": "motor-course-02: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1552,
+      "errors": []
+    },
+    {
+      "title": "motor-course-02: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1065,
+      "errors": []
+    },
+    {
+      "title": "motor-course-03: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1644,
+      "errors": []
+    },
+    {
+      "title": "motor-course-03: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1109,
+      "errors": []
+    },
+    {
+      "title": "motor-course-04: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2127,
+      "errors": []
+    },
+    {
+      "title": "motor-course-04: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1116,
+      "errors": []
+    },
+    {
+      "title": "motor-course-05: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1845,
+      "errors": []
+    },
+    {
+      "title": "motor-course-05: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1111,
+      "errors": []
+    },
+    {
+      "title": "motor-course-06: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2087,
+      "errors": []
+    },
+    {
+      "title": "motor-course-06: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1189,
+      "errors": []
+    },
+    {
+      "title": "motor-course-07: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2123,
+      "errors": []
+    },
+    {
+      "title": "motor-course-07: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1181,
+      "errors": []
+    },
+    {
+      "title": "motor-course-08: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2053,
+      "errors": []
+    },
+    {
+      "title": "motor-course-08: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1060,
+      "errors": []
+    },
+    {
+      "title": "motor-course-09: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2231,
+      "errors": []
+    },
+    {
+      "title": "motor-course-09: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1128,
+      "errors": []
+    },
+    {
+      "title": "motor-course-10: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1872,
+      "errors": []
+    },
+    {
+      "title": "motor-course-10: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1130,
+      "errors": []
+    },
+    {
+      "title": "motor-course-02: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1712,
+      "errors": []
+    },
+    {
+      "title": "motor-course-03: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1815,
+      "errors": []
+    },
+    {
+      "title": "motor-course-04: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1862,
+      "errors": []
+    },
+    {
+      "title": "motor-course-05: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1729,
+      "errors": []
+    },
+    {
+      "title": "motor-course-06: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2942,
+      "errors": []
+    },
+    {
+      "title": "motor-course-07: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2374,
+      "errors": []
+    },
+    {
+      "title": "motor-course-08: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2040,
+      "errors": []
+    },
+    {
+      "title": "motor-course-09: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1927,
+      "errors": []
+    },
+    {
+      "title": "motor-course-10: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1805,
+      "errors": []
+    },
+    {
+      "title": "real terminal drag, device move, zoom and reload retain world endpoints",
+      "status": "passed",
+      "durationMs": 2105,
+      "errors": []
+    },
+    {
+      "title": "two browser accounts cannot open each other private drafts",
+      "status": "passed",
+      "durationMs": 1131,
+      "errors": []
+    },
+    {
+      "title": "corrupt recovery bytes survive a storage quota failure",
+      "status": "passed",
+      "durationMs": 1575,
+      "errors": []
+    },
+    {
+      "title": "two windows surface a save conflict without overwriting the winner",
+      "status": "passed",
+      "durationMs": 1894,
+      "errors": []
+    },
+    {
+      "title": "late JSON import cannot replace a newer simulation session",
+      "status": "passed",
+      "durationMs": 954,
+      "errors": []
+    },
+    {
+      "title": "reference picker traps focus and prevents editor keyboard deletion",
+      "status": "passed",
+      "durationMs": 1101,
+      "errors": []
+    },
+    {
+      "title": "Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste",
+      "status": "passed",
+      "durationMs": 1514,
+      "errors": []
+    },
+    {
+      "title": "formal course picker creates ten editable blank practices and saves separate drafts",
+      "status": "passed",
+      "durationMs": 4714,
+      "errors": []
+    },
+    {
+      "title": "course change preserves unsaved original identity and isolates recovery and clipboard across accounts",
+      "status": "passed",
+      "durationMs": 2378,
+      "errors": []
+    },
+    {
+      "title": "rendered breaker colors, energized dot size and motor outline retain unsafe-wiring diagnostics",
+      "status": "passed",
+      "durationMs": 1468,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: rotation, drag, undo, zoom, copy, reload and immutable publication",
+      "status": "passed",
+      "durationMs": 3579,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: manual course 01 uses student IDs, actual placement and terminal drags",
+      "status": "passed",
+      "durationMs": 9242,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: numeric KT screen, ON UP, pause step, loss and restart",
+      "status": "passed",
+      "durationMs": 1409,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: explicit legacy upgrade creates a copy and leaves original snapshot intact",
+      "status": "passed",
+      "durationMs": 1580,
+      "errors": []
+    },
+    {
+      "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+      "status": "passed",
+      "durationMs": 3340,
+      "errors": []
+    },
+    {
+      "title": "repeated group paste and undo preserve a stable editable document",
+      "status": "passed",
+      "durationMs": 2023,
+      "errors": []
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1920x1080",
+      "status": "passed",
+      "durationMs": 3595,
+      "errors": []
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1366x768",
+      "status": "passed",
+      "durationMs": 2676,
+      "errors": []
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1024x768",
+      "status": "passed",
+      "durationMs": 2412,
+      "errors": []
+    },
+    {
+      "title": "final schematic: a mouse resize to exactly 560 preserves manual width and reset restores responsive sizing",
+      "status": "passed",
+      "durationMs": 2140,
+      "errors": []
+    },
+    {
+      "title": "integrated: ten blank courses share six-duct layouts and FU2/XT16, clear and examples keep one layout",
+      "status": "passed",
+      "durationMs": 11903,
+      "errors": []
+    },
+    {
+      "title": "integrated: legacy duct import and canonical routing save and reload without losing manual paths",
+      "status": "passed",
+      "durationMs": 2073,
+      "errors": []
+    },
+    {
+      "title": "integrated: cross-document group paste remains one undo operation and running interruptions cannot edit it",
+      "status": "passed",
+      "durationMs": 3395,
+      "errors": []
+    },
+    {
+      "title": "integrated: switching an unsaved course preserves its parked circuit and failed quota preserves the active document",
+      "status": "passed",
+      "durationMs": 1910,
+      "errors": []
+    },
+    {
+      "title": "integrated: upload reference and undo restore the authenticated PNG preview and modal keys leave wiring intact",
+      "status": "passed",
+      "durationMs": 1717,
+      "errors": []
+    },
+    {
+      "title": "integrated: essential editing controls remain reachable at 1366x768",
+      "status": "passed",
+      "durationMs": 1425,
+      "errors": []
+    },
+    {
+      "title": "integrated: essential editing controls remain reachable at 1920x1080",
+      "status": "passed",
+      "durationMs": 1493,
+      "errors": []
+    },
+    {
+      "title": "integrated: three automatic wires keep separate repeatable tracks and their electrical endpoints through broken or missing ducts",
+      "status": "failed",
+      "durationMs": 3586,
+      "errors": [
+        {
+          "name": "TestFailure"
+        }
+      ]
+    },
+    {
+      "title": "integrated: an isolated member PDF upload renders actual PDF.js pixels and reload retains the private preview",
+      "status": "passed",
+      "durationMs": 1606,
+      "errors": []
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1920x1080",
+      "status": "passed",
+      "durationMs": 2979,
+      "errors": []
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1366x768",
+      "status": "passed",
+      "durationMs": 2528,
+      "errors": []
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1024x768",
+      "status": "passed",
+      "durationMs": 2497,
+      "errors": []
+    }
+  ]
+}

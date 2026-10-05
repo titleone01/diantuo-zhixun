@@ -1,9 +1,11 @@
+import { upgradeRelays } from "./relay-upgrade";
+import { isLayoutObject } from "./catalog";
 import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 import { createMotorCourseDocument } from "./motor-courses";
 import type { CircuitDocument } from "./types";
 
 /** New editable practices share the reference layout; saved documents are never rearranged here. */
-export function createMotorPracticeDocument(id: string, options: { wired?: boolean } = {}): CircuitDocument {
+export function createMotorPracticeDocument(id: string, options: { wired?: boolean; placement?: "automatic" | "manual" } = {}): CircuitDocument {
   const document = createMotorCourseDocument(id, options);
   document.components = document.components.filter(component => component.id !== "fu2a" && component.id !== "fu2b");
   document.components.push({ id: "fu2", type: "fuse2", label: "FU2", position: { x: 0, y: 0 } });
@@ -20,5 +22,6 @@ export function createMotorPracticeDocument(id: string, options: { wired?: boole
     }
   }
   document.components.push({ id: "xt16", type: "terminal-strip16", label: "XT（16位）", position: { x: 0, y: 0 } });
-  return putWiresInDucts(arrangeTrainingDucts(document));
+  const next = upgradeRelays(putWiresInDucts(arrangeTrainingDucts(document)));
+  return options.placement === "manual" ? {...next,components:next.components.filter(c=>isLayoutObject(c.type)),wires:[],roles:{}} : next;
 }

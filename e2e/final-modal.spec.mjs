@@ -112,7 +112,7 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1366, height: 76
         await snapshot(page, `${viewport.width}-${scenario}-scrolled.png`, final);
         // A real mouse click uses the already measured visible position, never locator auto-scroll.
         if (initial.practiceFullyVisible && final.practiceFullyVisible && final.practiceReceivesPointer) {
-          await page.mouse.click(final.practice.x + final.practice.width / 2, final.practice.y + final.practice.height / 2);
+          await page.mouse.click(final.practice.x + final.practice.width / 2, final.practice.y + final.practice.height / 2); await page.getByRole('button', {name:'创建练习',exact:true}).click();
           await expect(page.getByRole('dialog')).toHaveCount(0);
           await expect(page.getByRole('button', { name: '开始仿真', exact: true })).toBeVisible();
         } else await page.locator('.dt-reference-modal > header button').click();

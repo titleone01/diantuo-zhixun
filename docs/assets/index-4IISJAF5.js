@@ -21715,7 +21715,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
             "The result of getSnapshot should be cached to avoid an infinite loop"
           ), didWarnUncachedGetSnapshot = true);
         }
-        cachedValue = useState16({
+        cachedValue = useState17({
           inst: { value, getSnapshot }
         });
         var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
@@ -21753,7 +21753,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState16 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect9 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState17 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect9 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
@@ -31838,8 +31838,16 @@ var terminalKey = (ref2) => `${ref2.componentId}::${ref2.terminalId}`;
 var pin = (id2, x, y, side, electrical = "contact", label = id2) => ({ id: id2, label, x, y, side, electrical });
 var threeContacts = (control) => [["1", "2"], ["3", "4"], ["5", "6"]].map((terminals, i) => ({ id: `pole-${i + 1}`, terminals, control }));
 var compactTerminal = (definition) => ({ ...definition, width: definition.width * 0.75, height: definition.height * 0.75, terminals: definition.terminals.map((terminal) => ({ ...terminal, x: terminal.x * 0.75, y: terminal.y * 0.75 })) });
+var TIMER_MIN_MS = 1;
+var TIMER_MAX_MS = 3e5;
+var TIMER_DEFAULT_MS = 3e3;
+var TIMER_LEGACY_MAX_MS = 36e5;
 var DUCT_MIN_SIZE = 24;
 var DUCT_MAX_SIZE = 4e3;
+var isTimer = (type) => type === "timer380" || type === "timer380-8pin";
+var isRelay = (type) => type === "relay380" || type === "relay380-jzc1-22";
+var isLayoutObject = (type) => isWireDuct(type) || type === "din-rail";
+var canRotate = (type) => type === "supply" || type === "terminal-strip16";
 var isWireDuct = (type) => type === "wire-duct" || type === "wire-duct-vertical";
 var contactor = (ratedVoltage) => ({
   type: ratedVoltage === 220 ? "contactor220" : "contactor380",
@@ -31875,8 +31883,31 @@ var CATALOG = [
   contactor(380),
   { type: "fuse2", name: "\u53CC\u8054\u7194\u65AD\u5668\uFF08\u6559\u5B66\uFF09", category: "power", width: 100.5, height: 187.5, terminals: [pin("1", 25.499, 20.499, "top", "contact", "L1"), pin("2", 25.499, 166.499, "bottom", "contact", "T1"), pin("3", 74.499, 20.499, "top", "contact", "L2"), pin("4", 74.499, 166.499, "bottom", "contact", "T2")].map((terminal) => ({ ...terminal, color: "#84909c" })), fixedConnections: [["1", "2"], ["3", "4"]], description: "\u7531\u539F\u7AD9\u7194\u65AD\u5668\u7D20\u6750\u6D3E\u751F\u7684\u53CC\u8054\u6559\u5B66\u56FE\uFF0C\u9ED8\u8BA4\u4E2D\u6027\u7070\uFF1B1-2\u30013-4 \u4E24\u4E2A\u5B8C\u6574\u7194\u82AF\u72EC\u7ACB\u5BFC\u901A\uFF0C\u4E0D\u6A21\u62DF\u771F\u5B9E\u7194\u65AD\u65F6\u95F4\u3002" },
   { type: "auxiliary-no", name: "\u5173\u8054\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9", category: "industrial", width: 59.25, height: 205.5, terminals: [pin("13", 33.7455, 15.7485, "top", "contact", "13 NO"), pin("14", 33.7455, 176.247, "bottom", "contact", "14 NO")], contacts: [{ id: "aux-no", terminals: ["13", "14"], control: "coil" }], description: "\u4F7F\u7528\u539F\u63A5\u89E6\u5668\u8F85\u52A9\u89E6\u70B9\u533A\u57DF\uFF1B\u9009\u62E9\u6240\u5173\u8054\u7684 KM \u6216 KA\uFF0C\u968F\u5176\u7EBF\u5708\u52A8\u4F5C\u3002\u672A\u5173\u8054\u65F6\u4E0D\u53C2\u4E0E\u6709\u6548\u4EFF\u771F\u3002" },
-  { type: "relay380", name: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA\uFF08380V \u6559\u5B66\uFF09", category: "industrial", width: 121, height: 241, terminals: [pin("A1", 46.5, 218.5, "bottom", "coil", "A1 \xB7 \u539F14"), pin("A2", 74.5, 218.5, "bottom", "coil", "A2 \xB7 \u539F13"), pin("13", 102.5, 190.5, "right", "contact", "13 \xB7 \u539F9"), pin("14", 102.5, 47.5, "right", "contact", "14 NO \xB7 \u539F5"), pin("21", 46.5, 190.5, "left", "contact", "21 \xB7 \u539F11"), pin("22", 46.5, 19.5, "top", "contact", "22 NC \xB7 \u539F3")], contacts: [{ id: "no", terminals: ["13", "14"], control: "coil" }, { id: "nc", terminals: ["21", "22"], control: "coil", normallyClosed: true }], load: { kind: "coil", terminals: ["A1", "A2"], ratedVoltage: 380 }, description: "\u901A\u7528 AC \u539F\u56FE\u653E\u5927 2.5 \u500D\uFF1B380V \u4E3A\u672C\u6559\u5B66\u6A21\u578B\u989D\u5B9A\u503C\u3002\u6559\u5B6613/14\u5BF9\u5E94\u539F9/5\uFF0C21/22\u5BF9\u5E94\u539F11/3\uFF0C\u4E24\u7EC4\u9694\u79BB\u89E6\u70B9\uFF1B\u672A\u5F00\u653E\u9488\u811A\u4E0D\u53C2\u4E0E\u63A5\u7EBF\u3002" },
-  { type: "timer380", name: "\u901A\u7535\u5EF6\u65F6\u7EE7\u7535\u5668 KT\uFF08380V\uFF09", category: "industrial", width: 201.5, height: 201.5, terminals: [pin("A1", 16.498, 187.499, "bottom", "coil", "A1 \xB7 \u539F2"), pin("A2", 184.498, 187.499, "bottom", "coil", "A2 \xB7 \u539F7"), pin("15", 72.499, 187.499, "bottom", "contact", "15 \xB7 \u539F1"), pin("16", 72.499, 13.499, "top", "contact", "16 NC \xB7 \u539F4"), pin("25", 128.498, 187.499, "bottom", "contact", "25 \xB7 \u539F8"), pin("28", 184.498, 13.499, "top", "contact", "28 NO \xB7 \u539F6")], contacts: [{ id: "delay-nc", terminals: ["15", "16"], control: "timer", normallyClosed: true }, { id: "delay-no", terminals: ["25", "28"], control: "timer" }], load: { kind: "coil", terminals: ["A1", "A2"], ratedVoltage: 380 }, description: "\u6559\u5B66\u53CC\u5EF6\u65F6\u6A21\u578B\uFF1A380V \u7EBF\u5708\u5F97\u7535\u5E76\u8FBE\u5230\u8BBE\u5B9A\u65F6\u95F4\u540E\uFF0C\u9694\u79BB\u768415-16\u65AD\u5F00\u300125-28\u95ED\u5408\uFF1B\u5931\u7535\u7ACB\u5373\u590D\u4F4D\u3002\u4FDD\u7559\u539F\u56FE\u5916\u89C2\uFF0C\u539F\u56FE\u5DE6\u4FA7\u77AC\u65F6\u6807\u8BC6\u4E0D\u4EE3\u8868\u672C\u6559\u5B66\u5B9A\u4E49\uFF0C\u4EE5\u5E38\u663E\u6559\u5B66\u7AEF\u5B50\u53F7\u4E3A\u51C6\u3002" },
+  { type: "relay380", name: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA\uFF08380V \u6559\u5B66\uFF09", category: "industrial", width: 121, height: 241, terminals: [pin("A1", 46.5, 218.5, "bottom", "coil", "A1"), pin("A2", 74.5, 218.5, "bottom", "coil", "A2"), pin("13", 102.5, 190.5, "right", "contact", "13 NO"), pin("14", 102.5, 47.5, "right", "contact", "14 NO"), pin("21", 46.5, 190.5, "left", "contact", "21 NC"), pin("22", 46.5, 19.5, "top", "contact", "22 NC")], contacts: [{ id: "no", terminals: ["13", "14"], control: "coil" }, { id: "nc", terminals: ["21", "22"], control: "coil", normallyClosed: true }], load: { kind: "coil", terminals: ["A1", "A2"], ratedVoltage: 380 }, description: "\u901A\u7528 AC \u539F\u56FE\u653E\u5927 2.5 \u500D\uFF1B380V \u4E3A\u672C\u6559\u5B66\u6A21\u578B\u989D\u5B9A\u503C\u3002\u4E24\u7EC4\u9694\u79BB\u89E6\u70B9\uFF1B\u672A\u5F00\u653E\u9488\u811A\u4E0D\u53C2\u4E0E\u63A5\u7EBF\u3002" },
+  { type: "timer380", name: "\u901A\u7535\u5EF6\u65F6\u7EE7\u7535\u5668 KT\uFF08380V\uFF09", category: "industrial", width: 201.5, height: 201.5, terminals: [pin("A1", 16.498, 187.499, "bottom", "coil", "A1"), pin("A2", 184.498, 187.499, "bottom", "coil", "A2"), pin("15", 72.499, 187.499, "bottom", "contact", "15 COM"), pin("16", 72.499, 13.499, "top", "contact", "16 NC"), pin("25", 128.498, 187.499, "bottom", "contact", "25 COM"), pin("28", 184.498, 13.499, "top", "contact", "28 NO")], contacts: [{ id: "delay-nc", terminals: ["15", "16"], control: "timer", normallyClosed: true }, { id: "delay-no", terminals: ["25", "28"], control: "timer" }], load: { kind: "coil", terminals: ["A1", "A2"], ratedVoltage: 380 }, description: "\u6559\u5B66\u53CC\u5EF6\u65F6\u6A21\u578B\uFF1A380V \u7EBF\u5708\u5F97\u7535\u5E76\u8FBE\u5230\u8BBE\u5B9A\u65F6\u95F4\u540E\uFF0C\u9694\u79BB\u768415-16\u65AD\u5F00\u300125-28\u95ED\u5408\uFF1B\u5931\u7535\u7ACB\u5373\u590D\u4F4D\u3002\u4FDD\u7559\u516D\u4E2A\u7A33\u5B9A\u6559\u5B66\u7AEF\u5B50\uFF0C\u4E0D\u589E\u52A0\u6216\u6539\u53D8\u65E7\u6587\u6863\u7684\u89E6\u70B9\u5173\u7CFB\u3002" },
+  {
+    type: "relay380-jzc1-22",
+    name: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA\uFF08JZC1-22 \u98CE\u683C \xB7 380V \u6559\u5B66\uFF09",
+    category: "industrial",
+    width: 151.5,
+    height: 191.5,
+    terminals: [pin("A1", 32, 14, "top", "coil"), pin("A2", 119.5, 14, "top", "coil"), ...["13", "21", "31", "43"].map((id2, i) => pin(id2, 19 + i * 38, 45, "top", "contact", `${id2} ${i === 0 || i === 3 ? "NO" : "NC"}`)), ...["14", "22", "32", "44"].map((id2, i) => pin(id2, 19 + i * 38, 171, "bottom", "contact", `${id2} ${i === 0 || i === 3 ? "NO" : "NC"}`))],
+    contacts: [{ id: "no", terminals: ["13", "14"], control: "coil" }, { id: "no-2", terminals: ["43", "44"], control: "coil" }, { id: "nc", terminals: ["21", "22"], control: "coil", normallyClosed: true }, { id: "nc-2", terminals: ["31", "32"], control: "coil", normallyClosed: true }],
+    load: { kind: "coil", terminals: ["A1", "A2"], ratedVoltage: 380 },
+    description: "JZC1-22 \u98CE\u683C\u4E8C\u7EF4\u6559\u5B66\u793A\u610F\uFF1B380V\u7EBF\u5708\uFF0C\u4E24\u5E38\u5F0013-14/43-44\u3001\u4E24\u5E38\u95ED21-22/31-32\uFF0C\u7EC4\u95F4\u9694\u79BB\u3002\u4E0D\u8868\u793A\u5382\u5BB6\u5B89\u88C5\u5C3A\u5BF8\u3002"
+  },
+  {
+    type: "timer380-8pin",
+    name: "\u901A\u7535\u5EF6\u65F6\u7EE7\u7535\u5668 KT\uFF08\u516B\u7AEF\u5B50 \xB7 380V \u6559\u5B66\uFF09",
+    category: "industrial",
+    width: 201.5,
+    height: 201.5,
+    terminals: [pin("6", 16.5, 13.5, "top", "contact", "6 NO"), pin("5", 72.5, 13.5, "top", "contact", "5 NC"), pin("4", 128.5, 13.5, "top", "contact", "4 NC"), pin("3", 184.5, 13.5, "top", "contact", "3 NO"), pin("7", 16.5, 187.5, "bottom", "coil", "7/A2"), pin("8", 72.5, 187.5, "bottom", "contact", "8 COM"), pin("1", 128.5, 187.5, "bottom", "contact", "1 COM"), pin("2", 184.5, 187.5, "bottom", "coil", "2/A1")],
+    contacts: [{ id: "delay-nc", terminals: ["1", "4"], control: "timer", normallyClosed: true }, { id: "delay-no-1", terminals: ["1", "3"], control: "timer" }, { id: "delay-nc-2", terminals: ["8", "5"], control: "timer", normallyClosed: true }, { id: "delay-no", terminals: ["8", "6"], control: "timer" }],
+    load: { kind: "coil", terminals: ["2", "7"], ratedVoltage: 380 },
+    description: "\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u6559\u5B66\u6A21\u578B\uFF1A1\u4E3A\u516C\u5171\u7AEF\uFF0C1-4\u5E38\u95ED/1-3\u5E38\u5F00\uFF1B8\u4E3A\u516C\u5171\u7AEF\uFF0C8-5\u5E38\u95ED/8-6\u5E38\u5F00\u30022/7\u4E3A380V\u7EBF\u5708\uFF1B\u4E24\u7EC4\u5230\u65F6\u8F6C\u6362\u3001\u5931\u7535\u590D\u4F4D\uFF0C\u4E0A\u9650300\u79D2\u3002"
+  },
+  { type: "din-rail", name: "\u5B89\u88C5\u5BFC\u8F68\uFF08\u4E8C\u7EF4\u6559\u5B66\uFF09", category: "terminals", width: 420, height: 24, terminals: [], description: "\u9884\u5E03\u7684\u4E8C\u7EF4\u5B89\u88C5\u793A\u610F\uFF0C\u53EF\u79FB\u52A8\u3001\u8C03\u6574\u957F\u5EA6\u3001\u5220\u9664\uFF1B\u65E0\u7535\u6C14\u8FDE\u63A5\uFF0C\u4E0D\u5F3A\u5236\u5668\u4EF6\u5438\u9644\u3002" },
   { type: "limit-switch", name: "\u9650\u4F4D\u5F00\u5173 SQ\uFF08\u590D\u5408\uFF09", category: "industrial", width: 85.5, height: 226.5, terminals: [pin("11", 11.498, 127.498, "left", "contact", "11 NC"), pin("12", 73.498, 127.498, "right", "contact", "12 NC"), pin("23", 11.498, 193.498, "left", "contact", "23 NO"), pin("24", 73.498, 193.498, "right", "contact", "24 NO")], contacts: [{ id: "nc", terminals: ["11", "12"], control: "push", normallyClosed: true }, { id: "no", terminals: ["23", "24"], control: "push" }], description: "\u6309\u4F4F\u8868\u793A\u673A\u68B0\u538B\u4E0B\u9650\u4F4D\u6746\uFF1A11-12\u5148\u65AD\u5F00\u300123-24\u518D\u95ED\u5408\uFF1B\u91CA\u653E\u540E\u6062\u590D\u3002\u672A\u6A21\u62DF\u673A\u68B0\u4F4D\u79FB\u3002" },
   { type: "overload", name: "\u70ED\u8FC7\u8F7D\u7EE7\u7535\u5668", category: "industrial", width: 181.5, height: 166.5, terminals: [pin("1", 24.498, 39.499, "top"), pin("3", 62.498, 39.499, "top"), pin("5", 100.499, 39.499, "top"), pin("2", 24.498, 105.499, "bottom"), pin("4", 62.498, 105.499, "bottom"), pin("6", 100.499, 105.499, "bottom"), pin("95", 135.49, 99.49, "right"), pin("96", 163.49, 99.49, "right"), pin("97", 135.49, 122.49, "right"), pin("98", 163.49, 122.49, "right")], fixedConnections: [["1", "2"], ["3", "4"], ["5", "6"]], contacts: [{ id: "nc", terminals: ["95", "96"], control: "overload", normallyClosed: true }, { id: "no", terminals: ["97", "98"], control: "overload" }], description: "TEST \u9501\u5B58\u52A8\u4F5C\uFF1A95-96 \u65AD\u5F00\u300197-98 \u95ED\u5408\uFF1BRESET \u590D\u4F4D\u3002\u4E3B\u56DE\u8DEF\u68C0\u6D4B\u901A\u9053\u4E0D\u76F4\u63A5\u65AD\u5F00\u3002" },
   pushButton("push-no"),
@@ -31890,7 +31921,7 @@ var CATALOG = [
   ...["motor-star-delta", "motor-dahlander"].map((type) => ({ type, name: type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A\uFF08Y / \u0394\uFF09" : "\u53CC\u901F\u7535\u673A\uFF08\u0394 / YY \u6559\u5B66\uFF09", category: "industrial", width: 280.5, height: 211.5, terminals: [pin("U1", 135.498, 10.499, "top", "load"), pin("V1", 193.498, 10.499, "top", "load"), pin("W1", 251.498, 10.499, "top", "load"), pin("U2", 135.498, 200.5, "bottom", "load"), pin("V2", 193.498, 200.5, "bottom", "load"), pin("W2", 251.498, 200.5, "bottom", "load"), pin("PE", 269.498, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U1", "V1", "W1", "U2", "V2", "W2"], ratedVoltage: 380, motorModel: type === "motor-star-delta" ? "star-delta" : "dahlander" }, description: type === "motor-star-delta" ? "\u539F\u7AD9\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF1B\u72EC\u7ACB\u7684\u4E09\u7EC4\u7ED5\u7EC4\u7528\u4E8E\u661F\u5F62/\u4E09\u89D2\u5F62\u6559\u5B66\u62D3\u6251\u5224\u5B9A\uFF0CPE\u5355\u72EC\u68C0\u67E5\u3002" : "\u590D\u7528\u539F\u7AD9\u901A\u7528\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF0C\u7535\u6C14\u6A21\u578B\u4E3A \u0394 / YY \u53CC\u901F\u6559\u5B66\u5B9A\u4E49\uFF1B\u6CA1\u6709\u5BA3\u79F0\u6E90\u7AD9\u5B58\u5728\u72EC\u7ACB\u53CC\u901F\u578B\u53F7\u3002" })),
   compactTerminal({ type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" }),
   compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "earth"), pin("B", 32.497, 73.498, "bottom", "earth")], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
-  { type: "terminal-strip16", name: "16\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 729, height: 76.125, terminals: Array.from({ length: 16 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat(), fixedConnections: Array.from({ length: 16 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768416\u4F4D\u6559\u5B66\u56FE\uFF0C\u517132\u4E2A\u7A33\u5B9A\u63A5\u7EBF\u7AEF\u5B50\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u4E16\u754C\u5355\u4F4D\u4E0D\u4EE3\u8868\u5B89\u88C5\u5C3A\u5BF8\u3002" },
+  { type: "terminal-strip16", name: "16\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 729, height: 76.125, terminals: Array.from({ length: 16 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 16 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768416\u4F4D\u6559\u5B66\u56FE\uFF0C\u517132\u4E2A\u7A33\u5B9A\u63A5\u7EBF\u7AEF\u5B50\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u4E16\u754C\u5355\u4F4D\u4E0D\u4EE3\u8868\u5B89\u88C5\u5C3A\u5BF8\u3002" },
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
   { type: "wire-duct-vertical", name: "\u7EB5\u5411\u7EBF\u69FD", category: "terminals", width: 60, height: 420, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" }
 ];
@@ -31901,15 +31932,31 @@ function getDefinition(type) {
 }
 function componentSize(component2) {
   const definition = getDefinition(component2.type);
-  return isWireDuct(component2.type) && component2.size ? component2.size : { width: definition.width, height: definition.height };
+  const size = isLayoutObject(component2.type) && component2.size ? component2.size : { width: definition.width, height: definition.height };
+  return component2.rotation === 90 || component2.rotation === 270 ? { width: size.height, height: size.width } : size;
 }
 function resolveTerminal(document2, ref2) {
   const component2 = document2.components.find((item) => item.id === ref2.componentId);
   if (!component2) throw new Error(`\u672A\u627E\u5230\u5143\u4EF6\uFF1A${ref2.componentId}`);
   const terminal = getDefinition(component2.type).terminals.find((item) => item.id === ref2.terminalId);
   if (!terminal) throw new Error(`\u672A\u627E\u5230\u7AEF\u5B50\uFF1A${terminalKey(ref2)}`);
-  return { component: component2, terminal, world: { x: component2.position.x + terminal.x, y: component2.position.y + terminal.y } };
+  const local = transformedTerminal(component2, terminal);
+  return { component: component2, terminal: local, world: { x: component2.position.x + local.x, y: component2.position.y + local.y } };
 }
+function transformedTerminal(component2, terminal) {
+  const { width: w, height: h } = getDefinition(component2.type), angle = component2.rotation ?? 0;
+  const sides = ["top", "right", "bottom", "left"];
+  const side = sides[(sides.indexOf(terminal.side) + angle / 90) % 4];
+  const point2 = angle === 90 ? { x: h - terminal.y, y: terminal.x } : angle === 180 ? { x: w - terminal.x, y: h - terminal.y } : angle === 270 ? { x: terminal.y, y: w - terminal.x } : { x: terminal.x, y: terminal.y };
+  return { ...terminal, ...point2, side };
+}
+function rotateComponent(component2) {
+  if (!canRotate(component2.type)) throw new Error("\u6B64\u5143\u4EF6\u4E0D\u652F\u6301\u65CB\u8F6C");
+  const before = componentSize(component2), rotation = ((component2.rotation ?? 0) + 90) % 360;
+  const next = { ...component2, rotation }, after = componentSize(next);
+  return { ...next, position: { x: component2.position.x + (before.width - after.width) / 2, y: component2.position.y + (before.height - after.height) / 2 } };
+}
+var equivalentComponentType = (actual, expected) => actual === expected || isRelay(actual) && isRelay(expected) || isTimer(actual) && isTimer(expected) || ["push-no", "push-nc"].includes(actual) && ["push-no", "push-nc"].includes(expected);
 
 // app/simulator/core/motor-courses.ts
 var TITLES = ["\u7535\u52A8\u673A\u70B9\u52A8\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u8FDE\u7EED\u8FD0\u884C\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u70B9\u52A8\u4E0E\u8FDE\u7EED\u8FD0\u884C\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u63A5\u89E6\u5668\u4E92\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u53CC\u91CD\u8054\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u81EA\u52A8\u5F80\u8FD4\u63A7\u5236\u7535\u8DEF", "\u4E24\u53F0\u7535\u52A8\u673A\u987A\u5E8F\u63A7\u5236\u7535\u8DEF", "\u7535\u52A8\u673A\u5EF6\u65F6\u8D77\u52A8\u63A7\u5236\u7535\u8DEF", "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF", "\u53CC\u901F\u7535\u673A\u63A7\u5236\u7535\u8DEF"];
@@ -32146,193 +32193,6 @@ function createMotorCourseDocument(id2, { wired = false } = {}) {
 }
 for (const lesson of MOTOR_COURSES) lesson.componentTypes = [...new Set(createMotorCourseDocument(lesson.id).components.map((component2) => component2.type))];
 
-// app/simulator/core/duct-layout.ts
-var power = ["qf", "fu1", "fu2"];
-var TRAINING_LAYOUT_REFERENCES = {
-  "motor-course-01": { file: "\u7535\u52A8\u673A\u70B9\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], []], buttons: ["sb"] },
-  "motor-course-02": { file: "\u7535\u52A8\u673A\u8FDE\u7EED\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2"] },
-  "motor-course-03": { file: "\u70B9\u52A8\u4E0E\u8FDE\u7EED\u8FD0\u884C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
-  "motor-course-04": { file: "\u63A5\u89E6\u5668\u4E92\u9501\u6B63\u53CD\u8F6C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
-  "motor-course-05": { file: "\u53CC\u91CD\u8054\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
-  "motor-course-06": { file: "\u81EA\u52A8\u5F80\u8FD4\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"], limits: ["sq1", "sq2", "sq3", "sq4"] },
-  "motor-course-07": { file: "\u987A\u5E8F\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km1_aux", "km2", "km2_aux"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
-  "motor-course-08": { file: "\u5EF6\u65F6\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["ka", "km", "kt"], ["fr"]], buttons: ["sb1", "sb2"] },
-  "motor-course-09": { file: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2"] },
-  "motor-course-10": { file: "\u53CC\u901F\u7535\u673A\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2", "km3"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] }
-};
-var buttonTypes = /* @__PURE__ */ new Set(["push-no", "push-nc", "push-latching-red", "push-latching-green", "switch1", "switch2"]);
-var loadTypes = /* @__PURE__ */ new Set(["motor", "motor-star-delta", "motor-dahlander", "lamp"]);
-function referenceFor(document2) {
-  const own = document2.lessonId && TRAINING_LAYOUT_REFERENCES[document2.lessonId];
-  if (own) return own;
-  const ids = (types) => document2.components.filter((component2) => types.includes(component2.type)).map((component2) => component2.id);
-  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "auxiliary-no"]), ids(["overload", "terminal"])];
-  return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document2.components.filter((component2) => buttonTypes.has(component2.type)).map((component2) => component2.id), limits: ids(["limit-switch"]) };
-}
-var DUCT_WIDTH = 32;
-var CLEARANCE = 40;
-var SEPARATION = 76;
-var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + (index2 ? component2.id === "fu2b" ? 16 : SEPARATION : 0), 0);
-function arrangeTrainingDucts(document2) {
-  if (document2.components.some((component2) => isWireDuct(component2.type)) || !document2.components.length) return document2;
-  const reference = referenceFor(document2);
-  const byId = new Map(document2.components.map((component2) => [component2.id, component2]));
-  const resolve = (ids) => ids.flatMap((id2) => {
-    const component2 = byId.get(document2.roles?.[id2] ?? id2);
-    if (id2 === "fu2" && !component2) return ["fu2a", "fu2b"].map((key4) => byId.get(document2.roles?.[key4] ?? key4)).filter((value) => !!value);
-    return component2 ? [component2] : [];
-  });
-  const rows = reference.rows.map(resolve);
-  const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
-  const sources = document2.components.filter((component2) => component2.type === "supply");
-  const loads = document2.components.filter((component2) => loadTypes.has(component2.type));
-  const earths = document2.components.filter((component2) => component2.type === "pe-terminal");
-  const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths].map((component2) => component2.id));
-  const terminals = document2.components.filter((component2) => !placed.has(component2.id));
-  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + DUCT_WIDTH));
-  const positions = /* @__PURE__ */ new Map();
-  const channels = [0];
-  let y = 0;
-  for (const [index2, row] of rows.entries()) {
-    const height = Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((component2) => componentSize(component2).height));
-    let x = DUCT_WIDTH / 2 + CLEARANCE;
-    for (const [column, component2] of row.entries()) {
-      if (column) x += component2.id === "fu2b" ? 16 : SEPARATION;
-      positions.set(component2.id, { x, y: y + DUCT_WIDTH / 2 + CLEARANCE });
-      x += componentSize(component2).width;
-    }
-    y += DUCT_WIDTH + CLEARANCE * 2 + height;
-    channels.push(y);
-  }
-  const bottom = y, sideX = width + 95;
-  let buttonY = Math.max(56, bottom - buttons.reduce((sum, component2) => sum + componentSize(component2).height + 28, -28));
-  for (const component2 of buttons) {
-    positions.set(component2.id, { x: sideX, y: buttonY });
-    buttonY += componentSize(component2).height + 28;
-  }
-  let limitX = sideX;
-  for (const component2 of limits) {
-    positions.set(component2.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE });
-    limitX += componentSize(component2).width + 44;
-  }
-  let sourceX = 56;
-  for (const component2 of sources) {
-    positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
-    sourceX += componentSize(component2).width + 30;
-  }
-  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
-  let externalX = 56;
-  for (const component2 of terminalRow) {
-    positions.set(component2.id, { x: externalX, y: terminalY });
-    externalX += componentSize(component2).width + SEPARATION;
-  }
-  const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map((component2) => componentSize(component2).height)) + SEPARATION : 0);
-  externalX = 56;
-  for (const component2 of loads) {
-    positions.set(component2.id, { x: externalX, y: loadY });
-    externalX += componentSize(component2).width + SEPARATION;
-  }
-  const ducts = [];
-  const used = new Set(document2.components.map((component2) => component2.id));
-  const add = (vertical, x, y2, length) => {
-    let id2 = `training-duct-${ducts.length + 1}`;
-    while (used.has(id2)) id2 += "-d";
-    used.add(id2);
-    ducts.push({ id: id2, type: vertical ? "wire-duct-vertical" : "wire-duct", label: `WD${ducts.length + 1}`, position: { x: vertical ? x - DUCT_WIDTH / 2 : x, y: vertical ? y2 : y2 - DUCT_WIDTH / 2 }, size: { width: vertical ? DUCT_WIDTH : length, height: vertical ? length : DUCT_WIDTH } });
-  };
-  for (const center of channels) add(false, -DUCT_WIDTH / 2, center, width + DUCT_WIDTH);
-  add(true, 0, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
-  add(true, width, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
-  if (width + DUCT_WIDTH > 4e3 || bottom + DUCT_WIDTH > 4e3 || document2.components.length + ducts.length > 200) throw new Error("\u5143\u4EF6\u8FC7\u591A\u6216\u5E03\u5C40\u8FC7\u5927\uFF0C\u8BF7\u6309\u53C2\u8003\u56FE\u5206\u7EC4\u8C03\u6574\u5E03\u5C40\u3002");
-  return { ...document2, components: [...document2.components.map((component2) => ({ ...component2, position: positions.get(component2.id) ?? component2.position })), ...ducts] };
-}
-function putWiresInDucts(document2) {
-  return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, style: "orthogonal", routing: "duct" })) };
-}
-
-// app/simulator/core/motor-practice-layout.ts
-function createMotorPracticeDocument(id2, options = {}) {
-  const document2 = createMotorCourseDocument(id2, options);
-  document2.components = document2.components.filter((component2) => component2.id !== "fu2a" && component2.id !== "fu2b");
-  document2.components.push({ id: "fu2", type: "fuse2", label: "FU2", position: { x: 0, y: 0 } });
-  if (document2.roles) {
-    delete document2.roles.fu2a;
-    delete document2.roles.fu2b;
-    document2.roles.fu2 = "fu2";
-  }
-  for (const wire of document2.wires) for (const ref2 of [wire.from, wire.to]) {
-    if (ref2.componentId === "fu2a") ref2.componentId = "fu2";
-    else if (ref2.componentId === "fu2b") {
-      ref2.componentId = "fu2";
-      ref2.terminalId = ref2.terminalId === "1" ? "3" : "4";
-    }
-  }
-  document2.components.push({ id: "xt16", type: "terminal-strip16", label: "XT\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } });
-  return putWiresInDucts(arrangeTrainingDucts(document2));
-}
-
-// app/simulator/core/lessons.ts
-var LESSONS = [
-  ...MOTOR_COURSES,
-  { id: "motor-jog", title: "\u7535\u673A\u70B9\u52A8\u63A7\u5236", category: "industrial", description: "220V \u7EBF\u5708\uFF0C\u6309\u4E0B\u542F\u52A8\u6309\u94AE\u8FD0\u884C\uFF0C\u677E\u5F00\u7ACB\u5373\u505C\u6B62\u3002", objective: "\u5B8C\u6210\u4E09\u76F8\u4E3B\u56DE\u8DEF\u3001\u77AC\u65F6\u63A7\u5236\u548C\u4FDD\u62A4\u63A5\u5730\uFF0C\u5E76\u9A8C\u8BC1\u8FC7\u8F7D\u4FDD\u62A4\u3002", componentTypes: ["supply", "breaker3", "contactor220", "overload", "fuse", "push-no", "motor", "pe-terminal"] },
-  { id: "motor-self-hold", title: "\u7535\u673A\u81EA\u9501\u542F\u505C\u63A7\u5236", category: "industrial", description: "380V \u7EBF\u5708\uFF0C\u4EE5\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u4FDD\u6301\u8FD0\u884C\uFF0C\u505C\u6B62\u4E0E\u8FC7\u8F7D\u5747\u53EF\u91CA\u653E\u3002", objective: "\u542F\u52A8\u3001\u91CA\u653E\u4FDD\u6301\u3001\u505C\u6B62\u3001\u8FC7\u8F7D\u590D\u4F4D\u548C\u5931\u538B\u540E\u4E0D\u81EA\u884C\u91CD\u542F\u3002", componentTypes: ["supply", "breaker3", "contactor380", "overload", "fuse", "push-no", "push-nc", "motor", "pe-terminal"] },
-  { id: "lighting-single", title: "\u5355\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E00\u4E2A\u5F00\u5173\u63A7\u5236\u4E00\u76CF 220V \u706F\uFF0C\u5F00\u5173\u63A5\u5728\u76F8\u7EBF\u3002", objective: "\u5408\u95F8\u540E\u7528\u5355\u63A7\u5F00\u5173\u70B9\u4EAE\u548C\u7184\u706D\u706F\uFF0C\u4E2D\u6027\u7EBF\u4FDD\u6301\u76F4\u63A5\u56DE\u8DEF\u3002", componentTypes: ["supply", "breaker1", "switch1", "lamp"] },
-  { id: "lighting-two-way", title: "\u53CC\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E24\u53EA\u53CC\u63A7\u5F00\u5173\u901A\u8FC7\u4E24\u6839\u8054\u7EDC\u7EBF\uFF0C\u4ECE\u4E24\u5904\u5207\u6362\u706F\u7684\u72B6\u6001\u3002", objective: "\u904D\u5386\u56DB\u79CD\u5F00\u5173\u7EC4\u5408\uFF0C\u6BCF\u6B21\u5207\u6362\u4EFB\u4E00\u5F00\u5173\u5747\u6539\u53D8\u706F\u72B6\u6001\u3002", componentTypes: ["supply", "breaker1", "switch2", "switch2", "lamp"] }
-];
-var getLesson = (id2) => LESSONS.find((lesson) => lesson.id === id2);
-var component = (id2, type, label, x, y) => ({ id: id2, type, label, position: { x, y } });
-var ref = (componentId, terminalId) => ({ componentId, terminalId });
-function createLessonDocument(id2, options = {}) {
-  if (isMotorCourse(id2)) return createMotorPracticeDocument(id2, options);
-  const lesson = getLesson(id2);
-  if (!lesson) throw new Error(`\u672A\u77E5\u8BFE\u7A0B\uFF1A${id2}`);
-  const wires = [];
-  const connect = (a, at, b, bt, color2 = "#f04452") => wires.push({ id: `wire-${wires.length + 1}`, from: ref(a, at), to: ref(b, bt), color: color2, style: "orthogonal" });
-  let components;
-  let roles;
-  if (lesson.category === "industrial") {
-    const selfHold = id2 === "motor-self-hold";
-    components = [component("source", "supply", "\u7535\u6E90", 95, 15), component("breaker", "breaker3", "QF1", 145, 135), component("km", selfHold ? "contactor380" : "contactor220", "KM1", 150, 400), component("fr", "overload", "FR1", 145, 655), component("motor", "motor", "M1", 35, 880), component("fuse", "fuse", "FU1", 470, 145), component("start", "push-no", "SB2", 620, 620), component("pe", "pe-terminal", "PE1", -55, 710)];
-    if (selfHold) components.push(component("stop", "push-nc", "SB1", 465, 395));
-    roles = { source: "source", breaker: "breaker", contactor: "km", overload: "fr", start: "start", motor: "motor", fuse: "fuse", earth: "pe", ...selfHold ? { stop: "stop" } : {} };
-    ["L1", "L2", "L3"].forEach((phase3, i) => {
-      const input = String(i * 2 + 1), output = String(i * 2 + 2), color2 = ["#e7b000", "#20b963", "#f04452"][i];
-      connect("source", phase3, "breaker", input, color2);
-      connect("breaker", output, "km", input, color2);
-      connect("km", output, "fr", input, color2);
-      connect("fr", output, "motor", ["U", "V", "W"][i], color2);
-    });
-    connect("source", "PE", "pe", "A", "#659f2f");
-    connect("pe", "B", "motor", "PE", "#659f2f");
-    connect("breaker", "2", "fuse", "1");
-    if (selfHold) {
-      connect("fuse", "2", "stop", "11");
-      connect("stop", "12", "fr", "95");
-    } else connect("fuse", "2", "fr", "95");
-    connect("fr", "96", "start", "23");
-    connect("start", "24", "km", "A1");
-    connect("km", "A2", selfHold ? "breaker" : "source", selfHold ? "4" : "N", "#3478f6");
-    if (selfHold) {
-      connect("start", "23", "km", "13");
-      connect("start", "24", "km", "14");
-    }
-  } else {
-    const twoWay = id2 === "lighting-two-way";
-    components = [component("source", "supply", "\u7535\u6E90", 140, 35), component("breaker", "breaker1", "QF1", 210, 170), component("switchA", twoWay ? "switch2" : "switch1", "S1", 160, 445), component("lamp", "lamp", "EL1", 525, 185)];
-    if (twoWay) components.push(component("switchB", "switch2", "S2", 450, 445));
-    roles = { source: "source", breaker: "breaker", switchA: "switchA", lamp: "lamp", ...twoWay ? { switchB: "switchB" } : {} };
-    connect("source", "L1", "breaker", "1");
-    connect("breaker", "2", "switchA", twoWay ? "C" : "1");
-    connect("lamp", "N", "source", "N", "#3478f6");
-    if (twoWay) {
-      connect("switchA", "1", "switchB", "1", "#f59e0b");
-      connect("switchA", "2", "switchB", "2", "#f59e0b");
-      connect("switchB", "C", "lamp", "L");
-    } else connect("switchA", "2", "lamp", "L");
-  }
-  return putWiresInDucts(arrangeTrainingDucts({ schemaVersion: 1, title: lesson.title, lessonId: id2, components, wires: options.wired ? wires : [], roles }));
-}
-
 // app/simulator/core/reference-drawings.ts
 var REFERENCE_DRAWINGS = [
   { id: 32, title: "\u81EA\u52A8\u5F80\u8FD4\u7535\u52A8\u673A\u63A7\u5236\u7535\u8DEF", imageFilename: "reference-32.png", category: "industrial", level: "intermediate" },
@@ -32404,15 +32264,17 @@ function validateDocument(input) {
     if (!definition) errors.push(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${type?.slice(0, 80) ?? "\u7C7B\u578B\u5FC5\u987B\u4E3A\u5B57\u7B26\u4E32"}`);
     if (!text(component2.label, 80)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u540D\u79F0\u65E0\u6548`);
     if (!point(component2.position)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u4E16\u754C\u5750\u6807\u65E0\u6548`);
-    if (component2.size !== void 0 && (type === void 0 || !isWireDuct(type) || !record(component2.size) || Object.keys(component2.size).some((key4) => key4 !== "width" && key4 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
+    if (component2.size !== void 0 && (type === void 0 || !isLayoutObject(type) || !record(component2.size) || Object.keys(component2.size).some((key4) => key4 !== "width" && key4 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
+    if (component2.rotation !== void 0 && (!type || !canRotate(type) || ![0, 90, 180, 270].includes(component2.rotation))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u65CB\u8F6C\u987B\u4E3A\u5141\u8BB8\u7684\u76F4\u89D2\u89D2\u5EA6`);
+    if (type === "din-rail" && record(component2.size) && component2.size.height !== 24) errors.push(`\u5BFC\u8F68 ${component2.id} \u7684\u539A\u5EA6\u987B\u4E3A24`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
-    if (component2.settings !== void 0 && (component2.type !== "timer380" || !record(component2.settings) || Object.keys(component2.settings).some((key4) => key4 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < 1 || component2.settings.delayMs > 36e5)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 3600000 \u6BEB\u79D2`);
+    if (component2.settings !== void 0 && (!isTimer(String(type)) || !record(component2.settings) || Object.keys(component2.settings).some((key4) => key4 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < TIMER_MIN_MS || component2.settings.delayMs > (type === "timer380-8pin" ? TIMER_MAX_MS : TIMER_LEGACY_MAX_MS))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 ${type === "timer380-8pin" ? 3e5 : 36e5} \u6BEB\u79D2`);
     ports.set(component2.id, new Set(definition?.terminals.map((terminal) => terminal.id) ?? []));
   }
   for (const component2 of input.components) {
     if (!record(component2) || !safeId(component2.id) || component2.type !== "auxiliary-no" || component2.linkedTo === void 0) continue;
     const owner = input.components.find((candidate) => record(candidate) && candidate.id === component2.linkedTo);
-    if (!record(owner) || typeof owner.type !== "string" || !["contactor220", "contactor380", "relay380"].includes(owner.type)) errors.push(`\u8F85\u52A9\u89E6\u70B9 ${component2.id} \u5FC5\u987B\u7ED1\u5B9A\u6709\u6548\u7684\u63A5\u89E6\u5668\u6216\u4E2D\u95F4\u7EE7\u7535\u5668`);
+    if (!record(owner) || typeof owner.type !== "string" || !(["contactor220", "contactor380"].includes(owner.type) || isRelay(owner.type))) errors.push(`\u8F85\u52A9\u89E6\u70B9 ${component2.id} \u5FC5\u987B\u7ED1\u5B9A\u6709\u6548\u7684\u63A5\u89E6\u5668\u6216\u4E2D\u95F4\u7EE7\u7535\u5668`);
   }
   const wireIds = /* @__PURE__ */ new Set();
   const connected = /* @__PURE__ */ new Set();
@@ -32451,6 +32313,240 @@ function validateDocument(input) {
   return { valid: true, errors: [], document: document2 };
 }
 
+// app/simulator/core/relay-upgrade.ts
+var TIMER_PORT_UPGRADE = { A1: "2", A2: "7", "15": "1", "16": "4", "25": "8", "28": "6" };
+function upgradeRelays(document2) {
+  if (document2.components.some((c) => c.type === "timer380" && (c.settings?.delayMs ?? TIMER_DEFAULT_MS) > TIMER_MAX_MS)) throw new Error("\u65E7 KT \u8BBE\u7F6E\u8D85\u8FC75\u5206\u949F\uFF0C\u8BF7\u5148\u660E\u786E\u8C03\u6574\u5EF6\u65F6\u518D\u5347\u7EA7\uFF1B\u539F\u6587\u6863\u5DF2\u4FDD\u7559\u3002");
+  const timerIds = new Set(document2.components.filter((c) => c.type === "timer380").map((c) => c.id));
+  const next = { ...document2, components: document2.components.map((c) => ({ ...c, type: c.type === "relay380" ? "relay380-jzc1-22" : c.type === "timer380" ? "timer380-8pin" : c.type })), wires: document2.wires.map((w) => ({ ...w, from: timerIds.has(w.from.componentId) ? { ...w.from, terminalId: TIMER_PORT_UPGRADE[w.from.terminalId] ?? w.from.terminalId } : { ...w.from }, to: timerIds.has(w.to.componentId) ? { ...w.to, terminalId: TIMER_PORT_UPGRADE[w.to.terminalId] ?? w.to.terminalId } : { ...w.to } })) };
+  const checked = validateDocument(next);
+  if (!checked.valid) throw new Error(checked.errors.join("\uFF1B"));
+  return next;
+}
+
+// app/simulator/core/duct-layout.ts
+var power = ["qf", "fu1", "fu2"];
+var TRAINING_LAYOUT_REFERENCES = {
+  "motor-course-01": { file: "\u7535\u52A8\u673A\u70B9\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], []], buttons: ["sb"] },
+  "motor-course-02": { file: "\u7535\u52A8\u673A\u8FDE\u7EED\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2"] },
+  "motor-course-03": { file: "\u70B9\u52A8\u4E0E\u8FDE\u7EED\u8FD0\u884C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-04": { file: "\u63A5\u89E6\u5668\u4E92\u9501\u6B63\u53CD\u8F6C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-05": { file: "\u53CC\u91CD\u8054\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
+  "motor-course-06": { file: "\u81EA\u52A8\u5F80\u8FD4\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"], limits: ["sq1", "sq2", "sq3", "sq4"] },
+  "motor-course-07": { file: "\u987A\u5E8F\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km1_aux", "km2", "km2_aux"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
+  "motor-course-08": { file: "\u5EF6\u65F6\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["ka", "km", "kt"], ["fr"]], buttons: ["sb1", "sb2"] },
+  "motor-course-09": { file: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2"] },
+  "motor-course-10": { file: "\u53CC\u901F\u7535\u673A\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2", "km3"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] }
+};
+var buttonTypes = /* @__PURE__ */ new Set(["push-no", "push-nc", "push-latching-red", "push-latching-green", "switch1", "switch2"]);
+var loadTypes = /* @__PURE__ */ new Set(["motor", "motor-star-delta", "motor-dahlander", "lamp"]);
+function referenceFor(document2) {
+  const own = document2.lessonId && TRAINING_LAYOUT_REFERENCES[document2.lessonId];
+  if (own) return own;
+  const ids = (types) => document2.components.filter((component2) => types.includes(component2.type)).map((component2) => component2.id);
+  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
+  return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document2.components.filter((component2) => buttonTypes.has(component2.type)).map((component2) => component2.id), limits: ids(["limit-switch"]) };
+}
+var DUCT_WIDTH = 32;
+var CLEARANCE = 40;
+var SEPARATION = 76;
+var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + (index2 ? component2.id === "fu2b" ? 16 : SEPARATION : 0), 0);
+function arrangeTrainingDucts(document2) {
+  if (document2.components.some((component2) => isWireDuct(component2.type)) || !document2.components.length) return document2;
+  const reference = referenceFor(document2);
+  const byId = new Map(document2.components.map((component2) => [component2.id, component2]));
+  const resolve = (ids) => ids.flatMap((id2) => {
+    const component2 = byId.get(document2.roles?.[id2] ?? id2);
+    if (id2 === "fu2" && !component2) return ["fu2a", "fu2b"].map((key4) => byId.get(document2.roles?.[key4] ?? key4)).filter((value) => !!value);
+    return component2 ? [component2] : [];
+  });
+  const rows = reference.rows.map(resolve);
+  const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
+  const sources = document2.components.filter((component2) => component2.type === "supply");
+  const loads = document2.components.filter((component2) => loadTypes.has(component2.type));
+  const earths = document2.components.filter((component2) => component2.type === "pe-terminal");
+  const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths].map((component2) => component2.id));
+  const terminals = document2.components.filter((component2) => !placed.has(component2.id) && !isLayoutObject(component2.type));
+  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + DUCT_WIDTH));
+  const positions = /* @__PURE__ */ new Map();
+  const channels = [0];
+  const rails = [];
+  let y = 0;
+  for (const [index2, row] of rows.entries()) {
+    const height = Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((component2) => componentSize(component2).height));
+    let x = DUCT_WIDTH / 2 + CLEARANCE;
+    for (const [column, component2] of row.entries()) {
+      if (column) x += component2.id === "fu2b" ? 16 : SEPARATION;
+      positions.set(component2.id, { x, y: y + DUCT_WIDTH / 2 + CLEARANCE });
+      x += componentSize(component2).width;
+    }
+    if (row.length && !document2.components.some((c) => c.type === "din-rail")) rails.push({ id: `training-rail-${index2 + 1}`, type: "din-rail", label: `\u5BFC\u8F68${index2 + 1}`, position: { x: 16, y: y + DUCT_WIDTH / 2 + CLEARANCE + height / 2 - 12 }, size: { width: width - 32, height: 24 } });
+    y += DUCT_WIDTH + CLEARANCE * 2 + height;
+    channels.push(y);
+  }
+  const bottom = y, sideX = width + 95;
+  let buttonY = Math.max(56, bottom - buttons.reduce((sum, component2) => sum + componentSize(component2).height + 28, -28));
+  for (const component2 of buttons) {
+    positions.set(component2.id, { x: sideX, y: buttonY });
+    buttonY += componentSize(component2).height + 28;
+  }
+  let limitX = sideX;
+  for (const component2 of limits) {
+    positions.set(component2.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE });
+    limitX += componentSize(component2).width + 44;
+  }
+  let sourceX = 56;
+  for (const component2 of sources) {
+    positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
+    sourceX += componentSize(component2).width + 30;
+  }
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
+  let externalX = 56;
+  for (const component2 of terminalRow) {
+    positions.set(component2.id, { x: externalX, y: terminalY });
+    externalX += componentSize(component2).width + SEPARATION;
+  }
+  const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map((component2) => componentSize(component2).height)) + SEPARATION : 0);
+  externalX = 56;
+  for (const component2 of loads) {
+    positions.set(component2.id, { x: externalX, y: loadY });
+    externalX += componentSize(component2).width + SEPARATION;
+  }
+  const ducts = [];
+  const used = new Set(document2.components.map((component2) => component2.id));
+  const add = (vertical, x, y2, length) => {
+    let id2 = `training-duct-${ducts.length + 1}`;
+    while (used.has(id2)) id2 += "-d";
+    used.add(id2);
+    ducts.push({ id: id2, type: vertical ? "wire-duct-vertical" : "wire-duct", label: `WD${ducts.length + 1}`, position: { x: vertical ? x - DUCT_WIDTH / 2 : x, y: vertical ? y2 : y2 - DUCT_WIDTH / 2 }, size: { width: vertical ? DUCT_WIDTH : length, height: vertical ? length : DUCT_WIDTH } });
+  };
+  for (const center of channels) add(false, -DUCT_WIDTH / 2, center, width + DUCT_WIDTH);
+  add(true, 0, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
+  add(true, width, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
+  if (width + DUCT_WIDTH > 4e3 || bottom + DUCT_WIDTH > 4e3 || document2.components.length + ducts.length + rails.length > 200) throw new Error("\u5143\u4EF6\u8FC7\u591A\u6216\u5E03\u5C40\u8FC7\u5927\uFF0C\u8BF7\u6309\u53C2\u8003\u56FE\u5206\u7EC4\u8C03\u6574\u5E03\u5C40\u3002");
+  return { ...document2, components: [...document2.components.map((component2) => ({ ...component2, position: positions.get(component2.id) ?? component2.position })), ...ducts, ...rails] };
+}
+function putWiresInDucts(document2) {
+  return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, style: "orthogonal", routing: "duct" })) };
+}
+
+// app/simulator/core/motor-practice-layout.ts
+function createMotorPracticeDocument(id2, options = {}) {
+  const document2 = createMotorCourseDocument(id2, options);
+  document2.components = document2.components.filter((component2) => component2.id !== "fu2a" && component2.id !== "fu2b");
+  document2.components.push({ id: "fu2", type: "fuse2", label: "FU2", position: { x: 0, y: 0 } });
+  if (document2.roles) {
+    delete document2.roles.fu2a;
+    delete document2.roles.fu2b;
+    document2.roles.fu2 = "fu2";
+  }
+  for (const wire of document2.wires) for (const ref2 of [wire.from, wire.to]) {
+    if (ref2.componentId === "fu2a") ref2.componentId = "fu2";
+    else if (ref2.componentId === "fu2b") {
+      ref2.componentId = "fu2";
+      ref2.terminalId = ref2.terminalId === "1" ? "3" : "4";
+    }
+  }
+  document2.components.push({ id: "xt16", type: "terminal-strip16", label: "XT\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } });
+  const next = upgradeRelays(putWiresInDucts(arrangeTrainingDucts(document2)));
+  return options.placement === "manual" ? { ...next, components: next.components.filter((c) => isLayoutObject(c.type)), wires: [], roles: {} } : next;
+}
+
+// app/simulator/core/lessons.ts
+var LESSONS = [
+  ...MOTOR_COURSES,
+  { id: "motor-jog", title: "\u7535\u673A\u70B9\u52A8\u63A7\u5236", category: "industrial", description: "220V \u7EBF\u5708\uFF0C\u6309\u4E0B\u542F\u52A8\u6309\u94AE\u8FD0\u884C\uFF0C\u677E\u5F00\u7ACB\u5373\u505C\u6B62\u3002", objective: "\u5B8C\u6210\u4E09\u76F8\u4E3B\u56DE\u8DEF\u3001\u77AC\u65F6\u63A7\u5236\u548C\u4FDD\u62A4\u63A5\u5730\uFF0C\u5E76\u9A8C\u8BC1\u8FC7\u8F7D\u4FDD\u62A4\u3002", componentTypes: ["supply", "breaker3", "contactor220", "overload", "fuse", "push-no", "motor", "pe-terminal"] },
+  { id: "motor-self-hold", title: "\u7535\u673A\u81EA\u9501\u542F\u505C\u63A7\u5236", category: "industrial", description: "380V \u7EBF\u5708\uFF0C\u4EE5\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u4FDD\u6301\u8FD0\u884C\uFF0C\u505C\u6B62\u4E0E\u8FC7\u8F7D\u5747\u53EF\u91CA\u653E\u3002", objective: "\u542F\u52A8\u3001\u91CA\u653E\u4FDD\u6301\u3001\u505C\u6B62\u3001\u8FC7\u8F7D\u590D\u4F4D\u548C\u5931\u538B\u540E\u4E0D\u81EA\u884C\u91CD\u542F\u3002", componentTypes: ["supply", "breaker3", "contactor380", "overload", "fuse", "push-no", "push-nc", "motor", "pe-terminal"] },
+  { id: "lighting-single", title: "\u5355\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E00\u4E2A\u5F00\u5173\u63A7\u5236\u4E00\u76CF 220V \u706F\uFF0C\u5F00\u5173\u63A5\u5728\u76F8\u7EBF\u3002", objective: "\u5408\u95F8\u540E\u7528\u5355\u63A7\u5F00\u5173\u70B9\u4EAE\u548C\u7184\u706D\u706F\uFF0C\u4E2D\u6027\u7EBF\u4FDD\u6301\u76F4\u63A5\u56DE\u8DEF\u3002", componentTypes: ["supply", "breaker1", "switch1", "lamp"] },
+  { id: "lighting-two-way", title: "\u53CC\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E24\u53EA\u53CC\u63A7\u5F00\u5173\u901A\u8FC7\u4E24\u6839\u8054\u7EDC\u7EBF\uFF0C\u4ECE\u4E24\u5904\u5207\u6362\u706F\u7684\u72B6\u6001\u3002", objective: "\u904D\u5386\u56DB\u79CD\u5F00\u5173\u7EC4\u5408\uFF0C\u6BCF\u6B21\u5207\u6362\u4EFB\u4E00\u5F00\u5173\u5747\u6539\u53D8\u706F\u72B6\u6001\u3002", componentTypes: ["supply", "breaker1", "switch2", "switch2", "lamp"] }
+];
+var getLesson = (id2) => LESSONS.find((lesson) => lesson.id === id2);
+var component = (id2, type, label, x, y) => ({ id: id2, type, label, position: { x, y } });
+var ref = (componentId, terminalId) => ({ componentId, terminalId });
+function createLessonDocument(id2, options = {}) {
+  if (isMotorCourse(id2)) return createMotorPracticeDocument(id2, options);
+  const lesson = getLesson(id2);
+  if (!lesson) throw new Error(`\u672A\u77E5\u8BFE\u7A0B\uFF1A${id2}`);
+  const wires = [];
+  const connect = (a, at, b, bt, color2 = "#f04452") => wires.push({ id: `wire-${wires.length + 1}`, from: ref(a, at), to: ref(b, bt), color: color2, style: "orthogonal" });
+  let components;
+  let roles;
+  if (lesson.category === "industrial") {
+    const selfHold = id2 === "motor-self-hold";
+    components = [component("source", "supply", "\u7535\u6E90", 95, 15), component("breaker", "breaker3", "QF1", 145, 135), component("km", selfHold ? "contactor380" : "contactor220", "KM1", 150, 400), component("fr", "overload", "FR1", 145, 655), component("motor", "motor", "M1", 35, 880), component("fuse", "fuse", "FU1", 470, 145), component("start", "push-no", "SB2", 620, 620), component("pe", "pe-terminal", "PE1", -55, 710)];
+    if (selfHold) components.push(component("stop", "push-nc", "SB1", 465, 395));
+    roles = { source: "source", breaker: "breaker", contactor: "km", overload: "fr", start: "start", motor: "motor", fuse: "fuse", earth: "pe", ...selfHold ? { stop: "stop" } : {} };
+    ["L1", "L2", "L3"].forEach((phase3, i) => {
+      const input = String(i * 2 + 1), output = String(i * 2 + 2), color2 = ["#e7b000", "#20b963", "#f04452"][i];
+      connect("source", phase3, "breaker", input, color2);
+      connect("breaker", output, "km", input, color2);
+      connect("km", output, "fr", input, color2);
+      connect("fr", output, "motor", ["U", "V", "W"][i], color2);
+    });
+    connect("source", "PE", "pe", "A", "#659f2f");
+    connect("pe", "B", "motor", "PE", "#659f2f");
+    connect("breaker", "2", "fuse", "1");
+    if (selfHold) {
+      connect("fuse", "2", "stop", "11");
+      connect("stop", "12", "fr", "95");
+    } else connect("fuse", "2", "fr", "95");
+    connect("fr", "96", "start", "23");
+    connect("start", "24", "km", "A1");
+    connect("km", "A2", selfHold ? "breaker" : "source", selfHold ? "4" : "N", "#3478f6");
+    if (selfHold) {
+      connect("start", "23", "km", "13");
+      connect("start", "24", "km", "14");
+    }
+  } else {
+    const twoWay = id2 === "lighting-two-way";
+    components = [component("source", "supply", "\u7535\u6E90", 140, 35), component("breaker", "breaker1", "QF1", 210, 170), component("switchA", twoWay ? "switch2" : "switch1", "S1", 160, 445), component("lamp", "lamp", "EL1", 525, 185)];
+    if (twoWay) components.push(component("switchB", "switch2", "S2", 450, 445));
+    roles = { source: "source", breaker: "breaker", switchA: "switchA", lamp: "lamp", ...twoWay ? { switchB: "switchB" } : {} };
+    connect("source", "L1", "breaker", "1");
+    connect("breaker", "2", "switchA", twoWay ? "C" : "1");
+    connect("lamp", "N", "source", "N", "#3478f6");
+    if (twoWay) {
+      connect("switchA", "1", "switchB", "1", "#f59e0b");
+      connect("switchA", "2", "switchB", "2", "#f59e0b");
+      connect("switchB", "C", "lamp", "L");
+    } else connect("switchA", "2", "lamp", "L");
+  }
+  const next = putWiresInDucts(arrangeTrainingDucts({ schemaVersion: 1, title: lesson.title, lessonId: id2, components, wires: options.wired ? wires : [], roles }));
+  return options.placement === "manual" ? { ...next, components: next.components.filter((c) => isLayoutObject(c.type)), wires: [], roles: {} } : next;
+}
+
+// app/simulator/core/course-roles.ts
+function courseRequirements(lessonId) {
+  if (!lessonId) return [];
+  const template = createLessonDocument(lessonId);
+  return Object.entries(template.roles ?? {}).map(([role, id2]) => ({ role, component: template.components.find((c) => c.id === id2) })).filter((entry) => !!entry.component);
+}
+function bindCourseRole(document2, componentId, role) {
+  const component2 = document2.components.find((c) => c.id === componentId);
+  if (!component2) throw new Error("\u5143\u4EF6\u5DF2\u4E0D\u5B58\u5728");
+  const roles = { ...document2.roles };
+  if (!role) {
+    for (const name of Object.keys(roles)) if (roles[name] === componentId) delete roles[name];
+    return { ...document2, roles };
+  }
+  const expected = courseRequirements(document2.lessonId).find((entry) => entry.role === role);
+  if (!expected || !equivalentComponentType(component2.type, expected.component.type)) throw new Error("\u6B64\u5143\u4EF6\u7C7B\u578B\u4E0E\u8BFE\u7A0B\u4F4D\u53F7\u4E0D\u5339\u914D");
+  if (roles[role] && roles[role] !== componentId) throw new Error("\u6B64\u8BFE\u7A0B\u4F4D\u53F7\u5DF2\u88AB\u5360\u7528\uFF0C\u8BF7\u5148\u89E3\u9664\u539F\u7ED1\u5B9A");
+  if (Object.entries(roles).some(([name, id2]) => name !== role && id2 === componentId)) throw new Error("\u6B64\u5143\u4EF6\u5DF2\u6709\u8BFE\u7A0B\u4F4D\u53F7\uFF0C\u8BF7\u5148\u89E3\u9664\u7ED1\u5B9A");
+  const bound = { ...roles, [role]: componentId };
+  const requirements = courseRequirements(document2.lessonId);
+  const components = document2.components.map((current) => {
+    if (current.type !== "auxiliary-no" || current.linkedTo) return current;
+    const requirement = requirements.find((entry) => bound[entry.role] === current.id);
+    const owner = requirements.find((entry) => entry.component.id === requirement?.component.linkedTo);
+    return owner && bound[owner.role] ? { ...current, linkedTo: bound[owner.role] } : current;
+  });
+  return { ...document2, components, roles: bound };
+}
+function addCourseComponent(document2, role, component2) {
+  return bindCourseRole({ ...document2, components: [...document2.components, component2] }, component2.id, role);
+}
+
 // app/simulator/core/motor-course-assessment.ts
 var key = (componentId, terminalId) => terminalKey({ componentId, terminalId });
 var phase = (value) => ["L1", "L2", "L3"].includes(value);
@@ -32471,7 +32567,7 @@ function assessMotorCourse(document2, lessonId) {
       continue;
     }
     const expected = standard.components.find((component2) => component2.id === standardId);
-    const id2 = document2.roles?.[role] || (document2.components.some((component2) => component2.id === standardId) ? standardId : void 0);
+    const id2 = document2.roles?.[role] || (!document2.roles && document2.components.some((component2) => component2.id === standardId) ? standardId : void 0);
     const actual = document2.components.find((component2) => component2.id === id2);
     if (role === "fu1" && !actual && !document2.roles?.fu1) {
       for (const legacyRole of ["fu1a", "fu1b", "fu1c"]) {
@@ -32483,7 +32579,7 @@ function assessMotorCourse(document2, lessonId) {
       continue;
     }
     const momentaryColorEquivalent = actual && ["push-no", "push-nc"].includes(actual.type) && ["push-no", "push-nc"].includes(expected.type);
-    if (!actual || actual.type !== expected.type && !momentaryColorEquivalent) diagnostics.push(issue("LESSON_ROLE_MISSING", `${expected.label} \u7F3A\u5C11\u7C7B\u578B\u5339\u914D\u7684\u8BFE\u7A0B\u89D2\u8272\u7ED1\u5B9A`, id2 ? [id2] : [], "warning"));
+    if (!actual || !equivalentComponentType(actual.type, expected.type) && !momentaryColorEquivalent) diagnostics.push(issue("LESSON_ROLE_MISSING", `${expected.label} \u7F3A\u5C11\u7C7B\u578B\u5339\u914D\u7684\u8BFE\u7A0B\u89D2\u8272\u7ED1\u5B9A`, id2 ? [id2] : [], "warning"));
     else roles[role] = actual.id;
   }
   if (new Set(Object.values(roles)).size !== Object.values(roles).length) diagnostics.push(issue("LESSON_ROLE_DUPLICATED", "\u4E0D\u540C\u56FE\u5185\u4F4D\u53F7\u4E0D\u80FD\u7ED1\u5B9A\u5230\u540C\u4E00\u4E2A\u5668\u4EF6\u5B9E\u4F8B", [], "warning"));
@@ -32822,12 +32918,12 @@ function assessMotorCourse(document2, lessonId) {
         const guardId = roles[guard], cacheKey = `actuated:${guardId}`;
         if (!cuts.has(cacheKey)) cuts.set(cacheKey, network(document2, isOverload ? { ...sample.runtime, overloads: { ...sample.runtime.overloads, [guardId]: true } } : { ...sample.runtime, pressed: { ...sample.runtime.pressed, [guardId]: true } }));
         const actuated = cuts.get(cacheKey);
-        if (voltage(actuated, key(component2.id, "A1"), key(component2.id, "A2")).value !== 380) continue;
+        if (voltage(actuated, key(component2.id, getDefinition(component2.type).load.terminals[0]), key(component2.id, getDefinition(component2.type).load.terminals[1])).value !== 380) continue;
         if (isOverload) controlOverloadsEffective = false;
         else controlStopsEffective = false;
-        pathFailure(isOverload ? "OVERLOAD_CONTROL_BYPASS" : "STOP_CONTROL_BYPASS", `${guard.toUpperCase()} \u4FDD\u62A4\u63A5\u70B9\u52A8\u4F5C\u540E\u6B64\u7EBF\u5708\u4ECD\u6709\u4F9B\u7535\u901A\u8DEF`, actuated, key(component2.id, "A1"), [guard], sample);
+        pathFailure(isOverload ? "OVERLOAD_CONTROL_BYPASS" : "STOP_CONTROL_BYPASS", `${guard.toUpperCase()} \u4FDD\u62A4\u63A5\u70B9\u52A8\u4F5C\u540E\u6B64\u7EBF\u5708\u4ECD\u6709\u4F9B\u7535\u901A\u8DEF`, actuated, key(component2.id, getDefinition(component2.type).load.terminals[0]), [guard], sample);
       }
-      for (const terminal of [key(component2.id, "A1"), key(component2.id, "A2")]) {
+      for (const terminal of [key(component2.id, getDefinition(component2.type).load.terminals[0]), key(component2.id, getDefinition(component2.type).load.terminals[1])]) {
         const qfProtected = !fromPhase(cut("qf"), terminal), hasFuse = controlFusePoles.some((pole) => !fromPhase(cutFusePole(pole), terminal));
         controlProtected &&= fromPhase(net, terminal) && qfProtected && hasFuse;
         if (!qfProtected) pathFailure("CONTROL_PROTECTION_BYPASS", "\u63A7\u5236\u5BFC\u4F53\u7ED5\u8FC7 QF", cut("qf"), terminal, ["qf"], sample);
@@ -33043,7 +33139,7 @@ function unsupportedSeries(document2, net) {
 var timerDelay = (component2) => component2.settings?.delayMs ?? 3e3;
 function updateTimers(document2, runtime) {
   const timers = runtime.timers ?? (runtime.timers = {}), now2 = runtime.timeMs ?? 0;
-  for (const component2 of document2.components.filter((c) => c.type === "timer380")) {
+  for (const component2 of document2.components.filter((c) => isTimer(c.type))) {
     const old = timers[component2.id], energized = !!runtime.contactors[component2.id] && runtime.powerOn && !runtime.faultLatched;
     if (!energized) {
       timers[component2.id] = { energized: false, startedAt: null, elapsedMs: 0, done: false };
@@ -33231,13 +33327,13 @@ function settleCircuit(document2, previousRuntime, action, openPushContacts, ope
       terminals[id2] = { netId: net.root(id2), potential: potentials.length > 1 ? "conflict" : potentials[0] ?? "floating", energized: potentials.some(phase2) };
     }
     if (def.load?.kind === "coil") {
-      const v = voltage(net, key2(c.id, "A1"), key2(c.id, "A2"));
+      const v = voltage(net, key2(c.id, def.load.terminals[0]), key2(c.id, def.load.terminals[1]));
       components[c.id] = { active: !!runtime.contactors[c.id], state: runtime.contactors[c.id] ? "engaged" : "released", voltage: v.value };
-      if (c.type === "timer380") {
+      if (isTimer(c.type)) {
         const timer2 = runtime.timers?.[c.id];
         components[c.id] = { ...components[c.id], state: timer2?.energized ? timer2.done ? "done" : "timing" : "released", elapsedMs: timer2?.elapsedMs ?? 0, remainingMs: Math.max(0, timerDelay(c) - (timer2?.elapsedMs ?? 0)) };
       }
-      if (runtime.powerOn && v.value === void 0 && !v.earth) diagnostics.push(diagnostic("OPEN_CONTROL_PATH", `${c.label} \u7EBF\u5708\u5C1A\u672A\u5F62\u6210\u5B8C\u6574\u4F9B\u7535\u4E0E\u8FD4\u56DE\u8DEF\u5F84`, "info", [key2(c.id, "A1"), key2(c.id, "A2")]));
+      if (runtime.powerOn && v.value === void 0 && !v.earth) diagnostics.push(diagnostic("OPEN_CONTROL_PATH", `${c.label} \u7EBF\u5708\u5C1A\u672A\u5F62\u6210\u5B8C\u6574\u4F9B\u7535\u4E0E\u8FD4\u56DE\u8DEF\u5F84`, "info", [key2(c.id, def.load.terminals[0]), key2(c.id, def.load.terminals[1])]));
     } else if (def.load?.kind === "lamp") {
       const a = key2(c.id, "L"), b = key2(c.id, "N"), v = voltage(net, a, b);
       const active = runtime.powerOn && !runtime.faultLatched && !v.earth && v.value === 220;
@@ -33274,7 +33370,7 @@ function simulate(document2, previousRuntime, action) {
       const now2 = result.runtime.timeMs ?? 0;
       supportedDuringWindow &&= result.supported;
       earlierHazards.push(...result.diagnostics.filter((d) => d.severity === "error" || ["PE_MISSING", "MOTOR_PHASE_MISSING"].includes(d.code)).map((d) => ({ ...d, event: d.event ?? `\u865A\u62DF\u65F6\u95F4 ${now2}ms` })));
-      const deadlines = document2.components.filter((c) => c.type === "timer380").flatMap((c) => {
+      const deadlines = document2.components.filter((c) => isTimer(c.type)).flatMap((c) => {
         const timer2 = result.runtime.timers?.[c.id];
         const at = timer2?.energized && !timer2.done && timer2.startedAt !== null ? timer2.startedAt + timerDelay(c) : void 0;
         return at !== void 0 && at > now2 && at <= target ? [at] : [];
@@ -33306,7 +33402,7 @@ function roleBindings(document2, lessonId) {
   for (const [role, standardId] of Object.entries(standard.roles ?? {})) {
     const expected = standard.components.find((c) => c.id === standardId);
     const bound = document2.roles?.[role];
-    const candidates = bound ? document2.components.filter((c) => c.id === bound && c.type === expected.type) : document2.components.filter((c) => c.type === expected.type);
+    const candidates = bound ? document2.components.filter((c) => c.id === bound && equivalentComponentType(c.type, expected.type)) : document2.roles ? [] : document2.components.filter((c) => equivalentComponentType(c.type, expected.type));
     if (candidates.length === 1) roles[role] = candidates[0].id;
     else diagnostics.push(diagnostic("LESSON_ROLE_MISSING", `\u8BFE\u7A0B\u89D2\u8272 ${expected.label} \u7F3A\u5C11\u552F\u4E00\u4E14\u7C7B\u578B\u5339\u914D\u7684\u5143\u4EF6\u7ED1\u5B9A`, "warning", [], [], bound ? [bound] : []));
   }
@@ -33489,6 +33585,49 @@ function assessLesson(document2, lessonId = document2.lessonId) {
   return { status: unsupported ? "unsupported" : passed === checks.length ? "passed" : severe ? "failed" : "incomplete", passed, total: checks.length, checks, diagnostics: uniqueDiagnostics(diagnostics), trace };
 }
 
+// app/simulator/editor/RelayArtwork.tsx
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+function timerDisplay(ms) {
+  const seconds = Math.ceil(Math.max(0, ms) / 1e3);
+  return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+}
+function RelayArtwork({ type, active = false, result, delayMs = 3e3, running = false }) {
+  const definition = getDefinition(type), timer2 = type !== "relay380-jzc1-22";
+  const remaining = running && result?.active ? result.remainingMs ?? delayMs : delayMs;
+  if (!timer2) return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 151.5 191.5", role: "img", "aria-label": definition.name, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "1", y: "1", width: "149.5", height: "189.5", rx: "6", fill: "#303538", stroke: "#111", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "5", y: "64", width: "141.5", height: "87", fill: "#e9ecef", stroke: "#1f252a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("path", { d: "M8 94H143", stroke: "#148dc7", strokeWidth: "3" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "75.75", y: "84", textAnchor: "middle", fontSize: "13", fill: "#303538", children: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "17", y: "111", width: "17", height: "20", rx: "2", fill: active ? "#d83333" : "#181d21" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "87", y: "123", textAnchor: "middle", fontSize: "11", children: "JZC1-22 \u98CE\u683C" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "86", y: "140", textAnchor: "middle", fontSize: "9", children: "380V \xB7 \u6559\u5B66\u793A\u610F" }),
+    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#16191c", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("NC") ? "#e8bf38" : "#53be78", strokeWidth: "3" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: t.x, y: t.y === 14 ? 29 : t.y < 100 ? 60 : 187, textAnchor: "middle", fill: "#f5f5f5", fontSize: "8", children: t.label })
+    ] }, t.id))
+  ] });
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 201.5 201.5", role: "img", "aria-label": definition.name, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "1", y: "1", width: "199.5", height: "199.5", rx: "9", fill: "#d9dbda", stroke: "#303536", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "100.75", y: "36", textAnchor: "middle", fontSize: "10", children: "\u53CC\u7EC4\u901A\u7535\u5EF6\u65F6" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "27", y: "53", width: "147.5", height: "68", rx: "5", fill: "#414141", stroke: "#111", strokeWidth: "3" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { "data-timer-display": "true", x: "100.75", y: "101", textAnchor: "middle", fontFamily: "monospace", fontSize: "40", fill: "#ff2929", children: timerDisplay(remaining) }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("text", { "data-timer-seconds": "true", x: "100.75", y: "115", textAnchor: "middle", fontSize: "9", fill: "#ffaaaa", children: [
+      (Math.max(0, remaining) / 1e3).toFixed(3),
+      " s"
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { "data-timer-indicator": "UP", "data-lit": running && result?.state === "done", cx: "13", cy: "76", r: "5", fill: running && result?.state === "done" ? "#33ce6a" : "#343e37" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "13", y: "91", textAnchor: "middle", fontSize: "8", children: "UP" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { "data-timer-indicator": "ON", "data-lit": running && !!result?.active, cx: "188.5", cy: "76", r: "5", fill: running && result?.active ? "#ed9c2e" : "#403a2c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "188.5", y: "91", textAnchor: "middle", fontSize: "8", children: "ON" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "100.75", y: "138", textAnchor: "middle", fontSize: "12", children: "\u901A\u7535\u5EF6\u65F6\u65F6\u95F4\u7EE7\u7535\u5668" }),
+    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#232628", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("COM") ? "#efa259" : t.label.includes("NC") ? "#edc846" : "#65c889", strokeWidth: "3" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: t.x, y: t.y < 100 ? 27 : 176, textAnchor: "middle", fontSize: "8", children: t.label })
+    ] }, t.id))
+  ] });
+}
+
 // app/simulator/core/duct-routing.ts
 var TERMINAL_CLEARANCE = 12;
 var key3 = (point2) => `${point2.x},${point2.y}`;
@@ -33504,7 +33643,7 @@ var along = (duct, point2) => duct.vertical ? point2.y : point2.x;
 var cache = /* @__PURE__ */ new WeakMap();
 var routeCache = /* @__PURE__ */ new WeakMap();
 function networkFor(components) {
-  const signature = components.filter((component2) => isWireDuct(component2.type)).map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}`).join("|");
+  const signature = components.filter((component2) => isWireDuct(component2.type)).map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).join("|");
   const cached = cache.get(components);
   if (cached?.signature === signature) return cached.network;
   const ducts = components.filter((component2) => isWireDuct(component2.type)).sort((a, b) => a.id.localeCompare(b.id)).map((component2) => ({ ...bounds(component2), id: component2.id, vertical: component2.type === "wire-duct-vertical", pins: [] }));
@@ -33552,15 +33691,16 @@ function terminalLead(terminal) {
   const escape = { x: side === "left" ? rect.left - TERMINAL_CLEARANCE : side === "right" ? rect.right + TERMINAL_CLEARANCE : world.x, y: side === "top" ? rect.top - TERMINAL_CLEARANCE : side === "bottom" ? rect.bottom + TERMINAL_CLEARANCE : world.y };
   return [world, escape];
 }
-function entryFor(document2, terminal, network2) {
+function entriesFor(document2, terminal, network2) {
   const rect = bounds(terminal.component), side = terminal.terminal.side;
   const [world, escape] = terminalLead(terminal);
-  const blockers = document2.components.filter((component2) => !isWireDuct(component2.type));
+  const blockers = document2.components.filter((component2) => !isLayoutObject(component2.type));
   const candidates = [];
-  const consider = (duct, points) => {
-    const lead = compact(points), point2 = lead.at(-1);
+  const consider = (duct, points, facing2 = false) => {
+    const lead = compact([points[0], ...simplify(points.slice(1))]), point2 = lead.at(-1);
     if (lead.slice(1).some((next, index2) => blockers.some((component2) => (component2.id !== terminal.component.id || index2 > 0) && crossesBody(lead[index2], next, bounds(component2))))) return;
-    candidates.push({ duct, point: point2, lead, length: lead.slice(1).reduce((sum, next, index2) => sum + distance2(lead[index2], next), 0) });
+    if (lead.slice(1).some((next, index2) => network2.ducts.some((other) => other !== duct && (other.right < duct.left || other.left > duct.right || other.bottom < duct.top || other.top > duct.bottom) && crossesBody(lead[index2], next, other)))) return;
+    candidates.push({ duct, point: point2, lead, facing: facing2, length: lead.slice(1).reduce((sum, next, index2) => sum + distance2(lead[index2], next), 0) });
   };
   for (const duct of network2.ducts) {
     let edge;
@@ -33572,7 +33712,7 @@ function entryFor(document2, terminal, network2) {
       if (side === "left" && duct.left <= escape.x) edge = { x: Math.min(escape.x, duct.right), y: escape.y };
       if (side === "right" && duct.right >= escape.x) edge = { x: Math.max(escape.x, duct.left), y: escape.y };
     }
-    if (edge) consider(duct, [world, escape, edge, project(duct, edge)]);
+    if (edge) consider(duct, [world, escape, edge, project(duct, edge)], true);
     const point2 = project(duct, escape);
     consider(duct, [world, escape, { x: point2.x, y: escape.y }, point2]);
     consider(duct, [world, escape, { x: escape.x, y: point2.y }, point2]);
@@ -33585,8 +33725,12 @@ function entryFor(document2, terminal, network2) {
       consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
     }
   }
-  return candidates.sort((a, b) => a.length - b.length || a.duct.id.localeCompare(b.duct.id))[0];
+  const outward = candidates.filter((entry) => side === "top" ? entry.point.y <= escape.y : side === "bottom" ? entry.point.y >= escape.y : side === "left" ? entry.point.x <= escape.x : entry.point.x >= escape.x);
+  const facing = outward.filter((entry) => entry.facing);
+  const available = facing.length ? facing : outward.length ? outward : candidates;
+  return [...new Map(available.sort((a, b) => a.length - b.length || a.lead.length - b.lead.length || JSON.stringify(a.lead).localeCompare(JSON.stringify(b.lead))).map((entry) => [`${entry.duct.id}/${key3(entry.point)}`, entry]).reverse()).values()].sort((a, b) => a.length - b.length || a.duct.id.localeCompare(b.duct.id) || key3(a.point).localeCompare(key3(b.point)));
 }
+var compareQueue = (a, b) => a.cost - b.cost || a.bends - b.bends || a.id.localeCompare(b.id);
 var Queue = class {
   constructor() {
     this.items = [];
@@ -33596,7 +33740,7 @@ var Queue = class {
     this.items.push(item);
     while (index2 > 0) {
       const parent = index2 - 1 >> 1;
-      if (this.items[parent].cost <= item.cost) break;
+      if (compareQueue(this.items[parent], item) <= 0) break;
       this.items[index2] = this.items[parent];
       index2 = parent;
     }
@@ -33608,8 +33752,8 @@ var Queue = class {
       let index2 = 0;
       while (index2 * 2 + 1 < this.items.length) {
         let child = index2 * 2 + 1;
-        if (child + 1 < this.items.length && this.items[child + 1].cost < this.items[child].cost) child++;
-        if (this.items[child].cost >= last.cost) break;
+        if (child + 1 < this.items.length && compareQueue(this.items[child + 1], this.items[child]) < 0) child++;
+        if (compareQueue(this.items[child], last) >= 0) break;
         this.items[index2] = this.items[child];
         index2 = child;
       }
@@ -33632,29 +33776,44 @@ function shortestPath(document2, network2, from, to) {
     for (const point2 of /* @__PURE__ */ new Set([before, after])) if (point2) link2(id2, key3(point2), [entry.point, point2]);
   }
   if (from.duct === to.duct) link2("start", "end", [from.point, to.point]);
-  const bodies = document2.components.filter((component2) => !isWireDuct(component2.type)).map(bounds);
-  const queue = new Queue(), costs = /* @__PURE__ */ new Map([["start", 0]]), previous = /* @__PURE__ */ new Map();
-  queue.push({ id: "start", cost: 0 });
+  const bodies = document2.components.filter((component2) => !isLayoutObject(component2.type)).map(bounds);
+  const direction = (a, b) => a.x === b.x ? b.y > a.y ? "down" : "up" : b.x > a.x ? "right" : "left";
+  const firstDirection = direction(from.lead.at(-2), from.point);
+  const lastDirection = direction(to.point, to.lead.at(-2));
+  const start2 = `start|${firstDirection}`;
+  const queue = new Queue(), costs = /* @__PURE__ */ new Map([[start2, { cost: 0, bends: 0 }]]), previous = /* @__PURE__ */ new Map();
+  queue.push({ id: start2, cost: 0, bends: 0 });
   while (queue.items.length) {
     const current = queue.pop();
-    if (current.cost !== costs.get(current.id)) continue;
-    if (current.id === "end") {
+    const saved = costs.get(current.id);
+    if (current.cost !== saved?.cost || current.bends !== saved.bends) continue;
+    const [vertex, incoming] = current.id.split("|");
+    if (vertex === "end") {
       const pieces = [];
-      let id2 = "end";
-      while (id2 !== "start") {
+      let id2 = current.id;
+      while (id2 !== start2) {
         const step = previous.get(id2);
         pieces.unshift(step.points);
         id2 = step.id;
       }
       return compact(pieces.flat());
     }
-    for (const edge of [...network2.vertices.get(current.id)?.links ?? [], ...extra.get(current.id) ?? []]) {
+    for (const edge of [...network2.vertices.get(vertex)?.links ?? [], ...extra.get(vertex) ?? []]) {
       if (edge.points.slice(1).some((point2, index2) => bodies.some((rect) => crossesBody(edge.points[index2], point2, rect)))) continue;
       const cost = current.cost + edge.cost;
-      if (cost >= (costs.get(edge.to) ?? Infinity)) continue;
-      costs.set(edge.to, cost);
-      previous.set(edge.to, { id: current.id, points: edge.points });
-      queue.push({ id: edge.to, cost });
+      let heading = incoming, bends = current.bends;
+      const points = compact(edge.points);
+      for (let index2 = 1; index2 < points.length; index2++) {
+        const next = direction(points[index2 - 1], points[index2]);
+        if (next !== heading) bends++;
+        heading = next;
+      }
+      if (edge.to === "end" && heading !== lastDirection) bends++;
+      const id2 = `${edge.to}|${heading}`, old = costs.get(id2);
+      if (old && (cost > old.cost || cost === old.cost && bends >= old.bends)) continue;
+      costs.set(id2, { cost, bends });
+      previous.set(id2, { id: current.id, points: edge.points });
+      queue.push({ id: id2, cost, bends });
     }
   }
 }
@@ -33677,14 +33836,20 @@ function laneRoute(document2, network2, wire, trunk) {
   for (const character of wire.id) hash = hash * 31 + character.charCodeAt(0) >>> 0;
   const half = Math.min(14, ...network2.ducts.map((duct) => (duct.vertical ? duct.right - duct.left : duct.bottom - duct.top) / 2 - 5));
   const offset = (hash % 9 - 4) * half / 4;
-  const shifted = trunk.map((point2) => ({ x: point2.x + offset, y: point2.y + offset }));
-  const first = trunk[0], last = trunk.at(-1), shiftedFirst = shifted[0], shiftedLast = shifted.at(-1);
-  const candidate = compact([first, { x: shiftedFirst.x, y: first.y }, ...shifted, { x: last.x, y: shiftedLast.y }, last]);
-  const bodies = document2.components.filter((component2) => !isWireDuct(component2.type)).map(bounds);
+  const base = simplify(trunk);
+  if (base.length < 2) return base;
+  const segment = (a, b) => a.x === b.x ? { vertical: true, value: a.x - Math.sign(b.y - a.y) * offset } : { vertical: false, value: a.y + Math.sign(b.x - a.x) * offset };
+  const lines = base.slice(1).map((b, i) => segment(base[i], b));
+  const shifted = base.map((p, i) => {
+    const before = lines[Math.max(0, i - 1)], after = lines[Math.min(i, lines.length - 1)];
+    return { x: before.vertical ? before.value : after.vertical ? after.value : p.x, y: !before.vertical ? before.value : !after.vertical ? after.value : p.y };
+  });
+  const candidate = compact([base[0], ...shifted, base.at(-1)]);
+  const bodies = document2.components.filter((component2) => !isLayoutObject(component2.type)).map(bounds);
   return candidate.slice(1).every((point2, index2) => segmentInsideDucts(document2, candidate[index2], point2) && !bodies.some((rect) => crossesBody(candidate[index2], point2, rect))) ? candidate : trunk;
 }
 function routeWireInDucts(document2, wire) {
-  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}`).join("|");
+  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).join("|");
   let cached = routeCache.get(document2.components);
   if (cached?.signature !== signature) {
     cached = { signature, routes: /* @__PURE__ */ new Map() };
@@ -33697,17 +33862,56 @@ function routeWireInDucts(document2, wire) {
   cached.routes.set(id2, route);
   return route;
 }
+function simplify(points) {
+  const result = [];
+  for (const point2 of compact(points)) {
+    while (result.length > 1) {
+      const a = result.at(-2), b = result.at(-1);
+      if (a.x === b.x && b.x === point2.x || a.y === b.y && b.y === point2.y) result.pop();
+      else break;
+    }
+    if (!result.length || distance2(result.at(-1), point2) > 1e-6) result.push(point2);
+  }
+  return result;
+}
+var displayPath = (points) => compact([points[0], ...simplify(points.slice(1, -1)), points.at(-1)]);
+var pathLength = (points) => points.slice(1).reduce((sum, p, i) => sum + distance2(points[i], p), 0);
+function comparePaths(a, b) {
+  return pathLength(a) - pathLength(b) || simplify(a).length - simplify(b).length || JSON.stringify(a).localeCompare(JSON.stringify(b));
+}
+function externalRoute(document2, source, target) {
+  const from = terminalLead(source), to = terminalLead(target), a = from[1], b = to[1];
+  const bodies = document2.components.filter((c) => !isLayoutObject(c.type));
+  const clear = (points) => points.slice(1).every((p, i) => !bodies.some((c) => crossesBody(points[i], p, bounds(c))));
+  if ([source, target].some((t, i) => bodies.some((c) => c.id !== t.component.id && crossesBody((i ? to : from)[0], (i ? to : from)[1], bounds(c))))) return { status: "blocked", sections: [from, to.reverse()], trunk: [], message: "\u5916\u90E8\u5F15\u7EBF\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5E03\u5C40\u3002" };
+  const choices = [[a, { x: a.x, y: b.y }, b], [a, { x: b.x, y: a.y }, b]];
+  for (const c of bodies) {
+    const r = bounds(c);
+    for (const x of [r.left - 12, r.right + 12]) choices.push([a, { x, y: a.y }, { x, y: b.y }, b]);
+    for (const y of [r.top - 12, r.bottom + 12]) choices.push([a, { x: a.x, y }, { x: b.x, y }, b]);
+  }
+  const middle = choices.map(simplify).filter(clear).sort(comparePaths)[0];
+  return middle ? { status: "routed", sections: [displayPath(compact([...from, ...middle, ...to.reverse()]))], trunk: [] } : { status: "blocked", sections: [from, to.reverse()], trunk: [], message: "\u5916\u90E8\u76F4\u89D2\u8DEF\u5F84\u88AB\u5143\u4EF6\u906E\u6321\uFF0C\u8BF7\u8C03\u6574\u5916\u90E8\u5668\u4EF6\u4F4D\u7F6E\u3002" };
+}
 function calculateRoute(document2, wire) {
   const source = resolveTerminal(document2, wire.from), target = resolveTerminal(document2, wire.to);
+  const external = source.terminal.routingRole === "external" || target.terminal.routingRole === "external";
+  const internal = source.terminal.routingRole === "internal" || target.terminal.routingRole === "internal";
+  if (external && !internal) return externalRoute(document2, source, target);
   const network2 = networkFor(document2.components);
   if (!network2.ducts.length) return { status: "missing", sections: [terminalLead(source), terminalLead(target).reverse()], trunk: [], message: "\u8BF7\u5148\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u8D70\u7EBF\u3002" };
-  const from = entryFor(document2, source, network2), to = entryFor(document2, target, network2);
-  const sections = [from?.lead ?? terminalLead(source), [...to?.lead ?? terminalLead(target)].reverse()];
-  if (!from || !to) return { status: "blocked", sections, trunk: [], message: "\u7AEF\u5B50\u51FA\u7EBF\u65B9\u5411\u6CA1\u6709\u53EF\u8FDB\u5165\u7684\u7EBF\u69FD\uFF0C\u6216\u5F15\u51FA\u6BB5\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5143\u4EF6\u6216\u7EBF\u69FD\u3002" };
-  const shortest = shortestPath(document2, network2, from, to);
-  if (!shortest) return { status: "disconnected", sections, trunk: [], message: "\u4E24\u7AEF\u7EBF\u69FD\u672A\u8FDE\u901A\u6216\u69FD\u5185\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8FDE\u63A5\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" };
-  const trunk = laneRoute(document2, network2, wire, shortest);
-  return { status: "routed", sections: [compact([...from.lead, ...trunk, ...[...to.lead].reverse()])], trunk };
+  const starts = entriesFor(document2, source, network2), ends = entriesFor(document2, target, network2);
+  const sections = [starts[0]?.lead ?? terminalLead(source), [...ends[0]?.lead ?? terminalLead(target)].reverse()];
+  if (!starts.length || !ends.length) return { status: "blocked", sections, trunk: [], message: "\u7AEF\u5B50\u51FA\u7EBF\u65B9\u5411\u6CA1\u6709\u53EF\u8FDB\u5165\u7684\u7EBF\u69FD\uFF0C\u6216\u5F15\u51FA\u6BB5\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5143\u4EF6\u6216\u7EBF\u69FD\u3002" };
+  const choices = [];
+  for (const from of starts) for (const to of ends) {
+    const trunk2 = shortestPath(document2, network2, from, to);
+    if (trunk2) choices.push({ from, to, trunk: trunk2, points: compact([...from.lead, ...simplify(trunk2), ...[...to.lead].reverse()]) });
+  }
+  const best = choices.sort((a, b) => comparePaths(a.points, b.points))[0];
+  if (!best) return { status: "disconnected", sections, trunk: [], message: "\u4E24\u7AEF\u7EBF\u69FD\u672A\u8FDE\u901A\u6216\u69FD\u5185\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8FDE\u63A5\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" };
+  const trunk = laneRoute(document2, network2, wire, best.trunk);
+  return { status: "routed", sections: [compact([...best.from.lead, ...simplify(trunk), ...[...best.to.lead].reverse()])], trunk };
 }
 
 // app/simulator/editor/duct-routing.ts
@@ -33817,18 +34021,18 @@ var switchMotionShapes = {
 };
 
 // app/simulator/editor/SwitchMotionArtwork.tsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
 function SwitchMotionArtwork({ type, pressed = false, closed = false, className = "" }) {
   const shape = switchMotionShapes[type];
   const breaker = type === "breaker1" || type === "breaker3";
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: `sim-device-artwork sim-switch-motion ${pressed ? "is-depressed" : ""} ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${shape.width} ${shape.height}`, role: "img", "aria-label": `${getDefinition(type).name} \xB7 ${breaker ? closed ? "\u5408\u95F8\uFF0C\u624B\u67C4\u5728\u4E0A" : "\u5206\u95F8\uFF0C\u624B\u67C4\u5728\u4E0B" : pressed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77"}`, "data-mechanism-state": breaker ? closed ? "closed" : "open" : pressed ? "pressed" : "released", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("g", { dangerouslySetInnerHTML: { __html: shape.body } }),
-    breaker && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { className: "sim-breaker-position", x: shape.width / 2, y: closed ? 98 : 124, textAnchor: "middle", fill: "white", fontSize: "19", fontWeight: "700", "aria-hidden": "true", children: closed ? "I" : "O" })
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("svg", { className: `sim-device-artwork sim-switch-motion ${pressed ? "is-depressed" : ""} ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${shape.width} ${shape.height}`, role: "img", "aria-label": `${getDefinition(type).name} \xB7 ${breaker ? closed ? "\u5408\u95F8\uFF0C\u624B\u67C4\u5728\u4E0A" : "\u5206\u95F8\uFF0C\u624B\u67C4\u5728\u4E0B" : pressed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77"}`, "data-mechanism-state": breaker ? closed ? "closed" : "open" : pressed ? "pressed" : "released", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("g", { dangerouslySetInnerHTML: { __html: shape.body } }),
+    breaker && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { className: "sim-breaker-position", x: shape.width / 2, y: closed ? 98 : 124, textAnchor: "middle", fill: "white", fontSize: "19", fontWeight: "700", "aria-hidden": "true", children: closed ? "I" : "O" })
   ] });
 }
 
 // app/simulator/editor/MotorMotionArtwork.tsx
-var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
 function MotorMotionArtwork({ type, active, direction, speed, className = "" }) {
   const asset = type === "motor" ? "motor" : "motor6";
   const height = type === "motor" ? 191.5 : 211.5;
@@ -33837,7 +34041,7 @@ function MotorMotionArtwork({ type, active, direction, speed, className = "" }) 
   const name = type === "motor" ? "\u4E09\u76F8\u5F02\u6B65\u7535\u673A" : type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A" : "\u53CC\u901F\u7535\u673A";
   const directionText = direction === "reverse" ? "\u53CD\u8F6C" : direction === "forward" ? "\u6B63\u8F6C" : "\u8FD0\u884C";
   const stateText = active ? `${directionText}${speed === "high" ? " \xB7 \u9AD8\u901F" : speed === "low" ? " \xB7 \u4F4E\u901F" : ""}` : "\u505C\u6B62";
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
     "svg",
     {
       className: `sim-device-artwork sim-motor-motion-artwork ${active ? "is-active" : ""} ${className}`,
@@ -33849,20 +34053,20 @@ function MotorMotionArtwork({ type, active, direction, speed, className = "" }) 
       "data-motor-direction": direction,
       "data-motor-speed": speed,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("title", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("title", { children: [
           name,
           " \xB7 ",
           stateText
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("image", { href: `${base}-body.svg`, width: "280.5", height }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("g", { className: "sim-motor-motion-rotor", style: {
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-body.svg`, width: "280.5", height }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("g", { className: "sim-motor-motion-rotor", style: {
           transformOrigin: `${centerX}px 115.499px`,
           animationDirection: direction === "reverse" ? "reverse" : "normal",
           // These rates distinguish state visually; they are not mechanical RPM values.
           animationDuration: speed === "high" ? "0.4s" : speed === "low" ? "0.8s" : "0.6s"
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("image", { href: `${base}-blades.svg`, width: "280.5", height }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("image", { href: `${base}-hub.svg`, width: "280.5", height }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { className: "sim-motor-motion-static", x: centerX, y: "180", textAnchor: "middle", children: stateText })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-blades.svg`, width: "280.5", height }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-hub.svg`, width: "280.5", height }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("text", { className: "sim-motor-motion-static", x: centerX, y: "180", textAnchor: "middle", children: stateText })
       ]
     }
   );
@@ -33876,7 +34080,7 @@ var knifeSwitchShape = {
 };
 
 // app/simulator/editor/KnifeSwitchArtwork.tsx
-var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
 var knifeSwitchMotionCss = `
 .sim-knife-motion.is-closed .sim-knife-back{display:none}
 .sim-knife-motion.is-closed .sim-knife-handle{transform:translateY(-40px)}
@@ -33885,9 +34089,9 @@ var knifeSwitchMotionCss = `
 .sim-knife-motion.is-closed .sim-knife-blade-3{transform-origin:center;transform:rotate(15deg) translate(12.5px,-18px)}
 `;
 function KnifeSwitchArtwork({ closed = false, className = "" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("svg", { className: `sim-device-artwork sim-knife-motion ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${knifeSwitchShape.width} ${knifeSwitchShape.height}`, role: "img", "aria-label": `\u4E09\u6781\u5200\u5F00\u5173\uFF08QS\uFF09 \xB7 ${closed ? "\u5DF2\u5408\u95F8" : "\u5DF2\u5206\u95F8"}`, "data-mechanism-state": closed ? "closed" : "open", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("style", { children: knifeSwitchMotionCss }),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("g", { dangerouslySetInnerHTML: { __html: knifeSwitchShape.body } })
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: `sim-device-artwork sim-knife-motion ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${knifeSwitchShape.width} ${knifeSwitchShape.height}`, role: "img", "aria-label": `\u4E09\u6781\u5200\u5F00\u5173\uFF08QS\uFF09 \xB7 ${closed ? "\u5DF2\u5408\u95F8" : "\u5DF2\u5206\u95F8"}`, "data-mechanism-state": closed ? "closed" : "open", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("style", { children: knifeSwitchMotionCss }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("g", { dangerouslySetInnerHTML: { __html: knifeSwitchShape.body } })
   ] });
 }
 
@@ -33898,37 +34102,44 @@ var contactorStateShapes = {
 };
 
 // app/simulator/editor/ContactorStateArtwork.tsx
-var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
 function ContactorStateArtwork({ type, active, className = "" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: `sim-device-artwork sim-contactor-artwork ${active ? "is-engaged" : ""} ${className}`, viewBox: "0 0 151.5 191.5", role: "img", "aria-label": `\u4EA4\u6D41\u63A5\u89E6\u5668 \xB7 ${active ? "\u5438\u5408" : "\u91CA\u653E"}`, "data-contactor-engaged": active, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("g", { dangerouslySetInnerHTML: { __html: contactorStateShapes[type] } }),
-    active && /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { className: "sim-contactor-state-text", "aria-hidden": "true", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "57.5", y: "98", textAnchor: "middle", children: "\u5438" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "94.5", y: "98", textAnchor: "middle", children: "\u5408" })
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("svg", { className: `sim-device-artwork sim-contactor-artwork ${active ? "is-engaged" : ""} ${className}`, viewBox: "0 0 151.5 191.5", role: "img", "aria-label": `\u4EA4\u6D41\u63A5\u89E6\u5668 \xB7 ${active ? "\u5438\u5408" : "\u91CA\u653E"}`, "data-contactor-engaged": active, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("g", { dangerouslySetInnerHTML: { __html: contactorStateShapes[type] } }),
+    active && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("g", { className: "sim-contactor-state-text", "aria-hidden": "true", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("text", { x: "57.5", y: "98", textAnchor: "middle", children: "\u5438" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("text", { x: "94.5", y: "98", textAnchor: "middle", children: "\u5408" })
     ] })
   ] });
 }
 
 // app/simulator/editor/DeviceArtwork.tsx
-var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
-function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "" }) {
-  if (type === "contactor220" || type === "contactor380") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ContactorStateArtwork, { type, active, className });
-  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
-  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
-  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(KnifeSwitchArtwork, { closed, className });
-  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
-  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "\u7EBF\u69FD" }) });
-  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "sim-supply-name", children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("b", { children: terminal.label }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
+var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
+function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "", rotation = 0, result, delayMs, running = false }) {
+  if (rotation) {
+    const d = getDefinition(type);
+    const translate = rotation === 90 ? `${d.height}px, 0px` : rotation === 180 ? `${d.width}px, ${d.height}px` : `0px, ${d.width}px`;
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-rotated-artwork", style: { position: "absolute", left: 0, top: 0, width: d.width, height: d.height, transformOrigin: "0 0", transform: `translate(${translate}) rotate(${rotation}deg)` }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type, active, pressed, closed, direction, speed }) });
+  }
+  if (type === "din-rail") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-device-artwork sim-rail-artwork", role: "img", "aria-label": "\u5B89\u88C5\u5BFC\u8F68" });
+  if (type === "relay380-jzc1-22" || type === "timer380" || type === "timer380-8pin") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(RelayArtwork, { type, active, result, delayMs, running });
+  if (type === "contactor220" || type === "contactor380") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ContactorStateArtwork, { type, active, className });
+  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
+  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
+  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(KnifeSwitchArtwork, { closed, className });
+  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
+  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: "\u7EBF\u69FD" }) });
+  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-supply-name", children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { children: terminal.label }),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
     ] }, terminal.id)) })
   ] });
-  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
-  if (type === "auxiliary-no") return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("svg", { className: `sim-device-artwork ${className}`, viewBox: "112 31 39.5 137", role: "img", "aria-label": "\u63A5\u89E6\u5668\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u533A\u57DF", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("image", { href: `${"/diantuo-zhixun/"}sim-assets/contactor380.svg`, width: "151.5", height: "191.5" }) });
+  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
+  if (type === "auxiliary-no") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: `sim-device-artwork ${className}`, viewBox: "112 31 39.5 137", role: "img", "aria-label": "\u63A5\u89E6\u5668\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u533A\u57DF", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("image", { href: `${"/diantuo-zhixun/"}sim-assets/contactor380.svg`, width: "151.5", height: "191.5" }) });
   const asset = type === "relay380" ? "relay220" : type;
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
     "img",
     {
       className: `sim-device-artwork ${active ? "is-active" : ""} ${className}`,
@@ -33976,13 +34187,20 @@ var runtimeLabel = (state) => LABELS[state ?? ""] ?? state ?? "\u672A\u5F97\u753
 var runtimeSummary = (result) => [runtimeLabel(result?.state), ...[result?.direction, result?.connection, result?.speed].filter((value) => !!value).map(runtimeLabel)].join(" \xB7 ");
 
 // app/simulator/editor/DeviceNode.tsx
-var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
 var sidePosition = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right };
 function DeviceNode({ data, selected: selected2 }) {
   const { component: component2, running, runtime, result, action } = data;
   const definition = getDefinition(component2.type);
   const size = componentSize(component2);
-  const duct = isWireDuct(component2.type);
+  const duct = isLayoutObject(component2.type);
+  const [settingsOpen, setSettingsOpen] = (0, import_react7.useState)(false);
+  const timerInput = (0, import_react7.useRef)(null);
+  (0, import_react7.useLayoutEffect)(() => {
+    if (settingsOpen) timerInput.current?.focus();
+  }, [settingsOpen]);
+  const rail = component2.type === "din-rail";
+  const timer2 = isTimer(component2.type);
   const contactor2 = component2.type === "contactor220" || component2.type === "contactor380";
   const resizeActions = (0, import_react7.useRef)(data);
   (0, import_react7.useLayoutEffect)(() => {
@@ -34001,7 +34219,7 @@ function DeviceNode({ data, selected: selected2 }) {
   const closed = !!runtime.switches[component2.id];
   const pressed = !!runtime.pressed[component2.id];
   const dispatch2 = (type) => action({ type, componentId: component2.id });
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
     "div",
     {
       className: `sim-device-node ${selected2 ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""} ${definition.load?.kind === "motor" && result?.active ? "sim-motor-running" : ""}`,
@@ -34016,32 +34234,33 @@ function DeviceNode({ data, selected: selected2 }) {
       "data-runtime-connection": result?.connection,
       "data-runtime-speed": result?.speed,
       children: [
-        duct && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
-        data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
+        duct && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: rail ? 24 : DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: rail ? 24 : DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(DeviceArtwork, { rotation: component2.rotation, result, delayMs: component2.settings?.delayMs, running, type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
+        data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
           const clip = `lead-${component2.id}-${wire.id}-${terminal.id}`;
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: data.diagnostics.some((d) => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }) })
+          return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: data.diagnostics.some((d) => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }) })
           ] }, clip);
         }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "sim-device-caption", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { children: component2.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: definition.name }),
-          component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-caption", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("b", { children: component2.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: definition.name }),
+          timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { children: [
             "\u6559\u5B66\u53CC\u5EF6\u65F6 \xB7 ",
             (component2.settings?.delayMs ?? 3e3) / 1e3,
             " s"
           ] }),
-          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
+          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
         ] }),
-        faulty && definition.load?.kind === "motor" && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-motor-diagnostic", role: "status", title: data.diagnostics.filter((d) => d.componentIds.includes(component2.id)).map((d) => d.message).join("\uFF1B"), children: "\u8BCA\u65AD" }),
-        definition.terminals.map((terminal) => {
+        faulty && definition.load?.kind === "motor" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-motor-diagnostic", role: "status", title: data.diagnostics.filter((d) => d.componentIds.includes(component2.id)).map((d) => d.message).join("\uFF1B"), children: "\u8BCA\u65AD" }),
+        definition.terminals.map((original) => {
+          const terminal = transformedTerminal(component2, original);
           const key4 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
           const state = data.terminalStates[key4];
           const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key4));
           const color2 = terminalColor(terminal);
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+          return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
             Handle,
             {
               id: terminal.id,
@@ -34057,14 +34276,14 @@ function DeviceNode({ data, selected: selected2 }) {
               "data-world-x": component2.position.x + terminal.x,
               "data-world-y": component2.position.y + terminal.y,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
-                !contactor2 && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
+                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
+                !contactor2 && !timer2 && component2.type !== "relay380-jzc1-22" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
               ]
             },
             terminal.id
           );
         }),
-        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
           "button",
           {
             className: `sim-actuator sim-push-actuator nodrag nopan ${component2.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`,
@@ -34100,29 +34319,38 @@ function DeviceNode({ data, selected: selected2 }) {
             children: component2.type === "limit-switch" ? pressed ? "\u5DF2\u6309\u4E0B" : "\u6309\u4F4F" : null
           }
         ),
-        !running && selected2 && component2.type === "timer380" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { className: "sim-device-setting nodrag nopan", children: [
+        !running && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-timer-controls nodrag nopan", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u51CF\u5C11\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.max(TIMER_MIN_MS, Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) - 1e3)) } }), children: "\u2212" }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u8BBE\u7F6E\u65F6\u95F4`, onClick: () => {
+            setSettingsOpen(true);
+            timerInput.current?.focus();
+          }, children: "\u8BBE\u7F6E" }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u589E\u52A0\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) + 1e3) } }), children: "+" })
+        ] }),
+        timer2 && (component2.settings?.delayMs ?? 3e3) > 3e5 && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-legacy-timer-warning", children: "\u5386\u53F2\u8BBE\u7F6E\u8D85\u8FC75\u5206\u949F\uFF1B\u539F\u503C\u4FDD\u7559\uFF0C\u8BF7\u8C03\u6574\u540E\u5347\u7EA7" }),
+        !running && (selected2 || settingsOpen) && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "sim-device-setting nodrag nopan", children: [
           "\u5EF6\u65F6",
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: "0.001", max: "3600", step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { ref: timerInput, "aria-label": `${component2.label} \u5EF6\u65F6\u79D2\u6570`, type: "number", min: TIMER_MIN_MS / 1e3, max: TIMER_MAX_MS / 1e3, step: "0.001", value: (component2.settings?.delayMs ?? 3e3) / 1e3, disabled: data.readOnly, onChange: (event) => {
             const seconds = event.currentTarget.valueAsNumber;
-            if (Number.isFinite(seconds) && seconds >= 1e-3 && seconds <= 3600) data.configure(component2.id, { settings: { delayMs: Math.round(seconds * 1e3) } });
+            if (Number.isFinite(seconds) && seconds >= TIMER_MIN_MS / 1e3 && seconds <= TIMER_MAX_MS / 1e3) data.configure(component2.id, { settings: { delayMs: Math.round(seconds * 1e3) } });
           } }),
           "\u79D2"
         ] }),
-        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", children: [
+        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", children: [
           "\u5173\u8054\u7EBF\u5708",
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
-            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("option", { value: item.id, children: item.label }, item.id))
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
+            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("option", { value: item.id, children: item.label }, item.id))
           ] })
         ] }),
-        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
-        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
+        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
+        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
         ] }),
-        running && !contactor2 && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
+        running && !contactor2 && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
           latching ? closed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77" : runtimeSummary(result),
-          component2.type === "timer380" && result?.remainingMs !== void 0 && ` \xB7 ${(result.remainingMs / 1e3).toFixed(1)} s`
+          timer2 && result?.remainingMs !== void 0 && ` \xB7 ${(result.remainingMs / 1e3).toFixed(1)} s`
         ] })
       ]
     }
@@ -34131,7 +34359,7 @@ function DeviceNode({ data, selected: selected2 }) {
 
 // app/simulator/editor/WireEdge.tsx
 var import_react8 = __toESM(require_react(), 1);
-var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
 function WireEdge({ id: id2, data, selected: selected2 }) {
   const flow = useReactFlow();
   const [dragged, setDragged] = (0, import_react8.useState)(null);
@@ -34148,7 +34376,7 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
     const point2 = flow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
     setDragged({ index: index2, point: point2 });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
     "g",
     {
       className: `sim-wire ${selected2 ? "is-selected" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`,
@@ -34160,9 +34388,9 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       "data-routing": wire.routing,
       "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
-        selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(EdgeLabelRenderer, { children: [
-          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(EdgeLabelRenderer, { children: [
+          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
             "button",
             {
               className: "sim-wire-waypoint nodrag nopan",
@@ -34192,7 +34420,7 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
             },
             index2
           )),
-          !points.length && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
+          !points.length && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
             event.stopPropagation();
             data.onWaypoints(id2, [anchor]);
           }, children: "\u6DFB\u52A0\u6298\u70B9" })
@@ -34257,9 +34485,9 @@ var import_react11 = __toESM(require_react(), 1);
 
 // app/simulator/PdfDrawing.tsx
 var import_react10 = __toESM(require_react(), 1);
-var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
 function PdfDrawing(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(PdfDrawingContent, { ...props }, props.src);
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawingContent, { ...props }, props.src);
 }
 function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
   const container = (0, import_react10.useRef)(null);
@@ -34351,33 +34579,33 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
       task?.cancel();
     };
   }, [pdf, pageNumber2, width]);
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-pagination", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-pagination", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
-      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "button", onClick: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
+      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", onClick: () => {
           setPdf(null);
           setPageNumber(1);
           setState("loading");
           setError("");
           setRetry((value) => value + 1);
         }, children: "\u91CD\u65B0\u52A0\u8F7D PDF" })
-      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
+      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
   ] });
 }
 
 // app/simulator/DrawingViewer.tsx
-var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
 function DrawingViewer(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DrawingViewerContent, { ...props }, `${props.src ?? ""}:${props.type ?? ""}:${props.contentKey ?? ""}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(DrawingViewerContent, { ...props }, `${props.src ?? ""}:${props.type ?? ""}:${props.contentKey ?? ""}`);
 }
 function DrawingViewerContent({ src, title, type, children: children2, contentKey, compact: compact2 = false, zoom: controlledZoom, onZoomChange }) {
   const isPdf = type === "application/pdf";
@@ -34460,24 +34688,24 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
     setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { className: `dt-drawing-viewer${compact2 ? " is-compact" : ""}`, "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, "data-drawing-zoom": zoom, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
-    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 0.5, onClick: () => setZoom(Math.max(0.5, zoom - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomOut, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: `dt-drawing-viewer${compact2 ? " is-compact" : ""}`, "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, "data-drawing-zoom": zoom, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
+    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 0.5, onClick: () => setZoom(Math.max(0.5, zoom - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ZoomOut, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
         Math.round(zoom * 100),
         "%"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 4, onClick: () => setZoom(Math.min(4, zoom + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ZoomIn, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("button", { type: "button", onClick: fit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Maximize2, { size: 15 }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 4, onClick: () => setZoom(Math.min(4, zoom + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ZoomIn, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", onClick: fit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Maximize2, { size: 15 }),
         "\u9002\u5E94\u7A97\u53E3"
       ] }),
-      src && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ExternalLink, { size: 15 }),
+      src && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ExternalLink, { size: 15 }),
         "\u67E5\u770B\u539F\u56FE"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
       "div",
       {
         ref: viewport,
@@ -34494,7 +34722,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds2.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds2.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
             "img",
             {
               src,
@@ -34509,18 +34737,18 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
             },
             src
           ) }),
-          !!src && !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
+          !!src && !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
         ]
       }
     ),
-    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
+    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
   ] });
 }
 
 // app/simulator/Modal.tsx
 var import_react12 = __toESM(require_react(), 1);
 var import_react_dom2 = __toESM(require_react_dom(), 1);
-var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
 function Modal({ children: children2, title, onClose, backdropClass = "dt-modal-backdrop", className = "dt-modal", role = "dialog" }) {
   const element = (0, import_react12.useRef)(null);
   const close = (0, import_react12.useRef)(onClose);
@@ -34561,9 +34789,9 @@ function Modal({ children: children2, title, onClose, backdropClass = "dt-modal-
     };
   }, []);
   if (typeof document === "undefined") return null;
-  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: backdropClass, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", className: "dt-modal-dismiss-layer", tabIndex: -1, "aria-label": `\u5173\u95ED${title}`, onClick: onClose }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { ref: element, className: `${className} dt-modal-focus-root`, role, "aria-modal": "true", "aria-label": title, tabIndex: -1, children: children2 })
+  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: backdropClass, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { type: "button", className: "dt-modal-dismiss-layer", tabIndex: -1, "aria-label": `\u5173\u95ED${title}`, onClick: onClose }),
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { ref: element, className: `${className} dt-modal-focus-root`, role, "aria-modal": "true", "aria-label": title, tabIndex: -1, children: children2 })
   ] }), document.body);
 }
 
@@ -34581,7 +34809,7 @@ function videoSeekTarget(currentTime, duration, seconds) {
 }
 
 // app/simulator/reference-video/ReferenceVideoPlayer.tsx
-var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
 function Player({ video }) {
   const element = (0, import_react13.useRef)(null);
   const [duration, setDuration] = (0, import_react13.useState)(0);
@@ -34604,8 +34832,8 @@ function Player({ video }) {
     const target = videoSeekTarget(media.currentTime, media.duration, seconds);
     if (target !== null) media.currentTime = target;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "dt-reference-video", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
       "video",
       {
         ref: element,
@@ -34625,48 +34853,48 @@ function Player({ video }) {
         onError: () => setFailed(true)
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(RotateCcw, { size: 15 }),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(RotateCcw, { size: 15 }),
         "\u540E\u9000 10 \u79D2"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("label", { children: [
         "\u500D\u901F",
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
           const rate = Number(event.target.value);
           if (element.current) element.current.playbackRate = rate;
           setSpeed(rate);
-        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("option", { value: rate, children: [
+        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("option", { value: rate, children: [
           rate,
           "\xD7"
         ] }, rate)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
         "\u524D\u8FDB 10 \u79D2",
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(RotateCw, { size: 15 })
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(RotateCw, { size: 15 })
       ] })
     ] }),
-    failed && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { type: "button", onClick: () => {
+    failed && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: () => {
         setFailed(false);
         element.current?.load();
       }, children: "\u91CD\u65B0\u52A0\u8F7D" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
   ] });
 }
 function ReferenceVideoPlayer({ video }) {
-  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "dt-reference-video-empty", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Video, { size: 38 }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
+  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-empty", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Video, { size: 38 }),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
 }
 
 // app/simulator/editor/FloatingSchematic.tsx
-var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
 var DEFAULT_FRAME = { width: 560, height: 600 };
 var EDGES = { n: "\u4E0A\u8FB9", s: "\u4E0B\u8FB9", w: "\u5DE6\u8FB9", e: "\u53F3\u8FB9", nw: "\u5DE6\u4E0A\u89D2", ne: "\u53F3\u4E0A\u89D2", sw: "\u5DE6\u4E0B\u89D2", se: "\u53F3\u4E0B\u89D2" };
 function FloatingSchematic({ panelRef, boardRef, children: children2, documentKey, video, onChooseDrawing, selectionDisabled, zoom: controlledZoom, onZoomChange }) {
@@ -34761,7 +34989,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     resizing.current = null;
     setDragging(false);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
     if (fullscreen && event.key === "Escape") {
       event.preventDefault();
       event.stopPropagation();
@@ -34779,7 +35007,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
       }
     }
   }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
       "div",
       {
         className: "sim-diagram-header",
@@ -34811,15 +35039,15 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
             setTab("schematic");
             setOpen(true);
           }, children: "\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
             setTab("video");
             setOpen(true);
           }, children: "\u6559\u5B66\u89C6\u9891" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
             const steps = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
             const step = steps[event.key];
             if (step) {
@@ -34827,54 +35055,54 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
               event.stopPropagation();
               setOffset((value) => constrain({ x: value.x + step[0], y: value.y + step[1] }));
             }
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(GripHorizontal, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(RotateCcw, { size: 15 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-fullscreen", "aria-label": fullscreen ? "\u9000\u51FA\u56FE\u7EB8\u5927\u56FE" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", title: fullscreen ? "\u9000\u51FA\u5927\u56FE \xB7 Esc" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", onClick: () => {
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(GripHorizontal, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(RotateCcw, { size: 15 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-fullscreen", "aria-label": fullscreen ? "\u9000\u51FA\u56FE\u7EB8\u5927\u56FE" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", title: fullscreen ? "\u9000\u51FA\u5927\u56FE \xB7 Esc" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", onClick: () => {
             setFullscreen(!fullscreen);
             setOpen(true);
             setTab("schematic");
-          }, children: fullscreen ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Minimize2, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Maximize2, { size: 16 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => {
+          }, children: fullscreen ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Minimize2, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 16 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => {
             setFullscreen(false);
             setOpen(!open);
-          }, children: open ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Plus, { size: 19 }) })
+          }, children: open ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Plus, { size: 19 }) })
         ]
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(import_jsx_runtime13.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "sim-diagram-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
-        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "sim-guide", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("ol", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
+    open && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-diagram-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
+        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-guide", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("ol", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
         ] }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "sim-diagram-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(BookOpen, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { className: "sim-diagram-fit", "aria-label": "\u9002\u5E94\u56FE\u7EB8", disabled: tab !== "schematic", title: "\u9002\u5E94\u7A97\u53E3", onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-diagram-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(BookOpen, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-fit", "aria-label": "\u9002\u5E94\u56FE\u7EB8", disabled: tab !== "schematic", title: "\u9002\u5E94\u7A97\u53E3", onClick: () => {
           if (tab === "schematic") setZoom(1);
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Maximize2, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
           Math.round(zoom * 100),
           "%"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: tab !== "schematic" || zoom <= 0.5, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: tab !== "schematic" || zoom <= 0.5, onClick: () => {
           if (tab === "schematic") setZoom(Math.max(0.5, zoom - 0.25));
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ZoomOut, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: tab !== "schematic" || zoom >= 4, onClick: () => {
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomOut, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: tab !== "schematic" || zoom >= 4, onClick: () => {
           if (tab === "schematic") setZoom(Math.min(4, zoom + 0.25));
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ZoomIn, { size: 20 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomIn, { size: 20 }) })
       ] })
     ] }),
-    open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { "data-resize-edge": edge, className: `sim-diagram-resize sim-diagram-resize-${edge}`, "aria-label": `\u8C03\u6574\u56FE\u7EB8\u7A97\u53E3${label}`, onPointerDown: startResize, onPointerMove: moveResize, onPointerUp: (event) => endResize(event), onPointerCancel: (event) => endResize(event, true), onLostPointerCapture: lostResizeCapture }, edge))
+    open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "data-resize-edge": edge, className: `sim-diagram-resize sim-diagram-resize-${edge}`, "aria-label": `\u8C03\u6574\u56FE\u7EB8\u7A97\u53E3${label}`, onPointerDown: startResize, onPointerMove: moveResize, onPointerUp: (event) => endResize(event), onPointerCancel: (event) => endResize(event, true), onLostPointerCapture: lostResizeCapture }, edge))
   ] });
 }
 
@@ -35014,14 +35242,18 @@ function createReferenceDocument(id2) {
   for (const [componentId, type, label, x, y] of items) components.push({ id: componentId, type, label, position: { x, y } });
   return { schemaVersion: 1, title: drawing.title, referenceDiagramId: id2, components, wires: [] };
 }
+function createReferencePractice(id2, placement = "automatic") {
+  const document2 = arrangeTrainingDucts(createReferenceDocument(id2));
+  return placement === "manual" ? { ...document2, components: document2.components.filter((c) => isLayoutObject(c.type)) } : document2;
+}
 
 // app/simulator/ReferenceDrawingPicker.tsx
 var import_react15 = __toESM(require_react(), 1);
 var import_react_dom3 = __toESM(require_react_dom(), 1);
-var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
 var PAGE_SIZE = 9;
 function ReferenceDrawingPicker(props) {
-  return props.open ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ReferenceDrawingPickerContent, { ...props }, props.selectedId ?? "none") : null;
+  return props.open ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ReferenceDrawingPickerContent, { ...props }, props.selectedId ?? "none") : null;
 }
 function ReferenceDrawingPickerContent({ open, selectedId, onSelect, onClose, disabled = false }) {
   const [candidate, setCandidate] = (0, import_react15.useState)(() => selectedId !== void 0 && getReferenceDrawing(selectedId) ? selectedId : null);
@@ -35092,50 +35324,50 @@ function ReferenceDrawingPickerContent({ open, selectedId, onSelect, onClose, di
     onSelect(candidate);
     onClose();
   }
-  return (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "dt-reference-picker-backdrop", onPointerDown: (event) => {
+  return (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-reference-picker-backdrop", onPointerDown: (event) => {
     if (event.target === event.currentTarget) event.preventDefault();
-  }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { ref: dialog, className: "dt-reference-picker", role: "dialog", tabIndex: -1, "aria-modal": "true", "aria-labelledby": `${id2}-title`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("h2", { id: `${id2}-title`, children: "\u56FE\u7EB8\u9009\u62E9" }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("label", { className: "dt-reference-picker-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Search, { size: 18 }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("input", { ref: searchInput, "aria-label": "\u641C\u7D22\u53C2\u8003\u56FE\u7EB8", placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, maxLength: 100, onChange: (event) => setQuery(event.target.value), onCompositionStart: () => setComposing(true), onCompositionEnd: (event) => {
+  }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { ref: dialog, className: "dt-reference-picker", role: "dialog", tabIndex: -1, "aria-modal": "true", "aria-labelledby": `${id2}-title`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: `${id2}-title`, children: "\u56FE\u7EB8\u9009\u62E9" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "dt-reference-picker-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Search, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: searchInput, "aria-label": "\u641C\u7D22\u53C2\u8003\u56FE\u7EB8", placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, maxLength: 100, onChange: (event) => setQuery(event.target.value), onCompositionStart: () => setComposing(true), onCompositionEnd: (event) => {
           setQuery(event.currentTarget.value);
           setComposing(false);
         } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", className: "dt-reference-picker-close", "aria-label": "\u5173\u95ED\u56FE\u7EB8\u9009\u62E9", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(X, { size: 20 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", className: "dt-reference-picker-close", "aria-label": "\u5173\u95ED\u56FE\u7EB8\u9009\u62E9", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 20 }) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "dt-reference-picker-content", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "dt-reference-picker-grid", role: "radiogroup", "aria-label": "\u9009\u62E9\u53C2\u8003\u56FE\u7EB8", children: found.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((drawing) => /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("label", { className: `dt-reference-picker-card ${candidate === drawing.id ? "selected" : ""}`, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("input", { type: "radio", name: `${id2}-drawing`, value: drawing.id, checked: candidate === drawing.id, disabled, onChange: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-picker-content", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-reference-picker-grid", role: "radiogroup", "aria-label": "\u9009\u62E9\u53C2\u8003\u56FE\u7EB8", children: found.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((drawing) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: `dt-reference-picker-card ${candidate === drawing.id ? "selected" : ""}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { type: "radio", name: `${id2}-drawing`, value: drawing.id, checked: candidate === drawing.id, disabled, onChange: () => {
           if (!disabled) setCandidate(drawing.id);
         } }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("img", { src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/"), alt: "", loading: "lazy" }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { children: drawing.title })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("img", { src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/"), alt: "", loading: "lazy" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: drawing.title })
       ] }, drawing.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "dt-reference-picker-empty", role: "status", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" })
+      !found.length && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dt-reference-picker-empty", role: "status", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("nav", { className: "dt-reference-picker-pages", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("button", { type: "button", disabled: currentPage === 1, onClick: () => setPage((value) => Math.max(1, value - 1)), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ChevronLeft, { size: 16 }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("nav", { className: "dt-reference-picker-pages", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: currentPage === 1, onClick: () => setPage((value) => Math.max(1, value - 1)), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        Array.from({ length: pages }, (_, index2) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", "aria-current": currentPage === index2 + 1 ? "page" : void 0, onClick: () => setPage(index2 + 1), children: index2 + 1 }, index2)),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("button", { type: "button", disabled: currentPage === pages, onClick: () => setPage((value) => Math.min(pages, value + 1)), children: [
+        Array.from({ length: pages }, (_, index2) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", "aria-current": currentPage === index2 + 1 ? "page" : void 0, onClick: () => setPage(index2 + 1), children: index2 + 1 }, index2)),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: currentPage === pages, onClick: () => setPage((value) => Math.min(pages, value + 1)), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ChevronRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronRight, { size: 16 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
           "\u5171 ",
           found.length,
           " \u5F20"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "dt-reference-picker-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", onClick: onClose, children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", className: "dt-reference-picker-confirm", disabled: disabled || candidate === null, onClick: confirm, children: "\u786E\u8BA4" })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-picker-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: onClose, children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", className: "dt-reference-picker-confirm", disabled: disabled || candidate === null, onClick: confirm, children: "\u786E\u8BA4" })
       ] })
     ] })
   ] }) }), document.body);
@@ -35143,8 +35375,8 @@ function ReferenceDrawingPickerContent({ open, selectedId, onSelect, onClose, di
 
 // app/simulator/editor/library-presentation.ts
 var household = ["switch1", "switch2", "lamp", "breaker1", "breaker3"];
-var industrial = ["breaker1", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380", "timer380", "motor-dahlander"];
-var helpers = ["supply", "terminal", "terminal-strip16", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical"];
+var industrial = ["breaker1", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380-jzc1-22", "timer380-8pin", "motor-dahlander"];
+var helpers = ["supply", "terminal", "terminal-strip16", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical", "din-rail"];
 var poolLabel = {
   switch1: "\u5355\u5F00\u5355\u63A7",
   switch2: "\u5355\u5F00\u53CC\u63A7",
@@ -35166,6 +35398,9 @@ var poolLabel = {
   motor: "\u4E09\u76F8\u5F02\u6B65\u7535\u52A8\u673A\n\uFF08380V\uFF09",
   "motor-star-delta": "\u516D\u7AEF\u5B50\u7535\u673A\n\uFF08Y / \u0394\uFF09",
   "motor-dahlander": "\u53CC\u901F\u7535\u673A\n\uFF08\u0394 / YY \u6559\u5B66\uFF09",
+  "relay380-jzc1-22": "\u4E2D\u95F4\u7EE7\u7535\u5668\uFF08KA\uFF09\n\uFF08\u4E24\u5F00\u4E24\u95ED\uFF09",
+  "timer380-8pin": "\u65F6\u95F4\u7EE7\u7535\u5668\uFF08KT\uFF09\n\uFF08\u516B\u7AEF\u5B50\uFF09",
+  "din-rail": "\u5B89\u88C5\u5BFC\u8F68",
   overload: "\u70ED\u7EE7\u7535\u5668\uFF08FR\uFF09",
   relay380: "\u4E2D\u95F4\u7EE7\u7535\u5668\uFF08KA\uFF09\n\uFF08380V \u6559\u5B66\uFF09",
   timer380: "\u65F6\u95F4\u7EE7\u7535\u5668\uFF08KT\uFF09\n\uFF08380V \u6559\u5B66\uFF09"
@@ -35184,19 +35419,19 @@ function poolGroups(category, search) {
 }
 
 // app/simulator/editor/ShortCircuitAlert.tsx
-var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 function ShortCircuitAlert({ diagnostic: diagnostic2, onClose, onLocate }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", onClick: onLocate, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(LocateFixed, { size: 17 }),
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { type: "button", onClick: onLocate, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(LocateFixed, { size: 17 }),
         "\u5B9A\u4F4D\u6545\u969C"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
     ] })
   ] });
 }
@@ -35247,11 +35482,11 @@ function pasteSelection(document2, clipboard, offset = 32, makeId = () => crypto
 }
 
 // app/simulator/editor/SimulatorEditor.tsx
-var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
 var nodeTypes = { electrical: DeviceNode };
 var edgeTypes = { electrical: WireEdge };
 var COLORS2 = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
-var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD" };
+var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail": "DR", "relay380-jzc1-22": "KA", "timer380-8pin": "KT" };
 var clone2 = (value) => JSON.parse(JSON.stringify(value));
 function parseImport(value) {
   const result = validateDocument(value);
@@ -35267,6 +35502,8 @@ function Workspace(props) {
   }, [circuit]);
   const [category, setCategory] = (0, import_react16.useState)("all");
   const [search, setSearch] = (0, import_react16.useState)("");
+  const [pendingRole, setPendingRole] = (0, import_react16.useState)(null);
+  const requirements = (0, import_react16.useMemo)(() => courseRequirements(circuit.lessonId), [circuit.lessonId]);
   const [searchOpen, setSearchOpen] = (0, import_react16.useState)(false);
   const [colorAnchor, setColorAnchor] = (0, import_react16.useState)({ left: 0, top: 0 });
   const [libraryOpen, setLibraryOpen] = (0, import_react16.useState)(true);
@@ -35322,6 +35559,7 @@ function Workspace(props) {
   const [currentDocument, setCurrentDocument] = (0, import_react16.useState)(props.documentKey);
   if (currentDocument !== props.documentKey) {
     setCurrentDocument(props.documentKey);
+    setPendingRole(null);
     setDismissedShort("");
     setPast([]);
     setFuture([]);
@@ -35462,7 +35700,7 @@ function Workspace(props) {
       setMessage(error instanceof Error ? error.message : "\u7C98\u8D34\u5931\u8D25\uFF0C\u5F53\u524D\u7535\u8DEF\u4FDD\u6301\u4E0D\u53D8\u3002");
     }
   };
-  const hasTimers = circuit.components.some((component2) => component2.type === "timer380");
+  const hasTimers = circuit.components.some((component2) => isTimer(component2.type));
   (0, import_react16.useEffect)(() => {
     if (!running || !hasTimers || timerPaused) return;
     const timer2 = setInterval(() => {
@@ -35493,15 +35731,23 @@ function Workspace(props) {
       setMessage(error instanceof Error ? error.message : "\u7535\u8DEF\u6682\u65F6\u65E0\u6CD5\u4EFF\u771F\u3002");
     }
   };
-  const addComponent = (type, point2) => {
+  const addComponent = (type, point2, role) => {
     if (frozen) return;
     const bounds2 = board.current?.getBoundingClientRect();
     const position = point2 ?? flow.screenToFlowPosition({ x: (bounds2?.left ?? 300) + (bounds2?.width ?? 900) * 0.4, y: (bounds2?.top ?? 120) + (bounds2?.height ?? 600) * 0.4 });
     const prefix2 = LABELS2[type];
     let index2 = 1;
-    while (circuit.components.some((component2) => component2.label === `${prefix2}${index2}`)) index2++;
+    while (circuit.components.some((component3) => component3.label === `${prefix2}${index2}`)) index2++;
     const id2 = `${type}-${crypto.randomUUID().slice(0, 8)}`;
-    changed({ ...circuit, components: [...circuit.components, { id: id2, type, label: `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 } }] });
+    const required = role && requirements.find((item) => item.role === role);
+    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
+    try {
+      changed(role ? addCourseComponent(docRef.current, role, component2) : { ...docRef.current, components: [...docRef.current.components, component2] });
+      setPendingRole(null);
+    } catch (error) {
+      setMessage(error.message);
+      return;
+    }
     setSelectedNodes([id2]);
     setSelectedWires([]);
   };
@@ -35518,21 +35764,20 @@ function Workspace(props) {
     const sourceComponent = circuit.components.find((component2) => component2.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find((terminal) => terminal.id === from.terminalId);
     const newColor = colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal);
-    const hasDucts2 = circuit.components.some((component2) => isWireDuct(component2.type));
-    const automatic = (wireStyle === "duct" || wireStyle === "straight") && hasDucts2;
+    const automatic = wireStyle === "duct";
     changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] });
-    if (wireStyle === "duct" && !hasDucts2) setMessage("\u5C1A\u672A\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u65B0\u5BFC\u7EBF\u4F7F\u7528\u81EA\u5B9A\u4E49\u76F4\u89D2\uFF1B\u53EF\u5148\u9884\u5E03\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u5165\u69FD\u3002");
   };
   const onWaypoints = (0, import_react16.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = (0, import_react16.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
   const beginResize = (0, import_react16.useCallback)((id2) => {
-    if (frozen || !isWireDuct(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
+    if (frozen || !isLayoutObject(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
     resizing.current = { id: id2, before: clone2(docRef.current), documentKey: props.documentKey };
   }, [frozen, props.documentKey]);
   const resize = (0, import_react16.useCallback)((id2, bounds2, finish = false) => {
     const gesture = resizing.current;
     if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds2.x, bounds2.y, bounds2.width, bounds2.height].every(Number.isFinite)) return;
-    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.width)), height: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.height)) };
+    const rail = docRef.current.components.find((c) => c.id === id2)?.type === "din-rail";
+    const size = { width: Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.width)), height: rail ? 24 : Math.max(DUCT_MIN_SIZE, Math.min(DUCT_MAX_SIZE, bounds2.height)) };
     const next = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, position: { x: bounds2.x, y: bounds2.y }, size } : component2) };
     onDocumentChange(next);
     setAssessment(null);
@@ -35551,9 +35796,9 @@ function Workspace(props) {
     resizing.current = null;
     if (gesture && gesture.documentKey === props.documentKey && !frozen) onDocumentChange(gesture.before);
   }, [frozen, props.documentKey, onDocumentChange]);
-  const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || component2.type === "relay380").map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
+  const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
   const diagnostics = (0, import_react16.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isWireDuct(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isWireDuct(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...componentSize(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...componentSize(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
@@ -35599,7 +35844,7 @@ function Workspace(props) {
   };
   const hasDucts = circuit.components.some((component2) => isWireDuct(component2.type));
   const selectedStyles = [...new Set(circuit.wires.filter((wire) => selectedWires.includes(wire.id)).map((wire) => wire.routing === "duct" ? "duct" : wire.style ?? "orthogonal"))];
-  const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? (wireStyle === "duct" && !hasDucts ? "orthogonal" : wireStyle);
+  const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? wireStyle;
   const arrangeDucts = () => {
     if (frozen) return;
     try {
@@ -35699,16 +35944,20 @@ function Workspace(props) {
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
   const routingProblems = (0, import_react16.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed"), [circuit]);
-  const noDuctFallback = wireStyle === "duct" && !hasDucts && circuit.wires.length > 0 && !routingProblems.length;
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
-  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
+  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
   const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision, viewerControls) : drawingPreview ?? renderSchematic;
   (0, import_react16.useEffect)(() => {
     const element = editorElement.current;
     if (!element) return;
     const onKeyDown = (event) => {
+      if (event.key === "Escape" && pendingRole) {
+        event.preventDefault();
+        setPendingRole(null);
+        return;
+      }
       if (event.key === "Escape" && resizing.current) {
         event.preventDefault();
         cancelResize();
@@ -35741,113 +35990,147 @@ function Workspace(props) {
     element.addEventListener("keydown", onKeyDown);
     return () => element.removeEventListener("keydown", onKeyDown);
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("aside", { className: "sim-library", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("aside", { className: "sim-library", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
           setSearchOpen(!searchOpen);
           if (searchOpen) setSearch("");
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 16 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Search, { size: 16 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
       ] }),
-      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-library-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 14 }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
+      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-library-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Search, { size: 14 }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-scroller", children: [
-        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-library-group", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: group.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
+      requirements.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("details", { className: "sim-course-checklist", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("summary", { children: [
+          "\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355 \xB7 ",
+          requirements.filter((r) => !!circuit.roles?.[r.role]).length,
+          "/",
+          requirements.length
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: pendingRole ? "\u70B9\u51FB\u753B\u5E03\u7A7A\u767D\u5904\u653E\u7F6E\uFF1BEsc\u53D6\u6D88" : "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50\u65F6\u4E0D\u80FD\u5408\u683C\uFF1B\u6309\u4F4D\u53F7\u6DFB\u52A0\u5668\u4EF6\uFF0C\u518D\u81EA\u884C\u6446\u653E\u548C\u63A5\u7EBF" }),
+        pendingRole && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: frozen, onClick: () => {
+          const entry = requirements.find((r) => r.role === pendingRole);
+          if (entry) addComponent(entry.component.type, void 0, pendingRole);
+        }, children: "\u653E\u5230\u53EF\u89C1\u753B\u5E03\u4E2D\u5FC3" }),
+        requirements.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: entry.component.label }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: getDefinition(entry.component.type).name })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: frozen || !!circuit.roles?.[entry.role], onClick: () => setPendingRole(entry.role), children: circuit.roles?.[entry.role] ? "\u5DF2\u7ED1\u5B9A" : "\u6DFB\u52A0\u5E76\u653E\u7F6E" })
+        ] }, entry.role))
+      ] }),
+      requirements.length > 0 && selectedNodes.length === 1 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-role-binding", children: [
+        "\u8BFE\u7A0B\u4F4D\u53F7",
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("select", { "aria-label": "\u7ED1\u5B9A\u8BFE\u7A0B\u4F4D\u53F7", disabled: frozen, value: Object.entries(circuit.roles ?? {}).find(([, id2]) => id2 === selectedNodes[0])?.[0] ?? "", onChange: (event) => {
+          try {
+            changed(bindCourseRole(docRef.current, selectedNodes[0], event.target.value));
+          } catch (error) {
+            setMessage(error.message);
+          }
+        }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "", children: "\u672A\u7ED1\u5B9A\uFF0F\u89E3\u9664\u7ED1\u5B9A" }),
+          requirements.filter((r) => equivalentComponentType(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? "", r.component.type)).map((r) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: r.role, disabled: !!circuit.roles?.[r.role] && circuit.roles[r.role] !== selectedNodes[0], children: r.component.label }, r.role))
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-scroller", children: [
+        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-library-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h3", { children: group.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
             event.dataTransfer.setData("application/x-diantuo-component", definition.type);
             event.dataTransfer.effectAllowed = "copy";
           }, onClick: () => addComponent(definition.type), title: `${definition.description} \u70B9\u51FB\u6216\u62D6\u5165\u753B\u5E03`, "aria-label": `\u6DFB\u52A0${definition.name}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DeviceArtwork, { type: definition.type }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: definition.type }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
           ] }, definition.type)) })
         ] }, group.id)),
-        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
-        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-pending-library", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "PLC" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
+        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
+        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-pending-library", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "PLC" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { className: "sim-library-note", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("p", { className: "sim-library-note", children: [
         "\u70B9\u51FB\u6DFB\u52A0\u6216\u62D6\u5165\u753B\u5E03",
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("br", {}),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("br", {}),
         "\u6559\u5B66\u793A\u610F\u5143\u4EF6 \xB7 \u7AEF\u5B50\u53EF\u91CD\u590D\u63A5\u7EBF"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-workspace", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toolbar", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
-          running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Play, { size: 14, fill: "currentColor" }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-workspace", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-toolbar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
+          running ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Play, { size: 14, fill: "currentColor" }),
           running ? "\u7ED3\u675F\u4EFF\u771F" : "\u5F00\u59CB\u4EFF\u771F"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
           changed({ ...circuit, wires: [] });
           setSelectedWires([]);
         }, children: "\u5220\u9664\u6240\u6709\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-control", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-control", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
             const rect = event.currentTarget.getBoundingClientRect();
             setColorAnchor({ left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6 });
             setColorHost(board.current);
             setColorsOpen(!colorsOpen);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { style: { backgroundColor: color2 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { style: { backgroundColor: color2 } }),
             "\u8BBE\u7F6E\u5BFC\u7EBF\u989C\u8272"
           ] }),
-          colorsOpen && colorHost && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-swatches", children: [
-              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
+          colorsOpen && colorHost && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-swatches", children: [
+              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
                 setWireColor(item);
                 setColorsOpen(false);
               } }, item)),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
               setColorOverride(false);
               setColorsOpen(false);
             }, children: "\u65B0\u5BFC\u7EBF\u8DDF\u968F\u8D77\u70B9\u7AEF\u5B50\u989C\u8272" })
           ] }), colorHost)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-line-select", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
-            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "duct", disabled: !hasDucts, children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-line-select", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
+            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "duct", children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-history", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Undo2, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Redo2, { size: 18 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-history", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Copy, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Undo2, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Redo2, { size: 18 }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-toolbar-spacer" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", disabled: frozen || selectedNodes.length !== 1 || !canRotate(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? ""), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((c) => c.id === selectedNodes[0] ? rotateComponent(c) : c) }), children: "\u65CB\u8F6C90\xB0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-toolbar-spacer" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Download, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FolderOpen, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = frozen ? "none" : "copy";
       }, onDrop: (event) => {
@@ -35855,7 +36138,7 @@ function Workspace(props) {
         const type = event.dataTransfer.getData("application/x-diantuo-component");
         if (CATALOG.some((item) => item.type === type)) addComponent(type, flow.screenToFlowPosition({ x: event.clientX, y: event.clientY }));
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
           index,
           {
             nodes,
@@ -35908,163 +36191,166 @@ function Workspace(props) {
               const wire = circuit.wires.find((item) => item.id === edge.id);
               if (wire && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal")) onWaypoints(wire.id, [...wire.waypoints ?? [], flow.screenToFlowPosition({ x: event.clientX, y: event.clientY })]);
             },
-            onPaneClick: () => {
+            onPaneClick: (event) => {
               board.current?.focus();
               setFocusedDiagnostic(null);
               setColorsOpen(false);
+              if (pendingRole && !frozen) {
+                const entry = requirements.find((item) => item.role === pendingRole);
+                if (entry) addComponent(entry.component.type, flow.screenToFlowPosition({ x: event.clientX, y: event.clientY }), pendingRole);
+              }
             },
             "aria-label": "\u7535\u8DEF\u63A5\u7EBF\u753B\u5E03",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Maximize2, { size: 16 }) }) })
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Maximize2, { size: 16 }) }) })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 22 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas-heading", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: circuit.title }),
-          running && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 22 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-canvas-heading", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: circuit.title }),
+          running && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
         ] }),
-        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("b", { children: [
+        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("b", { children: [
             routingProblems.length,
             " \u6839\u5BFC\u7EBF\u6682\u672A\u5165\u69FD"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
         ] }),
-        noDuctFallback && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: "\u5C1A\u672A\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u65B0\u5BFC\u7EBF\u4F7F\u7528\u81EA\u5B9A\u4E49\u76F4\u89D2\uFF1B\u53EF\u5148\u9884\u5E03\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u5165\u69FD\u3002" }),
-        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
             "\u6559\u5B66\u65F6\u95F4 ",
             ((simulation?.runtime.timeMs ?? 0) / 1e3).toFixed(1),
             " s",
             simulation?.supported === false ? " \xB7 \u5DF2\u6682\u505C" : ""
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-document-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 15 }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-document-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileImage, { size: 15 }),
             "\u4E0A\u4F20\u56FE\u7EB8"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: () => setDrawingPickerOpen(true), selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagram-empty", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 38 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: () => setDrawingPickerOpen(true), selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagram-empty", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileImage, { size: 38 }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
         ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShieldCheck, { size: 19 }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ShieldCheck, { size: 19 }),
           busy === "assess" ? "\u6B63\u5728\u68C0\u67E5\u2026" : "\u68C0\u67E5\u63A5\u7EBF"
         ] }),
-        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-header", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
+        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagnostics-header", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
               "\u5B89\u5168\u8BCA\u65AD",
-              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { children: safetyDiagnostics.length })
+              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { children: safetyDiagnostics.length })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 16 }) })
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 16 }) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-body", children: [
-            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagnostics-body", children: [
+            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
                   component2.label,
                   " \xB7 ",
                   getDefinition(component2.type).name
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
               ] }, component2.id)) }),
-              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
-            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
-            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clear-state", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CheckCheck, { size: 30 }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
+              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
+            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
+            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-clear-state", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CheckCheck, { size: 30 }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
             ] }) }),
-            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? assessment.diagnostics.some((item) => item.code === "LESSON_ROLE_MISSING") ? "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50" : "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
                   assessment.passed,
                   " / ",
                   assessment.total,
                   " \u9879\u52A8\u4F5C\u7B26\u5408\u8981\u6C42"
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
+              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) })
           ] })
         ] }),
-        message && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toast", role: "status", children: [
+        message && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-toast", role: "status", children: [
           message,
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 14 }) })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 14 }) })
         ] }),
-        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
+        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
           setDismissedShort(shortKey);
           setPanelOpen(true);
           setPanelTab("safety");
           focusDiagnostic(shortAlert);
         } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { className: "sim-editor-footer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: running ? "live" : "" }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("footer", { className: "sim-editor-footer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: running ? "live" : "" }),
           running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
           circuit.components.length,
           " \u4E2A\u5143\u4EF6",
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
           circuit.wires.length,
           " \u6839\u5BFC\u7EBF",
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
             setPanelOpen(!panelOpen);
             setPanelTab(running ? "runtime" : "safety");
             if (!panelOpen) setTimeout(frameInitialView, 80);
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(PanelRightClose, { size: 15 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PanelRightClose, { size: 15 }) })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ReferenceDrawingPicker, { open: drawingPickerOpen, selectedId: circuit.referenceDiagramId, disabled: frozen, onClose: () => setDrawingPickerOpen(false), onSelect: (id2) => {
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ReferenceDrawingPicker, { open: drawingPickerOpen, selectedId: circuit.referenceDiagramId, disabled: frozen, onClose: () => setDrawingPickerOpen(false), onSelect: (id2) => {
       if (frozen) return;
       drawingSelectionEpoch.current++;
       setDrawing("");
       setReferenceSelectionRevision((value) => value + 1);
       changed(selectReferenceDrawing(docRef.current, id2));
     } }),
-    transferMode && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Modal, { backdropClass: "sim-transfer-backdrop", className: "sim-transfer-dialog", title: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClose: () => setTransferMode(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 18 }) })
+    transferMode && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Modal, { backdropClass: "sim-transfer-backdrop", className: "sim-transfer-dialog", title: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClose: () => setTransferMode(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 18 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
         setTransferText(event.target.value);
         setTransferNotice("");
       }, placeholder: transferMode === "import" ? "\u5728\u6B64\u7C98\u8D34\u5B8C\u6574\u7535\u8DEF JSON" : void 0 }),
-      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", onClick: async () => {
+      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", onClick: async () => {
           try {
             await navigator.clipboard.writeText(transferText);
             setTransferNotice("\u7535\u8DEF JSON \u5DF2\u590D\u5236\u3002");
@@ -36074,19 +36360,19 @@ function Workspace(props) {
             setTransferNotice("\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u81EA\u52A8\u590D\u5236\u3002\u5DF2\u9009\u4E2D\u5168\u90E8 JSON\uFF0C\u8BF7\u6309 Ctrl+C \u590D\u5236\u3002");
           }
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Copy, { size: 16 }),
           "\u590D\u5236 JSON"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Download, { size: 16 }),
           "\u4E0B\u8F7D JSON \u6587\u4EF6"
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FolderOpen, { size: 16 }),
           "\u9009\u62E9 JSON \u6587\u4EF6"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
           try {
             importDocument(transferText);
           } catch (error) {
@@ -36095,12 +36381,12 @@ function Workspace(props) {
         }, children: "\u5BFC\u5165\u7C98\u8D34\u5185\u5BB9" })
       ] }) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (file) await importFile(file);
     } }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file || frozen) return;
@@ -36130,11 +36416,11 @@ function Workspace(props) {
   ] });
 }
 function SimulatorEditor(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Workspace, { ...props }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Workspace, { ...props }) });
 }
 
 // app/simulator/editor/DocumentPreview.tsx
-var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
 function DocumentPreview({ document: document2, className = "" }) {
   const boxes = document2.components.map((component2) => ({ component: component2, definition: componentSize(component2) }));
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -36153,19 +36439,19 @@ function DocumentPreview({ document: document2, className = "" }) {
   const y = boxes.length ? minY - 28 : 0;
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
-  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: component2.type }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
+  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("g", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, delayMs: component2.settings?.delayMs }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
   ] }, component2.id);
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
-    boxes.filter(({ component: component2 }) => component2.type.startsWith("wire-duct")).map(device),
-    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
-    boxes.filter(({ component: component2 }) => !component2.type.startsWith("wire-duct")).map(device),
-    boxes.filter(({ component: component2 }) => !component2.type.startsWith("wire-duct")).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
+    boxes.filter(({ component: component2 }) => isLayoutObject(component2.type)).map(device),
+    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
+    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(device),
+    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
     ] }, `leads-${component2.id}`)),
-    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
+    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
   ] });
 }
 
@@ -36230,14 +36516,14 @@ var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) 
 var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then((result) => result.assessment);
 
 // app/simulator/TrainingProjects.tsx
-var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
 var LABELS3 = { schematic: "\u539F\u7406\u56FE", layout: "\u5143\u4EF6\u5E03\u7F6E\u56FE" };
 var projectMedia = (project2, kind) => project2.drawings ? project2.drawings[kind] : kind === "schematic" ? project2.media : null;
 function Drawing({ media, title, viewerControls }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
 }
 function TrainingProjects(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
 }
 function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
   const [projects, setProjects] = (0, import_react18.useState)(training_projects_default.map((p) => ({ id: p.id, name: p.name, title: p.name, lessonId: null, drawingStatus: "pending", updatedAt: null, media: null })));
@@ -36311,32 +36597,32 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
       setRefreshing(false);
     }
   }
-  const pending = /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-pending", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 30 }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("p", { children: [
+  const pending = /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-pending", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileUp, { size: 30 }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { children: [
       LABELS3[shownKind],
       "\u5C1A\u672A\u4E0A\u4F20"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "dt-training-projects", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "dt-training-projects", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
       toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8",
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
     ] }),
-    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
+    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
       setEnlarged(false);
       if (project2) setKind(item);
       else if (!readOnly) onSelectCurrentDrawing?.(item);
     }, children: [
       LABELS3[item],
-      project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
+      project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
     ] }, item)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { children: [
         "\u9879\u76EE\u56FE\u7EB8",
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
           setSelected(e.target.value);
           setKind("schematic");
           setEnlarged(false);
@@ -36344,50 +36630,50 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
           setToolsOpen(false);
           viewerControls?.onZoomChange(1);
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
-          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("option", { value: p.id, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
+          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("option", { value: p.id, children: [
             p.name,
             p.drawingStatus === "pending" ? " \xB7 \u5F85\u4E0A\u4F20" : ""
           ] }, p.id))
         ] })
       ] }),
-      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(RefreshCw, { size: 13 }),
+      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(RefreshCw, { size: 13 }),
         refreshing ? "\u6B63\u5728\u5237\u65B0\u2026" : "\u5237\u65B0\u9879\u76EE\u56FE\u7EB8"
       ] }) }),
-      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 15 }),
+      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileUp, { size: 15 }),
           busy ? `\u6B63\u5728\u4E0A\u4F20${LABELS3[kind]}\u2026` : `${media ? "\u66FF\u6362" : "\u4E0A\u4F20"}${LABELS3[kind]}`
         ] })
       ] }),
-      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
+      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { role: "alert", className: "dt-error", children: error }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
-    media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Maximize2, { size: 14 }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { role: "alert", className: "dt-error", children: error }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
+    media && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Maximize2, { size: 14 }),
         "\u653E\u5927\u67E5\u770B"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(ExternalLink, { size: 14 }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ExternalLink, { size: 14 }),
         "\u67E5\u770B\u539F\u56FE"
       ] }),
-      project2 && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
+      project2 && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
         if (!readOnly) {
           onUseDrawing(media.id, { ...project2, media }, kind);
           setSelected("");
         }
       }, children: "\u7528\u4E8E\u5F53\u524D\u7EC3\u4E60" })
     ] }),
-    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: title }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 20 }) })
+    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("strong", { children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
     ] })
   ] });
 }
@@ -36397,7 +36683,7 @@ var import_react20 = __toESM(require_react(), 1);
 
 // app/simulator/CourseLibrary.tsx
 var import_react19 = __toESM(require_react(), 1);
-var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
 function CourseLibrary({ onPractice }) {
   const [projects, setProjects] = (0, import_react19.useState)([]), [error, setError] = (0, import_react19.useState)(""), [loading, setLoading] = (0, import_react19.useState)(true);
   const [query, setQuery] = (0, import_react19.useState)(""), [level, setLevel] = (0, import_react19.useState)("all"), [preview, setPreview] = (0, import_react19.useState)(null), [kind, setKind] = (0, import_react19.useState)("schematic");
@@ -36418,53 +36704,53 @@ function CourseLibrary({ onPractice }) {
   const found = projects.filter((project2) => (level === "all" || difficulty(project2.id) === level) && project2.name.includes(query));
   const media = preview?.drawings?.[kind] ?? (kind === "schematic" ? preview?.media : null);
   const lesson = preview?.lessonId ? getLesson(preview.lessonId) : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-reference-filter", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-reference-filter", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
         label,
         "(",
         projects.filter((project2) => id2 === "all" || difficulty(project2.id) === id2).length,
         ")"
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "dt-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { className: "dt-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
       ] })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-error", role: "alert", children: error }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+    error && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-error", role: "alert", children: error }),
+    loading && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { className: "dt-reference-card", onClick: () => {
       setPreview(project2);
       setKind("schematic");
     }, children: [
-      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: project2.name })
+      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { children: project2.name })
     ] }, project2.id)) }),
-    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { children: preview.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
+    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
+    preview && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: preview.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
-      media ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: lesson?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
+      media ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: lesson?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => {
           onPractice(preview, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", onClick: () => {
           onPractice(preview, false);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
     ] })
   ] });
 }
 
 // app/simulator/ReferenceDrawings.tsx
-var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
 var courses = { 13: "motor-jog", 14: "motor-self-hold", 12: "lighting-two-way", 11: "lighting-single" };
 var drawings = REFERENCE_DRAWINGS.map((drawing) => ({ ...drawing, lesson: courses[drawing.id], src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/") }));
 function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice }) {
@@ -36477,8 +36763,8 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
   const inCategory = drawings.filter((d) => d.category === category);
   const found = inCategory.filter((d) => (level === "all" || d.level === level) && d.title.includes(query));
   const pages = Math.max(1, Math.ceil(found.length / 8));
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("main", { className: "dt-reference-library", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-reference-category", role: "tablist", "aria-label": "\u56FE\u7EB8\u5206\u7C7B", children: [...!STATIC_DEMO ? [["courses", "\u8BFE\u7A0B\u56FE\u7EB8", 10]] : [], ["industrial", "\u5DE5\u4E1A\u7535\u8DEF\u56FE\u7EB8", 16], ["lighting", "\u5BB6\u5EAD\u7535\u8DEF\u56FE\u7EB8", 2]].map(([id2, label, count]) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { role: "tab", "aria-selected": category === id2, className: category === id2 ? "active" : "", onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("main", { className: "dt-reference-library", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-reference-category", role: "tablist", "aria-label": "\u56FE\u7EB8\u5206\u7C7B", children: [...!STATIC_DEMO ? [["courses", "\u8BFE\u7A0B\u56FE\u7EB8", 10]] : [], ["industrial", "\u5DE5\u4E1A\u7535\u8DEF\u56FE\u7EB8", 16], ["lighting", "\u5BB6\u5EAD\u7535\u8DEF\u56FE\u7EB8", 2]].map(([id2, label, count]) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { role: "tab", "aria-selected": category === id2, className: category === id2 ? "active" : "", onClick: () => {
       setCategory(String(id2));
       setPage(1);
       setLevel("all");
@@ -36488,9 +36774,9 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
       count,
       ")"
     ] }, id2)) }),
-    category === "courses" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CourseLibrary, { onPractice: onProjectPractice }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-reference-filter", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { role: "tablist", "aria-label": "\u56FE\u7EB8\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u521D\u7EA7\u56FE\u7EB8"], ["intermediate", "\u4E2D\u7EA7\u56FE\u7EB8"], ["advanced", "\u9AD8\u7EA7\u56FE\u7EB8"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => {
+    category === "courses" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(CourseLibrary, { onPractice: onProjectPractice }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-reference-filter", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { role: "tablist", "aria-label": "\u56FE\u7EB8\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u521D\u7EA7\u56FE\u7EB8"], ["intermediate", "\u4E2D\u7EA7\u56FE\u7EB8"], ["advanced", "\u9AD8\u7EA7\u56FE\u7EB8"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => {
           setLevel(id2);
           setPage(1);
         }, children: [
@@ -36499,53 +36785,53 @@ function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice 
           inCategory.filter((d) => id2 === "all" || d.level === id2).length,
           ")"
         ] }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Search, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Search, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, onChange: (e) => {
             setQuery(e.target.value);
             setPage(1);
           } })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-reference-grid", children: found.slice((page - 1) * 8, page * 8).map((d) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-reference-grid", children: found.slice((page - 1) * 8, page * 8).map((d) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { className: "dt-reference-card", onClick: () => {
         setPreviewTab("schematic");
         setPreview(d);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("img", { src: d.src, alt: d.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { children: d.title })
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("img", { src: d.src, alt: d.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: d.title })
       ] }, d.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("nav", { className: "dt-pagination", "aria-label": "\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { disabled: page === 1, onClick: () => setPage((p) => p - 1), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ChevronLeft, { size: 14 }),
+      !found.length && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("nav", { className: "dt-pagination", "aria-label": "\u56FE\u7EB8\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { disabled: page === 1, onClick: () => setPage((p) => p - 1), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronLeft, { size: 14 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        Array.from({ length: pages }, (_, i) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: page === i + 1 ? "active" : "", onClick: () => setPage(i + 1), children: i + 1 }, i)),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { disabled: page === pages, onClick: () => setPage((p) => p + 1), children: [
+        Array.from({ length: pages }, (_, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: page === i + 1 ? "active" : "", onClick: () => setPage(i + 1), children: i + 1 }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { disabled: page === pages, onClick: () => setPage((p) => p + 1), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ChevronRight, { size: 14 })
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronRight, { size: 14 })
         ] })
       ] })
     ] }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.title, onClose: () => setPreview(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: preview.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(X, { size: 20 }) })
+    preview && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.title, onClose: () => setPreview(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { children: preview.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-reference-preview-tabs", role: "tablist", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5185\u5BB9", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { role: "tab", "aria-selected": previewTab === "schematic", className: previewTab === "schematic" ? "active" : "", onClick: () => setPreviewTab("schematic"), children: "\u63A5\u7EBF\u56FE" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { role: "tab", "aria-selected": previewTab === "video", className: previewTab === "video" ? "active" : "", onClick: () => setPreviewTab("video"), children: "\u6559\u5B66\u89C6\u9891" })
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-reference-preview-tabs", role: "tablist", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5185\u5BB9", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { role: "tab", "aria-selected": previewTab === "schematic", className: previewTab === "schematic" ? "active" : "", onClick: () => setPreviewTab("schematic"), children: "\u63A5\u7EBF\u56FE" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { role: "tab", "aria-selected": previewTab === "video", className: previewTab === "video" ? "active" : "", onClick: () => setPreviewTab("video"), children: "\u6559\u5B66\u89C6\u9891" })
       ] }),
-      previewTab === "schematic" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DrawingViewer, { src: preview.src, title: preview.title }, preview.id) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ReferenceVideoPlayer, { video: referenceVideoForDiagram(preview.id) }),
-      preview.id === 11 && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u539F\u56FE\u5305\u542B\u7535\u5EA6\u8868\u548C\u591A\u4E2A\u8D1F\u8F7D\u3002\u4E0B\u65B9\u793A\u8303\u53EA\u8986\u76D6\u5355\u63A7\u7167\u660E\u3002" }),
-      preview.id === 13 && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u6309\u539F\u7AD9\u56FE\u7406\u89E3\u70B9\u52A8\u903B\u8F91\uFF1B\u70B9\u52A8\u793A\u8303\u53E6\u68C0\u67E5\u4FDD\u62A4\u63A5\u5730\u4E0E\u8FC7\u8F7D\u4FDD\u62A4\u3002" }),
-      !preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u53EF\u6309\u6B64\u53C2\u8003\u56FE\u63A5\u7EBF\uFF1B\u6B64\u56FE\u5C1A\u672A\u7ED1\u5B9A\u8BFE\u7A0B\u5224\u5B9A\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-modal-actions", children: [
-        preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => {
+      previewTab === "schematic" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DrawingViewer, { src: preview.src, title: preview.title }, preview.id) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ReferenceVideoPlayer, { video: referenceVideoForDiagram(preview.id) }),
+      preview.id === 11 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u539F\u56FE\u5305\u542B\u7535\u5EA6\u8868\u548C\u591A\u4E2A\u8D1F\u8F7D\u3002\u4E0B\u65B9\u793A\u8303\u53EA\u8986\u76D6\u5355\u63A7\u7167\u660E\u3002" }),
+      preview.id === 13 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u6309\u539F\u7AD9\u56FE\u7406\u89E3\u70B9\u52A8\u903B\u8F91\uFF1B\u70B9\u52A8\u793A\u8303\u53E6\u68C0\u67E5\u4FDD\u62A4\u63A5\u5730\u4E0E\u8FC7\u8F7D\u4FDD\u62A4\u3002" }),
+      !preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u53EF\u6309\u6B64\u53C2\u8003\u56FE\u63A5\u7EBF\uFF1B\u6B64\u56FE\u5C1A\u672A\u7ED1\u5B9A\u8BFE\u7A0B\u5224\u5B9A\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-modal-actions", children: [
+        preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { onClick: () => {
           onPractice(preview.lesson, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-primary", onClick: () => {
           onReferencePractice(preview.id);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
@@ -36583,7 +36869,7 @@ function passwordChangeError(error) {
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
 function ChangePassword({ request, onChanged }) {
   const [open, setOpen] = (0, import_react21.useState)(false);
   const [fields, setFields] = (0, import_react21.useState)(emptyPasswordFields);
@@ -36645,43 +36931,43 @@ function ChangePassword({ request, onChanged }) {
       if (mounted.current) setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
       setFields(emptyPasswordFields());
       setError("");
       setRevokeOtherSessions(true);
       setOpen(true);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(KeyRound, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(KeyRound, { size: 16 }),
       "\u4FEE\u6539\u5BC6\u7801"
     ] }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
+    open && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-current`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-current`, children: [
           "\u5F53\u524D\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-new`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-new`, children: [
           "\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
           "\u786E\u8BA4\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "dt-password-revoke", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-password-revoke", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
           "\u540C\u65F6\u9000\u51FA\u5176\u4ED6\u8BBE\u5907\u4E0A\u7684\u767B\u5F55"
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-modal-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
         ] })
       ] })
     ] })
@@ -36724,12 +37010,12 @@ var ProfileListRequests = class {
 };
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
 var LOCAL_KEY = "diantuo:simulator:demo:v1";
 var date = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 var blankPage = (pageSize) => ({ items: [], page: 1, pageSize, total: 0, totalPages: 1 });
 function ProfileLibrary(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
 }
 function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }) {
   const [query, setQuery] = (0, import_react22.useState)("");
@@ -36812,100 +37098,100 @@ function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDra
     setResult(blankPage(pageSize));
     setRetry((value) => value + 1);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
         result.total,
         " \u4EFD\u79C1\u6709\u8349\u7A3F"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
         "\u5171 ",
         result.total,
         " \u4E2A"
       ] })
     ] }) }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-error", role: "alert", children: [
+    error && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-error", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => {
         requests.current.invalidate();
         setRetry((value) => value + 1);
       }, children: "\u91CD\u8BD5" })
     ] }),
-    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6807\u9898" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u64CD\u4F5C" })
+    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u6807\u9898" }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u64CD\u4F5C" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: item.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: date(item.updatedAt) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("td", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("td", { children: item.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("td", { children: date(item.updatedAt) }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
           ] })
         ] }, item.id)) })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { children: [
           "\u6BCF\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
             requests.current.invalidate();
             setPageSize(Number(event.target.value));
             setPage(1);
-          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: size, children: size }, size)) }),
+          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("option", { value: size, children: size }, size)) }),
           "\u6761"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
           "\u7B2C ",
           result.page,
           " / ",
           result.totalPages,
           " \u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronLeft, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronRight, { size: 16 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ChevronLeft, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ChevronRight, { size: 16 }) })
       ] })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("article", { className: "dt-profile-publication", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: item.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-publication-info", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: item.author.name || item.author.username }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("small", { children: date(item.createdAt) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Heart, { size: 15 }),
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "dt-profile-publication", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: item.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-publication-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: item.author.name || item.author.username }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("small", { children: date(item.createdAt) }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Heart, { size: 15 }),
             item.likes
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Star, { size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Star, { size: 15 }),
             item.favorites
           ] })
         ] })
       ] })
     ] }, item.id)) }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
+    loading && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
       "\u6B63\u5728\u8BFB\u53D6",
       tab === "drafts" ? "\u8349\u7A3F" : tab === "favorites" ? "\u6536\u85CF" : "\u7535\u8DEF",
       "\u2026"
     ] }),
-    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", children: [
-      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CircuitBoard, { size: 38 }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
-      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
-      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
+    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
+      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CircuitBoard, { size: 38 }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
+      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
+      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
     ] }),
-    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
-      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
-      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
+    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
+      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
+      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
     ] })
   ] });
 }
@@ -36997,7 +37283,7 @@ var GalleryRequestState = class {
 };
 
 // app/simulator/gallery/Gallery.tsx
-var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
 var date2 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function subscribeLocation(changed) {
   addEventListener("popstate", changed);
@@ -37139,13 +37425,13 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   }
   function reactions2(item) {
     const waiting = pending.some((value) => value.startsWith(`${item.id}:`));
-    return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Heart, { size: 16 }),
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Heart, { size: 16 }),
         item.likes
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Star, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Star, { size: 16 }),
         item.favorites
       ] })
     ] });
@@ -37158,75 +37444,75 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       if (mounted.current) setFeedback("\u590D\u5236\u5931\u8D25\uFF0C\u53EF\u76F4\u63A5\u590D\u5236\u6D4F\u89C8\u5668\u5730\u5740\u680F\u4E2D\u7684\u4F5C\u54C1\u94FE\u63A5");
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("main", { className: "dt-page dt-gallery", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-page-heading", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("main", { className: "dt-page dt-gallery", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-page-heading", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
         event.preventDefault();
         go({ query: search.trim(), page: 1 });
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-tabs", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-tabs", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("span", { children: [
         "\u6700\u65B0\u53D1\u5E03",
         shownPage ? ` \xB7 \u5171 ${shownPage.total} \u4E2A\u4F5C\u54C1` : ""
       ] })
     ] }),
-    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ShieldCheck, { size: 44 }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-gallery-query", children: [
+    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ShieldCheck, { size: 44 }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+      route.query && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-gallery-query", children: [
         "\u641C\u7D22\u201C",
         route.query,
         "\u201D",
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
       ] }),
-      error ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
+      error ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
         const next = { ...route, publicationId: item.id };
-        return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "dt-circuit-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: item.document }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("article", { className: "dt-circuit-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DocumentPreview, { document: item.document }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-card-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
               item.author?.name || item.author?.username,
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: date2(item.createdAt) })
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: date2(item.createdAt) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-card-actions", children: [
               reactions2(item),
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Copy, { size: 16 }),
                 "\u590D\u5236\u7EC3\u4E60"
               ] })
             ] })
           ] })
         ] }, item.id);
-      }) }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CircuitBoard, { size: 45 }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
-        !route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
+      }) }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(CircuitBoard, { size: 45 }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
+        !route.query && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
       ] }),
-      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowLeft, { size: 16 }),
+      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ArrowLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("span", { children: [
           "\u7B2C ",
           shownPage.page,
           " / ",
@@ -37235,50 +37521,50 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
           shownPage.pageSize,
           " \u4E2A"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ArrowRight, { size: 16 })
         ] })
       ] })
     ] }),
-    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
-    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(X, { size: 20 }) })
+    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
+    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(X, { size: 20 }) })
       ] }),
-      detailError ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: detailError }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
+      detailError ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: detailError }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
           "\u4F5C\u8005\uFF1A",
           shownDetail.author.name,
           " \xB7 ",
           date2(shownDetail.createdAt)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: shownDetail.document }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DocumentPreview, { document: shownDetail.document }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
           reactions2(shownDetail),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { onClick: () => void copyLink(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Link, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { onClick: () => void copyLink(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Link, { size: 16 }),
             "\u590D\u5236\u94FE\u63A5"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
       ] }),
-      feedback && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
+      feedback && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
     ] })
   ] });
 }
 
 // app/simulator/LessonSchematic.tsx
-var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 function LessonSchematic({ lessonId = "motor-jog", compact: compact2 = false }) {
   const base = "/diantuo-zhixun/";
   const supported = ["motor-jog", "motor-self-hold", "lighting-single", "lighting-two-way"].includes(lessonId);
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
 }
 
 // app/simulator/core/reference-entry.ts
@@ -37367,7 +37653,7 @@ function listParkedRecovery(storage, ownerKey) {
 }
 
 // app/simulator/SimulatorApp.tsx
-var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
 var NAV = [{ id: "simulator", label: "\u6A21\u62DF\u7535\u8DEF", icon: House }, { id: "drawings", label: "\u56FE\u7EB8\u96C6", icon: BookOpen }, { id: "gallery", label: "\u4EFF\u771F\u5E7F\u573A", icon: Globe }, { id: "components", label: "\u5143\u5668\u4EF6\u767E\u79D1", icon: Boxes }, { id: "profile", label: "\u4E2A\u4EBA\u4E2D\u5FC3", icon: UserRound }];
 var date3 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function InviteStatus({ expiresAt, consumedBy }) {
@@ -37377,25 +37663,25 @@ function InviteStatus({ expiresAt, consumedBy }) {
     const timer2 = setTimeout(() => setNow(Date.now()), Math.max(1, Math.min(expiresAt - Date.now() + 1, 2147483647)));
     return () => clearTimeout(timer2);
   }, [expiresAt, consumedBy, now2]);
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(import_jsx_runtime25.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(import_jsx_runtime26.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
 }
 var LOCAL_KEY2 = "diantuo:simulator:demo:v1";
 var draftKey = (id2) => `diantuo:simulator:recovery:v1:${id2}`;
 function Modal2({ title, children: children2, close }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal, { title, onClose: close, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: title }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 20 }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal, { title, onClose: close, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(X, { size: 20 }) })
     ] }),
     children2
   ] });
 }
 function Brand() {
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-brand", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: "\u7535\u62D3\u667A\u8BAD" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u7535\u6C14\u6570\u5B57\u4EFF\u771F\u5B9E\u8BAD\u7CFB\u7EDF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-brand", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("strong", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: "\u7535\u6C14\u6559\u5B66 \xB7 \u4E8C\u7EF4\u63A5\u7EBF\u4E0E\u4EFF\u771F" })
     ] })
   ] });
 }
@@ -37430,48 +37716,48 @@ function Login({ ready }) {
       setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-login", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login-body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-login-intro", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("h1", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-login-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("section", { className: "dt-login-intro", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("h1", { children: [
           "\u628A\u7535\u8DEF\u539F\u7406\uFF0C",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("br", {}),
           "\u63A5\u6210\u770B\u5F97\u89C1\u7684\u8FD0\u884C\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
           "\u9009\u62E9\u5668\u4EF6\u3001\u5B8C\u6210\u63A5\u7EBF\u3001\u64CD\u4F5C\u4EFF\u771F\u3002",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("br", {}),
           "\u5728\u6BCF\u4E00\u6B21\u542F\u52A8\u4E0E\u505C\u6B62\u4E2D\uFF0C\u7406\u89E3\u7535\u8DEF\u7684\u5DE5\u4F5C\u8FC7\u7A0B\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: "motor-self-hold" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u70B9\u52A8\u63A7\u5236 \xB7 \u81EA\u9501\u542F\u505C \xB7 \u5355\u63A7\u7167\u660E \xB7 \u53CC\u63A7\u7167\u660E" })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: "motor-self-hold" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u70B9\u52A8\u63A7\u5236 \xB7 \u81EA\u9501\u542F\u505C \xB7 \u5355\u63A7\u7167\u660E \xB7 \u53CC\u63A7\u7167\u660E" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
-        token && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
+        token && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
           "\u6635\u79F0",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
           "\u8D26\u53F7",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
           "\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("footer", { children: "\u7535\u62D3\u667A\u8BAD \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("footer", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
   ] });
 }
 var demoMember = { id: "demo", name: "\u9759\u6001\u6F14\u793A", username: "demo", role: "demo" };
@@ -37523,6 +37809,9 @@ function SimulatorApp({ initialSection = "simulator" }) {
     if (STATIC_DEMO) next.enter("demo");
     return next;
   });
+  const [placement, setPlacement] = (0, import_react24.useState)("automatic");
+  const [practiceRequest, setPracticeRequest] = (0, import_react24.useState)(null);
+  const [upgradeRequest, setUpgradeRequest] = (0, import_react24.useState)(null);
   const recoveredWorkspace = (0, import_react24.useRef)(startup.recovered);
   const publicationRequest = (0, import_react24.useRef)(0);
   const working = (0, import_react24.useRef)({ document: document2, saved, dirty });
@@ -37540,6 +37829,8 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }
   }
   function switchAccount(next) {
+    setPracticeRequest(null);
+    setUpgradeRequest(null);
     setEditorRunning(false);
     const previous = boundary.capture();
     if (previous.ownerId === (next?.id ?? null)) {
@@ -37643,31 +37934,66 @@ function SimulatorApp({ initialSection = "simulator" }) {
     });
     setDocumentKey(crypto.randomUUID());
   }
-  function practiceLesson(id2, wired = false) {
+  function practiceLesson(id2, wired = false, placement2 = "automatic") {
     const current = working.current.document;
     if (current.lessonId === id2 && current.projectDrawings) {
-      adopt({ ...createLessonDocument(id2, { wired }), projectDrawings: current.projectDrawings, drawingKind: current.drawingKind, drawingMediaId: current.drawingMediaId, drawingMediaType: current.drawingMediaType });
+      adopt({ ...createLessonDocument(id2, { wired, placement: placement2 }), projectDrawings: current.projectDrawings, drawingKind: current.drawingKind, drawingMediaId: current.drawingMediaId, drawingMediaType: current.drawingMediaType, trainingProjectId: current.trainingProjectId });
     } else if (id2.startsWith("motor-course-") && !STATIC_DEMO) {
       const token = boundary.capture(), snapshot = JSON.stringify(current);
       void run(async () => {
         const result = await accountApi("/training-projects");
         if (!boundary.acceptsWorkspace(token) || JSON.stringify(working.current.document) !== snapshot) return;
         const project2 = result.items.find((item) => item.lessonId === id2);
-        if (project2) openProjectCourse(project2, wired);
-        else adopt(createLessonDocument(id2, { wired }));
+        if (project2) openProjectCourse(project2, wired, placement2);
+        else adopt(createLessonDocument(id2, { wired, placement: placement2 }));
       });
-    } else adopt(createLessonDocument(id2, { wired }));
+    } else adopt(createLessonDocument(id2, { wired, placement: placement2 }));
   }
-  function openProjectCourse(project2, wired) {
+  function openProjectCourse(project2, wired, placement2 = "automatic") {
     if (!project2.lessonId || !getLesson(project2.lessonId)) {
       setError("\u6B64\u9879\u76EE\u7684\u4EFF\u771F\u5C1A\u672A\u5F00\u653E");
       return;
     }
-    const next = createLessonDocument(project2.lessonId, { wired });
+    const next = createLessonDocument(project2.lessonId, { wired, placement: placement2 });
     const slots = project2.drawings ?? { schematic: project2.media, layout: null };
     const attachments = {};
     for (const kind of ["schematic", "layout"]) if (slots[kind]) attachments[kind] = { mediaId: slots[kind].id, type: slots[kind].type };
     adopt({ ...next, trainingProjectId: project2.id, projectDrawings: attachments, drawingKind: "schematic", drawingMediaId: attachments.schematic?.mediaId, drawingMediaType: attachments.schematic?.type });
+  }
+  function requestPractice(id2, project2, referenceId) {
+    if (editorRunning || busy) return;
+    setPlacement("automatic");
+    setPracticeRequest({ id: id2, project: project2, referenceId, token: boundary.capture(), snapshot: JSON.stringify(working.current.document) });
+  }
+  function confirmPractice() {
+    const request = practiceRequest;
+    setPracticeRequest(null);
+    if (!request) return;
+    if (!boundary.acceptsWorkspace(request.token) || JSON.stringify(working.current.document) !== request.snapshot) {
+      setError("\u5DE5\u4F5C\u533A\u5DF2\u53D8\u5316\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9\u52A0\u8F7D\u65B9\u5F0F");
+      return;
+    }
+    replace(() => request.referenceId !== void 0 ? adopt(createReferencePractice(request.referenceId, placement)) : request.project ? openProjectCourse(request.project, false, placement) : practiceLesson(request.id, false, placement));
+  }
+  async function confirmUpgrade() {
+    const request = upgradeRequest;
+    if (!request || !user || editorRunning) return;
+    if (!boundary.acceptsWorkspace(request.token) || JSON.stringify(working.current.document) !== request.snapshot) {
+      setUpgradeRequest(null);
+      setError("\u5DE5\u4F5C\u533A\u5DF2\u53D8\u5316\uFF0C\u8BF7\u91CD\u65B0\u5347\u7EA7");
+      return;
+    }
+    const next = { ...upgradeRelays(request.document), title: `${request.document.title.slice(0, 85)} \xB7 \u5347\u7EA7\u526F\u672C` };
+    if (!parkCurrent(user.id)) return;
+    let item;
+    if (STATIC_DEMO) {
+      item = { id: crypto.randomUUID(), title: next.title, document: next, revision: 1, createdAt: (/* @__PURE__ */ new Date()).toISOString(), updatedAt: (/* @__PURE__ */ new Date()).toISOString() };
+      const items = JSON.parse(localStorage.getItem(LOCAL_KEY2) || "[]");
+      localStorage.setItem(LOCAL_KEY2, JSON.stringify([item, ...items]));
+    } else item = (await accountApi("/circuits", jsonBody({ title: next.title, document: next, mediaIds: documentMediaIds(next) }))).circuit;
+    setUpgradeRequest(null);
+    if (boundary.acceptsWorkspace(request.token) && JSON.stringify(working.current.document) === request.snapshot) adopt(item.document, item);
+    setNotice("\u5347\u7EA7\u526F\u672C\u5DF2\u4FDD\u5B58\u5230\u8349\u7A3F\u7BB1\uFF0C\u539F\u8349\u7A3F\u4E0E\u4F5C\u54C1\u4FDD\u7559\u3002");
   }
   function selectCurrentDrawing(kind) {
     if (editorRunning) return;
@@ -37889,62 +38215,64 @@ function SimulatorApp({ initialSection = "simulator" }) {
     referenceEntry.current = enterReference;
   });
   const filteredComponents = CATALOG.filter((c) => (category === "all" || c.category === category) && (c.name + c.description).includes(query));
-  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
+  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
   ] });
-  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Login, { ready: (member) => {
+  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Login, { ready: (member) => {
       switchAccount(member);
       setSection(location.pathname === "/gallery" ? "gallery" : "simulator");
     } }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
+    error && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
   ] });
-  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
+  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-site", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { className: "dt-header", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-site", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { className: "dt-header", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
         e.preventDefault();
         navigate(id2);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Icon2, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Icon2, { size: 18 }),
         label
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: user.name })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: user.name })
       ] })
     ] }),
-    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-banner", role: "alert", children: [
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-banner", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 16 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(X, { size: 16 }) })
     ] }),
-    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("summary", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(FilePlusCorner, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: document2.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
+    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("summary", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(FilePlusCorner, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("strong", { children: document2.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
             const value = e.target.value;
-            replace(() => value ? practiceLesson(value) : adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] }));
+            if (value) requestPractice(value);
+            else replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] }));
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
-            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: l.id, children: l.title }, l.id))
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
+            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: l.id, children: l.title }, l.id))
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => replace(() => document2.referenceDiagramId && !document2.lessonId ? adopt(createReferenceDocument(document2.referenceDiagramId)) : practiceLesson(document2.lessonId || "motor-jog")), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: !document2.lessonId, onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => document2.referenceDiagramId && !document2.lessonId ? requestPractice("", void 0, document2.referenceDiagramId) : requestPractice(document2.lessonId || "motor-jog"), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: !document2.lessonId, onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
+          document2.components.some((c) => c.type === "relay380" || c.type === "timer380") && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest({ document: structuredClone(working.current.document), token: boundary.capture(), snapshot: JSON.stringify(working.current.document) }), children: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
             try {
               setParked(listParkedRecovery(localStorage, draftKey(user.id)));
             } catch {
@@ -37953,7 +38281,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
           }, children: "\u672C\u673A\u6682\u5B58" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(SimulatorEditor, { clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorEditor, { clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
       }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => assessLesson(doc, doc.lessonId) : assessOnServer, onImportDrawing: async (file) => {
         if (STATIC_DEMO) throw new Error("\u9759\u6001\u6F14\u793A\u8BF7\u4F7F\u7528\u7535\u8DEF JSON \u5BFC\u5165\uFF1B\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
         const token = boundary.capture();
@@ -37962,31 +38290,31 @@ function SimulatorApp({ initialSection = "simulator" }) {
         const r = await accountApi("/media", { method: "POST", body: form });
         if (!boundary.acceptsWorkspace(token)) throw new Error("\u5DE5\u4F5C\u533A\u5DF2\u5207\u6362\uFF0C\u56FE\u7EB8\u672A\u5E94\u7528\u5230\u5F53\u524D\u7535\u8DEF");
         return r.media;
-      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
+      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
     ] }),
-    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ReferenceDrawings, { onReferencePractice: (id2) => replace(() => adopt(createReferenceDocument(id2))), onPractice: (id2, wired) => replace(() => adopt(createLessonDocument(id2, { wired }))), onProjectPractice: (project2, wired) => replace(() => openProjectCourse(project2, wired)) }),
-    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
+    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ReferenceDrawings, { onReferencePractice: (id2) => requestPractice("", void 0, id2), onPractice: (id2, wired) => wired ? replace(() => practiceLesson(id2, true)) : requestPractice(id2), onProjectPractice: (project2, wired) => wired ? replace(() => openProjectCourse(project2, true)) : requestPractice(project2.lessonId ?? "", project2) }),
+    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
       void run(() => forkPublication(id2));
     }) }, user.id),
-    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-page", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-page-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
+    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("main", { className: "dt-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-page-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-encyclopedia", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: c.type }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h3", { children: c.name }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: c.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("small", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-encyclopedia", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DeviceArtwork, { type: c.type }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h3", { children: c.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: c.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("small", { children: [
               c.terminals.length,
               " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50",
               "\u3000",
@@ -37996,91 +38324,91 @@ function SimulatorApp({ initialSection = "simulator" }) {
         ] }, c.type)) })
       ] })
     ] }),
-    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-profile", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("aside", { className: "dt-profile-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(UserRound, { size: 58 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: user.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("main", { className: "dt-profile", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("aside", { className: "dt-profile-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(UserRound, { size: 58 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: user.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
           "@",
           user.username
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("dl", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("dl", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
           setName(user.name);
           setBio(user.bio || "");
           setProfileEdit(true);
         }, children: "\u7F16\u8F91\u8D44\u6599" }),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { onClick: () => run(async () => {
           await accountApi("/auth/sign-out", jsonBody({}));
           switchAccount(null);
         }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LogOut, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LogOut, { size: 16 }),
           "\u9000\u51FA\u767B\u5F55"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-profile-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
-        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-admin", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("section", { className: "dt-profile-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
+        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-admin", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
             const r = await accountApi("/invites", jsonBody({ expiresInHours: 168 }));
             setInviteUrl(r.invite.url);
             setRefresh((x) => x + 1);
           }), children: "\u521B\u5EFA\u9080\u8BF7" }),
-          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-invite-link", children: [
+          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-invite-link", children: [
             "\u590D\u5236\u9080\u8BF7\u94FE\u63A5",
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { onClick: () => run(async () => {
               await navigator.clipboard.writeText(inviteUrl);
               setNotice("\u9080\u8BF7\u94FE\u63A5\u5DF2\u590D\u5236");
             }), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Copy, { size: 16 }),
               "\u590D\u5236"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u9080\u8BF7" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6709\u6548\u671F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u9080\u8BF7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6709\u6548\u671F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u72B6\u6001" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: i.id.slice(0, 8) }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: date3(i.expiresAt) }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: i.id.slice(0, 8) }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: date3(i.expiresAt) }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
             ] }, i.id)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u89D2\u8272" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u64CD\u4F5C" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u89D2\u8272" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u72B6\u6001" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u64CD\u4F5C" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("td", { children: [
                 m.name,
                 "\uFF08",
                 m.username,
                 "\uFF09"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => run(async () => {
                 await accountApi(`/members/${m.id}`, jsonBody({ disabled: !m.disabled }, "PATCH"));
                 setRefresh((x) => x + 1);
               }), children: m.disabled ? "\u6062\u590D" : "\u505C\u7528" }) })
             ] }, m.id)) })
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
           void run(() => openDraft(item));
         }), onOpenPublication: (id2) => {
           void run(() => viewPublication(id2));
@@ -38103,85 +38431,110 @@ function SimulatorApp({ initialSection = "simulator" }) {
         } }) }, `${user.id}:${profileTab}`)
       ] })
     ] }),
-    parked && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
-      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("b", { children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: date3(item.savedAt) }),
-        item.error ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+    parked && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
+      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("b", { children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: date3(item.savedAt) }),
+        item.error ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
           if (item.state) replace(() => {
             adopt(item.state.document, item.state.saved, item.state.dirty);
             setParked(null);
           });
         }, children: "\u6062\u590D\u63A5\u7EBF" })
-      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
+      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
     ] }),
-    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: getLesson(previewLesson)?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+    practiceRequest && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u9009\u62E9\u7EC3\u4E60\u52A0\u8F7D\u65B9\u5F0F", close: () => setPracticeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: practiceRequest.referenceId !== void 0 ? getReferenceDrawing(practiceRequest.referenceId)?.title : getLesson(practiceRequest.id)?.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { type: "radio", name: "placement", checked: placement === "automatic", onChange: () => setPlacement("automatic") }),
+        "\u81EA\u52A8\u52A0\u8F7D\u5143\u4EF6",
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u9884\u6392\u8BFE\u7A0B\u5143\u4EF6\u3001\u5BFC\u8F68\u548C\u7EBF\u69FD\uFF0C\u521D\u59CB\u6CA1\u6709\u5BFC\u7EBF\u3002" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { type: "radio", name: "placement", checked: placement === "manual", onChange: () => setPlacement("manual") }),
+        "\u624B\u52A8\u653E\u7F6E\u5143\u4EF6",
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u53EA\u9884\u5E03\u5BFC\u8F68\u3001\u7EBF\u69FD\uFF1B\u4ECE\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355\u6DFB\u52A0\u5E76\u7ED1\u5B9A\u4F4D\u53F7\uFF0C\u81EA\u884C\u6446\u653E\u63A5\u7EBF\u3002" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setPracticeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: confirmPractice, children: "\u521B\u5EFA\u7EC3\u4E60" })
+      ] })
+    ] }),
+    upgradeRequest && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C", close: () => setUpgradeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "KA \u5347\u7EA7\u4E3A\u4E24\u5E38\u5F00\u3001\u4E24\u5E38\u95ED\u6559\u5B66\u7248\u672C\uFF1BKT \u5347\u7EA7\u4E3A\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u7248\u672C\u3002\u7AEF\u5B50\u6309\u529F\u80FD\u6620\u5C04\uFF0C\u4FDD\u7559\u5668\u4EF6\u3001\u5BFC\u7EBF ID\u3001\u4F4D\u53F7\u53CA\u56FE\u7EB8\u5173\u8054\u3002\u539F\u8349\u7A3F\u548C\u4F5C\u54C1\u4E0D\u4F1A\u8986\u76D6\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u65E7 KT \u4E24\u7EC4\u89E6\u70B9\u5728\u5347\u7EA7\u540E\u5747\u5EF6\u65F6\uFF1B\u8D85\u8FC7\u4E94\u5206\u949F\u7684\u65E7\u8BBE\u7F6E\u987B\u5148\u660E\u786E\u8C03\u6574\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: () => void run(confirmUpgrade), children: "\u5347\u7EA7\u5E76\u4FDD\u5B58\u526F\u672C" })
+      ] })
+    ] }),
+    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: getLesson(previewLesson)?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           replace(() => adopt(createLessonDocument(id2, { wired: true })));
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
-          replace(() => adopt(createLessonDocument(id2)));
+          requestPractice(id2);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
       ] })
     ] }),
-    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-component-detail", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: componentDetail.type }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: componentDetail.description })
+    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-component-detail", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DeviceArtwork, { type: componentDetail.type }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: componentDetail.description })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6807\u8BC6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7528\u9014" })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6807\u8BC6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u7528\u9014" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: t.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: t.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
         ] }, t.id)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
     ] }),
-    publication && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: publication.title, close: () => {
+    publication && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: publication.title, close: () => {
       publicationRequest.current++;
       setPublication(null);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
         "\u4F5C\u8005\uFF1A",
         publication.author.name,
         " \xB7 ",
         date3(publication.createdAt)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: publication.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Heart, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DocumentPreview, { document: publication.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Heart, { size: 16 }),
           publication.liked ? "\u5DF2\u70B9\u8D5E" : "\u70B9\u8D5E",
           " ",
           publication.likes
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Star, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Star, { size: 16 }),
           publication.favorited ? "\u5DF2\u6536\u85CF" : "\u6536\u85CF",
           " ",
           publication.favorites
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
           void run(() => forkPublication(publication.id));
         }), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
     ] }),
-    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { onSubmit: (e) => {
+    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { onSubmit: (e) => {
       e.preventDefault();
       void run(async () => {
         if (STATIC_DEMO) setUser({ ...user, name, bio });
@@ -38193,54 +38546,54 @@ function SimulatorApp({ initialSection = "simulator" }) {
         setNotice("\u8D44\u6599\u5DF2\u66F4\u65B0");
       });
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
         "\u6635\u79F0",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
         "\u4E2A\u4EBA\u7B7E\u540D",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
     ] }) }),
-    conflict && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
+    conflict && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => run(async () => {
           await save(true);
           setConflict(false);
         }), children: "\u5C06\u5F53\u524D\u5185\u5BB9\u53E6\u5B58\u4E3A\u526F\u672C" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
           if (saved) await openDraft(saved);
           setConflict(false);
         }), children: "\u52A0\u8F7D\u670D\u52A1\u5668\u6700\u65B0\u7248\u672C" })
       ] })
     ] }),
-    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: confirmAction.message }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
+    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: confirmAction.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => {
           const action = confirmAction;
           setConfirmAction(null);
           action.run();
         }, children: "\u7EE7\u7EED" })
       ] })
     ] }),
-    notice && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-toast", role: "status", children: notice })
+    notice && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-toast", role: "status", children: notice })
   ] });
 }
 
 // app/page.tsx
-var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
 function Home() {
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorApp, {});
+  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(SimulatorApp, {});
 }
 
 // github-pages/main.tsx
-var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
 (0, import_client.createRoot)(document.getElementById("root")).render(
-  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_react25.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Home, {}) })
+  /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(import_react25.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Home, {}) })
 );
 /*! Bundled license information:
 

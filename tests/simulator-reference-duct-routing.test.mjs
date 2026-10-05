@@ -4,7 +4,7 @@ import { build } from "esbuild";
 
 const bundled = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/duct-layout"; export * from "./app/simulator/core/duct-routing"; export * from "./app/simulator/core/validation"; export * from "./app/simulator/editor/geometry";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
 const { LESSONS, createLessonDocument, componentSize, isWireDuct, resolveTerminal, arrangeTrainingDucts, putWiresInDucts, routeWireInDucts, segmentInsideDucts, validateDocument, wirePath, TRAINING_LAYOUT_REFERENCES, trainingLayoutReference } = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
-const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type)).map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, waypoints, ...wire }) => wire), roles: document.roles });
+const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail").map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, waypoints, ...wire }) => wire), roles: document.roles });
 const overlaps = (a, b) => { const sa = componentSize(a), sb = componentSize(b); return a.position.x < b.position.x + sb.width && a.position.x + sa.width > b.position.x && a.position.y < b.position.y + sb.height && a.position.y + sa.height > b.position.y; };
 
 for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration have identical clear ducts and every wire stays in them`, () => {
@@ -28,7 +28,7 @@ for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration hav
     const right = Math.max(...ducts.map(component => component.position.x + componentSize(component).width));
     for (const id of [...reference.buttons, ...(reference.limits ?? [])]) assert.ok(document.components.find(component => component.id === id).position.x > right, "controls stay external as drawn");
   } else assert.equal(trainingLayoutReference(document), "电动机连续运行控制电路布局图.png", "missing layout borrows the documented existing layout");
-  for (const duct of ducts) for (const component of document.components.filter(component => !isWireDuct(component.type))) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
+  for (const duct of ducts) for (const component of document.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail")) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
   const before = JSON.stringify(document);
   for (const wire of document.wires) {
     assert.equal(wire.style, "orthogonal");
@@ -44,7 +44,7 @@ for (const lesson of LESSONS) test(`${lesson.id}: practice and demonstration hav
 
 test("a legacy graph can be arranged and routed without replacing IDs, manual hints, attachments or custom ducts", () => {
   const full = createLessonDocument("motor-course-09", { wired: true });
-  const legacy = { ...full, components: full.components.filter(component => !isWireDuct(component.type)), drawingMediaId: "own-drawing", drawingMediaType: "image/png", wires: full.wires.map(wire => ({ ...wire, style: "orthogonal", waypoints: [{ x: 12, y: 34 }] })) };
+  const legacy = { ...full, components: full.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail"), drawingMediaId: "own-drawing", drawingMediaType: "image/png", wires: full.wires.map(wire => ({ ...wire, style: "orthogonal", waypoints: [{ x: 12, y: 34 }] })) };
   const before = JSON.stringify(legacy), arranged = putWiresInDucts(arrangeTrainingDucts(legacy));
   assert.deepEqual(graph(arranged), graph(legacy));
   assert.equal(arranged.drawingMediaId, legacy.drawingMediaId);
@@ -93,7 +93,7 @@ test("moving devices or resizing and moving ducts recomputes world endpoints and
 
 test("missing or obstructed ducts give explicit presentation errors without changing the electrical graph", () => {
   const document = fixture(), wire = document.wires[0];
-  document.components = document.components.filter(component => !isWireDuct(component.type));
+  document.components = document.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail");
   assert.equal(routeWireInDucts(document, wire).status, "missing");
   const blocked = fixture(); blocked.components.push({ id: "block", type: "terminal", label: "挡住入槽的元件", position: { x: 80, y: 0 } });
   const before = JSON.stringify(blocked);

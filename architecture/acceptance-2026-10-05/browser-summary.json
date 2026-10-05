@@ -1,0 +1,465 @@
+{
+  "verifiedAt": "2026-10-05T08:47:34.874Z",
+  "scope": "Isolated Chromium, single worker; latest evidence per scenario, not a single clean first run",
+  "scenarioCount": 61,
+  "passed": 61,
+  "runs": [
+    {
+      "file": "browser-full.json",
+      "at": "2026-10-05T08:37:00.179Z",
+      "status": "failed",
+      "passed": 60,
+      "other": 1
+    },
+    {
+      "file": "browser-confirmation.json",
+      "at": "2026-10-05T08:37:50.288Z",
+      "status": "passed",
+      "passed": 1,
+      "other": 0
+    },
+    {
+      "file": "browser-final-feedback.json",
+      "at": "2026-10-05T08:42:25.093Z",
+      "status": "passed",
+      "passed": 4,
+      "other": 0
+    },
+    {
+      "file": "browser-member-preview.json",
+      "at": "2026-10-05T08:45:02.699Z",
+      "status": "passed",
+      "passed": 1,
+      "other": 0
+    }
+  ],
+  "tests": [
+    {
+      "title": "motor-course-01: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1571,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-01: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 997,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-02: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1552,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-02: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1065,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-03: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1644,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-03: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1109,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-04: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2127,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-04: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1116,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-05: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1845,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-05: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1111,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-06: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2087,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-06: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1189,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-07: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2123,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-07: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1181,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-08: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2053,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-08: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1060,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-09: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 2231,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-09: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1128,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-10: standard controls and passed assessment",
+      "status": "passed",
+      "durationMs": 1872,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-10: missing protective earth is rejected",
+      "status": "passed",
+      "durationMs": 1130,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-02: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1712,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-03: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1815,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-04: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1862,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-05: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1729,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-06: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2942,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-07: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2374,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-08: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 2040,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-09: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1927,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "motor-course-10: protection and contract boundary actions",
+      "status": "passed",
+      "durationMs": 1805,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "real terminal drag, device move, zoom and reload retain world endpoints",
+      "status": "passed",
+      "durationMs": 2105,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "two browser accounts cannot open each other private drafts",
+      "status": "passed",
+      "durationMs": 1131,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "corrupt recovery bytes survive a storage quota failure",
+      "status": "passed",
+      "durationMs": 1575,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "two windows surface a save conflict without overwriting the winner",
+      "status": "passed",
+      "durationMs": 1894,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "late JSON import cannot replace a newer simulation session",
+      "status": "passed",
+      "durationMs": 954,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "reference picker traps focus and prevents editor keyboard deletion",
+      "status": "passed",
+      "durationMs": 1101,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste",
+      "status": "passed",
+      "durationMs": 1514,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "formal course picker creates ten editable blank practices and saves separate drafts",
+      "status": "passed",
+      "durationMs": 4714,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "course change preserves unsaved original identity and isolates recovery and clipboard across accounts",
+      "status": "passed",
+      "durationMs": 2378,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "rendered breaker colors, energized dot size and motor outline retain unsafe-wiring diagnostics",
+      "status": "passed",
+      "durationMs": 1468,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "feedback 20261005: rotation, drag, undo, zoom, copy, reload and immutable publication",
+      "status": "passed",
+      "durationMs": 3874,
+      "errors": [],
+      "evidence": "browser-member-preview.json"
+    },
+    {
+      "title": "feedback 20261005: manual course 01 uses student IDs, actual placement and terminal drags",
+      "status": "passed",
+      "durationMs": 9479,
+      "errors": [],
+      "evidence": "browser-final-feedback.json"
+    },
+    {
+      "title": "feedback 20261005: numeric KT screen, ON UP, pause step, loss and restart",
+      "status": "passed",
+      "durationMs": 1392,
+      "errors": [],
+      "evidence": "browser-final-feedback.json"
+    },
+    {
+      "title": "feedback 20261005: explicit legacy upgrade creates a copy and leaves original snapshot intact",
+      "status": "passed",
+      "durationMs": 1346,
+      "errors": [],
+      "evidence": "browser-final-feedback.json"
+    },
+    {
+      "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+      "status": "passed",
+      "durationMs": 3340,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "repeated group paste and undo preserve a stable editable document",
+      "status": "passed",
+      "durationMs": 2023,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1920x1080",
+      "status": "passed",
+      "durationMs": 3595,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1366x768",
+      "status": "passed",
+      "durationMs": 2676,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "final modal: initial fixed actions without hover at 1024x768",
+      "status": "passed",
+      "durationMs": 2412,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "final schematic: a mouse resize to exactly 560 preserves manual width and reset restores responsive sizing",
+      "status": "passed",
+      "durationMs": 2140,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: ten blank courses share six-duct layouts and FU2/XT16, clear and examples keep one layout",
+      "status": "passed",
+      "durationMs": 11903,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: legacy duct import and canonical routing save and reload without losing manual paths",
+      "status": "passed",
+      "durationMs": 2073,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: cross-document group paste remains one undo operation and running interruptions cannot edit it",
+      "status": "passed",
+      "durationMs": 3395,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: switching an unsaved course preserves its parked circuit and failed quota preserves the active document",
+      "status": "passed",
+      "durationMs": 1910,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: upload reference and undo restore the authenticated PNG preview and modal keys leave wiring intact",
+      "status": "passed",
+      "durationMs": 1717,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: essential editing controls remain reachable at 1366x768",
+      "status": "passed",
+      "durationMs": 1425,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: essential editing controls remain reachable at 1920x1080",
+      "status": "passed",
+      "durationMs": 1493,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated: three automatic wires keep separate repeatable tracks and their electrical endpoints through broken or missing ducts",
+      "status": "passed",
+      "durationMs": 3567,
+      "errors": [],
+      "evidence": "browser-confirmation.json"
+    },
+    {
+      "title": "integrated: an isolated member PDF upload renders actual PDF.js pixels and reload retains the private preview",
+      "status": "passed",
+      "durationMs": 1606,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1920x1080",
+      "status": "passed",
+      "durationMs": 2979,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1366x768",
+      "status": "passed",
+      "durationMs": 2528,
+      "errors": [],
+      "evidence": "browser-full.json"
+    },
+    {
+      "title": "integrated layout: titles, controls and drawings at 1024x768",
+      "status": "passed",
+      "durationMs": 2497,
+      "errors": [],
+      "evidence": "browser-full.json"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-05T08:37:50.288Z",
+  "status": "passed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "integrated: three automatic wires keep separate repeatable tracks and their electrical endpoints through broken or missing ducts",
+      "status": "passed",
+      "durationMs": 3567,
+      "errors": []
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { getDefinition } from "./catalog";
+import { getDefinition, equivalentComponentType } from "./catalog";
 import { createMotorCourseDocument } from "./motor-courses";
 import { buildCircuitNetwork, initialRuntime, networkVoltage, simulate } from "./engine";
 import { terminalKey } from "./types";
@@ -26,7 +26,7 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   for (const [role, standardId] of Object.entries(standard.roles || {})) {
     if (combinedFuse && /^fu2[ab]$/.test(role)) { roles.fu2 = combinedFuse.id; continue; }
     const expected = standard.components.find(component => component.id === standardId)!;
-    const id = document.roles?.[role] || (document.components.some(component => component.id === standardId) ? standardId : undefined);
+    const id = document.roles?.[role] || (!document.roles && document.components.some(component => component.id === standardId) ? standardId : undefined);
     const actual = document.components.find(component => component.id === id);
     // Existing member snapshots used three independent FU1 instances. Accept
     // those without rewriting their IDs, wiring, layout or stored roles.
@@ -40,7 +40,7 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
       continue;
     }
     const momentaryColorEquivalent = actual && ["push-no", "push-nc"].includes(actual.type) && ["push-no", "push-nc"].includes(expected.type);
-    if (!actual || actual.type !== expected.type && !momentaryColorEquivalent) diagnostics.push(issue("LESSON_ROLE_MISSING", `${expected.label} 缺少类型匹配的课程角色绑定`, id ? [id] : [], "warning"));
+    if (!actual || !equivalentComponentType(actual.type,expected.type) && !momentaryColorEquivalent) diagnostics.push(issue("LESSON_ROLE_MISSING", `${expected.label} 缺少类型匹配的课程角色绑定`, id ? [id] : [], "warning"));
     else roles[role] = actual.id;
   }
   if (new Set(Object.values(roles)).size !== Object.values(roles).length) diagnostics.push(issue("LESSON_ROLE_DUPLICATED", "不同图内位号不能绑定到同一个器件实例", [], "warning"));
@@ -298,11 +298,11 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
           ? { ...sample.runtime, overloads: { ...sample.runtime.overloads, [guardId]: true } }
           : { ...sample.runtime, pressed: { ...sample.runtime.pressed, [guardId]: true } }));
         const actuated = cuts.get(cacheKey)!;
-        if (networkVoltage(actuated, key(component.id, "A1"), key(component.id, "A2")).value !== 380) continue;
+        if (networkVoltage(actuated, key(component.id, getDefinition(component.type).load!.terminals[0]), key(component.id, getDefinition(component.type).load!.terminals[1])).value !== 380) continue;
         if (isOverload) controlOverloadsEffective = false; else controlStopsEffective = false;
-        pathFailure(isOverload ? "OVERLOAD_CONTROL_BYPASS" : "STOP_CONTROL_BYPASS", `${guard.toUpperCase()} 保护接点动作后此线圈仍有供电通路`, actuated, key(component.id, "A1"), [guard], sample);
+        pathFailure(isOverload ? "OVERLOAD_CONTROL_BYPASS" : "STOP_CONTROL_BYPASS", `${guard.toUpperCase()} 保护接点动作后此线圈仍有供电通路`, actuated, key(component.id, getDefinition(component.type).load!.terminals[0]), [guard], sample);
       }
-      for (const terminal of [key(component.id, "A1"), key(component.id, "A2")]) {
+      for (const terminal of [key(component.id, getDefinition(component.type).load!.terminals[0]), key(component.id, getDefinition(component.type).load!.terminals[1])]) {
         const qfProtected = !fromPhase(cut("qf"), terminal), hasFuse = controlFusePoles.some(pole => !fromPhase(cutFusePole(pole), terminal));
         controlProtected &&= fromPhase(net, terminal) && qfProtected && hasFuse;
         if (!qfProtected) pathFailure("CONTROL_PROTECTION_BYPASS", "控制导体绕过 QF", cut("qf"), terminal, ["qf"], sample);

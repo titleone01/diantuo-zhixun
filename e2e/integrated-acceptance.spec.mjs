@@ -44,7 +44,7 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16, clear a
   await login(page); await disclosure(page);
   for (let number = 1; number <= 10; number++) {
     const lesson = `motor-course-${String(number).padStart(2, '0')}`;
-    await page.getByLabel('选择训练课程', { exact: true }).selectOption(lesson);
+    await page.getByLabel('选择训练课程', { exact: true }).selectOption(lesson); await page.getByRole('button', { name: '创建练习', exact: true }).click();
     await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts[`${lesson}:correct`].document.title);
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     let document = await exportDocument(page);
@@ -60,7 +60,7 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16, clear a
     document = await exportDocument(page); expect(document.wires.length).toBeGreaterThan(0);
     expect(document.wires.every(wire => wire.style === 'orthogonal' && wire.routing === 'duct')).toBe(true);
     expect(document.components.map(({ id, type, position, size }) => ({ id, type, position, size }))).toEqual(placement);
-    await page.getByRole('button', { name: '清空接线练习', exact: true }).click();
+    await page.getByRole('button', { name: '清空接线练习', exact: true }).click(); await page.getByRole('button', { name: '创建练习', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     document = await exportDocument(page); expect(document.wires).toHaveLength(0);
     expect(document.components.map(({ id, type, position, size }) => ({ id, type, position, size }))).toEqual(placement);
@@ -155,7 +155,7 @@ test('integrated: switching an unsaved course preserves its parked circuit and f
   await login(page); await newDocument(page); await importDocument(page, smallDocument);
   await disclosure(page); await page.getByLabel('电路标题', { exact: true }).fill('Uncommitted circuit retained');
   const retained = await exportDocument(page);
-  await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-02');
+  await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-02'); await page.getByRole('button', { name: '创建练习', exact: true }).click();
   await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts['motor-course-02:correct'].document.title);
   await page.getByRole('button', { name: '本机暂存', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: '本机暂存 · 当前账号', exact: true });
@@ -163,7 +163,7 @@ test('integrated: switching an unsaved course preserves its parked circuit and f
   expect(await exportDocument(page)).toEqual(retained);
   const recoveryBefore = await page.evaluate(() => Object.fromEntries(Object.keys(localStorage).filter(key => key.startsWith('diantuo:simulator:recovery:')).map(key => [key, localStorage.getItem(key)])));
   await page.evaluate(() => { const original = Storage.prototype.setItem; Storage.prototype.setItem = function(key, value) { if (key.startsWith('diantuo:simulator:recovery:')) throw new DOMException('Fixture quota', 'QuotaExceededError'); return original.call(this, key, value); }; });
-  await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-03');
+  await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-03'); await page.getByRole('button', { name: '创建练习', exact: true }).click();
   await expect(page.getByRole('alert').first()).toContainText('已保留当前画布'); expect(await exportDocument(page)).toEqual(retained);
   expect(await page.evaluate(() => Object.fromEntries(Object.keys(localStorage).filter(key => key.startsWith('diantuo:simulator:recovery:')).map(key => [key, localStorage.getItem(key)])))).toEqual(recoveryBefore);
 });
@@ -195,7 +195,7 @@ for (const viewport of [{ width: 1366, height: 768 }, { width: 1920, height: 108
       const button = page.getByRole('button', { name, exact: true }); await button.scrollIntoViewIfNeeded(); await expect(button).toBeVisible(); await button.click({ trial: true });
       const box = await button.boundingBox(); expect(box.x).toBeGreaterThanOrEqual(0); expect(box.y).toBeGreaterThanOrEqual(0); expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1); expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
     }
-    await disclosure(page); const course = page.getByLabel('选择训练课程', { exact: true }); await course.selectOption('motor-course-02'); await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts['motor-course-02:correct'].document.title); await disclosure(page, false);
+    await disclosure(page); const course = page.getByLabel('选择训练课程', { exact: true }); await course.selectOption('motor-course-02'); await page.getByRole('button', { name: '创建练习', exact: true }).click(); await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts['motor-course-02:correct'].document.title); await disclosure(page, false);
     for (const name of ['导线全部入槽', '撤销', '复制选中对象', '粘贴对象']) { const control = page.getByRole('button', { name, exact: true }); await control.scrollIntoViewIfNeeded(); await expect(control).toBeVisible(); }
   });
 }
@@ -234,7 +234,8 @@ test('integrated: three automatic wires keep separate repeatable tracks and thei
   await newDocument(page); await importDocument(page, smallDocument); await collapseDiagram(page); await page.locator('.react-flow__controls-fitview').click();
   const source = page.locator('[data-terminal-key="ia::A"]'), target = page.locator('[data-terminal-key="ib::A"]'); await source.hover(); await target.hover(); const a = await source.boundingBox(), b = await target.boundingBox();
   await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await page.mouse.down(); await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 20 }); await page.mouse.up();
-  await expect(page.locator('.sim-wire')).toHaveCount(1); const fallback = (await exportDocument(page)).wires[0]; expect(fallback.style).toBe('orthogonal'); expect(fallback.routing).toBeUndefined(); await expect(page.locator('.sim-routing-notice')).toContainText('尚未布置线槽');
+  await expect(page.locator('.sim-wire')).toHaveCount(1); const fallback = (await exportDocument(page)).wires[0]; expect(fallback.style).toBe('orthogonal'); expect(fallback.routing).toBe('duct'); await expect(page.locator('.sim-routing-notice')).toContainText('先布置线槽');
+  const missing = await geometry(); expect(missing[0].status).toBe('missing'); expect((missing[0].path.match(/M /g) || []).length).toBe(2);
 });
 
 test('integrated: an isolated member PDF upload renders actual PDF.js pixels and reload retains the private preview', async ({ page }) => {

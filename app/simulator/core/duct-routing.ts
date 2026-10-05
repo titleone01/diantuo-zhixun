@@ -1,4 +1,4 @@
-import { componentSize, isWireDuct, resolveTerminal } from "./catalog";
+import { componentSize, isLayoutObject, isWireDuct, resolveTerminal } from "./catalog";
 import type { CircuitComponent, CircuitDocument, CircuitWire, Point } from "./types";
 
 type Rect = { left: number; top: number; right: number; bottom: number };
@@ -6,7 +6,7 @@ type Duct = Rect & { id: string; vertical: boolean; pins: Point[] };
 type Link = { to: string; cost: number; points: Point[] };
 type Vertex = { point: Point; links: Link[] };
 type Network = { ducts: Duct[]; vertices: Map<string, Vertex> };
-type Entry = { duct: Duct; point: Point; lead: Point[]; length: number };
+type Entry = { duct: Duct; point: Point; lead: Point[]; length: number; facing: boolean };
 export type DuctRoute = { status: "routed" | "missing" | "blocked" | "disconnected"; sections: Point[][]; trunk: Point[]; message?: string };
 const TERMINAL_CLEARANCE = 12;
 const key = (point: Point) => `${point.x},${point.y}`;
@@ -20,7 +20,7 @@ const cache = new WeakMap<CircuitComponent[], { signature: string; network: Netw
 const routeCache = new WeakMap<CircuitComponent[], { signature: string; routes: Map<string, DuctRoute> }>();
 
 function networkFor(components: CircuitComponent[]): Network {
-  const signature = components.filter(component => isWireDuct(component.type)).map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}`).join("|");
+  const signature = components.filter(component => isWireDuct(component.type)).map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}:${component.rotation??0}`).join("|");
   const cached = cache.get(components);
   if (cached?.signature === signature) return cached.network;
   const ducts: Duct[] = components.filter(component => isWireDuct(component.type)).sort((a, b) => a.id.localeCompare(b.id)).map(component => ({ ...bounds(component), id: component.id, vertical: component.type === "wire-duct-vertical", pins: [] }));
@@ -67,15 +67,16 @@ function terminalLead(terminal: ReturnType<typeof resolveTerminal>): Point[] {
   return [world, escape];
 }
 
-function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolveTerminal>, network: Network): Entry | undefined {
+function entriesFor(document: CircuitDocument, terminal: ReturnType<typeof resolveTerminal>, network: Network): Entry[] {
   const rect = bounds(terminal.component), side = terminal.terminal.side;
   const [world, escape] = terminalLead(terminal);
-  const blockers = document.components.filter(component => !isWireDuct(component.type));
+  const blockers = document.components.filter(component => !isLayoutObject(component.type));
   const candidates: Entry[] = [];
-  const consider = (duct: Duct, points: Point[]) => {
-    const lead = compact(points), point = lead.at(-1)!;
+  const consider = (duct: Duct, points: Point[], facing = false) => {
+    const lead = compact([points[0], ...simplify(points.slice(1))]), point = lead.at(-1)!;
     if (lead.slice(1).some((next, index) => blockers.some(component => (component.id !== terminal.component.id || index > 0) && crossesBody(lead[index], next, bounds(component))))) return;
-    candidates.push({ duct, point, lead, length: lead.slice(1).reduce((sum, next, index) => sum + distance(lead[index], next), 0) });
+    if(lead.slice(1).some((next,index)=>network.ducts.some(other=>other!==duct && (other.right<duct.left||other.left>duct.right||other.bottom<duct.top||other.top>duct.bottom) && crossesBody(lead[index],next,other))))return;
+    candidates.push({ duct, point, lead, facing, length: lead.slice(1).reduce((sum, next, index) => sum + distance(lead[index], next), 0) });
   };
   for (const duct of network.ducts) {
     let edge: Point | undefined;
@@ -87,7 +88,7 @@ function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolve
       if (side === "left" && duct.left <= escape.x) edge = { x: Math.min(escape.x, duct.right), y: escape.y };
       if (side === "right" && duct.right >= escape.x) edge = { x: Math.max(escape.x, duct.left), y: escape.y };
     }
-    if (edge) consider(duct, [world, escape, edge, project(duct, edge)]);
+    if (edge) consider(duct, [world, escape, edge, project(duct, edge)], true);
     const point = project(duct, escape);
     consider(duct, [world, escape, { x: point.x, y: escape.y }, point]);
     consider(duct, [world, escape, { x: escape.x, y: point.y }, point]);
@@ -102,15 +103,26 @@ function entryFor(document: CircuitDocument, terminal: ReturnType<typeof resolve
       consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
     }
   }
-  return candidates.sort((a, b) => a.length - b.length || a.duct.id.localeCompare(b.duct.id))[0];
+  // If an outward entrance exists, do not wrap around the device into a duct
+  // behind it. That would hide a disconnected cabinet by drawing a long tail.
+  // Retain every distinct outward entry point, including farther alternatives.
+  const outward = candidates.filter(entry => side === "top" ? entry.point.y <= escape.y : side === "bottom" ? entry.point.y >= escape.y : side === "left" ? entry.point.x <= escape.x : entry.point.x >= escape.x);
+  // A facing duct is a physical entrance. Do not bridge a broken channel by
+  // inventing a long parallel lead to another duct when that entrance exists.
+  // Compare all facing entrances; use lateral/body detours only if none face us.
+  const facing = outward.filter(entry => entry.facing);
+  const available = facing.length ? facing : outward.length ? outward : candidates;
+  return [...new Map(available.sort((a,b)=>a.length-b.length || a.lead.length-b.lead.length || JSON.stringify(a.lead).localeCompare(JSON.stringify(b.lead))).map(entry=>[`${entry.duct.id}/${key(entry.point)}`,entry] as const).reverse()).values()].sort((a,b)=>a.length-b.length || a.duct.id.localeCompare(b.duct.id) || key(a.point).localeCompare(key(b.point)));
 }
 
 /** Binary min-heap keeps the routing cost bounded for custom documents. */
+type QueueItem = { id: string; cost: number; bends: number };
+const compareQueue = (a: QueueItem, b: QueueItem) => a.cost - b.cost || a.bends - b.bends || a.id.localeCompare(b.id);
 class Queue {
-  items: { id: string; cost: number }[] = [];
-  push(item: { id: string; cost: number }) {
+  items: QueueItem[] = [];
+  push(item: QueueItem) {
     let index = this.items.length; this.items.push(item);
-    while (index > 0) { const parent = (index - 1) >> 1; if (this.items[parent].cost <= item.cost) break; this.items[index] = this.items[parent]; index = parent; }
+    while (index > 0) { const parent = (index - 1) >> 1; if (compareQueue(this.items[parent], item) <= 0) break; this.items[index] = this.items[parent]; index = parent; }
     this.items[index] = item;
   }
   pop() {
@@ -119,8 +131,8 @@ class Queue {
       let index = 0;
       while (index * 2 + 1 < this.items.length) {
         let child = index * 2 + 1;
-        if (child + 1 < this.items.length && this.items[child + 1].cost < this.items[child].cost) child++;
-        if (this.items[child].cost >= last.cost) break;
+        if (child + 1 < this.items.length && compareQueue(this.items[child + 1], this.items[child]) < 0) child++;
+        if (compareQueue(this.items[child], last) >= 0) break;
         this.items[index] = this.items[child]; index = child;
       }
       this.items[index] = last;
@@ -143,22 +155,35 @@ function shortestPath(document: CircuitDocument, network: Network, from: Entry, 
     for (const point of new Set([before, after])) if (point) link(id, key(point), [entry.point, point]);
   }
   if (from.duct === to.duct) link("start", "end", [from.point, to.point]);
-  const bodies = document.components.filter(component => !isWireDuct(component.type)).map(bounds);
-  const queue = new Queue(), costs = new Map([["start", 0]]), previous = new Map<string, { id: string; points: Point[] }>();
-  queue.push({ id: "start", cost: 0 });
+  const bodies = document.components.filter(component => !isLayoutObject(component.type)).map(bounds);
+  const direction = (a: Point, b: Point) => a.x === b.x ? (b.y > a.y ? "down" : "up") : (b.x > a.x ? "right" : "left");
+  const firstDirection = direction(from.lead.at(-2)!, from.point);
+  const lastDirection = direction(to.point, to.lead.at(-2)!);
+  const start = `start|${firstDirection}`;
+  // Incoming direction is part of the search state: an equal-length arrival
+  // can require a different number of bends on its remaining route.
+  const queue = new Queue(), costs = new Map([[start, { cost: 0, bends: 0 }]]), previous = new Map<string, { id: string; points: Point[] }>();
+  queue.push({ id: start, cost: 0, bends: 0 });
   while (queue.items.length) {
     const current = queue.pop()!;
-    if (current.cost !== costs.get(current.id)) continue;
-    if (current.id === "end") {
-      const pieces: Point[][] = []; let id = "end";
-      while (id !== "start") { const step = previous.get(id)!; pieces.unshift(step.points); id = step.id; }
+    const saved = costs.get(current.id);
+    if (current.cost !== saved?.cost || current.bends !== saved.bends) continue;
+    const [vertex, incoming] = current.id.split("|");
+    if (vertex === "end") {
+      const pieces: Point[][] = []; let id = current.id;
+      while (id !== start) { const step = previous.get(id)!; pieces.unshift(step.points); id = step.id; }
       return compact(pieces.flat());
     }
-    for (const edge of [...(network.vertices.get(current.id)?.links ?? []), ...(extra.get(current.id) ?? [])]) {
+    for (const edge of [...(network.vertices.get(vertex)?.links ?? []), ...(extra.get(vertex) ?? [])]) {
       if (edge.points.slice(1).some((point, index) => bodies.some(rect => crossesBody(edge.points[index], point, rect)))) continue;
       const cost = current.cost + edge.cost;
-      if (cost >= (costs.get(edge.to) ?? Infinity)) continue;
-      costs.set(edge.to, cost); previous.set(edge.to, { id: current.id, points: edge.points }); queue.push({ id: edge.to, cost });
+      let heading = incoming, bends = current.bends;
+      const points = compact(edge.points);
+      for (let index = 1; index < points.length; index++) { const next = direction(points[index - 1], points[index]); if (next !== heading) bends++; heading = next; }
+      if (edge.to === "end" && heading !== lastDirection) bends++;
+      const id = `${edge.to}|${heading}`, old = costs.get(id);
+      if (old && (cost > old.cost || cost === old.cost && bends >= old.bends)) continue;
+      costs.set(id, { cost, bends }); previous.set(id, { id: current.id, points: edge.points }); queue.push({ id, cost, bends });
     }
   }
 }
@@ -185,16 +210,19 @@ function laneRoute(document: CircuitDocument, network: Network, wire: CircuitWir
   for (const character of wire.id) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
   const half = Math.min(14, ...network.ducts.map(duct => (duct.vertical ? duct.right - duct.left : duct.bottom - duct.top) / 2 - 5));
   const offset = (hash % 9 - 4) * half / 4;
-  const shifted = trunk.map(point => ({ x: point.x + offset, y: point.y + offset }));
-  const first = trunk[0], last = trunk.at(-1)!, shiftedFirst = shifted[0], shiftedLast = shifted.at(-1)!;
-  const candidate = compact([first, { x: shiftedFirst.x, y: first.y }, ...shifted, { x: last.x, y: shiftedLast.y }, last]);
-  const bodies = document.components.filter(component => !isWireDuct(component.type)).map(bounds);
+  const base=simplify(trunk);
+  if(base.length<2)return base;
+  const segment=(a:Point,b:Point)=>a.x===b.x ? {vertical:true,value:a.x-Math.sign(b.y-a.y)*offset} : {vertical:false,value:a.y+Math.sign(b.x-a.x)*offset};
+  const lines=base.slice(1).map((b,i)=>segment(base[i],b));
+  const shifted=base.map((p,i)=>{const before=lines[Math.max(0,i-1)],after=lines[Math.min(i,lines.length-1)];return {x:before.vertical?before.value:after.vertical?after.value:p.x,y:!before.vertical?before.value:!after.vertical?after.value:p.y};});
+  const candidate = compact([base[0],...shifted,base.at(-1)!]);
+  const bodies = document.components.filter(component => !isLayoutObject(component.type)).map(bounds);
   return candidate.slice(1).every((point, index) => segmentInsideDucts(document, candidate[index], point) && !bodies.some(rect => crossesBody(candidate[index], point, rect))) ? candidate : trunk;
 }
 
 /** Route presentation through actual overlapping duct rectangles; topology stays in terminal IDs. */
 export function routeWireInDucts(document: CircuitDocument, wire: CircuitWire): DuctRoute {
-  const signature = document.components.map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}`).join("|");
+  const signature = document.components.map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}:${component.rotation??0}`).join("|");
   let cached = routeCache.get(document.components);
   if (cached?.signature !== signature) { cached = { signature, routes: new Map() }; routeCache.set(document.components, cached); }
   const id = `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
@@ -205,15 +233,50 @@ export function routeWireInDucts(document: CircuitDocument, wire: CircuitWire): 
   return route;
 }
 
+/** Collapse collinear detours. The resulting segment is covered by their union. */
+function simplify(points: Point[]): Point[] {
+  const result: Point[] = [];
+  for (const point of compact(points)) {
+    while (result.length > 1) {
+      const a = result.at(-2)!, b = result.at(-1)!;
+      if (a.x === b.x && b.x === point.x || a.y === b.y && b.y === point.y) result.pop();
+      else break;
+    }
+    if (!result.length || distance(result.at(-1)!, point) > 0.000001) result.push(point);
+  }
+  return result;
+}
+// Retain both outward escape anchors even when the remainder is simplified.
+const displayPath = (points: Point[]) => compact([points[0], ...simplify(points.slice(1, -1)), points.at(-1)!]);
+const pathLength=(points:Point[])=>points.slice(1).reduce((sum,p,i)=>sum+distance(points[i],p),0);
+function comparePaths(a:Point[],b:Point[]){return pathLength(a)-pathLength(b)||simplify(a).length-simplify(b).length||JSON.stringify(a).localeCompare(JSON.stringify(b));}
+function externalRoute(document:CircuitDocument,source:ReturnType<typeof resolveTerminal>,target:ReturnType<typeof resolveTerminal>):DuctRoute {
+ const from=terminalLead(source),to=terminalLead(target),a=from[1],b=to[1];
+ const bodies=document.components.filter(c=>!isLayoutObject(c.type));
+ const clear=(points:Point[])=>points.slice(1).every((p,i)=>!bodies.some(c=>crossesBody(points[i],p,bounds(c))));
+ // Endpoint tails may originate inside their own body; every later segment must clear it.
+ if([source,target].some((t,i)=>bodies.some(c=>c.id!==t.component.id&&crossesBody((i?to:from)[0],(i?to:from)[1],bounds(c)))))return {status:"blocked",sections:[from,to.reverse()],trunk:[],message:"外部引线被元件挡住，请调整布局。"};
+ const choices:Point[][]=[[a,{x:a.x,y:b.y},b],[a,{x:b.x,y:a.y},b]];
+ for(const c of bodies){const r=bounds(c);for(const x of [r.left-12,r.right+12])choices.push([a,{x,y:a.y},{x,y:b.y},b]);for(const y of [r.top-12,r.bottom+12])choices.push([a,{x:a.x,y},{x:b.x,y},b]);}
+ const middle=choices.map(simplify).filter(clear).sort(comparePaths)[0];
+ return middle?{status:"routed",sections:[displayPath(compact([...from,...middle,...to.reverse()]))],trunk:[]}:{status:"blocked",sections:[from,to.reverse()],trunk:[],message:"外部直角路径被元件遮挡，请调整外部器件位置。"};
+}
 function calculateRoute(document: CircuitDocument, wire: CircuitWire): DuctRoute {
-  const source = resolveTerminal(document, wire.from), target = resolveTerminal(document, wire.to);
-  const network = networkFor(document.components);
-  if (!network.ducts.length) return { status: "missing", sections: [terminalLead(source), terminalLead(target).reverse()], trunk: [], message: "请先布置线槽，再自动走线。" };
-  const from = entryFor(document, source, network), to = entryFor(document, target, network);
-  const sections = [from?.lead ?? terminalLead(source), [...(to?.lead ?? terminalLead(target))].reverse()];
-  if (!from || !to) return { status: "blocked", sections, trunk: [], message: "端子出线方向没有可进入的线槽，或引出段被元件挡住，请调整元件或线槽。" };
-  const shortest = shortestPath(document, network, from, to);
-  if (!shortest) return { status: "disconnected", sections, trunk: [], message: "两端线槽未连通或槽内被元件挡住，请连接线槽或调整布局。" };
-  const trunk = laneRoute(document, network, wire, shortest);
-  return { status: "routed", sections: [compact([...from.lead, ...trunk, ...[...to.lead].reverse()])], trunk };
+ const source=resolveTerminal(document,wire.from),target=resolveTerminal(document,wire.to);
+ const external=source.terminal.routingRole==="external"||target.terminal.routingRole==="external";
+ const internal=source.terminal.routingRole==="internal"||target.terminal.routingRole==="internal";
+ if(external&&!internal)return externalRoute(document,source,target);
+ const network=networkFor(document.components);
+ if(!network.ducts.length)return {status:"missing",sections:[terminalLead(source),terminalLead(target).reverse()],trunk:[],message:"请先布置线槽，再自动走线。"};
+ const starts=entriesFor(document,source,network),ends=entriesFor(document,target,network);
+ const sections=[starts[0]?.lead??terminalLead(source),[...(ends[0]?.lead??terminalLead(target))].reverse()];
+ if(!starts.length||!ends.length)return {status:"blocked",sections,trunk:[],message:"端子出线方向没有可进入的线槽，或引出段被元件挡住，请调整元件或线槽。"};
+ const choices:{from:Entry;to:Entry;trunk:Point[];points:Point[]}[]=[];
+ for(const from of starts)for(const to of ends){const trunk=shortestPath(document,network,from,to);if(trunk)choices.push({from,to,trunk,points:compact([...from.lead,...simplify(trunk),...[...to.lead].reverse()])});}
+ const best=choices.sort((a,b)=>comparePaths(a.points,b.points))[0];
+ if(!best)return {status:"disconnected",sections,trunk:[],message:"两端线槽未连通或槽内被元件挡住，请连接线槽或调整布局。"};
+ const trunk=laneRoute(document,network,wire,best.trunk);
+ // Preserve entry/exit anchors: simplification must not erase the boundary
+ // between an outward terminal lead and the validated in-duct trunk.
+ return {status:"routed",sections:[compact([...best.from.lead,...simplify(trunk),...[...best.to.lead].reverse()])],trunk};
 }

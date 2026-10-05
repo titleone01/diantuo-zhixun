@@ -8,7 +8,7 @@ const bundled = await build({
   bundle: true, format: 'esm', platform: 'node', write: false, logLevel: 'silent', loader: { '.css': 'empty' }, define: { 'import.meta.env.BASE_URL': '"/"' },
   plugins: [{ name: 'component-ui', setup(build) {
     build.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'component-test' }));
-    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useRef=value=>({current:value}),useCallback=value=>value,useLayoutEffect=commit=>commit();' }));
+    build.onLoad({ filter: /^hooks$/, namespace: 'component-test' }, () => ({ contents: 'export const useState=value=>[typeof value==="function"?value():value,()=>{}],useRef=value=>({current:value}),useCallback=value=>value,useLayoutEffect=commit=>commit();' }));
     build.onResolve({ filter: /^@xyflow\/react$/ }, () => ({ path: 'flow', namespace: 'component-test' }));
     build.onLoad({ filter: /^flow$/, namespace: 'component-test' }, () => ({ contents: 'export const Handle="terminal-handle",NodeResizer="node-resizer";export const Position={Top:"top",Bottom:"bottom",Left:"left",Right:"right"};' }));
     build.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'component-test' }));
@@ -52,6 +52,20 @@ function renderNode(type, closed, action) {
 function renderArtwork(type, closed) {
   let node = DeviceArtwork({ type, closed }); while (typeof node.type === 'function') node = node.type(node.props); return node;
 }
+
+test('native relay artwork exposes exactly the catalog contact circles and distinct ON/UP indicators', () => {
+  for (const type of ['relay380-jzc1-22', 'timer380-8pin', 'timer380']) {
+    const artwork = renderArtwork(type, false);
+    const contacts = all(artwork, node => node.type === 'circle' && !node.props['data-timer-indicator']);
+    assert.deepEqual(contacts.map(node => [node.props.cx, node.props.cy]), getDefinition(type).terminals.map(t => [t.x, t.y]));
+    if (type.startsWith('timer')) {
+      const indicators = all(artwork, node => node.props['data-timer-indicator']);
+      assert.deepEqual(indicators.map(node => node.props['data-timer-indicator']), ['UP', 'ON']);
+      assert.ok(indicators[0].props.cx < indicators[1].props.cx);
+      assert.equal(all(artwork, node => node.props['data-timer-display'])[0].props.children, '00:03');
+    }
+  }
+});
 
 test('contactor state artwork preserves every original label and electrical circle while replacing only the four state-window colors and decorative slots',()=>{
   for(const type of ['contactor220','contactor380']) {

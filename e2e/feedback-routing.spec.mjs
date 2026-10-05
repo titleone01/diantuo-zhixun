@@ -43,7 +43,7 @@ async function geometry(page){
   }return values;
 }
 test('duct routing follows real drag, movement, resize, disconnect, save and reload',async({page})=>{
-  await test.step('routing: open and import',async()=>{await open(page);await page.getByLabel('线条样式',{exact:true}).selectOption('straight');});
+  await test.step('routing: open and import',async()=>{await open(page);await page.getByLabel('线条样式',{exact:true}).selectOption('duct');});
   await test.step('routing: connect terminals',async()=>{
   const a=page.locator('[data-terminal-key="route-a::A"]'),b=page.locator('[data-terminal-key="route-b::A"]');await a.hover();await b.hover();const aa=await a.boundingBox(),bb=await b.boundingBox();
   await page.mouse.move(aa.x+aa.width/2,aa.y+aa.height/2);await page.mouse.down();await page.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2,{steps:20});await page.mouse.up();
@@ -65,7 +65,7 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
   await expect.poll(async()=>(await geometry(page)).path).not.toBe(moved.path);await expect(wire).toHaveAttribute('data-routing-status','routed');
   });
   const resized=await geometry(page);
-  await test.step('routing: save new draft',async()=>{const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();const saved=await response;expect(saved.status()).toBe(201);expect((await saved.json()).circuit.document.wires[0]).toMatchObject({style:'straight',routing:'duct'});});
+  await test.step('routing: save new draft',async()=>{const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();const saved=await response;expect(saved.status()).toBe(201);expect((await saved.json()).circuit.document.wires[0]).toMatchObject({style:'orthogonal',routing:'duct'});});
   await test.step('routing: reload saved geometry',async()=>{await page.reload();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(resized);});
 });
 test('repeated group paste and undo preserve a stable editable document',async({page})=>{

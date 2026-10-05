@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-05T08:45:02.699Z",
+  "status": "passed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "feedback 20261005: rotation, drag, undo, zoom, copy, reload and immutable publication",
+      "status": "passed",
+      "durationMs": 3874,
+      "errors": []
+    }
+  ]
+}

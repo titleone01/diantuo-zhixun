@@ -2172,6 +2172,16 @@ svg.react-flow__connectionline {
   height: 100%;
   object-fit: contain;
 }
+.sim-preview-device {
+  position: relative;
+}
+.sim-rotated-artwork > .sim-device-artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
 .sim-editor .sim-device-node.is-selected {
   outline-color: #4a97ff;
   box-shadow: 0 0 0 3px #3883f615;
@@ -3388,6 +3398,86 @@ svg.react-flow__connectionline {
 .sim-routing-notice span {
   margin-top: 3px;
   line-height: 1.5;
+}
+.sim-rail-artwork {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 32px,
+      #606a7020 33px 40px),
+    linear-gradient(
+      #83919a 0 4px,
+      #e2e8ed 4px 8px,
+      #aab6c0 8px 16px,
+      #e2e8ed 16px 20px,
+      #83919a 20px);
+  border: 1px solid #71808a;
+}
+.sim-timer-controls {
+  position: absolute;
+  top: 74%;
+  left: 16%;
+  width: 68%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.sim-timer-controls button {
+  font-size: 10px;
+  border: 1px solid #858b8c;
+  border-radius: 12px;
+  background: #f1f1ed;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.sim-legacy-timer-warning {
+  position: absolute;
+  top: 100%;
+  background: #fff0cc;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.sim-course-checklist {
+  padding: 8px 12px;
+  border-bottom: 1px solid #dae2ea;
+  font-size: 12px;
+  max-height: 260px;
+  overflow: auto;
+}
+.sim-course-checklist summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.sim-course-checklist p {
+  font-size: 11px;
+  color: #607080;
+}
+.sim-course-checklist div {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  gap: 8px;
+}
+.sim-course-checklist button {
+  border: 1px solid #ccd8e0;
+  border-radius: 4px;
+  padding: 3px 6px;
+  background: #edf5ff;
+}
+.sim-role-binding {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+.sim-course-checklist small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.4;
+  margin-top: 3px;
 }
 
 /* app/simulator/training-projects.css */
@@ -5193,6 +5283,49 @@ svg.react-flow__connectionline {
   }
   .dt-reference-card {
     height: 270px;
+  }
+}
+.dt-placement-option {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid #d5dfeb;
+  border-radius: 10px;
+  margin: 12px 0;
+  font-weight: 600;
+}
+.dt-placement-option span {
+  grid-column: 2;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 400;
+}
+.dt-brand strong {
+  font-size: 18px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.dt-brand > svg {
+  flex-shrink: 0;
+}
+.dt-brand-button {
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .dt-brand strong {
+    font-size: 15px;
+  }
+  .dt-brand {
+    min-width: 0;
+  }
+  .dt-brand small {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+  .dt-header .dt-account {
+    gap: 4px;
+    font-size: 11px !important;
   }
 }
 

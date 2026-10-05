@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "电拓智训 | 电气控制虚拟实训平台",
+  title: "电气控制实训仿真系统",
   description: "面向职业院校的电气控制虚拟接线与实训教学平台。",
   icons: {
     icon: "/favicon.svg",

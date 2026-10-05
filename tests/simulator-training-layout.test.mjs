@@ -4,7 +4,7 @@ import { build } from "esbuild";
 
 const bundled = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/motor-courses"; export * from "./app/simulator/core/motor-course-assessment"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/duct-layout"; export * from "./app/simulator/core/validation";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
 const { LESSONS, createLessonDocument, createMotorCourseDocument, assessMotorCourse, componentSize, isWireDuct, arrangeTrainingDucts, putWiresInDucts, validateDocument, TRAINING_LAYOUT_REFERENCES, trainingLayoutReference } = await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
-const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type)).map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, ...wire }) => wire), roles: document.roles });
+const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail").map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, ...wire }) => wire), roles: document.roles });
 const overlaps = (a, b) => { const sa = componentSize(a), sb = componentSize(b); return a.position.x < b.position.x + sb.width && a.position.x + sa.width > b.position.x && a.position.y < b.position.y + sb.height && a.position.y + sa.height > b.position.y; };
 
 function assertBetweenChannels(document, id, row) {
@@ -26,7 +26,7 @@ for (const lesson of LESSONS) test(`${lesson.id}: blank and demonstration initia
   assert.equal(ducts.filter(component => component.type === "wire-duct").length, 4);
   assert.equal(ducts.filter(component => component.type === "wire-duct-vertical").length, 2);
   assert.equal(arrangeTrainingDucts(demo), demo, "initialization cannot add a second six-channel layout");
-  for (const duct of ducts) for (const component of demo.components.filter(component => !isWireDuct(component.type))) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
+  for (const duct of ducts) for (const component of demo.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail")) assert.equal(overlaps(duct, component), false, `${duct.id} covers ${component.id}`);
   for (const wire of demo.wires) {
     assert.equal(wire.style, "orthogonal");
     assert.equal(wire.routing, "duct");

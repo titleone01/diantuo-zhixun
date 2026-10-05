@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { pressAndHold } from './gestures.mjs';
 const fixture = JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE, 'utf8'));
 async function login(page, account = 0) {
@@ -50,10 +51,18 @@ for (let number = 1; number <= 10; number++) {
     } else if (number === 7) { await tap(page, roles.sb4); await motor(page, roles.m2, false); await tap(page, roles.sb3); await motor(page, roles.m1, true); await tap(page, roles.sb4); await motor(page, roles.m2, true); await tap(page, roles.sb2); await motor(page, roles.m2, false); await tap(page, roles.sb1); await motor(page, roles.m1, false); }
     else if ([8, 9].includes(number)) {
       await tap(page, roles.sb1); await motor(page, roles.m, number === 9);
+      const kt = page.locator(`[data-device-id="${roles.kt}"]`);
+      await expect(kt).toHaveAttribute('data-component-type', 'timer380-8pin');
+      await expect(kt.locator('[data-timer-indicator="ON"]')).toHaveAttribute('data-lit', 'true');
+      await expect(kt.locator('[data-timer-indicator="UP"]')).toHaveAttribute('data-lit', 'false');
+      await expect(kt.locator('[data-timer-display]')).toHaveText('00:03');
       if (number === 9) await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-connection', 'star');
       for (let second = 0; second < 2; second++) await page.getByRole('button', { name: '推进 1 秒', exact: true }).click();
+      await expect(kt.locator('[data-timer-display]')).toHaveText('00:01');
+      await page.screenshot({ path: path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT, `${lesson}-countdown.png`), fullPage: true });
       await motor(page, roles.m, number === 9); await page.getByRole('button', { name: '推进 1 秒', exact: true }).click(); await motor(page, roles.m, true);
       if (number === 9) await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-connection', 'delta');
+      await page.screenshot({ path: path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT, `${lesson}-running.png`), fullPage: true });
       await tap(page, roles.sb2); await motor(page, roles.m, false);
     } else { await tap(page, roles.sb2); await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-speed', 'low'); await tap(page, roles.sb3); await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-speed', 'high'); await tap(page, roles.sb1); await motor(page, roles.m, false); }
     await page.getByRole('button', { name: '结束仿真', exact: true }).click();
@@ -273,7 +282,7 @@ test('formal course picker creates ten editable blank practices and saves separa
     await page.getByRole('link', { name: '图纸集', exact: true }).click();
     await page.getByRole('tab', { name: /^课程图纸/ }).click();
     await page.locator('.dt-reference-card').filter({ has: page.getByText(projects[index].name, { exact: true }) }).click();
-    await page.getByRole('button', { name: '进入电路配置', exact: true }).click();
+    await page.getByRole('button', { name: '进入电路配置', exact: true }).click(); await page.getByRole('button', { name: '创建练习', exact: true }).click();
     const lessonId = `motor-course-${String(index + 1).padStart(2, '0')}`;
     await expect(page.getByLabel('选择训练课程', { exact: true })).toHaveValue(lessonId);
     await expect(page.locator('.sim-wire')).toHaveCount(0);
@@ -302,7 +311,7 @@ test('course change preserves unsaved original identity and isolates recovery an
   await page.locator('[data-device-id="a"]').click();
   await page.getByRole('button', { name: '复制选中对象', exact: true }).click();
   await expect(page.getByRole('button', { name: '粘贴对象', exact: true })).toBeEnabled();
-  await reveal(); await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-02');
+  await reveal(); await page.getByLabel('选择训练课程', { exact: true }).selectOption('motor-course-02'); await page.getByRole('button', { name: '创建练习', exact: true }).click();
   await expect(page.locator('.sim-wire')).toHaveCount(0);
   const original = await page.request.get(`/api/circuits/${fixture.drafts.clipboard.id}`);
   expect((await original.json()).circuit.title).toBe(fixture.drafts.clipboard.title);

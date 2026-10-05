@@ -1,5 +1,7 @@
 import type { CircuitComponent, CircuitDocument, ComponentType } from './types';
 import { getReferenceDrawing } from './reference-drawings';
+import { arrangeTrainingDucts } from './duct-layout';
+import { isLayoutObject } from './catalog';
 
 /** Choosing a reference changes the teaching context, never the electrical graph. */
 export function selectReferenceDrawing(document: CircuitDocument, id: number): CircuitDocument {
@@ -23,5 +25,11 @@ export function createReferenceDocument(id: number): CircuitDocument {
   ];
   for (const [componentId, type, label, x, y] of items) components.push({ id: componentId, type, label, position: { x, y } });
   return { schemaVersion: 1, title: drawing.title, referenceDiagramId: id, components, wires: [] };
+}
+
+/** Explicit new practice only; loading a saved reference does not rearrange it. */
+export function createReferencePractice(id: number, placement: 'automatic' | 'manual' = 'automatic'): CircuitDocument {
+  const document = arrangeTrainingDucts(createReferenceDocument(id));
+  return placement === 'manual' ? { ...document, components: document.components.filter(c => isLayoutObject(c.type)) } : document;
 }
 

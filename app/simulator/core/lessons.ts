@@ -1,6 +1,7 @@
 import type { CircuitComponent, CircuitDocument, CircuitWire, ComponentType, LessonDefinition, TerminalRef } from "./types";
 import { MOTOR_COURSES, isMotorCourse } from "./motor-courses";
 import { createMotorPracticeDocument } from "./motor-practice-layout";
+import { isLayoutObject } from "./catalog";
 import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 
 export const LESSONS: LessonDefinition[] = [
@@ -14,7 +15,7 @@ export const getLesson = (id: string) => LESSONS.find((lesson) => lesson.id === 
 const component = (id: string, type: ComponentType, label: string, x: number, y: number): CircuitComponent => ({ id, type, label, position:{x,y} });
 const ref = (componentId: string, terminalId: string): TerminalRef => ({componentId,terminalId});
 
-export function createLessonDocument(id: string, options: { wired?: boolean } = {}): CircuitDocument {
+export function createLessonDocument(id: string, options: { wired?: boolean; placement?: "automatic" | "manual" } = {}): CircuitDocument {
   if (isMotorCourse(id)) return createMotorPracticeDocument(id, options);
   const lesson = getLesson(id);
   if (!lesson) throw new Error(`未知课程：${id}`);
@@ -47,5 +48,6 @@ export function createLessonDocument(id: string, options: { wired?: boolean } = 
     if(twoWay){connect("switchA","1","switchB","1","#f59e0b");connect("switchA","2","switchB","2","#f59e0b");connect("switchB","C","lamp","L");}
     else connect("switchA","2","lamp","L");
   }
-  return putWiresInDucts(arrangeTrainingDucts({schemaVersion:1,title:lesson.title,lessonId:id,components,wires:options.wired?wires:[],roles}));
+  const next = putWiresInDucts(arrangeTrainingDucts({schemaVersion:1,title:lesson.title,lessonId:id,components,wires:options.wired?wires:[],roles}));
+  return options.placement === "manual" ? {...next,components:next.components.filter(c=>isLayoutObject(c.type)),wires:[],roles:{}} : next;
 }

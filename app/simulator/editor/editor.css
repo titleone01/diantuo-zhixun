@@ -118,6 +118,8 @@
 .sim-editor .sim-library-item .sim-duct-artwork span { font-size: 8px; letter-spacing: 1px; }
 .sim-document-preview { width: 100%; height: 100%; display: block; background: #f5f7fa; }
 .sim-preview-device > .sim-device-artwork { display: block; width: 100%; height: 100%; object-fit: contain; }
+.sim-preview-device { position: relative; }
+.sim-rotated-artwork > .sim-device-artwork { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
 .sim-editor .sim-device-node.is-selected { outline-color: #4a97ff; box-shadow: 0 0 0 3px #3883f615; background: #3478f603; }
 .sim-editor .sim-device-node.has-diagnostic { outline-color: #ef5f64; box-shadow: 0 0 0 4px #f8717125; }
 .sim-editor .sim-device-node.is-active .sim-device-artwork { filter: drop-shadow(0 0 4px #34b17a60); }
@@ -337,3 +339,12 @@
 .sim-routing-notice { position: absolute; left: 24px; bottom: 76px; max-width: min(480px, calc(100% - 48px)); padding: 8px 12px; border: 1px solid #e8c37a; border-radius: 5px; background: #fff8e7; color: #805b20; font-size: 12px; z-index: 5; pointer-events: none; }
 .sim-routing-notice b, .sim-routing-notice span { display: block; }
 .sim-routing-notice span { margin-top: 3px; line-height: 1.5; }
+
+.sim-rail-artwork{background:repeating-linear-gradient(90deg,transparent 0 32px,#606a7020 33px 40px),linear-gradient(#83919a 0 4px,#e2e8ed 4px 8px,#aab6c0 8px 16px,#e2e8ed 16px 20px,#83919a 20px);border:1px solid #71808a;}
+.sim-timer-controls{position:absolute;top:74%;left:16%;width:68%;display:flex;justify-content:space-between;gap:5px;}
+.sim-timer-controls button{font-size:10px;border:1px solid #858b8c;border-radius:12px;background:#f1f1ed;padding:2px 10px;cursor:pointer;}
+.sim-legacy-timer-warning{position:absolute;top:100%;background:#fff0cc;font-size:10px;white-space:nowrap;}
+.sim-course-checklist{padding:8px 12px;border-bottom:1px solid #dae2ea;font-size:12px;max-height:260px;overflow:auto;}
+.sim-course-checklist summary{cursor:pointer;font-weight:600;}.sim-course-checklist p{font-size:11px;color:#607080;}.sim-course-checklist div{display:flex;justify-content:space-between;padding:3px 0;gap:8px;}.sim-course-checklist button{border:1px solid #ccd8e0;border-radius:4px;padding:3px 6px;background:#edf5ff;}.sim-role-binding{padding:10px;display:flex;flex-direction:column;gap:5px;font-size:12px;}
+
+.sim-course-checklist small{display:block;font-size:10px;font-weight:400;color:#64748b;line-height:1.4;margin-top:3px}

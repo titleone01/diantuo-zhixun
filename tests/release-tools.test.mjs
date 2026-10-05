@@ -95,6 +95,19 @@ test('activation and rollback check saved drafts, publications, terminals, field
     await writeFile(path.join(release, 'document-contract.json'), JSON.stringify(narrower)); await seal();
     await rejected(/lacks stored terminals/);
     await writeFile(path.join(release, 'document-contract.json'), JSON.stringify(contract)); await seal();
+    const oldContract = { ...contract, fields: { ...contract.fields, component: contract.fields.component.filter(field => field !== 'rotation') }, components: contract.components.filter(component => !['din-rail', 'relay380-jzc1-22', 'timer380-8pin'].includes(component.type)) };
+    await writeFile(path.join(release, 'document-contract.json'), JSON.stringify(oldContract)); await seal();
+    for (const component of [
+      { ...document.components[0], type: 'supply', rotation: 90 },
+      { ...document.components[0], type: 'din-rail', size: { width: 420, height: 24 } },
+      { ...document.components[0], type: 'relay380-jzc1-22' },
+      { ...document.components[0], type: 'timer380-8pin', settings: { delayMs: 3000 } },
+    ]) {
+      db.prepare('UPDATE circuits SET document=?').run(JSON.stringify({ ...document, components: [component], wires: [] }));
+      await rejected(/cannot interpret|lacks stored/);
+    }
+    db.prepare('UPDATE circuits SET document=?').run(JSON.stringify(document));
+    await writeFile(path.join(release, 'document-contract.json'), JSON.stringify(contract)); await seal();
     db.exec("INSERT INTO d1_migrations VALUES('0002_future.sql')");
     await rejected(/schema differ/);
   } finally { db.close(); }

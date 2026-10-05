@@ -348,7 +348,7 @@ test('automatic and all three manual styles remain distinct and restore preserve
   } finally { restore(); }
 });
 
-test('new straight connections use ducts while old manual wires and no-duct connections retain their geometry', () => {
+test('explicit straight connections stay manual with or without ducts', () => {
   const restore = environment();
   try {
     const base = example();
@@ -357,7 +357,7 @@ test('new straight connections use ducts while old manual wires and no-duct conn
     ui.find(node => node.type === 'select' && node.props['aria-label'] === '线条样式').props.onChange({ target: { value: 'straight' } }); ui.render();
     ui.find(node => Array.isArray(node.props?.nodes)).props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' }); ui.render();
     assert.deepEqual(ui.document().wires.slice(0, -1), original.wires);
-    assert.equal(ui.document().wires.at(-1).style, 'straight'); assert.equal(ui.document().wires.at(-1).routing, 'duct');
+    assert.equal(ui.document().wires.at(-1).style, 'straight'); assert.equal(ui.document().wires.at(-1).routing, undefined);
     assert.equal(validateDocument(ui.document()).valid, true);
     const free = editor({ ...original, components: original.components.filter(component => !component.type.startsWith('wire-duct')) });
     free.find(node => node.type === 'select' && node.props['aria-label'] === '线条样式').props.onChange({ target: { value: 'straight' } }); free.render();
@@ -366,7 +366,7 @@ test('new straight connections use ducts while old manual wires and no-duct conn
   } finally { restore(); }
 });
 
-test('missing duct feedback survives toast dismissal and reload while no-duct new wires use a manual path', () => {
+test('missing duct feedback persists after connection and reload, without misleading manual-wire notices', () => {
   const restore = environment();
   try {
     const base = example();
@@ -375,8 +375,10 @@ test('missing duct feedback survives toast dismissal and reload while no-duct ne
     const notice = () => ui.find(node => node.props?.['aria-label'] === '自动走线提示');
     assert.ok(notice(), 'a saved failed route immediately exposes persistent feedback');
     ui.find(node => Array.isArray(node.props?.nodes)).props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' }); ui.render();
-    assert.equal(ui.document().wires.at(-1).style, 'orthogonal'); assert.equal(ui.document().wires.at(-1).routing, undefined);
-    assert.ok(ui.button('关闭提示')); ui.button('关闭提示').props.onClick(); ui.render(); assert.ok(notice());
+    assert.equal(ui.document().wires.at(-1).style, 'orthogonal'); assert.equal(ui.document().wires.at(-1).routing, 'duct');
+    assert.ok(notice());
+    const manual = editor({ ...saved, wires: saved.wires.map(wire => ({ ...wire, routing: undefined })) });
+    assert.equal(manual.find(node => node.props?.['aria-label'] === '自动走线提示'), undefined);
     const loaded = editor(structuredClone(ui.document()));
     assert.ok(loaded.find(node => node.props?.['aria-label'] === '自动走线提示'), 'feedback is derived from saved geometry on reload');
     assert.deepEqual(saved.components, base.components.filter(component => !component.type.startsWith('wire-duct')), 'opening a legacy graph does not rearrange it');

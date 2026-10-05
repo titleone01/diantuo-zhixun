@@ -3,9 +3,9 @@ export type ComponentSize = { width: number; height: number };
 export type DrawingKind = "schematic" | "layout";
 export type DrawingMediaType = "image/png" | "image/jpeg" | "image/webp" | "application/pdf";
 export type DrawingAttachment = { mediaId: string; type: DrawingMediaType };
-export type ComponentType = "supply" | "breaker3" | "breaker1" | "knife-switch3" | "fuse" | "fuse3" | "fuse2" | "terminal-strip16" | "contactor220" | "contactor380" | "overload" | "push-no" | "push-nc" | "push-latching-red" | "push-latching-green" | "switch1" | "switch2" | "lamp" | "motor" | "terminal" | "pe-terminal" | "auxiliary-no" | "relay380" | "timer380" | "limit-switch" | "motor-star-delta" | "motor-dahlander" | "wire-duct" | "wire-duct-vertical";
+export type ComponentType = "supply" | "breaker3" | "breaker1" | "knife-switch3" | "fuse" | "fuse3" | "fuse2" | "terminal-strip16" | "contactor220" | "contactor380" | "overload" | "push-no" | "push-nc" | "push-latching-red" | "push-latching-green" | "switch1" | "switch2" | "lamp" | "motor" | "terminal" | "pe-terminal" | "auxiliary-no" | "relay380" | "timer380" | "limit-switch" | "motor-star-delta" | "motor-dahlander" | "wire-duct" | "wire-duct-vertical" | "din-rail" | "relay380-jzc1-22" | "timer380-8pin";
 export type TerminalRef = { componentId: string; terminalId: string };
-export type CircuitComponent = { id: string; type: ComponentType; label: string; position: Point; size?: ComponentSize; linkedTo?: string; settings?: { delayMs: number } };
+export type CircuitComponent = { id: string; type: ComponentType; label: string; position: Point; rotation?: 0 | 90 | 180 | 270; size?: ComponentSize; linkedTo?: string; settings?: { delayMs: number } };
 export type CircuitWire = { id: string; from: TerminalRef; to: TerminalRef; color: string; waypoints?: Point[]; style?: "orthogonal" | "straight" | "curve"; routing?: "duct" };
 export type CircuitDocument = {
   schemaVersion: 1;
@@ -26,7 +26,7 @@ export type CircuitDocument = {
 export function documentMediaIds(document: CircuitDocument): string[] {
   return [...new Set([document.drawingMediaId, document.projectDrawings?.schematic?.mediaId, document.projectDrawings?.layout?.mediaId].filter((id): id is string => !!id))];
 }
-export type Terminal = { id: string; label: string; x: number; y: number; side: "top" | "bottom" | "left" | "right"; electrical?: "phase" | "neutral" | "earth" | "contact" | "coil" | "load"; color?: string };
+export type Terminal = { id: string; label: string; x: number; y: number; side: "top" | "bottom" | "left" | "right"; electrical?: "phase" | "neutral" | "earth" | "contact" | "coil" | "load"; color?: string; routingRole?: "internal" | "external" };
 export type ContactDefinition = { id: string; terminals: [string, string]; control: "switch" | "push" | "coil" | "overload" | "timer"; normallyClosed?: boolean; throw?: boolean };
 export type ComponentDefinition = { type: ComponentType; name: string; category: "power" | "industrial" | "lighting" | "terminals"; width: number; height: number; terminals: Terminal[]; description: string; fixedConnections?: [string, string][]; contacts?: ContactDefinition[]; load?: { kind: "coil" | "lamp" | "motor"; terminals: string[]; ratedVoltage: 220 | 380; motorModel?: "three-lead" | "star-delta" | "dahlander" } };
 export type Potential = "L1" | "L2" | "L3" | "N" | "PE" | "floating" | "conflict";

@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-05T08:47:34.944Z",
+  "typecheck": "passed",
+  "lint": {
+    "errors": 0,
+    "warnings": 11
+  },
+  "build": "passed",
+  "pages": "passed",
+  "tests": {
+    "total": 565,
+    "passed": 564,
+    "skipped": 1,
+    "failed": 0,
+    "skipReason": "backend.integration.test.mjs requires isolated fixture variables; separately executed below"
+  },
+  "backend": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "directory": "C:/Users/admin/AppData/Local/Temp/diantuo-backend-test-jgnoTL"
+  },
+  "recovery": {
+    "status": "passed",
+    "evidence": "recovery.json"
+  },
+  "productionUpdated": false
+}

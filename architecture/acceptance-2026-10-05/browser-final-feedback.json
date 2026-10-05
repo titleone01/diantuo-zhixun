@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-05T08:42:25.093Z",
+  "status": "passed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "feedback 20261005: rotation, drag, undo, zoom, copy, reload and immutable publication",
+      "status": "passed",
+      "durationMs": 3668,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: manual course 01 uses student IDs, actual placement and terminal drags",
+      "status": "passed",
+      "durationMs": 9479,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: numeric KT screen, ON UP, pause step, loss and restart",
+      "status": "passed",
+      "durationMs": 1392,
+      "errors": []
+    },
+    {
+      "title": "feedback 20261005: explicit legacy upgrade creates a copy and leaves original snapshot intact",
+      "status": "passed",
+      "durationMs": 1346,
+      "errors": []
+    }
+  ]
+}

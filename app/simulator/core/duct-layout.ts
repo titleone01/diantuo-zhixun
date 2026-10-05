@@ -1,4 +1,4 @@
-import { componentSize, getDefinition, isWireDuct } from "./catalog";
+import { componentSize, getDefinition, isLayoutObject, isWireDuct } from "./catalog";
 import type { CircuitComponent, CircuitDocument } from "./types";
 
 type LayoutReference = { file: string; rows: string[][]; buttons: string[]; limits?: string[] };
@@ -24,7 +24,7 @@ function referenceFor(document: CircuitDocument): LayoutReference {
   const own = document.lessonId && TRAINING_LAYOUT_REFERENCES[document.lessonId];
   if (own) return own;
   const ids = (types: string[]) => document.components.filter(component => types.includes(component.type)).map(component => component.id);
-  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "auxiliary-no"]), ids(["overload", "terminal"])];
+  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
   return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document.components.filter(component => buttonTypes.has(component.type)).map(component => component.id), limits: ids(["limit-switch"]) };
 }
 export const trainingLayoutReference = (document: CircuitDocument) => referenceFor(document).file;
@@ -52,10 +52,11 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   const earths = document.components.filter(component => component.type === "pe-terminal");
   const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths].map(component => component.id));
   // Custom intermediary terminals use the XT area in the existing reference.
-  const terminals = document.components.filter(component => !placed.has(component.id));
+  const terminals = document.components.filter(component => !placed.has(component.id) && !isLayoutObject(component.type));
   const width = Math.max(880, ...rows.map(row => rowWidth(row) + CLEARANCE * 2 + DUCT_WIDTH));
   const positions = new Map<string, { x: number; y: number }>();
   const channels: number[] = [0];
+  const rails: CircuitComponent[] = [];
   let y = 0;
   for (const [index, row] of rows.entries()) {
     const height = Math.max(index === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map(component => componentSize(component).height));
@@ -65,6 +66,7 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
       positions.set(component.id, { x, y: y + DUCT_WIDTH / 2 + CLEARANCE });
       x += componentSize(component).width;
     }
+    if(row.length && !document.components.some(c=>c.type==="din-rail"))rails.push({id:`training-rail-${index+1}`,type:"din-rail",label:`导轨${index+1}`,position:{x:16,y:y+DUCT_WIDTH/2+CLEARANCE+height/2-12},size:{width:width-32,height:24}});
     y += DUCT_WIDTH + CLEARANCE * 2 + height;
     channels.push(y);
   }
@@ -100,8 +102,8 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   for (const center of channels) add(false, -DUCT_WIDTH / 2, center, width + DUCT_WIDTH);
   add(true, 0, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
   add(true, width, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
-  if (width + DUCT_WIDTH > 4000 || bottom + DUCT_WIDTH > 4000 || document.components.length + ducts.length > 200) throw new Error("元件过多或布局过大，请按参考图分组调整布局。");
-  return { ...document, components: [...document.components.map(component => ({ ...component, position: positions.get(component.id) ?? component.position })), ...ducts] };
+  if (width + DUCT_WIDTH > 4000 || bottom + DUCT_WIDTH > 4000 || document.components.length + ducts.length + rails.length > 200) throw new Error("元件过多或布局过大，请按参考图分组调整布局。");
+  return { ...document, components: [...document.components.map(component => ({ ...component, position: positions.get(component.id) ?? component.position })), ...ducts,...rails] };
 }
 
 export function putWiresInDucts(document: CircuitDocument): CircuitDocument {

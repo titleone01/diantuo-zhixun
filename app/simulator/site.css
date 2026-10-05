@@ -16,3 +16,6 @@
 
 .dt-device-card>.sim-supply-artwork{height:31px;align-self:center}.dt-component-detail>.sim-supply-artwork{height:43px}.dt-device-card>.sim-supply-artwork .sim-supply-name,.dt-component-detail>.sim-supply-artwork .sim-supply-name{font-size:4px}
 @media(max-width:650px){.dt-reference-grid{grid-template-columns:1fr}.dt-reference-card{height:270px}}
+
+.dt-placement-option{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:18px;border:1px solid #d5dfeb;border-radius:10px;margin:12px 0;font-weight:600}.dt-placement-option span{grid-column:2;color:#64748b;font-size:14px;font-weight:400}.dt-brand strong{font-size:18px;letter-spacing:0;white-space:nowrap}.dt-brand>svg{flex-shrink:0}.dt-brand-button{flex-shrink:0}
+@media(max-width:600px){.dt-brand strong{font-size:15px}.dt-brand{min-width:0}.dt-brand small{font-size:9px;letter-spacing:0}.dt-header .dt-account{gap:4px;font-size:11px!important}}

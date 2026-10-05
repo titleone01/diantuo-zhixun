@@ -45,7 +45,9 @@ function assertNoBodyReentry(document,ref,points){
     const size=duct.size??getDefinition(duct.type);
     return point.x>=duct.position.x&&point.x<=duct.position.x+size.width&&point.y>=duct.position.y&&point.y<=duct.position.y+size.height;
   }));
-  assert.ok(entryIndex>0,"entrance reaches a duct");
+  if(terminal.side==="bottom" && body.type==="terminal-strip16")assert.equal(entryIndex,-1,"external tail must not return to a duct");
+  else if(body.type.startsWith("motor") && points.every(p=>p.y>Math.max(...ducts.map(c=>c.position.y+(c.size??getDefinition(c.type)).height))))assert.equal(entryIndex,-1);
+  else assert.ok(entryIndex>0,"entrance reaches a duct");
   for(let i=1;i<entryIndex;i++){
     const a=points[i],b=points[i+1];assert.ok(a.x===b.x||a.y===b.y,"entrance remains orthogonal");
     const crosses=a.x===b.x?a.x>left&&a.x<right&&Math.max(a.y,b.y)>top&&Math.min(a.y,b.y)<bottom:a.y>top&&a.y<bottom&&Math.max(a.x,b.x)>left&&Math.min(a.x,b.x)<right;

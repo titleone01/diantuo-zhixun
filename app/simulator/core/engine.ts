@@ -1,4 +1,4 @@
-import { getDefinition } from "./catalog";
+import { getDefinition, isTimer, equivalentComponentType } from "./catalog";
 import { createLessonDocument, getLesson } from "./lessons";
 import { validateDocument } from "./validation";
 import { terminalKey } from "./types";
@@ -105,7 +105,7 @@ function unsupportedSeries(document:CircuitDocument,net:Network){
 const timerDelay = (component:CircuitComponent) => component.settings?.delayMs??3000;
 function updateTimers(document:CircuitDocument,runtime:Runtime) {
   const timers=runtime.timers??(runtime.timers={}),now=runtime.timeMs??0;
-  for(const component of document.components.filter(c=>c.type==="timer380")) {
+  for(const component of document.components.filter(c=>isTimer(c.type))) {
     const old=timers[component.id],energized=!!runtime.contactors[component.id]&&runtime.powerOn&&!runtime.faultLatched;
     if(!energized){timers[component.id]={energized:false,startedAt:null,elapsedMs:0,done:false};continue;}
     const startedAt=old?.energized&&old.startedAt!==null?old.startedAt:now;
@@ -215,7 +215,7 @@ function settleCircuit(document:CircuitDocument,previousRuntime?:Runtime,action?
   net=network(document,runtime,{openPushContacts,openLatchingContacts});
   const components:Record<string,ComponentRuntime>={},terminals:Record<string,TerminalState>={};
   for(const c of document.components){const def=getDefinition(c.type);for(const t of def.terminals){const id=key(c.id,t.id),potentials=net.potentials(id);terminals[id]={netId:net.root(id),potential:potentials.length>1?"conflict":potentials[0]??"floating",energized:potentials.some(phase)};}
-    if(def.load?.kind==="coil"){const v=voltage(net,key(c.id,"A1"),key(c.id,"A2"));components[c.id]={active:!!runtime.contactors[c.id],state:runtime.contactors[c.id]?"engaged":"released",voltage:v.value};if(c.type==="timer380"){const timer=runtime.timers?.[c.id];components[c.id]={...components[c.id],state:timer?.energized?(timer.done?"done":"timing"):"released",elapsedMs:timer?.elapsedMs??0,remainingMs:Math.max(0,timerDelay(c)-(timer?.elapsedMs??0))};}if(runtime.powerOn&&v.value===undefined&&!v.earth)diagnostics.push(diagnostic("OPEN_CONTROL_PATH",`${c.label} 线圈尚未形成完整供电与返回路径`,"info",[key(c.id,"A1"),key(c.id,"A2")]));}
+    if(def.load?.kind==="coil"){const v=voltage(net,key(c.id,def.load.terminals[0]),key(c.id,def.load.terminals[1]));components[c.id]={active:!!runtime.contactors[c.id],state:runtime.contactors[c.id]?"engaged":"released",voltage:v.value};if(isTimer(c.type)){const timer=runtime.timers?.[c.id];components[c.id]={...components[c.id],state:timer?.energized?(timer.done?"done":"timing"):"released",elapsedMs:timer?.elapsedMs??0,remainingMs:Math.max(0,timerDelay(c)-(timer?.elapsedMs??0))};}if(runtime.powerOn&&v.value===undefined&&!v.earth)diagnostics.push(diagnostic("OPEN_CONTROL_PATH",`${c.label} 线圈尚未形成完整供电与返回路径`,"info",[key(c.id,def.load.terminals[0]),key(c.id,def.load.terminals[1])]));}
     else if(def.load?.kind==="lamp"){const a=key(c.id,"L"),b=key(c.id,"N"),v=voltage(net,a,b);const active=runtime.powerOn&&!runtime.faultLatched&&!v.earth&&v.value===220;components[c.id]={active,state:active?"lit":"dark",voltage:v.value};if(v.earth)diagnostics.push(diagnostic("EARTH_AS_RETURN",`${c.label} 不能使用 PE 作为工作返回导体`,"error",[a,b]));else if(v.value&&v.value!==220)diagnostics.push(diagnostic("LOAD_VOLTAGE_MISMATCH",`${c.label} 额定 220V，当前为 ${v.value}V`,"error",[a,b]));}
     else if(def.load?.kind==="motor"){const motor=motorState(document,c,net,runtime);components[c.id]=motor.state;diagnostics.push(...motor.diagnostics);supported&&=motor.supported;}
     else if(c.type==="supply")components[c.id]={active:runtime.powerOn&&!runtime.faultLatched,state:runtime.faultLatched?"fault":runtime.powerOn?"on":"off"};
@@ -245,7 +245,7 @@ export function simulate(document:CircuitDocument,previousRuntime?:Runtime,actio
       // Keep evidence from every elapsed deadline, even if a later contact restores a valid final network.
       // An ordinary open-winding conversion gap is not a fault latch or an unsupported network.
       earlierHazards.push(...result.diagnostics.filter(d=>d.severity==="error"||["PE_MISSING","MOTOR_PHASE_MISSING"].includes(d.code)).map(d=>({...d,event:d.event??`虚拟时间 ${now}ms`})));
-      const deadlines=document.components.filter(c=>c.type==="timer380").flatMap(c=>{const timer=result.runtime.timers?.[c.id];const at=timer?.energized&&!timer.done&&timer.startedAt!==null?timer.startedAt+timerDelay(c):undefined;return at!==undefined&&at>now&&at<=target?[at]:[];});
+      const deadlines=document.components.filter(c=>isTimer(c.type)).flatMap(c=>{const timer=result.runtime.timers?.[c.id];const at=timer?.energized&&!timer.done&&timer.startedAt!==null?timer.startedAt+timerDelay(c):undefined;return at!==undefined&&at>now&&at<=target?[at]:[];});
       const next=deadlines.length?Math.min(...deadlines):target;
       const runtime=copyRuntime(result.runtime);runtime.timeMs=next;result=settleCircuit(document,runtime);
       if(next>=target||result.runtime.faultLatched)return summarize();
@@ -274,7 +274,7 @@ function roleBindings(document:CircuitDocument,lessonId:string){
   for(const [role,standardId] of Object.entries(standard.roles??{})){
     const expected=standard.components.find(c=>c.id===standardId)!;
     const bound=document.roles?.[role];
-    const candidates=bound?document.components.filter(c=>c.id===bound&&c.type===expected.type):document.components.filter(c=>c.type===expected.type);
+    const candidates=bound?document.components.filter(c=>c.id===bound&&equivalentComponentType(c.type,expected.type)):document.roles?[]:document.components.filter(c=>equivalentComponentType(c.type,expected.type));
     if(candidates.length===1)roles[role]=candidates[0].id;else diagnostics.push(diagnostic("LESSON_ROLE_MISSING",`课程角色 ${expected.label} 缺少唯一且类型匹配的元件绑定`,"warning",[],[],bound?[bound]:[]));
   }
   return {roles,diagnostics};

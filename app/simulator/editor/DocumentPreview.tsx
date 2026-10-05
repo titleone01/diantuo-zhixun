@@ -1,4 +1,4 @@
-import { componentSize } from "../core/catalog";
+import { componentSize, isLayoutObject } from "../core/catalog";
 import type { CircuitDocument } from "../core/types";
 import DeviceArtwork from "./DeviceArtwork";
 import { curveControlPoints, wirePath, wireRoute } from "./geometry";
@@ -23,14 +23,14 @@ export default function DocumentPreview({ document, className = "" }: { document
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
   const device = ({ component, definition }: typeof boxes[number]) => <g key={component.id}>
-    <foreignObject x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}><div className="sim-preview-device" style={{ width: definition.width, height: definition.height }}><DeviceArtwork type={component.type} /></div></foreignObject>
+    <foreignObject x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}><div className="sim-preview-device" style={{ width: definition.width, height: definition.height }}><DeviceArtwork type={component.type} rotation={component.rotation} delayMs={component.settings?.delayMs} /></div></foreignObject>
     <text x={component.position.x + definition.width / 2} y={component.position.y + definition.height + 16} textAnchor="middle" fill="#536579" fontSize="10">{component.label}</text>
   </g>;
   return <svg className={`sim-document-preview ${className}`} viewBox={`${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`} role="img" aria-label={`${document.title}的实际接线快照`}>
-    {boxes.filter(({ component }) => component.type.startsWith("wire-duct")).map(device)}
+    {boxes.filter(({ component }) => isLayoutObject(component.type)).map(device)}
     {document.wires.map(wire => <path key={wire.id} d={wirePath(document, wire)} fill="none" stroke={wire.color} strokeWidth={3} vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round" />)}
-    {boxes.filter(({ component }) => !component.type.startsWith("wire-duct")).map(device)}
-    {boxes.filter(({ component }) => !component.type.startsWith("wire-duct")).map(({component, definition}) => <g key={`leads-${component.id}`}>
+    {boxes.filter(({ component }) => !isLayoutObject(component.type)).map(device)}
+    {boxes.filter(({ component }) => !isLayoutObject(component.type)).map(({component, definition}) => <g key={`leads-${component.id}`}>
       <defs><clipPath id={`preview-leads-${component.id}`}><rect x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}/></clipPath></defs>
       <g clipPath={`url(#preview-leads-${component.id})`}>{document.wires.filter(wire => wire.from.componentId === component.id || wire.to.componentId === component.id).map(wire => <path key={wire.id} d={wirePath(document,wire)} fill="none" stroke={wire.color} strokeWidth={3} vectorEffect="non-scaling-stroke" strokeLinejoin="round" strokeLinecap="round"/>)}</g>
     </g>)}

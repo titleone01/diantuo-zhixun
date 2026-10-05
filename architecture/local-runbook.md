@@ -19,7 +19,7 @@ node scripts/test-training-drawings.mjs --url "http://127.0.0.1:<测试端口>" 
 
 当前成员站采用 React 界面、Cloudflare Worker API、Better Auth 登录、D1 数据库和私有 R2 附件。业务数据保存在本机；2026-09-30 经用户确认，通过独立 Cloudflare Tunnel 提供固定 HTTPS 入口。建议 Node.js 24，最低版本见 `package.json`。
 
-版本化运行、停写备份、空新目录恢复及保留最新state的代码回退见[发布恢复手册](releases-and-recovery.md)。现有启动方式仍保留，正式切换尚未实施。`start:release`不会构建、迁移或初始化；日常检查用`npm run check`，完整隔离验收用`check:extended`。
+版本化运行、停写备份、空新目录恢复及保留最新state的代码回退见[发布恢复手册](releases-and-recovery.md)。`start:local` 和桌面快捷方式在发现 `.wrangler/active-release.json` 后直接启动已激活产物，继续使用原来的 `.wrangler/state`，不再构建开发源码、迁移或初始化管理员。激活指针或产物损坏时拒绝启动，不自动退回开发版本。未激活版本的开发环境继续沿用下文原启动流程；日常检查用`npm run check`，完整隔离验收用`check:extended`。
 
 ## 启动和停止
 

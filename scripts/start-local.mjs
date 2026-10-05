@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { lstat } from "node:fs/promises";
 import { connect } from "node:net";
 import { resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
@@ -45,6 +46,24 @@ if (await portOccupied()) {
   }
   console.error("3000 端口已被其他服务占用；未停止或修改该服务。请先在对应终端停止它后再运行。");
   process.exit(1);
+}
+
+// Once an operator activates an immutable release, the existing desktop entry
+// must keep using that release and the original state. Never silently fall back
+// to building development sources when an activated release is invalid.
+const releaseRuntime = resolve(root, ".wrangler");
+let releaseInstalled = false;
+try {
+  const pointer = await lstat(resolve(releaseRuntime, "active-release.json"));
+  if (!pointer.isFile() || pointer.isSymbolicLink()) throw new Error("Invalid active release pointer");
+  releaseInstalled = true;
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
+if (releaseInstalled) {
+  process.argv = [process.execPath, resolve(root, "scripts/start-release.mjs"), releaseRuntime, "3000"];
+  await import("./start-release.mjs");
+  process.exit(process.exitCode ?? 0);
 }
 
 await run(["scripts/bootstrap-admin.mjs", "--prepare"]);
