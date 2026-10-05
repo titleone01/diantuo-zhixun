@@ -911,7 +911,7 @@
   }
 }
 
-/* E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/style.css */
+/* node_modules/@xyflow/react/dist/style.css */
 .react-flow {
   direction: ltr;
   --xy-edge-stroke-default: #b1b1b7;
@@ -5370,7 +5370,7 @@ svg.react-flow__connectionline {
   }
 }
 
-/* E:/vibecoding/电拓智训/node_modules/tailwindcss/index.css */
+/* node_modules/tailwindcss/index.css */
 @media source(none) {
   @layer theme, base, components, utilities;
   @layer theme {
