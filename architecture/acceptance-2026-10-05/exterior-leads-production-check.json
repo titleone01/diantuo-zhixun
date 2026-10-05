@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-05T11:30:05.207Z",
+  "steps": [
+    {
+      "name": "TypeScript",
+      "code": 0,
+      "elapsedMs": 2756.4962
+    },
+    {
+      "name": "Lint",
+      "code": 0,
+      "elapsedMs": 8566.557700000001
+    },
+    {
+      "name": "Schema",
+      "code": 0,
+      "elapsedMs": 152.31940000000031
+    },
+    {
+      "name": "Production build",
+      "code": 0,
+      "elapsedMs": 7902.575600000002
+    },
+    {
+      "name": "Pages build",
+      "code": 0,
+      "elapsedMs": 659.6166999999987
+    },
+    {
+      "name": "Offline regressions",
+      "code": 0,
+      "elapsedMs": 9210.9058
+    },
+    {
+      "name": "Isolated backend",
+      "code": 0,
+      "elapsedMs": 13765.125999999997
+    }
+  ]
+}

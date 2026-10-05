@@ -66,3 +66,17 @@
 运行后与本次停写恢复副本比较，42 个用户、57 份草稿、46 份作品、20 张课程图纸、66 份媒体均保留；业务表内容哈希及全部附件字节一致，所有 SQLite 完整性及外键检查通过。当前诊断 PID 为入口 14456、Wrangler lease 35380、3000 监听 39860、Tunnel 管理 39496、cloudflared 35184；只用于此次证据，后续操作必须重新核对。
 
 脱敏证据：[合并检查](acceptance-2026-10-05/combined-fixes-check.json)、[五项浏览器验证](acceptance-2026-10-05/combined-fixes-browser.json)、[实际正式资源](acceptance-2026-10-05/combined-fixes-production-smoke.json)、[数据保留](acceptance-2026-10-05/combined-fixes-production-preservation.json)。本次未推送 Git 远端；正式运行产物的应用代码来源保持为已验收的 `aa1dded`。
+
+## 同日 19:33 线槽外引线修复发布
+
+用户在原走线修复聊天上线后继续要求“这个在外面的线，有的时候也会乱窜，也需要解决一下”。本聊天核对原始消息及此前“把两项修复统一上线”的授权，继续作为唯一正式服务切换负责人。快进合并 `codex/external-lead-routing-20261005` 的 `5eb85e65e4b1fe44764b7c2869b114d9d321db50`，保留此前代码和发布记录。修改按同侧端子几何顺序安排有限外线转弯、绕实际遮挡物，同总长优先较短外线，拒绝完整路径自交；PE 内部/外部路由角色不改变端子 ID 或电气连接。手工导线没有自动转换，不能扩大为任意端子连接均无交叉。
+
+在最终主目录重新执行 typecheck、lint、build、build:pages、全部 Node 回归和隔离后台：570 通过、1 条后台环境条件跳过，后台 25/25，lint 0 错误/11 条既有警告。六项 Chromium 检查全部通过，包含电机真实端子拖线及移动/缩放/保存重载后的外线分离与端点一致性、原入槽和 KT 布局、复制撤销与旧导线导入。检查均使用独立临时账号及业务库。
+
+Pages 重建提交 `e801b5f` 后，以干净最终源码构建全新不可变发布包，发布 ID 为 `6d0c48c81f5b7ccb161d7e3138e06fd06719afc3b2e6a3d8d05f7cff80f17d3f`，路径为 `C:\Users\admin\diantuo-production\20261005-193031-exterior-leads\release`。重新核对当前服务与 Tunnel 进程树后停写，将最新完整 state/WAL/SHM、私有配置和 `.local/` 备份至同一受限目录的 `backup`，恢复到新的独立目录，90 个状态文件逐字节及 SQLite 完整性/外键、业务哈希和附件均核验通过。没有执行迁移，没有覆盖或恢复原业务库。
+
+19:33 通过目标文档及迁移兼容门禁激活原 `.wrangler/active-release.json`，沿用原 `start:local`、`start-tunnel`、`.wrangler/state/` 和固定公网入口。重连初期公网一次返回 530；Tunnel 就绪恢复后重新完成整个只读核验。本机与公网首页、新脚本 `/assets/app-6RBKHFCR.js`、现有 KT 样式 `/assets/app-E4OPTFZL.css` 均返回 200，字节哈希与新包一致；JS SHA-256 为 `7f7779ea083a11aa9457b8085592f2e23fecb61cdb8a143b670637a32c9cf09a`。匿名会话为 200，草稿/图纸访问为 401，Tunnel `/ready` 为 200。真实 Chromium 公网登录页正常、无页面脚本错误；没有使用正式密码登录或写测试数据。
+
+19:35 与本次停写恢复副本比较，42 个用户、57 份草稿、46 份作品、20 张课程图纸、66 份媒体均保留，业务表哈希及所有附件字节一致，SQLite 完整性及外键检查通过。当前诊断 PID 为入口 41288、Wrangler lease 33536、3000 监听 13520、Tunnel 管理 29192、cloudflared 36844，仅用于本次证据，后续操作必须重新核对。
+
+脱敏证据：[主目录完整检查](acceptance-2026-10-05/exterior-leads-production-check.json)、[主目录六项浏览器验证](acceptance-2026-10-05/exterior-leads-final-browser.json)、[正式资源及访问控制](acceptance-2026-10-05/exterior-leads-production-smoke.json)、[业务数据保持](acceptance-2026-10-05/exterior-leads-production-preservation.json)。旧发布包、原指针副本和历史备份均保留；本次未推送 Git 远端。
