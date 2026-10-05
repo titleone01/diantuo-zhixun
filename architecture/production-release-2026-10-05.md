@@ -50,3 +50,19 @@
 17:37–17:38 核验：本机及公网首页、JS、CSS 均 200，字节哈希与新发布包一致；匿名会话 200，草稿及课程图纸接口仍 401；Tunnel `/ready` 为 200。真实 Chromium 显示公网登录页且无页面脚本错误；未使用正式密码登录或创建测试数据。重启后 42 个用户、57 份草稿、46 份作品、20 张课程图纸、66 份媒体，以及业务记录哈希和全部附件字节，与停写恢复副本一致。
 
 脱敏证据：[新版接口及资源](acceptance-2026-10-05/timer-layout-production-smoke.json)、[业务数据保持](acceptance-2026-10-05/timer-layout-production-preservation.json)。上述新包已在正式站运行，后续文档提交不改变应用产物来源；本次未推送 Git 远端。
+
+## 同日 17:57 两项修复统一发布
+
+在「修复线槽内导线打结」聊天中，用户明确要求“把两项修复统一上线”。本聊天读取该聊天的原始用户消息核对授权，成为唯一正式服务切换负责人。源码分支 `codex/duct-entry-fix-20261005`（`aa1dded06b5ffd8f4dba061fa06c37320957ede9`）通过合并提交 `9170062` 整合到当前分支，保留计时器修复、此前发布记录与全部证据。应用代码、测试及依赖文件与已验证合并包的源码一致；Pages 按合并源码重建并提交 `545c433`。
+
+合并后的主目录再次执行完整检查：typecheck、lint、build、build:pages、Node 回归、隔离后台全部通过；Node 567 通过、1 条后台环境条件跳过，后台 25/25，lint 0 错误/11 条既有警告。再次执行 Chromium 五项检查全部通过：紧凑计时器布局、上下槽入口无折返、真实拖线及元件移动/缩放/保存重载的世界端点、线槽移动/尺寸/断槽撤销、双账号隔离。检查均使用独立测试数据。
+
+停写前核对当前进程链，停止原服务和原 Tunnel。完整最新 state/WAL/SHM、私有配置和 `.local/` 备份到 `C:\Users\admin\diantuo-production\20261005-175500-combined-fixes\backup`；该目录限制当前用户、SYSTEM、Administrators 访问。恢复到新的独立 `restore-verification` 目录，90 个状态文件逐字节核验通过，数据库完整性、外键、业务行哈希及附件字节与停写前一致。没有恢复旧业务库，没有新增或执行迁移。
+
+通过目标版本文档与迁移兼容门禁后，17:57 激活 `.wrangler/active-release.json` 指向 `C:\Users\admin\diantuo-production\20261005-175500-combined-fixes\release`。发布 ID 为 `ad1e338ca2999f55d805a0c548a82ed5e153a338caa90c9891616eb3a23e5ef8`；代码源为 `aa1dded`，同时包含 `d2528b0` 计时器和 `ace4282` 线槽修复。所有旧发布包、指针副本与备份保留。用原 `start:local` / `start-tunnel` 入口启动，业务状态仍为 `E:\vibecoding\电拓智训\.wrangler\state`。
+
+17:58–17:59 检查本机及固定公网入口：首页、`/assets/app-E3F6APXD.js`、`/assets/app-E4OPTFZL.css` 全部 200，字节哈希与合并包一致。JS SHA-256 为 `c2b53d430523fe148b2c81ff1503fad2bdbd126b84ba62c5085eeda4261c8d7f`；CSS SHA-256 为 `211642b296d6f3a707900740e9ad66134bbcc0e4877aee833268004b654c4a92`。匿名 `/api/session` 为 200，草稿和课程图纸接口为 401；Tunnel `/ready` 为 200。真实 Chromium 公网登录页正常且无页面脚本错误，未读取正式密码、替用户登录或写入测试数据。
+
+运行后与本次停写恢复副本比较，42 个用户、57 份草稿、46 份作品、20 张课程图纸、66 份媒体均保留；业务表内容哈希及全部附件字节一致，所有 SQLite 完整性及外键检查通过。当前诊断 PID 为入口 14456、Wrangler lease 35380、3000 监听 39860、Tunnel 管理 39496、cloudflared 35184；只用于此次证据，后续操作必须重新核对。
+
+脱敏证据：[合并检查](acceptance-2026-10-05/combined-fixes-check.json)、[五项浏览器验证](acceptance-2026-10-05/combined-fixes-browser.json)、[实际正式资源](acceptance-2026-10-05/combined-fixes-production-smoke.json)、[数据保留](acceptance-2026-10-05/combined-fixes-production-preservation.json)。本次未推送 Git 远端；正式运行产物的应用代码来源保持为已验收的 `aa1dded`。

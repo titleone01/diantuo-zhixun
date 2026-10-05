@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-05T09:59:22.3089553+00:00",
+  "businessTablesUnchanged": true,
+  "attachmentsUnchanged": true,
+  "sqliteIntegrity": "ok",
+  "foreignKeyErrors": 0,
+  "users": 42,
+  "circuits": 57,
+  "publications": 46,
+  "trainingDrawings": 20,
+  "media": 66,
+  "backup": "C:\\Users\\admin\\diantuo-production\\20261005-175500-combined-fixes\\backup",
+  "restoreVerified": true
+}

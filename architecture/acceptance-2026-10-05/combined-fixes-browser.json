@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-05T09:55:52.044Z",
+  "status": "passed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "real terminal drag, device move, zoom and reload retain world endpoints",
+      "status": "passed",
+      "durationMs": 2286,
+      "errors": []
+    },
+    {
+      "title": "two browser accounts cannot open each other private drafts",
+      "status": "passed",
+      "durationMs": 1234,
+      "errors": []
+    },
+    {
+      "title": "timer layout: compact controls leave artwork and terminals clear",
+      "status": "passed",
+      "durationMs": 2460,
+      "errors": []
+    },
+    {
+      "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+      "status": "passed",
+      "durationMs": 3316,
+      "errors": []
+    },
+    {
+      "title": "motor-course-02: top and bottom duct entrances render without foldbacks",
+      "status": "passed",
+      "durationMs": 1472,
+      "errors": []
+    }
+  ]
+}
