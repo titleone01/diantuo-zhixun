@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-05T09:09:20.222Z",
+  "comparison": "restored stopped-write backup against running original production state",
+  "tables": {
+    "user": {
+      "count": 42,
+      "unchanged": true,
+      "contentHashed": false
+    },
+    "account": {
+      "count": 42,
+      "unchanged": true,
+      "contentHashed": false
+    },
+    "circuits": {
+      "count": 57,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "publications": {
+      "count": 46,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "media": {
+      "count": 66,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "training_drawings": {
+      "count": 20,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "circuit_media": {
+      "count": 48,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "publication_media": {
+      "count": 38,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "assessments": {
+      "count": 315,
+      "unchanged": true,
+      "contentHashed": true
+    },
+    "reactions": {
+      "count": 36,
+      "unchanged": true,
+      "contentHashed": true
+    }
+  },
+  "attachments": {
+    "count": 66,
+    "allBytesUnchanged": true
+  },
+  "sqlite": {
+    "quickCheck": "ok",
+    "foreignKeyErrors": 0
+  }
+}

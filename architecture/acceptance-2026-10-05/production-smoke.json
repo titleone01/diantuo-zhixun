@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-10-05T09:08:32.756Z",
+  "sourceHead": "c87a21f9f6dff06a2e6f4977a5fb1b0f3c892fdb",
+  "releaseId": "02bf801e7cfdee6a46da87a4bd3679455e992805ed4d1af022cb156c16040204",
+  "checks": [
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/assets/app-WE7I7B5C.css",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/assets/app-DZLRYTJW.js",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/api/session",
+      "status": 200
+    },
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/api/circuits",
+      "status": 401
+    },
+    {
+      "origin": "http://127.0.0.1:3000",
+      "path": "/api/training-projects",
+      "status": 401
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/assets/app-WE7I7B5C.css",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/assets/app-DZLRYTJW.js",
+      "status": 200,
+      "releaseBytesMatch": true
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/api/session",
+      "status": 200
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/api/circuits",
+      "status": 401
+    },
+    {
+      "origin": "https://train.titleone.space",
+      "path": "/api/training-projects",
+      "status": 401
+    }
+  ],
+  "tunnel": {
+    "status": 200,
+    "readyConnections": 4
+  },
+  "browser": {
+    "url": "https://train.titleone.space/",
+    "title": "电气控制实训仿真系统",
+    "loginFormVisible": true,
+    "screenshot": "production-login.png"
+  },
+  "productionCredentialLogin": "not performed; existing passwords and sessions not read"
+}
