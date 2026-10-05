@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 const fixture=JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE,'utf8'));
 const document={schemaVersion:1,title:'Browser duct feedback',components:[
   {id:'route-a',type:'terminal',label:'XT1',position:{x:80,y:220}},
@@ -40,7 +40,14 @@ async function geometry(page){
   const wire=page.locator('.sim-wire');const values=await wire.evaluate(element=>({from:element.dataset.fromTerminal,to:element.dataset.toTerminal,a:JSON.parse(element.dataset.fromWorld),b:JSON.parse(element.dataset.toWorld),path:element.querySelector('.react-flow__edge-path').getAttribute('d')}));
   for(const [key,point] of [[values.from,values.a],[values.to,values.b]]){
     expect(await page.locator(`[data-terminal-key="${key}"]`).evaluate(e=>({x:Number(e.dataset.worldX),y:Number(e.dataset.worldY)}))).toEqual(point);
-  }return values;
+  }
+  const points=[...values.path.matchAll(/[ML]\s*([\d.e+-]+)[, ]+([\d.e+-]+)/g)].map(match=>({x:Number(match[1]),y:Number(match[2])}));
+  expect(points.length).toBeGreaterThanOrEqual(2);
+  for(let i=1;i+1<points.length;i++){
+    const a=points[i-1],b=points[i],c=points[i+1];
+    expect((a.x===b.x&&b.x===c.x&&(b.y-a.y)*(c.y-b.y)<0)||(a.y===b.y&&b.y===c.y&&(b.x-a.x)*(c.x-b.x)<0),'rendered path must not fold back at a duct entrance').toBe(false);
+  }
+  return values;
 }
 test('duct routing follows real drag, movement, resize, disconnect, save and reload',async({page})=>{
   await test.step('routing: open and import',async()=>{await open(page);await page.getByLabel('线条样式',{exact:true}).selectOption('duct');});
@@ -67,6 +74,29 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
   const resized=await geometry(page);
   await test.step('routing: save new draft',async()=>{const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');await page.getByRole('button',{name:'保存草稿',exact:true}).click();const saved=await response;expect(saved.status()).toBe(201);expect((await saved.json()).circuit.document.wires[0]).toMatchObject({style:'orthogonal',routing:'duct'});});
   await test.step('routing: reload saved geometry',async()=>{await page.reload();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(resized);});
+});
+
+test('motor-course-02: top and bottom duct entrances render without foldbacks',async({page})=>{
+  await open(page);
+  const document=fixture.drafts['motor-course-02:correct'].document;
+  await page.getByRole('button',{name:'导入本地保存的图纸',exact:true}).click();
+  await page.getByLabel('待导入的电路 JSON',{exact:true}).fill(JSON.stringify(document));
+  await page.getByRole('button',{name:'导入粘贴内容',exact:true}).click();
+  await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length);
+  for(const wire of await page.locator('.sim-wire').all()){
+    await expect(wire).toHaveAttribute('data-routing-status','routed');
+    const points=await wire.evaluate(element=>[...element.querySelector('.react-flow__edge-path').getAttribute('d').matchAll(/[ML]\s*([\d.e+-]+)[, ]+([\d.e+-]+)/g)].map(match=>({x:Number(match[1]),y:Number(match[2])})));
+    expect(points.length).toBeGreaterThanOrEqual(2);
+    for(let i=1;i+1<points.length;i++){
+      const a=points[i-1],b=points[i],c=points[i+1];
+      expect((a.x===b.x&&b.x===c.x&&(b.y-a.y)*(c.y-b.y)<0)||(a.y===b.y&&b.y===c.y&&(b.x-a.x)*(c.x-b.x)<0)).toBe(false);
+    }
+  }
+  await page.locator('.react-flow__controls-fitview').click();
+  // Hover waits for the animated fit to settle before recording the canvas.
+  await page.locator('[data-device-id="qf"]').hover();
+  await mkdir('.local/acceptance-public',{recursive:true});
+  await page.locator('.react-flow').screenshot({path:'.local/acceptance-public/duct-entry-fixed.png'});
 });
 test('repeated group paste and undo preserve a stable editable document',async({page})=>{
   await open(page);await page.locator('[data-device-id="route-a"]').click();await page.locator('[data-device-id="route-b"]').click({modifiers:['Shift']});

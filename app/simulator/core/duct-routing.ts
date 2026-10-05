@@ -276,7 +276,9 @@ function calculateRoute(document: CircuitDocument, wire: CircuitWire): DuctRoute
  const best=choices.sort((a,b)=>comparePaths(a.points,b.points))[0];
  if(!best)return {status:"disconnected",sections,trunk:[],message:"两端线槽未连通或槽内被元件挡住，请连接线槽或调整布局。"};
  const trunk=laneRoute(document,network,wire,best.trunk);
- // Preserve entry/exit anchors: simplification must not erase the boundary
- // between an outward terminal lead and the validated in-duct trunk.
- return {status:"routed",sections:[compact([...best.from.lead,...simplify(trunk),...[...best.to.lead].reverse()])],trunk};
+ // Simplify across the joins too: a shifted lane may meet the lead before
+ // its centre-line anchor. Keeping both would draw an in-duct U-turn.
+ // Collinear removal only shortens the existing segment union; the separate
+ // trunk still retains its validated entry/exit boundaries.
+ return {status:"routed",sections:[displayPath([...best.from.lead,...trunk,...[...best.to.lead].reverse()])],trunk};
 }
