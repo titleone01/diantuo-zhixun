@@ -111,11 +111,54 @@ function assertNoFoldbacks(points, label) {
   }
   for (let i = 0; i + 1 < points.length; i++) for (let j = i + 2; j + 1 < points.length; j++) {
     const a = points[i], b = points[i+1], c = points[j], d = points[j+1];
-    if ((a.x===b.x) === (c.x===d.x)) continue;
-    const [v, ve, h, he] = a.x===b.x ? [a,b,c,d] : [c,d,a,b];
-    assert.ok(!(v.x>=Math.min(h.x,he.x) && v.x<=Math.max(h.x,he.x) && h.y>=Math.min(v.y,ve.y) && h.y<=Math.max(v.y,ve.y)), `${label}: self-crossing at ${v.x},${h.y}`);
+    const overlap = Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x))<=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x)) &&
+      Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y))<=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y));
+    assert.equal(overlap,false,`${label}: non-adjacent segments cross or overlap ${JSON.stringify([a,b,c,d])}`);
   }
 }
+
+function exteriorMotorTail(document, points) {
+  const edge = Math.max(...document.components.filter(c=>c.type.startsWith("wire-duct")).map(c=>c.position.y+(c.size??getDefinition(c.type)).height));
+  const segments=[];
+  for(let i=1;i<points.length;i++){
+    const a=points[i-1],b=points[i];
+    if(Math.max(a.y,b.y)<=edge)continue;
+    segments.push([a.y<=edge?{x:a.x,y:edge}:a,b.y<=edge?{x:b.x,y:edge}:b]);
+  }
+  return segments;
+}
+function assertSeparateTails(tails){
+  for(let i=0;i<tails.length;i++)for(let j=i+1;j<tails.length;j++)for(const [a,b] of tails[i])for(const [c,d] of tails[j]){
+    const overlap=Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x))<=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x)) &&
+      Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y))<=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y));
+    assert.equal(overlap,false,`exterior phase tails ${i}/${j} cross or overlap: ${JSON.stringify([a,b,c,d])}`);
+  }
+}
+for(const course of ["motor-course-02","motor-course-09","motor-course-10"])test(`${course}: motor fan clears the terminal strip with separate ordered exterior turns`,()=>{
+  const document=createLessonDocument(course,{wired:true}),original=JSON.stringify(document);
+  for(const moved of [false,true]){
+    if(moved){document.components.find(c=>c.id==="m").position.y+=15;document.components.find(c=>c.id==="xt16").position.x+=18;}
+    const motor=document.components.find(c=>c.id==="m");
+    const terminalGroups=motor.type==="motor"?[["U","V","W"]]:[["U1","V1","W1"],["U2","V2","W2"]];
+    for(const ids of terminalGroups){
+      const wires=ids.map(id=>document.wires.find(w=>w.to.componentId==="m"&&w.to.terminalId===id));
+      assert.ok(wires.every(Boolean));
+      const routes=wires.map(w=>routeWireInDucts(document,w));
+      routes.forEach((route,i)=>{
+        assert.equal(route.status,"routed");assertNoFoldbacks(route.sections[0],`${course}/${ids[i]}`);assertTrunkCovered(document,route);
+        assert.deepEqual(route.sections[0].at(-1),wireEndpoints(document,wires[i]).to);
+        assert.deepEqual(route,routeWireInDucts(JSON.parse(JSON.stringify(document)),wires[i]));
+        assert.deepEqual(route,routeWireInDucts({...document,components:[...document.components].reverse()},wires[i]));
+      });
+      assertSeparateTails(routes.map(route=>exteriorMotorTail(document,route.sections[0])));
+    }
+  }
+  const restored=JSON.parse(original),pe=restored.wires.find(w=>w.from.componentId==="pe"&&w.from.terminalId==="B");
+  const output=routeWireInDucts(restored,pe);assert.equal(output.status,"routed");assert.equal(output.trunk.length,0,"PE lower output stays outside the duct");
+  assertNoFoldbacks(output.sections[0],`${course}/PE`);
+  const input=restored.wires.find(w=>w.to.componentId==="pe"&&w.to.terminalId==="A");assert.ok(input);
+  assert.ok(routeWireInDucts(restored,input).trunk.length>1,"PE upper input still uses the cabinet duct");
+});
 
 test("all ten motor courses join every parallel lane without centre-line foldbacks", () => {
   for (const lesson of LESSONS.filter(lesson => lesson.id.startsWith("motor-course-"))) {
@@ -177,7 +220,7 @@ test("touching duct end caps route; a real sub-unit gap gives separated fallback
 });
 
 test("other component bodies block entrances while fallback remains visible and does not alter references",()=>{
-  const document={schemaVersion:1,title:"Blocked directed entrance",components:[component("fu2","fuse2",100,80),component("target","terminal",900,80),component("top","wire-duct",0,0,{width:1100,height:40}),component("block","terminal-strip16",-50,-20)],wires:[]};
+  const document={schemaVersion:1,title:"Blocked directed entrance",components:[component("fu2","fuse2",100,80),component("target","terminal",900,80),component("top","wire-duct",0,0,{width:1100,height:40}),component("block","terminal-strip16",-50,-20),component("block-rest","terminal-strip16",600,-20)],wires:[]};
   const routed={...symmetricWire,from:{componentId:"fu2",terminalId:"1"},to:{componentId:"target",terminalId:"A"}},before=JSON.stringify(document),route=routeWireInDucts(document,routed);
   assert.equal(route.status,"blocked");assert.ok(route.message);assert.ok(route.sections.every(section=>section.length>=2));assert.equal((wirePath(document,routed).match(/M /g)||[]).length,2);
   assert.deepEqual(route.sections[0][0],wireEndpoints(document,routed).from);assert.deepEqual(route.sections[1].at(-1),wireEndpoints(document,routed).to);assert.equal(JSON.stringify(document),before);

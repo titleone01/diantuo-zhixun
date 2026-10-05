@@ -1,4 +1,4 @@
-import { componentSize, isLayoutObject, isWireDuct, resolveTerminal } from "./catalog";
+import { componentSize, getDefinition, isLayoutObject, isWireDuct, resolveTerminal, transformedTerminal } from "./catalog";
 import type { CircuitComponent, CircuitDocument, CircuitWire, Point } from "./types";
 
 type Rect = { left: number; top: number; right: number; bottom: number };
@@ -67,9 +67,19 @@ function terminalLead(terminal: ReturnType<typeof resolveTerminal>): Point[] {
   return [world, escape];
 }
 
+/** Geometric pin order keeps an exterior fan stable across IDs and reloads. */
+function terminalFan(terminal: ReturnType<typeof resolveTerminal>) {
+  const side = terminal.terminal.side, vertical = side === "top" || side === "bottom";
+  const pins = getDefinition(terminal.component.type).terminals.map(pin => transformedTerminal(terminal.component, pin))
+    .filter(pin => pin.side === side).sort((a, b) => (vertical ? a.x - b.x : a.y - b.y) || a.id.localeCompare(b.id));
+  const rank = pins.findIndex(pin => pin.id === terminal.terminal.id), reverse = pins.length - 1 - rank;
+  return { rank, reverse, pins, spacing: Math.min(6, 24 / Math.max(1, pins.length - 1)) };
+}
+
 function entriesFor(document: CircuitDocument, terminal: ReturnType<typeof resolveTerminal>, network: Network): Entry[] {
   const rect = bounds(terminal.component), side = terminal.terminal.side;
   const [world, escape] = terminalLead(terminal);
+  const fan = terminalFan(terminal);
   const blockers = document.components.filter(component => !isLayoutObject(component.type));
   const candidates: Entry[] = [];
   const consider = (duct: Duct, points: Point[], facing = false) => {
@@ -79,6 +89,12 @@ function entriesFor(document: CircuitDocument, terminal: ReturnType<typeof resol
     candidates.push({ duct, point, lead, facing, length: lead.slice(1).reduce((sum, next, index) => sum + distance(lead[index], next), 0) });
   };
   for (const duct of network.ducts) {
+    const point = project(duct, escape);
+    const obstacles = [rect, ...blockers.filter(component => component.id !== terminal.component.id && fan.pins.some(pin => {
+      const origin = side === "top" || side === "bottom" ? { x: terminal.component.position.x + pin.x, y: escape.y } : { x: escape.x, y: terminal.component.position.y + pin.y };
+      const ray = side === "top" || side === "bottom" ? { x: origin.x, y: point.y } : { x: point.x, y: origin.y };
+      return crossesBody(origin, ray, bounds(component));
+    })).map(bounds)];
     let edge: Point | undefined;
     if ((side === "top" || side === "bottom") && escape.x >= duct.left && escape.x <= duct.right) {
       if (side === "top" && duct.top <= escape.y) edge = { x: escape.x, y: Math.min(escape.y, duct.bottom) };
@@ -88,19 +104,28 @@ function entriesFor(document: CircuitDocument, terminal: ReturnType<typeof resol
       if (side === "left" && duct.left <= escape.x) edge = { x: Math.min(escape.x, duct.right), y: escape.y };
       if (side === "right" && duct.right >= escape.x) edge = { x: Math.max(escape.x, duct.left), y: escape.y };
     }
-    if (edge) consider(duct, [world, escape, edge, project(duct, edge)], true);
-    const point = project(duct, escape);
-    consider(duct, [world, escape, { x: point.x, y: escape.y }, point]);
-    consider(duct, [world, escape, { x: escape.x, y: point.y }, point]);
-    // External controls and motor tails turn around their bodies into the
-    // existing reference board; they do not acquire additional ducts.
-    for (const x of [rect.left - TERMINAL_CLEARANCE, rect.right + TERMINAL_CLEARANCE]) {
-      const target = project(duct, { x, y: escape.y });
-      consider(duct, [world, escape, { x, y: escape.y }, { x, y: target.y }, target]);
+    if (edge && obstacles.length === 1) consider(duct, [world, escape, edge, project(duct, edge)], true);
+    const outwardPoint = side === "top" ? point.y <= escape.y : side === "bottom" ? point.y >= escape.y : side === "left" ? point.x <= escape.x : point.x >= escape.x;
+    if (outwardPoint && obstacles.length === 1) {
+      const bend = side === "top" || side === "bottom" ? { x: escape.x, y: point.y } : { x: point.x, y: escape.y };
+      consider(duct, [world, escape, bend, point]);
     }
-    for (const y of [rect.top - TERMINAL_CLEARANCE, rect.bottom + TERMINAL_CLEARANCE]) {
-      const target = project(duct, { x: escape.x, y });
-      consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
+    // Detour around the actual obstruction, rather than only around the
+    // terminal's own device. Ordered lanes separate adjacent exterior tails.
+    for (const obstacle of obstacles) for (const left of side === "top" || side === "bottom" ? [true, false] : []) {
+      const x = left ? obstacle.left - TERMINAL_CLEARANCE - (side === "bottom" ? fan.rank : fan.reverse) * fan.spacing
+        : obstacle.right + TERMINAL_CLEARANCE + (side === "bottom" ? fan.reverse : fan.rank) * fan.spacing;
+      const y = side === "top" ? escape.y - (left ? fan.rank : fan.reverse) * fan.spacing
+        : side === "bottom" ? escape.y + (left ? fan.rank : fan.reverse) * fan.spacing : escape.y;
+      const target = project(duct, { x, y });
+      consider(duct, [world, escape, { x: escape.x, y }, { x, y }, { x, y: target.y }, target]);
+    }
+    for (const obstacle of obstacles) for (const above of side === "left" || side === "right" ? [true, false] : []) {
+      const y = above ? obstacle.top - TERMINAL_CLEARANCE - fan.reverse * fan.spacing : obstacle.bottom + TERMINAL_CLEARANCE + fan.rank * fan.spacing;
+      const x = side === "left" ? escape.x - (above ? fan.rank : fan.reverse) * fan.spacing
+        : side === "right" ? escape.x + (above ? fan.reverse : fan.rank) * fan.spacing : escape.x;
+      const target = project(duct, { x, y });
+      consider(duct, [world, escape, { x, y: escape.y }, { x, y }, { x: target.x, y }, target]);
     }
   }
   // If an outward entrance exists, do not wrap around the device into a duct
@@ -248,6 +273,21 @@ function simplify(points: Point[]): Point[] {
 }
 // Retain both outward escape anchors even when the remainder is simplified.
 const displayPath = (points: Point[]) => compact([points[0], ...simplify(points.slice(1, -1)), points.at(-1)!]);
+/** A lane shift must not create a loop against either exterior lead. */
+function simplePath(points: Point[]): boolean {
+  for (let i = 1; i + 1 < points.length; i++) {
+    const a = points[i - 1], b = points[i], c = points[i + 1];
+    if (a.x === b.x && b.x === c.x && (b.y - a.y) * (c.y - b.y) < 0 ||
+        a.y === b.y && b.y === c.y && (b.x - a.x) * (c.x - b.x) < 0) return false;
+  }
+  for (let i = 0; i + 1 < points.length; i++) for (let j = i + 2; j + 1 < points.length; j++) {
+    const a = points[i], b = points[i + 1], c = points[j], d = points[j + 1];
+    // Bounding boxes intersect exactly when two orthogonal segments meet.
+    if (Math.max(Math.min(a.x, b.x), Math.min(c.x, d.x)) <= Math.min(Math.max(a.x, b.x), Math.max(c.x, d.x)) &&
+        Math.max(Math.min(a.y, b.y), Math.min(c.y, d.y)) <= Math.min(Math.max(a.y, b.y), Math.max(c.y, d.y))) return false;
+  }
+  return true;
+}
 const pathLength=(points:Point[])=>points.slice(1).reduce((sum,p,i)=>sum+distance(points[i],p),0);
 function comparePaths(a:Point[],b:Point[]){return pathLength(a)-pathLength(b)||simplify(a).length-simplify(b).length||JSON.stringify(a).localeCompare(JSON.stringify(b));}
 function externalRoute(document:CircuitDocument,source:ReturnType<typeof resolveTerminal>,target:ReturnType<typeof resolveTerminal>):DuctRoute {
@@ -258,7 +298,7 @@ function externalRoute(document:CircuitDocument,source:ReturnType<typeof resolve
  if([source,target].some((t,i)=>bodies.some(c=>c.id!==t.component.id&&crossesBody((i?to:from)[0],(i?to:from)[1],bounds(c)))))return {status:"blocked",sections:[from,to.reverse()],trunk:[],message:"外部引线被元件挡住，请调整布局。"};
  const choices:Point[][]=[[a,{x:a.x,y:b.y},b],[a,{x:b.x,y:a.y},b]];
  for(const c of bodies){const r=bounds(c);for(const x of [r.left-12,r.right+12])choices.push([a,{x,y:a.y},{x,y:b.y},b]);for(const y of [r.top-12,r.bottom+12])choices.push([a,{x:a.x,y},{x:b.x,y},b]);}
- const middle=choices.map(simplify).filter(clear).sort(comparePaths)[0];
+ const middle=choices.map(simplify).filter(points=>clear(points)&&simplePath(displayPath([...from,...points,...[...to].reverse()]))).sort(comparePaths)[0];
  return middle?{status:"routed",sections:[displayPath(compact([...from,...middle,...to.reverse()]))],trunk:[]}:{status:"blocked",sections:[from,to.reverse()],trunk:[],message:"外部直角路径被元件遮挡，请调整外部器件位置。"};
 }
 function calculateRoute(document: CircuitDocument, wire: CircuitWire): DuctRoute {
@@ -272,13 +312,15 @@ function calculateRoute(document: CircuitDocument, wire: CircuitWire): DuctRoute
  const sections=[starts[0]?.lead??terminalLead(source),[...(ends[0]?.lead??terminalLead(target))].reverse()];
  if(!starts.length||!ends.length)return {status:"blocked",sections,trunk:[],message:"端子出线方向没有可进入的线槽，或引出段被元件挡住，请调整元件或线槽。"};
  const choices:{from:Entry;to:Entry;trunk:Point[];points:Point[]}[]=[];
- for(const from of starts)for(const to of ends){const trunk=shortestPath(document,network,from,to);if(trunk)choices.push({from,to,trunk,points:compact([...from.lead,...simplify(trunk),...[...to.lead].reverse()])});}
- const best=choices.sort((a,b)=>comparePaths(a.points,b.points))[0];
+ for(const from of starts)for(const to of ends){const trunk=shortestPath(document,network,from,to);if(trunk){const points=displayPath([...from.lead,...trunk,...[...to.lead].reverse()]);if(simplePath(points))choices.push({from,to,trunk,points});}}
+ const best=choices.sort((a,b)=>pathLength(a.points)-pathLength(b.points)||a.from.length+a.to.length-b.from.length-b.to.length||comparePaths(a.points,b.points))[0];
  if(!best)return {status:"disconnected",sections,trunk:[],message:"两端线槽未连通或槽内被元件挡住，请连接线槽或调整布局。"};
- const trunk=laneRoute(document,network,wire,best.trunk);
+ let trunk=laneRoute(document,network,wire,best.trunk);
+ let points=displayPath([...best.from.lead,...trunk,...[...best.to.lead].reverse()]);
+ if(!simplePath(points)){trunk=best.trunk;points=best.points;}
  // Simplify across the joins too: a shifted lane may meet the lead before
  // its centre-line anchor. Keeping both would draw an in-duct U-turn.
  // Collinear removal only shortens the existing segment union; the separate
  // trunk still retains its validated entry/exit boundaries.
- return {status:"routed",sections:[displayPath([...best.from.lead,...trunk,...[...best.to.lead].reverse()])],trunk};
+ return {status:"routed",sections:[points],trunk};
 }

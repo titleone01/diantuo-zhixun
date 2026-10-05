@@ -98,6 +98,49 @@ test('motor-course-02: top and bottom duct entrances render without foldbacks',a
   await mkdir('.local/acceptance-public',{recursive:true});
   await page.locator('.react-flow').screenshot({path:'.local/acceptance-public/duct-entry-fixed.png'});
 });
+
+test('exterior motor leads stay separated after real terminal drag, motor movement, zoom and reload',async({page})=>{
+  await open(page);
+  const document=structuredClone(fixture.drafts['motor-course-09:correct'].document);
+  document.wires=document.wires.filter(w=>!(w.to.componentId==='m'&&w.to.terminalId==='U1'));
+  await page.getByRole('button',{name:'导入本地保存的图纸',exact:true}).click();
+  await page.getByLabel('待导入的电路 JSON',{exact:true}).fill(JSON.stringify(document));
+  await page.getByRole('button',{name:'导入粘贴内容',exact:true}).click();
+  const disclosure=page.locator('.dt-document-disclosure');if(await disclosure.getAttribute('open')!==null)await disclosure.locator('summary').click();
+  await page.getByLabel('线条样式',{exact:true}).selectOption('duct');
+  await page.locator('.react-flow__controls-fitview').click();
+  const a=page.locator('[data-terminal-key="fr::2"]'),b=page.locator('[data-terminal-key="m::U1"]');
+  await a.hover();await b.hover();const aa=await a.boundingBox(),bb=await b.boundingBox();
+  await page.mouse.move(aa.x+aa.width/2,aa.y+aa.height/2);await page.mouse.down();await page.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2,{steps:20});await page.mouse.up();
+  await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length+1);
+  async function motorGeometry(){
+    const values=await page.locator('.sim-wire').evaluateAll(elements=>elements.filter(e=>e.dataset.toTerminal.startsWith('m::')).map(e=>({
+      to:e.dataset.toTerminal,status:e.dataset.routingStatus,a:JSON.parse(e.dataset.fromWorld),b:JSON.parse(e.dataset.toWorld),from:e.dataset.fromTerminal,
+      points:[...e.querySelector('.react-flow__edge-path').getAttribute('d').matchAll(/[ML]\s*([\d.e+-]+)[, ]+([\d.e+-]+)/g)].map(m=>({x:Number(m[1]),y:Number(m[2])}))
+    })));
+    const edge=Math.max(...document.components.filter(c=>c.type.startsWith('wire-duct')).map(c=>c.position.y+c.size.height));
+    for(const v of values){
+      expect(v.status).toBe('routed');expect(v.points[0]).toEqual(v.a);expect(v.points.at(-1)).toEqual(v.b);
+      for(const [key,point] of [[v.from,v.a],[v.to,v.b]])expect(await page.locator(`[data-terminal-key="${key}"]`).evaluate(e=>({x:Number(e.dataset.worldX),y:Number(e.dataset.worldY)}))).toEqual(point);
+    }
+    for(const ids of [['U1','V1','W1'],['U2','V2','W2']]){
+      const tails=ids.map(id=>values.find(v=>v.to===`m::${id}`).points).map(points=>points.slice(1).map((b,i)=>[points[i],b]).filter(([a,b])=>Math.max(a.y,b.y)>edge).map(([a,b])=>[a.y<=edge?{x:a.x,y:edge}:a,b.y<=edge?{x:b.x,y:edge}:b]));
+      for(let i=0;i<3;i++)for(let j=i+1;j<3;j++)for(const [a,b] of tails[i])for(const [c,d] of tails[j]){
+        expect(Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x))<=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x))&&Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y))<=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y)),'phase tails cross or overlap outside duct').toBe(false);
+      }
+    }
+    return values;
+  }
+  const before=await motorGeometry();
+  await drag(page,page.locator('[data-device-id="m"]'),20,15,{x:0.45,y:0.65});
+  const moved=await motorGeometry();expect(moved).not.toEqual(before);
+  await page.locator('.react-flow__controls-zoomout').click();expect(await motorGeometry()).toEqual(moved);
+  const response=page.waitForResponse(r=>r.url().endsWith('/api/circuits')&&r.request().method()==='POST');
+  await page.getByRole('button',{name:'保存草稿',exact:true}).click();expect((await response).status()).toBe(201);
+  await page.reload();await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length+1);expect(await motorGeometry()).toEqual(moved);
+  await page.locator('.react-flow__controls-fitview').click();await page.locator('[data-device-id="m"]').hover();
+  await mkdir('.local/acceptance-public',{recursive:true});await page.locator('.react-flow').screenshot({path:'.local/acceptance-public/exterior-motor-leads-fixed.png'});
+});
 test('repeated group paste and undo preserve a stable editable document',async({page})=>{
   await open(page);await page.locator('[data-device-id="route-a"]').click();await page.locator('[data-device-id="route-b"]').click({modifiers:['Shift']});
   await page.getByRole('button',{name:'复制选中对象',exact:true}).focus();await page.keyboard.press('Control+c');

@@ -3,9 +3,9 @@ import {
   __toESM
 } from "./chunks/chunk-MYXFJE25.js";
 
-// node_modules/react/cjs/react.development.js
+// E:/vibecoding/电拓智训/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "node_modules/react/cjs/react.development.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -975,9 +975,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// node_modules/react/index.js
+// E:/vibecoding/电拓智训/node_modules/react/index.js
 var require_react = __commonJS({
-  "node_modules/react/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -987,9 +987,9 @@ var require_react = __commonJS({
   }
 });
 
-// node_modules/scheduler/cjs/scheduler.development.js
+// E:/vibecoding/电拓智训/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -1246,9 +1246,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// node_modules/scheduler/index.js
+// E:/vibecoding/电拓智训/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1258,9 +1258,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom.development.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop2() {
@@ -1502,9 +1502,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/index.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "node_modules/react-dom/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -1515,9 +1515,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom-client.development.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id2) {
@@ -21414,9 +21414,9 @@ var require_react_dom_client_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/client.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "node_modules/react-dom/client.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21427,9 +21427,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
+// E:/vibecoding/电拓智训/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -21684,9 +21684,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// node_modules/react/jsx-runtime.js
+// E:/vibecoding/电拓智训/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21696,9 +21696,9 @@ var require_jsx_runtime = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
 var require_use_sync_external_store_shim_development = __commonJS({
-  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
@@ -21760,9 +21760,9 @@ var require_use_sync_external_store_shim_development = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/shim/index.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/index.js
 var require_shim = __commonJS({
-  "node_modules/use-sync-external-store/shim/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21772,9 +21772,9 @@ var require_shim = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
 var require_with_selector_development = __commonJS({
-  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
@@ -21839,9 +21839,9 @@ var require_with_selector_development = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/shim/with-selector.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/with-selector.js
 var require_with_selector = __commonJS({
-  "node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21858,13 +21858,13 @@ var import_client = __toESM(require_client(), 1);
 // app/simulator/SimulatorApp.tsx
 var import_react24 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 var import_react3 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
 var toKebabCase = (string) => string?.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
 function toLucideIconData(iconName, iconNode, aliases = []) {
   if (iconNode == null) {
     throw new Error("[lucide]: iconNode is required when icon name is used");
@@ -21877,7 +21877,7 @@ function toLucideIconData(iconName, iconNode, aliases = []) {
   };
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
 var toCamelCase = (string) => {
   let out = "";
   let upperNext = false;
@@ -21896,21 +21896,21 @@ var toCamelCase = (string) => {
   return out;
 };
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
 var toPascalCase = (string) => {
   const camelCase = toCamelCase(string);
   return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 };
 
-// node_modules/lucide-react/dist/esm/Icon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
 var import_react2 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
 var mergeClasses = (...classes) => classes.filter((className, index2, array2) => {
   return Boolean(className) && className.trim() !== "" && array2.indexOf(className) === index2;
 }).join(" ").trim();
 
-// node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
 var defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -21923,7 +21923,7 @@ var defaultAttributes = {
   "stroke-linejoin": "round"
 };
 
-// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
 function isDefined(value) {
   return value !== null && value !== void 0;
 }
@@ -21976,7 +21976,7 @@ function buildLucideIconNode(icon, params = {}) {
   ];
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
 function buildLucideIconForReact(icon, params = {}) {
   return buildLucideIconNode(icon, {
     ...params,
@@ -21991,7 +21991,7 @@ function buildLucideIconForReact(icon, params = {}) {
   });
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
 var hasA11yProp = (props) => {
   for (const prop in props) {
     if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
@@ -22001,12 +22001,12 @@ var hasA11yProp = (props) => {
   return false;
 };
 
-// node_modules/lucide-react/dist/esm/context.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/context.mjs
 var import_react = __toESM(require_react(), 1);
 var LucideContext = (0, import_react.createContext)({});
 var useLucideContext = () => (0, import_react.useContext)(LucideContext);
 
-// node_modules/lucide-react/dist/esm/Icon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
 var Icon = (0, import_react2.forwardRef)(
   ({
     color: color2,
@@ -22060,7 +22060,7 @@ var Icon = (0, import_react2.forwardRef)(
   }
 );
 
-// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   const iconData = typeof iconDataOrName === "string" ? toLucideIconData(iconDataOrName, iconNode, aliases) : iconDataOrName;
   const Component = (0, import_react3.forwardRef)(
@@ -22077,7 +22077,7 @@ function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   return Component;
 }
 
-// node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
 var __iconData = {
   name: "arrow-left",
   size: 24,
@@ -22089,7 +22089,7 @@ var __iconData = {
 __iconData.node;
 var ArrowLeft = createLucideIcon(__iconData);
 
-// node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
 var __iconData2 = {
   name: "arrow-right",
   size: 24,
@@ -22101,7 +22101,7 @@ var __iconData2 = {
 __iconData2.node;
 var ArrowRight = createLucideIcon(__iconData2);
 
-// node_modules/lucide-react/dist/esm/icons/bolt.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/bolt.mjs
 var __iconData3 = {
   name: "bolt",
   size: 24,
@@ -22119,7 +22119,7 @@ var __iconData3 = {
 __iconData3.node;
 var Bolt = createLucideIcon(__iconData3);
 
-// node_modules/lucide-react/dist/esm/icons/book-open.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/book-open.mjs
 var __iconData4 = {
   name: "book-open",
   size: 24,
@@ -22137,7 +22137,7 @@ var __iconData4 = {
 __iconData4.node;
 var BookOpen = createLucideIcon(__iconData4);
 
-// node_modules/lucide-react/dist/esm/icons/boxes.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/boxes.mjs
 var __iconData5 = {
   name: "boxes",
   size: 24,
@@ -22177,7 +22177,7 @@ var __iconData5 = {
 __iconData5.node;
 var Boxes = createLucideIcon(__iconData5);
 
-// node_modules/lucide-react/dist/esm/icons/check-check.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/check-check.mjs
 var __iconData6 = {
   name: "check-check",
   size: 24,
@@ -22189,7 +22189,7 @@ var __iconData6 = {
 __iconData6.node;
 var CheckCheck = createLucideIcon(__iconData6);
 
-// node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
 var __iconData7 = {
   name: "chevron-left",
   size: 24,
@@ -22198,7 +22198,7 @@ var __iconData7 = {
 __iconData7.node;
 var ChevronLeft = createLucideIcon(__iconData7);
 
-// node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
 var __iconData8 = {
   name: "chevron-right",
   size: 24,
@@ -22207,7 +22207,7 @@ var __iconData8 = {
 __iconData8.node;
 var ChevronRight = createLucideIcon(__iconData8);
 
-// node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
 var __iconData9 = {
   name: "circuit-board",
   size: 24,
@@ -22222,7 +22222,7 @@ var __iconData9 = {
 __iconData9.node;
 var CircuitBoard = createLucideIcon(__iconData9);
 
-// node_modules/lucide-react/dist/esm/icons/copy.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/copy.mjs
 var __iconData10 = {
   name: "copy",
   size: 24,
@@ -22234,7 +22234,7 @@ var __iconData10 = {
 __iconData10.node;
 var Copy = createLucideIcon(__iconData10);
 
-// node_modules/lucide-react/dist/esm/icons/download.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/download.mjs
 var __iconData11 = {
   name: "download",
   size: 24,
@@ -22247,7 +22247,7 @@ var __iconData11 = {
 __iconData11.node;
 var Download = createLucideIcon(__iconData11);
 
-// node_modules/lucide-react/dist/esm/icons/external-link.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/external-link.mjs
 var __iconData12 = {
   name: "external-link",
   size: 24,
@@ -22260,7 +22260,7 @@ var __iconData12 = {
 __iconData12.node;
 var ExternalLink = createLucideIcon(__iconData12);
 
-// node_modules/lucide-react/dist/esm/icons/file-image.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-image.mjs
 var __iconData13 = {
   name: "file-image",
   size: 24,
@@ -22280,7 +22280,7 @@ var __iconData13 = {
 __iconData13.node;
 var FileImage = createLucideIcon(__iconData13);
 
-// node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
 var __iconData14 = {
   name: "file-plus-corner",
   size: 24,
@@ -22301,7 +22301,7 @@ var __iconData14 = {
 __iconData14.node;
 var FilePlusCorner = createLucideIcon(__iconData14);
 
-// node_modules/lucide-react/dist/esm/icons/file-up.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-up.mjs
 var __iconData15 = {
   name: "file-up",
   size: 24,
@@ -22321,7 +22321,7 @@ var __iconData15 = {
 __iconData15.node;
 var FileUp = createLucideIcon(__iconData15);
 
-// node_modules/lucide-react/dist/esm/icons/folder-open.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/folder-open.mjs
 var __iconData16 = {
   name: "folder-open",
   size: 24,
@@ -22338,7 +22338,7 @@ var __iconData16 = {
 __iconData16.node;
 var FolderOpen = createLucideIcon(__iconData16);
 
-// node_modules/lucide-react/dist/esm/icons/globe.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/globe.mjs
 var __iconData17 = {
   name: "globe",
   size: 24,
@@ -22351,7 +22351,7 @@ var __iconData17 = {
 __iconData17.node;
 var Globe = createLucideIcon(__iconData17);
 
-// node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
 var __iconData18 = {
   name: "grip-horizontal",
   size: 24,
@@ -22367,7 +22367,7 @@ var __iconData18 = {
 __iconData18.node;
 var GripHorizontal = createLucideIcon(__iconData18);
 
-// node_modules/lucide-react/dist/esm/icons/heart.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/heart.mjs
 var __iconData19 = {
   name: "heart",
   size: 24,
@@ -22384,7 +22384,7 @@ var __iconData19 = {
 __iconData19.node;
 var Heart = createLucideIcon(__iconData19);
 
-// node_modules/lucide-react/dist/esm/icons/house.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/house.mjs
 var __iconData20 = {
   name: "house",
   size: 24,
@@ -22403,7 +22403,7 @@ var __iconData20 = {
 __iconData20.node;
 var House = createLucideIcon(__iconData20);
 
-// node_modules/lucide-react/dist/esm/icons/key-round.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/key-round.mjs
 var __iconData21 = {
   name: "key-round",
   size: 24,
@@ -22421,7 +22421,7 @@ var __iconData21 = {
 __iconData21.node;
 var KeyRound = createLucideIcon(__iconData21);
 
-// node_modules/lucide-react/dist/esm/icons/link.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/link.mjs
 var __iconData22 = {
   name: "link",
   size: 24,
@@ -22433,7 +22433,7 @@ var __iconData22 = {
 __iconData22.node;
 var Link = createLucideIcon(__iconData22);
 
-// node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
 var __iconData23 = {
   name: "locate-fixed",
   size: 24,
@@ -22449,7 +22449,7 @@ var __iconData23 = {
 __iconData23.node;
 var LocateFixed = createLucideIcon(__iconData23);
 
-// node_modules/lucide-react/dist/esm/icons/log-out.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/log-out.mjs
 var __iconData24 = {
   name: "log-out",
   size: 24,
@@ -22462,7 +22462,7 @@ var __iconData24 = {
 __iconData24.node;
 var LogOut = createLucideIcon(__iconData24);
 
-// node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
 var __iconData25 = {
   name: "maximize-2",
   size: 24,
@@ -22476,7 +22476,7 @@ var __iconData25 = {
 __iconData25.node;
 var Maximize2 = createLucideIcon(__iconData25);
 
-// node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
 var __iconData26 = {
   name: "minimize-2",
   size: 24,
@@ -22490,7 +22490,7 @@ var __iconData26 = {
 __iconData26.node;
 var Minimize2 = createLucideIcon(__iconData26);
 
-// node_modules/lucide-react/dist/esm/icons/minus.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minus.mjs
 var __iconData27 = {
   name: "minus",
   size: 24,
@@ -22499,7 +22499,7 @@ var __iconData27 = {
 __iconData27.node;
 var Minus = createLucideIcon(__iconData27);
 
-// node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
 var __iconData28 = {
   name: "panel-right-close",
   size: 24,
@@ -22512,7 +22512,7 @@ var __iconData28 = {
 __iconData28.node;
 var PanelRightClose = createLucideIcon(__iconData28);
 
-// node_modules/lucide-react/dist/esm/icons/play.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/play.mjs
 var __iconData29 = {
   name: "play",
   size: 24,
@@ -22529,7 +22529,7 @@ var __iconData29 = {
 __iconData29.node;
 var Play = createLucideIcon(__iconData29);
 
-// node_modules/lucide-react/dist/esm/icons/plus.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/plus.mjs
 var __iconData30 = {
   name: "plus",
   size: 24,
@@ -22541,7 +22541,7 @@ var __iconData30 = {
 __iconData30.node;
 var Plus = createLucideIcon(__iconData30);
 
-// node_modules/lucide-react/dist/esm/icons/redo-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/redo-2.mjs
 var __iconData31 = {
   name: "redo-2",
   size: 24,
@@ -22553,7 +22553,7 @@ var __iconData31 = {
 __iconData31.node;
 var Redo2 = createLucideIcon(__iconData31);
 
-// node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
 var __iconData32 = {
   name: "refresh-cw",
   size: 24,
@@ -22567,7 +22567,7 @@ var __iconData32 = {
 __iconData32.node;
 var RefreshCw = createLucideIcon(__iconData32);
 
-// node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
 var __iconData33 = {
   name: "rotate-ccw",
   size: 24,
@@ -22579,7 +22579,7 @@ var __iconData33 = {
 __iconData33.node;
 var RotateCcw = createLucideIcon(__iconData33);
 
-// node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
 var __iconData34 = {
   name: "rotate-cw",
   size: 24,
@@ -22591,7 +22591,7 @@ var __iconData34 = {
 __iconData34.node;
 var RotateCw = createLucideIcon(__iconData34);
 
-// node_modules/lucide-react/dist/esm/icons/search.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/search.mjs
 var __iconData35 = {
   name: "search",
   size: 24,
@@ -22603,7 +22603,7 @@ var __iconData35 = {
 __iconData35.node;
 var Search = createLucideIcon(__iconData35);
 
-// node_modules/lucide-react/dist/esm/icons/shield-check.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/shield-check.mjs
 var __iconData36 = {
   name: "shield-check",
   size: 24,
@@ -22621,7 +22621,7 @@ var __iconData36 = {
 __iconData36.node;
 var ShieldCheck = createLucideIcon(__iconData36);
 
-// node_modules/lucide-react/dist/esm/icons/square.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/square.mjs
 var __iconData37 = {
   name: "square",
   size: 24,
@@ -22630,7 +22630,7 @@ var __iconData37 = {
 __iconData37.node;
 var Square = createLucideIcon(__iconData37);
 
-// node_modules/lucide-react/dist/esm/icons/star.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/star.mjs
 var __iconData38 = {
   name: "star",
   size: 24,
@@ -22647,7 +22647,7 @@ var __iconData38 = {
 __iconData38.node;
 var Star = createLucideIcon(__iconData38);
 
-// node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
 var __iconData39 = {
   name: "triangle-alert",
   size: 24,
@@ -22667,7 +22667,7 @@ var __iconData39 = {
 __iconData39.node;
 var TriangleAlert = createLucideIcon(__iconData39);
 
-// node_modules/lucide-react/dist/esm/icons/undo-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/undo-2.mjs
 var __iconData40 = {
   name: "undo-2",
   size: 24,
@@ -22679,7 +22679,7 @@ var __iconData40 = {
 __iconData40.node;
 var Undo2 = createLucideIcon(__iconData40);
 
-// node_modules/lucide-react/dist/esm/icons/user-round.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/user-round.mjs
 var __iconData41 = {
   name: "user-round",
   size: 24,
@@ -22692,7 +22692,7 @@ var __iconData41 = {
 __iconData41.node;
 var UserRound = createLucideIcon(__iconData41);
 
-// node_modules/lucide-react/dist/esm/icons/video.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/video.mjs
 var __iconData42 = {
   name: "video",
   size: 24,
@@ -22710,7 +22710,7 @@ var __iconData42 = {
 __iconData42.node;
 var Video = createLucideIcon(__iconData42);
 
-// node_modules/lucide-react/dist/esm/icons/x.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/x.mjs
 var __iconData43 = {
   name: "x",
   size: 24,
@@ -22722,7 +22722,7 @@ var __iconData43 = {
 __iconData43.node;
 var X = createLucideIcon(__iconData43);
 
-// node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
 var __iconData44 = {
   name: "zoom-in",
   size: 24,
@@ -22736,7 +22736,7 @@ var __iconData44 = {
 __iconData44.node;
 var ZoomIn = createLucideIcon(__iconData44);
 
-// node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
 var __iconData45 = {
   name: "zoom-out",
   size: 24,
@@ -22753,11 +22753,11 @@ var ZoomOut = createLucideIcon(__iconData45);
 var import_react16 = __toESM(require_react(), 1);
 var import_react_dom4 = __toESM(require_react_dom(), 1);
 
-// node_modules/@xyflow/react/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 var import_react5 = __toESM(require_react());
 
-// node_modules/classcat/index.js
+// E:/vibecoding/电拓智训/node_modules/classcat/index.js
 function cc(names) {
   if (typeof names === "string" || typeof names === "number") return "" + names;
   let out = "";
@@ -22775,7 +22775,7 @@ function cc(names) {
   return out;
 }
 
-// node_modules/d3-dispatch/src/dispatch.js
+// E:/vibecoding/电拓智训/node_modules/d3-dispatch/src/dispatch.js
 var noop = { value: () => {
 } };
 function dispatch() {
@@ -22845,7 +22845,7 @@ function set(type, name, callback) {
 }
 var dispatch_default = dispatch;
 
-// node_modules/d3-selection/src/namespaces.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespaces.js
 var xhtml = "http://www.w3.org/1999/xhtml";
 var namespaces_default = {
   svg: "http://www.w3.org/2000/svg",
@@ -22855,14 +22855,14 @@ var namespaces_default = {
   xmlns: "http://www.w3.org/2000/xmlns/"
 };
 
-// node_modules/d3-selection/src/namespace.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespace.js
 function namespace_default(name) {
   var prefix2 = name += "", i = prefix2.indexOf(":");
   if (i >= 0 && (prefix2 = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
   return namespaces_default.hasOwnProperty(prefix2) ? { space: namespaces_default[prefix2], local: name } : name;
 }
 
-// node_modules/d3-selection/src/creator.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/creator.js
 function creatorInherit(name) {
   return function() {
     var document2 = this.ownerDocument, uri = this.namespaceURI;
@@ -22879,7 +22879,7 @@ function creator_default(name) {
   return (fullname.local ? creatorFixed : creatorInherit)(fullname);
 }
 
-// node_modules/d3-selection/src/selector.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selector.js
 function none() {
 }
 function selector_default(selector) {
@@ -22888,7 +22888,7 @@ function selector_default(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/select.js
 function select_default(select) {
   if (typeof select !== "function") select = selector_default(select);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22902,12 +22902,12 @@ function select_default(select) {
   return new Selection(subgroups, this._parents);
 }
 
-// node_modules/d3-selection/src/array.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/array.js
 function array(x) {
   return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
 }
 
-// node_modules/d3-selection/src/selectorAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selectorAll.js
 function empty() {
   return [];
 }
@@ -22917,7 +22917,7 @@ function selectorAll_default(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/selectAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectAll.js
 function arrayAll(select) {
   return function() {
     return array(select.apply(this, arguments));
@@ -22937,7 +22937,7 @@ function selectAll_default(select) {
   return new Selection(subgroups, parents);
 }
 
-// node_modules/d3-selection/src/matcher.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/matcher.js
 function matcher_default(selector) {
   return function() {
     return this.matches(selector);
@@ -22949,7 +22949,7 @@ function childMatcher(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/selectChild.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChild.js
 var find = Array.prototype.find;
 function childFind(match) {
   return function() {
@@ -22963,7 +22963,7 @@ function selectChild_default(match) {
   return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// node_modules/d3-selection/src/selection/selectChildren.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChildren.js
 var filter = Array.prototype.filter;
 function children() {
   return Array.from(this.children);
@@ -22977,7 +22977,7 @@ function selectChildren_default(match) {
   return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// node_modules/d3-selection/src/selection/filter.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/filter.js
 function filter_default(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22990,12 +22990,12 @@ function filter_default(match) {
   return new Selection(subgroups, this._parents);
 }
 
-// node_modules/d3-selection/src/selection/sparse.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sparse.js
 function sparse_default(update) {
   return new Array(update.length);
 }
 
-// node_modules/d3-selection/src/selection/enter.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/enter.js
 function enter_default() {
   return new Selection(this._enter || this._groups.map(sparse_default), this._parents);
 }
@@ -23022,14 +23022,14 @@ EnterNode.prototype = {
   }
 };
 
-// node_modules/d3-selection/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/constant.js
 function constant_default(x) {
   return function() {
     return x;
   };
 }
 
-// node_modules/d3-selection/src/selection/data.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/data.js
 function bindIndex(parent, group, enter, update, exit, data) {
   var i = 0, node, groupLength = group.length, dataLength = data.length;
   for (; i < dataLength; ++i) {
@@ -23101,12 +23101,12 @@ function arraylike(data) {
   return typeof data === "object" && "length" in data ? data : Array.from(data);
 }
 
-// node_modules/d3-selection/src/selection/exit.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/exit.js
 function exit_default() {
   return new Selection(this._exit || this._groups.map(sparse_default), this._parents);
 }
 
-// node_modules/d3-selection/src/selection/join.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/join.js
 function join_default(onenter, onupdate, onexit) {
   var enter = this.enter(), update = this, exit = this.exit();
   if (typeof onenter === "function") {
@@ -23124,7 +23124,7 @@ function join_default(onenter, onupdate, onexit) {
   return enter && update ? enter.merge(update).order() : update;
 }
 
-// node_modules/d3-selection/src/selection/merge.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/merge.js
 function merge_default(context) {
   var selection2 = context.selection ? context.selection() : context;
   for (var groups0 = this._groups, groups1 = selection2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -23140,7 +23140,7 @@ function merge_default(context) {
   return new Selection(merges, this._parents);
 }
 
-// node_modules/d3-selection/src/selection/order.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/order.js
 function order_default() {
   for (var groups = this._groups, j = -1, m = groups.length; ++j < m; ) {
     for (var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0; ) {
@@ -23153,7 +23153,7 @@ function order_default() {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/sort.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sort.js
 function sort_default(compare) {
   if (!compare) compare = ascending;
   function compareNode(a, b) {
@@ -23173,7 +23173,7 @@ function ascending(a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
 
-// node_modules/d3-selection/src/selection/call.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/call.js
 function call_default() {
   var callback = arguments[0];
   arguments[0] = this;
@@ -23181,12 +23181,12 @@ function call_default() {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/nodes.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/nodes.js
 function nodes_default() {
   return Array.from(this);
 }
 
-// node_modules/d3-selection/src/selection/node.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/node.js
 function node_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length; i < n; ++i) {
@@ -23197,19 +23197,19 @@ function node_default() {
   return null;
 }
 
-// node_modules/d3-selection/src/selection/size.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/size.js
 function size_default() {
   let size = 0;
   for (const node of this) ++size;
   return size;
 }
 
-// node_modules/d3-selection/src/selection/empty.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/empty.js
 function empty_default() {
   return !this.node();
 }
 
-// node_modules/d3-selection/src/selection/each.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/each.js
 function each_default(callback) {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23219,7 +23219,7 @@ function each_default(callback) {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/attr.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/attr.js
 function attrRemove(name) {
   return function() {
     this.removeAttribute(name);
@@ -23263,12 +23263,12 @@ function attr_default(name, value) {
   return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
 }
 
-// node_modules/d3-selection/src/window.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/window.js
 function window_default(node) {
   return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView;
 }
 
-// node_modules/d3-selection/src/selection/style.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/style.js
 function styleRemove(name) {
   return function() {
     this.style.removeProperty(name);
@@ -23293,7 +23293,7 @@ function styleValue(node, name) {
   return node.style.getPropertyValue(name) || window_default(node).getComputedStyle(node, null).getPropertyValue(name);
 }
 
-// node_modules/d3-selection/src/selection/property.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/property.js
 function propertyRemove(name) {
   return function() {
     delete this[name];
@@ -23315,7 +23315,7 @@ function property_default(name, value) {
   return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
 }
 
-// node_modules/d3-selection/src/selection/classed.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/classed.js
 function classArray(string) {
   return string.trim().split(/^|\s+/);
 }
@@ -23378,7 +23378,7 @@ function classed_default(name, value) {
   return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
 }
 
-// node_modules/d3-selection/src/selection/text.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/text.js
 function textRemove() {
   this.textContent = "";
 }
@@ -23397,7 +23397,7 @@ function text_default(value) {
   return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
 }
 
-// node_modules/d3-selection/src/selection/html.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/html.js
 function htmlRemove() {
   this.innerHTML = "";
 }
@@ -23416,7 +23416,7 @@ function html_default(value) {
   return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
 }
 
-// node_modules/d3-selection/src/selection/raise.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/raise.js
 function raise() {
   if (this.nextSibling) this.parentNode.appendChild(this);
 }
@@ -23424,7 +23424,7 @@ function raise_default() {
   return this.each(raise);
 }
 
-// node_modules/d3-selection/src/selection/lower.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/lower.js
 function lower() {
   if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
 }
@@ -23432,7 +23432,7 @@ function lower_default() {
   return this.each(lower);
 }
 
-// node_modules/d3-selection/src/selection/append.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/append.js
 function append_default(name) {
   var create2 = typeof name === "function" ? name : creator_default(name);
   return this.select(function() {
@@ -23440,7 +23440,7 @@ function append_default(name) {
   });
 }
 
-// node_modules/d3-selection/src/selection/insert.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/insert.js
 function constantNull() {
   return null;
 }
@@ -23451,7 +23451,7 @@ function insert_default(name, before) {
   });
 }
 
-// node_modules/d3-selection/src/selection/remove.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/remove.js
 function remove() {
   var parent = this.parentNode;
   if (parent) parent.removeChild(this);
@@ -23460,7 +23460,7 @@ function remove_default() {
   return this.each(remove);
 }
 
-// node_modules/d3-selection/src/selection/clone.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/clone.js
 function selection_cloneShallow() {
   var clone3 = this.cloneNode(false), parent = this.parentNode;
   return parent ? parent.insertBefore(clone3, this.nextSibling) : clone3;
@@ -23473,12 +23473,12 @@ function clone_default(deep) {
   return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
 }
 
-// node_modules/d3-selection/src/selection/datum.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/datum.js
 function datum_default(value) {
   return arguments.length ? this.property("__data__", value) : this.node().__data__;
 }
 
-// node_modules/d3-selection/src/selection/on.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/on.js
 function contextListener(listener) {
   return function(event) {
     listener.call(this, event, this.__data__);
@@ -23541,7 +23541,7 @@ function on_default(typename, value, options) {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/dispatch.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/dispatch.js
 function dispatchEvent2(node, type, params) {
   var window2 = window_default(node), event = window2.CustomEvent;
   if (typeof event === "function") {
@@ -23567,7 +23567,7 @@ function dispatch_default2(type, params) {
   return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
 }
 
-// node_modules/d3-selection/src/selection/iterator.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/iterator.js
 function* iterator_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23576,7 +23576,7 @@ function* iterator_default() {
   }
 }
 
-// node_modules/d3-selection/src/selection/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/index.js
 var root = [null];
 function Selection(groups, parents) {
   this._groups = groups;
@@ -23628,19 +23628,19 @@ Selection.prototype = selection.prototype = {
 };
 var selection_default = selection;
 
-// node_modules/d3-selection/src/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/select.js
 function select_default2(selector) {
   return typeof selector === "string" ? new Selection([[document.querySelector(selector)]], [document.documentElement]) : new Selection([[selector]], root);
 }
 
-// node_modules/d3-selection/src/sourceEvent.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/sourceEvent.js
 function sourceEvent_default(event) {
   let sourceEvent;
   while (sourceEvent = event.sourceEvent) event = sourceEvent;
   return event;
 }
 
-// node_modules/d3-selection/src/pointer.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/pointer.js
 function pointer_default(event, node) {
   event = sourceEvent_default(event);
   if (node === void 0) node = event.currentTarget;
@@ -23660,7 +23660,7 @@ function pointer_default(event, node) {
   return [event.pageX, event.pageY];
 }
 
-// node_modules/d3-drag/src/noevent.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/noevent.js
 var nonpassive = { passive: false };
 var nonpassivecapture = { capture: true, passive: false };
 function nopropagation(event) {
@@ -23671,7 +23671,7 @@ function noevent_default(event) {
   event.stopImmediatePropagation();
 }
 
-// node_modules/d3-drag/src/nodrag.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/nodrag.js
 function nodrag_default(view) {
   var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", noevent_default, nonpassivecapture);
   if ("onselectstart" in root2) {
@@ -23697,10 +23697,10 @@ function yesdrag(view, noclick) {
   }
 }
 
-// node_modules/d3-drag/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/constant.js
 var constant_default2 = (x) => () => x;
 
-// node_modules/d3-drag/src/event.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/event.js
 function DragEvent(type, {
   sourceEvent,
   subject,
@@ -23732,7 +23732,7 @@ DragEvent.prototype.on = function() {
   return value === this._ ? this : value;
 };
 
-// node_modules/d3-drag/src/drag.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/drag.js
 function defaultFilter(event) {
   return !event.ctrlKey && !event.button;
 }
@@ -23877,7 +23877,7 @@ function drag_default() {
   return drag;
 }
 
-// node_modules/d3-color/src/define.js
+// E:/vibecoding/电拓智训/node_modules/d3-color/src/define.js
 function define_default(constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype;
   prototype.constructor = constructor;
@@ -23888,7 +23888,7 @@ function extend(parent, definition) {
   return prototype;
 }
 
-// node_modules/d3-color/src/color.js
+// E:/vibecoding/电拓智训/node_modules/d3-color/src/color.js
 function Color() {
 }
 var darker = 0.7;
@@ -24225,7 +24225,7 @@ function hsl2rgb(h, m1, m2) {
   return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
 }
 
-// node_modules/d3-interpolate/src/basis.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basis.js
 function basis(t1, v0, v1, v2, v3) {
   var t2 = t1 * t1, t3 = t2 * t1;
   return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
@@ -24238,7 +24238,7 @@ function basis_default(values) {
   };
 }
 
-// node_modules/d3-interpolate/src/basisClosed.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basisClosed.js
 function basisClosed_default(values) {
   var n = values.length;
   return function(t) {
@@ -24247,10 +24247,10 @@ function basisClosed_default(values) {
   };
 }
 
-// node_modules/d3-interpolate/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/constant.js
 var constant_default3 = (x) => () => x;
 
-// node_modules/d3-interpolate/src/color.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/color.js
 function linear(a, d) {
   return function(t) {
     return a + t * d;
@@ -24271,7 +24271,7 @@ function nogamma(a, b) {
   return d ? linear(a, d) : constant_default3(isNaN(a) ? b : a);
 }
 
-// node_modules/d3-interpolate/src/rgb.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/rgb.js
 var rgb_default = (function rgbGamma(y) {
   var color2 = gamma(y);
   function rgb2(start2, end) {
@@ -24311,7 +24311,7 @@ function rgbSpline(spline) {
 var rgbBasis = rgbSpline(basis_default);
 var rgbBasisClosed = rgbSpline(basisClosed_default);
 
-// node_modules/d3-interpolate/src/numberArray.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/numberArray.js
 function numberArray_default(a, b) {
   if (!b) b = [];
   var n = a ? Math.min(b.length, a.length) : 0, c = b.slice(), i;
@@ -24324,7 +24324,7 @@ function isNumberArray(x) {
   return ArrayBuffer.isView(x) && !(x instanceof DataView);
 }
 
-// node_modules/d3-interpolate/src/array.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/array.js
 function genericArray(a, b) {
   var nb = b ? b.length : 0, na = a ? Math.min(nb, a.length) : 0, x = new Array(na), c = new Array(nb), i;
   for (i = 0; i < na; ++i) x[i] = value_default(a[i], b[i]);
@@ -24335,7 +24335,7 @@ function genericArray(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/date.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/date.js
 function date_default(a, b) {
   var d = /* @__PURE__ */ new Date();
   return a = +a, b = +b, function(t) {
@@ -24343,14 +24343,14 @@ function date_default(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/number.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/number.js
 function number_default(a, b) {
   return a = +a, b = +b, function(t) {
     return a * (1 - t) + b * t;
   };
 }
 
-// node_modules/d3-interpolate/src/object.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/object.js
 function object_default(a, b) {
   var i = {}, c = {}, k;
   if (a === null || typeof a !== "object") a = {};
@@ -24368,7 +24368,7 @@ function object_default(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/string.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/string.js
 var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
 var reB = new RegExp(reA.source, "g");
 function zero(b) {
@@ -24410,13 +24410,13 @@ function string_default(a, b) {
   });
 }
 
-// node_modules/d3-interpolate/src/value.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/value.js
 function value_default(a, b) {
   var t = typeof b, c;
   return b == null || t === "boolean" ? constant_default3(b) : (t === "number" ? number_default : t === "string" ? (c = color(b)) ? (b = c, rgb_default) : string_default : b instanceof color ? rgb_default : b instanceof Date ? date_default : isNumberArray(b) ? numberArray_default : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object_default : number_default)(a, b);
 }
 
-// node_modules/d3-interpolate/src/transform/decompose.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/decompose.js
 var degrees = 180 / Math.PI;
 var identity = {
   translateX: 0,
@@ -24442,7 +24442,7 @@ function decompose_default(a, b, c, d, e, f) {
   };
 }
 
-// node_modules/d3-interpolate/src/transform/parse.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/parse.js
 var svgNode;
 function parseCss(value) {
   const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
@@ -24457,7 +24457,7 @@ function parseSvg(value) {
   return decompose_default(value.a, value.b, value.c, value.d, value.e, value.f);
 }
 
-// node_modules/d3-interpolate/src/transform/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/index.js
 function interpolateTransform(parse, pxComma, pxParen, degParen) {
   function pop(s) {
     return s.length ? s.pop() + " " : "";
@@ -24512,7 +24512,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
 var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
 
-// node_modules/d3-interpolate/src/zoom.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/zoom.js
 var epsilon2 = 1e-12;
 function cosh(x) {
   return ((x = Math.exp(x)) + 1 / x) / 2;
@@ -24557,7 +24557,7 @@ var zoom_default = (function zoomRho(rho, rho2, rho4) {
   return zoom;
 })(Math.SQRT2, 2, 4);
 
-// node_modules/d3-timer/src/timer.js
+// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timer.js
 var frame = 0;
 var timeout = 0;
 var interval = 0;
@@ -24659,7 +24659,7 @@ function sleep(time) {
   }
 }
 
-// node_modules/d3-timer/src/timeout.js
+// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timeout.js
 function timeout_default(callback, delay, time) {
   var t = new Timer();
   delay = delay == null ? 0 : +delay;
@@ -24670,7 +24670,7 @@ function timeout_default(callback, delay, time) {
   return t;
 }
 
-// node_modules/d3-transition/src/transition/schedule.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/schedule.js
 var emptyOn = dispatch_default("start", "end", "cancel", "interrupt");
 var emptyTween = [];
 var CREATED = 0;
@@ -24781,7 +24781,7 @@ function create(node, id2, self) {
   }
 }
 
-// node_modules/d3-transition/src/interrupt.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/interrupt.js
 function interrupt_default(node, name) {
   var schedules = node.__transition, schedule, active, empty2 = true, i;
   if (!schedules) return;
@@ -24800,14 +24800,14 @@ function interrupt_default(node, name) {
   if (empty2) delete node.__transition;
 }
 
-// node_modules/d3-transition/src/selection/interrupt.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/interrupt.js
 function interrupt_default2(name) {
   return this.each(function() {
     interrupt_default(this, name);
   });
 }
 
-// node_modules/d3-transition/src/transition/tween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/tween.js
 function tweenRemove(id2, name) {
   var tween0, tween1;
   return function() {
@@ -24868,13 +24868,13 @@ function tweenValue(transition2, name, value) {
   };
 }
 
-// node_modules/d3-transition/src/transition/interpolate.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/interpolate.js
 function interpolate_default(a, b) {
   var c;
   return (typeof b === "number" ? number_default : b instanceof color ? rgb_default : (c = color(b)) ? (b = c, rgb_default) : string_default)(a, b);
 }
 
-// node_modules/d3-transition/src/transition/attr.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attr.js
 function attrRemove2(name) {
   return function() {
     this.removeAttribute(name);
@@ -24924,7 +24924,7 @@ function attr_default2(name, value) {
   return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i, value));
 }
 
-// node_modules/d3-transition/src/transition/attrTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attrTween.js
 function attrInterpolate(name, i) {
   return function(t) {
     this.setAttribute(name, i.call(this, t));
@@ -24964,7 +24964,7 @@ function attrTween_default(name, value) {
   return this.tween(key4, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
-// node_modules/d3-transition/src/transition/delay.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/delay.js
 function delayFunction(id2, value) {
   return function() {
     init(this, id2).delay = +value.apply(this, arguments);
@@ -24980,7 +24980,7 @@ function delay_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id2, value)) : get2(this.node(), id2).delay;
 }
 
-// node_modules/d3-transition/src/transition/duration.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/duration.js
 function durationFunction(id2, value) {
   return function() {
     set2(this, id2).duration = +value.apply(this, arguments);
@@ -24996,7 +24996,7 @@ function duration_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id2, value)) : get2(this.node(), id2).duration;
 }
 
-// node_modules/d3-transition/src/transition/ease.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/ease.js
 function easeConstant(id2, value) {
   if (typeof value !== "function") throw new Error();
   return function() {
@@ -25008,7 +25008,7 @@ function ease_default(value) {
   return arguments.length ? this.each(easeConstant(id2, value)) : get2(this.node(), id2).ease;
 }
 
-// node_modules/d3-transition/src/transition/easeVarying.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/easeVarying.js
 function easeVarying(id2, value) {
   return function() {
     var v = value.apply(this, arguments);
@@ -25021,7 +25021,7 @@ function easeVarying_default(value) {
   return this.each(easeVarying(this._id, value));
 }
 
-// node_modules/d3-transition/src/transition/filter.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/filter.js
 function filter_default2(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -25034,7 +25034,7 @@ function filter_default2(match) {
   return new Transition(subgroups, this._parents, this._name, this._id);
 }
 
-// node_modules/d3-transition/src/transition/merge.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/merge.js
 function merge_default2(transition2) {
   if (transition2._id !== this._id) throw new Error();
   for (var groups0 = this._groups, groups1 = transition2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -25050,7 +25050,7 @@ function merge_default2(transition2) {
   return new Transition(merges, this._parents, this._name, this._id);
 }
 
-// node_modules/d3-transition/src/transition/on.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/on.js
 function start(name) {
   return (name + "").trim().split(/^|\s+/).every(function(t) {
     var i = t.indexOf(".");
@@ -25071,7 +25071,7 @@ function on_default2(name, listener) {
   return arguments.length < 2 ? get2(this.node(), id2).on.on(name) : this.each(onFunction(id2, name, listener));
 }
 
-// node_modules/d3-transition/src/transition/remove.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/remove.js
 function removeFunction(id2) {
   return function() {
     var parent = this.parentNode;
@@ -25083,7 +25083,7 @@ function remove_default2() {
   return this.on("end.remove", removeFunction(this._id));
 }
 
-// node_modules/d3-transition/src/transition/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/select.js
 function select_default3(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selector_default(select);
@@ -25099,7 +25099,7 @@ function select_default3(select) {
   return new Transition(subgroups, this._parents, name, id2);
 }
 
-// node_modules/d3-transition/src/transition/selectAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selectAll.js
 function selectAll_default2(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selectorAll_default(select);
@@ -25119,13 +25119,13 @@ function selectAll_default2(select) {
   return new Transition(subgroups, parents, name, id2);
 }
 
-// node_modules/d3-transition/src/transition/selection.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selection.js
 var Selection2 = selection_default.prototype.constructor;
 function selection_default2() {
   return new Selection2(this._groups, this._parents);
 }
 
-// node_modules/d3-transition/src/transition/style.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/style.js
 function styleNull(name, interpolate) {
   var string00, string10, interpolate0;
   return function() {
@@ -25166,7 +25166,7 @@ function style_default2(name, value, priority) {
   return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i, value), priority).on("end.style." + name, null);
 }
 
-// node_modules/d3-transition/src/transition/styleTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/styleTween.js
 function styleInterpolate(name, i, priority) {
   return function(t) {
     this.style.setProperty(name, i.call(this, t), priority);
@@ -25190,7 +25190,7 @@ function styleTween_default(name, value, priority) {
   return this.tween(key4, styleTween(name, value, priority == null ? "" : priority));
 }
 
-// node_modules/d3-transition/src/transition/text.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/text.js
 function textConstant2(value) {
   return function() {
     this.textContent = value;
@@ -25206,7 +25206,7 @@ function text_default2(value) {
   return this.tween("text", typeof value === "function" ? textFunction2(tweenValue(this, "text", value)) : textConstant2(value == null ? "" : value + ""));
 }
 
-// node_modules/d3-transition/src/transition/textTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/textTween.js
 function textInterpolate(i) {
   return function(t) {
     this.textContent = i.call(this, t);
@@ -25230,7 +25230,7 @@ function textTween_default(value) {
   return this.tween(key4, textTween(value));
 }
 
-// node_modules/d3-transition/src/transition/transition.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/transition.js
 function transition_default() {
   var name = this._name, id0 = this._id, id1 = newId();
   for (var groups = this._groups, m = groups.length, j = 0; j < m; ++j) {
@@ -25249,7 +25249,7 @@ function transition_default() {
   return new Transition(groups, this._parents, name, id1);
 }
 
-// node_modules/d3-transition/src/transition/end.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/end.js
 function end_default() {
   var on0, on1, that = this, id2 = that._id, size = that.size();
   return new Promise(function(resolve, reject) {
@@ -25270,7 +25270,7 @@ function end_default() {
   });
 }
 
-// node_modules/d3-transition/src/transition/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/index.js
 var id = 0;
 function Transition(groups, parents, name, id2) {
   this._groups = groups;
@@ -25318,12 +25318,12 @@ Transition.prototype = transition.prototype = {
   [Symbol.iterator]: selection_prototype[Symbol.iterator]
 };
 
-// node_modules/d3-ease/src/cubic.js
+// E:/vibecoding/电拓智训/node_modules/d3-ease/src/cubic.js
 function cubicInOut(t) {
   return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
 
-// node_modules/d3-transition/src/selection/transition.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/transition.js
 var defaultTiming = {
   time: null,
   // Set on use.
@@ -25357,14 +25357,14 @@ function transition_default2(name) {
   return new Transition(groups, this._parents, name, id2);
 }
 
-// node_modules/d3-transition/src/selection/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/index.js
 selection_default.prototype.interrupt = interrupt_default2;
 selection_default.prototype.transition = transition_default2;
 
-// node_modules/d3-zoom/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/constant.js
 var constant_default4 = (x) => () => x;
 
-// node_modules/d3-zoom/src/event.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/event.js
 function ZoomEvent(type, {
   sourceEvent,
   target,
@@ -25380,7 +25380,7 @@ function ZoomEvent(type, {
   });
 }
 
-// node_modules/d3-zoom/src/transform.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/transform.js
 function Transform(k, x, y) {
   this.k = k;
   this.x = x;
@@ -25429,7 +25429,7 @@ function transform(node) {
   return node.__zoom;
 }
 
-// node_modules/d3-zoom/src/noevent.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/noevent.js
 function nopropagation2(event) {
   event.stopImmediatePropagation();
 }
@@ -25438,7 +25438,7 @@ function noevent_default2(event) {
   event.stopImmediatePropagation();
 }
 
-// node_modules/d3-zoom/src/zoom.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/zoom.js
 function defaultFilter2(event) {
   return (!event.ctrlKey || event.type === "wheel") && !event.button;
 }
@@ -25753,7 +25753,7 @@ function zoom_default2() {
   return zoom;
 }
 
-// node_modules/@xyflow/system/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/system/dist/esm/index.js
 var errorMessages = {
   error001: (lib = "react") => `Seems like you have not used ${lib === "svelte" ? "SvelteFlowProvider" : "ReactFlowProvider"} as an ancestor. Help: https://${lib}flow.dev/error#001`,
   error002: () => "It looks like you've created a new nodeTypes or edgeTypes object. If this wasn't on purpose please define the nodeTypes/edgeTypes outside of the component or memoize them.",
@@ -28441,11 +28441,11 @@ function XYResizer({ domNode, nodeId, getStoreItems, onChange, onEnd }) {
   };
 }
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var import_react4 = __toESM(require_react(), 1);
 var import_with_selector = __toESM(require_with_selector(), 1);
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
 var createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
@@ -28477,7 +28477,7 @@ var createStoreImpl = (createState) => {
 };
 var createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var { useDebugValue } = import_react4.default;
 var { useSyncExternalStoreWithSelector } = import_with_selector.default;
 var identity3 = (arg) => arg;
@@ -28500,7 +28500,7 @@ var createWithEqualityFnImpl = (createState, defaultEqualityFn) => {
 };
 var createWithEqualityFn = (createState, defaultEqualityFn) => createState ? createWithEqualityFnImpl(createState, defaultEqualityFn) : createWithEqualityFnImpl;
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
 function shallow$1(objA, objB) {
   if (Object.is(objA, objB)) {
     return true;
@@ -28538,7 +28538,7 @@ function shallow$1(objA, objB) {
   return true;
 }
 
-// node_modules/@xyflow/react/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
 var import_react_dom = __toESM(require_react_dom());
 var StoreContext = (0, import_react5.createContext)(null);
 var Provider$1 = StoreContext.Provider;
@@ -31920,7 +31920,7 @@ var CATALOG = [
   { type: "motor", name: "\u4E09\u76F8\u5F02\u6B65\u7535\u673A", category: "industrial", width: 280.5, height: 191.5, terminals: [pin("U", 135.499, 10.499, "top", "load"), pin("V", 193.499, 10.499, "top", "load"), pin("W", 251.499, 10.499, "top", "load"), pin("PE", 269.499, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U", "V", "W"], ratedVoltage: 380 }, description: "380V \u4E09\u76F8\u7535\u673A\u4E0E\u72EC\u7ACB PE \u7AEF\u5B50\uFF1B\u53EA\u8868\u73B0\u53D7\u7535\u3001\u7F3A\u76F8\u548C\u76F8\u5E8F\uFF0C\u4E0D\u6A21\u62DF\u8F6C\u77E9\u6216\u6E29\u5347\u3002" },
   ...["motor-star-delta", "motor-dahlander"].map((type) => ({ type, name: type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A\uFF08Y / \u0394\uFF09" : "\u53CC\u901F\u7535\u673A\uFF08\u0394 / YY \u6559\u5B66\uFF09", category: "industrial", width: 280.5, height: 211.5, terminals: [pin("U1", 135.498, 10.499, "top", "load"), pin("V1", 193.498, 10.499, "top", "load"), pin("W1", 251.498, 10.499, "top", "load"), pin("U2", 135.498, 200.5, "bottom", "load"), pin("V2", 193.498, 200.5, "bottom", "load"), pin("W2", 251.498, 200.5, "bottom", "load"), pin("PE", 269.498, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U1", "V1", "W1", "U2", "V2", "W2"], ratedVoltage: 380, motorModel: type === "motor-star-delta" ? "star-delta" : "dahlander" }, description: type === "motor-star-delta" ? "\u539F\u7AD9\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF1B\u72EC\u7ACB\u7684\u4E09\u7EC4\u7ED5\u7EC4\u7528\u4E8E\u661F\u5F62/\u4E09\u89D2\u5F62\u6559\u5B66\u62D3\u6251\u5224\u5B9A\uFF0CPE\u5355\u72EC\u68C0\u67E5\u3002" : "\u590D\u7528\u539F\u7AD9\u901A\u7528\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF0C\u7535\u6C14\u6A21\u578B\u4E3A \u0394 / YY \u53CC\u901F\u6559\u5B66\u5B9A\u4E49\uFF1B\u6CA1\u6709\u5BA3\u79F0\u6E90\u7AD9\u5B58\u5728\u72EC\u7ACB\u53CC\u901F\u578B\u53F7\u3002" })),
   compactTerminal({ type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" }),
-  compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "earth"), pin("B", 32.497, 73.498, "bottom", "earth")], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
+  compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [{ ...pin("A", 32.497, 27.498, "top", "earth"), routingRole: "internal" }, { ...pin("B", 32.497, 73.498, "bottom", "earth"), routingRole: "external" }], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
   { type: "terminal-strip16", name: "16\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 729, height: 76.125, terminals: Array.from({ length: 16 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 16 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768416\u4F4D\u6559\u5B66\u56FE\uFF0C\u517132\u4E2A\u7A33\u5B9A\u63A5\u7EBF\u7AEF\u5B50\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u4E16\u754C\u5355\u4F4D\u4E0D\u4EE3\u8868\u5B89\u88C5\u5C3A\u5BF8\u3002" },
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
   { type: "wire-duct-vertical", name: "\u7EB5\u5411\u7EBF\u69FD", category: "terminals", width: 60, height: 420, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" }
@@ -33691,9 +33691,16 @@ function terminalLead(terminal) {
   const escape = { x: side === "left" ? rect.left - TERMINAL_CLEARANCE : side === "right" ? rect.right + TERMINAL_CLEARANCE : world.x, y: side === "top" ? rect.top - TERMINAL_CLEARANCE : side === "bottom" ? rect.bottom + TERMINAL_CLEARANCE : world.y };
   return [world, escape];
 }
+function terminalFan(terminal) {
+  const side = terminal.terminal.side, vertical = side === "top" || side === "bottom";
+  const pins = getDefinition(terminal.component.type).terminals.map((pin2) => transformedTerminal(terminal.component, pin2)).filter((pin2) => pin2.side === side).sort((a, b) => (vertical ? a.x - b.x : a.y - b.y) || a.id.localeCompare(b.id));
+  const rank = pins.findIndex((pin2) => pin2.id === terminal.terminal.id), reverse = pins.length - 1 - rank;
+  return { rank, reverse, pins, spacing: Math.min(6, 24 / Math.max(1, pins.length - 1)) };
+}
 function entriesFor(document2, terminal, network2) {
   const rect = bounds(terminal.component), side = terminal.terminal.side;
   const [world, escape] = terminalLead(terminal);
+  const fan = terminalFan(terminal);
   const blockers = document2.components.filter((component2) => !isLayoutObject(component2.type));
   const candidates = [];
   const consider = (duct, points, facing2 = false) => {
@@ -33703,6 +33710,12 @@ function entriesFor(document2, terminal, network2) {
     candidates.push({ duct, point: point2, lead, facing: facing2, length: lead.slice(1).reduce((sum, next, index2) => sum + distance2(lead[index2], next), 0) });
   };
   for (const duct of network2.ducts) {
+    const point2 = project(duct, escape);
+    const obstacles = [rect, ...blockers.filter((component2) => component2.id !== terminal.component.id && fan.pins.some((pin2) => {
+      const origin = side === "top" || side === "bottom" ? { x: terminal.component.position.x + pin2.x, y: escape.y } : { x: escape.x, y: terminal.component.position.y + pin2.y };
+      const ray = side === "top" || side === "bottom" ? { x: origin.x, y: point2.y } : { x: point2.x, y: origin.y };
+      return crossesBody(origin, ray, bounds(component2));
+    })).map(bounds)];
     let edge;
     if ((side === "top" || side === "bottom") && escape.x >= duct.left && escape.x <= duct.right) {
       if (side === "top" && duct.top <= escape.y) edge = { x: escape.x, y: Math.min(escape.y, duct.bottom) };
@@ -33712,17 +33725,23 @@ function entriesFor(document2, terminal, network2) {
       if (side === "left" && duct.left <= escape.x) edge = { x: Math.min(escape.x, duct.right), y: escape.y };
       if (side === "right" && duct.right >= escape.x) edge = { x: Math.max(escape.x, duct.left), y: escape.y };
     }
-    if (edge) consider(duct, [world, escape, edge, project(duct, edge)], true);
-    const point2 = project(duct, escape);
-    consider(duct, [world, escape, { x: point2.x, y: escape.y }, point2]);
-    consider(duct, [world, escape, { x: escape.x, y: point2.y }, point2]);
-    for (const x of [rect.left - TERMINAL_CLEARANCE, rect.right + TERMINAL_CLEARANCE]) {
-      const target = project(duct, { x, y: escape.y });
-      consider(duct, [world, escape, { x, y: escape.y }, { x, y: target.y }, target]);
+    if (edge && obstacles.length === 1) consider(duct, [world, escape, edge, project(duct, edge)], true);
+    const outwardPoint = side === "top" ? point2.y <= escape.y : side === "bottom" ? point2.y >= escape.y : side === "left" ? point2.x <= escape.x : point2.x >= escape.x;
+    if (outwardPoint && obstacles.length === 1) {
+      const bend = side === "top" || side === "bottom" ? { x: escape.x, y: point2.y } : { x: point2.x, y: escape.y };
+      consider(duct, [world, escape, bend, point2]);
     }
-    for (const y of [rect.top - TERMINAL_CLEARANCE, rect.bottom + TERMINAL_CLEARANCE]) {
-      const target = project(duct, { x: escape.x, y });
-      consider(duct, [world, escape, { x: escape.x, y }, { x: target.x, y }, target]);
+    for (const obstacle of obstacles) for (const left of side === "top" || side === "bottom" ? [true, false] : []) {
+      const x = left ? obstacle.left - TERMINAL_CLEARANCE - (side === "bottom" ? fan.rank : fan.reverse) * fan.spacing : obstacle.right + TERMINAL_CLEARANCE + (side === "bottom" ? fan.reverse : fan.rank) * fan.spacing;
+      const y = side === "top" ? escape.y - (left ? fan.rank : fan.reverse) * fan.spacing : side === "bottom" ? escape.y + (left ? fan.rank : fan.reverse) * fan.spacing : escape.y;
+      const target = project(duct, { x, y });
+      consider(duct, [world, escape, { x: escape.x, y }, { x, y }, { x, y: target.y }, target]);
+    }
+    for (const obstacle of obstacles) for (const above of side === "left" || side === "right" ? [true, false] : []) {
+      const y = above ? obstacle.top - TERMINAL_CLEARANCE - fan.reverse * fan.spacing : obstacle.bottom + TERMINAL_CLEARANCE + fan.rank * fan.spacing;
+      const x = side === "left" ? escape.x - (above ? fan.rank : fan.reverse) * fan.spacing : side === "right" ? escape.x + (above ? fan.reverse : fan.rank) * fan.spacing : escape.x;
+      const target = project(duct, { x, y });
+      consider(duct, [world, escape, { x, y: escape.y }, { x, y }, { x: target.x, y }, target]);
     }
   }
   const outward = candidates.filter((entry) => side === "top" ? entry.point.y <= escape.y : side === "bottom" ? entry.point.y >= escape.y : side === "left" ? entry.point.x <= escape.x : entry.point.x >= escape.x);
@@ -33875,6 +33894,17 @@ function simplify(points) {
   return result;
 }
 var displayPath = (points) => compact([points[0], ...simplify(points.slice(1, -1)), points.at(-1)]);
+function simplePath(points) {
+  for (let i = 1; i + 1 < points.length; i++) {
+    const a = points[i - 1], b = points[i], c = points[i + 1];
+    if (a.x === b.x && b.x === c.x && (b.y - a.y) * (c.y - b.y) < 0 || a.y === b.y && b.y === c.y && (b.x - a.x) * (c.x - b.x) < 0) return false;
+  }
+  for (let i = 0; i + 1 < points.length; i++) for (let j = i + 2; j + 1 < points.length; j++) {
+    const a = points[i], b = points[i + 1], c = points[j], d = points[j + 1];
+    if (Math.max(Math.min(a.x, b.x), Math.min(c.x, d.x)) <= Math.min(Math.max(a.x, b.x), Math.max(c.x, d.x)) && Math.max(Math.min(a.y, b.y), Math.min(c.y, d.y)) <= Math.min(Math.max(a.y, b.y), Math.max(c.y, d.y))) return false;
+  }
+  return true;
+}
 var pathLength = (points) => points.slice(1).reduce((sum, p, i) => sum + distance2(points[i], p), 0);
 function comparePaths(a, b) {
   return pathLength(a) - pathLength(b) || simplify(a).length - simplify(b).length || JSON.stringify(a).localeCompare(JSON.stringify(b));
@@ -33890,7 +33920,7 @@ function externalRoute(document2, source, target) {
     for (const x of [r.left - 12, r.right + 12]) choices.push([a, { x, y: a.y }, { x, y: b.y }, b]);
     for (const y of [r.top - 12, r.bottom + 12]) choices.push([a, { x: a.x, y }, { x: b.x, y }, b]);
   }
-  const middle = choices.map(simplify).filter(clear).sort(comparePaths)[0];
+  const middle = choices.map(simplify).filter((points) => clear(points) && simplePath(displayPath([...from, ...points, ...[...to].reverse()]))).sort(comparePaths)[0];
   return middle ? { status: "routed", sections: [displayPath(compact([...from, ...middle, ...to.reverse()]))], trunk: [] } : { status: "blocked", sections: [from, to.reverse()], trunk: [], message: "\u5916\u90E8\u76F4\u89D2\u8DEF\u5F84\u88AB\u5143\u4EF6\u906E\u6321\uFF0C\u8BF7\u8C03\u6574\u5916\u90E8\u5668\u4EF6\u4F4D\u7F6E\u3002" };
 }
 function calculateRoute(document2, wire) {
@@ -33906,12 +33936,20 @@ function calculateRoute(document2, wire) {
   const choices = [];
   for (const from of starts) for (const to of ends) {
     const trunk2 = shortestPath(document2, network2, from, to);
-    if (trunk2) choices.push({ from, to, trunk: trunk2, points: compact([...from.lead, ...simplify(trunk2), ...[...to.lead].reverse()]) });
+    if (trunk2) {
+      const points2 = displayPath([...from.lead, ...trunk2, ...[...to.lead].reverse()]);
+      if (simplePath(points2)) choices.push({ from, to, trunk: trunk2, points: points2 });
+    }
   }
-  const best = choices.sort((a, b) => comparePaths(a.points, b.points))[0];
+  const best = choices.sort((a, b) => pathLength(a.points) - pathLength(b.points) || a.from.length + a.to.length - b.from.length - b.to.length || comparePaths(a.points, b.points))[0];
   if (!best) return { status: "disconnected", sections, trunk: [], message: "\u4E24\u7AEF\u7EBF\u69FD\u672A\u8FDE\u901A\u6216\u69FD\u5185\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8FDE\u63A5\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" };
-  const trunk = laneRoute(document2, network2, wire, best.trunk);
-  return { status: "routed", sections: [displayPath([...best.from.lead, ...trunk, ...[...best.to.lead].reverse()])], trunk };
+  let trunk = laneRoute(document2, network2, wire, best.trunk);
+  let points = displayPath([...best.from.lead, ...trunk, ...[...best.to.lead].reverse()]);
+  if (!simplePath(points)) {
+    trunk = best.trunk;
+    points = best.points;
+  }
+  return { status: "routed", sections: [points], trunk };
 }
 
 // app/simulator/editor/duct-routing.ts
@@ -34517,7 +34555,7 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     let loadingTask;
     void (async () => {
       try {
-        const pdfjs = await import("./chunks/pdf-XJT72RMM.js");
+        const pdfjs = await import("./chunks/pdf-SHV2ZG4A.js");
         if (!active) return;
         const base = "/diantuo-zhixun/";
         const assets = `${base.endsWith("/") ? base : `${base}/`}sim-assets/pdfjs/`;

@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-05T11:26:16.907Z",
+  "status": "passed",
+  "browser": "Chromium",
+  "workers": 1,
+  "scope": "isolated fixture accounts, no production data",
+  "tests": [
+    {
+      "title": "timer layout: compact controls leave artwork and terminals clear",
+      "status": "passed",
+      "durationMs": 2427,
+      "errors": []
+    },
+    {
+      "title": "duct routing follows real drag, movement, resize, disconnect, save and reload",
+      "status": "passed",
+      "durationMs": 3269,
+      "errors": []
+    },
+    {
+      "title": "motor-course-02: top and bottom duct entrances render without foldbacks",
+      "status": "passed",
+      "durationMs": 1570,
+      "errors": []
+    },
+    {
+      "title": "exterior motor leads stay separated after real terminal drag, motor movement, zoom and reload",
+      "status": "passed",
+      "durationMs": 4368,
+      "errors": []
+    },
+    {
+      "title": "repeated group paste and undo preserve a stable editable document",
+      "status": "passed",
+      "durationMs": 2143,
+      "errors": []
+    },
+    {
+      "title": "integrated: legacy duct import and canonical routing save and reload without losing manual paths",
+      "status": "passed",
+      "durationMs": 2064,
+      "errors": []
+    }
+  ]
+}
