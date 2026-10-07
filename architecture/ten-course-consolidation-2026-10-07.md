@@ -32,7 +32,7 @@ node scripts/import-training-drawings.mjs --directory "<最新原图私有目录
 
 本轮从 `44e7be4` 建立独立工作树及 `codex/ten-courses-only-20261007` 分支。主目录原有领先main的13个提交保留。修改前完整Git bundle位于 `E:/vibecoding/电拓智训备份/ten-courses-20261007/before-ten-courses.bundle`，`git bundle verify`通过，SHA-256 `689FFAEBFCDF3640E2316276A87508C421D8FB5C394EE819173D37F8094971DC`。
 
-另一对话“增加端子排上下互通接线”负责主目录、端子/走线及其器件显示修复；本轮在独立树修改课程入口和相关验收。仅在对话结束、主目录干净后集成其最新提交，再合并main、推送与切换正式服务。构建与隔离服务使用本轮目录；正式唯一state和Tunnel保留。最新用户授权已包含直接上线。
+另一对话“增加端子排上下互通接线”负责主目录、端子/走线及其器件显示修复；本轮在独立树修改课程入口和相关验收。先只读复制14个声明范围的修复文件并记录SHA-256，在独立树回归；再纳入对方正式提交 `4c29aeb`，核对应用/脚本/测试/Pages与已验收快照一致。主目录合并与正式服务切换等该对话结束、主目录干净后执行。构建与隔离服务使用本轮目录；正式唯一state和Tunnel保留。最新用户授权已包含直接上线。
 
 ## 验证与交付状态
 
@@ -42,4 +42,20 @@ node scripts/import-training-drawings.mjs --directory "<最新原图私有目录
 
 剩余10条既有lint警告逐条保留：CourseLibrary图片、DrawingViewer图片、LessonSchematic图片、历史ReferenceDrawingPicker图片、DeviceArtwork两处图片、ReferenceVideoPlayer字幕、旧3D ProjectPanel图片、TrainingCanvas导航、workspace-api导航。
 
-最终集成验收进行中：纳入另一对话最新器件/布局修复后按 typecheck → lint → build → build:pages → Node全量 → 隔离后台 → 浏览器执行，再记录main/远端/CI与正式发布、数据保留证据。历史报告不改写为本次结果。
+最终集成验收已按规定顺序通过：
+
+| 检查 | 本轮结果 |
+| --- | --- |
+| typecheck | 通过 |
+| lint | 0错误，10条已列警告 |
+| build、build:pages | 均通过 |
+| Node全量 | 630通过、0失败、1条件跳过（隔离后台另行执行） |
+| 隔离后台 | 25通过、0失败、0跳过 |
+| Chromium单worker | 77通过、0失败、0跳过，含十课正常/错误/保护动作、真实拖线、移动/旋转/缩放/保存重载端点、双账号隔离、20原图权限、历史恢复与Pages |
+| 20图映射与06单槽替换 | 全部SHA-256匹配；19槽保持；428/409/403与旧媒体/作品快照保留通过 |
+| Pages私有原图隔离 | 17张公开PNG中无任何私有原图哈希；自动回归通过 |
+| Schema与恢复回退 | 14表/6迁移匹配；独立账号、草稿、作品、附件与权限、最新state回退及真实start:release入口演练通过 |
+
+第一次全量浏览器检查有3项旧页签定位超时，改为十课入口和双图弹窗后相关7项及最终77项全部通过。并行提交只有两处集成冲突：生成的Pages入口及浏览器runner；保留已验收十课产物，runner同时保留原图预核验、静态Pages、历史草稿与单槽替换验收。未改变应用功能源码。历史报告不改写为本次结果。
+
+正式交付进行中：下方追加main/远端/CI、正式停写备份恢复、发布身份与数据保留结果。真实物理接线和长期容量浸泡不属于本轮已执行验收。
