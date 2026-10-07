@@ -22,8 +22,6 @@ export default function DeviceArtwork({ type, active = false, pressed = false, c
     <div className="sim-supply-ports">{getDefinition(type).terminals.map(terminal => <span key={terminal.id} style={{ left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }}><b>{terminal.label}</b><i style={{ borderColor: terminalColor(terminal) }} /></span>)}</div>
   </div>;
   if (type === "pe-terminal") return <span className={`sim-device-artwork sim-pe-artwork ${className}`}><img src={`${import.meta.env.BASE_URL ?? "/"}sim-assets/terminal.svg`} alt="保护接地端子" draggable={false} /></span>;
-  // This viewport crops the actual NO pole of the reference contactor, without drawing a substitute device.
-  if (type === "auxiliary-no") return <svg className={`sim-device-artwork ${className}`} viewBox="112 31 39.5 137" role="img" aria-label="接触器常开辅助触点区域"><image href={`${import.meta.env.BASE_URL ?? "/"}sim-assets/contactor380.svg`} width="151.5" height="191.5" /></svg>;
   const asset = type === "relay380" ? "relay220" : type;
   return <img
     className={`sim-device-artwork ${active ? "is-active" : ""} ${className}`}

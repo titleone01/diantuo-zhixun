@@ -7,6 +7,24 @@ const { LESSONS, createLessonDocument, createMotorCourseDocument, assessMotorCou
 const graph = document => ({ components: document.components.filter(component => !isWireDuct(component.type) && component.type!=="din-rail").map(({ position, ...component }) => component), wires: document.wires.map(({ style, routing, ...wire }) => wire), roles: document.roles });
 const overlaps = (a, b) => { const sa = componentSize(a), sb = componentSize(b); return a.position.x < b.position.x + sb.width && a.position.x + sa.width > b.position.x && a.position.y < b.position.y + sb.height && a.position.y + sa.height > b.position.y; };
 
+test('original placement groups keep each extra auxiliary attached to its KM and the star-delta third button unwired', () => {
+  const sequential = createLessonDocument('motor-course-07', { wired: true });
+  assert.deepEqual(TRAINING_LAYOUT_REFERENCES['motor-course-07'].rows[1], ['km1', 'km2']);
+  for (const auxiliary of sequential.components.filter(c => c.type === 'auxiliary-no')) {
+    const owner = sequential.components.find(c => c.id === auxiliary.linkedTo);
+    assert.equal(auxiliary.position.y, owner.position.y);
+    assert.equal(auxiliary.position.x, owner.position.x + componentSize(owner).width + 12);
+  }
+  const starDelta = createLessonDocument('motor-course-09', { wired: true });
+  const spare = starDelta.components.find(c => c.id === starDelta.roles.sb3);
+  assert.match(spare.label, /SB3.*预留不接线/);
+  assert.ok(starDelta.wires.every(w => w.from.componentId !== spare.id && w.to.componentId !== spare.id));
+  assert.equal(assessMotorCourse(starDelta, starDelta.lessonId).status, 'passed');
+  const wiredSpare = structuredClone(starDelta);
+  wiredSpare.wires.push({ id: 'unsupported-spare-wire', from: { componentId: wiredSpare.roles.xt16, terminalId: 'T1' }, to: { componentId: spare.id, terminalId: '23' }, color: '#ef3340' });
+  assert.equal(assessMotorCourse(wiredSpare, wiredSpare.lessonId).status, 'unsupported', 'a connected spare must not bypass course coverage');
+});
+
 function assertBetweenChannels(document, id, row) {
   const component = document.components.find(component => component.id === (document.roles?.[id] ?? id));
   assert.ok(component, `layout role ${id} exists`);

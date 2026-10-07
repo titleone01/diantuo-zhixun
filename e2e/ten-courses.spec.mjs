@@ -22,7 +22,7 @@ test('ten-course scope: member default, floating selector, demonstration and pra
   await page.locator('.dt-reference-card').nth(5).click();await page.getByRole('button',{name:'查看示范接线',exact:true}).click();await expect(page.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();
   let doc=await exported(page);expect(doc.lessonId).toBe(ids[5]);expect(doc.wires.length).toBeGreaterThan(0);
   await page.getByRole('button',{name:'选择图纸',exact:true}).click();await catalog(page);await page.locator('.dt-reference-card').nth(8).click();await page.getByRole('button',{name:'进入电路配置',exact:true}).click();await page.getByRole('button',{name:'创建练习',exact:true}).click();
-  doc=await exported(page);expect(doc.lessonId).toBe(ids[8]);expect(doc.wires).toEqual([]);expect(doc.components.some(c=>c.label==='SB3')).toBe(false);
+  doc=await exported(page);expect(doc.lessonId).toBe(ids[8]);expect(doc.wires).toEqual([]);const spare=doc.components.find(c=>c.id===doc.roles.sb3);expect(spare.label).toContain('预留不接线');expect(doc.wires.some(w=>w.from.componentId===spare.id||w.to.componentId===spare.id)).toBe(false);
 });
 for(const id of ['motor-jog','motor-self-hold','lighting-single','lighting-two-way'])test(`ten-course scope: historical ${id} retains exact document, assessment, save and retired-link recovery`,async({page})=>{
   await login(page);const draft=fixture.drafts[`legacy:${id}`];await open(page,draft);await expect(page.getByText('历史练习 · 已有接线和图纸保留，可继续编辑与保存。',{exact:true})).toBeVisible();

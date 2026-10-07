@@ -9,6 +9,7 @@ import { lessonFunctions, TestClient } from './test-fixtures.mjs';
 import { importTrainingDrawings } from './import-training-drawings.mjs';
 import { createStaticFixture } from './browser-static-fixture.mjs';
 import { verifyCourseDrawingReplacement } from './test-course-drawing-replacement.mjs';
+import { verifySourceDrawings } from './prepare-source-drawings.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const filter = process.argv.slice(2);
 if (filter.length && (filter.length !== 2 || filter[0] !== '--grep' || !filter[1])) throw new Error('Expected --grep <test title pattern> or no arguments');
@@ -27,9 +28,11 @@ try {
   assert.equal(linked.status, 200);
   assert.equal((await admin.call('/training-projects/project-01','PUT',{mediaId:media.id,kind:'layout',expectedVersion:null})).status,200);
   let drawingEntries = [];
-  if (process.env.DIANTUO_TERMINAL_DRAWINGS) {
+  const drawingDirectory=process.env.DIANTUO_SOURCE_DRAWINGS||process.env.DIANTUO_TERMINAL_DRAWINGS;
+  if (drawingDirectory) {
+    await verifySourceDrawings(drawingDirectory);
     const artifactDirectory = path.join(directory, 'drawing-evidence');
-    await importTrainingDrawings(['--directory', process.env.DIANTUO_TERMINAL_DRAWINGS, '--replace', '--url', fixture.origin, '--admin-file', fixture.adminFile, '--artifact-dir', artifactDirectory]);
+    await importTrainingDrawings(['--directory', drawingDirectory, '--replace', '--url', fixture.origin, '--admin-file', fixture.adminFile, '--artifact-dir', artifactDirectory]);
     drawingEntries = JSON.parse(await readFile(path.join(artifactDirectory, 'training-drawing-import.json'), 'utf8')).entries;
     const sources=JSON.parse(await readFile(path.join(root,'architecture/course-drawings-2026-10-07.json'),'utf8')).entries;
     assert.equal(drawingEntries.length,20);
@@ -50,7 +53,7 @@ try {
   const client = new TestClient(fixture.origin); await client.login(accounts[0]);
   if(drawingEntries.length){
     const secondMember=new TestClient(fixture.origin);await secondMember.login(accounts[1]);
-    const result=await verifyCourseDrawingReplacement({fixture,directory,admin,member:client,secondMember,createLessonDocument,sourceDirectory:process.env.DIANTUO_TERMINAL_DRAWINGS,replacementBytes:drawing});
+    const result=await verifyCourseDrawingReplacement({fixture,directory,admin,member:client,secondMember,createLessonDocument,sourceDirectory:drawingDirectory,replacementBytes:drawing});
     drawingEntries=drawingEntries.map(entry=>entry.projectId==='project-06'&&entry.kind==='layout'?result.entry:entry);
     const evidenceDirectory=path.join(root,'.local/acceptance-public');await mkdir(evidenceDirectory,{recursive:true});await writeFile(path.join(evidenceDirectory,'course-drawings.json'),JSON.stringify(result.evidence,null,2));
   }

@@ -46,6 +46,10 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   if (new Set(Object.values(roles)).size !== Object.values(roles).length) diagnostics.push(issue("LESSON_ROLE_DUPLICATED", "不同图内位号不能绑定到同一个器件实例", [], "warning"));
   if (diagnostics.length) return { status: "incomplete", passed: 0, total: 1, checks: [{ id: "roles", label: "课程器件角色完整且类型正确", passed: false }], diagnostics };
   const assigned = new Set(Object.values(roles));
+  // The user's star-delta placement drawing includes a spare SB3. It is outside
+  // the two-button electrical schematic and accepted only while fully unwired.
+  const spare = number === 9 && document.components.find(component => component.id === document.roles?.sb3);
+  if (spare && spare.type === "push-no" && !document.wires.some(wire => wire.from.componentId === spare.id || wire.to.componentId === spare.id)) assigned.add(spare.id);
   const uncovered = document.components.filter(component => !assigned.has(component.id) && (getDefinition(component.type).load || getDefinition(component.type).contacts?.some(contact => ["switch", "push", "overload"].includes(contact.control)) || component.type === "fuse" || component.type === "fuse3" || component.type === "fuse2"));
   if (uncovered.length) return { status: "unsupported", passed: 0, total: 1, checks: [{ id: "coverage", label: "所声明的负载、开关和保护器件均在课程评估范围内", passed: false }], diagnostics: [issue("UNASSESSED_COMPONENTS", "存在未被本课程动作与保护检查覆盖的额外负载、控制或保护器件", uncovered.map(component => component.id))] };
   const motorRoles = Object.keys(roles).filter(role => getDefinition(document.components.find(component => component.id === roles[role])!.type).load?.kind === "motor");

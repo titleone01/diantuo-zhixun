@@ -222,6 +222,5 @@ export async function prepareTerminalDrawings({directory=DRAWING_DIRECTORY,cours
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  const at=process.argv.indexOf('--courses'),courses=at>=0?process.argv[at+1].split(',').map(Number):undefined;
-  await prepareTerminalDrawings({courses,png:!process.argv.includes('--svg-only')});
+  throw new Error('课程正式图纸必须使用用户提供的20张原始PNG。请使用 prepare-source-drawings.mjs；此模块仅保留历史拓扑诊断函数。');
 }
