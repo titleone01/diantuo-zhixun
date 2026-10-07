@@ -32,7 +32,7 @@ node scripts/import-training-drawings.mjs --directory "<最新原图私有目录
 
 本轮从 `44e7be4` 建立独立工作树及 `codex/ten-courses-only-20261007` 分支。主目录原有领先main的13个提交保留。修改前完整Git bundle位于 `E:/vibecoding/电拓智训备份/ten-courses-20261007/before-ten-courses.bundle`，`git bundle verify`通过，SHA-256 `689FFAEBFCDF3640E2316276A87508C421D8FB5C394EE819173D37F8094971DC`。
 
-另一对话“增加端子排上下互通接线”负责主目录、端子/走线及其器件显示修复；本轮在独立树修改课程入口和相关验收。先只读复制14个声明范围的修复文件并记录SHA-256，在独立树回归；再纳入对方正式提交 `4c29aeb`，核对应用/脚本/测试/Pages与已验收快照一致。主目录合并与正式服务切换等该对话结束、主目录干净后执行。构建与隔离服务使用本轮目录；正式唯一state和Tunnel保留。最新用户授权已包含直接上线。
+另一对话“增加端子排上下互通接线”负责主目录、端子/走线及其器件显示修复；本轮在独立树修改课程入口和相关验收。先只读复制14个声明范围的修复文件并记录SHA-256，在独立树回归；再纳入对方正式提交 `4c29aeb`，核对应用/脚本/测试/Pages与已验收快照一致。该对话完成、主目录干净后才合并main和切换正式服务，同时纳入其交付记录 `24e3410`。构建与隔离服务使用本轮目录；正式唯一state和Tunnel保留。最新用户授权已包含直接上线。
 
 ## 验证与交付状态
 
@@ -58,4 +58,22 @@ node scripts/import-training-drawings.mjs --directory "<最新原图私有目录
 
 第一次全量浏览器检查有3项旧页签定位超时，改为十课入口和双图弹窗后相关7项及最终77项全部通过。并行提交只有两处集成冲突：生成的Pages入口及浏览器runner；保留已验收十课产物，runner同时保留原图预核验、静态Pages、历史草稿与单槽替换验收。未改变应用功能源码。历史报告不改写为本次结果。
 
-正式交付进行中：下方追加main/远端/CI、正式停写备份恢复、发布身份与数据保留结果。真实物理接线和长期容量浸泡不属于本轮已执行验收。
+真实物理接线和长期容量浸泡不属于本轮已执行验收。
+
+## main与正式上线
+
+2026-10-07 14:31（Asia/Shanghai）已启动十课正式发布包，继续使用 `https://train.titleone.space/`、loopback 3000、原 `.wrangler/state`、原私有配置和原Tunnel。没有新建源站、业务库或域名。当前发布ID为 `c8b22ffd73886d773d46c4c38b424d4c718619e2b02311f83835c301c8eba3a7`，不可变产物在 `C:/Users/admin/diantuo-production/20261007-ten-courses/release`。包源码为 `b9f470e`；随后main集成 `11ba5e7` 只追加另一对话的交付文档，应用/脚本/媒体/Pages均无差异。本节后续CI修复只调整测试的换行兼容，不修改运行代码和产物。
+
+- 主目录main与origin/main首次推送均为 `11ba5e77596305586d1eaaf9d24f42d320af28ae`；`44e7be4`及另一对话 `24e3410` 均已验证为祖先，完整保留此前13个提交。合并后再次保存并验证 `E:/vibecoding/电拓智训备份/ten-courses-20261007/merged-before-production.bundle`，SHA-256 `397E760C0F191BCF2FD94778A910462CB49E8584943729D9E73713EF37A2986B`。
+- 停写前核对原发布指针、lease、父子PID及唯一3000监听；只停止原发布主管41736及其子进程，Tunnel及其他对话/项目进程保持。启动时工具策略拒绝后台启动命令，改用工具托管终端会话65572启动同一 `start-release.mjs`。新主管7416、Wrangler33288、3000监听22624；启动记录在本次私有 `service-launch.json`。
+- 停写完整备份在上述发布目录的 `backup/`，包含原state全部D1/R2及WAL/SHM、私有运行配置和完整 `.local`；恢复到独立空 `restore-check/`，111个state文件逐字节核验、SQLite quick_check/foreign_key_check和业务行哈希全部通过。原正式目录未被恢复副本覆盖。
+- 上线后既有42个账号、57份草稿、46个作品、315条评测、87条媒体及87份原对象全部保留；既有业务行和其他19图槽位的哈希未变。登录核验使用该正式环境已有管理员，未创建测试账号/草稿/作品。
+- 正式20图导入预核验全部与最新原PNG相同：0上传、20保留。06单槽命令亦为0上传、1保留，因为另一对话已经恢复原图并导入了本次06最新版；没有再次换图或推进槽版本。现有20槽与源目录完整SHA-256相符，旧媒体仍存在。
+- 本机与公网 `/`、`app-L32AAIHR.js`、`app-2RFUTYXP.css` 全部200且逐资源SHA-256与发布包一致；会话200且匿名user为空，两处各22个业务/私有图片匿名请求401，Tunnel `/ready` 200。真实公网匿名Chromium登录页渲染，无页面错误。
+- GitHub Pages 已部署本轮 `index-UP74BPN4.js` / `index-YNE72MNM.css`。远端HTML仅Git换行不同，统一LF后SHA-256相等；JS/CSS字节一致。真实远端Chromium确认十个课程选项、十张课程卡、第06课示范65条线、0私有API请求、0页面错误。成员原图仍只在受权限保护的成员站读取。
+
+本次受限目录中的 `business-before.json`、`business-restored.json`、`business-after.json`、`production-smoke.json`、`pages-smoke.json`、`drawing-verify/`、`drawing-import/` 保存完整交付证据。含私有配置的backup/恢复副本不得公开。
+
+## 远端CI修复
+
+首次main的Pages工作流成功；[Project checks 37581223225](https://github.com/titleone01/diantuo-zhixun/actions/runs/37581223225) 在Linux Node阶段为629通过、1失败、1条件跳过。唯一失败是辅助NO资产记录原始CRLF SVG哈希，而Linux checkout将原SVG改为LF。修正测试以两种换行编码验证同一来源，仍保留原路径、尺寸、螺丝、NO文字及不得夹带其他触点的全部结构断言；原SVG和图纸不改写。独立LF/CRLF副本均通过，随后本机全量重新为630通过、0失败、1条件跳过。修复及本次交付文档继续提交main并推送；最终远端状态以对应GitHub Actions运行结果为准。

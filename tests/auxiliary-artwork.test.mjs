@@ -7,7 +7,12 @@ test('the complete auxiliary module retains original NO details and calibrated s
   const original = await readFile(new URL('../public/sim-assets/contactor380.svg', import.meta.url), 'utf8');
   const asset = await readFile(new URL('../public/sim-assets/auxiliary-no.svg', import.meta.url), 'utf8');
   const metadata = JSON.parse(asset.match(/<metadata>(.*?)<\/metadata>/s)[1]);
-  assert.equal(metadata.sourceSha256, createHash('sha256').update(original).digest('hex'));
+  // Git can translate SVG line endings; the recorded source uses CRLF.
+  // Check both encodings while retaining the source-path assertions below.
+  const sourceLf = original.replace(/\r\n/g, '\n');
+  const sourceHashes = [sourceLf, sourceLf.replace(/\n/g, '\r\n')]
+    .map(source => createHash('sha256').update(source).digest('hex'));
+  assert.ok(sourceHashes.includes(metadata.sourceSha256), 'Auxiliary artwork source hash differs beyond line endings');
   assert.match(asset, /width="59.25px" height="205.5px" viewBox="0 0 59.25 205.5"/);
   assert.match(asset, /class="auxiliary-shell"/);
   assert.match(asset, /translate\(-168 -46.5\) scale\(1.5\)/);
