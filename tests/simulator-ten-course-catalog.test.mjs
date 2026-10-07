@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { build } from 'esbuild';
 import { createRequire } from 'node:module';
+import { readFile,readdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import path from 'node:path';
 
 const bundled = await build({
   stdin: { contents: `export * from './app/simulator/core/lessons';export * from './app/simulator/core/engine';export * from './app/simulator/core/validation';export * from './app/simulator/core/course-roles';export * from './app/simulator/core/catalog';export * from './app/simulator/course-projects';export {default as CourseLibrary} from './app/simulator/CourseLibrary';export {createElement} from 'react';export {renderToStaticMarkup} from 'react-dom/server';`, resolveDir: process.cwd() },
@@ -24,6 +27,13 @@ test('new practices and static course cards expose the same ten motor courses', 
   assert.ok(!html.includes('工业电路图纸'));
   assert.ok(!html.includes('家庭电路图纸'));
   assert.equal(core.selectableProjects([...core.COURSE_PROJECTS,{id:'legacy',lessonId:'motor-jog'}]).length,10);
+});
+
+test('built Pages never contains any of the twenty private original PNG bytes',async()=>{
+  const originals=JSON.parse(await readFile('architecture/course-drawings-2026-10-07.json','utf8')).entries;
+  assert.equal(originals.length,20);const hashes=new Set(originals.map(entry=>entry.sha256));
+  async function inspect(directory){for(const file of await readdir(directory,{withFileTypes:true})){const location=path.join(directory,file.name);if(file.isDirectory())await inspect(location);else if(file.name.toLowerCase().endsWith('.png'))assert.equal(hashes.has(createHash('sha256').update(await readFile(location)).digest('hex')),false,`Private PNG leaked into ${location}`);}}
+  await inspect('docs');
 });
 
 for(const lesson of core.LEGACY_LESSONS)test(`historical ${lesson.id} retains validation, roles and electrical assessment`,()=>{
