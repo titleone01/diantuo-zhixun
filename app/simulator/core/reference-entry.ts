@@ -13,7 +13,7 @@ export function parseReferenceEntry(pathname: string, search: string): Reference
   return Number.isSafeInteger(id) && getReferenceDrawing(id) ? { kind: "reference", id } : { kind: "invalid" };
 }
 
-export type ReferenceEntryDecision = "preserve" | "confirm" | "apply";
+export type ReferenceEntryDecision = "preserve";
 export type ReferenceEntryContext = {
   /** Must come from a validated reference intent, after account recovery finishes. */
   requestedId: number;
@@ -23,9 +23,8 @@ export type ReferenceEntryContext = {
   saved: { id: string } | null;
 };
 
-/** Query changes select context; they do not override matching recovered wiring. */
-export function resolveReferenceEntry({ requestedId, currentDocument, hasRecovery, dirty, saved }: ReferenceEntryContext): ReferenceEntryDecision {
-  if (currentDocument.referenceDiagramId === requestedId) return "preserve";
-  if (dirty || (saved === null && hasRecovery && currentDocument.wires.length > 0)) return "confirm";
-  return "apply";
+/** Retired URLs remain recognizable, but never create or replace a workspace. */
+export function resolveReferenceEntry(context: ReferenceEntryContext): ReferenceEntryDecision {
+  void context; // Preserve the historical caller contract without creating documents.
+  return "preserve";
 }

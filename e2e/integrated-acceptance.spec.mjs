@@ -168,24 +168,20 @@ test('integrated: switching an unsaved course preserves its parked circuit and f
   expect(await page.evaluate(() => Object.fromEntries(Object.keys(localStorage).filter(key => key.startsWith('diantuo:simulator:recovery:')).map(key => [key, localStorage.getItem(key)])))).toEqual(recoveryBefore);
 });
 
-test('integrated: upload reference and undo restore the authenticated PNG preview and modal keys leave wiring intact', async ({ page }) => {
-  await login(page); await newDocument(page); await importDocument(page, smallDocument);
-  const bytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGP4DwQACfsD/fteaysAAAAASUVORK5CYII=', 'base64');
-  const uploading = page.waitForResponse(response => response.url().endsWith('/api/media') && response.request().method() === 'POST');
-  await page.locator('input[type="file"][accept="image/png,image/jpeg,image/webp"]').setInputFiles({ name: 'fixture-reference.png', mimeType: 'image/png', buffer: bytes });
-  const response = await uploading; expect(response.status()).toBe(201); const media = (await response.json()).media;
-  const preview = page.locator(`.sim-diagram img[src="/api/media/${media.id}"]`);
-  await expect(preview).toBeVisible(); await expect.poll(() => preview.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
-  const uploaded = await exportDocument(page); expect(uploaded.drawingMediaId).toBe(media.id);
-  await collapseDiagram(page); await page.locator('.react-flow__controls-fitview').click(); await page.locator('[data-device-id="ia"]').click();
-  await page.getByRole('button', { name: '展开图纸', exact: true }).click(); await page.getByRole('button', { name: '选择图纸', exact: true }).click();
-  const dialog = page.getByRole('dialog', { name: '图纸选择', exact: true }); await expect(page.getByLabel('搜索参考图纸')).toBeFocused();
-  await page.keyboard.press('Control+c'); await page.keyboard.press('Control+v'); await page.keyboard.press('Delete'); await page.keyboard.press('Control+z');
-  await expect(page.locator('[data-device-id]')).toHaveCount(2); await expect(dialog).toBeVisible();
-  await dialog.getByRole('radio').first().check(); await dialog.getByRole('button', { name: '确认', exact: true }).click();
-  expect((await exportDocument(page)).referenceDiagramId).toBeDefined(); await expect(preview).toHaveCount(0);
-  await page.getByRole('button', { name: '撤销', exact: true }).click(); expect(await exportDocument(page)).toEqual(uploaded);
-  await expect(preview).toBeVisible(); await expect.poll(() => preview.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+test('integrated: personal drawing upload and undo retain authenticated previews and wiring', async ({ page }) => {
+  await login(page); await newDocument(page); await importDocument(page,smallDocument);
+  const original=await exportDocument(page);
+  const bytes=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGP4DwQACfsD/fteaysAAAAASUVORK5CYII=','base64');
+  const uploading=page.waitForResponse(response=>response.url().endsWith('/api/media')&&response.request().method()==='POST');
+  await page.locator('input[type="file"][accept="image/png,image/jpeg,image/webp"]').setInputFiles({name:'fixture-reference.png',mimeType:'image/png',buffer:bytes});
+  const response=await uploading;expect(response.status()).toBe(201);const media=(await response.json()).media;
+  const preview=page.locator(`.sim-diagram img[src="/api/media/${media.id}"]`);
+  await expect(preview).toBeVisible();await expect.poll(()=>preview.evaluate(image=>image.complete&&image.naturalWidth>0)).toBe(true);
+  const uploaded=await exportDocument(page);expect(uploaded.drawingMediaId).toBe(media.id);
+  await page.getByRole('button',{name:'撤销',exact:true}).click();expect(await exportDocument(page)).toEqual(original);await expect(preview).toHaveCount(0);
+  await page.getByRole('button',{name:'重做',exact:true}).click();expect(await exportDocument(page)).toEqual(uploaded);await expect(preview).toBeVisible();
+  await page.getByRole('button',{name:'选择图纸',exact:true}).click();await expect(page.locator('.dt-reference-card')).toHaveCount(10);
+  await page.getByRole('link',{name:'模拟电路',exact:true}).click();expect(await exportDocument(page)).toEqual(uploaded);
 });
 
 for (const viewport of [{ width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {

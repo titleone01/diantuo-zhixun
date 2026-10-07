@@ -4,7 +4,7 @@
 
 先读本文件、`architecture/3d-wiring.md`、`architecture/simulator-2d.md`、`architecture/local-runbook.md`。先检查 `git status --short` 和端口/PID，保留全部已有修改；多个 Agent 明确文件范围，构建、依赖安装和运行服务由一名负责人协调。
 
-当前产品是二维邀请成员站：十个主要电机课程 + 四个基础课程。`app/simulator/core/` 保存共享文档/器件/电气/课程契约，`editor/` 管画布与仿真会话，`SimulatorApp.tsx` 管账号及工作区，`app/server/` 管权限和 API，`worker/local.ts` 是本机入口，`db/migrations/` 是实际迁移来源。详细目录和维护债务见 `architecture/project-maintenance.md`，本轮证据见 `architecture/project-health-report-2026-10-03.md`。
+当前产品是二维邀请成员站：新建入口仅提供十个电机课程。四个早期课程和18张原站参考图仅用于历史草稿、作品、媒体和评估兼容，不再提供新建入口。当前范围见 `architecture/ten-course-consolidation-2026-10-07.md`。`app/simulator/core/` 保存共享文档/器件/电气/课程契约，`editor/` 管画布与仿真会话，`SimulatorApp.tsx` 管账号及工作区，`app/server/` 管权限和 API，`worker/local.ts` 是本机入口，`db/migrations/` 是实际迁移来源。详细目录和维护债务见 `architecture/project-maintenance.md`，本轮证据见 `architecture/project-health-report-2026-10-03.md`。
 
 2026-09-30 后已存在固定公网 Tunnel 入口，见运行手册。下方“先本地验收、不部署公网”是实施权限边界，不表示现网不存在：日常修复不要另建站点、切换域名、启动第二个生产源站或自动执行远程部署。端口 3000 监听 loopback，隧道与本机共用唯一业务库。
 

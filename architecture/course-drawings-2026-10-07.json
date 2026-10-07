@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-07",
+  "source": "用户提供的最新十课原图",
+  "entries": [
+    {
+      "projectId": "project-01",
+      "lessonId": "motor-course-01",
+      "kind": "schematic",
+      "file": "电动机点动控制电路原理图.png",
+      "bytes": 109739,
+      "width": 881,
+      "height": 744,
+      "sha256": "d38f8e97085252e78b5452220ab6ff567d1e691ac42b6f0ec8f151f1b14c4c49"
+    },
+    {
+      "projectId": "project-01",
+      "lessonId": "motor-course-01",
+      "kind": "layout",
+      "file": "电动机点动控制电路布局图.png",
+      "bytes": 46670,
+      "width": 658,
+      "height": 529,
+      "sha256": "c487640ac85f73b29405157a4f6acae3be82c25715eba6ce5a697224239c2fc0"
+    },
+    {
+      "projectId": "project-02",
+      "lessonId": "motor-course-02",
+      "kind": "schematic",
+      "file": "电动机连续运行控制电路原理图.png",
+      "bytes": 36600,
+      "width": 735,
+      "height": 707,
+      "sha256": "e3e7b8ed6375960231a3bebc3c05c5383d8c72299ae8d53190a5419ad4ddeb44"
+    },
+    {
+      "projectId": "project-02",
+      "lessonId": "motor-course-02",
+      "kind": "layout",
+      "file": "电动机连续运行控制电路布局图.png",
+      "bytes": 52547,
+      "width": 676,
+      "height": 493,
+      "sha256": "8580e48b9e13709f933d057fd298016e6fe62d0f25d214723415d43f513e7dc8"
+    },
+    {
+      "projectId": "project-03",
+      "lessonId": "motor-course-03",
+      "kind": "schematic",
+      "file": "点动与连续运行电路原理图.png",
+      "bytes": 39347,
+      "width": 818,
+      "height": 746,
+      "sha256": "c445f89a61f65ded18f2d5eefaf760ee36c7d2c5e09dbf22b2bfd14cbbf48585"
+    },
+    {
+      "projectId": "project-03",
+      "lessonId": "motor-course-03",
+      "kind": "layout",
+      "file": "点动与连续运行电路布局图.png",
+      "bytes": 54056,
+      "width": 618,
+      "height": 461,
+      "sha256": "5097201b6635db0595f357df15493e175f6e434ded5c070a52e070719487ac46"
+    },
+    {
+      "projectId": "project-04",
+      "lessonId": "motor-course-04",
+      "kind": "schematic",
+      "file": "接触器互锁正反转电路原理图.png",
+      "bytes": 32435,
+      "width": 734,
+      "height": 673,
+      "sha256": "ca9bb6301db6c61e3922ca905e6ca2534fdd5fc63fa5c6d3b24ca849cc4c5af1"
+    },
+    {
+      "projectId": "project-04",
+      "lessonId": "motor-course-04",
+      "kind": "layout",
+      "file": "接触器互锁正反转电路布局图.png",
+      "bytes": 43917,
+      "width": 674,
+      "height": 615,
+      "sha256": "d2a990842f1bfe04643290a59891ad1a6758d8262e80003038320ef1775eae9a"
+    },
+    {
+      "projectId": "project-05",
+      "lessonId": "motor-course-05",
+      "kind": "schematic",
+      "file": "双重联锁正反转控制电路原理图.png",
+      "bytes": 49071,
+      "width": 735,
+      "height": 678,
+      "sha256": "2d2e52d67cee1ee4093991d40e031e4b8ae96144f28b9d9430c46133242c4821"
+    },
+    {
+      "projectId": "project-05",
+      "lessonId": "motor-course-05",
+      "kind": "layout",
+      "file": "双重联锁正反转控制电路布局图.png",
+      "bytes": 43917,
+      "width": 674,
+      "height": 615,
+      "sha256": "d2a990842f1bfe04643290a59891ad1a6758d8262e80003038320ef1775eae9a"
+    },
+    {
+      "projectId": "project-06",
+      "lessonId": "motor-course-06",
+      "kind": "schematic",
+      "file": "自动往返控制电路原理图.png",
+      "bytes": 44027,
+      "width": 784,
+      "height": 672,
+      "sha256": "5cb3026e1abae3b75f831d9d20dda7a71d56d6639c257e5474677740e3179ba6"
+    },
+    {
+      "projectId": "project-06",
+      "lessonId": "motor-course-06",
+      "kind": "layout",
+      "file": "自动往返控制电路布局图.png",
+      "bytes": 87270,
+      "width": 756,
+      "height": 616,
+      "sha256": "406a681c18ea41c7b5e0090736f1d8f9a75886f78870a57ea61e8b5b0854adbb"
+    },
+    {
+      "projectId": "project-07",
+      "lessonId": "motor-course-07",
+      "kind": "schematic",
+      "file": "顺序控制电路原理图.png",
+      "bytes": 388326,
+      "width": 1420,
+      "height": 1020,
+      "sha256": "68327ec3bb0daa2f4a21a8c4cd5e11a8eb24729036694077f619813d6cc912ba"
+    },
+    {
+      "projectId": "project-07",
+      "lessonId": "motor-course-07",
+      "kind": "layout",
+      "file": "顺序控制电路布局图.png",
+      "bytes": 50242,
+      "width": 577,
+      "height": 528,
+      "sha256": "8c651303439282e7f95bf83b79425bab10047d237391df7a61a3b7c1dbbb511e"
+    },
+    {
+      "projectId": "project-08",
+      "lessonId": "motor-course-08",
+      "kind": "schematic",
+      "file": "延时起动控制电路原理图.png",
+      "bytes": 123852,
+      "width": 844,
+      "height": 614,
+      "sha256": "a699788422020d38a7cfaf5dcfc65f14fcadeed68144045ee2c1c4f0046e6fb2"
+    },
+    {
+      "projectId": "project-08",
+      "lessonId": "motor-course-08",
+      "kind": "layout",
+      "file": "延时起动控制电路布局图.png",
+      "bytes": 41716,
+      "width": 534,
+      "height": 452,
+      "sha256": "ae77fe094f7bdf4fa2113a014aa3e01f77e93736fcdd511e1e1b4696cb6005e6"
+    },
+    {
+      "projectId": "project-09",
+      "lessonId": "motor-course-09",
+      "kind": "schematic",
+      "file": "Y-△降压起动控制电路原理图.png",
+      "bytes": 34913,
+      "width": 764,
+      "height": 487,
+      "sha256": "1f4b0fac855c6c2ec259df4700e88bf802910e006d06d9a78296e445402c2edf"
+    },
+    {
+      "projectId": "project-09",
+      "lessonId": "motor-course-09",
+      "kind": "layout",
+      "file": "Y-△降压起动控制电路布局图.png",
+      "bytes": 39169,
+      "width": 656,
+      "height": 531,
+      "sha256": "e40a23446929d906603a1a017ef20bcf835647eb2b4382ea924243a11b0a92a7"
+    },
+    {
+      "projectId": "project-10",
+      "lessonId": "motor-course-10",
+      "kind": "schematic",
+      "file": "双速电机运行控制电路原理图.png",
+      "bytes": 44391,
+      "width": 887,
+      "height": 592,
+      "sha256": "8e7ec4259871e0bd0476affcc24b05af486d59d03bf39210e4f42bb63617ed18"
+    },
+    {
+      "projectId": "project-10",
+      "lessonId": "motor-course-10",
+      "kind": "layout",
+      "file": "双速电机运行控制电路布局图.png",
+      "bytes": 39034,
+      "width": 656,
+      "height": 530,
+      "sha256": "1b5b9918f7adc668c84b8a9a9c264b7851de93f60cd78bedf6634cdcb682e4ff"
+    }
+  ]
+}

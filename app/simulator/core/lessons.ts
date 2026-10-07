@@ -4,14 +4,17 @@ import { createMotorPracticeDocument } from "./motor-practice-layout";
 import { isLayoutObject } from "./catalog";
 import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 
-export const LESSONS: LessonDefinition[] = [
-  ...MOTOR_COURSES,
+/** Courses offered for new practices; historical documents use the registry below. */
+export const LESSONS: LessonDefinition[] = MOTOR_COURSES;
+export const DEFAULT_LESSON_ID = "motor-course-01";
+export const isSelectableLesson = (id?: string | null) => LESSONS.some(lesson => lesson.id === id);
+export const LEGACY_LESSONS: LessonDefinition[] = [
   { id: "motor-jog", title: "电机点动控制", category:"industrial", description:"220V 线圈，按下启动按钮运行，松开立即停止。", objective:"完成三相主回路、瞬时控制和保护接地，并验证过载保护。", componentTypes:["supply","breaker3","contactor220","overload","fuse","push-no","motor","pe-terminal"] },
   { id: "motor-self-hold", title: "电机自锁启停控制", category:"industrial", description:"380V 线圈，以常开辅助触点保持运行，停止与过载均可释放。", objective:"启动、释放保持、停止、过载复位和失压后不自行重启。", componentTypes:["supply","breaker3","contactor380","overload","fuse","push-no","push-nc","motor","pe-terminal"] },
   { id: "lighting-single", title: "单控照明电路", category:"lighting", description:"一个开关控制一盏 220V 灯，开关接在相线。", objective:"合闸后用单控开关点亮和熄灭灯，中性线保持直接回路。", componentTypes:["supply","breaker1","switch1","lamp"] },
   { id: "lighting-two-way", title: "双控照明电路", category:"lighting", description:"两只双控开关通过两根联络线，从两处切换灯的状态。", objective:"遍历四种开关组合，每次切换任一开关均改变灯状态。", componentTypes:["supply","breaker1","switch2","switch2","lamp"] },
 ];
-export const getLesson = (id: string) => LESSONS.find((lesson) => lesson.id === id);
+export const getLesson = (id: string) => LESSONS.find(lesson => lesson.id === id) ?? LEGACY_LESSONS.find(lesson => lesson.id === id);
 const component = (id: string, type: ComponentType, label: string, x: number, y: number): CircuitComponent => ({ id, type, label, position:{x,y} });
 const ref = (componentId: string, terminalId: string): TerminalRef => ({componentId,terminalId});
 

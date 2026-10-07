@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import Modal from './Modal';
 import { FileUp, ExternalLink, Maximize2, RefreshCw, X } from 'lucide-react';
-import projectNames from '../../shared/training-projects.json';
+import { COURSE_PROJECTS } from './course-projects';
 import { api, ApiError, jsonBody, STATIC_DEMO, type Member } from './api';
 import DrawingViewer, { type DrawingZoom } from './DrawingViewer';
 import './training-projects.css';
@@ -18,7 +18,7 @@ export default function TrainingProjects(props: Props) {
   return <TrainingProjectsContent key={`${props.user.id}:${props.documentKey ?? ''}:${props.selectedProjectId ?? ''}`} {...props}/>;
 }
 function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = 'schematic', onSelectCurrentDrawing, onPreviewContextChange }: Props) {
-  const [projects, setProjects] = useState<Project[]>(projectNames.map(p => ({ id: p.id, name: p.name, title: p.name, lessonId: null, drawingStatus: 'pending', updatedAt: null, media: null })));
+  const [projects, setProjects] = useState<Project[]>(COURSE_PROJECTS);
   const [selected, setSelected] = useState('');
   const [kind, setKind] = useState<DrawingKind>('schematic');
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
@@ -59,7 +59,7 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
     catch (reason) { setError((reason as Error).message); }
     finally { setRefreshing(false); }
   }
-  const pending = <div className="dt-project-pending"><FileUp size={30}/><strong>{project?.name || '当前练习'}</strong><p>{LABELS[shownKind]}尚未上传</p><small>{project && user.role === 'admin' ? `请选择${LABELS[shownKind]}文件上传。` : `此位置没有${LABELS[shownKind]}，不会使用其他图纸代替。`}</small></div>;
+  const pending = <div className="dt-project-pending"><FileUp size={30}/><strong>{project?.name || '当前练习'}</strong><p>{STATIC_DEMO ? '课程原图需登录成员站查看' : `${LABELS[shownKind]}尚未上传`}</p><small>{project && user.role === 'admin' ? `请选择${LABELS[shownKind]}文件上传。` : `此位置没有${LABELS[shownKind]}，不会使用其他图纸代替。`}</small></div>;
   return <section className="dt-training-projects">
     <button type="button" className="dt-project-options-toggle" aria-expanded={toolsOpen} aria-controls={toolsId} onClick={() => setToolsOpen(open => !open)}>{toolsOpen ? '收起项目选项' : '选择项目图纸'}<span aria-hidden="true">{toolsOpen ? '▴' : '▾'}</span></button>
     {hasSlots && <div className="dt-project-drawing-tabs" role="tablist" aria-label="项目图纸类型">{(['schematic', 'layout'] as const).map(item => <button key={item} type="button" role="tab" aria-selected={shownKind === item} className={shownKind === item ? 'active' : ''} disabled={busy || (!project && (readOnly || !onSelectCurrentDrawing))} onClick={() => { setEnlarged(false); if (project) setKind(item); else if (!readOnly) onSelectCurrentDrawing?.(item); }}>{LABELS[item]}{project && !projectMedia(project, item) || !project && !currentDrawings?.[item] ? <small>待上传</small> : null}</button>)}</div>}

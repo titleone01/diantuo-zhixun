@@ -22,8 +22,6 @@ import Modal from "../Modal";
 import FloatingSchematic from "./FloatingSchematic";
 import { referenceVideoForDocument } from "../reference-video/catalog";
 import { getReferenceDrawing, referenceDrawingImageUrl } from "../core/reference-drawings";
-import { selectReferenceDrawing } from "../core/reference-workspace";
-import ReferenceDrawingPicker from "../ReferenceDrawingPicker";
 import { poolGroups, poolLabel } from "./library-presentation";
 import ShortCircuitAlert from "./ShortCircuitAlert";
 import { shortCircuitDiagnostic, shortCircuitNoticeKey } from "./short-circuit-notice";
@@ -47,6 +45,7 @@ export type SimulatorEditorProps = {
   drawingType?: "image/png" | "image/jpeg" | "image/webp" | "application/pdf";
   renderSchematic?: ReactNode | ((drawingPreview: ReactNode, selectionRevision: number, viewerControls: DrawingZoom) => ReactNode);
   referenceVideoAllowed?: boolean;
+  onChooseCourse?: () => void;
   readOnly?: boolean;
   onRunningChange?: (running: boolean) => void;
 };
@@ -109,8 +108,6 @@ function Workspace(props: SimulatorEditorProps) {
   const drawing = localDrawing.documentKey === props.documentKey && localDrawing.source === props.drawingUrl ? localDrawing.url : props.drawingUrl ?? '';
   const setDrawing = (url: string) => setLocalDrawing({ documentKey: props.documentKey, source: props.drawingUrl, url });
   const [drawingZoom, setDrawingZoom] = useState(1);
-  const [drawingPickerOpen, setDrawingPickerOpen] = useState(false);
-  const [referenceSelectionRevision, setReferenceSelectionRevision] = useState(0);
   const drawingSelectionEpoch = useRef(0);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState("");
@@ -409,7 +406,7 @@ function Workspace(props: SimulatorEditorProps) {
   const referenceDrawing = circuit.referenceDiagramId === undefined ? undefined : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
   const drawingPreview = drawing ? <DrawingViewer compact src={drawing} type={props.drawingType} title="用户导入的接线图" {...viewerControls}/> : referenceDrawing ? <DrawingViewer compact src={referenceDrawingImageUrl(referenceDrawing.id, import.meta.env.BASE_URL || "/")} title={referenceDrawing.title} {...viewerControls}/> : null;
-  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision, viewerControls) : drawingPreview ?? renderSchematic;
+  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, 0, viewerControls) : drawingPreview ?? renderSchematic;
 
   // Delegate shortcuts from native controls inside this editor, excluding portal dialogs.
   useEffect(() => {
@@ -484,7 +481,7 @@ function Workspace(props: SimulatorEditorProps) {
         {routingProblems.length > 0 && <div className="sim-routing-notice" role="status" aria-label="自动走线提示"><b>{routingProblems.length} 根导线需要整理</b><span>{routingProblems[0].route.message ?? "未找到可用的连通线槽，请检查线槽连接和元件遮挡。"}</span></div>}
         {running && hasTimers && <div className="sim-clock" aria-label="教学仿真时钟"><span>教学时间 {((simulation?.runtime.timeMs ?? 0) / 1000).toFixed(1)} s{simulation?.supported === false ? " · 已暂停" : ""}</span><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => setTimerPaused(value => !value)}>{timerPaused ? "继续计时" : "暂停计时"}</button><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => action({ type: "advance-time", ms: 1000 })}>推进 1 秒</button></div>}
         <div className="sim-document-actions"><button className="sim-button" disabled={frozen || !!busy} onClick={() => drawingInput.current?.click()}><FileImage size={15} />上传图纸</button><button className="sim-button" disabled={!onSave || !!busy} onClick={() => perform("save", onSave)}>{busy === "save" ? "保存中…" : "保存草稿"}</button><button className="sim-button sim-primary" disabled={!onPublish || !!busy || running} onClick={() => perform("publish", onPublish)}>发布电路</button></div>
-        <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} zoom={drawingZoom} onZoomChange={setDrawingZoom} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={() => setDrawingPickerOpen(true)} selectionDisabled={frozen}>
+        <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} zoom={drawingZoom} onZoomChange={setDrawingZoom} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={props.onChooseCourse ? () => { if (!frozen) props.onChooseCourse?.(); } : undefined} selectionDisabled={frozen}>
           <div className="sim-diagram-scaled">{schematicContent ?? <div className="sim-diagram-empty"><FileImage size={38}/><b>参考接线图</b><p>从图纸集选择课程，或上传自己的接线图。</p></div>}</div>
         </FloatingSchematic>
         <button className="sim-check-button" disabled={!!busy} onClick={checkCircuit}><ShieldCheck size={19} />{busy === "assess" ? "正在检查…" : "检查接线"}</button>
@@ -499,7 +496,6 @@ function Workspace(props: SimulatorEditorProps) {
       </div>
       <footer className="sim-editor-footer"><span><i className={running ? "live" : ""} />{running ? "运行中 · 接线编辑已锁定" : displayedWireStyle === "duct" ? "拖动端子接线 · 导线自动沿连通线槽走线" : "拖动端子接线 · 选中直角导线双击添加折点"}</span><span>{circuit.components.length} 个元件<span className="sim-footer-divider">·</span>{circuit.wires.length} 根导线<button aria-label="查看运行和诊断" onClick={() => { setPanelOpen(!panelOpen); setPanelTab(running ? "runtime" : "safety"); if (!panelOpen) setTimeout(frameInitialView, 80); }}><PanelRightClose size={15} /></button></span></footer>
     </section>
-    <ReferenceDrawingPicker open={drawingPickerOpen} selectedId={circuit.referenceDiagramId} disabled={frozen} onClose={() => setDrawingPickerOpen(false)} onSelect={id => { if (frozen) return; drawingSelectionEpoch.current++; setDrawing(""); setReferenceSelectionRevision(value => value + 1); changed(selectReferenceDrawing(docRef.current, id)); }}/>
     {transferMode && <Modal backdropClass="sim-transfer-backdrop" className="sim-transfer-dialog" title={transferMode === "export" ? "导出电路 JSON" : "导入电路 JSON"} onClose={() => setTransferMode(null)}><header><h2>{transferMode === "export" ? "导出电路" : "导入电路"}</h2><button className="sim-button" aria-label="关闭电路文件窗口" onClick={() => setTransferMode(null)}><X size={18}/></button></header><p>{transferMode === "export" ? "以下 JSON 包含元件、端子连接和走线路径。可下载文件，或复制后另存为 .json 文件。" : "选择电路 JSON 文件，或粘贴完整内容。导入将替换当前画布，可撤销；保存时会更新当前草稿。如需独立草稿，请先关闭窗口并新建电路，再导入。"}</p><textarea ref={transferInput} aria-label={transferMode === "export" ? "导出的电路 JSON" : "待导入的电路 JSON"} spellCheck={false} readOnly={transferMode === "export"} value={transferText} onChange={event => { setTransferText(event.target.value); setTransferNotice(""); }} placeholder={transferMode === "import" ? "在此粘贴完整电路 JSON" : undefined}/>{transferNotice && <p className="sim-transfer-notice" role="status">{transferNotice}</p>}<footer>{transferMode === "export" ? <><button className="sim-button" onClick={async () => { try { await navigator.clipboard.writeText(transferText); setTransferNotice("电路 JSON 已复制。"); } catch { transferInput.current?.focus(); transferInput.current?.select(); setTransferNotice("浏览器未允许自动复制。已选中全部 JSON，请按 Ctrl+C 复制。"); } }}><Copy size={16}/>复制 JSON</button><button className="sim-button sim-primary" onClick={exportDocument}><Download size={16}/>下载 JSON 文件</button></> : <><button className="sim-button" disabled={frozen} onClick={() => importInput.current?.click()}><FolderOpen size={16}/>选择 JSON 文件</button><button className="sim-button sim-primary" disabled={frozen || !transferText.trim()} onClick={() => { try { importDocument(transferText); } catch (error) { setTransferNotice(error instanceof Error ? error.message : "导入失败。"); } }}>导入粘贴内容</button></>}</footer></Modal>}
     <input ref={importInput} type="file" accept="application/json,.json" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (file) await importFile(file); }} />
     <input ref={drawingInput} type="file" accept="image/png,image/jpeg,image/webp" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (!file || frozen) return; const uploadEpoch = ++drawingSelectionEpoch.current, uploadDocument = docRef.current, uploadGeneration = session.generation; const stillCurrent = () => uploadEpoch === drawingSelectionEpoch.current && uploadDocument === docRef.current && uploadGeneration === session.generation; await perform("drawing", async () => { if (file.size > 10 * 1024 * 1024) throw new Error("图纸图片不能超过 10 MB。"); if (!/^image\/(png|jpeg|webp)$/.test(file.type)) throw new Error("支持 PNG、JPEG 和 WebP 图片。"); if (onImportDrawing) { const uploaded = await onImportDrawing(file); if (!stillCurrent()) throw new Error("上传期间已切换图纸或编辑电路，当前接线保持不变，请重新上传。"); setDrawing(uploaded.url); changed({ ...docRef.current, referenceDiagramId: undefined, drawingMediaId: uploaded.id, drawingMediaType: file.type as "image/png" | "image/jpeg" | "image/webp", trainingProjectId: undefined, projectDrawings: undefined, drawingKind: undefined }); } else { const dataUrl = await new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(new Error("图片读取失败")); reader.readAsDataURL(file); }); if (!stillCurrent()) return; setDrawing(dataUrl); setMessage("已打开本地图纸预览；登录后上传可随草稿保存。"); } }); }} />

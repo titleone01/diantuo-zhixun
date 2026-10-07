@@ -3,9 +3,9 @@ import {
   __toESM
 } from "./chunks/chunk-MYXFJE25.js";
 
-// node_modules/react/cjs/react.development.js
+// E:/vibecoding/电拓智训/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "node_modules/react/cjs/react.development.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -975,9 +975,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// node_modules/react/index.js
+// E:/vibecoding/电拓智训/node_modules/react/index.js
 var require_react = __commonJS({
-  "node_modules/react/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -987,9 +987,9 @@ var require_react = __commonJS({
   }
 });
 
-// node_modules/scheduler/cjs/scheduler.development.js
+// E:/vibecoding/电拓智训/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -1246,9 +1246,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// node_modules/scheduler/index.js
+// E:/vibecoding/电拓智训/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1258,9 +1258,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom.development.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop2() {
@@ -1502,9 +1502,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/index.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "node_modules/react-dom/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -1515,9 +1515,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom-client.development.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id2) {
@@ -21414,9 +21414,9 @@ var require_react_dom_client_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/client.js
+// E:/vibecoding/电拓智训/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "node_modules/react-dom/client.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21427,9 +21427,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
+// E:/vibecoding/电拓智训/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -21684,9 +21684,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// node_modules/react/jsx-runtime.js
+// E:/vibecoding/电拓智训/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21696,9 +21696,9 @@ var require_jsx_runtime = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
 var require_use_sync_external_store_shim_development = __commonJS({
-  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
@@ -21715,11 +21715,11 @@ var require_use_sync_external_store_shim_development = __commonJS({
             "The result of getSnapshot should be cached to avoid an infinite loop"
           ), didWarnUncachedGetSnapshot = true);
         }
-        cachedValue = useState17({
+        cachedValue = useState15({
           inst: { value, getSnapshot }
         });
         var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
-        useLayoutEffect9(
+        useLayoutEffect8(
           function() {
             inst.value = value;
             inst.getSnapshot = getSnapshot;
@@ -21727,7 +21727,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
           },
           [subscribe, value, getSnapshot]
         );
-        useEffect15(
+        useEffect14(
           function() {
             checkIfSnapshotChanged(inst) && forceUpdate({ inst });
             return subscribe(function() {
@@ -21753,16 +21753,16 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState17 = React2.useState, useEffect15 = React2.useEffect, useLayoutEffect9 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState15 = React2.useState, useEffect14 = React2.useEffect, useLayoutEffect8 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
 });
 
-// node_modules/use-sync-external-store/shim/index.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/index.js
 var require_shim = __commonJS({
-  "node_modules/use-sync-external-store/shim/index.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21772,18 +21772,18 @@ var require_shim = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
 var require_with_selector_development = __commonJS({
-  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
         return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore2 = shim.useSyncExternalStore, useRef15 = React2.useRef, useEffect15 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
+      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore2 = shim.useSyncExternalStore, useRef14 = React2.useRef, useEffect14 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
       exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-        var instRef = useRef15(null);
+        var instRef = useRef14(null);
         if (null === instRef.current) {
           var inst = { hasValue: false, value: null };
           instRef.current = inst;
@@ -21824,7 +21824,7 @@ var require_with_selector_development = __commonJS({
           [getSnapshot, getServerSnapshot, selector, isEqual]
         );
         var value = useSyncExternalStore2(subscribe, instRef[0], instRef[1]);
-        useEffect15(
+        useEffect14(
           function() {
             inst.hasValue = true;
             inst.value = value;
@@ -21839,9 +21839,9 @@ var require_with_selector_development = __commonJS({
   }
 });
 
-// node_modules/use-sync-external-store/shim/with-selector.js
+// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/with-selector.js
 var require_with_selector = __commonJS({
-  "node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
+  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21852,19 +21852,19 @@ var require_with_selector = __commonJS({
 });
 
 // github-pages/main.tsx
-var import_react25 = __toESM(require_react(), 1);
+var import_react23 = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
 
 // app/simulator/SimulatorApp.tsx
-var import_react24 = __toESM(require_react(), 1);
+var import_react22 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 var import_react3 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
 var toKebabCase = (string) => string?.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
 function toLucideIconData(iconName, iconNode, aliases = []) {
   if (iconNode == null) {
     throw new Error("[lucide]: iconNode is required when icon name is used");
@@ -21877,7 +21877,7 @@ function toLucideIconData(iconName, iconNode, aliases = []) {
   };
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
 var toCamelCase = (string) => {
   let out = "";
   let upperNext = false;
@@ -21896,21 +21896,21 @@ var toCamelCase = (string) => {
   return out;
 };
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
 var toPascalCase = (string) => {
   const camelCase = toCamelCase(string);
   return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 };
 
-// node_modules/lucide-react/dist/esm/Icon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
 var import_react2 = __toESM(require_react(), 1);
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
 var mergeClasses = (...classes) => classes.filter((className, index2, array2) => {
   return Boolean(className) && className.trim() !== "" && array2.indexOf(className) === index2;
 }).join(" ").trim();
 
-// node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
 var defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -21923,7 +21923,7 @@ var defaultAttributes = {
   "stroke-linejoin": "round"
 };
 
-// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
 function isDefined(value) {
   return value !== null && value !== void 0;
 }
@@ -21976,7 +21976,7 @@ function buildLucideIconNode(icon, params = {}) {
   ];
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
 function buildLucideIconForReact(icon, params = {}) {
   return buildLucideIconNode(icon, {
     ...params,
@@ -21991,7 +21991,7 @@ function buildLucideIconForReact(icon, params = {}) {
   });
 }
 
-// node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
 var hasA11yProp = (props) => {
   for (const prop in props) {
     if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
@@ -22001,12 +22001,12 @@ var hasA11yProp = (props) => {
   return false;
 };
 
-// node_modules/lucide-react/dist/esm/context.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/context.mjs
 var import_react = __toESM(require_react(), 1);
 var LucideContext = (0, import_react.createContext)({});
 var useLucideContext = () => (0, import_react.useContext)(LucideContext);
 
-// node_modules/lucide-react/dist/esm/Icon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
 var Icon = (0, import_react2.forwardRef)(
   ({
     color: color2,
@@ -22060,7 +22060,7 @@ var Icon = (0, import_react2.forwardRef)(
   }
 );
 
-// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   const iconData = typeof iconDataOrName === "string" ? toLucideIconData(iconDataOrName, iconNode, aliases) : iconDataOrName;
   const Component = (0, import_react3.forwardRef)(
@@ -22077,7 +22077,7 @@ function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   return Component;
 }
 
-// node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
 var __iconData = {
   name: "arrow-left",
   size: 24,
@@ -22089,7 +22089,7 @@ var __iconData = {
 __iconData.node;
 var ArrowLeft = createLucideIcon(__iconData);
 
-// node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
 var __iconData2 = {
   name: "arrow-right",
   size: 24,
@@ -22101,7 +22101,7 @@ var __iconData2 = {
 __iconData2.node;
 var ArrowRight = createLucideIcon(__iconData2);
 
-// node_modules/lucide-react/dist/esm/icons/bolt.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/bolt.mjs
 var __iconData3 = {
   name: "bolt",
   size: 24,
@@ -22119,7 +22119,7 @@ var __iconData3 = {
 __iconData3.node;
 var Bolt = createLucideIcon(__iconData3);
 
-// node_modules/lucide-react/dist/esm/icons/book-open.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/book-open.mjs
 var __iconData4 = {
   name: "book-open",
   size: 24,
@@ -22137,7 +22137,7 @@ var __iconData4 = {
 __iconData4.node;
 var BookOpen = createLucideIcon(__iconData4);
 
-// node_modules/lucide-react/dist/esm/icons/boxes.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/boxes.mjs
 var __iconData5 = {
   name: "boxes",
   size: 24,
@@ -22177,7 +22177,7 @@ var __iconData5 = {
 __iconData5.node;
 var Boxes = createLucideIcon(__iconData5);
 
-// node_modules/lucide-react/dist/esm/icons/check-check.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/check-check.mjs
 var __iconData6 = {
   name: "check-check",
   size: 24,
@@ -22189,7 +22189,7 @@ var __iconData6 = {
 __iconData6.node;
 var CheckCheck = createLucideIcon(__iconData6);
 
-// node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
 var __iconData7 = {
   name: "chevron-left",
   size: 24,
@@ -22198,7 +22198,7 @@ var __iconData7 = {
 __iconData7.node;
 var ChevronLeft = createLucideIcon(__iconData7);
 
-// node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
 var __iconData8 = {
   name: "chevron-right",
   size: 24,
@@ -22207,7 +22207,7 @@ var __iconData8 = {
 __iconData8.node;
 var ChevronRight = createLucideIcon(__iconData8);
 
-// node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
 var __iconData9 = {
   name: "circuit-board",
   size: 24,
@@ -22222,7 +22222,7 @@ var __iconData9 = {
 __iconData9.node;
 var CircuitBoard = createLucideIcon(__iconData9);
 
-// node_modules/lucide-react/dist/esm/icons/copy.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/copy.mjs
 var __iconData10 = {
   name: "copy",
   size: 24,
@@ -22234,7 +22234,7 @@ var __iconData10 = {
 __iconData10.node;
 var Copy = createLucideIcon(__iconData10);
 
-// node_modules/lucide-react/dist/esm/icons/download.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/download.mjs
 var __iconData11 = {
   name: "download",
   size: 24,
@@ -22247,7 +22247,7 @@ var __iconData11 = {
 __iconData11.node;
 var Download = createLucideIcon(__iconData11);
 
-// node_modules/lucide-react/dist/esm/icons/external-link.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/external-link.mjs
 var __iconData12 = {
   name: "external-link",
   size: 24,
@@ -22260,7 +22260,7 @@ var __iconData12 = {
 __iconData12.node;
 var ExternalLink = createLucideIcon(__iconData12);
 
-// node_modules/lucide-react/dist/esm/icons/file-image.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-image.mjs
 var __iconData13 = {
   name: "file-image",
   size: 24,
@@ -22280,7 +22280,7 @@ var __iconData13 = {
 __iconData13.node;
 var FileImage = createLucideIcon(__iconData13);
 
-// node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
 var __iconData14 = {
   name: "file-plus-corner",
   size: 24,
@@ -22301,7 +22301,7 @@ var __iconData14 = {
 __iconData14.node;
 var FilePlusCorner = createLucideIcon(__iconData14);
 
-// node_modules/lucide-react/dist/esm/icons/file-up.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-up.mjs
 var __iconData15 = {
   name: "file-up",
   size: 24,
@@ -22321,7 +22321,7 @@ var __iconData15 = {
 __iconData15.node;
 var FileUp = createLucideIcon(__iconData15);
 
-// node_modules/lucide-react/dist/esm/icons/folder-open.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/folder-open.mjs
 var __iconData16 = {
   name: "folder-open",
   size: 24,
@@ -22338,7 +22338,7 @@ var __iconData16 = {
 __iconData16.node;
 var FolderOpen = createLucideIcon(__iconData16);
 
-// node_modules/lucide-react/dist/esm/icons/globe.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/globe.mjs
 var __iconData17 = {
   name: "globe",
   size: 24,
@@ -22351,7 +22351,7 @@ var __iconData17 = {
 __iconData17.node;
 var Globe = createLucideIcon(__iconData17);
 
-// node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
 var __iconData18 = {
   name: "grip-horizontal",
   size: 24,
@@ -22367,7 +22367,7 @@ var __iconData18 = {
 __iconData18.node;
 var GripHorizontal = createLucideIcon(__iconData18);
 
-// node_modules/lucide-react/dist/esm/icons/heart.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/heart.mjs
 var __iconData19 = {
   name: "heart",
   size: 24,
@@ -22384,7 +22384,7 @@ var __iconData19 = {
 __iconData19.node;
 var Heart = createLucideIcon(__iconData19);
 
-// node_modules/lucide-react/dist/esm/icons/house.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/house.mjs
 var __iconData20 = {
   name: "house",
   size: 24,
@@ -22403,7 +22403,7 @@ var __iconData20 = {
 __iconData20.node;
 var House = createLucideIcon(__iconData20);
 
-// node_modules/lucide-react/dist/esm/icons/key-round.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/key-round.mjs
 var __iconData21 = {
   name: "key-round",
   size: 24,
@@ -22421,7 +22421,7 @@ var __iconData21 = {
 __iconData21.node;
 var KeyRound = createLucideIcon(__iconData21);
 
-// node_modules/lucide-react/dist/esm/icons/link.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/link.mjs
 var __iconData22 = {
   name: "link",
   size: 24,
@@ -22433,7 +22433,7 @@ var __iconData22 = {
 __iconData22.node;
 var Link = createLucideIcon(__iconData22);
 
-// node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
 var __iconData23 = {
   name: "locate-fixed",
   size: 24,
@@ -22449,7 +22449,7 @@ var __iconData23 = {
 __iconData23.node;
 var LocateFixed = createLucideIcon(__iconData23);
 
-// node_modules/lucide-react/dist/esm/icons/log-out.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/log-out.mjs
 var __iconData24 = {
   name: "log-out",
   size: 24,
@@ -22462,7 +22462,7 @@ var __iconData24 = {
 __iconData24.node;
 var LogOut = createLucideIcon(__iconData24);
 
-// node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
 var __iconData25 = {
   name: "maximize-2",
   size: 24,
@@ -22476,7 +22476,7 @@ var __iconData25 = {
 __iconData25.node;
 var Maximize2 = createLucideIcon(__iconData25);
 
-// node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
 var __iconData26 = {
   name: "minimize-2",
   size: 24,
@@ -22490,7 +22490,7 @@ var __iconData26 = {
 __iconData26.node;
 var Minimize2 = createLucideIcon(__iconData26);
 
-// node_modules/lucide-react/dist/esm/icons/minus.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minus.mjs
 var __iconData27 = {
   name: "minus",
   size: 24,
@@ -22499,7 +22499,7 @@ var __iconData27 = {
 __iconData27.node;
 var Minus = createLucideIcon(__iconData27);
 
-// node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
 var __iconData28 = {
   name: "panel-right-close",
   size: 24,
@@ -22512,7 +22512,7 @@ var __iconData28 = {
 __iconData28.node;
 var PanelRightClose = createLucideIcon(__iconData28);
 
-// node_modules/lucide-react/dist/esm/icons/play.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/play.mjs
 var __iconData29 = {
   name: "play",
   size: 24,
@@ -22529,7 +22529,7 @@ var __iconData29 = {
 __iconData29.node;
 var Play = createLucideIcon(__iconData29);
 
-// node_modules/lucide-react/dist/esm/icons/plus.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/plus.mjs
 var __iconData30 = {
   name: "plus",
   size: 24,
@@ -22541,7 +22541,7 @@ var __iconData30 = {
 __iconData30.node;
 var Plus = createLucideIcon(__iconData30);
 
-// node_modules/lucide-react/dist/esm/icons/redo-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/redo-2.mjs
 var __iconData31 = {
   name: "redo-2",
   size: 24,
@@ -22553,7 +22553,7 @@ var __iconData31 = {
 __iconData31.node;
 var Redo2 = createLucideIcon(__iconData31);
 
-// node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
 var __iconData32 = {
   name: "refresh-cw",
   size: 24,
@@ -22567,7 +22567,7 @@ var __iconData32 = {
 __iconData32.node;
 var RefreshCw = createLucideIcon(__iconData32);
 
-// node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
 var __iconData33 = {
   name: "rotate-ccw",
   size: 24,
@@ -22579,7 +22579,7 @@ var __iconData33 = {
 __iconData33.node;
 var RotateCcw = createLucideIcon(__iconData33);
 
-// node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
 var __iconData34 = {
   name: "rotate-cw",
   size: 24,
@@ -22591,7 +22591,7 @@ var __iconData34 = {
 __iconData34.node;
 var RotateCw = createLucideIcon(__iconData34);
 
-// node_modules/lucide-react/dist/esm/icons/search.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/search.mjs
 var __iconData35 = {
   name: "search",
   size: 24,
@@ -22603,7 +22603,7 @@ var __iconData35 = {
 __iconData35.node;
 var Search = createLucideIcon(__iconData35);
 
-// node_modules/lucide-react/dist/esm/icons/shield-check.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/shield-check.mjs
 var __iconData36 = {
   name: "shield-check",
   size: 24,
@@ -22621,7 +22621,7 @@ var __iconData36 = {
 __iconData36.node;
 var ShieldCheck = createLucideIcon(__iconData36);
 
-// node_modules/lucide-react/dist/esm/icons/square.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/square.mjs
 var __iconData37 = {
   name: "square",
   size: 24,
@@ -22630,7 +22630,7 @@ var __iconData37 = {
 __iconData37.node;
 var Square = createLucideIcon(__iconData37);
 
-// node_modules/lucide-react/dist/esm/icons/star.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/star.mjs
 var __iconData38 = {
   name: "star",
   size: 24,
@@ -22647,7 +22647,7 @@ var __iconData38 = {
 __iconData38.node;
 var Star = createLucideIcon(__iconData38);
 
-// node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
 var __iconData39 = {
   name: "triangle-alert",
   size: 24,
@@ -22667,7 +22667,7 @@ var __iconData39 = {
 __iconData39.node;
 var TriangleAlert = createLucideIcon(__iconData39);
 
-// node_modules/lucide-react/dist/esm/icons/undo-2.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/undo-2.mjs
 var __iconData40 = {
   name: "undo-2",
   size: 24,
@@ -22679,7 +22679,7 @@ var __iconData40 = {
 __iconData40.node;
 var Undo2 = createLucideIcon(__iconData40);
 
-// node_modules/lucide-react/dist/esm/icons/user-round.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/user-round.mjs
 var __iconData41 = {
   name: "user-round",
   size: 24,
@@ -22692,7 +22692,7 @@ var __iconData41 = {
 __iconData41.node;
 var UserRound = createLucideIcon(__iconData41);
 
-// node_modules/lucide-react/dist/esm/icons/video.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/video.mjs
 var __iconData42 = {
   name: "video",
   size: 24,
@@ -22710,7 +22710,7 @@ var __iconData42 = {
 __iconData42.node;
 var Video = createLucideIcon(__iconData42);
 
-// node_modules/lucide-react/dist/esm/icons/x.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/x.mjs
 var __iconData43 = {
   name: "x",
   size: 24,
@@ -22722,7 +22722,7 @@ var __iconData43 = {
 __iconData43.node;
 var X = createLucideIcon(__iconData43);
 
-// node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
 var __iconData44 = {
   name: "zoom-in",
   size: 24,
@@ -22736,7 +22736,7 @@ var __iconData44 = {
 __iconData44.node;
 var ZoomIn = createLucideIcon(__iconData44);
 
-// node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
+// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
 var __iconData45 = {
   name: "zoom-out",
   size: 24,
@@ -22750,14 +22750,14 @@ __iconData45.node;
 var ZoomOut = createLucideIcon(__iconData45);
 
 // app/simulator/editor/SimulatorEditor.tsx
-var import_react16 = __toESM(require_react(), 1);
-var import_react_dom4 = __toESM(require_react_dom(), 1);
+var import_react15 = __toESM(require_react(), 1);
+var import_react_dom3 = __toESM(require_react_dom(), 1);
 
-// node_modules/@xyflow/react/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 var import_react5 = __toESM(require_react());
 
-// node_modules/classcat/index.js
+// E:/vibecoding/电拓智训/node_modules/classcat/index.js
 function cc(names) {
   if (typeof names === "string" || typeof names === "number") return "" + names;
   let out = "";
@@ -22775,7 +22775,7 @@ function cc(names) {
   return out;
 }
 
-// node_modules/d3-dispatch/src/dispatch.js
+// E:/vibecoding/电拓智训/node_modules/d3-dispatch/src/dispatch.js
 var noop = { value: () => {
 } };
 function dispatch() {
@@ -22845,7 +22845,7 @@ function set(type, name, callback) {
 }
 var dispatch_default = dispatch;
 
-// node_modules/d3-selection/src/namespaces.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespaces.js
 var xhtml = "http://www.w3.org/1999/xhtml";
 var namespaces_default = {
   svg: "http://www.w3.org/2000/svg",
@@ -22855,14 +22855,14 @@ var namespaces_default = {
   xmlns: "http://www.w3.org/2000/xmlns/"
 };
 
-// node_modules/d3-selection/src/namespace.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespace.js
 function namespace_default(name) {
   var prefix2 = name += "", i = prefix2.indexOf(":");
   if (i >= 0 && (prefix2 = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
   return namespaces_default.hasOwnProperty(prefix2) ? { space: namespaces_default[prefix2], local: name } : name;
 }
 
-// node_modules/d3-selection/src/creator.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/creator.js
 function creatorInherit(name) {
   return function() {
     var document2 = this.ownerDocument, uri = this.namespaceURI;
@@ -22879,7 +22879,7 @@ function creator_default(name) {
   return (fullname.local ? creatorFixed : creatorInherit)(fullname);
 }
 
-// node_modules/d3-selection/src/selector.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selector.js
 function none() {
 }
 function selector_default(selector) {
@@ -22888,7 +22888,7 @@ function selector_default(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/select.js
 function select_default(select) {
   if (typeof select !== "function") select = selector_default(select);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22902,12 +22902,12 @@ function select_default(select) {
   return new Selection(subgroups, this._parents);
 }
 
-// node_modules/d3-selection/src/array.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/array.js
 function array(x) {
   return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
 }
 
-// node_modules/d3-selection/src/selectorAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selectorAll.js
 function empty() {
   return [];
 }
@@ -22917,7 +22917,7 @@ function selectorAll_default(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/selectAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectAll.js
 function arrayAll(select) {
   return function() {
     return array(select.apply(this, arguments));
@@ -22937,7 +22937,7 @@ function selectAll_default(select) {
   return new Selection(subgroups, parents);
 }
 
-// node_modules/d3-selection/src/matcher.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/matcher.js
 function matcher_default(selector) {
   return function() {
     return this.matches(selector);
@@ -22949,7 +22949,7 @@ function childMatcher(selector) {
   };
 }
 
-// node_modules/d3-selection/src/selection/selectChild.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChild.js
 var find = Array.prototype.find;
 function childFind(match) {
   return function() {
@@ -22963,7 +22963,7 @@ function selectChild_default(match) {
   return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// node_modules/d3-selection/src/selection/selectChildren.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChildren.js
 var filter = Array.prototype.filter;
 function children() {
   return Array.from(this.children);
@@ -22977,7 +22977,7 @@ function selectChildren_default(match) {
   return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// node_modules/d3-selection/src/selection/filter.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/filter.js
 function filter_default(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22990,12 +22990,12 @@ function filter_default(match) {
   return new Selection(subgroups, this._parents);
 }
 
-// node_modules/d3-selection/src/selection/sparse.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sparse.js
 function sparse_default(update) {
   return new Array(update.length);
 }
 
-// node_modules/d3-selection/src/selection/enter.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/enter.js
 function enter_default() {
   return new Selection(this._enter || this._groups.map(sparse_default), this._parents);
 }
@@ -23022,14 +23022,14 @@ EnterNode.prototype = {
   }
 };
 
-// node_modules/d3-selection/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/constant.js
 function constant_default(x) {
   return function() {
     return x;
   };
 }
 
-// node_modules/d3-selection/src/selection/data.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/data.js
 function bindIndex(parent, group, enter, update, exit, data) {
   var i = 0, node, groupLength = group.length, dataLength = data.length;
   for (; i < dataLength; ++i) {
@@ -23101,12 +23101,12 @@ function arraylike(data) {
   return typeof data === "object" && "length" in data ? data : Array.from(data);
 }
 
-// node_modules/d3-selection/src/selection/exit.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/exit.js
 function exit_default() {
   return new Selection(this._exit || this._groups.map(sparse_default), this._parents);
 }
 
-// node_modules/d3-selection/src/selection/join.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/join.js
 function join_default(onenter, onupdate, onexit) {
   var enter = this.enter(), update = this, exit = this.exit();
   if (typeof onenter === "function") {
@@ -23124,7 +23124,7 @@ function join_default(onenter, onupdate, onexit) {
   return enter && update ? enter.merge(update).order() : update;
 }
 
-// node_modules/d3-selection/src/selection/merge.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/merge.js
 function merge_default(context) {
   var selection2 = context.selection ? context.selection() : context;
   for (var groups0 = this._groups, groups1 = selection2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -23140,7 +23140,7 @@ function merge_default(context) {
   return new Selection(merges, this._parents);
 }
 
-// node_modules/d3-selection/src/selection/order.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/order.js
 function order_default() {
   for (var groups = this._groups, j = -1, m = groups.length; ++j < m; ) {
     for (var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0; ) {
@@ -23153,7 +23153,7 @@ function order_default() {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/sort.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sort.js
 function sort_default(compare) {
   if (!compare) compare = ascending;
   function compareNode(a, b) {
@@ -23173,7 +23173,7 @@ function ascending(a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
 
-// node_modules/d3-selection/src/selection/call.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/call.js
 function call_default() {
   var callback = arguments[0];
   arguments[0] = this;
@@ -23181,12 +23181,12 @@ function call_default() {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/nodes.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/nodes.js
 function nodes_default() {
   return Array.from(this);
 }
 
-// node_modules/d3-selection/src/selection/node.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/node.js
 function node_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length; i < n; ++i) {
@@ -23197,19 +23197,19 @@ function node_default() {
   return null;
 }
 
-// node_modules/d3-selection/src/selection/size.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/size.js
 function size_default() {
   let size = 0;
   for (const node of this) ++size;
   return size;
 }
 
-// node_modules/d3-selection/src/selection/empty.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/empty.js
 function empty_default() {
   return !this.node();
 }
 
-// node_modules/d3-selection/src/selection/each.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/each.js
 function each_default(callback) {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23219,7 +23219,7 @@ function each_default(callback) {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/attr.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/attr.js
 function attrRemove(name) {
   return function() {
     this.removeAttribute(name);
@@ -23263,12 +23263,12 @@ function attr_default(name, value) {
   return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
 }
 
-// node_modules/d3-selection/src/window.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/window.js
 function window_default(node) {
   return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView;
 }
 
-// node_modules/d3-selection/src/selection/style.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/style.js
 function styleRemove(name) {
   return function() {
     this.style.removeProperty(name);
@@ -23293,7 +23293,7 @@ function styleValue(node, name) {
   return node.style.getPropertyValue(name) || window_default(node).getComputedStyle(node, null).getPropertyValue(name);
 }
 
-// node_modules/d3-selection/src/selection/property.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/property.js
 function propertyRemove(name) {
   return function() {
     delete this[name];
@@ -23315,7 +23315,7 @@ function property_default(name, value) {
   return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
 }
 
-// node_modules/d3-selection/src/selection/classed.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/classed.js
 function classArray(string) {
   return string.trim().split(/^|\s+/);
 }
@@ -23378,7 +23378,7 @@ function classed_default(name, value) {
   return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
 }
 
-// node_modules/d3-selection/src/selection/text.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/text.js
 function textRemove() {
   this.textContent = "";
 }
@@ -23397,7 +23397,7 @@ function text_default(value) {
   return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
 }
 
-// node_modules/d3-selection/src/selection/html.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/html.js
 function htmlRemove() {
   this.innerHTML = "";
 }
@@ -23416,7 +23416,7 @@ function html_default(value) {
   return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
 }
 
-// node_modules/d3-selection/src/selection/raise.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/raise.js
 function raise() {
   if (this.nextSibling) this.parentNode.appendChild(this);
 }
@@ -23424,7 +23424,7 @@ function raise_default() {
   return this.each(raise);
 }
 
-// node_modules/d3-selection/src/selection/lower.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/lower.js
 function lower() {
   if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
 }
@@ -23432,7 +23432,7 @@ function lower_default() {
   return this.each(lower);
 }
 
-// node_modules/d3-selection/src/selection/append.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/append.js
 function append_default(name) {
   var create2 = typeof name === "function" ? name : creator_default(name);
   return this.select(function() {
@@ -23440,7 +23440,7 @@ function append_default(name) {
   });
 }
 
-// node_modules/d3-selection/src/selection/insert.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/insert.js
 function constantNull() {
   return null;
 }
@@ -23451,7 +23451,7 @@ function insert_default(name, before) {
   });
 }
 
-// node_modules/d3-selection/src/selection/remove.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/remove.js
 function remove() {
   var parent = this.parentNode;
   if (parent) parent.removeChild(this);
@@ -23460,7 +23460,7 @@ function remove_default() {
   return this.each(remove);
 }
 
-// node_modules/d3-selection/src/selection/clone.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/clone.js
 function selection_cloneShallow() {
   var clone3 = this.cloneNode(false), parent = this.parentNode;
   return parent ? parent.insertBefore(clone3, this.nextSibling) : clone3;
@@ -23473,12 +23473,12 @@ function clone_default(deep) {
   return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
 }
 
-// node_modules/d3-selection/src/selection/datum.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/datum.js
 function datum_default(value) {
   return arguments.length ? this.property("__data__", value) : this.node().__data__;
 }
 
-// node_modules/d3-selection/src/selection/on.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/on.js
 function contextListener(listener) {
   return function(event) {
     listener.call(this, event, this.__data__);
@@ -23541,7 +23541,7 @@ function on_default(typename, value, options) {
   return this;
 }
 
-// node_modules/d3-selection/src/selection/dispatch.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/dispatch.js
 function dispatchEvent2(node, type, params) {
   var window2 = window_default(node), event = window2.CustomEvent;
   if (typeof event === "function") {
@@ -23567,7 +23567,7 @@ function dispatch_default2(type, params) {
   return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
 }
 
-// node_modules/d3-selection/src/selection/iterator.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/iterator.js
 function* iterator_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23576,7 +23576,7 @@ function* iterator_default() {
   }
 }
 
-// node_modules/d3-selection/src/selection/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/index.js
 var root = [null];
 function Selection(groups, parents) {
   this._groups = groups;
@@ -23628,19 +23628,19 @@ Selection.prototype = selection.prototype = {
 };
 var selection_default = selection;
 
-// node_modules/d3-selection/src/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/select.js
 function select_default2(selector) {
   return typeof selector === "string" ? new Selection([[document.querySelector(selector)]], [document.documentElement]) : new Selection([[selector]], root);
 }
 
-// node_modules/d3-selection/src/sourceEvent.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/sourceEvent.js
 function sourceEvent_default(event) {
   let sourceEvent;
   while (sourceEvent = event.sourceEvent) event = sourceEvent;
   return event;
 }
 
-// node_modules/d3-selection/src/pointer.js
+// E:/vibecoding/电拓智训/node_modules/d3-selection/src/pointer.js
 function pointer_default(event, node) {
   event = sourceEvent_default(event);
   if (node === void 0) node = event.currentTarget;
@@ -23660,7 +23660,7 @@ function pointer_default(event, node) {
   return [event.pageX, event.pageY];
 }
 
-// node_modules/d3-drag/src/noevent.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/noevent.js
 var nonpassive = { passive: false };
 var nonpassivecapture = { capture: true, passive: false };
 function nopropagation(event) {
@@ -23671,7 +23671,7 @@ function noevent_default(event) {
   event.stopImmediatePropagation();
 }
 
-// node_modules/d3-drag/src/nodrag.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/nodrag.js
 function nodrag_default(view) {
   var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", noevent_default, nonpassivecapture);
   if ("onselectstart" in root2) {
@@ -23697,10 +23697,10 @@ function yesdrag(view, noclick) {
   }
 }
 
-// node_modules/d3-drag/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/constant.js
 var constant_default2 = (x) => () => x;
 
-// node_modules/d3-drag/src/event.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/event.js
 function DragEvent(type, {
   sourceEvent,
   subject,
@@ -23732,7 +23732,7 @@ DragEvent.prototype.on = function() {
   return value === this._ ? this : value;
 };
 
-// node_modules/d3-drag/src/drag.js
+// E:/vibecoding/电拓智训/node_modules/d3-drag/src/drag.js
 function defaultFilter(event) {
   return !event.ctrlKey && !event.button;
 }
@@ -23877,7 +23877,7 @@ function drag_default() {
   return drag;
 }
 
-// node_modules/d3-color/src/define.js
+// E:/vibecoding/电拓智训/node_modules/d3-color/src/define.js
 function define_default(constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype;
   prototype.constructor = constructor;
@@ -23888,7 +23888,7 @@ function extend(parent, definition) {
   return prototype;
 }
 
-// node_modules/d3-color/src/color.js
+// E:/vibecoding/电拓智训/node_modules/d3-color/src/color.js
 function Color() {
 }
 var darker = 0.7;
@@ -24225,7 +24225,7 @@ function hsl2rgb(h, m1, m2) {
   return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
 }
 
-// node_modules/d3-interpolate/src/basis.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basis.js
 function basis(t1, v0, v1, v2, v3) {
   var t2 = t1 * t1, t3 = t2 * t1;
   return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
@@ -24238,7 +24238,7 @@ function basis_default(values) {
   };
 }
 
-// node_modules/d3-interpolate/src/basisClosed.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basisClosed.js
 function basisClosed_default(values) {
   var n = values.length;
   return function(t) {
@@ -24247,10 +24247,10 @@ function basisClosed_default(values) {
   };
 }
 
-// node_modules/d3-interpolate/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/constant.js
 var constant_default3 = (x) => () => x;
 
-// node_modules/d3-interpolate/src/color.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/color.js
 function linear(a, d) {
   return function(t) {
     return a + t * d;
@@ -24271,7 +24271,7 @@ function nogamma(a, b) {
   return d ? linear(a, d) : constant_default3(isNaN(a) ? b : a);
 }
 
-// node_modules/d3-interpolate/src/rgb.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/rgb.js
 var rgb_default = (function rgbGamma(y) {
   var color2 = gamma(y);
   function rgb2(start2, end) {
@@ -24311,7 +24311,7 @@ function rgbSpline(spline) {
 var rgbBasis = rgbSpline(basis_default);
 var rgbBasisClosed = rgbSpline(basisClosed_default);
 
-// node_modules/d3-interpolate/src/numberArray.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/numberArray.js
 function numberArray_default(a, b) {
   if (!b) b = [];
   var n = a ? Math.min(b.length, a.length) : 0, c = b.slice(), i;
@@ -24324,7 +24324,7 @@ function isNumberArray(x) {
   return ArrayBuffer.isView(x) && !(x instanceof DataView);
 }
 
-// node_modules/d3-interpolate/src/array.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/array.js
 function genericArray(a, b) {
   var nb = b ? b.length : 0, na = a ? Math.min(nb, a.length) : 0, x = new Array(na), c = new Array(nb), i;
   for (i = 0; i < na; ++i) x[i] = value_default(a[i], b[i]);
@@ -24335,7 +24335,7 @@ function genericArray(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/date.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/date.js
 function date_default(a, b) {
   var d = /* @__PURE__ */ new Date();
   return a = +a, b = +b, function(t) {
@@ -24343,14 +24343,14 @@ function date_default(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/number.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/number.js
 function number_default(a, b) {
   return a = +a, b = +b, function(t) {
     return a * (1 - t) + b * t;
   };
 }
 
-// node_modules/d3-interpolate/src/object.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/object.js
 function object_default(a, b) {
   var i = {}, c = {}, k;
   if (a === null || typeof a !== "object") a = {};
@@ -24368,7 +24368,7 @@ function object_default(a, b) {
   };
 }
 
-// node_modules/d3-interpolate/src/string.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/string.js
 var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
 var reB = new RegExp(reA.source, "g");
 function zero(b) {
@@ -24410,13 +24410,13 @@ function string_default(a, b) {
   });
 }
 
-// node_modules/d3-interpolate/src/value.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/value.js
 function value_default(a, b) {
   var t = typeof b, c;
   return b == null || t === "boolean" ? constant_default3(b) : (t === "number" ? number_default : t === "string" ? (c = color(b)) ? (b = c, rgb_default) : string_default : b instanceof color ? rgb_default : b instanceof Date ? date_default : isNumberArray(b) ? numberArray_default : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object_default : number_default)(a, b);
 }
 
-// node_modules/d3-interpolate/src/transform/decompose.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/decompose.js
 var degrees = 180 / Math.PI;
 var identity = {
   translateX: 0,
@@ -24442,7 +24442,7 @@ function decompose_default(a, b, c, d, e, f) {
   };
 }
 
-// node_modules/d3-interpolate/src/transform/parse.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/parse.js
 var svgNode;
 function parseCss(value) {
   const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
@@ -24457,7 +24457,7 @@ function parseSvg(value) {
   return decompose_default(value.a, value.b, value.c, value.d, value.e, value.f);
 }
 
-// node_modules/d3-interpolate/src/transform/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/index.js
 function interpolateTransform(parse, pxComma, pxParen, degParen) {
   function pop(s) {
     return s.length ? s.pop() + " " : "";
@@ -24512,7 +24512,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
 var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
 
-// node_modules/d3-interpolate/src/zoom.js
+// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/zoom.js
 var epsilon2 = 1e-12;
 function cosh(x) {
   return ((x = Math.exp(x)) + 1 / x) / 2;
@@ -24557,7 +24557,7 @@ var zoom_default = (function zoomRho(rho, rho2, rho4) {
   return zoom;
 })(Math.SQRT2, 2, 4);
 
-// node_modules/d3-timer/src/timer.js
+// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timer.js
 var frame = 0;
 var timeout = 0;
 var interval = 0;
@@ -24659,7 +24659,7 @@ function sleep(time) {
   }
 }
 
-// node_modules/d3-timer/src/timeout.js
+// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timeout.js
 function timeout_default(callback, delay, time) {
   var t = new Timer();
   delay = delay == null ? 0 : +delay;
@@ -24670,7 +24670,7 @@ function timeout_default(callback, delay, time) {
   return t;
 }
 
-// node_modules/d3-transition/src/transition/schedule.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/schedule.js
 var emptyOn = dispatch_default("start", "end", "cancel", "interrupt");
 var emptyTween = [];
 var CREATED = 0;
@@ -24781,7 +24781,7 @@ function create(node, id2, self) {
   }
 }
 
-// node_modules/d3-transition/src/interrupt.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/interrupt.js
 function interrupt_default(node, name) {
   var schedules = node.__transition, schedule, active, empty2 = true, i;
   if (!schedules) return;
@@ -24800,14 +24800,14 @@ function interrupt_default(node, name) {
   if (empty2) delete node.__transition;
 }
 
-// node_modules/d3-transition/src/selection/interrupt.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/interrupt.js
 function interrupt_default2(name) {
   return this.each(function() {
     interrupt_default(this, name);
   });
 }
 
-// node_modules/d3-transition/src/transition/tween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/tween.js
 function tweenRemove(id2, name) {
   var tween0, tween1;
   return function() {
@@ -24868,13 +24868,13 @@ function tweenValue(transition2, name, value) {
   };
 }
 
-// node_modules/d3-transition/src/transition/interpolate.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/interpolate.js
 function interpolate_default(a, b) {
   var c;
   return (typeof b === "number" ? number_default : b instanceof color ? rgb_default : (c = color(b)) ? (b = c, rgb_default) : string_default)(a, b);
 }
 
-// node_modules/d3-transition/src/transition/attr.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attr.js
 function attrRemove2(name) {
   return function() {
     this.removeAttribute(name);
@@ -24924,7 +24924,7 @@ function attr_default2(name, value) {
   return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i, value));
 }
 
-// node_modules/d3-transition/src/transition/attrTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attrTween.js
 function attrInterpolate(name, i) {
   return function(t) {
     this.setAttribute(name, i.call(this, t));
@@ -24964,7 +24964,7 @@ function attrTween_default(name, value) {
   return this.tween(key4, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
-// node_modules/d3-transition/src/transition/delay.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/delay.js
 function delayFunction(id2, value) {
   return function() {
     init(this, id2).delay = +value.apply(this, arguments);
@@ -24980,7 +24980,7 @@ function delay_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id2, value)) : get2(this.node(), id2).delay;
 }
 
-// node_modules/d3-transition/src/transition/duration.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/duration.js
 function durationFunction(id2, value) {
   return function() {
     set2(this, id2).duration = +value.apply(this, arguments);
@@ -24996,7 +24996,7 @@ function duration_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id2, value)) : get2(this.node(), id2).duration;
 }
 
-// node_modules/d3-transition/src/transition/ease.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/ease.js
 function easeConstant(id2, value) {
   if (typeof value !== "function") throw new Error();
   return function() {
@@ -25008,7 +25008,7 @@ function ease_default(value) {
   return arguments.length ? this.each(easeConstant(id2, value)) : get2(this.node(), id2).ease;
 }
 
-// node_modules/d3-transition/src/transition/easeVarying.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/easeVarying.js
 function easeVarying(id2, value) {
   return function() {
     var v = value.apply(this, arguments);
@@ -25021,7 +25021,7 @@ function easeVarying_default(value) {
   return this.each(easeVarying(this._id, value));
 }
 
-// node_modules/d3-transition/src/transition/filter.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/filter.js
 function filter_default2(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -25034,7 +25034,7 @@ function filter_default2(match) {
   return new Transition(subgroups, this._parents, this._name, this._id);
 }
 
-// node_modules/d3-transition/src/transition/merge.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/merge.js
 function merge_default2(transition2) {
   if (transition2._id !== this._id) throw new Error();
   for (var groups0 = this._groups, groups1 = transition2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -25050,7 +25050,7 @@ function merge_default2(transition2) {
   return new Transition(merges, this._parents, this._name, this._id);
 }
 
-// node_modules/d3-transition/src/transition/on.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/on.js
 function start(name) {
   return (name + "").trim().split(/^|\s+/).every(function(t) {
     var i = t.indexOf(".");
@@ -25071,7 +25071,7 @@ function on_default2(name, listener) {
   return arguments.length < 2 ? get2(this.node(), id2).on.on(name) : this.each(onFunction(id2, name, listener));
 }
 
-// node_modules/d3-transition/src/transition/remove.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/remove.js
 function removeFunction(id2) {
   return function() {
     var parent = this.parentNode;
@@ -25083,7 +25083,7 @@ function remove_default2() {
   return this.on("end.remove", removeFunction(this._id));
 }
 
-// node_modules/d3-transition/src/transition/select.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/select.js
 function select_default3(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selector_default(select);
@@ -25099,7 +25099,7 @@ function select_default3(select) {
   return new Transition(subgroups, this._parents, name, id2);
 }
 
-// node_modules/d3-transition/src/transition/selectAll.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selectAll.js
 function selectAll_default2(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selectorAll_default(select);
@@ -25119,13 +25119,13 @@ function selectAll_default2(select) {
   return new Transition(subgroups, parents, name, id2);
 }
 
-// node_modules/d3-transition/src/transition/selection.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selection.js
 var Selection2 = selection_default.prototype.constructor;
 function selection_default2() {
   return new Selection2(this._groups, this._parents);
 }
 
-// node_modules/d3-transition/src/transition/style.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/style.js
 function styleNull(name, interpolate) {
   var string00, string10, interpolate0;
   return function() {
@@ -25166,7 +25166,7 @@ function style_default2(name, value, priority) {
   return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i, value), priority).on("end.style." + name, null);
 }
 
-// node_modules/d3-transition/src/transition/styleTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/styleTween.js
 function styleInterpolate(name, i, priority) {
   return function(t) {
     this.style.setProperty(name, i.call(this, t), priority);
@@ -25190,7 +25190,7 @@ function styleTween_default(name, value, priority) {
   return this.tween(key4, styleTween(name, value, priority == null ? "" : priority));
 }
 
-// node_modules/d3-transition/src/transition/text.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/text.js
 function textConstant2(value) {
   return function() {
     this.textContent = value;
@@ -25206,7 +25206,7 @@ function text_default2(value) {
   return this.tween("text", typeof value === "function" ? textFunction2(tweenValue(this, "text", value)) : textConstant2(value == null ? "" : value + ""));
 }
 
-// node_modules/d3-transition/src/transition/textTween.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/textTween.js
 function textInterpolate(i) {
   return function(t) {
     this.textContent = i.call(this, t);
@@ -25230,7 +25230,7 @@ function textTween_default(value) {
   return this.tween(key4, textTween(value));
 }
 
-// node_modules/d3-transition/src/transition/transition.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/transition.js
 function transition_default() {
   var name = this._name, id0 = this._id, id1 = newId();
   for (var groups = this._groups, m = groups.length, j = 0; j < m; ++j) {
@@ -25249,7 +25249,7 @@ function transition_default() {
   return new Transition(groups, this._parents, name, id1);
 }
 
-// node_modules/d3-transition/src/transition/end.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/end.js
 function end_default() {
   var on0, on1, that = this, id2 = that._id, size = that.size();
   return new Promise(function(resolve, reject) {
@@ -25270,7 +25270,7 @@ function end_default() {
   });
 }
 
-// node_modules/d3-transition/src/transition/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/index.js
 var id = 0;
 function Transition(groups, parents, name, id2) {
   this._groups = groups;
@@ -25318,12 +25318,12 @@ Transition.prototype = transition.prototype = {
   [Symbol.iterator]: selection_prototype[Symbol.iterator]
 };
 
-// node_modules/d3-ease/src/cubic.js
+// E:/vibecoding/电拓智训/node_modules/d3-ease/src/cubic.js
 function cubicInOut(t) {
   return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
 
-// node_modules/d3-transition/src/selection/transition.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/transition.js
 var defaultTiming = {
   time: null,
   // Set on use.
@@ -25357,14 +25357,14 @@ function transition_default2(name) {
   return new Transition(groups, this._parents, name, id2);
 }
 
-// node_modules/d3-transition/src/selection/index.js
+// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/index.js
 selection_default.prototype.interrupt = interrupt_default2;
 selection_default.prototype.transition = transition_default2;
 
-// node_modules/d3-zoom/src/constant.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/constant.js
 var constant_default4 = (x) => () => x;
 
-// node_modules/d3-zoom/src/event.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/event.js
 function ZoomEvent(type, {
   sourceEvent,
   target,
@@ -25380,7 +25380,7 @@ function ZoomEvent(type, {
   });
 }
 
-// node_modules/d3-zoom/src/transform.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/transform.js
 function Transform(k, x, y) {
   this.k = k;
   this.x = x;
@@ -25429,7 +25429,7 @@ function transform(node) {
   return node.__zoom;
 }
 
-// node_modules/d3-zoom/src/noevent.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/noevent.js
 function nopropagation2(event) {
   event.stopImmediatePropagation();
 }
@@ -25438,7 +25438,7 @@ function noevent_default2(event) {
   event.stopImmediatePropagation();
 }
 
-// node_modules/d3-zoom/src/zoom.js
+// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/zoom.js
 function defaultFilter2(event) {
   return (!event.ctrlKey || event.type === "wheel") && !event.button;
 }
@@ -25753,7 +25753,7 @@ function zoom_default2() {
   return zoom;
 }
 
-// node_modules/@xyflow/system/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/system/dist/esm/index.js
 var errorMessages = {
   error001: (lib = "react") => `Seems like you have not used ${lib === "svelte" ? "SvelteFlowProvider" : "ReactFlowProvider"} as an ancestor. Help: https://${lib}flow.dev/error#001`,
   error002: () => "It looks like you've created a new nodeTypes or edgeTypes object. If this wasn't on purpose please define the nodeTypes/edgeTypes outside of the component or memoize them.",
@@ -28441,11 +28441,11 @@ function XYResizer({ domNode, nodeId, getStoreItems, onChange, onEnd }) {
   };
 }
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var import_react4 = __toESM(require_react(), 1);
 var import_with_selector = __toESM(require_with_selector(), 1);
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
 var createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
@@ -28477,7 +28477,7 @@ var createStoreImpl = (createState) => {
 };
 var createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var { useDebugValue } = import_react4.default;
 var { useSyncExternalStoreWithSelector } = import_with_selector.default;
 var identity3 = (arg) => arg;
@@ -28500,7 +28500,7 @@ var createWithEqualityFnImpl = (createState, defaultEqualityFn) => {
 };
 var createWithEqualityFn = (createState, defaultEqualityFn) => createState ? createWithEqualityFnImpl(createState, defaultEqualityFn) : createWithEqualityFnImpl;
 
-// node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
 function shallow$1(objA, objB) {
   if (Object.is(objA, objB)) {
     return true;
@@ -28538,7 +28538,7 @@ function shallow$1(objA, objB) {
   return true;
 }
 
-// node_modules/@xyflow/react/dist/esm/index.js
+// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
 var import_react_dom = __toESM(require_react_dom());
 var StoreContext = (0, import_react5.createContext)(null);
 var Provider$1 = StoreContext.Provider;
@@ -32600,14 +32600,16 @@ function createMotorPracticeDocument(id2, options = {}) {
 }
 
 // app/simulator/core/lessons.ts
-var LESSONS = [
-  ...MOTOR_COURSES,
+var LESSONS = MOTOR_COURSES;
+var DEFAULT_LESSON_ID = "motor-course-01";
+var isSelectableLesson = (id2) => LESSONS.some((lesson) => lesson.id === id2);
+var LEGACY_LESSONS = [
   { id: "motor-jog", title: "\u7535\u673A\u70B9\u52A8\u63A7\u5236", category: "industrial", description: "220V \u7EBF\u5708\uFF0C\u6309\u4E0B\u542F\u52A8\u6309\u94AE\u8FD0\u884C\uFF0C\u677E\u5F00\u7ACB\u5373\u505C\u6B62\u3002", objective: "\u5B8C\u6210\u4E09\u76F8\u4E3B\u56DE\u8DEF\u3001\u77AC\u65F6\u63A7\u5236\u548C\u4FDD\u62A4\u63A5\u5730\uFF0C\u5E76\u9A8C\u8BC1\u8FC7\u8F7D\u4FDD\u62A4\u3002", componentTypes: ["supply", "breaker3", "contactor220", "overload", "fuse", "push-no", "motor", "pe-terminal"] },
   { id: "motor-self-hold", title: "\u7535\u673A\u81EA\u9501\u542F\u505C\u63A7\u5236", category: "industrial", description: "380V \u7EBF\u5708\uFF0C\u4EE5\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u4FDD\u6301\u8FD0\u884C\uFF0C\u505C\u6B62\u4E0E\u8FC7\u8F7D\u5747\u53EF\u91CA\u653E\u3002", objective: "\u542F\u52A8\u3001\u91CA\u653E\u4FDD\u6301\u3001\u505C\u6B62\u3001\u8FC7\u8F7D\u590D\u4F4D\u548C\u5931\u538B\u540E\u4E0D\u81EA\u884C\u91CD\u542F\u3002", componentTypes: ["supply", "breaker3", "contactor380", "overload", "fuse", "push-no", "push-nc", "motor", "pe-terminal"] },
   { id: "lighting-single", title: "\u5355\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E00\u4E2A\u5F00\u5173\u63A7\u5236\u4E00\u76CF 220V \u706F\uFF0C\u5F00\u5173\u63A5\u5728\u76F8\u7EBF\u3002", objective: "\u5408\u95F8\u540E\u7528\u5355\u63A7\u5F00\u5173\u70B9\u4EAE\u548C\u7184\u706D\u706F\uFF0C\u4E2D\u6027\u7EBF\u4FDD\u6301\u76F4\u63A5\u56DE\u8DEF\u3002", componentTypes: ["supply", "breaker1", "switch1", "lamp"] },
   { id: "lighting-two-way", title: "\u53CC\u63A7\u7167\u660E\u7535\u8DEF", category: "lighting", description: "\u4E24\u53EA\u53CC\u63A7\u5F00\u5173\u901A\u8FC7\u4E24\u6839\u8054\u7EDC\u7EBF\uFF0C\u4ECE\u4E24\u5904\u5207\u6362\u706F\u7684\u72B6\u6001\u3002", objective: "\u904D\u5386\u56DB\u79CD\u5F00\u5173\u7EC4\u5408\uFF0C\u6BCF\u6B21\u5207\u6362\u4EFB\u4E00\u5F00\u5173\u5747\u6539\u53D8\u706F\u72B6\u6001\u3002", componentTypes: ["supply", "breaker1", "switch2", "switch2", "lamp"] }
 ];
-var getLesson = (id2) => LESSONS.find((lesson) => lesson.id === id2);
+var getLesson = (id2) => LESSONS.find((lesson) => lesson.id === id2) ?? LEGACY_LESSONS.find((lesson) => lesson.id === id2);
 var component = (id2, type, label, x, y) => ({ id: id2, type, label, position: { x, y } });
 var ref = (componentId, terminalId) => ({ componentId, terminalId });
 function createLessonDocument(id2, options = {}) {
@@ -34814,7 +34816,7 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     let loadingTask;
     void (async () => {
       try {
-        const pdfjs = await import("./chunks/pdf-XJT72RMM.js");
+        const pdfjs = await import("./chunks/pdf-SHV2ZG4A.js");
         if (!active) return;
         const base = "/diantuo-zhixun/";
         const assets = `${base.endsWith("/") ? base : `${base}/`}sim-assets/pdfjs/`;
@@ -35521,160 +35523,6 @@ function referenceVideoForDocument(document2, hasDrawing = false) {
   return referenceVideoForLesson(document2.lessonId);
 }
 
-// app/simulator/core/reference-workspace.ts
-function selectReferenceDrawing(document2, id2) {
-  if (!getReferenceDrawing(id2)) throw new Error("\u672A\u627E\u5230\u6B64\u53C2\u8003\u56FE\u7EB8");
-  if (document2.referenceDiagramId === id2) return document2;
-  const { lessonId, roles, drawingMediaId, drawingMediaType, projectDrawings, drawingKind, trainingProjectId, ...graph } = document2;
-  return { ...graph, referenceDiagramId: id2 };
-}
-function createReferenceDocument(id2) {
-  const drawing = getReferenceDrawing(id2);
-  if (!drawing) throw new Error("\u672A\u627E\u5230\u6B64\u53C2\u8003\u56FE\u7EB8");
-  const components = [];
-  const items = [
-    ["source", "supply", "\u7535\u6E90", 0, 0],
-    ["qs", "knife-switch3", "QS1", 0, 202],
-    ["fu1", "fuse3", "FU1", 0, 693.5],
-    ["km", "contactor380", "KM1", 0, 1062.3],
-    ["motor", "motor", "M1", -150, 1433.5],
-    ["fu2", "fuse", "FU2", 600, 693.5],
-    ["sb", "push-nc", "SB1", 390, 1062.3]
-  ];
-  for (const [componentId, type, label, x, y] of items) components.push({ id: componentId, type, label, position: { x, y } });
-  return { schemaVersion: 1, title: drawing.title, referenceDiagramId: id2, components, wires: [] };
-}
-function createReferencePractice(id2, placement = "automatic") {
-  const document2 = arrangeTrainingDucts(createReferenceDocument(id2));
-  return placement === "manual" ? { ...document2, components: document2.components.filter((c) => isLayoutObject(c.type)) } : document2;
-}
-
-// app/simulator/ReferenceDrawingPicker.tsx
-var import_react15 = __toESM(require_react(), 1);
-var import_react_dom3 = __toESM(require_react_dom(), 1);
-var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
-var PAGE_SIZE = 9;
-function ReferenceDrawingPicker(props) {
-  return props.open ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ReferenceDrawingPickerContent, { ...props }, props.selectedId ?? "none") : null;
-}
-function ReferenceDrawingPickerContent({ open, selectedId, onSelect, onClose, disabled = false }) {
-  const [candidate, setCandidate] = (0, import_react15.useState)(() => selectedId !== void 0 && getReferenceDrawing(selectedId) ? selectedId : null);
-  const [query, setQuery] = (0, import_react15.useState)("");
-  const [keyword, setKeyword] = (0, import_react15.useState)("");
-  const [composing, setComposing] = (0, import_react15.useState)(false);
-  const [page, setPage] = (0, import_react15.useState)(1);
-  const searchInput = (0, import_react15.useRef)(null);
-  const dialog = (0, import_react15.useRef)(null);
-  const closeAction = (0, import_react15.useRef)(onClose);
-  (0, import_react15.useLayoutEffect)(() => {
-    closeAction.current = onClose;
-  }, [onClose]);
-  const id2 = (0, import_react15.useId)();
-  (0, import_react15.useEffect)(() => {
-    if (!open || typeof document === "undefined") return;
-    const trigger = document.activeElement;
-    const element = dialog.current;
-    const keyboard = (event) => {
-      event.stopPropagation();
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeAction.current();
-        return;
-      }
-      if (event.key !== "Tab" || !element) return;
-      const controls = Array.from(element.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter((control) => control.getClientRects().length > 0);
-      const first = controls[0], last = controls[controls.length - 1];
-      if (!first) {
-        event.preventDefault();
-        element.focus();
-        return;
-      }
-      if (event.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && (document.activeElement === last || !controls.includes(document.activeElement))) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-    const keepFocusInside = (event) => {
-      if (dialog.current && event.target && !dialog.current.contains(event.target)) searchInput.current?.focus();
-    };
-    document.addEventListener("focusin", keepFocusInside);
-    element?.addEventListener("keydown", keyboard);
-    searchInput.current?.focus();
-    return () => {
-      document.removeEventListener("focusin", keepFocusInside);
-      element?.removeEventListener("keydown", keyboard);
-      if (trigger?.isConnected) trigger.focus();
-    };
-  }, [open]);
-  (0, import_react15.useEffect)(() => {
-    if (!open || composing) return;
-    const timer2 = setTimeout(() => {
-      setKeyword(query.trim());
-      setPage(1);
-    }, 300);
-    return () => clearTimeout(timer2);
-  }, [query, composing, open]);
-  if (!open || typeof document === "undefined") return null;
-  const found = REFERENCE_DRAWINGS.filter((drawing) => drawing.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()));
-  const pages = Math.max(1, Math.ceil(found.length / PAGE_SIZE));
-  const currentPage = Math.min(page, pages);
-  function confirm() {
-    if (disabled || candidate === null || !getReferenceDrawing(candidate)) return;
-    onSelect(candidate);
-    onClose();
-  }
-  return (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-reference-picker-backdrop", onPointerDown: (event) => {
-    if (event.target === event.currentTarget) event.preventDefault();
-  }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { ref: dialog, className: "dt-reference-picker", role: "dialog", tabIndex: -1, "aria-modal": "true", "aria-labelledby": `${id2}-title`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: `${id2}-title`, children: "\u56FE\u7EB8\u9009\u62E9" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "dt-reference-picker-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Search, { size: 18 }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { ref: searchInput, "aria-label": "\u641C\u7D22\u53C2\u8003\u56FE\u7EB8", placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, maxLength: 100, onChange: (event) => setQuery(event.target.value), onCompositionStart: () => setComposing(true), onCompositionEnd: (event) => {
-          setQuery(event.currentTarget.value);
-          setComposing(false);
-        } })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", className: "dt-reference-picker-close", "aria-label": "\u5173\u95ED\u56FE\u7EB8\u9009\u62E9", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(X, { size: 20 }) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-picker-content", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dt-reference-picker-grid", role: "radiogroup", "aria-label": "\u9009\u62E9\u53C2\u8003\u56FE\u7EB8", children: found.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map((drawing) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: `dt-reference-picker-card ${candidate === drawing.id ? "selected" : ""}`, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { type: "radio", name: `${id2}-drawing`, value: drawing.id, checked: candidate === drawing.id, disabled, onChange: () => {
-          if (!disabled) setCandidate(drawing.id);
-        } }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("img", { src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/"), alt: "", loading: "lazy" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: drawing.title })
-      ] }, drawing.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dt-reference-picker-empty", role: "status", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("nav", { className: "dt-reference-picker-pages", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: currentPage === 1, onClick: () => setPage((value) => Math.max(1, value - 1)), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronLeft, { size: 16 }),
-          "\u4E0A\u4E00\u9875"
-        ] }),
-        Array.from({ length: pages }, (_, index2) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", "aria-current": currentPage === index2 + 1 ? "page" : void 0, onClick: () => setPage(index2 + 1), children: index2 + 1 }, index2)),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: currentPage === pages, onClick: () => setPage((value) => Math.min(pages, value + 1)), children: [
-          "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ChevronRight, { size: 16 })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { children: [
-          "\u5171 ",
-          found.length,
-          " \u5F20"
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-picker-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: onClose, children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", className: "dt-reference-picker-confirm", disabled: disabled || candidate === null, onClick: confirm, children: "\u786E\u8BA4" })
-      ] })
-    ] })
-  ] }) }), document.body);
-}
-
 // app/simulator/editor/library-presentation.ts
 var household = ["switch1", "switch2", "lamp", "breaker1", "breaker3"];
 var industrial = ["breaker1", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380-jzc1-22", "timer380-8pin", "motor-dahlander"];
@@ -35721,19 +35569,19 @@ function poolGroups(category, search) {
 }
 
 // app/simulator/editor/ShortCircuitAlert.tsx
-var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
 function ShortCircuitAlert({ diagnostic: diagnostic2, onClose, onLocate }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { type: "button", onClick: onLocate, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(LocateFixed, { size: 17 }),
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", onClick: onLocate, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(LocateFixed, { size: 17 }),
         "\u5B9A\u4F4D\u6545\u969C"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
     ] })
   ] });
 }
@@ -35784,7 +35632,7 @@ function pasteSelection(document2, clipboard, offset = 32, makeId = () => crypto
 }
 
 // app/simulator/editor/SimulatorEditor.tsx
-var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 var nodeTypes = { electrical: DeviceNode };
 var edgeTypes = { electrical: WireEdge };
 var COLORS2 = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
@@ -35798,69 +35646,67 @@ function parseImport(value) {
 function Workspace(props) {
   const { document: circuit, onDocumentChange, onSave, onPublish, onAssess, onImportDrawing, renderSchematic, onRunningChange, readOnly = false } = props;
   const flow = useReactFlow();
-  const docRef = (0, import_react16.useRef)(circuit);
-  (0, import_react16.useLayoutEffect)(() => {
+  const docRef = (0, import_react15.useRef)(circuit);
+  (0, import_react15.useLayoutEffect)(() => {
     docRef.current = circuit;
   }, [circuit]);
-  const [category, setCategory] = (0, import_react16.useState)("all");
-  const [search, setSearch] = (0, import_react16.useState)("");
-  const [pendingRole, setPendingRole] = (0, import_react16.useState)(null);
-  const requirements = (0, import_react16.useMemo)(() => courseRequirements(circuit.lessonId), [circuit.lessonId]);
-  const [searchOpen, setSearchOpen] = (0, import_react16.useState)(false);
-  const [colorAnchor, setColorAnchor] = (0, import_react16.useState)({ left: 0, top: 0 });
-  const [libraryOpen, setLibraryOpen] = (0, import_react16.useState)(true);
-  const [selectedNodes, setSelectedNodes] = (0, import_react16.useState)([]);
-  const [selectedWires, setSelectedWires] = (0, import_react16.useState)([]);
-  const clipboard = (0, import_react16.useRef)(null);
-  const clipboardPastes = (0, import_react16.useRef)(0);
-  const [canPaste, setCanPaste] = (0, import_react16.useState)(false);
-  const [clipboardOwner, setClipboardOwner] = (0, import_react16.useState)(void 0);
-  (0, import_react16.useLayoutEffect)(() => {
+  const [category, setCategory] = (0, import_react15.useState)("all");
+  const [search, setSearch] = (0, import_react15.useState)("");
+  const [pendingRole, setPendingRole] = (0, import_react15.useState)(null);
+  const requirements = (0, import_react15.useMemo)(() => courseRequirements(circuit.lessonId), [circuit.lessonId]);
+  const [searchOpen, setSearchOpen] = (0, import_react15.useState)(false);
+  const [colorAnchor, setColorAnchor] = (0, import_react15.useState)({ left: 0, top: 0 });
+  const [libraryOpen, setLibraryOpen] = (0, import_react15.useState)(true);
+  const [selectedNodes, setSelectedNodes] = (0, import_react15.useState)([]);
+  const [selectedWires, setSelectedWires] = (0, import_react15.useState)([]);
+  const clipboard = (0, import_react15.useRef)(null);
+  const clipboardPastes = (0, import_react15.useRef)(0);
+  const [canPaste, setCanPaste] = (0, import_react15.useState)(false);
+  const [clipboardOwner, setClipboardOwner] = (0, import_react15.useState)(void 0);
+  (0, import_react15.useLayoutEffect)(() => {
     clipboard.current = null;
     clipboardPastes.current = 0;
   }, [props.clipboardScope]);
-  const [past, setPast] = (0, import_react16.useState)([]);
-  const [future, setFuture] = (0, import_react16.useState)([]);
-  const [color2, setColor] = (0, import_react16.useState)(COLORS2[0]);
-  const [colorOverride, setColorOverride] = (0, import_react16.useState)(false);
-  const [wireStyle, setWireStyle] = (0, import_react16.useState)("duct");
-  const [colorsOpen, setColorsOpen] = (0, import_react16.useState)(false);
-  const [colorHost, setColorHost] = (0, import_react16.useState)(null);
-  const [running, setRunning] = (0, import_react16.useState)(false);
-  const [timerPaused, setTimerPaused] = (0, import_react16.useState)(false);
-  const [simulation, setSimulation] = (0, import_react16.useState)(null);
-  const [session] = (0, import_react16.useState)(createSimulationSession);
+  const [past, setPast] = (0, import_react15.useState)([]);
+  const [future, setFuture] = (0, import_react15.useState)([]);
+  const [color2, setColor] = (0, import_react15.useState)(COLORS2[0]);
+  const [colorOverride, setColorOverride] = (0, import_react15.useState)(false);
+  const [wireStyle, setWireStyle] = (0, import_react15.useState)("duct");
+  const [colorsOpen, setColorsOpen] = (0, import_react15.useState)(false);
+  const [colorHost, setColorHost] = (0, import_react15.useState)(null);
+  const [running, setRunning] = (0, import_react15.useState)(false);
+  const [timerPaused, setTimerPaused] = (0, import_react15.useState)(false);
+  const [simulation, setSimulation] = (0, import_react15.useState)(null);
+  const [session] = (0, import_react15.useState)(createSimulationSession);
   const sessionGeneration = session.generation;
-  const [assessmentReports, setAssessment] = (0, import_react16.useState)(null);
+  const [assessmentReports, setAssessment] = (0, import_react15.useState)(null);
   const assessment = assessmentReports?.assessment ?? null;
   const workmanship = assessmentReports?.workmanship ?? null;
-  const [panelOpen, setPanelOpen] = (0, import_react16.useState)(false);
-  const [panelTab, setPanelTab] = (0, import_react16.useState)("runtime");
-  const [localDrawing, setLocalDrawing] = (0, import_react16.useState)({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
+  const [panelOpen, setPanelOpen] = (0, import_react15.useState)(false);
+  const [panelTab, setPanelTab] = (0, import_react15.useState)("runtime");
+  const [localDrawing, setLocalDrawing] = (0, import_react15.useState)({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
   if (localDrawing.documentKey !== props.documentKey || localDrawing.source !== props.drawingUrl) {
     setLocalDrawing({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
   }
   const drawing = localDrawing.documentKey === props.documentKey && localDrawing.source === props.drawingUrl ? localDrawing.url : props.drawingUrl ?? "";
   const setDrawing = (url) => setLocalDrawing({ documentKey: props.documentKey, source: props.drawingUrl, url });
-  const [drawingZoom, setDrawingZoom] = (0, import_react16.useState)(1);
-  const [drawingPickerOpen, setDrawingPickerOpen] = (0, import_react16.useState)(false);
-  const [referenceSelectionRevision, setReferenceSelectionRevision] = (0, import_react16.useState)(0);
-  const drawingSelectionEpoch = (0, import_react16.useRef)(0);
-  const [message, setMessage] = (0, import_react16.useState)("");
-  const [busy, setBusy] = (0, import_react16.useState)("");
-  const [transferMode, setTransferMode] = (0, import_react16.useState)(null);
-  const [transferText, setTransferText] = (0, import_react16.useState)("");
-  const [transferNotice, setTransferNotice] = (0, import_react16.useState)("");
-  const transferInput = (0, import_react16.useRef)(null);
-  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react16.useState)(null);
-  const dragBefore = (0, import_react16.useRef)(null);
-  const resizing = (0, import_react16.useRef)(null);
-  const [dismissedShort, setDismissedShort] = (0, import_react16.useState)("");
+  const [drawingZoom, setDrawingZoom] = (0, import_react15.useState)(1);
+  const drawingSelectionEpoch = (0, import_react15.useRef)(0);
+  const [message, setMessage] = (0, import_react15.useState)("");
+  const [busy, setBusy] = (0, import_react15.useState)("");
+  const [transferMode, setTransferMode] = (0, import_react15.useState)(null);
+  const [transferText, setTransferText] = (0, import_react15.useState)("");
+  const [transferNotice, setTransferNotice] = (0, import_react15.useState)("");
+  const transferInput = (0, import_react15.useRef)(null);
+  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react15.useState)(null);
+  const dragBefore = (0, import_react15.useRef)(null);
+  const resizing = (0, import_react15.useRef)(null);
+  const [dismissedShort, setDismissedShort] = (0, import_react15.useState)("");
   const shortDiagnostic = running ? shortCircuitDiagnostic(simulation) : null;
   const shortKey = shortDiagnostic ? shortCircuitNoticeKey(sessionGeneration, shortDiagnostic) : "";
   if (!shortKey && dismissedShort) setDismissedShort("");
   const shortAlert = shortKey !== dismissedShort ? shortDiagnostic : null;
-  const [currentDocument, setCurrentDocument] = (0, import_react16.useState)(props.documentKey);
+  const [currentDocument, setCurrentDocument] = (0, import_react15.useState)(props.documentKey);
   if (currentDocument !== props.documentKey) {
     setCurrentDocument(props.documentKey);
     setPendingRole(null);
@@ -35875,20 +35721,20 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     setTransferMode(null);
   }
-  const assessmentRequest = (0, import_react16.useRef)(0);
-  const board = (0, import_react16.useRef)(null);
-  const editorElement = (0, import_react16.useRef)(null);
-  const diagramPanel = (0, import_react16.useRef)(null);
-  const importInput = (0, import_react16.useRef)(null);
-  const importRequest = (0, import_react16.useRef)(0);
-  const drawingInput = (0, import_react16.useRef)(null);
+  const assessmentRequest = (0, import_react15.useRef)(0);
+  const board = (0, import_react15.useRef)(null);
+  const editorElement = (0, import_react15.useRef)(null);
+  const diagramPanel = (0, import_react15.useRef)(null);
+  const importInput = (0, import_react15.useRef)(null);
+  const importRequest = (0, import_react15.useRef)(0);
+  const drawingInput = (0, import_react15.useRef)(null);
   const frozen = running || readOnly;
-  const frozenRef = (0, import_react16.useRef)(frozen);
-  (0, import_react16.useLayoutEffect)(() => {
+  const frozenRef = (0, import_react15.useRef)(frozen);
+  (0, import_react15.useLayoutEffect)(() => {
     frozenRef.current = frozen;
   }, [frozen]);
-  const initial = (0, import_react16.useMemo)(() => initialRuntime(circuit, false), [circuit]);
-  const frameInitialView = (0, import_react16.useCallback)(() => {
+  const initial = (0, import_react15.useMemo)(() => initialRuntime(circuit, false), [circuit]);
+  const frameInitialView = (0, import_react15.useCallback)(() => {
     const components = docRef.current.components;
     if (!components.length) {
       void flow.setViewport({ x: 50, y: 85, zoom: 0.78 });
@@ -35906,26 +35752,26 @@ function Workspace(props) {
     const zoom = Math.max(0.22, Math.min(0.9, (usableWidth - 30) / Math.max(1, maxX - minX), usableHeight / Math.max(1, maxY - minY)));
     void flow.setViewport({ x: 35 + (usableWidth - (maxX - minX) * zoom) / 2 - minX * zoom, y: 85 - minY * zoom, zoom }, { duration: 180 });
   }, [flow]);
-  (0, import_react16.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     onRunningChange?.(running);
   }, [running, onRunningChange]);
-  (0, import_react16.useEffect)(() => () => {
+  (0, import_react15.useEffect)(() => () => {
     onRunningChange?.(false);
   }, [onRunningChange]);
-  (0, import_react16.useLayoutEffect)(() => {
+  (0, import_react15.useLayoutEffect)(() => {
     assessmentRequest.current++;
     session.clear();
     resizing.current = null;
     const timer2 = setTimeout(frameInitialView, 80);
     return () => clearTimeout(timer2);
   }, [props.documentKey, frameInitialView, session]);
-  (0, import_react16.useEffect)(() => () => session.clear(), [session]);
-  (0, import_react16.useEffect)(() => {
+  (0, import_react15.useEffect)(() => () => session.clear(), [session]);
+  (0, import_react15.useEffect)(() => {
     if (!message) return;
     const timer2 = setTimeout(() => setMessage(""), 4500);
     return () => clearTimeout(timer2);
   }, [message]);
-  const changed = (0, import_react16.useCallback)((next) => {
+  const changed = (0, import_react15.useCallback)((next) => {
     if (frozen) return;
     const previous = docRef.current;
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
@@ -35937,7 +35783,7 @@ function Workspace(props) {
     docRef.current = next;
     onDocumentChange(next);
   }, [frozen, onDocumentChange]);
-  const undo = (0, import_react16.useCallback)(() => {
+  const undo = (0, import_react15.useCallback)(() => {
     if (frozen || !past.length) return;
     const previous = past[past.length - 1], current = clone2(docRef.current);
     setFuture((items) => [current, ...items]);
@@ -35947,7 +35793,7 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     onDocumentChange(previous);
   }, [frozen, onDocumentChange, past]);
-  const redo = (0, import_react16.useCallback)(() => {
+  const redo = (0, import_react15.useCallback)(() => {
     if (frozen || !future.length) return;
     const current = clone2(docRef.current);
     setPast((items) => [...items, current]);
@@ -35958,13 +35804,13 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     onDocumentChange(next);
   }, [frozen, future, onDocumentChange]);
-  const deleteSelected = (0, import_react16.useCallback)(() => {
+  const deleteSelected = (0, import_react15.useCallback)(() => {
     if (frozen) return;
     changed({ ...docRef.current, components: docRef.current.components.filter((component2) => !selectedNodes.includes(component2.id)).map((component2) => component2.linkedTo && selectedNodes.includes(component2.linkedTo) ? { ...component2, linkedTo: void 0 } : component2), wires: docRef.current.wires.filter((wire) => !selectedWires.includes(wire.id) && !selectedNodes.includes(wire.from.componentId) && !selectedNodes.includes(wire.to.componentId)), roles: docRef.current.roles ? Object.fromEntries(Object.entries(docRef.current.roles).filter(([, componentId]) => !selectedNodes.includes(componentId))) : void 0 });
     setSelectedNodes([]);
     setSelectedWires([]);
   }, [frozen, changed, selectedNodes, selectedWires]);
-  const action = (0, import_react16.useCallback)((nextAction) => {
+  const action = (0, import_react15.useCallback)((nextAction) => {
     if (!running) return;
     const result = session.dispatch(nextAction, sessionGeneration);
     if (!result) return;
@@ -35976,7 +35822,7 @@ function Workspace(props) {
       }
     };
     if (nextAction.type === "advance-time") present();
-    else (0, import_react_dom4.flushSync)(present);
+    else (0, import_react_dom3.flushSync)(present);
   }, [running, session, sessionGeneration]);
   const copySelected = () => {
     if (frozen) return;
@@ -36005,7 +35851,7 @@ function Workspace(props) {
     }
   };
   const hasTimers = circuit.components.some((component2) => isTimer(component2.type));
-  (0, import_react16.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     if (!running || !hasTimers || timerPaused) return;
     const timer2 = setInterval(() => {
       if (session.current?.runtime.powerOn && session.current.supported && !session.current.runtime.faultLatched) action({ type: "advance-time", ms: 100 });
@@ -36074,13 +35920,13 @@ function Workspace(props) {
     if (colorChoice.conflict) setMessage("\u540C\u4E00\u5BFC\u901A\u7EC4\u5B58\u5728\u4E0D\u540C\u7EBF\u8272\u3002\u9009\u4E2D\u4EFB\u4E00\u5BFC\u7EBF\uFF0C\u518D\u9009\u62E9\u989C\u8272\uFF0C\u53EF\u7EDF\u4E00\u6574\u7EC4\u3002");
     if (colorChoice.sourceConflict) setMessage("\u4E0D\u540C\u7535\u6E90\u76F8\u63A5\u5165\u4E86\u540C\u4E00\u5BFC\u901A\u7EC4\uFF0C\u8BF7\u68C0\u67E5\u63A5\u7EBF\uFF1B\u7EDF\u4E00\u989C\u8272\u4E0D\u80FD\u6D88\u9664\u7535\u6C14\u51B2\u7A81\u3002");
   };
-  const onWaypoints = (0, import_react16.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
-  const configure = (0, import_react16.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
-  const beginResize = (0, import_react16.useCallback)((id2) => {
+  const onWaypoints = (0, import_react15.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
+  const configure = (0, import_react15.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
+  const beginResize = (0, import_react15.useCallback)((id2) => {
     if (frozen || !isLayoutObject(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
     resizing.current = { id: id2, before: clone2(docRef.current), documentKey: props.documentKey };
   }, [frozen, props.documentKey]);
-  const resize = (0, import_react16.useCallback)((id2, bounds2, finish = false) => {
+  const resize = (0, import_react15.useCallback)((id2, bounds2, finish = false) => {
     const gesture = resizing.current;
     if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds2.x, bounds2.y, bounds2.width, bounds2.height].every(Number.isFinite)) return;
     const rail = docRef.current.components.find((c) => c.id === id2)?.type === "din-rail";
@@ -36098,16 +35944,16 @@ function Workspace(props) {
       resizing.current = null;
     }
   }, [frozen, props.documentKey, onDocumentChange]);
-  const cancelResize = (0, import_react16.useCallback)(() => {
+  const cancelResize = (0, import_react15.useCallback)(() => {
     const gesture = resizing.current;
     resizing.current = null;
     if (gesture && gesture.documentKey === props.documentKey && !frozen) onDocumentChange(gesture.before);
   }, [frozen, props.documentKey, onDocumentChange]);
-  const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
-  const diagnostics = (0, import_react16.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const terminalColors = (0, import_react16.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
-  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
-  const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
+  const linkedComponents = (0, import_react15.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
+  const diagnostics = (0, import_react15.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
+  const terminalColors = (0, import_react15.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
+  const nodes = (0, import_react15.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const edges = (0, import_react15.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
     if (selection2.length) setSelectedNodes((current) => {
@@ -36251,13 +36097,13 @@ function Workspace(props) {
   };
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
-  const routingProblems = (0, import_react16.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed" || item.route.capacityWarning), [circuit]);
+  const routingProblems = (0, import_react15.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed" || item.route.capacityWarning), [circuit]);
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
-  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
-  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, referenceSelectionRevision, viewerControls) : drawingPreview ?? renderSchematic;
-  (0, import_react16.useEffect)(() => {
+  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
+  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, 0, viewerControls) : drawingPreview ?? renderSchematic;
+  (0, import_react15.useEffect)(() => {
     const element = editorElement.current;
     if (!element) return;
     const onKeyDown = (event) => {
@@ -36298,147 +36144,147 @@ function Workspace(props) {
     element.addEventListener("keydown", onKeyDown);
     return () => element.removeEventListener("keydown", onKeyDown);
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("aside", { className: "sim-library", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("aside", { className: "sim-library", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
           setSearchOpen(!searchOpen);
           if (searchOpen) setSearch("");
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Search, { size: 16 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 16 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
       ] }),
-      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-library-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Search, { size: 14 }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
+      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-library-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 14 }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      requirements.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("details", { className: "sim-course-checklist", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("summary", { children: [
+      requirements.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("details", { className: "sim-course-checklist", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("summary", { children: [
           "\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355 \xB7 ",
           requirements.filter((r) => !!circuit.roles?.[r.role]).length,
           "/",
           requirements.length
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: pendingRole ? "\u70B9\u51FB\u753B\u5E03\u7A7A\u767D\u5904\u653E\u7F6E\uFF1BEsc\u53D6\u6D88" : "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50\u65F6\u4E0D\u80FD\u5408\u683C\uFF1B\u6309\u4F4D\u53F7\u6DFB\u52A0\u5668\u4EF6\uFF0C\u518D\u81EA\u884C\u6446\u653E\u548C\u63A5\u7EBF" }),
-        pendingRole && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: frozen, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: pendingRole ? "\u70B9\u51FB\u753B\u5E03\u7A7A\u767D\u5904\u653E\u7F6E\uFF1BEsc\u53D6\u6D88" : "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50\u65F6\u4E0D\u80FD\u5408\u683C\uFF1B\u6309\u4F4D\u53F7\u6DFB\u52A0\u5668\u4EF6\uFF0C\u518D\u81EA\u884C\u6446\u653E\u548C\u63A5\u7EBF" }),
+        pendingRole && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: frozen, onClick: () => {
           const entry = requirements.find((r) => r.role === pendingRole);
           if (entry) addComponent(entry.component.type, void 0, pendingRole);
         }, children: "\u653E\u5230\u53EF\u89C1\u753B\u5E03\u4E2D\u5FC3" }),
-        requirements.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: entry.component.label }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: getDefinition(entry.component.type).name })
+        requirements.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: entry.component.label }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("small", { children: getDefinition(entry.component.type).name })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: frozen || !!circuit.roles?.[entry.role], onClick: () => setPendingRole(entry.role), children: circuit.roles?.[entry.role] ? "\u5DF2\u7ED1\u5B9A" : "\u6DFB\u52A0\u5E76\u653E\u7F6E" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: frozen || !!circuit.roles?.[entry.role], onClick: () => setPendingRole(entry.role), children: circuit.roles?.[entry.role] ? "\u5DF2\u7ED1\u5B9A" : "\u6DFB\u52A0\u5E76\u653E\u7F6E" })
         ] }, entry.role))
       ] }),
-      requirements.length > 0 && selectedNodes.length === 1 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-role-binding", children: [
+      requirements.length > 0 && selectedNodes.length === 1 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-role-binding", children: [
         "\u8BFE\u7A0B\u4F4D\u53F7",
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("select", { "aria-label": "\u7ED1\u5B9A\u8BFE\u7A0B\u4F4D\u53F7", disabled: frozen, value: Object.entries(circuit.roles ?? {}).find(([, id2]) => id2 === selectedNodes[0])?.[0] ?? "", onChange: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7ED1\u5B9A\u8BFE\u7A0B\u4F4D\u53F7", disabled: frozen, value: Object.entries(circuit.roles ?? {}).find(([, id2]) => id2 === selectedNodes[0])?.[0] ?? "", onChange: (event) => {
           try {
             changed(bindCourseRole(docRef.current, selectedNodes[0], event.target.value));
           } catch (error) {
             setMessage(error.message);
           }
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "", children: "\u672A\u7ED1\u5B9A\uFF0F\u89E3\u9664\u7ED1\u5B9A" }),
-          requirements.filter((r) => equivalentComponentType(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? "", r.component.type)).map((r) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: r.role, disabled: !!circuit.roles?.[r.role] && circuit.roles[r.role] !== selectedNodes[0], children: r.component.label }, r.role))
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "", children: "\u672A\u7ED1\u5B9A\uFF0F\u89E3\u9664\u7ED1\u5B9A" }),
+          requirements.filter((r) => equivalentComponentType(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? "", r.component.type)).map((r) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: r.role, disabled: !!circuit.roles?.[r.role] && circuit.roles[r.role] !== selectedNodes[0], children: r.component.label }, r.role))
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-library-scroller", children: [
-        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-library-group", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h3", { children: group.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-scroller", children: [
+        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-library-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: group.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
             event.dataTransfer.setData("application/x-diantuo-component", definition.type);
             event.dataTransfer.effectAllowed = "copy";
           }, onClick: () => addComponent(definition.type), title: `${definition.description} \u70B9\u51FB\u6216\u62D6\u5165\u753B\u5E03`, "aria-label": `\u6DFB\u52A0${definition.name}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: definition.type }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DeviceArtwork, { type: definition.type }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
           ] }, definition.type)) })
         ] }, group.id)),
-        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
-        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-pending-library", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "PLC" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
+        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
+        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-pending-library", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "PLC" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("p", { className: "sim-library-note", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { className: "sim-library-note", children: [
         "\u70B9\u51FB\u6DFB\u52A0\u6216\u62D6\u5165\u753B\u5E03",
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("br", {}),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("br", {}),
         "\u6559\u5B66\u793A\u610F\u5143\u4EF6 \xB7 \u7AEF\u5B50\u53EF\u91CD\u590D\u63A5\u7EBF"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-workspace", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-toolbar", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
-          running ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Play, { size: 14, fill: "currentColor" }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-workspace", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toolbar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
+          running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Play, { size: 14, fill: "currentColor" }),
           running ? "\u7ED3\u675F\u4EFF\u771F" : "\u5F00\u59CB\u4EFF\u771F"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
           changed({ ...circuit, wires: [] });
           setSelectedWires([]);
         }, children: "\u5220\u9664\u6240\u6709\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-control", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-control", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
             const rect = event.currentTarget.getBoundingClientRect();
             setColorAnchor({ left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6 });
             setColorHost(board.current);
             setColorsOpen(!colorsOpen);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { style: { backgroundColor: color2 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { style: { backgroundColor: color2 } }),
             "\u8BBE\u7F6E\u5BFC\u7EBF\u989C\u8272"
           ] }),
-          colorsOpen && colorHost && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-color-swatches", children: [
-              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
+          colorsOpen && colorHost && (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-swatches", children: [
+              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
                 setWireColor(item);
                 setColorsOpen(false);
               } }, item)),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
               setColorOverride(false);
               setColorsOpen(false);
             }, children: "\u65B0\u5BFC\u7EBF\u8DDF\u968F\u8D77\u70B9\u7AEF\u5B50\u989C\u8272" })
           ] }), colorHost)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("label", { className: "sim-line-select", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
-            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "duct", children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-line-select", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
+            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "duct", children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-history", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Copy, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Undo2, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Redo2, { size: 18 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-history", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Undo2, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Redo2, { size: 18 }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", disabled: frozen || selectedNodes.length !== 1 || !canRotate(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? ""), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((c) => c.id === selectedNodes[0] ? rotateComponent(c) : c) }), children: "\u65CB\u8F6C90\xB0" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-toolbar-spacer" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Download, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen || selectedNodes.length !== 1 || !canRotate(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? ""), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((c) => c.id === selectedNodes[0] ? rotateComponent(c) : c) }), children: "\u65CB\u8F6C90\xB0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-toolbar-spacer" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FolderOpen, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = frozen ? "none" : "copy";
       }, onDrop: (event) => {
@@ -36446,7 +36292,7 @@ function Workspace(props) {
         const type = event.dataTransfer.getData("application/x-diantuo-component");
         if (CATALOG.some((item) => item.type === type)) addComponent(type, flow.screenToFlowPosition({ x: event.clientX, y: event.clientY }));
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
           index,
           {
             nodes,
@@ -36510,171 +36356,166 @@ function Workspace(props) {
             },
             "aria-label": "\u7535\u8DEF\u63A5\u7EBF\u753B\u5E03",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Maximize2, { size: 16 }) }) })
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Maximize2, { size: 16 }) }) })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 22 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-canvas-heading", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: circuit.title }),
-          running && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 22 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas-heading", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: circuit.title }),
+          running && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
         ] }),
-        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("b", { children: [
+        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("b", { children: [
             routingProblems.length,
             " \u6839\u5BFC\u7EBF\u9700\u8981\u6574\u7406"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
         ] }),
-        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
             "\u6559\u5B66\u65F6\u95F4 ",
             ((simulation?.runtime.timeMs ?? 0) / 1e3).toFixed(1),
             " s",
             simulation?.supported === false ? " \xB7 \u5DF2\u6682\u505C" : ""
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-document-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileImage, { size: 15 }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-document-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 15 }),
             "\u4E0A\u4F20\u56FE\u7EB8"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: () => setDrawingPickerOpen(true), selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagram-empty", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FileImage, { size: 38 }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: props.onChooseCourse ? () => {
+          if (!frozen) props.onChooseCourse?.();
+        } : void 0, selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagram-empty", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 38 }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
         ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ShieldCheck, { size: 19 }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShieldCheck, { size: 19 }),
           busy === "assess" ? "\u6B63\u5728\u68C0\u67E5\u2026" : "\u68C0\u67E5\u63A5\u7EBF"
         ] }),
-        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagnostics-header", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
+        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-header", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
               "\u5B89\u5168\u8BCA\u65AD",
-              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { children: safetyDiagnostics.length })
+              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { children: safetyDiagnostics.length })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "workmanship" ? "active" : "", onClick: () => setPanelTab("workmanship"), children: "\u7AEF\u5B50\u5DE5\u827A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 16 }) })
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "workmanship" ? "active" : "", onClick: () => setPanelTab("workmanship"), children: "\u7AEF\u5B50\u5DE5\u827A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 16 }) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagnostics-body", children: [
-            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-body", children: [
+            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
                   component2.label,
                   " \xB7 ",
                   getDefinition(component2.type).name
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
               ] }, component2.id)) }),
-              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
-            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
-            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-clear-state", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(CheckCheck, { size: 30 }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
+              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
+            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
+            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clear-state", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CheckCheck, { size: 30 }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
             ] }) }),
-            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? assessment.diagnostics.some((item) => item.code === "LESSON_ROLE_MISSING") ? "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50" : "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? assessment.diagnostics.some((item) => item.code === "LESSON_ROLE_MISSING") ? "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50" : "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
                   assessment.passed,
                   " / ",
                   assessment.total,
                   " \u9879\u52A8\u4F5C\u7B26\u5408\u8981\u6C42"
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
+              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) }),
-            panelTab === "workmanship" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: workmanship ? workmanship.status === "unsupported" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u672C\u8BFE\u7A0B\u4E0D\u4F5C\u5341\u8BFE\u7AEF\u5B50\u6392\u5DE5\u827A\u5224\u5B9A\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `sim-assessment-status sim-workmanship-status ${workmanship.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: workmanship.status === "passed" ? "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u901A\u8FC7" : "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u5F85\u5B8C\u5584" }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5DE5\u827A\u7ED3\u679C\u72EC\u7ACB\u4E8E\u7535\u6C14\u8BFE\u7A0B\u5224\u5B9A" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) }),
+            panelTab === "workmanship" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: workmanship ? workmanship.status === "unsupported" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u672C\u8BFE\u7A0B\u4E0D\u4F5C\u5341\u8BFE\u7AEF\u5B50\u6392\u5DE5\u827A\u5224\u5B9A\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `sim-assessment-status sim-workmanship-status ${workmanship.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: workmanship.status === "passed" ? "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u901A\u8FC7" : "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u5F85\u5B8C\u5584" }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5DE5\u827A\u7ED3\u679C\u72EC\u7ACB\u4E8E\u7535\u6C14\u8BFE\u7A0B\u5224\u5B9A" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("ul", { className: "sim-check-list", children: workmanship.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "sim-check-list", children: workmanship.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              workmanship.diagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
+              workmanship.diagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u6838\u5BF9\u7AEF\u5B50\u4E2D\u8F6C\u3001PE \u4E0E\u7EBF\u8272\u4E00\u81F4\u6027\u3002" }) })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u6838\u5BF9\u7AEF\u5B50\u4E2D\u8F6C\u3001PE \u4E0E\u7EBF\u8272\u4E00\u81F4\u6027\u3002" }) })
           ] })
         ] }),
-        message && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-toast", role: "status", children: [
+        message && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toast", role: "status", children: [
           message,
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 14 }) })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 14 }) })
         ] }),
-        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
+        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
           setDismissedShort(shortKey);
           setPanelOpen(true);
           setPanelTab("safety");
           focusDiagnostic(shortAlert);
         } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("footer", { className: "sim-editor-footer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: running ? "live" : "" }),
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { className: "sim-editor-footer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: running ? "live" : "" }),
           running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
           circuit.components.length,
           " \u4E2A\u5143\u4EF6",
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
           circuit.wires.length,
           " \u6839\u5BFC\u7EBF",
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
             setPanelOpen(!panelOpen);
             setPanelTab(running ? "runtime" : "safety");
             if (!panelOpen) setTimeout(frameInitialView, 80);
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(PanelRightClose, { size: 15 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(PanelRightClose, { size: 15 }) })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ReferenceDrawingPicker, { open: drawingPickerOpen, selectedId: circuit.referenceDiagramId, disabled: frozen, onClose: () => setDrawingPickerOpen(false), onSelect: (id2) => {
-      if (frozen) return;
-      drawingSelectionEpoch.current++;
-      setDrawing("");
-      setReferenceSelectionRevision((value) => value + 1);
-      changed(selectReferenceDrawing(docRef.current, id2));
-    } }),
-    transferMode && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Modal, { backdropClass: "sim-transfer-backdrop", className: "sim-transfer-dialog", title: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClose: () => setTransferMode(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 18 }) })
+    transferMode && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Modal, { backdropClass: "sim-transfer-backdrop", className: "sim-transfer-dialog", title: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClose: () => setTransferMode(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 18 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
         setTransferText(event.target.value);
         setTransferNotice("");
       }, placeholder: transferMode === "import" ? "\u5728\u6B64\u7C98\u8D34\u5B8C\u6574\u7535\u8DEF JSON" : void 0 }),
-      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", onClick: async () => {
+      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", onClick: async () => {
           try {
             await navigator.clipboard.writeText(transferText);
             setTransferNotice("\u7535\u8DEF JSON \u5DF2\u590D\u5236\u3002");
@@ -36684,19 +36525,19 @@ function Workspace(props) {
             setTransferNotice("\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u81EA\u52A8\u590D\u5236\u3002\u5DF2\u9009\u4E2D\u5168\u90E8 JSON\uFF0C\u8BF7\u6309 Ctrl+C \u590D\u5236\u3002");
           }
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Copy, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 16 }),
           "\u590D\u5236 JSON"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Download, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
           "\u4E0B\u8F7D JSON \u6587\u4EF6"
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(FolderOpen, { size: 16 }),
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
           "\u9009\u62E9 JSON \u6587\u4EF6"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
           try {
             importDocument(transferText);
           } catch (error) {
@@ -36705,12 +36546,12 @@ function Workspace(props) {
         }, children: "\u5BFC\u5165\u7C98\u8D34\u5185\u5BB9" })
       ] }) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (file) await importFile(file);
     } }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file || frozen) return;
@@ -36740,11 +36581,11 @@ function Workspace(props) {
   ] });
 }
 function SimulatorEditor(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Workspace, { ...props }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Workspace, { ...props }) });
 }
 
 // app/simulator/editor/DocumentPreview.tsx
-var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
 function DocumentPreview({ document: document2, className = "" }) {
   const boxes = document2.components.map((component2) => ({ component: component2, definition: componentSize(component2) }));
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -36763,24 +36604,24 @@ function DocumentPreview({ document: document2, className = "" }) {
   const y = boxes.length ? minY - 28 : 0;
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
-  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("g", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, delayMs: component2.settings?.delayMs }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
+  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, delayMs: component2.settings?.delayMs }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
   ] }, component2.id);
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
     boxes.filter(({ component: component2 }) => isLayoutObject(component2.type)).map(device),
-    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
+    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
     boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(device),
-    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
+    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
     ] }, `leads-${component2.id}`)),
-    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
+    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
   ] });
 }
 
 // app/simulator/TrainingProjects.tsx
-var import_react18 = __toESM(require_react(), 1);
+var import_react17 = __toESM(require_react(), 1);
 
 // shared/training-projects.json
 var training_projects_default = [
@@ -36795,6 +36636,18 @@ var training_projects_default = [
   { id: "project-09", name: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF", simulation: "pending" },
   { id: "project-10", name: "\u53CC\u901F\u7535\u673A\u63A7\u5236\u7535\u8DEF", simulation: "pending" }
 ];
+
+// app/simulator/course-projects.ts
+var COURSE_PROJECTS = training_projects_default.map((project2) => ({
+  id: project2.id,
+  name: project2.name,
+  title: project2.name,
+  lessonId: `motor-course-${project2.id.slice(-2)}`,
+  drawingStatus: "pending",
+  updatedAt: null,
+  media: null
+}));
+var selectableProjects = (projects) => projects.filter((project2) => COURSE_PROJECTS.some((course) => course.id === project2.id) && isSelectableLesson(project2.lessonId));
 
 // app/simulator/api.ts
 var STATIC_DEMO = true;
@@ -36840,28 +36693,28 @@ var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) 
 var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then(({ assessment, workmanship }) => ({ assessment, workmanship }));
 
 // app/simulator/TrainingProjects.tsx
-var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
 var LABELS3 = { schematic: "\u539F\u7406\u56FE", layout: "\u5143\u4EF6\u5E03\u7F6E\u56FE" };
 var projectMedia = (project2, kind) => project2.drawings ? project2.drawings[kind] : kind === "schematic" ? project2.media : null;
 function Drawing({ media, title, viewerControls }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
 }
 function TrainingProjects(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
 }
 function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
-  const [projects, setProjects] = (0, import_react18.useState)(training_projects_default.map((p) => ({ id: p.id, name: p.name, title: p.name, lessonId: null, drawingStatus: "pending", updatedAt: null, media: null })));
-  const [selected2, setSelected] = (0, import_react18.useState)("");
-  const [kind, setKind] = (0, import_react18.useState)("schematic");
-  const [error, setError] = (0, import_react18.useState)("");
-  const [busy, setBusy] = (0, import_react18.useState)(false);
-  const [refreshing, setRefreshing] = (0, import_react18.useState)(false);
-  const [enlarged, setEnlarged] = (0, import_react18.useState)(false);
-  const [toolsOpen, setToolsOpen] = (0, import_react18.useState)(false);
-  const toolsId = (0, import_react18.useId)();
-  const fileInput = (0, import_react18.useRef)(null);
-  const projectRequest = (0, import_react18.useRef)(0);
-  (0, import_react18.useEffect)(() => {
+  const [projects, setProjects] = (0, import_react17.useState)(COURSE_PROJECTS);
+  const [selected2, setSelected] = (0, import_react17.useState)("");
+  const [kind, setKind] = (0, import_react17.useState)("schematic");
+  const [error, setError] = (0, import_react17.useState)("");
+  const [busy, setBusy] = (0, import_react17.useState)(false);
+  const [refreshing, setRefreshing] = (0, import_react17.useState)(false);
+  const [enlarged, setEnlarged] = (0, import_react17.useState)(false);
+  const [toolsOpen, setToolsOpen] = (0, import_react17.useState)(false);
+  const toolsId = (0, import_react17.useId)();
+  const fileInput = (0, import_react17.useRef)(null);
+  const projectRequest = (0, import_react17.useRef)(0);
+  (0, import_react17.useEffect)(() => {
     let active = true;
     const request = ++projectRequest.current;
     if (!STATIC_DEMO) api("/training-projects").then((r) => {
@@ -36878,7 +36731,7 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
   const media = project2 ? projectMedia(project2, kind) : currentDrawings?.[currentKind];
   const title = `${project2?.title || "\u5F53\u524D\u7EC3\u4E60"} \xB7 ${LABELS3[shownKind]}`;
   const hasSlots = !!project2 || !!currentDrawings;
-  (0, import_react18.useEffect)(() => {
+  (0, import_react17.useEffect)(() => {
     onPreviewContextChange?.(!hasSlots);
   }, [hasSlots, documentKey, onPreviewContextChange]);
   async function upload(file) {
@@ -36921,32 +36774,29 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
       setRefreshing(false);
     }
   }
-  const pending = /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-pending", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileUp, { size: 30 }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { children: [
-      LABELS3[shownKind],
-      "\u5C1A\u672A\u4E0A\u4F20"
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
+  const pending = /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-pending", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 30 }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : `${LABELS3[shownKind]}\u5C1A\u672A\u4E0A\u4F20` }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "dt-training-projects", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "dt-training-projects", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
       toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8",
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
     ] }),
-    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
+    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
       setEnlarged(false);
       if (project2) setKind(item);
       else if (!readOnly) onSelectCurrentDrawing?.(item);
     }, children: [
       LABELS3[item],
-      project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
+      project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
     ] }, item)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { children: [
         "\u9879\u76EE\u56FE\u7EB8",
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
           setSelected(e.target.value);
           setKind("schematic");
           setEnlarged(false);
@@ -36954,67 +36804,64 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
           setToolsOpen(false);
           viewerControls?.onZoomChange(1);
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
-          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("option", { value: p.id, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
+          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("option", { value: p.id, children: [
             p.name,
             p.drawingStatus === "pending" ? " \xB7 \u5F85\u4E0A\u4F20" : ""
           ] }, p.id))
         ] })
       ] }),
-      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(RefreshCw, { size: 13 }),
+      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(RefreshCw, { size: 13 }),
         refreshing ? "\u6B63\u5728\u5237\u65B0\u2026" : "\u5237\u65B0\u9879\u76EE\u56FE\u7EB8"
       ] }) }),
-      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileUp, { size: 15 }),
+      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 15 }),
           busy ? `\u6B63\u5728\u4E0A\u4F20${LABELS3[kind]}\u2026` : `${media ? "\u66FF\u6362" : "\u4E0A\u4F20"}${LABELS3[kind]}`
         ] })
       ] }),
-      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
+      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { role: "alert", className: "dt-error", children: error }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
-    media && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Maximize2, { size: 14 }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { role: "alert", className: "dt-error", children: error }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
+    media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Maximize2, { size: 14 }),
         "\u653E\u5927\u67E5\u770B"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ExternalLink, { size: 14 }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(ExternalLink, { size: 14 }),
         "\u67E5\u770B\u539F\u56FE"
       ] }),
-      project2 && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
+      project2 && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
         if (!readOnly) {
           onUseDrawing(media.id, { ...project2, media }, kind);
           setSelected("");
         }
       }, children: "\u7528\u4E8E\u5F53\u524D\u7EC3\u4E60" })
     ] }),
-    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("strong", { children: title }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
+    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
     ] })
   ] });
 }
 
-// app/simulator/ReferenceDrawings.tsx
-var import_react20 = __toESM(require_react(), 1);
-
 // app/simulator/CourseLibrary.tsx
-var import_react19 = __toESM(require_react(), 1);
-var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
+var import_react18 = __toESM(require_react(), 1);
+var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
 function CourseLibrary({ onPractice }) {
-  const [projects, setProjects] = (0, import_react19.useState)([]), [error, setError] = (0, import_react19.useState)(""), [loading, setLoading] = (0, import_react19.useState)(true);
-  const [query, setQuery] = (0, import_react19.useState)(""), [level, setLevel] = (0, import_react19.useState)("all"), [preview, setPreview] = (0, import_react19.useState)(null), [kind, setKind] = (0, import_react19.useState)("schematic");
-  (0, import_react19.useEffect)(() => {
+  const [projects, setProjects] = (0, import_react18.useState)(COURSE_PROJECTS), [error, setError] = (0, import_react18.useState)(""), [loading, setLoading] = (0, import_react18.useState)(!STATIC_DEMO);
+  const [query, setQuery] = (0, import_react18.useState)(""), [level, setLevel] = (0, import_react18.useState)("all"), [preview, setPreview] = (0, import_react18.useState)(null), [kind, setKind] = (0, import_react18.useState)("schematic");
+  (0, import_react18.useEffect)(() => {
     let active = true;
-    api("/training-projects").then((result) => {
-      if (active) setProjects(result.items);
+    if (!STATIC_DEMO) api("/training-projects").then((result) => {
+      if (active) setProjects(selectableProjects(result.items));
     }).catch((reason) => {
       if (active) setError(reason.message);
     }).finally(() => {
@@ -37028,144 +36875,63 @@ function CourseLibrary({ onPractice }) {
   const found = projects.filter((project2) => (level === "all" || difficulty(project2.id) === level) && project2.name.includes(query));
   const media = preview?.drawings?.[kind] ?? (kind === "schematic" ? preview?.media : null);
   const lesson = preview?.lessonId ? getLesson(preview.lessonId) : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dt-reference-filter", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-reference-filter", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
         label,
         "(",
         projects.filter((project2) => id2 === "all" || difficulty(project2.id) === id2).length,
         ")"
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("label", { className: "dt-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "dt-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
       ] })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-error", role: "alert", children: error }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u9759\u6001\u6F14\u793A\u652F\u6301\u5341\u8BFE\u63A5\u7EBF\u7EC3\u4E60\u548C\u793A\u8303\u3002\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-error", role: "alert", children: error }),
+    loading && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "dt-reference-card", onClick: () => {
       setPreview(project2);
       setKind("schematic");
     }, children: [
-      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { children: project2.name })
+      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : STATIC_DEMO ? "\u6210\u5458\u7AD9\u67E5\u770B\u539F\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: project2.name })
     ] }, project2.id)) }),
-    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: preview.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(X, { size: 20 }) })
+    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
+    preview && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { children: preview.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
-      media ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-empty", children: "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { children: lesson?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
+      media ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: lesson?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => {
           onPractice(preview, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-primary", onClick: () => {
           onPractice(preview, false);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
     ] })
   ] });
 }
 
 // app/simulator/ReferenceDrawings.tsx
-var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
-var courses = { 13: "motor-jog", 14: "motor-self-hold", 12: "lighting-two-way", 11: "lighting-single" };
-var drawings = REFERENCE_DRAWINGS.map((drawing) => ({ ...drawing, lesson: courses[drawing.id], src: referenceDrawingImageUrl(drawing.id, "/diantuo-zhixun/") }));
-function ReferenceDrawings({ onPractice, onProjectPractice, onReferencePractice }) {
-  const [category, setCategory] = (0, import_react20.useState)(STATIC_DEMO ? "industrial" : "courses");
-  const [level, setLevel] = (0, import_react20.useState)("all");
-  const [query, setQuery] = (0, import_react20.useState)("");
-  const [page, setPage] = (0, import_react20.useState)(1);
-  const [preview, setPreview] = (0, import_react20.useState)(null);
-  const [previewTab, setPreviewTab] = (0, import_react20.useState)("schematic");
-  const inCategory = drawings.filter((d) => d.category === category);
-  const found = inCategory.filter((d) => (level === "all" || d.level === level) && d.title.includes(query));
-  const pages = Math.max(1, Math.ceil(found.length / 8));
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("main", { className: "dt-reference-library", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-reference-category", role: "tablist", "aria-label": "\u56FE\u7EB8\u5206\u7C7B", children: [...!STATIC_DEMO ? [["courses", "\u8BFE\u7A0B\u56FE\u7EB8", 10]] : [], ["industrial", "\u5DE5\u4E1A\u7535\u8DEF\u56FE\u7EB8", 16], ["lighting", "\u5BB6\u5EAD\u7535\u8DEF\u56FE\u7EB8", 2]].map(([id2, label, count]) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { role: "tab", "aria-selected": category === id2, className: category === id2 ? "active" : "", onClick: () => {
-      setCategory(String(id2));
-      setPage(1);
-      setLevel("all");
-    }, children: [
-      label,
-      "(",
-      count,
-      ")"
-    ] }, id2)) }),
-    category === "courses" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(CourseLibrary, { onPractice: onProjectPractice }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-reference-filter", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { role: "tablist", "aria-label": "\u56FE\u7EB8\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u521D\u7EA7\u56FE\u7EB8"], ["intermediate", "\u4E2D\u7EA7\u56FE\u7EB8"], ["advanced", "\u9AD8\u7EA7\u56FE\u7EB8"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => {
-          setLevel(id2);
-          setPage(1);
-        }, children: [
-          label,
-          "(",
-          inCategory.filter((d) => id2 === "all" || d.level === id2).length,
-          ")"
-        ] }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Search, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { placeholder: "\u8BF7\u8F93\u5165\u56FE\u7EB8\u540D\u79F0", value: query, onChange: (e) => {
-            setQuery(e.target.value);
-            setPage(1);
-          } })
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-reference-grid", children: found.slice((page - 1) * 8, page * 8).map((d) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { className: "dt-reference-card", onClick: () => {
-        setPreviewTab("schematic");
-        setPreview(d);
-      }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("img", { src: d.src, alt: d.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: d.title })
-      ] }, d.id)) }),
-      !found.length && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("nav", { className: "dt-pagination", "aria-label": "\u56FE\u7EB8\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { disabled: page === 1, onClick: () => setPage((p) => p - 1), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronLeft, { size: 14 }),
-          "\u4E0A\u4E00\u9875"
-        ] }),
-        Array.from({ length: pages }, (_, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: page === i + 1 ? "active" : "", onClick: () => setPage(i + 1), children: i + 1 }, i)),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { disabled: page === pages, onClick: () => setPage((p) => p + 1), children: [
-          "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChevronRight, { size: 14 })
-        ] })
-      ] })
-    ] }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.title, onClose: () => setPreview(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { children: preview.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-reference-preview-tabs", role: "tablist", "aria-label": "\u53C2\u8003\u56FE\u7EB8\u5185\u5BB9", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { role: "tab", "aria-selected": previewTab === "schematic", className: previewTab === "schematic" ? "active" : "", onClick: () => setPreviewTab("schematic"), children: "\u63A5\u7EBF\u56FE" }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { role: "tab", "aria-selected": previewTab === "video", className: previewTab === "video" ? "active" : "", onClick: () => setPreviewTab("video"), children: "\u6559\u5B66\u89C6\u9891" })
-      ] }),
-      previewTab === "schematic" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DrawingViewer, { src: preview.src, title: preview.title }, preview.id) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ReferenceVideoPlayer, { video: referenceVideoForDiagram(preview.id) }),
-      preview.id === 11 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u539F\u56FE\u5305\u542B\u7535\u5EA6\u8868\u548C\u591A\u4E2A\u8D1F\u8F7D\u3002\u4E0B\u65B9\u793A\u8303\u53EA\u8986\u76D6\u5355\u63A7\u7167\u660E\u3002" }),
-      preview.id === 13 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u6309\u539F\u7AD9\u56FE\u7406\u89E3\u70B9\u52A8\u903B\u8F91\uFF1B\u70B9\u52A8\u793A\u8303\u53E6\u68C0\u67E5\u4FDD\u62A4\u63A5\u5730\u4E0E\u8FC7\u8F7D\u4FDD\u62A4\u3002" }),
-      !preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u53EF\u6309\u6B64\u53C2\u8003\u56FE\u63A5\u7EBF\uFF1B\u6B64\u56FE\u5C1A\u672A\u7ED1\u5B9A\u8BFE\u7A0B\u5224\u5B9A\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-modal-actions", children: [
-        preview.lesson && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { onClick: () => {
-          onPractice(preview.lesson, true);
-          setPreview(null);
-        }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-primary", onClick: () => {
-          onReferencePractice(preview.id);
-          setPreview(null);
-        }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
-      ] })
-    ] })
+var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
+function ReferenceDrawings({ onProjectPractice }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("main", { className: "dt-reference-library", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: "\u8BFE\u7A0B\u56FE\u7EB8 \xB7 10 \u4E2A\u63A5\u7EBF\u8BFE\u7A0B" }),
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CourseLibrary, { onPractice: onProjectPractice })
   ] });
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_react21 = __toESM(require_react(), 1);
+var import_react19 = __toESM(require_react(), 1);
 
 // app/simulator/profile/change-password.ts
 var PASSWORD_MIN_LENGTH = 12;
@@ -37193,25 +36959,25 @@ function passwordChangeError(error) {
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
 function ChangePassword({ request, onChanged }) {
-  const [open, setOpen] = (0, import_react21.useState)(false);
-  const [fields, setFields] = (0, import_react21.useState)(emptyPasswordFields);
-  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react21.useState)(true);
-  const [busy, setBusy] = (0, import_react21.useState)(false);
-  const [error, setError] = (0, import_react21.useState)("");
-  const pending = (0, import_react21.useRef)(false);
-  const mounted = (0, import_react21.useRef)(true);
-  const currentInput = (0, import_react21.useRef)(null);
-  const trigger = (0, import_react21.useRef)(null);
-  const id2 = (0, import_react21.useId)();
-  (0, import_react21.useEffect)(() => {
+  const [open, setOpen] = (0, import_react19.useState)(false);
+  const [fields, setFields] = (0, import_react19.useState)(emptyPasswordFields);
+  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react19.useState)(true);
+  const [busy, setBusy] = (0, import_react19.useState)(false);
+  const [error, setError] = (0, import_react19.useState)("");
+  const pending = (0, import_react19.useRef)(false);
+  const mounted = (0, import_react19.useRef)(true);
+  const currentInput = (0, import_react19.useRef)(null);
+  const trigger = (0, import_react19.useRef)(null);
+  const id2 = (0, import_react19.useId)();
+  (0, import_react19.useEffect)(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
     };
   }, []);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react19.useEffect)(() => {
     if (open) currentInput.current?.focus();
   }, [open]);
   function close() {
@@ -37255,43 +37021,43 @@ function ChangePassword({ request, onChanged }) {
       if (mounted.current) setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
       setFields(emptyPasswordFields());
       setError("");
       setRevokeOtherSessions(true);
       setOpen(true);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(KeyRound, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(KeyRound, { size: 16 }),
       "\u4FEE\u6539\u5BC6\u7801"
     ] }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 20 }) })
+    open && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-current`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-current`, children: [
           "\u5F53\u524D\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-new`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-new`, children: [
           "\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
           "\u786E\u8BA4\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-password-revoke", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "dt-password-revoke", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
           "\u540C\u65F6\u9000\u51FA\u5176\u4ED6\u8BBE\u5907\u4E0A\u7684\u767B\u5F55"
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-modal-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-modal-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
         ] })
       ] })
     ] })
@@ -37299,7 +37065,7 @@ function ChangePassword({ request, onChanged }) {
 }
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_react22 = __toESM(require_react(), 1);
+var import_react20 = __toESM(require_react(), 1);
 
 // app/simulator/profile/list-state.ts
 var PROFILE_PAGE_SIZE = 12;
@@ -37334,35 +37100,35 @@ var ProfileListRequests = class {
 };
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
 var LOCAL_KEY = "diantuo:simulator:demo:v1";
 var date = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 var blankPage = (pageSize) => ({ items: [], page: 1, pageSize, total: 0, totalPages: 1 });
 function ProfileLibrary(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
 }
 function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }) {
-  const [query, setQuery] = (0, import_react22.useState)("");
-  const [search, setSearch] = (0, import_react22.useState)("");
-  const [page, setPage] = (0, import_react22.useState)(1);
-  const [pageSize, setPageSize] = (0, import_react22.useState)(tab === "drafts" ? 10 : 12);
-  const [result, setResult] = (0, import_react22.useState)(() => blankPage(pageSize));
-  const [completedKey, setCompletedKey] = (0, import_react22.useState)("");
-  const [failure, setFailure] = (0, import_react22.useState)({ key: "", message: "" });
-  const [retry, setRetry] = (0, import_react22.useState)(0);
-  const requests = (0, import_react22.useRef)(new ProfileListRequests());
-  const requestRef = (0, import_react22.useRef)(request);
+  const [query, setQuery] = (0, import_react20.useState)("");
+  const [search, setSearch] = (0, import_react20.useState)("");
+  const [page, setPage] = (0, import_react20.useState)(1);
+  const [pageSize, setPageSize] = (0, import_react20.useState)(tab === "drafts" ? 10 : 12);
+  const [result, setResult] = (0, import_react20.useState)(() => blankPage(pageSize));
+  const [completedKey, setCompletedKey] = (0, import_react20.useState)("");
+  const [failure, setFailure] = (0, import_react20.useState)({ key: "", message: "" });
+  const [retry, setRetry] = (0, import_react20.useState)(0);
+  const requests = (0, import_react20.useRef)(new ProfileListRequests());
+  const requestRef = (0, import_react20.useRef)(request);
   const scope = { ownerId, session: refresh, tab, query, page, pageSize };
-  const scopeRef = (0, import_react22.useRef)(scope);
-  (0, import_react22.useLayoutEffect)(() => {
+  const scopeRef = (0, import_react20.useRef)(scope);
+  (0, import_react20.useLayoutEffect)(() => {
     requestRef.current = request;
     scopeRef.current = { ownerId, session: refresh, tab, query, page, pageSize };
   }, [request, ownerId, refresh, tab, query, page, pageSize]);
   const loadKey = JSON.stringify([ownerId, refresh, tab, query, page, pageSize, retry]);
   const loading = completedKey !== loadKey;
   const error = failure.key === loadKey ? failure.message : "";
-  const sentinel = (0, import_react22.useRef)(null);
-  (0, import_react22.useEffect)(() => {
+  const sentinel = (0, import_react20.useRef)(null);
+  (0, import_react20.useEffect)(() => {
     const requestState = requests.current;
     const ticket = requestState.begin(scopeRef.current);
     const accepts = () => requests.current.accepts(ticket, scopeRef.current);
@@ -37393,7 +37159,7 @@ function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDra
     return () => requestState.invalidate();
   }, [ownerId, tab, query, page, pageSize, refresh, retry, loadKey]);
   const more = tab !== "drafts" && result.page < result.totalPages;
-  (0, import_react22.useEffect)(() => {
+  (0, import_react20.useEffect)(() => {
     if (!more || loading || error || !sentinel.current || typeof IntersectionObserver === "undefined") return;
     let queued = false;
     const observer = new IntersectionObserver((entries) => {
@@ -37422,106 +37188,106 @@ function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDra
     setResult(blankPage(pageSize));
     setRetry((value) => value + 1);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
         result.total,
         " \u4EFD\u79C1\u6709\u8349\u7A3F"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
         "\u5171 ",
         result.total,
         " \u4E2A"
       ] })
     ] }) }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-error", role: "alert", children: [
+    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-error", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
         requests.current.invalidate();
         setRetry((value) => value + 1);
       }, children: "\u91CD\u8BD5" })
     ] }),
-    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u6807\u9898" }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("th", { children: "\u64CD\u4F5C" })
+    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6807\u9898" }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u64CD\u4F5C" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("td", { children: item.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("td", { children: date(item.updatedAt) }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("td", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: item.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: date(item.updatedAt) }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
           ] })
         ] }, item.id)) })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
           "\u6BCF\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
             requests.current.invalidate();
             setPageSize(Number(event.target.value));
             setPage(1);
-          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("option", { value: size, children: size }, size)) }),
+          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: size, children: size }, size)) }),
           "\u6761"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
           "\u7B2C ",
           result.page,
           " / ",
           result.totalPages,
           " \u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ChevronLeft, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ChevronRight, { size: 16 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronLeft, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronRight, { size: 16 }) })
       ] })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "dt-profile-publication", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: item.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-publication-info", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: item.author.name || item.author.username }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("small", { children: date(item.createdAt) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Heart, { size: 15 }),
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("article", { className: "dt-profile-publication", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: item.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-publication-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: item.author.name || item.author.username }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("small", { children: date(item.createdAt) }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Heart, { size: 15 }),
             item.likes
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Star, { size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Star, { size: 15 }),
             item.favorites
           ] })
         ] })
       ] })
     ] }, item.id)) }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
+    loading && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
       "\u6B63\u5728\u8BFB\u53D6",
       tab === "drafts" ? "\u8349\u7A3F" : tab === "favorites" ? "\u6536\u85CF" : "\u7535\u8DEF",
       "\u2026"
     ] }),
-    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
-      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CircuitBoard, { size: 38 }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
-      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
-      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
+    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", children: [
+      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CircuitBoard, { size: 38 }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
+      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
+      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
     ] }),
-    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
-      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
-      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
+    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
+      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
+      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
     ] })
   ] });
 }
 
 // app/simulator/gallery/Gallery.tsx
-var import_react23 = __toESM(require_react(), 1);
+var import_react21 = __toESM(require_react(), 1);
 
 // app/simulator/gallery/route.ts
 var emptyGalleryRoute = () => ({ query: "", page: 1 });
@@ -37607,7 +37373,7 @@ var GalleryRequestState = class {
 };
 
 // app/simulator/gallery/Gallery.tsx
-var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
 var date2 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function subscribeLocation(changed) {
   addEventListener("popstate", changed);
@@ -37620,24 +37386,24 @@ function subscribeLocation(changed) {
 var noopSubscribe = () => () => {
 };
 function Gallery({ request, onFork, onPractice, busy = false }) {
-  const ready = (0, import_react23.useSyncExternalStore)(noopSubscribe, () => true, () => false);
-  const routeSearch = (0, import_react23.useSyncExternalStore)(subscribeLocation, () => location.search, () => "");
+  const ready = (0, import_react21.useSyncExternalStore)(noopSubscribe, () => true, () => false);
+  const routeSearch = (0, import_react21.useSyncExternalStore)(subscribeLocation, () => location.search, () => "");
   const route = galleryRouteFromSearch(routeSearch);
-  const [searchState, setSearchState] = (0, import_react23.useState)({ query: route.query, value: route.query });
+  const [searchState, setSearchState] = (0, import_react21.useState)({ query: route.query, value: route.query });
   const search = searchState.query === route.query ? searchState.value : route.query;
-  const [page, setPage] = (0, import_react23.useState)(null);
-  const [loadedKey, setLoadedKey] = (0, import_react23.useState)("");
-  const [failure, setFailure] = (0, import_react23.useState)({ key: "", message: "" });
-  const [detail, setDetail] = (0, import_react23.useState)(null);
-  const [detailFailure, setDetailFailure] = (0, import_react23.useState)({ key: "", message: "" });
-  const [feedbackState, setFeedbackState] = (0, import_react23.useState)({ key: "", message: "" });
-  const [reload, setReload] = (0, import_react23.useState)(0);
-  const [pending, setPending] = (0, import_react23.useState)([]);
-  const pendingRef = (0, import_react23.useRef)(/* @__PURE__ */ new Set());
-  const requests = (0, import_react23.useRef)(new GalleryRequestState());
-  const mounted = (0, import_react23.useRef)(true);
-  const requestRef = (0, import_react23.useRef)(request);
-  (0, import_react23.useLayoutEffect)(() => {
+  const [page, setPage] = (0, import_react21.useState)(null);
+  const [loadedKey, setLoadedKey] = (0, import_react21.useState)("");
+  const [failure, setFailure] = (0, import_react21.useState)({ key: "", message: "" });
+  const [detail, setDetail] = (0, import_react21.useState)(null);
+  const [detailFailure, setDetailFailure] = (0, import_react21.useState)({ key: "", message: "" });
+  const [feedbackState, setFeedbackState] = (0, import_react21.useState)({ key: "", message: "" });
+  const [reload, setReload] = (0, import_react21.useState)(0);
+  const [pending, setPending] = (0, import_react21.useState)([]);
+  const pendingRef = (0, import_react21.useRef)(/* @__PURE__ */ new Set());
+  const requests = (0, import_react21.useRef)(new GalleryRequestState());
+  const mounted = (0, import_react21.useRef)(true);
+  const requestRef = (0, import_react21.useRef)(request);
+  (0, import_react21.useLayoutEffect)(() => {
     requestRef.current = request;
   }, [request]);
   const listKey = galleryListPath(route);
@@ -37648,7 +37414,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   const detailError = detailFailure.key === detailKey ? detailFailure.message : "";
   const feedback = feedbackState.key === galleryHref(route) ? feedbackState.message : "";
   const setFeedback = (message) => setFeedbackState({ key: galleryHref(route), message });
-  (0, import_react23.useEffect)(() => {
+  (0, import_react21.useEffect)(() => {
     mounted.current = true;
     const requestState = requests.current;
     return () => {
@@ -37656,14 +37422,14 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       requestState.clear();
     };
   }, []);
-  (0, import_react23.useEffect)(() => {
+  (0, import_react21.useEffect)(() => {
     requests.current.retain([
       ...page?.items.map((item) => item.id) ?? [],
       ...route.publicationId ? [route.publicationId] : [],
       ...pending.map((key4) => key4.slice(0, key4.lastIndexOf(":")))
     ]);
   }, [page, route.publicationId, pending]);
-  (0, import_react23.useEffect)(() => {
+  (0, import_react21.useEffect)(() => {
     if (!ready || STATIC_DEMO) return;
     const abort = new AbortController();
     let active = true;
@@ -37694,7 +37460,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       abort.abort();
     };
   }, [ready, listKey, reload, route.page, errorKey]);
-  (0, import_react23.useEffect)(() => {
+  (0, import_react21.useEffect)(() => {
     if (!ready || !route.publicationId || STATIC_DEMO) return;
     const abort = new AbortController();
     let active = true;
@@ -37749,13 +37515,13 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   }
   function reactions2(item) {
     const waiting = pending.some((value) => value.startsWith(`${item.id}:`));
-    return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Heart, { size: 16 }),
+    return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Heart, { size: 16 }),
         item.likes
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Star, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Star, { size: 16 }),
         item.favorites
       ] })
     ] });
@@ -37768,75 +37534,75 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       if (mounted.current) setFeedback("\u590D\u5236\u5931\u8D25\uFF0C\u53EF\u76F4\u63A5\u590D\u5236\u6D4F\u89C8\u5668\u5730\u5740\u680F\u4E2D\u7684\u4F5C\u54C1\u94FE\u63A5");
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("main", { className: "dt-page dt-gallery", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-page-heading", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("main", { className: "dt-page dt-gallery", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-page-heading", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
         event.preventDefault();
         go({ query: search.trim(), page: 1 });
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-tabs", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("span", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-tabs", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
         "\u6700\u65B0\u53D1\u5E03",
         shownPage ? ` \xB7 \u5171 ${shownPage.total} \u4E2A\u4F5C\u54C1` : ""
       ] })
     ] }),
-    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ShieldCheck, { size: 44 }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
-      route.query && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-gallery-query", children: [
+    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ShieldCheck, { size: 44 }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+      route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-gallery-query", children: [
         "\u641C\u7D22\u201C",
         route.query,
         "\u201D",
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
       ] }),
-      error ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
+      error ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
         const next = { ...route, publicationId: item.id };
-        return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("article", { className: "dt-circuit-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DocumentPreview, { document: item.document }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-card-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "dt-circuit-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: item.document }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
               item.author?.name || item.author?.username,
-              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: date2(item.createdAt) })
+              /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: date2(item.createdAt) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-card-actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-actions", children: [
               reactions2(item),
-              /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Copy, { size: 16 }),
                 "\u590D\u5236\u7EC3\u4E60"
               ] })
             ] })
           ] })
         ] }, item.id);
-      }) }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-empty", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(CircuitBoard, { size: 45 }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
-        !route.query && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
+      }) }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CircuitBoard, { size: 45 }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
+        !route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
       ] }),
-      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ArrowLeft, { size: 16 }),
+      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
           "\u7B2C ",
           shownPage.page,
           " / ",
@@ -37845,50 +37611,50 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
           shownPage.pageSize,
           " \u4E2A"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ArrowRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowRight, { size: 16 })
         ] })
       ] })
     ] }),
-    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
-    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(X, { size: 20 }) })
+    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
+    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(X, { size: 20 }) })
       ] }),
-      detailError ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: detailError }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
+      detailError ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: detailError }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
           "\u4F5C\u8005\uFF1A",
           shownDetail.author.name,
           " \xB7 ",
           date2(shownDetail.createdAt)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(DocumentPreview, { document: shownDetail.document }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: shownDetail.document }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-modal-actions", children: [
           reactions2(shownDetail),
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { onClick: () => void copyLink(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Link, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { onClick: () => void copyLink(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Link, { size: 16 }),
             "\u590D\u5236\u94FE\u63A5"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
       ] }),
-      feedback && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
+      feedback && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
     ] })
   ] });
 }
 
 // app/simulator/LessonSchematic.tsx
-var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
 function LessonSchematic({ lessonId = "motor-jog", compact: compact2 = false }) {
   const base = "/diantuo-zhixun/";
   const supported = ["motor-jog", "motor-self-hold", "lighting-single", "lighting-two-way"].includes(lessonId);
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
 }
 
 // app/simulator/core/wiring-workmanship.ts
@@ -37943,11 +37709,6 @@ function parseReferenceEntry(pathname, search) {
   if (values.length !== 1 || !/^[1-9]\d*$/.test(values[0])) return { kind: "invalid" };
   const id2 = Number(values[0]);
   return Number.isSafeInteger(id2) && getReferenceDrawing(id2) ? { kind: "reference", id: id2 } : { kind: "invalid" };
-}
-function resolveReferenceEntry({ requestedId, currentDocument, hasRecovery, dirty, saved }) {
-  if (currentDocument.referenceDiagramId === requestedId) return "preserve";
-  if (dirty || saved === null && hasRecovery && currentDocument.wires.length > 0) return "confirm";
-  return "apply";
 }
 
 // app/simulator/workspace-session.ts
@@ -38021,47 +37782,47 @@ function listParkedRecovery(storage, ownerKey) {
 }
 
 // app/simulator/SimulatorApp.tsx
-var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 var NAV = [{ id: "simulator", label: "\u6A21\u62DF\u7535\u8DEF", icon: House }, { id: "drawings", label: "\u56FE\u7EB8\u96C6", icon: BookOpen }, { id: "gallery", label: "\u4EFF\u771F\u5E7F\u573A", icon: Globe }, { id: "components", label: "\u5143\u5668\u4EF6\u767E\u79D1", icon: Boxes }, { id: "profile", label: "\u4E2A\u4EBA\u4E2D\u5FC3", icon: UserRound }];
 var date3 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function InviteStatus({ expiresAt, consumedBy }) {
-  const [now2, setNow] = (0, import_react24.useState)(Date.now);
-  (0, import_react24.useEffect)(() => {
+  const [now2, setNow] = (0, import_react22.useState)(Date.now);
+  (0, import_react22.useEffect)(() => {
     if (consumedBy || !Number.isFinite(expiresAt) || now2 >= expiresAt) return;
     const timer2 = setTimeout(() => setNow(Date.now()), Math.max(1, Math.min(expiresAt - Date.now() + 1, 2147483647)));
     return () => clearTimeout(timer2);
   }, [expiresAt, consumedBy, now2]);
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(import_jsx_runtime26.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(import_jsx_runtime25.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
 }
 var LOCAL_KEY2 = "diantuo:simulator:demo:v1";
 var draftKey = (id2) => `diantuo:simulator:recovery:v1:${id2}`;
 function Modal2({ title, children: children2, close }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal, { title, onClose: close, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: title }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(X, { size: 20 }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal, { title, onClose: close, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 20 }) })
     ] }),
     children2
   ] });
 }
 function Brand() {
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-brand", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("strong", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: "\u7535\u6C14\u6559\u5B66 \xB7 \u4E8C\u7EF4\u63A5\u7EBF\u4E0E\u4EFF\u771F" })
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-brand", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u7535\u6C14\u6559\u5B66 \xB7 \u4E8C\u7EF4\u63A5\u7EBF\u4E0E\u4EFF\u771F" })
     ] })
   ] });
 }
 function Login({ ready }) {
-  const [username, setUsername] = (0, import_react24.useState)("");
-  const [password, setPassword] = (0, import_react24.useState)("");
-  const [name, setName] = (0, import_react24.useState)("");
-  const [token, setToken] = (0, import_react24.useState)(() => typeof location === "undefined" ? "" : new URLSearchParams(location.search).get("token") || "");
-  const [inviteValid, setInviteValid] = (0, import_react24.useState)(false);
-  const [busy, setBusy] = (0, import_react24.useState)(false);
-  const [error, setError] = (0, import_react24.useState)("");
-  (0, import_react24.useEffect)(() => {
+  const [username, setUsername] = (0, import_react22.useState)("");
+  const [password, setPassword] = (0, import_react22.useState)("");
+  const [name, setName] = (0, import_react22.useState)("");
+  const [token, setToken] = (0, import_react22.useState)(() => typeof location === "undefined" ? "" : new URLSearchParams(location.search).get("token") || "");
+  const [inviteValid, setInviteValid] = (0, import_react22.useState)(false);
+  const [busy, setBusy] = (0, import_react22.useState)(false);
+  const [error, setError] = (0, import_react22.useState)("");
+  (0, import_react22.useEffect)(() => {
     if (token) api(`/invites/preview?token=${encodeURIComponent(token)}`).then(() => setInviteValid(true)).catch((e) => setError(e.message));
   }, [token]);
   async function submit(event) {
@@ -38084,53 +37845,53 @@ function Login({ ready }) {
       setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-login", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-login-body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("section", { className: "dt-login-intro", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("h1", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-login-intro", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("h1", { children: [
           "\u628A\u7535\u8DEF\u539F\u7406\uFF0C",
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
           "\u63A5\u6210\u770B\u5F97\u89C1\u7684\u8FD0\u884C\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
           "\u9009\u62E9\u5668\u4EF6\u3001\u5B8C\u6210\u63A5\u7EBF\u3001\u64CD\u4F5C\u4EFF\u771F\u3002",
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
           "\u5728\u6BCF\u4E00\u6B21\u542F\u52A8\u4E0E\u505C\u6B62\u4E2D\uFF0C\u7406\u89E3\u7535\u8DEF\u7684\u5DE5\u4F5C\u8FC7\u7A0B\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: "motor-self-hold" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u70B9\u52A8\u63A7\u5236 \xB7 \u81EA\u9501\u542F\u505C \xB7 \u5355\u63A7\u7167\u660E \xB7 \u53CC\u63A7\u7167\u660E" })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u5341\u4E2A\u7535\u673A\u63A5\u7EBF\u8BFE\u7A0B \xB7 \u8054\u9501\u63A7\u5236 \xB7 \u5B9A\u65F6\u4E0E\u53D8\u901F" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
-        token && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
+        token && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
           "\u6635\u79F0",
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
           "\u8D26\u53F7",
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
           "\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("footer", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("footer", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
   ] });
 }
 var demoMember = { id: "demo", name: "\u9759\u6001\u6F14\u793A", username: "demo", role: "demo" };
 function initialWorkspace() {
-  const fresh = { document: createLessonDocument("motor-jog", { wired: true }), saved: null, dirty: false };
+  const fresh = { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }), saved: null, dirty: false };
   if (STATIC_DEMO && typeof localStorage !== "undefined") try {
     const recovered = readRecovery(localStorage.getItem(draftKey("demo")));
     if (recovered) return { state: recovered, recovered: true, error: "" };
@@ -38140,55 +37901,54 @@ function initialWorkspace() {
   return { state: fresh, recovered: false, error: "" };
 }
 function SimulatorApp({ initialSection = "simulator" }) {
-  const [startup] = (0, import_react24.useState)(initialWorkspace);
-  const [editorRunning, setEditorRunning] = (0, import_react24.useState)(false);
-  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react24.useState)(true);
-  const [section, setSection] = (0, import_react24.useState)(() => {
+  const [startup] = (0, import_react22.useState)(initialWorkspace);
+  const [editorRunning, setEditorRunning] = (0, import_react22.useState)(false);
+  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react22.useState)(true);
+  const [section, setSection] = (0, import_react22.useState)(() => {
     if (typeof location === "undefined") return initialSection;
     const path = STATIC_DEMO ? location.hash.slice(1) : location.pathname.slice(1);
     return NAV.some((item) => item.id === path) ? path : initialSection;
   });
-  const [user, setUser] = (0, import_react24.useState)(STATIC_DEMO ? demoMember : null);
-  const [loading, setLoading] = (0, import_react24.useState)(!STATIC_DEMO);
-  const [document2, setDocument] = (0, import_react24.useState)(startup.state.document);
-  const [saved, setSaved] = (0, import_react24.useState)(startup.state.saved);
-  const [documentKey, setDocumentKey] = (0, import_react24.useState)("initial");
-  const [dirty, setDirty] = (0, import_react24.useState)(startup.state.dirty);
-  const [notice, setNotice] = (0, import_react24.useState)("");
-  const [error, setError] = (0, import_react24.useState)(startup.error);
-  const [busy, setBusy] = (0, import_react24.useState)(false);
-  const [query, setQuery] = (0, import_react24.useState)("");
-  const [category, setCategory] = (0, import_react24.useState)("all");
-  const [previewLesson, setPreviewLesson] = (0, import_react24.useState)("");
-  const [componentDetail, setComponentDetail] = (0, import_react24.useState)(null);
-  const [publication, setPublication] = (0, import_react24.useState)(null);
-  const [profileTab, setProfileTab] = (0, import_react24.useState)("publications");
-  const [refresh, setRefresh] = (0, import_react24.useState)(0);
-  const [profileEdit, setProfileEdit] = (0, import_react24.useState)(false);
-  const [name, setName] = (0, import_react24.useState)("");
-  const [bio, setBio] = (0, import_react24.useState)("");
-  const [invites, setInvites] = (0, import_react24.useState)([]);
-  const [members, setMembers] = (0, import_react24.useState)([]);
-  const [inviteUrl, setInviteUrl] = (0, import_react24.useState)("");
-  const [conflict, setConflict] = (0, import_react24.useState)(false);
-  const [confirmAction, setConfirmAction] = (0, import_react24.useState)(null);
-  const [boundary] = (0, import_react24.useState)(() => {
+  const [user, setUser] = (0, import_react22.useState)(STATIC_DEMO ? demoMember : null);
+  const [loading, setLoading] = (0, import_react22.useState)(!STATIC_DEMO);
+  const [document2, setDocument] = (0, import_react22.useState)(startup.state.document);
+  const [saved, setSaved] = (0, import_react22.useState)(startup.state.saved);
+  const [documentKey, setDocumentKey] = (0, import_react22.useState)("initial");
+  const [dirty, setDirty] = (0, import_react22.useState)(startup.state.dirty);
+  const [notice, setNotice] = (0, import_react22.useState)("");
+  const [error, setError] = (0, import_react22.useState)(startup.error);
+  const [busy, setBusy] = (0, import_react22.useState)(false);
+  const [query, setQuery] = (0, import_react22.useState)("");
+  const [category, setCategory] = (0, import_react22.useState)("all");
+  const [previewLesson, setPreviewLesson] = (0, import_react22.useState)("");
+  const [componentDetail, setComponentDetail] = (0, import_react22.useState)(null);
+  const [publication, setPublication] = (0, import_react22.useState)(null);
+  const [profileTab, setProfileTab] = (0, import_react22.useState)("publications");
+  const [refresh, setRefresh] = (0, import_react22.useState)(0);
+  const [profileEdit, setProfileEdit] = (0, import_react22.useState)(false);
+  const [name, setName] = (0, import_react22.useState)("");
+  const [bio, setBio] = (0, import_react22.useState)("");
+  const [invites, setInvites] = (0, import_react22.useState)([]);
+  const [members, setMembers] = (0, import_react22.useState)([]);
+  const [inviteUrl, setInviteUrl] = (0, import_react22.useState)("");
+  const [conflict, setConflict] = (0, import_react22.useState)(false);
+  const [confirmAction, setConfirmAction] = (0, import_react22.useState)(null);
+  const [boundary] = (0, import_react22.useState)(() => {
     const next = new WorkspaceBoundary();
     if (STATIC_DEMO) next.enter("demo");
     return next;
   });
-  const [placement, setPlacement] = (0, import_react24.useState)("automatic");
-  const [practiceRequest, setPracticeRequest] = (0, import_react24.useState)(null);
-  const [upgradeRequest, setUpgradeRequest] = (0, import_react24.useState)(null);
-  const recoveredWorkspace = (0, import_react24.useRef)(startup.recovered);
-  const publicationRequest = (0, import_react24.useRef)(0);
-  const working = (0, import_react24.useRef)({ document: document2, saved, dirty });
-  (0, import_react24.useLayoutEffect)(() => {
+  const [placement, setPlacement] = (0, import_react22.useState)("automatic");
+  const [practiceRequest, setPracticeRequest] = (0, import_react22.useState)(null);
+  const [upgradeRequest, setUpgradeRequest] = (0, import_react22.useState)(null);
+  const publicationRequest = (0, import_react22.useRef)(0);
+  const working = (0, import_react22.useRef)({ document: document2, saved, dirty });
+  (0, import_react22.useLayoutEffect)(() => {
     working.current = { document: document2, saved, dirty };
   }, [document2, saved, dirty]);
-  const [parked, setParked] = (0, import_react24.useState)(null);
-  const [hydratedFor, setHydratedFor] = (0, import_react24.useState)(STATIC_DEMO ? "demo" : null);
-  const referenceEntry = (0, import_react24.useRef)(null);
+  const [parked, setParked] = (0, import_react22.useState)(null);
+  const [hydratedFor, setHydratedFor] = (0, import_react22.useState)(STATIC_DEMO ? "demo" : null);
+  const referenceEntry = (0, import_react22.useRef)(null);
   function writeRecovery(ownerId, state) {
     try {
       persistRecovery(localStorage, draftKey(ownerId), state);
@@ -38207,13 +37967,11 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }
     if (previous.ownerId && hydratedFor === previous.ownerId) writeRecovery(previous.ownerId, working.current);
     boundary.enter(next?.id ?? null);
-    recoveredWorkspace.current = false;
-    let fresh = { document: createLessonDocument("motor-jog", { wired: true }), saved: null, dirty: false }, recoveryError = "";
+    let fresh = { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }), saved: null, dirty: false }, recoveryError = "";
     if (next) try {
       const recovered = readRecovery(localStorage.getItem(draftKey(next.id)));
       if (recovered) {
         fresh = recovered;
-        recoveredWorkspace.current = true;
         boundary.replace();
       }
     } catch (error2) {
@@ -38244,30 +38002,18 @@ function SimulatorApp({ initialSection = "simulator" }) {
     setQuery("");
     setCategory("all");
     setUser(next);
-    if (next && !STATIC_DEMO) referenceEntry.current?.(next.id);
+    if (next && !STATIC_DEMO) referenceEntry.current?.();
   }
-  const sessionReady = (0, import_react24.useRef)(null);
-  (0, import_react24.useLayoutEffect)(() => {
+  const sessionReady = (0, import_react22.useRef)(null);
+  (0, import_react22.useLayoutEffect)(() => {
     sessionReady.current = switchAccount;
   });
-  function enterReference(ownerId) {
+  function enterReference() {
     const intent = parseReferenceEntry(location.pathname, location.search);
     if (intent.kind === "none") return;
-    navigateAppLocation("/", { replace: true });
-    setSection("simulator");
-    if (intent.kind === "invalid") {
-      setError("\u53C2\u8003\u56FE\u7EB8\u94FE\u63A5\u65E0\u6548\uFF0C\u5DF2\u4FDD\u7559\u5F53\u524D\u63A5\u7EBF");
-      return;
-    }
-    const current = working.current;
-    const decision = resolveReferenceEntry({ requestedId: intent.id, currentDocument: current.document, hasRecovery: recoveredWorkspace.current, dirty: current.dirty, saved: current.saved });
-    if (decision === "preserve") return;
-    const token = boundary.capture();
-    const apply = () => {
-      if (boundary.acceptsWorkspace(token) && parkCurrent(ownerId)) installWorkspace(createReferenceDocument(intent.id), null, false, ownerId);
-    };
-    if (decision === "confirm") setConfirmAction({ title: "\u6253\u5F00\u53C2\u8003\u56FE\u7EB8", message: "\u5F53\u524D\u63A5\u7EBF\u5DF2\u4FDD\u7559\uFF1B\u6253\u5F00\u65B0\u56FE\u7EB8\u540E\u53EF\u4ECE\u672C\u673A\u6682\u5B58\u6062\u590D\u3002", run: apply });
-    else apply();
+    if (STATIC_DEMO) history.replaceState({}, "", `${location.pathname}${location.hash}`);
+    else navigateAppLocation("/", { replace: true });
+    setNotice(intent.kind === "invalid" ? "\u53C2\u8003\u56FE\u7EB8\u94FE\u63A5\u65E0\u6548\uFF0C\u5DF2\u4FDD\u7559\u5F53\u524D\u63A5\u7EBF\u3002" : "\u539F\u7AD9\u53C2\u8003\u56FE\u7684\u65B0\u5EFA\u5165\u53E3\u5DF2\u505C\u7528\u3002\u5F53\u524D\u63A5\u7EBF\u5DF2\u4FDD\u7559\uFF0C\u8BF7\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u5341\u4E2A\u8BFE\u7A0B\u3002");
   }
   function editDocument(next) {
     if (editorRunning) return;
@@ -38328,10 +38074,10 @@ function SimulatorApp({ initialSection = "simulator" }) {
     for (const kind of ["schematic", "layout"]) if (slots[kind]) attachments[kind] = { mediaId: slots[kind].id, type: slots[kind].type };
     adopt({ ...next, trainingProjectId: project2.id, projectDrawings: attachments, drawingKind: "schematic", drawingMediaId: attachments.schematic?.mediaId, drawingMediaType: attachments.schematic?.type });
   }
-  function requestPractice(id2, project2, referenceId) {
-    if (editorRunning || busy) return;
+  function requestPractice(id2, project2) {
+    if (editorRunning || busy || !isSelectableLesson(id2)) return;
     setPlacement("automatic");
-    setPracticeRequest({ id: id2, project: project2, referenceId, token: boundary.capture(), snapshot: JSON.stringify(working.current.document) });
+    setPracticeRequest({ id: id2, project: project2, token: boundary.capture(), snapshot: JSON.stringify(working.current.document) });
   }
   function confirmPractice() {
     const request = practiceRequest;
@@ -38341,7 +38087,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
       setError("\u5DE5\u4F5C\u533A\u5DF2\u53D8\u5316\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9\u52A0\u8F7D\u65B9\u5F0F");
       return;
     }
-    replace(() => request.referenceId !== void 0 ? adopt(createReferencePractice(request.referenceId, placement)) : request.project ? openProjectCourse(request.project, false, placement) : practiceLesson(request.id, false, placement));
+    replace(() => request.project ? openProjectCourse(request.project, false, placement) : practiceLesson(request.id, false, placement));
   }
   async function confirmUpgrade() {
     const request = upgradeRequest;
@@ -38375,7 +38121,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     if (!boundary.acceptsSession(token)) throw new Error("\u8D26\u53F7\u5DF2\u5207\u6362\uFF0C\u5DF2\u5FFD\u7565\u65E7\u8BF7\u6C42\u7ED3\u679C");
     return result;
   }
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     let active = true;
     const readLocation = () => {
       const path = STATIC_DEMO ? location.hash.slice(1) : location.pathname.slice(1);
@@ -38385,6 +38131,9 @@ function SimulatorApp({ initialSection = "simulator" }) {
     addEventListener("popstate", readLocation);
     addEventListener("hashchange", readLocation);
     addEventListener(APP_LOCATION_CHANGED, readLocation);
+    if (STATIC_DEMO) queueMicrotask(() => {
+      if (active) referenceEntry.current?.();
+    });
     if (!STATIC_DEMO) api("/session").then((r) => {
       if (active) sessionReady.current?.(r.user);
     }).catch((e) => {
@@ -38399,7 +38148,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
       removeEventListener(APP_LOCATION_CHANGED, readLocation);
     };
   }, []);
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (!user || hydratedFor !== user.id || !dirty) return;
     const token = boundary.capture();
     const timer2 = setTimeout(() => {
@@ -38407,7 +38156,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }, 350);
     return () => clearTimeout(timer2);
   }, [document2, user, hydratedFor, dirty, saved, boundary]);
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     const before = (event) => {
       const token = boundary.capture();
       if (working.current.dirty) {
@@ -38418,12 +38167,12 @@ function SimulatorApp({ initialSection = "simulator" }) {
     addEventListener("beforeunload", before);
     return () => removeEventListener("beforeunload", before);
   }, [hydratedFor, boundary]);
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (!notice) return;
     const t = setTimeout(() => setNotice(""), 4500);
     return () => clearTimeout(t);
   }, [notice]);
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (!user || STATIC_DEMO || section !== "profile" || profileTab !== "admin" || user.role !== "admin") return;
     const token = boundary.capture();
     let active = true;
@@ -38579,68 +38328,73 @@ function SimulatorApp({ initialSection = "simulator" }) {
     setRefresh((value) => value + 1);
     setPublication((current) => current?.id === item.id ? result.publication : current);
   }
-  (0, import_react24.useLayoutEffect)(() => {
+  (0, import_react22.useLayoutEffect)(() => {
     referenceEntry.current = enterReference;
   });
   const filteredComponents = CATALOG.filter((c) => (category === "all" || c.category === category) && (c.name + c.description).includes(query));
-  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
+  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
   ] });
-  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Login, { ready: (member) => {
+  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Login, { ready: (member) => {
       switchAccount(member);
       setSection(location.pathname === "/gallery" ? "gallery" : "simulator");
     } }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
+    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
   ] });
-  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
+  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-site", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { className: "dt-header", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Brand, {}) }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-site", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { className: "dt-header", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
         e.preventDefault();
         navigate(id2);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Icon2, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Icon2, { size: 18 }),
         label
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: user.name })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: user.name })
       ] })
     ] }),
-    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-banner", role: "alert", children: [
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-banner", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(X, { size: 16 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 16 }) })
     ] }),
-    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("summary", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(FilePlusCorner, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("strong", { children: document2.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
+    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
+      (document2.referenceDiagramId || document2.lessonId && !isSelectableLesson(document2.lessonId)) && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u5386\u53F2\u7EC3\u4E60 \xB7 \u5DF2\u6709\u63A5\u7EBF\u548C\u56FE\u7EB8\u4FDD\u7559\uFF0C\u53EF\u7EE7\u7EED\u7F16\u8F91\u4E0E\u4FDD\u5B58\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("summary", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(FilePlusCorner, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: document2.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
             const value = e.target.value;
             if (value) requestPractice(value);
             else replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] }));
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
-            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: l.id, children: l.title }, l.id))
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
+            document2.lessonId && !isSelectableLesson(document2.lessonId) && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("option", { value: document2.lessonId, disabled: true, children: [
+              "\u5386\u53F2\u7EC3\u4E60 \xB7 ",
+              getLesson(document2.lessonId)?.title ?? document2.lessonId
+            ] }),
+            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: l.id, children: l.title }, l.id))
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => document2.referenceDiagramId && !document2.lessonId ? requestPractice("", void 0, document2.referenceDiagramId) : requestPractice(document2.lessonId || "motor-jog"), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: !document2.lessonId, onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
-          document2.components.some((c) => c.type === "relay380" || c.type === "timer380") && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest({ document: structuredClone(working.current.document), token: boundary.capture(), snapshot: JSON.stringify(working.current.document) }), children: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: !!document2.referenceDiagramId || !!document2.lessonId && !isSelectableLesson(document2.lessonId), onClick: () => requestPractice(document2.lessonId || DEFAULT_LESSON_ID), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: !isSelectableLesson(document2.lessonId), onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
+          document2.components.some((c) => c.type === "relay380" || c.type === "timer380") && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest({ document: structuredClone(working.current.document), token: boundary.capture(), snapshot: JSON.stringify(working.current.document) }), children: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
             try {
               setParked(listParkedRecovery(localStorage, draftKey(user.id)));
             } catch {
@@ -38649,7 +38403,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
           }, children: "\u672C\u673A\u6682\u5B58" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorEditor, { clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(SimulatorEditor, { onChooseCourse: () => navigate("drawings"), clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
       }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => ({ assessment: assessLesson(doc, doc.lessonId), workmanship: assessWiringWorkmanship(doc) }) : assessOnServer, onImportDrawing: async (file) => {
         if (STATIC_DEMO) throw new Error("\u9759\u6001\u6F14\u793A\u8BF7\u4F7F\u7528\u7535\u8DEF JSON \u5BFC\u5165\uFF1B\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
         const token = boundary.capture();
@@ -38658,31 +38412,31 @@ function SimulatorApp({ initialSection = "simulator" }) {
         const r = await accountApi("/media", { method: "POST", body: form });
         if (!boundary.acceptsWorkspace(token)) throw new Error("\u5DE5\u4F5C\u533A\u5DF2\u5207\u6362\uFF0C\u56FE\u7EB8\u672A\u5E94\u7528\u5230\u5F53\u524D\u7535\u8DEF");
         return r.media;
-      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
+      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: isSelectableLesson(document2.lessonId) ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" : "\u4ECE\u56FE\u7EB8\u96C6\u8FDB\u5165\u8BFE\u7A0B\uFF0C\u5373\u53EF\u67E5\u770B\u5BF9\u5E94\u539F\u7406\u56FE\u548C\u5143\u4EF6\u5E03\u7F6E\u56FE\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
     ] }),
-    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ReferenceDrawings, { onReferencePractice: (id2) => requestPractice("", void 0, id2), onPractice: (id2, wired) => wired ? replace(() => practiceLesson(id2, true)) : requestPractice(id2), onProjectPractice: (project2, wired) => wired ? replace(() => openProjectCourse(project2, true)) : requestPractice(project2.lessonId ?? "", project2) }),
-    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
+    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ReferenceDrawings, { onProjectPractice: (project2, wired) => wired ? replace(() => openProjectCourse(project2, true)) : requestPractice(project2.lessonId ?? "", project2) }),
+    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
       void run(() => forkPublication(id2));
     }) }, user.id),
-    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("main", { className: "dt-page", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-page-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
+    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-page-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-encyclopedia", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DeviceArtwork, { type: c.type }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h3", { children: c.name }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: c.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("small", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-encyclopedia", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: c.type }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h3", { children: c.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: c.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("small", { children: [
               c.terminals.length,
               " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50",
               "\u3000",
@@ -38692,91 +38446,91 @@ function SimulatorApp({ initialSection = "simulator" }) {
         ] }, c.type)) })
       ] })
     ] }),
-    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("main", { className: "dt-profile", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("aside", { className: "dt-profile-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(UserRound, { size: 58 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: user.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
+    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-profile", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("aside", { className: "dt-profile-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(UserRound, { size: 58 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: user.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
           "@",
           user.username
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("dl", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("dl", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
           setName(user.name);
           setBio(user.bio || "");
           setProfileEdit(true);
         }, children: "\u7F16\u8F91\u8D44\u6599" }),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { onClick: () => run(async () => {
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
           await accountApi("/auth/sign-out", jsonBody({}));
           switchAccount(null);
         }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LogOut, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LogOut, { size: 16 }),
           "\u9000\u51FA\u767B\u5F55"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("section", { className: "dt-profile-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
-        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-admin", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-profile-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
+        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-admin", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
             const r = await accountApi("/invites", jsonBody({ expiresInHours: 168 }));
             setInviteUrl(r.invite.url);
             setRefresh((x) => x + 1);
           }), children: "\u521B\u5EFA\u9080\u8BF7" }),
-          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-invite-link", children: [
+          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-invite-link", children: [
             "\u590D\u5236\u9080\u8BF7\u94FE\u63A5",
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { onClick: () => run(async () => {
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
               await navigator.clipboard.writeText(inviteUrl);
               setNotice("\u9080\u8BF7\u94FE\u63A5\u5DF2\u590D\u5236");
             }), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Copy, { size: 16 }),
               "\u590D\u5236"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u9080\u8BF7" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6709\u6548\u671F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u72B6\u6001" })
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u9080\u8BF7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6709\u6548\u671F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: i.id.slice(0, 8) }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: date3(i.expiresAt) }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: i.id.slice(0, 8) }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: date3(i.expiresAt) }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
             ] }, i.id)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u89D2\u8272" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u72B6\u6001" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u64CD\u4F5C" })
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u89D2\u8272" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u64CD\u4F5C" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("td", { children: [
                 m.name,
                 "\uFF08",
                 m.username,
                 "\uFF09"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => run(async () => {
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
                 await accountApi(`/members/${m.id}`, jsonBody({ disabled: !m.disabled }, "PATCH"));
                 setRefresh((x) => x + 1);
               }), children: m.disabled ? "\u6062\u590D" : "\u505C\u7528" }) })
             ] }, m.id)) })
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
           void run(() => openDraft(item));
         }), onOpenPublication: (id2) => {
           void run(() => viewPublication(id2));
@@ -38799,110 +38553,110 @@ function SimulatorApp({ initialSection = "simulator" }) {
         } }) }, `${user.id}:${profileTab}`)
       ] })
     ] }),
-    parked && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
-      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("b", { children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("small", { children: date3(item.savedAt) }),
-        item.error ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
+    parked && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
+      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("b", { children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: date3(item.savedAt) }),
+        item.error ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
           if (item.state) replace(() => {
             adopt(item.state.document, item.state.saved, item.state.dirty);
             setParked(null);
           });
         }, children: "\u6062\u590D\u63A5\u7EBF" })
-      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
+      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
     ] }),
-    practiceRequest && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u9009\u62E9\u7EC3\u4E60\u52A0\u8F7D\u65B9\u5F0F", close: () => setPracticeRequest(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: practiceRequest.referenceId !== void 0 ? getReferenceDrawing(practiceRequest.referenceId)?.title : getLesson(practiceRequest.id)?.title }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-placement-option", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { type: "radio", name: "placement", checked: placement === "automatic", onChange: () => setPlacement("automatic") }),
+    practiceRequest && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u9009\u62E9\u7EC3\u4E60\u52A0\u8F7D\u65B9\u5F0F", close: () => setPracticeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: getLesson(practiceRequest.id)?.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { type: "radio", name: "placement", checked: placement === "automatic", onChange: () => setPlacement("automatic") }),
         "\u81EA\u52A8\u52A0\u8F7D\u5143\u4EF6",
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u9884\u6392\u8BFE\u7A0B\u5143\u4EF6\u3001\u5BFC\u8F68\u548C\u7EBF\u69FD\uFF0C\u521D\u59CB\u6CA1\u6709\u5BFC\u7EBF\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u9884\u6392\u8BFE\u7A0B\u5143\u4EF6\u3001\u5BFC\u8F68\u548C\u7EBF\u69FD\uFF0C\u521D\u59CB\u6CA1\u6709\u5BFC\u7EBF\u3002" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-placement-option", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { type: "radio", name: "placement", checked: placement === "manual", onChange: () => setPlacement("manual") }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { type: "radio", name: "placement", checked: placement === "manual", onChange: () => setPlacement("manual") }),
         "\u624B\u52A8\u653E\u7F6E\u5143\u4EF6",
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: "\u53EA\u9884\u5E03\u5BFC\u8F68\u3001\u7EBF\u69FD\uFF1B\u4ECE\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355\u6DFB\u52A0\u5E76\u7ED1\u5B9A\u4F4D\u53F7\uFF0C\u81EA\u884C\u6446\u653E\u63A5\u7EBF\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u53EA\u9884\u5E03\u5BFC\u8F68\u3001\u7EBF\u69FD\uFF1B\u4ECE\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355\u6DFB\u52A0\u5E76\u7ED1\u5B9A\u4F4D\u53F7\uFF0C\u81EA\u884C\u6446\u653E\u63A5\u7EBF\u3002" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setPracticeRequest(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: confirmPractice, children: "\u521B\u5EFA\u7EC3\u4E60" })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setPracticeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: confirmPractice, children: "\u521B\u5EFA\u7EC3\u4E60" })
       ] })
     ] }),
-    upgradeRequest && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C", close: () => setUpgradeRequest(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "KA \u5347\u7EA7\u4E3A\u4E24\u5E38\u5F00\u3001\u4E24\u5E38\u95ED\u6559\u5B66\u7248\u672C\uFF1BKT \u5347\u7EA7\u4E3A\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u7248\u672C\u3002\u7AEF\u5B50\u6309\u529F\u80FD\u6620\u5C04\uFF0C\u4FDD\u7559\u5668\u4EF6\u3001\u5BFC\u7EBF ID\u3001\u4F4D\u53F7\u53CA\u56FE\u7EB8\u5173\u8054\u3002\u539F\u8349\u7A3F\u548C\u4F5C\u54C1\u4E0D\u4F1A\u8986\u76D6\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u65E7 KT \u4E24\u7EC4\u89E6\u70B9\u5728\u5347\u7EA7\u540E\u5747\u5EF6\u65F6\uFF1B\u8D85\u8FC7\u4E94\u5206\u949F\u7684\u65E7\u8BBE\u7F6E\u987B\u5148\u660E\u786E\u8C03\u6574\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: () => void run(confirmUpgrade), children: "\u5347\u7EA7\u5E76\u4FDD\u5B58\u526F\u672C" })
+    upgradeRequest && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C", close: () => setUpgradeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "KA \u5347\u7EA7\u4E3A\u4E24\u5E38\u5F00\u3001\u4E24\u5E38\u95ED\u6559\u5B66\u7248\u672C\uFF1BKT \u5347\u7EA7\u4E3A\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u7248\u672C\u3002\u7AEF\u5B50\u6309\u529F\u80FD\u6620\u5C04\uFF0C\u4FDD\u7559\u5668\u4EF6\u3001\u5BFC\u7EBF ID\u3001\u4F4D\u53F7\u53CA\u56FE\u7EB8\u5173\u8054\u3002\u539F\u8349\u7A3F\u548C\u4F5C\u54C1\u4E0D\u4F1A\u8986\u76D6\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u65E7 KT \u4E24\u7EC4\u89E6\u70B9\u5728\u5347\u7EA7\u540E\u5747\u5EF6\u65F6\uFF1B\u8D85\u8FC7\u4E94\u5206\u949F\u7684\u65E7\u8BBE\u7F6E\u987B\u5148\u660E\u786E\u8C03\u6574\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: () => void run(confirmUpgrade), children: "\u5347\u7EA7\u5E76\u4FDD\u5B58\u526F\u672C" })
       ] })
     ] }),
-    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: getLesson(previewLesson)?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => {
+    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: getLesson(previewLesson)?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           replace(() => adopt(createLessonDocument(id2, { wired: true })));
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           requestPractice(id2);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
       ] })
     ] }),
-    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-component-detail", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DeviceArtwork, { type: componentDetail.type }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: componentDetail.description })
+    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-component-detail", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: componentDetail.type }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: componentDetail.description })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u6807\u8BC6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("th", { children: "\u7528\u9014" })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6807\u8BC6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7528\u9014" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: t.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: t.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
         ] }, t.id)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
     ] }),
-    publication && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: publication.title, close: () => {
+    publication && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: publication.title, close: () => {
       publicationRequest.current++;
       setPublication(null);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
         "\u4F5C\u8005\uFF1A",
         publication.author.name,
         " \xB7 ",
         date3(publication.createdAt)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DocumentPreview, { document: publication.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Heart, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: publication.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Heart, { size: 16 }),
           publication.liked ? "\u5DF2\u70B9\u8D5E" : "\u70B9\u8D5E",
           " ",
           publication.likes
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Star, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Star, { size: 16 }),
           publication.favorited ? "\u5DF2\u6536\u85CF" : "\u6536\u85CF",
           " ",
           publication.favorites
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
           void run(() => forkPublication(publication.id));
         }), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
     ] }),
-    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { onSubmit: (e) => {
+    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { onSubmit: (e) => {
       e.preventDefault();
       void run(async () => {
         if (STATIC_DEMO) setUser({ ...user, name, bio });
@@ -38914,54 +38668,54 @@ function SimulatorApp({ initialSection = "simulator" }) {
         setNotice("\u8D44\u6599\u5DF2\u66F4\u65B0");
       });
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
         "\u6635\u79F0",
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
         "\u4E2A\u4EBA\u7B7E\u540D",
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
     ] }) }),
-    conflict && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => run(async () => {
+    conflict && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
           await save(true);
           setConflict(false);
         }), children: "\u5C06\u5F53\u524D\u5185\u5BB9\u53E6\u5B58\u4E3A\u526F\u672C" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
           if (saved) await openDraft(saved);
           setConflict(false);
         }), children: "\u52A0\u8F7D\u670D\u52A1\u5668\u6700\u65B0\u7248\u672C" })
       ] })
     ] }),
-    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: confirmAction.message }),
-      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: () => {
+    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: confirmAction.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
           const action = confirmAction;
           setConfirmAction(null);
           action.run();
         }, children: "\u7EE7\u7EED" })
       ] })
     ] }),
-    notice && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-toast", role: "status", children: notice })
+    notice && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-toast", role: "status", children: notice })
   ] });
 }
 
 // app/page.tsx
-var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
 function Home() {
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(SimulatorApp, {});
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorApp, {});
 }
 
 // github-pages/main.tsx
-var import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
 (0, import_client.createRoot)(document.getElementById("root")).render(
-  /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(import_react25.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Home, {}) })
+  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_react23.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Home, {}) })
 );
 /*! Bundled license information:
 

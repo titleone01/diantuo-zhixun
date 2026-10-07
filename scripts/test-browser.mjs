@@ -1,18 +1,21 @@
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
-import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { buildRelease } from './release-tools.mjs';
 import { createFixture } from './isolated-fixture.mjs';
 import { lessonFunctions, TestClient } from './test-fixtures.mjs';
 import { importTrainingDrawings } from './import-training-drawings.mjs';
+import { createStaticFixture } from './browser-static-fixture.mjs';
+import { verifyCourseDrawingReplacement } from './test-course-drawing-replacement.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const filter = process.argv.slice(2);
 if (filter.length && (filter.length !== 2 || filter[0] !== '--grep' || !filter[1])) throw new Error('Expected --grep <test title pattern> or no arguments');
 const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-browser-'));
 const release = path.join(directory, 'release'); await buildRelease(release);
 const fixture = await createFixture({ release, directory: path.join(directory, 'runtime') });
+let staticFixture;
 try {
   const admin = new TestClient(fixture.origin); await admin.login(JSON.parse(await readFile(fixture.adminFile, 'utf8')));
   // The browser suite owns this temporary course association and all media bytes.
@@ -32,7 +35,7 @@ try {
   const projects = await admin.call('/training-projects'); assert.equal(projects.status, 200);
   const project = projects.data.items.find(item => item.id === 'project-01'); assert(project);
   const modalCourse = { id: project.id, name: project.name };
-  const { LESSONS, createLessonDocument } = await lessonFunctions();
+  const { LESSONS, LEGACY_LESSONS, createLessonDocument } = await lessonFunctions();
   const accounts = [];
   for (let index = 0; index < 2; index++) {
     const credentials = { username: `browser_${index}_${randomBytes(4).toString('hex')}`, name: `浏览器验收 ${index + 1}`, password: randomBytes(20).toString('base64url') };
@@ -41,8 +44,20 @@ try {
     await client.login(credentials); accounts.push(credentials);
   }
   const client = new TestClient(fixture.origin); await client.login(accounts[0]);
+  if(drawingEntries.length){
+    const secondMember=new TestClient(fixture.origin);await secondMember.login(accounts[1]);
+    const result=await verifyCourseDrawingReplacement({fixture,directory,admin,member:client,secondMember,createLessonDocument,sourceDirectory:process.env.DIANTUO_TERMINAL_DRAWINGS,replacementBytes:drawing});
+    drawingEntries=drawingEntries.map(entry=>entry.projectId==='project-06'&&entry.kind==='layout'?result.entry:entry);
+    const evidenceDirectory=path.join(root,'.local/acceptance-public');await mkdir(evidenceDirectory,{recursive:true});await writeFile(path.join(evidenceDirectory,'course-drawings.json'),JSON.stringify(result.evidence,null,2));
+  }
   const lessons = LESSONS.filter(lesson => lesson.id.startsWith('motor-course-'));
   const drafts = {};
+  for(const lesson of LEGACY_LESSONS){
+    const title=`Browser legacy ${lesson.id}`;
+    const document={...createLessonDocument(lesson.id,{wired:true}),title,referenceDiagramId:lesson.id==='motor-jog'?13:lesson.id==='motor-self-hold'?14:lesson.id==='lighting-single'?11:12};
+    const saved=await client.call('/circuits','POST',{title,document});assert.equal(saved.status,201);
+    drafts[`legacy:${lesson.id}`]={title,id:saved.data.circuit.id,document};
+  }
   for (const lesson of lessons) {
     const correct = createLessonDocument(lesson.id, { wired: true });
     // Remove protective earth only: a structurally valid but unsafe wiring case.
@@ -62,6 +77,7 @@ try {
   const conflict = await client.call('/circuits', 'POST', { title: 'Browser conflict', document: { ...wiring, title: 'Browser conflict' } }); assert.equal(conflict.status, 201);
   drafts.conflict = { title: 'Browser conflict', id: conflict.data.circuit.id, document: conflict.data.circuit.document };
   const dataFile = path.join(directory, 'browser-fixture.json'); await writeFile(dataFile, JSON.stringify({ accounts, drafts, modalCourse, drawingEntries }), { mode: 0o600 });
-  await fixture.run([path.join(root, 'node_modules/playwright/cli.js'), 'test', '--config', path.join(root, 'playwright.config.mjs'), ...filter], { DIANTUO_TEST_URL: fixture.origin, DIANTUO_BROWSER_FIXTURE: dataFile, DIANTUO_BROWSER_PRIVATE_OUTPUT: path.join(directory, 'private-results') }, 900000);
+  staticFixture=await createStaticFixture(root);
+  await fixture.run([path.join(root, 'node_modules/playwright/cli.js'), 'test', '--config', path.join(root, 'playwright.config.mjs'), ...filter], { DIANTUO_TEST_URL: fixture.origin, DIANTUO_STATIC_URL: staticFixture.url, DIANTUO_BROWSER_FIXTURE: dataFile, DIANTUO_BROWSER_PRIVATE_OUTPUT: path.join(directory, 'private-results') }, 900000);
 } catch (error) { console.error(`浏览器验收失败（${error.name}）；测试专属证据目录：${directory}`); process.exitCode = 1; }
-finally { await fixture.stop(); }
+finally { await staticFixture?.stop(); await fixture.stop(); }

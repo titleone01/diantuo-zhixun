@@ -8,6 +8,25 @@ import { testTrainingDrawings } from "../scripts/test-training-drawings.mjs";
 
 const isolatedOrigin = "http://127.0.0.1:45678";
 
+test("single-slot imports require an explicit valid project and drawing kind", () => {
+  const options=trainingDrawingOptions('import',['--project','project-06','--kind','layout'],{});
+  assert.equal(options.projectId,'project-06'); assert.equal(options.kind,'layout');
+  for(const args of [['--project','project-06'],['--kind','layout'],['--project','project-11','--kind','layout'],['--project','project-06','--kind','other']])assert.throws(()=>trainingDrawingOptions('import',args,{}),/单槽导入/);
+});
+
+test("single-slot preflight reads only its selected PNG and does not fall back to all twenty",async t=>{
+  const directory=await mkdtemp(path.join(tmpdir(),'diantuo-one-drawing-'));
+  t.after(()=>rm(directory,{recursive:true,force:true}));
+  const bytes=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j44kAAAAASUVORK5CYII=','base64');
+  await writeFile(path.join(directory,'自动往返控制电路布局图.png'),bytes);
+  const adminPath=path.join(directory,'admin.json');
+  await writeFile(adminPath,JSON.stringify({origin:'http://localhost:3000',username:'fixture'}));
+  const request=t.mock.method(globalThis,'fetch',()=>{throw new Error('must not send mismatched credentials');});
+  await assert.rejects(importTrainingDrawings(['--directory',directory,'--project','project-06','--kind','layout','--url',isolatedOrigin,'--admin-file',adminPath,'--artifact-dir',directory],{}),/管理员记录.*不一致/);
+  assert.equal(request.mock.callCount(),0);
+  assert.deepEqual(await readFile(path.join(directory,'自动往返控制电路布局图.png')),bytes);
+});
+
 test("drawing tools retain legacy defaults and accept explicit isolated artifact and credential paths", () => {
   const local = path.resolve(import.meta.dirname, "../.local");
   const original = trainingDrawingOptions("import", [], {});

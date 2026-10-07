@@ -46,16 +46,8 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1366, height: 76
     await writeFile(path.join(evidence, `${viewport.width}.json`), JSON.stringify(layout, null, 2));
     await page.getByRole('button', { name: '展开图纸', exact: true }).click();
     await page.getByRole('button', { name: '选择图纸', exact: true }).click();
-    await expect(page.getByRole('dialog')).toBeVisible();
-    await page.screenshot({ path: path.join(evidence, `${viewport.width}-picker.png`) });
-    const dialog = await page.getByRole('dialog').boundingBox();
-    expect(dialog.x).toBeGreaterThanOrEqual(0);
-    expect(dialog.y).toBeGreaterThanOrEqual(0);
-    expect(dialog.x + dialog.width).toBeLessThanOrEqual(viewport.width + 1);
-    expect(dialog.y + dialog.height).toBeLessThanOrEqual(viewport.height + 1);
-    await page.getByRole('button', { name: '取消', exact: true }).click();
-    await page.getByRole('link', { name: '图纸集', exact: true }).click();
-    await page.getByRole('tab', { name: /^工业电路图纸/ }).click();
+    await expect(page.locator('.dt-reference-card')).toHaveCount(10);
+    await page.screenshot({ path: path.join(evidence, `${viewport.width}-courses.png`) });
     await page.locator('.dt-reference-card').first().click();
     const courseDialog = page.getByRole('dialog');
     await expect(courseDialog).toBeVisible();

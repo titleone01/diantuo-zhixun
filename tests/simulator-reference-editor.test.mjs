@@ -87,39 +87,19 @@ test('copied objects cannot be pasted in read-only or running editors and are cl
   } finally { restore(); }
 });
 
-test('reference picker integration preserves graph, clears previous lesson/media, and undo/redo restores exact documents', () => {
+test('opening historical reference and private drawings preserves their graph without a legacy picker', () => {
   const restore = environment();
   try {
-    const original = { ...example(), drawingMediaId: 'private-old', drawingMediaType: 'image/png', trainingProjectId: 'project-02', projectDrawings: { schematic: { mediaId: 'private-old', type: 'image/png' } }, drawingKind: 'schematic' };
-    const before = structuredClone(original);
-    let preview;
-    const ui = editor(original, { drawingUrl: '/api/media/private-old', drawingType: 'image/png', renderSchematic: current => { preview = current; return current; } });
-    assert.equal(preview.props.src, '/api/media/private-old');
-    const windowKey = ui.window().props.documentKey;
-    ui.picker().props.onSelect(32); ui.render();
-    const selected = structuredClone(ui.document());
-    assert.equal(selected.referenceDiagramId, 32); assert.equal(validateDocument(selected).valid, true);
-    assert.deepEqual(selected.components, before.components); assert.deepEqual(selected.wires, before.wires); assert.equal(selected.title, before.title);
-    for (const key of ['lessonId', 'roles', 'drawingMediaId', 'drawingMediaType', 'trainingProjectId', 'projectDrawings', 'drawingKind']) assert.equal(selected[key], undefined, key);
-    assert.equal(ui.window().props.video.diagramId, 32);
-    assert.equal(ui.window().props.documentKey, windowKey, 'reference replacement does not reset the floating tab or collapse state');
-    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), before); assert.equal(ui.window().props.video, undefined);
-    assert.equal(preview?.props.src, '/api/media/private-old', 'undo restores the private drawing preview as well as its document reference');
-    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), selected); assert.equal(ui.window().props.video.diagramId, 32);
-    assert.deepEqual(original, before, 'history does not mutate the document being replaced');
-  } finally { restore(); }
-});
-
-test('confirming the same reference resets external browsing context without adding a graph history entry', () => {
-  const restore = environment();
-  try {
-    const { lessonId, roles, ...graph } = example(); const snapshots = [];
-    const ui = editor({ ...graph, referenceDiagramId: 32 }, { renderSchematic: (preview, revision) => { snapshots.push({ preview, revision }); return preview; } });
-    const initial = snapshots.at(-1).revision;
-    ui.picker().props.onSelect(32); ui.render();
-    assert.equal(ui.updates.length, 0); assert.equal(snapshots.at(-1).revision, initial + 1);
-    assert.equal(ui.button('撤销').props.disabled, true);
-    assert.equal(ui.window().props.video.diagramId, 32);
+    for (const extra of [{referenceDiagramId:32},{drawingMediaId:'private-old',drawingMediaType:'image/png'}]) {
+      const original = {...example(),...extra}, before = structuredClone(original);
+      let choices = 0;
+      const ui = editor(original,{onChooseCourse:()=>choices++});
+      assert.equal(ui.picker(),undefined);
+      ui.window().props.onChooseDrawing();
+      assert.equal(choices,1); assert.deepEqual(ui.document(),before); assert.equal(ui.updates.length,0);
+      assert.equal(validateDocument(ui.document()).valid,true);
+      if(extra.referenceDiagramId)assert.equal(ui.window().props.video.diagramId,32);
+    }
   } finally { restore(); }
 });
 
@@ -137,32 +117,30 @@ test('personal image upload clears the public reference and does not alter the e
   } finally { restore(); }
 });
 
-test('read-only editor refuses a stale picker confirmation callback', () => {
+test('read-only editors cannot invoke course selection', () => {
   const restore = environment();
   try {
-    const ui = editor(example(), { readOnly: true });
-    assert.equal(ui.picker().props.disabled, true); ui.picker().props.onSelect(32); ui.render();
-    assert.equal(ui.updates.length, 0); assert.equal(ui.document().lessonId, 'motor-self-hold');
+    let choices=0;
+    const ui = editor(example(),{readOnly:true,onChooseCourse:()=>choices++});
+    assert.equal(ui.window().props.selectionDisabled,true);
+    ui.window().props.onChooseDrawing();
+    assert.equal(choices,0); assert.equal(ui.updates.length,0);
   } finally { restore(); }
 });
 
-test('slow uploads cannot replace a later reference confirmation, including a same-ID confirmation', async () => {
+test('a slow personal image upload cannot replace a later edit', async () => {
   const restore = environment();
   try {
-    for (const chosenId of [31, 32]) {
-      const { lessonId, roles, ...graph } = example(); const original = { ...graph, referenceDiagramId: 32 };
-      let resolveUpload;
-      const uploaded = new Promise(resolve => { resolveUpload = resolve; });
-      const ui = editor(original, { onImportDrawing: () => uploaded });
-      const input = ui.find(node => node.type === 'input' && node.props.accept === 'image/png,image/jpeg,image/webp');
-      const pending = input.props.onChange({ target: { files: [{ size: 40, type: 'image/png' }], value: 'slow.png' } }); ui.render();
-      ui.picker().props.onSelect(chosenId); ui.render();
-      const selected = structuredClone(ui.document());
-      resolveUpload({ id: 'old-upload-result', url: '/api/media/old-upload-result' }); await pending; ui.render();
-      assert.deepEqual(ui.document(), selected); assert.equal(ui.document().referenceDiagramId, chosenId);
-      assert.equal(ui.document().drawingMediaId, undefined); assert.equal(ui.window().props.video.diagramId, chosenId);
-      assert.ok(ui.find(node => node.props?.role === 'status'), 'the user is told the old upload was not applied');
-    }
+    const original={...example(),referenceDiagramId:32};
+    let resolveUpload;
+    const uploaded=new Promise(resolve=>{resolveUpload=resolve;});
+    const ui=editor(original,{onImportDrawing:()=>uploaded});
+    const input=ui.find(node=>node.type==='input'&&node.props.accept==='image/png,image/jpeg,image/webp');
+    const pending=input.props.onChange({target:{files:[{size:40,type:'image/png'}],value:'slow.png'}});ui.render();
+    ui.find(node=>typeof node.props?.onNodesChange==='function').props.onNodesChange([{type:'position',id:original.components[0].id,position:{x:0,y:0}}]);ui.render();
+    const edited=structuredClone(ui.document());
+    resolveUpload({id:'late-upload',url:'/api/media/late-upload'});await pending;ui.render();
+    assert.deepEqual(ui.document(),edited);assert.equal(ui.document().drawingMediaId,undefined);
   } finally { restore(); }
 });
 
@@ -176,7 +154,7 @@ test('slow JSON imports cannot overwrite later edits, a running session, a repla
       const text = new Promise(resolve => { resolveText = resolve; });
       const input = ui.find(node => node.type === 'input' && node.props.accept === 'application/json,.json');
       const pending = input.props.onChange({ target: { files: [{ size: 200, text: () => text }], value: 'slow.json' } });
-      if (transition === 'edit') { ui.picker().props.onSelect(32); ui.render(); }
+      if (transition === 'edit') { ui.find(node => typeof node.props?.onNodesChange === 'function').props.onNodesChange([{type:'position',id:original.components[0].id,position:{x:0,y:0}}]); ui.render(); }
       else if (transition === 'run') { ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render(); }
       else if (transition === 'replace') ui.update({ documentKey: 'another-workspace', document: incoming });
       else if (transition === 'read-only') ui.update({ readOnly: true });

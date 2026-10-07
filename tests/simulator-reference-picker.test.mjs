@@ -153,20 +153,15 @@ test('modal isolates editor shortcuts, traps keyboard/programmatic focus, and re
   } finally { env.restore(); }
 });
 
-test('all 18 library previews enter configuration via reference ID; only four existing examples expose assessed demos', () => {
+test('the course library has no legacy drawing or practice actions', () => {
   const env = environment();
   try {
-    const entered = [], demos = [];
-    const ui = mount(Library, { onReferencePractice: id => entered.push(id), onPractice: (...args) => demos.push(args), onProjectPractice() {} });
-    const supported = new Set([13, 14, 12, 11]);
-    for (const drawing of REFERENCE_DRAWINGS) {
-      ui.find(node => node.type === 'button' && text(node).startsWith(drawing.category === 'industrial' ? '工业电路图纸' : '家庭电路图纸')).props.onClick(); ui.render();
-      ui.find(node => node.type === 'input' && node.props.placeholder === '请输入图纸名称').props.onChange({ target: { value: drawing.title } }); ui.render();
-      ui.find(node => node.props?.className === 'dt-reference-card' && text(node) === drawing.title).props.onClick(); ui.render();
-      assert.equal(!!ui.button('查看示范接线'), supported.has(drawing.id));
-      if (!supported.has(drawing.id)) assert.ok(text(ui.tree()).includes('此图尚未绑定课程判定'));
-      ui.button('进入电路配置').props.onClick(); ui.render(); assert.equal(entered.at(-1), drawing.id);
-    }
-    assert.deepEqual(entered, REFERENCE_DRAWINGS.map(drawing => drawing.id)); assert.deepEqual(demos, [], 'reference selection never silently chooses a teaching example');
+    const onProjectPractice = () => {};
+    const ui = mount(Library, { onProjectPractice });
+    assert.equal(ui.findAll(node => node.type === 'button').length, 0);
+    assert.ok(text(ui.tree()).includes('10 个接线课程'));
+    const courseLibrary = ui.find(node => node.props?.onPractice);
+    assert.equal(courseLibrary.props.onPractice, onProjectPractice);
+    assert.equal(courseLibrary.props.onReferencePractice, undefined);
   } finally { env.restore(); }
 });

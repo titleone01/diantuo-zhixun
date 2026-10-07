@@ -260,17 +260,17 @@ test('late JSON import cannot replace a newer simulation session', async ({ page
   await expect(page.locator('.sim-toast')).toContainText('读取期间'); await expect(page.locator('.sim-canvas-heading b')).toHaveText(title); await expect(page.locator('[data-device-id]')).toHaveCount(count);
   await page.getByRole('button', { name: '结束仿真', exact: true }).click();
 });
-test('reference picker traps focus and prevents editor keyboard deletion', async ({ page }) => {
-  await login(page); await openDraft(page, fixture.drafts.wiring);
-  await page.locator('[data-device-id="a"]').click();
-  await page.getByRole('button', { name: '展开图纸', exact: true }).click();
-  const trigger = page.getByRole('button', { name: '选择图纸', exact: true }); await trigger.click();
-  const dialog = page.getByRole('dialog', { name: '图纸选择', exact: true }); await expect(page.getByLabel('搜索参考图纸')).toBeFocused();
-  await page.keyboard.press('Delete'); await expect(page.locator('[data-device-id]')).toHaveCount(2);
-  await dialog.getByRole('button', { name: '取消', exact: true }).focus(); await page.keyboard.press('Tab');
-  expect(await page.evaluate(() => !!document.activeElement.closest('[role="dialog"]'))).toBe(true);
-  await page.keyboard.press('Escape'); await expect(dialog).not.toBeVisible(); await expect(trigger).toBeFocused();
+test('floating drawing selection opens only ten courses and preserves the current wiring', async ({ page }) => {
+  await login(page); await openDraft(page,fixture.drafts.wiring);
+  await page.getByRole('button',{name:'展开图纸',exact:true}).click();
+  await page.getByRole('button',{name:'选择图纸',exact:true}).click();
+  await expect(page.locator('.dt-reference-card')).toHaveCount(10);
+  await expect(page.getByRole('tab',{name:/工业电路图纸|家庭电路图纸/})).toHaveCount(0);
+  await page.getByRole('link',{name:'模拟电路',exact:true}).click();
+  await expect(page.locator('[data-device-id]')).toHaveCount(2);
+  await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts.wiring.document.title);
 });
+
 test('Ctrl+C/Ctrl+V retain duct dimensions and group wire references, one undo removes the paste', async ({ page }) => {
   await login(page); await openDraft(page, fixture.drafts.clipboard);
   // The integrated product requires clipboard support; absence must fail this gate.

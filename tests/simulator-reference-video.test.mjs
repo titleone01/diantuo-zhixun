@@ -107,15 +107,11 @@ test('unmount pauses and releases media; effect replay restores src instead of s
   unmount(); assert.equal(media.pauses, 2); assert.equal(media.getAttribute('src'), null); assert.equal(media.loads, 2);
 });
 
-test('drawing preview selects the exact diagram video, and closing removes the player', () => {
-  const ui = mount(ReferenceDrawings, { onPractice() {}, onProjectPractice() {} });
-  ui.find(node => node.type === 'button' && node.key === 'industrial').props.onClick(); ui.render();
-  // The first industrial page contains source diagram 32.
-  ui.find(node => node.type === 'button' && String(node.key) === '32').props.onClick(); ui.render();
-  ui.find(node => node.type === 'button' && node.props.children === '教学视频').props.onClick(); ui.render();
-  assert.equal(ui.find(node => node.type === ReferenceVideoPlayer).props.video.diagramId, 32);
-  ui.find(node => node.type === 'button' && node.props['aria-label'] === '关闭').props.onClick(); ui.render();
-  assert.equal(ui.find(node => node.type === ReferenceVideoPlayer), undefined); unmount();
+test('the ten-course library does not mount legacy video previews', () => {
+  const ui = mount(ReferenceDrawings, { onProjectPractice() {} });
+  assert.equal(ui.find(node => node.type === ReferenceVideoPlayer), undefined);
+  assert.equal(ui.find(node => node.type === 'button' && node.props.children === '教学视频'), undefined);
+  unmount();
 });
 
 test('floating window mounts a player only on its video tab and removes it when collapsed', () => {

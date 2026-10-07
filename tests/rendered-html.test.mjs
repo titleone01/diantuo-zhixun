@@ -16,7 +16,7 @@ async function publishedPageSource() {
 
 test("generated Pages entry contains the current 2D static demonstration", async () => {
   const bundle = await publishedPageSource();
-  for (const label of ["电气控制实训仿真系统", "器件库", "图纸集", "仿真广场", "元器件百科", "个人中心", "开始仿真", "草稿箱", "静态演示", "项目图纸", "曲线", "motor-self-hold"]) assert.ok(bundle.includes(label), label);
+  for (const label of ["电气控制实训仿真系统", "器件库", "图纸集", "仿真广场", "元器件百科", "个人中心", "开始仿真", "草稿箱", "静态演示", "项目图纸", "曲线", "motor-course-01", "10 个接线课程"]) assert.ok(bundle.includes(label), label);
   assert.match(bundle, /diantuo:simulator:demo:v1/);
   assert.doesNotMatch(bundle, /BOOTSTRAP_SECRET/);
   for (const type of ["breaker3", "contactor380", "push-no", "motor"]) {

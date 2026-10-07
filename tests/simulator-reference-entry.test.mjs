@@ -35,16 +35,16 @@ test('refreshing the same reference preserves restored wires and every document 
   }
 });
 
-test('a different entry requires confirmation for dirty work or the only recovered wired copy', () => {
-  assert.equal(resolveReferenceEntry(context({ dirty: true })), 'confirm');
-  assert.equal(resolveReferenceEntry(context({ dirty: true, saved: { id: 'server-draft' } })), 'confirm');
-  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { wires: [existingWire] } })), 'confirm');
-  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { referenceDiagramId: 13, wires: [existingWire] } })), 'confirm');
+test('a different entry preserves dirty work and recovered wiring after retirement', () => {
+  assert.equal(resolveReferenceEntry(context({ dirty: true })), 'preserve');
+  assert.equal(resolveReferenceEntry(context({ dirty: true, saved: { id: 'server-draft' } })), 'preserve');
+  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { wires: [existingWire] } })), 'preserve');
+  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { referenceDiagramId: 13, wires: [existingWire] } })), 'preserve');
 });
 
-test('an entry applies to a fresh workspace, an empty recovery, or clean already-saved work', () => {
-  assert.equal(resolveReferenceEntry(context()), 'apply');
-  assert.equal(resolveReferenceEntry(context({ hasRecovery: true })), 'apply');
-  assert.equal(resolveReferenceEntry(context({ currentDocument: { wires: [existingWire] } })), 'apply', 'the app starter is not a restored user draft');
-  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { wires: [existingWire] }, saved: { id: 'server-draft' } })), 'apply');
+test('retired entries preserve fresh, recovered and saved workspaces', () => {
+  assert.equal(resolveReferenceEntry(context()), 'preserve');
+  assert.equal(resolveReferenceEntry(context({ hasRecovery: true })), 'preserve');
+  assert.equal(resolveReferenceEntry(context({ currentDocument: { wires: [existingWire] } })), 'preserve', 'the app starter is not a restored user draft');
+  assert.equal(resolveReferenceEntry(context({ hasRecovery: true, currentDocument: { wires: [existingWire] }, saved: { id: 'server-draft' } })), 'preserve');
 });

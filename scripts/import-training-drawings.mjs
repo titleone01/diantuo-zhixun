@@ -35,10 +35,14 @@ export function trainingDrawingOptions(mode, argv = process.argv.slice(2), envir
   const originArgument = option(argv, "--url", environment.DIANTUO_TEST_URL);
   if (mode === "import" && !originArgument && (adminArgument || artifactArgument || manifestArgument)) throw new Error("使用独立凭据或证据目录导入时，必须同时指定 --url 或 DIANTUO_TEST_URL，避免误写默认站点");
   const origin = originArgument ? trainingDrawingOrigin(originArgument) : mode === "import" ? "http://localhost:3000" : undefined;
+  const projectId = option(argv, "--project");
+  const kind = option(argv, "--kind");
+  if ((projectId || kind) && (!/^project-(0[1-9]|10)$/.test(projectId || "") || !["schematic", "layout"].includes(kind))) throw new Error("单槽导入须同时指定 --project project-01 至 project-10 和 --kind schematic 或 layout");
   const paths = {
     origin,
     directoryArgument: option(argv, "--directory"),
     replace: argv.includes("--replace"),
+    projectId, kind,
     artifactDirectory,
     manifestPath: resolve(manifestArgument || resolve(artifactDirectory, "training-drawing-import.json")),
     adminPath: resolve(adminArgument || resolve(local, "admin-access.json")),
@@ -80,8 +84,8 @@ export function trainingDrawingFetch(url, init = {}) {
 }
 
 export async function importTrainingDrawings(argv = process.argv.slice(2), environment = process.env) {
-  const { directoryArgument, origin, replace, adminPath, manifestPath } = trainingDrawingOptions("import", argv, environment);
-  if (!directoryArgument) throw new Error("用法：node scripts/import-training-drawings.mjs --directory <包含二十张 PNG 的目录> [--replace] [--url <origin> --admin-file <本次管理员 JSON> --artifact-dir <本次证据目录>] [--manifest <导入清单 JSON>]");
+  const { directoryArgument, origin, replace, adminPath, manifestPath, projectId, kind: selectedKind } = trainingDrawingOptions("import", argv, environment);
+  if (!directoryArgument) throw new Error("用法：node scripts/import-training-drawings.mjs --directory <PNG 目录> [--project project-06 --kind layout] [--replace] [--url <origin> --admin-file <本次管理员 JSON> --artifact-dir <本次证据目录>] [--manifest <导入清单 JSON>]");
   const directory = await realpath(resolve(directoryArgument));
   const stems = [
     "电动机点动控制电路", "电动机连续运行控制电路", "点动与连续运行电路", "接触器互锁正反转电路", "双重联锁正反转控制电路",
@@ -91,13 +95,16 @@ export async function importTrainingDrawings(argv = process.argv.slice(2), envir
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
   for (const [index, stem] of stems.entries()) {
+    const courseProjectId = `project-${String(index + 1).padStart(2, "0")}`;
+    if (projectId && projectId !== courseProjectId) continue;
     for (const [kind, suffix] of [["schematic", "原理图"], ["layout", "布局图"]]) {
+      if (selectedKind && kind !== selectedKind) continue;
       const expectedName = `${stem}${suffix}.png`;
       const source = entries.find(entry => entry.isFile() && entry.name.toLowerCase() === expectedName.toLowerCase());
       if (!source) throw new Error(`缺少原文件：${expectedName}；尚未上传任何文件`);
       const bytes = await readFile(resolve(directory, source.name));
       if (bytes.length < 8 || bytes.length > 12 * 1024 * 1024 || !bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) throw new Error(`文件不是有效 PNG 签名或超过 12 MiB：${source.name}`);
-      files.push({ projectId: `project-${String(index + 1).padStart(2, "0")}`, kind, name: source.name, size: bytes.length, sha256: hash(bytes), bytes });
+      files.push({ projectId: courseProjectId, kind, name: source.name, size: bytes.length, sha256: hash(bytes), bytes });
     }
   }
   const credentials = await readDrawingJson(adminPath);
