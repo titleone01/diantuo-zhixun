@@ -6,6 +6,7 @@ import { allowedMedia, assertReferenceMedia, getCircuit, getPublication, revisio
 import { downloadMedia, uploadMedia } from "./media";
 import { register, throttle } from "./registration";
 import { assessLesson } from "../simulator/core/engine";
+import { assessWiringWorkmanship } from "../simulator/core/wiring-workmanship";
 import { documentMediaIds } from "../simulator/core/types";
 import { listTrainingProjects, setTrainingDrawing } from "./training-projects";
 
@@ -203,11 +204,12 @@ async function route(request: Request, env: AppEnv): Promise<Response> {
     const { document, serialized } = validatedDocument(body.document);
     const lessonId = body.lessonId === undefined ? undefined : textField(body.lessonId, "训练类型", 1, 80);
     const assessment = assessLesson(document, lessonId);
+    const workmanship = assessWiringWorkmanship(document, lessonId);
     const id = crypto.randomUUID();
     const createdAt = Date.now();
     const documentHash = await digest(serialized);
     await env.DB.prepare("INSERT INTO assessments(id,userId,lessonId,documentHash,result,createdAt) VALUES(?,?,?,?,?,?)").bind(id, member.id, lessonId || document.lessonId || "custom", documentHash, JSON.stringify(assessment), createdAt).run();
-    return json({ assessment, id, createdAt, documentHash });
+    return json({ assessment, workmanship, id, createdAt, documentHash });
   }
   if (path === "/api/media" && method === "POST") return uploadMedia(env, member, request);
   const mediaId = path.match(/^\/api\/media\/([^/]+)$/)?.[1];

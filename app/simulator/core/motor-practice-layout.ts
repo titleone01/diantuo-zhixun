@@ -2,6 +2,8 @@ import { upgradeRelays } from "./relay-upgrade";
 import { isLayoutObject } from "./catalog";
 import { arrangeTrainingDucts, putWiresInDucts } from "./duct-layout";
 import { createMotorCourseDocument } from "./motor-courses";
+import { terminalizeMotorCourse } from "./terminal-wiring";
+import { normalizeDemonstrationWireColors } from "./wire-colors";
 import type { CircuitDocument } from "./types";
 
 /** New editable practices share the reference layout; saved documents are never rearranged here. */
@@ -21,7 +23,6 @@ export function createMotorPracticeDocument(id: string, options: { wired?: boole
       ref.terminalId = ref.terminalId === "1" ? "3" : "4";
     }
   }
-  document.components.push({ id: "xt16", type: "terminal-strip16", label: "XT（16位）", position: { x: 0, y: 0 } });
-  const next = upgradeRelays(putWiresInDucts(arrangeTrainingDucts(document)));
+  const next = normalizeDemonstrationWireColors(upgradeRelays(putWiresInDucts(arrangeTrainingDucts(terminalizeMotorCourse(document)))));
   return options.placement === "manual" ? {...next,components:next.components.filter(c=>isLayoutObject(c.type)),wires:[],roles:{}} : next;
 }

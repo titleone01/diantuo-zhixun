@@ -23,17 +23,35 @@ async function openDraft(page, draft) {
 async function tap(page, id) {
   const button = page.locator(`[data-device-id="${id}"] .sim-actuator`);
   await button.focus(); await button.press('Enter');
+  await wiresVisible(page);
 }
-async function motor(page, id, active) { await expect(page.locator(`[data-device-id="${id}"]`)).toHaveClass(active ? /is-active/ : /^(?!.*is-active).*$/); }
-async function toggle(page, id) { await page.locator(`[data-device-id="${id}"] .sim-toggle-actuator`).click(); }
+async function wiresVisible(page) {
+  const wires = await page.locator('.sim-wire > .react-flow__edge-path').evaluateAll(paths => paths.map(path => {
+    const style = getComputedStyle(path);
+    return { d: path.getAttribute('d'), length: path.getTotalLength(), display: style.display, visibility: style.visibility, opacity: style.opacity, stroke: style.stroke, filter: style.filter };
+  }));
+  expect(wires.length).toBeGreaterThan(0);
+  for (const wire of wires) {
+    expect(wire.d).toMatch(/^M /); expect(wire.length).toBeGreaterThan(0);
+    expect(wire.display).not.toBe('none'); expect(wire.visibility).toBe('visible'); expect(wire.opacity).toBe('1');
+    expect(wire.stroke).not.toBe('none'); expect(wire.filter).toBe('none');
+  }
+}
+async function motor(page, id, active) { await expect(page.locator(`[data-device-id="${id}"]`)).toHaveClass(active ? /is-active/ : /^(?!.*is-active).*$/); await wiresVisible(page); }
+async function toggle(page, id) { await page.locator(`[data-device-id="${id}"] .sim-toggle-actuator`).click(); await wiresVisible(page); }
 for (let number = 1; number <= 10; number++) {
   const lesson = `motor-course-${String(number).padStart(2, '0')}`;
   test(`${lesson}: standard controls and passed assessment`, async ({ page }) => {
     await login(page); const draft = fixture.drafts[`${lesson}:correct`]; await openDraft(page, draft);
     await page.getByRole('button', { name: '检查接线', exact: true }).click();
     await expect(page.locator('.sim-assessment-status')).toContainText('课程通过');
+    await page.getByRole('button', { name: '端子工艺', exact: true }).click();
+    await expect(page.locator('.sim-workmanship-status')).toContainText('端子接线工艺通过');
     await page.getByRole('button', { name: '收起检查结果', exact: true }).click();
+    const wirePaths = () => page.locator('.sim-wire').evaluateAll(elements => elements.map(element => ({ id:element.dataset.wireId, d:element.querySelector('.react-flow__edge-path').getAttribute('d'), stroke:element.querySelector('.react-flow__edge-path').style.stroke })));
+    const before = await wirePaths(); expect(before).toHaveLength(draft.document.wires.length);
     await page.getByRole('button', { name: '开始仿真', exact: true }).click();
+    await wiresVisible(page); expect(await wirePaths()).toEqual(before);
     if ([8, 9].includes(number)) await page.getByRole('button', { name: '暂停计时', exact: true }).click();
     const roles = draft.document.roles; await toggle(page, roles.qf);
     const motors = Object.keys(roles).filter(role => /^m\d?$/.test(role));
@@ -65,6 +83,10 @@ for (let number = 1; number <= 10; number++) {
       await page.screenshot({ path: path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT, `${lesson}-running.png`), fullPage: true });
       await tap(page, roles.sb2); await motor(page, roles.m, false);
     } else { await tap(page, roles.sb2); await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-speed', 'low'); await tap(page, roles.sb3); await expect(page.locator(`[data-device-id="${roles.m}"]`)).toHaveAttribute('data-runtime-speed', 'high'); await tap(page, roles.sb1); await motor(page, roles.m, false); }
+    await page.getByRole('button', { name: '结束仿真', exact: true }).click();
+    await wiresVisible(page); expect(await wirePaths()).toEqual(before);
+    await page.getByRole('button', { name: '开始仿真', exact: true }).click();
+    await wiresVisible(page); expect(await wirePaths()).toEqual(before);
     await page.getByRole('button', { name: '结束仿真', exact: true }).click();
   });
   test(`${lesson}: missing protective earth is rejected`, async ({ page }) => {
@@ -287,7 +309,7 @@ test('formal course picker creates ten editable blank practices and saves separa
     await expect(page.getByLabel('选择训练课程', { exact: true })).toHaveValue(lessonId);
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     await expect(page.locator('[data-component-type="fuse2"]')).toHaveCount(1);
-    await expect(page.locator('[data-component-type="terminal-strip16"] .sim-terminal')).toHaveCount(32);
+    await expect(page.locator('[data-component-type="terminal-strip16"] .sim-terminal')).toHaveCount(index === 5 ? 64 : 32);
     await expect(page.locator('[data-component-type^="wire-duct"]')).toHaveCount(6);
     const saved = page.waitForResponse(response => response.url().endsWith('/api/circuits') && response.request().method() === 'POST');
     await page.getByRole('button', { name: '保存草稿', exact: true }).click();

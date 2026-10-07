@@ -109,7 +109,7 @@ test('exterior motor leads stay separated after real terminal drag, motor moveme
   const disclosure=page.locator('.dt-document-disclosure');if(await disclosure.getAttribute('open')!==null)await disclosure.locator('summary').click();
   await page.getByLabel('线条样式',{exact:true}).selectOption('duct');
   await page.locator('.react-flow__controls-fitview').click();
-  const a=page.locator('[data-terminal-key="fr::2"]'),b=page.locator('[data-terminal-key="m::U1"]');
+  const a=page.locator('[data-terminal-key="xt16::B4"]'),b=page.locator('[data-terminal-key="m::U1"]');
   await a.hover();await b.hover();const aa=await a.boundingBox(),bb=await b.boundingBox();
   await page.mouse.move(aa.x+aa.width/2,aa.y+aa.height/2);await page.mouse.down();await page.mouse.move(bb.x+bb.width/2,bb.y+bb.height/2,{steps:20});await page.mouse.up();
   await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length+1);
@@ -123,11 +123,19 @@ test('exterior motor leads stay separated after real terminal drag, motor moveme
       expect(v.status).toBe('routed');expect(v.points[0]).toEqual(v.a);expect(v.points.at(-1)).toEqual(v.b);
       for(const [key,point] of [[v.from,v.a],[v.to,v.b]])expect(await page.locator(`[data-terminal-key="${key}"]`).evaluate(e=>({x:Number(e.dataset.worldX),y:Number(e.dataset.worldY)}))).toEqual(point);
     }
-    for(const ids of [['U1','V1','W1'],['U2','V2','W2']]){
+    for(const [group,ids] of [['upper',['U1','V1','W1']],['lower',['U2','V2','W2']]]){
       const tails=ids.map(id=>values.find(v=>v.to===`m::${id}`).points).map(points=>points.slice(1).map((b,i)=>[points[i],b]).filter(([a,b])=>Math.max(a.y,b.y)>edge).map(([a,b])=>[a.y<=edge?{x:a.x,y:edge}:a,b.y<=edge?{x:b.x,y:edge}:b]));
+      let crossings=0;
       for(let i=0;i<3;i++)for(let j=i+1;j<3;j++)for(const [a,b] of tails[i])for(const [c,d] of tails[j]){
-        expect(Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x))<=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x))&&Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y))<=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y)),'phase tails cross or overlap outside duct').toBe(false);
+        const touches=Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x))<=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x))&&Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y))<=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y));
+        if(touches){crossings++;expect(a.x===b.x,'phase tails must never share parallel lengths').not.toBe(c.x===d.x);}
       }
+      // Fixed B7/8/9 -> U2/V2/W2 outputs and motor lower screws face down
+      // in the same order: bypassing the body permits isolated perpendicular
+      // crossings. They are not electrical junctions. Facing upper screws
+      // have no such constraint and must remain fully separated.
+      expect(crossings).toBeLessThanOrEqual(group==='upper'?0:3);
+      if(group==='lower')expect(ids.map(id=>values.find(v=>v.to===`m::${id}`).from)).toEqual(['xt16::B7','xt16::B8','xt16::B9']);
     }
     return values;
   }

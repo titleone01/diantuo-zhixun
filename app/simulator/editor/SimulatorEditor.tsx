@@ -8,10 +8,12 @@ import { CATALOG, componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, is
 import { courseRequirements, bindCourseRole, addCourseComponent } from "../core/course-roles";
 import { initialRuntime, simulate } from "../core/engine";
 import { validateDocument } from "../core/validation";
-import type { CircuitComponent, CircuitDocument, ComponentSize, ComponentType, Diagnostic, LessonAssessment, Point, SimulationAction, SimulationResult } from "../core/types";
+import type { CircuitComponent, CircuitDocument, ComponentSize, ComponentType, Diagnostic, AssessmentReports, Point, SimulationAction, SimulationResult } from "../core/types";
+import { getWireColorGroups, resolveConnectionColor, setWireGroupColor } from "../core/wire-colors";
 import DeviceArtwork from "./DeviceArtwork";
 import DeviceNode, { type ElectricalNode } from "./DeviceNode";
 import WireEdge, { type ElectricalEdge } from "./WireEdge";
+import { deviceNodeGeometry } from "./node-geometry";
 import { terminalColor } from "./geometry";
 import { runtimeSummary } from "./labels";
 import { createSimulationSession } from "./simulation-session";
@@ -39,7 +41,7 @@ export type SimulatorEditorProps = {
   onDocumentChange: (document: CircuitDocument) => void;
   onSave?: () => Promise<void> | void;
   onPublish?: () => Promise<void> | void;
-  onAssess?: (document: CircuitDocument) => Promise<LessonAssessment>;
+  onAssess?: (document: CircuitDocument) => Promise<AssessmentReports>;
   onImportDrawing?: (file: File) => Promise<{ id: string; url: string }>;
   drawingUrl?: string;
   drawingType?: "image/png" | "image/jpeg" | "image/webp" | "application/pdf";
@@ -94,9 +96,11 @@ function Workspace(props: SimulatorEditorProps) {
   const [simulation, setSimulation] = useState<SimulationResult | null>(null);
   const [session] = useState(createSimulationSession);
   const sessionGeneration = session.generation;
-  const [assessment, setAssessment] = useState<LessonAssessment | null>(null);
+  const [assessmentReports, setAssessment] = useState<AssessmentReports | null>(null);
+  const assessment = assessmentReports?.assessment ?? null;
+  const workmanship = assessmentReports?.workmanship ?? null;
   const [panelOpen, setPanelOpen] = useState(false);
-  const [panelTab, setPanelTab] = useState<"runtime" | "safety" | "lesson">("runtime");
+  const [panelTab, setPanelTab] = useState<"runtime" | "safety" | "lesson" | "workmanship">("runtime");
   const [localDrawing, setLocalDrawing] = useState({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? '' });
   // Forget a local override when its source changes, including an undo back to an earlier source.
   if (localDrawing.documentKey !== props.documentKey || localDrawing.source !== props.drawingUrl) {
@@ -254,7 +258,7 @@ function Workspace(props: SimulatorEditorProps) {
     while (circuit.components.some(component => component.label === `${prefix}${index}`)) index++;
     const id = `${type}-${crypto.randomUUID().slice(0, 8)}`;
     const required=role&&requirements.find(item=>item.role===role);
-    const component: CircuitComponent={ id, type, label: required?required.component.label:`${prefix}${index}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...(required ? {settings:required.component.settings,linkedTo:required.component.linkedTo?docRef.current.roles?.[required.component.linkedTo]:undefined}: {}) };
+    const component: CircuitComponent={ id, type, label: required?required.component.label:`${prefix}${index}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...(required ? {rotation:required.component.rotation,settings:required.component.settings,linkedTo:required.component.linkedTo?docRef.current.roles?.[required.component.linkedTo]:undefined}: {}) };
     try{changed(role?addCourseComponent(docRef.current,role,component):{...docRef.current,components:[...docRef.current.components,component]});setPendingRole(null);}catch(error){setMessage((error as Error).message);return;}
     setSelectedNodes([id]); setSelectedWires([]);
   };
@@ -267,10 +271,13 @@ function Workspace(props: SimulatorEditorProps) {
     if (circuit.wires.some(wire => (same(wire.from, from) && same(wire.to, to)) || (same(wire.from, to) && same(wire.to, from)))) { setMessage("这两个端子已经相连。"); return; }
     const sourceComponent = circuit.components.find(component => component.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find(terminal => terminal.id === from.terminalId);
-    const newColor = colorOverride || !sourceTerminal ? color : terminalColor(sourceTerminal);
+    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceTerminal ? color : terminalColor(sourceTerminal));
+    const newColor = colorChoice.color;
     // Automatic routing is an explicit style; manual styles remain manual.
     const automatic = wireStyle === "duct";
     changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : undefined }] });
+    if (colorChoice.conflict) setMessage("同一导通组存在不同线色。选中任一导线，再选择颜色，可统一整组。");
+    if (colorChoice.sourceConflict) setMessage("不同电源相接入了同一导通组，请检查接线；统一颜色不能消除电气冲突。");
   };
   const onWaypoints = useCallback((id: string, points: Point[]) => changed({ ...docRef.current, wires: docRef.current.wires.map(wire => wire.id === id ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = useCallback((id: string, patch: Pick<CircuitComponent, "linkedTo" | "settings">) => changed({ ...docRef.current, components: docRef.current.components.map(component => component.id === id ? { ...component, ...patch } : component) }), [changed]);
@@ -297,7 +304,8 @@ function Workspace(props: SimulatorEditorProps) {
   const linkedComponents = useMemo(() => circuit.components.filter(component => component.type === "contactor220" || component.type === "contactor380" || isRelay(component.type)).map(({ id, label }) => ({ id, label })), [circuit.components]);
 
   const diagnostics = useMemo(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: isLayoutObject(component.type) ? "sim-duct-flow-node" : undefined, zIndex: isLayoutObject(component.type) ? 0 : 2, position: component.position, selected: selectedNodes.includes(component.id), ...componentSize(component), style: componentSize(component), data: { component, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const terminalColors = useMemo(() => Object.fromEntries(getWireColorGroups(circuit).filter(group => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap(group => group.terminalIds.map(id => [id, group.colors[0]]))), [circuit]);
+  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: isLayoutObject(component.type) ? "sim-duct-flow-node" : undefined, zIndex: isLayoutObject(component.type) ? 0 : 2, position: component.position, selected: selectedNodes.includes(component.id), ...deviceNodeGeometry(component), style: componentSize(component), data: { component, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = useMemo<ElectricalEdge[]>(() => circuit.wires.map(wire => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some(diagnostic => diagnostic.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
 
   const nodesChanged = (changes: NodeChange<ElectricalNode>[]) => {
@@ -315,7 +323,7 @@ function Workspace(props: SimulatorEditorProps) {
   };
   const setWireColor = (next: string) => {
     setColor(next); setColorOverride(true);
-    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map(wire => selectedWires.includes(wire.id) ? { ...wire, color: next } : wire) });
+    if (selectedWires.length) changed(setWireGroupColor(circuit, selectedWires, next));
   };
   const setStyle = (next: EditorWireStyle) => {
     if (frozen) return;
@@ -396,7 +404,7 @@ function Workspace(props: SimulatorEditorProps) {
   };
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
-  const routingProblems = useMemo(() => circuit.wires.filter(wire => wire.routing === "duct").map(wire => ({ wire, route: ductWireRoute(circuit, wire) })).filter(item => item.route.status !== "routed"), [circuit]);
+  const routingProblems = useMemo(() => circuit.wires.filter(wire => wire.routing === "duct").map(wire => ({ wire, route: ductWireRoute(circuit, wire) })).filter(item => item.route.status !== "routed" || item.route.capacityWarning), [circuit]);
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === undefined ? undefined : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
@@ -473,17 +481,18 @@ function Workspace(props: SimulatorEditorProps) {
         ><Background variant={BackgroundVariant.Dots} gap={18} size={1} color="#ccd4de" /><Controls showInteractive={false} showFitView={false}><ControlButton className="react-flow__controls-fitview" aria-label="适应画布" title="适应画布" onClick={frameInitialView}><Maximize2 size={16}/></ControlButton></Controls></ReactFlow>
         <button className="sim-library-toggle" aria-label={libraryOpen ? "收起器件库" : "展开器件库"} onClick={() => setLibraryOpen(!libraryOpen)}>{libraryOpen ? <ChevronLeft size={22} /> : <ChevronRight size={22} />}</button>
         <div className="sim-canvas-heading"><span>{running ? "正在仿真" : "接线工作台"}</span><b>{circuit.title}</b>{running && <i className={simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live"}>{simulation?.runtime.faultLatched ? "故障中止" : simulation?.supported === false ? "此接法暂不支持" : "运行中"}</i>}</div>
-        {routingProblems.length > 0 && <div className="sim-routing-notice" role="status" aria-label="自动走线提示"><b>{routingProblems.length} 根导线暂未入槽</b><span>{routingProblems[0].route.message ?? "未找到可用的连通线槽，请检查线槽连接和元件遮挡。"}</span></div>}
+        {routingProblems.length > 0 && <div className="sim-routing-notice" role="status" aria-label="自动走线提示"><b>{routingProblems.length} 根导线需要整理</b><span>{routingProblems[0].route.message ?? "未找到可用的连通线槽，请检查线槽连接和元件遮挡。"}</span></div>}
         {running && hasTimers && <div className="sim-clock" aria-label="教学仿真时钟"><span>教学时间 {((simulation?.runtime.timeMs ?? 0) / 1000).toFixed(1)} s{simulation?.supported === false ? " · 已暂停" : ""}</span><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => setTimerPaused(value => !value)}>{timerPaused ? "继续计时" : "暂停计时"}</button><button disabled={simulation?.runtime.faultLatched || simulation?.supported === false} onClick={() => action({ type: "advance-time", ms: 1000 })}>推进 1 秒</button></div>}
         <div className="sim-document-actions"><button className="sim-button" disabled={frozen || !!busy} onClick={() => drawingInput.current?.click()}><FileImage size={15} />上传图纸</button><button className="sim-button" disabled={!onSave || !!busy} onClick={() => perform("save", onSave)}>{busy === "save" ? "保存中…" : "保存草稿"}</button><button className="sim-button sim-primary" disabled={!onPublish || !!busy || running} onClick={() => perform("publish", onPublish)}>发布电路</button></div>
         <FloatingSchematic panelRef={diagramPanel} boardRef={board} documentKey={props.documentKey} zoom={drawingZoom} onZoomChange={setDrawingZoom} video={referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false)} onChooseDrawing={() => setDrawingPickerOpen(true)} selectionDisabled={frozen}>
           <div className="sim-diagram-scaled">{schematicContent ?? <div className="sim-diagram-empty"><FileImage size={38}/><b>参考接线图</b><p>从图纸集选择课程，或上传自己的接线图。</p></div>}</div>
         </FloatingSchematic>
         <button className="sim-check-button" disabled={!!busy} onClick={checkCircuit}><ShieldCheck size={19} />{busy === "assess" ? "正在检查…" : "检查接线"}</button>
-        {panelOpen && <section className="sim-diagnostics" aria-label="电路检查结果"><div className="sim-diagnostics-header"><button className={panelTab === "runtime" ? "active" : ""} onClick={() => setPanelTab("runtime")}>运行状态</button><button className={panelTab === "safety" ? "active" : ""} onClick={() => setPanelTab("safety")}>安全诊断{safetyDiagnostics.length > 0 && <i>{safetyDiagnostics.length}</i>}</button><button className={panelTab === "lesson" ? "active" : ""} onClick={() => setPanelTab("lesson")}>课程判定</button><button aria-label="收起检查结果" className="sim-panel-close" onClick={() => setPanelOpen(false)}><X size={16} /></button></div><div className="sim-diagnostics-body">
+        {panelOpen && <section className="sim-diagnostics" aria-label="电路检查结果"><div className="sim-diagnostics-header"><button className={panelTab === "runtime" ? "active" : ""} onClick={() => setPanelTab("runtime")}>运行状态</button><button className={panelTab === "safety" ? "active" : ""} onClick={() => setPanelTab("safety")}>安全诊断{safetyDiagnostics.length > 0 && <i>{safetyDiagnostics.length}</i>}</button><button className={panelTab === "lesson" ? "active" : ""} onClick={() => setPanelTab("lesson")}>课程判定</button><button className={panelTab === "workmanship" ? "active" : ""} onClick={() => setPanelTab("workmanship")}>端子工艺</button><button aria-label="收起检查结果" className="sim-panel-close" onClick={() => setPanelOpen(false)}><X size={16} /></button></div><div className="sim-diagnostics-body">
           {panelTab === "runtime" && <>{running ? <><p className="sim-panel-note">元件状态由实际接线计算；电机运行并不代表安全合格。</p><div className="sim-runtime-list">{circuit.components.filter(component => getDefinition(component.type).load || component.type === "overload").map(component => <div key={component.id}><span>{component.label} · {getDefinition(component.type).name}</span><b className={simulation?.components[component.id]?.active ? "active" : ""}>{runtimeSummary(simulation?.components[component.id])}</b></div>)}</div>{simulation?.runtime.faultLatched && <button className="sim-button sim-danger" onClick={() => action({ type: "reset-fault" })}>复位教学电源故障</button>}</> : <p className="sim-empty">点击「开始仿真」，再操作开关和按钮。</p>}</>}
           {panelTab === "safety" && <>{!simulation ? <p className="sim-empty">点击「检查接线」或「开始仿真」检查当前电路。</p> : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic, index) => <button key={`${diagnostic.code}-${index}`} className={`sim-diagnostic-row ${diagnostic.severity}`} onClick={() => focusDiagnostic(diagnostic)}><b>{diagnostic.severity === "error" ? "错误" : diagnostic.severity === "warning" ? "提醒" : "信息"}</b><span>{diagnostic.message}</span><ChevronRight size={14} /></button>) : <div className="sim-clear-state"><CheckCheck size={30} /><b>当前状态未检出安全故障</b><p>开关闭合后的故障会在运行中继续检查；完整合格结果还需通过课程动作。</p></div>}</>}
           {panelTab === "lesson" && <>{!circuit.lessonId ? <p className="sim-empty">当前是自由接线。先从图纸集选择课程，系统才能判断目标动作是否完成。</p> : assessment ? <><div className={`sim-assessment-status ${assessment.status}`}><b>{assessment.status === "passed" ? "课程通过" : assessment.status === "incomplete" ? (assessment.diagnostics.some(item=>item.code==="LESSON_ROLE_MISSING")?"课程器件未齐":"尚未完成") : assessment.status === "unsupported" ? "暂不支持此接法" : "接线未通过"}</b><span>{assessment.passed} / {assessment.total} 项动作符合要求</span></div><ul className="sim-check-list">{assessment.checks.map(check => <li key={check.id} className={check.passed ? "passed" : "failed"}><span>{check.passed ? "通过" : "未通过"}</span>{check.label}</li>)}</ul>{lessonDiagnostics.map((diagnostic, index) => <button key={`${diagnostic.code}-${index}`} className={`sim-diagnostic-row ${diagnostic.severity}`} onClick={() => focusDiagnostic(diagnostic)}><b>定位</b><span>{diagnostic.message}</span><ChevronRight size={14} /></button>)}</> : <p className="sim-empty">{busy === "assess" ? "正在按课程顺序检查合闸、启停和保护动作…" : "点击「检查接线」，系统会在副本中执行课程动作，保留当前画布。"}</p>}</>}
+          {panelTab === "workmanship" && <>{workmanship ? workmanship.status === "unsupported" ? <p className="sim-empty">本课程不作十课端子排工艺判定。</p> : <><div className={`sim-assessment-status sim-workmanship-status ${workmanship.status}`}><b>{workmanship.status === "passed" ? "端子接线工艺通过" : "端子接线工艺待完善"}</b><span>工艺结果独立于电气课程判定</span></div><ul className="sim-check-list">{workmanship.checks.map(check => <li key={check.id} className={check.passed ? "passed" : "failed"}><span>{check.passed ? "通过" : "未通过"}</span>{check.label}</li>)}</ul>{workmanship.diagnostics.map((diagnostic,index) => <button key={`${diagnostic.code}-${index}`} className={`sim-diagnostic-row ${diagnostic.severity}`} onClick={() => focusDiagnostic(diagnostic)}><b>定位</b><span>{diagnostic.message}</span><ChevronRight size={14}/></button>)}</> : <p className="sim-empty">点击「检查接线」，核对端子中转、PE 与线色一致性。</p>}</>}
         </div></section>}
         {message && <div className="sim-toast" role="status">{message}<button aria-label="关闭提示" onClick={() => setMessage("")}><X size={14} /></button></div>}
         {shortAlert && <ShortCircuitAlert diagnostic={shortAlert} onClose={() => setDismissedShort(shortKey)} onLocate={() => { setDismissedShort(shortKey); setPanelOpen(true); setPanelTab("safety"); focusDiagnostic(shortAlert); }} />}

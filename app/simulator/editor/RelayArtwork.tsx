@@ -20,7 +20,6 @@ export default function RelayArtwork({type,active=false,result,delayMs=3000,runn
   </svg>;
   return <svg className="sim-device-artwork" viewBox="0 0 201.5 201.5" role="img" aria-label={definition.name}>
     <rect x="1" y="1" width="199.5" height="199.5" rx="9" fill="#d9dbda" stroke="#303536" strokeWidth="2"/>
-    <text x="100.75" y="36" textAnchor="middle" fontSize="10">双组通电延时</text>
     <rect x="27" y="53" width="147.5" height="68" rx="5" fill="#414141" stroke="#111" strokeWidth="3"/>
     <text data-timer-display="true" x="100.75" y="101" textAnchor="middle" fontFamily="monospace" fontSize="40" fill="#ff2929">{timerDisplay(remaining)}</text>
     <text data-timer-seconds="true" x="100.75" y="115" textAnchor="middle" fontSize="9" fill="#ffaaaa">{(Math.max(0,remaining)/1000).toFixed(3)} s</text>
@@ -29,6 +28,6 @@ export default function RelayArtwork({type,active=false,result,delayMs=3000,runn
     <circle data-timer-indicator="ON" data-lit={running&&!!result?.active} cx="188.5" cy="76" r="5" fill={running&&result?.active?"#ed9c2e":"#403a2c"}/>
     <text x="188.5" y="91" textAnchor="middle" fontSize="8">ON</text>
     <text x="100.75" y="138" textAnchor="middle" fontSize="12">通电延时时间继电器</text>
-    {definition.terminals.map(t=><g key={t.id}><circle cx={t.x} cy={t.y} r="7" fill="#232628" stroke={t.electrical==="coil"?"#e75b5b":t.label.includes("COM")?"#efa259":t.label.includes("NC")?"#edc846":"#65c889"} strokeWidth="3"/><text x={t.x} y={t.y<100?27:176} textAnchor="middle" fontSize="8">{t.label}</text></g>)}
+    {definition.terminals.map(t=><g key={t.id}><circle cx={t.x} cy={t.y} r="7" fill="#232628" stroke={t.electrical==="coil"?"#e75b5b":t.label.includes("COM")?"#efa259":t.label.includes("NC")?"#edc846":"#65c889"} strokeWidth="3"/><text data-timer-terminal={t.id} x={t.x} y={t.y<100?28:175} textAnchor="middle" fontSize="10" fontWeight="600">{t.label}</text></g>)}
   </svg>;
 }

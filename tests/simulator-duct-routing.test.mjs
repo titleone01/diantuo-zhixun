@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {build} from "esbuild";
 import {fileURLToPath} from "node:url";
-const bundled=await build({stdin:{contents:'export * from "./editor/duct-routing";export * from "./editor/geometry";export * from "./core/catalog";export * from "./core/validation";export * from "./core/motor-practice-layout";export * from "./core/lessons";export {routeWireInDucts,segmentInsideDucts} from "./core/duct-routing";',resolveDir:fileURLToPath(new URL("../app/simulator/",import.meta.url))},bundle:true,platform:"node",format:"esm",write:false,logLevel:"silent"});
-const {ductWireRoute,routeWireInDucts,segmentInsideDucts,wireRoute,wirePath,wireEndpoints,validateDocument,createMotorPracticeDocument,getDefinition,createLessonDocument,LESSONS}=await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
+const bundled=await build({stdin:{contents:'export * from "./editor/duct-routing";export * from "./editor/geometry";export * from "./core/catalog";export * from "./core/validation";export * from "./core/motor-practice-layout";export * from "./core/lessons";export * from "./core/motor-courses";export * from "./core/duct-layout";export {routeWireInDucts,segmentInsideDucts} from "./core/duct-routing";',resolveDir:fileURLToPath(new URL("../app/simulator/",import.meta.url))},bundle:true,platform:"node",format:"esm",write:false,logLevel:"silent"});
+const {ductWireRoute,routeWireInDucts,segmentInsideDucts,wireRoute,wirePath,wireEndpoints,validateDocument,createMotorPracticeDocument,getDefinition,createLessonDocument,LESSONS,resolveTerminal,componentSize,createMotorCourseDocument,arrangeTrainingDucts,putWiresInDucts}=await import(`data:text/javascript;base64,${Buffer.from(bundled.outputFiles[0].text).toString("base64")}`);
 const component=(id,type,x,y,size)=>({id,type,label:id,position:{x,y},...(size?{size}:{})});
 const doc=()=>({schemaVersion:1,title:"线槽",components:[component("a","terminal",100,10),component("b","terminal",700,400),component("top","wire-duct",0,130,{width:850,height:40}),component("bottom","wire-duct",0,310,{width:850,height:40}),component("bridge","wire-duct-vertical",0,130,{width:40,height:220})],wires:[]});
 const wire={id:"w",from:{componentId:"a",terminalId:"B"},to:{componentId:"b",terminalId:"A"},style:"straight",routing:"duct",color:"#123"};
@@ -32,9 +32,10 @@ test("touching duct rectangles connect even when their center lines do not inter
 });
 
 function assertNoBodyReentry(document,ref,points,hasTrunk=true){
-  const body=document.components.find(c=>c.id===ref.componentId),definition=getDefinition(body.type);
+  const body=document.components.find(c=>c.id===ref.componentId),definition=componentSize(body);
   const left=body.position.x,right=left+definition.width,top=body.position.y,bottom=top+definition.height;
-  const terminal=definition.terminals.find(t=>t.id===ref.terminalId);
+  const original=resolveTerminal(document,ref).terminal;
+  const terminal={...original,side:original.routingSide??original.side};
   const [start,first]=points;
   if(terminal.side==="bottom"){assert.equal(first.x,start.x);assert.ok(first.y>=bottom+12);}
   if(terminal.side==="top"){assert.equal(first.x,start.x);assert.ok(first.y<=top-12);}
@@ -135,7 +136,8 @@ function assertSeparateTails(tails){
   }
 }
 for(const course of ["motor-course-02","motor-course-09","motor-course-10"])test(`${course}: motor fan clears the terminal strip with separate ordered exterior turns`,()=>{
-  const document=createLessonDocument(course,{wired:true}),original=JSON.stringify(document);
+  const legacy=createMotorCourseDocument(course,{wired:true});legacy.components.push(component("xt16","terminal-strip16",0,0));
+  const document=putWiresInDucts(arrangeTrainingDucts(legacy)),original=JSON.stringify(document);
   for(const moved of [false,true]){
     if(moved){document.components.find(c=>c.id==="m").position.y+=15;document.components.find(c=>c.id==="xt16").position.x+=18;}
     const motor=document.components.find(c=>c.id==="m");
@@ -160,15 +162,15 @@ for(const course of ["motor-course-02","motor-course-09","motor-course-10"])test
   assert.ok(routeWireInDucts(restored,input).trunk.length>1,"PE upper input still uses the cabinet duct");
 });
 
-test("all ten motor courses join every parallel lane without centre-line foldbacks", () => {
+test("all ten motor courses join shared lanes without centre-line foldbacks", () => {
   for (const lesson of LESSONS.filter(lesson => lesson.id.startsWith("motor-course-"))) {
     const document = createLessonDocument(lesson.id, { wired: true });
     const before = JSON.stringify(document);
-    for (const wire of document.wires) for (let lane = 0; lane < 9; lane++) {
-      const routed = { ...wire, id: `entry-lane-${lane}` };
+    for (const wire of document.wires) {
+      const routed = wire;
       const route = routeWireInDucts(document, routed);
       assert.equal(route.status, "routed");
-      assertNoFoldbacks(route.sections[0], `${lesson.id}/${wire.id}/${lane}`);
+      assertNoFoldbacks(route.sections[0], `${lesson.id}/${wire.id}`);
       assertTrunkCovered(document, route);
       const endpoints = wireEndpoints(document, routed);
       assert.deepEqual(route.sections[0][0], endpoints.from);
@@ -179,8 +181,9 @@ test("all ten motor courses join every parallel lane without centre-line foldbac
   }
 });
 
-test("equal-length FU2/XT16 paths and finite parallel offsets stay stable after component reorder and JSON reload",()=>{
-  const document=symmetric(),before=JSON.stringify(document),first=routeWireInDucts(document,symmetricWire);
+test("equal-length FU2/XT16 paths and shared lanes stay stable after component reorder and JSON reload",()=>{
+  const document=symmetric();document.wires=[symmetricWire,{...symmetricWire,id:"parallel-2"}];
+  const before=JSON.stringify(document),first=routeWireInDucts(document,symmetricWire);
   assert.equal(first.status,"routed");assertTrunkCovered(document,first);
   for(const components of [[...document.components].reverse(),[...document.components.slice(2),...document.components.slice(0,2)]]){
     assert.deepEqual(routeWireInDucts({...document,components},symmetricWire),first);

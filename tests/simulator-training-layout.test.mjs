@@ -35,7 +35,7 @@ for (const lesson of LESSONS) test(`${lesson.id}: blank and demonstration initia
   if (reference) {
     assert.equal(trainingLayoutReference(demo), reference.file);
     assert.equal(demo.components.filter(component => component.type === "fuse2").length, 1);
-    assert.equal(demo.components.filter(component => component.type === "terminal-strip16").length, 1);
+    assert.equal(demo.components.filter(component => component.type === "terminal-strip16").length, lesson.id === "motor-course-06" ? 2 : 1);
     assert.equal(demo.components.some(component => component.id === "fu2a" || component.id === "fu2b"), false);
     for (const [row, ids] of reference.rows.entries()) for (const id of ids) assertBetweenChannels(demo, id, row);
     assertBetweenChannels(demo, "fu2", 0);

@@ -4,6 +4,13 @@ import { terminalKey } from "./types";
 // Illustration coordinates from the circles in matching /sim-assets/*.svg files.
 // These are local model coordinates, not DOM positions or physical millimetres.
 const pin = (id: string, x: number, y: number, side: Terminal["side"], electrical: Terminal["electrical"] = "contact", label = id): Terminal => ({ id, label, x, y, side, electrical });
+// Automatic cabinet leads use these exits without moving the drawn screw or changing manual wiring.
+const routingExits: Partial<Record<ComponentType, Record<string, Terminal["side"]>>> = {
+  contactor220: { "13": "top", "14": "bottom" },
+  contactor380: { "13": "top", "14": "bottom" },
+  overload: { "95": "top", "96": "top", "97": "bottom", "98": "bottom" },
+  relay380: { "13": "bottom", "14": "top", "21": "bottom" },
+};
 const threeContacts = (control: "switch" | "coil") => ([ ["1", "2"], ["3", "4"], ["5", "6"] ] as [string,string][]).map((terminals, i) => ({ id: `pole-${i + 1}`, terminals, control }));
 // Scale artwork and its local electrical anchors together; IDs and internal bridges stay stable.
 const compactTerminal = (definition: ComponentDefinition): ComponentDefinition => ({ ...definition, width: definition.width * 0.75, height: definition.height * 0.75, terminals: definition.terminals.map(terminal => ({ ...terminal, x: terminal.x * 0.75, y: terminal.y * 0.75 })) });
@@ -66,6 +73,10 @@ export const CATALOG: ComponentDefinition[] = [
   { type:"wire-duct",name:"横向线槽",category:"terminals",width:420,height:60,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
   { type:"wire-duct-vertical",name:"纵向线槽",category:"terminals",width:60,height:420,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
 ];
+for (const definition of CATALOG) {
+  const exits = routingExits[definition.type];
+  if (exits) definition.terminals = definition.terminals.map(terminal => exits[terminal.id] ? { ...terminal, routingSide: exits[terminal.id] } : terminal);
+}
 export function getDefinition(type: ComponentType | string): ComponentDefinition {
   const definition = CATALOG.find((entry) => entry.type === type);
   if (!definition) throw new Error(`未知元件类型：${type}`);
@@ -92,7 +103,8 @@ export function transformedTerminal(component: CircuitComponent, terminal: Termi
   const sides: Terminal["side"][]=["top","right","bottom","left"];
   const side=sides[(sides.indexOf(terminal.side)+angle/90)%4];
   const point=angle===90?{x:h-terminal.y,y:terminal.x}:angle===180?{x:w-terminal.x,y:h-terminal.y}:angle===270?{x:terminal.y,y:w-terminal.x}:{x:terminal.x,y:terminal.y};
-  return {...terminal,...point,side};
+  const routingSide=terminal.routingSide && sides[(sides.indexOf(terminal.routingSide)+angle/90)%4];
+  return {...terminal,...point,side,...(routingSide?{routingSide}:{})};
 }
 export function rotateComponent(component: CircuitComponent): CircuitComponent {
   if(!canRotate(component.type))throw new Error("此元件不支持旋转");

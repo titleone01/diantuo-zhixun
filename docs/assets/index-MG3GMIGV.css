@@ -1935,7 +1935,7 @@ svg.react-flow__connectionline {
   stroke-linecap: round;
 }
 .sim-editor .sim-canvas .react-flow__edge.selected .react-flow__edge-path {
-  filter: drop-shadow(0 0 2px #3478f660);
+  filter: none;
 }
 .sim-editor .sim-library-toggle {
   position: absolute;
@@ -2401,11 +2401,8 @@ svg.react-flow__connectionline {
   transform: none;
   cursor: pointer;
 }
-.sim-editor .sim-wire.is-energized > .react-flow__edge-path {
-  filter: drop-shadow(0 0 2px #e8b640b3);
-}
-.sim-editor .sim-wire.is-energized > path.react-flow__edge-path {
-  filter: drop-shadow(0 0 2px #e8b640b3);
+.sim-editor .sim-wire > .react-flow__edge-path {
+  filter: none;
 }
 .sim-editor .sim-terminal.react-flow__handle.is-energized {
   box-shadow: 0 0 0 2px #f7d35d80, 0 0 8px #e7b532b3;

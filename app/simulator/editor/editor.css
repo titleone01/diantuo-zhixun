@@ -83,7 +83,7 @@
 .sim-editor .sim-canvas .react-flow__controls { box-shadow: 0 2px 7px #24354910; border: 1px solid #dfe5ed; border-radius: 3px; overflow: hidden; margin: 14px; }
 .sim-editor .sim-canvas .react-flow__controls-button { width: 29px; height: 29px; padding: 5px; border-radius: 0; border-top: 0; border-left: 0; border-right: 0; background: #fff; border-bottom: 1px solid #edf0f4; color: #4d5b6e; }
 .sim-editor .sim-canvas .react-flow__edge-path { stroke-linejoin: round; stroke-linecap: round; }
-.sim-editor .sim-canvas .react-flow__edge.selected .react-flow__edge-path { filter: drop-shadow(0 0 2px #3478f660); }
+.sim-editor .sim-canvas .react-flow__edge.selected .react-flow__edge-path { filter: none; }
 .sim-editor .sim-library-toggle { position: absolute; left: 0; top: 17px; width: 26px; height: 33px; border-radius: 0 20px 20px 0; border: 1px solid #dce3ed; border-left: 0; background: #fff; color: #8d9aaf; z-index: 7; display: grid; place-items: center; padding: 0; box-shadow: 1px 2px 6px #263a5710; }
 .sim-editor .sim-canvas-heading { position: absolute; left: 40px; top: 20px; display: flex; align-items: center; gap: 11px; pointer-events: none; z-index: 5; }
 .sim-editor .sim-canvas-heading > span { font-size: 10px; color: #8b98aa; padding-right: 11px; border-right: 1px solid #d7dfea; }
@@ -159,8 +159,7 @@
 .sim-editor .sim-mechanism-hit:focus-visible { outline: 3px solid #3478f6; outline-offset: 3px; }
 .sim-editor .sim-button-cap-hit { top: 0; left: 10%; width: 80%; height: 42%; transform: none; cursor: pointer; }
 .sim-editor .sim-breaker-handle-hit { top: 31%; left: 5%; width: 90%; height: 44%; transform: none; cursor: pointer; }
-.sim-editor .sim-wire.is-energized > .react-flow__edge-path { filter: drop-shadow(0 0 2px #e8b640b3); }
-.sim-editor .sim-wire.is-energized > path.react-flow__edge-path { filter: drop-shadow(0 0 2px #e8b640b3); }
+.sim-editor .sim-wire > .react-flow__edge-path { filter: none; }
 .sim-editor .sim-terminal.react-flow__handle.is-energized { box-shadow: 0 0 0 2px #f7d35d80, 0 0 8px #e7b532b3; }
 @media (prefers-reduced-motion: reduce) {
   .sim-motion-push-cap, .sim-motion-breaker-handle, .sim-breaker-position { transition: none; }

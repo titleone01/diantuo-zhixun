@@ -53,7 +53,7 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16, clear a
     expect(ducts(document).filter(component => component.type === 'wire-duct')).toHaveLength(4);
     expect(ducts(document).filter(component => component.type === 'wire-duct-vertical')).toHaveLength(2);
     expect(document.components.filter(component => component.type === 'fuse2')).toHaveLength(1);
-    expect(document.components.filter(component => component.type === 'terminal-strip16')).toHaveLength(1);
+    expect(document.components.filter(component => component.type === 'terminal-strip16')).toHaveLength(number === 6 ? 2 : 1);
     const placement = document.components.map(({ id, type, position, size }) => ({ id, type, position, size }));
     await page.getByRole('button', { name: '载入示范接线', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(fixture.drafts[`${lesson}:correct`].document.wires.length);
@@ -223,7 +223,7 @@ test('integrated: three automatic wires keep separate repeatable tracks and thei
   await page.mouse.move(box.x + 40, box.y + 2); await page.mouse.down(); await page.mouse.move(box.x + 120, box.y + 2, { steps: 16 }); await page.mouse.up();
   await expect.poll(() => duct.getAttribute('data-world-x')).not.toBe(before);
   await expect.poll(async () => (await geometry()).every(wire => wire.status !== 'routed')).toBe(true);
-  await expect(page.locator('.sim-routing-notice')).toContainText('暂未入槽');
+  await expect(page.locator('.sim-routing-notice')).toContainText('未连通');
   const disconnected = await exportDocument(page); expect(disconnected.wires).toEqual(wires); await geometry();
   await page.getByRole('button', { name: '撤销', exact: true }).click(); await expect.poll(geometry).toEqual(first);
   const saving = page.waitForResponse(response => response.url().endsWith('/api/circuits') && response.request().method() === 'POST'); await page.getByRole('button', { name: '保存草稿', exact: true }).click(); expect((await saving).status()).toBe(201);

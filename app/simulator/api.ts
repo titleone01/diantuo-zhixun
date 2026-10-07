@@ -1,4 +1,4 @@
-import type { CircuitDocument, LessonAssessment } from './core/types';
+import type { CircuitDocument, AssessmentReports } from './core/types';
 
 declare const __STATIC_DEMO__: boolean;
 export const STATIC_DEMO = typeof __STATIC_DEMO__ !== 'undefined' && __STATIC_DEMO__;
@@ -37,4 +37,4 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   }
 }
 export const jsonBody = (body: unknown, method = 'POST'): RequestInit => ({ method, body: JSON.stringify(body) });
-export const assessOnServer = (document: CircuitDocument): Promise<LessonAssessment> => api<{ assessment: LessonAssessment }>('/assess', jsonBody({ document, lessonId: document.lessonId })).then(result => result.assessment);
+export const assessOnServer = (document: CircuitDocument): Promise<AssessmentReports> => api<AssessmentReports>('/assess', jsonBody({ document, lessonId: document.lessonId })).then(({assessment,workmanship}) => ({assessment,workmanship}));

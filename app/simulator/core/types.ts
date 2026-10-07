@@ -26,7 +26,7 @@ export type CircuitDocument = {
 export function documentMediaIds(document: CircuitDocument): string[] {
   return [...new Set([document.drawingMediaId, document.projectDrawings?.schematic?.mediaId, document.projectDrawings?.layout?.mediaId].filter((id): id is string => !!id))];
 }
-export type Terminal = { id: string; label: string; x: number; y: number; side: "top" | "bottom" | "left" | "right"; electrical?: "phase" | "neutral" | "earth" | "contact" | "coil" | "load"; color?: string; routingRole?: "internal" | "external" };
+export type Terminal = { id: string; label: string; x: number; y: number; side: "top" | "bottom" | "left" | "right"; routingSide?: "top" | "bottom" | "left" | "right"; electrical?: "phase" | "neutral" | "earth" | "contact" | "coil" | "load"; color?: string; routingRole?: "internal" | "external" };
 export type ContactDefinition = { id: string; terminals: [string, string]; control: "switch" | "push" | "coil" | "overload" | "timer"; normallyClosed?: boolean; throw?: boolean };
 export type ComponentDefinition = { type: ComponentType; name: string; category: "power" | "industrial" | "lighting" | "terminals"; width: number; height: number; terminals: Terminal[]; description: string; fixedConnections?: [string, string][]; contacts?: ContactDefinition[]; load?: { kind: "coil" | "lamp" | "motor"; terminals: string[]; ratedVoltage: 220 | 380; motorModel?: "three-lead" | "star-delta" | "dahlander" } };
 export type Potential = "L1" | "L2" | "L3" | "N" | "PE" | "floating" | "conflict";
@@ -40,5 +40,7 @@ export type SimulationResult = { runtime: Runtime; components: Record<string, Co
 export type LessonCheck = { id: string; label: string; passed: boolean };
 export type LessonTrace = { event: string; action?: SimulationAction; powerOn: boolean; faultLatched: boolean; components: Record<string, ComponentRuntime>; diagnosticCodes: string[] };
 export type LessonAssessment = { status: "passed" | "incomplete" | "failed" | "unsupported"; passed: number; total: number; checks: LessonCheck[]; diagnostics: Diagnostic[]; trace?: LessonTrace[] };
+export type WorkmanshipReport = { status: "passed" | "incomplete" | "unsupported"; checks: LessonCheck[]; diagnostics: Diagnostic[] };
+export type AssessmentReports = { assessment: LessonAssessment; workmanship: WorkmanshipReport };
 export type LessonDefinition = { id: string; title: string; category: "industrial" | "lighting"; description: string; objective: string; componentTypes: ComponentType[] };
 export const terminalKey = (ref: TerminalRef) => `${ref.componentId}::${ref.terminalId}`;

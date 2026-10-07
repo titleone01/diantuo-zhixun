@@ -137,14 +137,15 @@ export async function importTrainingDrawings(argv = process.argv.slice(2), envir
       if (file.currentMediaId && !file.expectedVersion) throw new Error(`图纸版本不可用：${file.projectId}/${file.kind}，请更新服务和脚本后重试`);
       if (file.currentMediaId) {
         const stored = Buffer.from(await call(`/media/${file.currentMediaId}`).then(response => response.arrayBuffer()));
-        file.same = hash(stored) === file.sha256;
+        file.previousSha256 = hash(stored);
+        file.same = file.previousSha256 === file.sha256;
         if (!file.same && !replace) throw new Error(`${file.projectId}/${file.kind} 已有关联的不同图纸，尚未上传任何文件；核实后使用 --replace 才会替换`);
       }
     }
     let uploaded = 0, unchanged = 0;
     for (const file of files) {
       const { bytes, same, currentMediaId, ...metadata } = file;
-      const entry = { ...metadata, mediaId: currentMediaId, action: same ? "unchanged" : currentMediaId ? "replace" : "create", verified: false };
+      const entry = { ...metadata, previousMediaId: currentMediaId, previousVersion: file.expectedVersion, mediaId: currentMediaId, action: same ? "unchanged" : currentMediaId ? "replace" : "create", verified: false };
       manifest.entries.push(entry);
       if (same) unchanged += 1;
       else {
@@ -161,10 +162,25 @@ export async function importTrainingDrawings(argv = process.argv.slice(2), envir
           entry.mediaId = result.media.id; uploaded += 1;
         }
         await saveManifest();
-        await call(`/training-projects/${file.projectId}`, "PUT", { kind: file.kind, mediaId: entry.mediaId, expectedVersion: file.expectedVersion });
+        try {
+          await call(`/training-projects/${file.projectId}`, "PUT", { kind: file.kind, mediaId: entry.mediaId, expectedVersion: file.expectedVersion });
+        } catch (error) {
+          // A timed-out write is uncertain. Read the current slot once; never
+          // retry a mutation automatically or overwrite a competing update.
+          const current = await call('/training-projects').then(response => response.json());
+          const slot = current.items.find(item => item.id === file.projectId)?.drawings?.[file.kind];
+          entry.writeReadback = { mediaId: slot?.id ?? null, version: slot?.version ?? null };
+          await saveManifest();
+          if (slot?.id !== entry.mediaId || typeof slot.version !== 'string' || slot.version === file.expectedVersion) throw error;
+          entry.recoveredFromUncertainWrite = true;
+        }
       }
       const stored = Buffer.from(await call(`/media/${entry.mediaId}`).then(response => response.arrayBuffer()));
       assert.equal(hash(stored), file.sha256, `${file.name} 上传读回哈希不一致`);
+      const current = await call('/training-projects').then(response => response.json());
+      const slot = current.items.find(item => item.id === file.projectId)?.drawings?.[file.kind];
+      assert.equal(slot?.id, entry.mediaId, `${file.name} 槽位关联已变化`);
+      entry.version = slot.version;
       entry.verified = true;
       await saveManifest();
       console.log(`${file.projectId}/${file.kind} ${same ? "内容相同，保留现有文件" : "已关联并核对哈希"}`);

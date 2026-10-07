@@ -31836,6 +31836,12 @@ var terminalKey = (ref2) => `${ref2.componentId}::${ref2.terminalId}`;
 
 // app/simulator/core/catalog.ts
 var pin = (id2, x, y, side, electrical = "contact", label = id2) => ({ id: id2, label, x, y, side, electrical });
+var routingExits = {
+  contactor220: { "13": "top", "14": "bottom" },
+  contactor380: { "13": "top", "14": "bottom" },
+  overload: { "95": "top", "96": "top", "97": "bottom", "98": "bottom" },
+  relay380: { "13": "bottom", "14": "top", "21": "bottom" }
+};
 var threeContacts = (control) => [["1", "2"], ["3", "4"], ["5", "6"]].map((terminals, i) => ({ id: `pole-${i + 1}`, terminals, control }));
 var compactTerminal = (definition) => ({ ...definition, width: definition.width * 0.75, height: definition.height * 0.75, terminals: definition.terminals.map((terminal) => ({ ...terminal, x: terminal.x * 0.75, y: terminal.y * 0.75 })) });
 var TIMER_MIN_MS = 1;
@@ -31925,6 +31931,10 @@ var CATALOG = [
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
   { type: "wire-duct-vertical", name: "\u7EB5\u5411\u7EBF\u69FD", category: "terminals", width: 60, height: 420, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" }
 ];
+for (const definition of CATALOG) {
+  const exits = routingExits[definition.type];
+  if (exits) definition.terminals = definition.terminals.map((terminal) => exits[terminal.id] ? { ...terminal, routingSide: exits[terminal.id] } : terminal);
+}
 function getDefinition(type) {
   const definition = CATALOG.find((entry) => entry.type === type);
   if (!definition) throw new Error(`\u672A\u77E5\u5143\u4EF6\u7C7B\u578B\uFF1A${type}`);
@@ -31948,7 +31958,8 @@ function transformedTerminal(component2, terminal) {
   const sides = ["top", "right", "bottom", "left"];
   const side = sides[(sides.indexOf(terminal.side) + angle / 90) % 4];
   const point2 = angle === 90 ? { x: h - terminal.y, y: terminal.x } : angle === 180 ? { x: w - terminal.x, y: h - terminal.y } : angle === 270 ? { x: terminal.y, y: w - terminal.x } : { x: terminal.x, y: terminal.y };
-  return { ...terminal, ...point2, side };
+  const routingSide2 = terminal.routingSide && sides[(sides.indexOf(terminal.routingSide) + angle / 90) % 4];
+  return { ...terminal, ...point2, side, ...routingSide2 ? { routingSide: routingSide2 } : {} };
 }
 function rotateComponent(component2) {
   if (!canRotate(component2.type)) throw new Error("\u6B64\u5143\u4EF6\u4E0D\u652F\u6301\u65CB\u8F6C");
@@ -32362,41 +32373,53 @@ function arrangeTrainingDucts(document2) {
   });
   const rows = reference.rows.map(resolve);
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
+  const xt2 = document2.roles?.xt2 && byId.get(document2.roles.xt2);
+  const terminalPractice = !!document2.roles?.xt16;
+  const practiceWidth = document2.lessonId === "motor-course-10" ? 128 : document2.lessonId === "motor-course-09" ? 96 : 80;
+  const ductWidth = terminalPractice ? practiceWidth : DUCT_WIDTH;
   const sources = document2.components.filter((component2) => component2.type === "supply");
   const loads = document2.components.filter((component2) => loadTypes.has(component2.type));
   const earths = document2.components.filter((component2) => component2.type === "pe-terminal");
-  const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths].map((component2) => component2.id));
+  const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths, ...xt2 ? [xt2] : []].map((component2) => component2.id));
   const terminals = document2.components.filter((component2) => !placed.has(component2.id) && !isLayoutObject(component2.type));
-  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + DUCT_WIDTH));
+  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + ductWidth));
+  const limitsHeight = limits.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 40 : 0), 0);
+  const buttonsHeight = buttons.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 28 : 0), 0);
+  const baseHeight = rows.reduce((sum, row, index2) => sum + ductWidth + CLEARANCE * 2 + Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((c) => componentSize(c).height)), 0);
+  const extraRowHeight = xt2 ? Math.max(0, limitsHeight + buttonsHeight + 140 - baseHeight) / rows.length : 0;
   const positions = /* @__PURE__ */ new Map();
   const channels = [0];
   const rails = [];
   let y = 0;
   for (const [index2, row] of rows.entries()) {
     const height = Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((component2) => componentSize(component2).height));
-    let x = DUCT_WIDTH / 2 + CLEARANCE;
+    let x = ductWidth / 2 + CLEARANCE;
     for (const [column, component2] of row.entries()) {
       if (column) x += component2.id === "fu2b" ? 16 : SEPARATION;
-      positions.set(component2.id, { x, y: y + DUCT_WIDTH / 2 + CLEARANCE });
+      positions.set(component2.id, { x, y: y + ductWidth / 2 + CLEARANCE });
       x += componentSize(component2).width;
     }
-    if (row.length && !document2.components.some((c) => c.type === "din-rail")) rails.push({ id: `training-rail-${index2 + 1}`, type: "din-rail", label: `\u5BFC\u8F68${index2 + 1}`, position: { x: 16, y: y + DUCT_WIDTH / 2 + CLEARANCE + height / 2 - 12 }, size: { width: width - 32, height: 24 } });
-    y += DUCT_WIDTH + CLEARANCE * 2 + height;
+    if (row.length && !document2.components.some((c) => c.type === "din-rail")) rails.push({ id: `training-rail-${index2 + 1}`, type: "din-rail", label: `\u5BFC\u8F68${index2 + 1}`, position: { x: ductWidth / 2, y: y + ductWidth / 2 + CLEARANCE + height / 2 - 12 }, size: { width: width - ductWidth, height: 24 } });
+    y += ductWidth + CLEARANCE * 2 + height + extraRowHeight;
     channels.push(y);
   }
-  const bottom = y, sideX = width + 95;
-  let buttonY = Math.max(56, bottom - buttons.reduce((sum, component2) => sum + componentSize(component2).height + 28, -28));
+  const bottom = y, sideX = width + ductWidth / 2 + 80;
+  let buttonY = xt2 ? ductWidth / 2 + CLEARANCE + limitsHeight + 60 : Math.max(56, bottom - buttonsHeight);
+  const controlsX = xt2 ? sideX + componentSize(xt2).width + 80 : sideX;
   for (const component2 of buttons) {
-    positions.set(component2.id, { x: sideX, y: buttonY });
+    positions.set(component2.id, { x: controlsX, y: buttonY });
     buttonY += componentSize(component2).height + 28;
   }
   let limitX = sideX;
+  let limitY = ductWidth / 2 + CLEARANCE;
   for (const component2 of limits) {
-    positions.set(component2.id, { x: limitX, y: DUCT_WIDTH / 2 + CLEARANCE });
-    limitX += componentSize(component2).width + 44;
+    positions.set(component2.id, { x: xt2 ? controlsX : limitX, y: limitY });
+    if (xt2) limitY += componentSize(component2).height + 40;
+    else limitX += componentSize(component2).width + 44;
   }
+  if (xt2) positions.set(xt2.id, { x: sideX, y: ductWidth / 2 + CLEARANCE + (limitsHeight - componentSize(xt2).height) / 2 });
   let sourceX = 56;
-  for (const component2 of sources) {
+  if (!terminalPractice) for (const component2 of sources) {
     positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
     sourceX += componentSize(component2).width + 30;
   }
@@ -32408,7 +32431,7 @@ function arrangeTrainingDucts(document2) {
   }
   const loadY = terminalY + (terminalRow.length ? Math.max(...terminalRow.map((component2) => componentSize(component2).height)) + SEPARATION : 0);
   externalX = 56;
-  for (const component2 of loads) {
+  for (const component2 of [...terminalPractice ? sources : [], ...loads]) {
     positions.set(component2.id, { x: externalX, y: loadY });
     externalX += componentSize(component2).width + SEPARATION;
   }
@@ -32418,16 +32441,141 @@ function arrangeTrainingDucts(document2) {
     let id2 = `training-duct-${ducts.length + 1}`;
     while (used.has(id2)) id2 += "-d";
     used.add(id2);
-    ducts.push({ id: id2, type: vertical ? "wire-duct-vertical" : "wire-duct", label: `WD${ducts.length + 1}`, position: { x: vertical ? x - DUCT_WIDTH / 2 : x, y: vertical ? y2 : y2 - DUCT_WIDTH / 2 }, size: { width: vertical ? DUCT_WIDTH : length, height: vertical ? length : DUCT_WIDTH } });
+    ducts.push({ id: id2, type: vertical ? "wire-duct-vertical" : "wire-duct", label: `WD${ducts.length + 1}`, position: { x: vertical ? x - ductWidth / 2 : x, y: vertical ? y2 : y2 - ductWidth / 2 }, size: { width: vertical ? ductWidth : length, height: vertical ? length : ductWidth } });
   };
-  for (const center of channels) add(false, -DUCT_WIDTH / 2, center, width + DUCT_WIDTH);
-  add(true, 0, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
-  add(true, width, -DUCT_WIDTH / 2, bottom + DUCT_WIDTH);
-  if (width + DUCT_WIDTH > 4e3 || bottom + DUCT_WIDTH > 4e3 || document2.components.length + ducts.length + rails.length > 200) throw new Error("\u5143\u4EF6\u8FC7\u591A\u6216\u5E03\u5C40\u8FC7\u5927\uFF0C\u8BF7\u6309\u53C2\u8003\u56FE\u5206\u7EC4\u8C03\u6574\u5E03\u5C40\u3002");
+  for (const center of channels) add(false, -ductWidth / 2, center, width + ductWidth);
+  add(true, 0, -ductWidth / 2, bottom + ductWidth);
+  add(true, width, -ductWidth / 2, bottom + ductWidth);
+  if (width + ductWidth > 4e3 || bottom + ductWidth > 4e3 || document2.components.length + ducts.length + rails.length > 200) throw new Error("\u5143\u4EF6\u8FC7\u591A\u6216\u5E03\u5C40\u8FC7\u5927\uFF0C\u8BF7\u6309\u53C2\u8003\u56FE\u5206\u7EC4\u8C03\u6574\u5E03\u5C40\u3002");
   return { ...document2, components: [...document2.components.map((component2) => ({ ...component2, position: positions.get(component2.id) ?? component2.position })), ...ducts, ...rails] };
 }
 function putWiresInDucts(document2) {
   return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, style: "orthogonal", routing: "duct" })) };
+}
+
+// app/simulator/core/wire-colors.ts
+var SOURCE_WIRE_COLORS = { L1: "#e7b000", L2: "#20b963", L3: "#f04452", N: "#3478f6", PE: "#659f2f" };
+var normalizeColor = (color2) => {
+  const value = color2.toLowerCase();
+  return /^#[\da-f]{3}$/.test(value) ? `#${[...value.slice(1)].map((character) => character + character).join("")}` : value;
+};
+var unique = (values) => [...new Set(values)].sort();
+function getWireColorGroups(document2) {
+  const parent = /* @__PURE__ */ new Map();
+  const add = (id2) => {
+    if (!parent.has(id2)) parent.set(id2, id2);
+  };
+  const root2 = (id2) => {
+    add(id2);
+    let value = id2;
+    while (parent.get(value) !== value) value = parent.get(value);
+    let current = id2;
+    while (parent.get(current) !== current) {
+      const next = parent.get(current);
+      parent.set(current, value);
+      current = next;
+    }
+    return value;
+  };
+  const join = (a, b) => {
+    const first = root2(a), second = root2(b);
+    if (first !== second) parent.set(second, first);
+  };
+  const sources = /* @__PURE__ */ new Map();
+  for (const component2 of document2.components) {
+    const definition = getDefinition(component2.type);
+    for (const terminal of definition.terminals) {
+      const id2 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
+      add(id2);
+      if (component2.type === "supply" && SOURCE_WIRE_COLORS[terminal.id]) sources.set(id2, terminal.id);
+    }
+    for (const [a, b] of definition.fixedConnections ?? []) join(`${component2.id}::${a}`, `${component2.id}::${b}`);
+  }
+  for (const wire of document2.wires) join(terminalKey(wire.from), terminalKey(wire.to));
+  const groups = /* @__PURE__ */ new Map();
+  for (const id2 of parent.keys()) {
+    const key4 = root2(id2);
+    let group = groups.get(key4);
+    if (!group) {
+      group = { id: key4, terminalIds: [], wireIds: [], colors: [], sourcePotentials: [], sourceColors: [] };
+      groups.set(key4, group);
+    }
+    group.terminalIds.push(id2);
+    const potential = sources.get(id2);
+    if (potential) {
+      group.sourcePotentials.push(potential);
+      group.sourceColors.push(SOURCE_WIRE_COLORS[potential]);
+    }
+  }
+  for (const wire of document2.wires) {
+    const group = groups.get(root2(terminalKey(wire.from)));
+    group.wireIds.push(wire.id);
+    group.colors.push(normalizeColor(wire.color));
+  }
+  return [...groups.values()].map((group) => ({ ...group, id: group.terminalIds.sort()[0], wireIds: group.wireIds.sort(), colors: unique(group.colors), sourcePotentials: unique(group.sourcePotentials), sourceColors: unique(group.sourceColors) })).sort((a, b) => a.id.localeCompare(b.id));
+}
+function resolveConnectionColor(document2, from, to, fallback = "#56616f") {
+  const keys = [terminalKey(from), ...to ? [terminalKey(to)] : []];
+  const groups = getWireColorGroups(document2).filter((group) => keys.some((key4) => group.terminalIds.includes(key4)));
+  const colors = unique(groups.flatMap((group) => group.colors));
+  const sourceColors = unique(groups.flatMap((group) => group.sourceColors));
+  return { color: colors.length === 1 ? colors[0] : !colors.length && sourceColors.length === 1 ? sourceColors[0] : normalizeColor(fallback), conflict: colors.length > 1, sourceConflict: sourceColors.length > 1 };
+}
+function setWireGroupColor(document2, wireIds, color2) {
+  if (!/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(color2)) throw new Error("\u5BFC\u7EBF\u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272");
+  const selected2 = new Set(wireIds);
+  const affected = new Set(getWireColorGroups(document2).filter((group) => group.wireIds.some((id2) => selected2.has(id2))).flatMap((group) => group.wireIds));
+  const nextColor = normalizeColor(color2);
+  if (!document2.wires.some((wire) => affected.has(wire.id) && wire.color !== nextColor)) return document2;
+  return { ...document2, wires: document2.wires.map((wire) => affected.has(wire.id) ? { ...wire, color: nextColor } : wire) };
+}
+function normalizeDemonstrationWireColors(document2) {
+  const wires = new Map(document2.wires.map((wire) => [wire.id, wire]));
+  const colors = /* @__PURE__ */ new Map();
+  for (const group of getWireColorGroups(document2)) {
+    if (!group.wireIds.length || group.sourceColors.length > 1) continue;
+    const first = [...group.wireIds].sort((a, b) => a.localeCompare(b, "en", { numeric: true }))[0];
+    const color2 = group.sourceColors[0] ?? normalizeColor(wires.get(first).color);
+    for (const id2 of group.wireIds) colors.set(id2, color2);
+  }
+  return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, color: colors.get(wire.id) ?? wire.color })) };
+}
+
+// app/simulator/core/terminal-wiring.ts
+function getCourseTerminalAssignments(lessonId) {
+  if (!lessonId || !/^motor-course-(?:0[1-9]|10)$/.test(lessonId)) return [];
+  const number = Number(lessonId.slice(-2));
+  const assignments = [];
+  const add = (stripRole, position, componentRole, terminalId, used = true) => assignments.push({ stripRole, position, componentRole, terminalId, label: `${componentRole === "source" ? "\u7535\u6E90" : componentRole.toUpperCase()} ${terminalId}`, used });
+  ["L1", "L2", "L3"].forEach((terminal, i) => add("xt16", i + 1, "source", terminal));
+  (number >= 9 ? ["U1", "V1", "W1"] : ["U", "V", "W"]).forEach((terminal, i) => add("xt16", i + 4, number === 7 ? "m1" : "m", terminal));
+  if (number === 7) ["U", "V", "W"].forEach((terminal, i) => add("xt16", i + 7, "m2", terminal));
+  if (number >= 9) ["U2", "V2", "W2"].forEach((terminal, i) => add("xt16", i + 7, "m", terminal));
+  if (number === 6) for (let sq = 1; sq <= 4; sq++) ["11", "12", "23", "24"].forEach((terminal, i) => add("xt2", 20 - sq * 4 - i, `sq${sq}`, terminal, sq <= 2 || i < 2));
+  return assignments;
+}
+function terminalizeMotorCourse(document2) {
+  const assignments = getCourseTerminalAssignments(document2.lessonId);
+  if (!assignments.length) return document2;
+  if (document2.components.some((component2) => component2.id === "xt16" || component2.id === "xt2")) throw new Error("\u65B0\u8BFE\u7A0B\u6A21\u677F\u5DF2\u5305\u542B\u7AEF\u5B50\u6392\uFF0C\u4E0D\u80FD\u91CD\u590D\u8F6C\u6362");
+  const roles = { ...document2.roles, xt16: "xt16", ...document2.lessonId === "motor-course-06" ? { xt2: "xt2" } : {} };
+  const components = [...document2.components, { id: "xt16", type: "terminal-strip16", label: "XT1\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } }, ...document2.lessonId === "motor-course-06" ? [{ id: "xt2", type: "terminal-strip16", label: "XT2\uFF08\u9650\u4F4D\uFF09", rotation: 270, position: { x: 0, y: 0 } }] : []];
+  const resolve = (assignment) => ({ componentId: document2.roles?.[assignment.componentRole] ?? assignment.componentRole, terminalId: assignment.terminalId });
+  const mapping = new Map(assignments.filter((assignment) => assignment.used).map((assignment) => [terminalKey(resolve(assignment)), assignment]));
+  const remap = (ref2) => {
+    const assignment = mapping.get(terminalKey(ref2));
+    return assignment ? { componentId: assignment.stripRole, terminalId: `T${assignment.position}` } : { ...ref2 };
+  };
+  const wires = document2.wires.map((wire) => ({ ...wire, from: remap(wire.from), to: remap(wire.to) }));
+  if (document2.wires.length) for (const assignment of assignments.filter((item) => item.used)) {
+    const external = resolve(assignment);
+    const component2 = document2.components.find((item) => item.id === external.componentId);
+    if (!component2 || !getDefinition(component2.type).terminals.some((terminal) => terminal.id === external.terminalId)) throw new Error(`\u8BFE\u7A0B\u5916\u90E8\u7AEF\u5B50\u4E0D\u5B58\u5728\uFF1A${assignment.label}`);
+    const original = document2.wires.find((wire) => [wire.from, wire.to].some((ref2) => terminalKey(ref2) === terminalKey(external)));
+    if (!original) throw new Error(`\u8BFE\u7A0B\u5916\u90E8\u7AEF\u5B50\u7F3A\u5C11\u793A\u8303\u63A5\u7EBF\uFF1A${assignment.label}`);
+    wires.push({ id: `terminal-${assignment.stripRole}-${assignment.position}`, from: { componentId: assignment.stripRole, terminalId: `B${assignment.position}` }, to: external, color: assignment.componentRole === "source" ? SOURCE_WIRE_COLORS[assignment.terminalId] : original.color, style: "orthogonal", routing: "duct" });
+  }
+  return { ...document2, components, roles, wires };
 }
 
 // app/simulator/core/motor-practice-layout.ts
@@ -32447,8 +32595,7 @@ function createMotorPracticeDocument(id2, options = {}) {
       ref2.terminalId = ref2.terminalId === "1" ? "3" : "4";
     }
   }
-  document2.components.push({ id: "xt16", type: "terminal-strip16", label: "XT\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } });
-  const next = upgradeRelays(putWiresInDucts(arrangeTrainingDucts(document2)));
+  const next = normalizeDemonstrationWireColors(upgradeRelays(putWiresInDucts(arrangeTrainingDucts(terminalizeMotorCourse(document2)))));
   return options.placement === "manual" ? { ...next, components: next.components.filter((c) => isLayoutObject(c.type)), wires: [], roles: {} } : next;
 }
 
@@ -32550,7 +32697,7 @@ function addCourseComponent(document2, role, component2) {
 // app/simulator/core/motor-course-assessment.ts
 var key = (componentId, terminalId) => terminalKey({ componentId, terminalId });
 var phase = (value) => ["L1", "L2", "L3"].includes(value);
-var unique = (items) => [...new Map(items.map((item) => [`${item.code}:${item.event || ""}:${item.terminalIds.join("|")}:${item.message}`, item])).values()];
+var unique2 = (items) => [...new Map(items.map((item) => [`${item.code}:${item.event || ""}:${item.terminalIds.join("|")}:${item.message}`, item])).values()];
 var issue = (code, message, componentIds = [], severity = "error") => ({ code, message, severity, componentIds, terminalIds: [], wireIds: [] });
 function assessMotorCourse(document2, lessonId) {
   const checked = validateDocument(document2);
@@ -32958,7 +33105,7 @@ function assessMotorCourse(document2, lessonId) {
   if (number === 10) add("speed-exclusive", "\u4EE3\u8868\u6027\u64CD\u4F5C\u5E8F\u5217\u4E2D\u9AD8\u4F4E\u901F\u7EC4\u4E92\u65A5\uFF0CKM2 \u4E0E KM3 \u540C\u6B65", samples.every((sample) => !(sample.components[roles.km1]?.active && (sample.components[roles.km2]?.active || sample.components[roles.km3]?.active)) && !!sample.components[roles.km2]?.active === !!sample.components[roles.km3]?.active), "INTERLOCK_INEFFECTIVE", ["km1", "km2", "km3"], "error");
   add("safety", "\u6240\u6D4B\u64CD\u4F5C\u672A\u53D1\u73B0\u77ED\u8DEF\u3001\u9519\u7535\u538B\u3001\u7F3A\u76F8\u6216\u4FDD\u62A4\u63A5\u5730\u95EE\u9898", !diagnostics.some((item) => item.severity === "error" || ["PE_MISSING", "MOTOR_PHASE_MISSING", "MOTOR_WINDING_OPEN", "AUXILIARY_OWNER_MISSING"].includes(item.code)), "COURSE_SAFETY_FAILURE", motorRoles, "error");
   const passed = checks.filter((check) => check.passed).length;
-  return { status: unsupported ? "unsupported" : passed === checks.length ? "passed" : !document2.wires.length ? "incomplete" : diagnostics.some((item) => item.severity === "error") ? "failed" : "incomplete", passed, total: checks.length, checks, diagnostics: unique(diagnostics), trace };
+  return { status: unsupported ? "unsupported" : passed === checks.length ? "passed" : !document2.wires.length ? "incomplete" : diagnostics.some((item) => item.severity === "error") ? "failed" : "incomplete", passed, total: checks.length, checks, diagnostics: unique2(diagnostics), trace };
 }
 
 // app/simulator/core/engine.ts
@@ -33609,7 +33756,6 @@ function RelayArtwork({ type, active = false, result, delayMs = 3e3, running = f
   ] });
   return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 201.5 201.5", role: "img", "aria-label": definition.name, children: [
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "1", y: "1", width: "199.5", height: "199.5", rx: "9", fill: "#d9dbda", stroke: "#303536", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "100.75", y: "36", textAnchor: "middle", fontSize: "10", children: "\u53CC\u7EC4\u901A\u7535\u5EF6\u65F6" }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "27", y: "53", width: "147.5", height: "68", rx: "5", fill: "#414141", stroke: "#111", strokeWidth: "3" }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { "data-timer-display": "true", x: "100.75", y: "101", textAnchor: "middle", fontFamily: "monospace", fontSize: "40", fill: "#ff2929", children: timerDisplay(remaining) }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("text", { "data-timer-seconds": "true", x: "100.75", y: "115", textAnchor: "middle", fontSize: "9", fill: "#ffaaaa", children: [
@@ -33623,7 +33769,7 @@ function RelayArtwork({ type, active = false, result, delayMs = 3e3, running = f
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "100.75", y: "138", textAnchor: "middle", fontSize: "12", children: "\u901A\u7535\u5EF6\u65F6\u65F6\u95F4\u7EE7\u7535\u5668" }),
     definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("g", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#232628", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("COM") ? "#efa259" : t.label.includes("NC") ? "#edc846" : "#65c889", strokeWidth: "3" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: t.x, y: t.y < 100 ? 27 : 176, textAnchor: "middle", fontSize: "8", children: t.label })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { "data-timer-terminal": t.id, x: t.x, y: t.y < 100 ? 28 : 175, textAnchor: "middle", fontSize: "10", fontWeight: "600", children: t.label })
     ] }, t.id))
   ] });
 }
@@ -33642,6 +33788,11 @@ var project = (duct, point2) => duct.vertical ? { x: (duct.left + duct.right) / 
 var along = (duct, point2) => duct.vertical ? point2.y : point2.x;
 var cache = /* @__PURE__ */ new WeakMap();
 var routeCache = /* @__PURE__ */ new WeakMap();
+var recentGeometry = /* @__PURE__ */ new Map();
+var routeKey = (wire) => `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
+var automaticWire = (wire) => wire.routing === "duct" || wire.style === "duct";
+var routingSide = (terminal) => terminal.routingSide ?? terminal.side;
+var cabinetEquipment = /* @__PURE__ */ new Set(["breaker1", "breaker3", "knife-switch3", "contactor220", "contactor380", "overload", "fuse", "fuse2", "fuse3", "relay380", "relay380-jzc1-22", "timer380", "timer380-8pin", "auxiliary-no"]);
 function networkFor(components) {
   const signature = components.filter((component2) => isWireDuct(component2.type)).map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).join("|");
   const cached = cache.get(components);
@@ -33687,24 +33838,31 @@ function crossesBody(a, b, rect) {
   return a.y > rect.top + inset && a.y < rect.bottom - inset && Math.max(a.x, b.x) > rect.left + inset && Math.min(a.x, b.x) < rect.right - inset;
 }
 function terminalLead(terminal) {
-  const rect = bounds(terminal.component), side = terminal.terminal.side, world = terminal.world;
+  const rect = bounds(terminal.component), side = routingSide(terminal.terminal), world = terminal.world;
   const escape = { x: side === "left" ? rect.left - TERMINAL_CLEARANCE : side === "right" ? rect.right + TERMINAL_CLEARANCE : world.x, y: side === "top" ? rect.top - TERMINAL_CLEARANCE : side === "bottom" ? rect.bottom + TERMINAL_CLEARANCE : world.y };
   return [world, escape];
 }
 function terminalFan(terminal) {
-  const side = terminal.terminal.side, vertical = side === "top" || side === "bottom";
-  const pins = getDefinition(terminal.component.type).terminals.map((pin2) => transformedTerminal(terminal.component, pin2)).filter((pin2) => pin2.side === side).sort((a, b) => (vertical ? a.x - b.x : a.y - b.y) || a.id.localeCompare(b.id));
+  const side = routingSide(terminal.terminal), vertical = side === "top" || side === "bottom";
+  const pins = getDefinition(terminal.component.type).terminals.map((pin2) => transformedTerminal(terminal.component, pin2)).filter((pin2) => routingSide(pin2) === side).sort((a, b) => (vertical ? a.x - b.x : a.y - b.y) || a.id.localeCompare(b.id));
   const rank = pins.findIndex((pin2) => pin2.id === terminal.terminal.id), reverse = pins.length - 1 - rank;
   return { rank, reverse, pins, spacing: Math.min(6, 24 / Math.max(1, pins.length - 1)) };
 }
 function entriesFor(document2, terminal, network2) {
-  const rect = bounds(terminal.component), side = terminal.terminal.side;
+  const rect = bounds(terminal.component), side = routingSide(terminal.terminal);
   const [world, escape] = terminalLead(terminal);
   const fan = terminalFan(terminal);
   const blockers = document2.components.filter((component2) => !isLayoutObject(component2.type));
   const candidates = [];
+  const cabinet = cabinetEquipment.has(terminal.component.type) || network2.ducts.some((duct) => !duct.vertical && rect.left >= duct.left && rect.right <= duct.right) && rect.top >= Math.min(...network2.ducts.map((duct) => duct.top)) && rect.bottom <= Math.max(...network2.ducts.map((duct) => duct.bottom));
+  const verticalEntry = cabinet && (side === "top" || side === "bottom");
   const consider = (duct, points, facing2 = false) => {
     const lead = compact([points[0], ...simplify(points.slice(1))]), point2 = lead.at(-1);
+    if (verticalEntry) {
+      if (duct.vertical) return;
+      const entering = lead.slice(1).findIndex((next, index2) => crossesBody(lead[index2], next, duct));
+      if (entering < 0 || lead[entering].x !== lead[entering + 1].x) return;
+    }
     if (lead.slice(1).some((next, index2) => blockers.some((component2) => (component2.id !== terminal.component.id || index2 > 0) && crossesBody(lead[index2], next, bounds(component2))))) return;
     if (lead.slice(1).some((next, index2) => network2.ducts.some((other) => other !== duct && (other.right < duct.left || other.left > duct.right || other.bottom < duct.top || other.top > duct.bottom) && crossesBody(lead[index2], next, other)))) return;
     candidates.push({ duct, point: point2, lead, facing: facing2, length: lead.slice(1).reduce((sum, next, index2) => sum + distance2(lead[index2], next), 0) });
@@ -33849,37 +34007,103 @@ function segmentInsideDucts(document2, a, b) {
   }
   return false;
 }
-function laneRoute(document2, network2, wire, trunk) {
-  if (!trunk.length) return trunk;
-  let hash = 0;
-  for (const character of wire.id) hash = hash * 31 + character.charCodeAt(0) >>> 0;
-  const half = Math.min(14, ...network2.ducts.map((duct) => (duct.vertical ? duct.right - duct.left : duct.bottom - duct.top) / 2 - 5));
-  const offset = (hash % 9 - 4) * half / 4;
-  const base = simplify(trunk);
-  if (base.length < 2) return base;
-  const segment = (a, b) => a.x === b.x ? { vertical: true, value: a.x - Math.sign(b.y - a.y) * offset } : { vertical: false, value: a.y + Math.sign(b.x - a.x) * offset };
-  const lines = base.slice(1).map((b, i) => segment(base[i], b));
-  const shifted = base.map((p, i) => {
-    const before = lines[Math.max(0, i - 1)], after = lines[Math.min(i, lines.length - 1)];
-    return { x: before.vertical ? before.value : after.vertical ? after.value : p.x, y: !before.vertical ? before.value : !after.vertical ? after.value : p.y };
+var LANE_SPACING = 6;
+function assignLanes(document2, wires, centers) {
+  const network2 = networkFor(document2.components), groups = /* @__PURE__ */ new Map();
+  const segments = /* @__PURE__ */ new Map();
+  const ordered = [...wires].sort((a, b) => {
+    const endpoints = (wire) => [resolveTerminal(document2, wire.from).world, resolveTerminal(document2, wire.to).world].sort((p, q) => p.x - q.x || p.y - q.y);
+    const ap = endpoints(a), bp = endpoints(b);
+    return ap[0].x - bp[0].x || ap[0].y - bp[0].y || ap[1].x - bp[1].x || ap[1].y - bp[1].y || a.id.localeCompare(b.id);
   });
-  const candidate = compact([base[0], ...shifted, base.at(-1)]);
-  const bodies = document2.components.filter((component2) => !isLayoutObject(component2.type)).map(bounds);
-  return candidate.slice(1).every((point2, index2) => segmentInsideDucts(document2, candidate[index2], point2) && !bodies.some((rect) => crossesBody(candidate[index2], point2, rect))) ? candidate : trunk;
+  const order = new Map(ordered.map((wire, index2) => [routeKey(wire), index2]));
+  for (const wire of ordered) {
+    const id2 = routeKey(wire), base = simplify(centers.get(id2).trunk), parts = [];
+    for (let index2 = 0; index2 + 1 < base.length; index2++) {
+      const a = base[index2], b = base[index2 + 1], vertical = a.x === b.x;
+      const value = vertical ? a.x : a.y, start2 = Math.min(vertical ? a.y : a.x, vertical ? b.y : b.x), end = Math.max(vertical ? a.y : a.x, vertical ? b.y : b.x);
+      const ducts = network2.ducts.filter((duct) => duct.vertical === vertical && value >= (vertical ? duct.left : duct.top) && value <= (vertical ? duct.right : duct.bottom) && start2 < (vertical ? duct.bottom : duct.right) && end > (vertical ? duct.top : duct.left));
+      const half = Math.max(0, Math.min(...ducts.map((duct) => Math.min(value - (vertical ? duct.left : duct.top), (vertical ? duct.right : duct.bottom) - value) - 5), 100));
+      const part = { wireKey: id2, index: index2, vertical, value, start: start2, end, half: ducts.length ? half : 0 };
+      parts.push(part);
+      const line = `${vertical ? "v" : "h"}:${value}`;
+      groups.set(line, [...groups.get(line) ?? [], part]);
+    }
+    segments.set(id2, parts);
+  }
+  for (const line of groups.values()) {
+    const sorted = [...line].sort((a, b) => a.start - b.start || a.end - b.end || order.get(a.wireKey) - order.get(b.wireKey));
+    const clusters = [];
+    let end = -Infinity;
+    for (const segment of sorted) {
+      if (!clusters.length || segment.start >= end - 1e-6) {
+        clusters.push([]);
+        end = segment.end;
+      }
+      clusters.at(-1).push(segment);
+      end = Math.max(end, segment.end);
+    }
+    for (const cluster of clusters) {
+      const assigned = [];
+      for (const segment of [...cluster].sort((a, b) => order.get(a.wireKey) - order.get(b.wireKey) || a.index - b.index)) {
+        const occupied = new Set(assigned.filter((other) => segment.start < other.end - 1e-6 && segment.end > other.start + 1e-6).map((other) => other.slot));
+        let slot = 0;
+        while (occupied.has(slot)) slot++;
+        segment.slot = slot;
+        assigned.push(segment);
+      }
+      const count = Math.max(...cluster.map((segment) => segment.slot)) + 1, half = Math.min(...cluster.map((segment) => segment.half));
+      const spacing = count > 1 ? Math.min(LANE_SPACING, half * 2 / (count - 1)) : 0;
+      for (const segment of cluster) {
+        segment.offset = (segment.slot - (count - 1) / 2) * spacing;
+        segment.crowded = count > 1 && spacing < LANE_SPACING - 1e-6;
+      }
+    }
+  }
+  const routes = /* @__PURE__ */ new Map(), bodies = document2.components.filter((component2) => !isLayoutObject(component2.type)).map(bounds);
+  for (const wire of ordered) {
+    const id2 = routeKey(wire), center = centers.get(id2);
+    const { leads, ...original } = center;
+    const parts = segments.get(id2);
+    if (!leads || !parts.length) {
+      routes.set(id2, original);
+      continue;
+    }
+    const base = simplify(center.trunk);
+    const lines = parts.map((part) => ({ vertical: part.vertical, value: part.value + (part.offset ?? 0) }));
+    const shifted = base.map((point2, index2) => {
+      const before = lines[Math.max(0, index2 - 1)], after = lines[Math.min(index2, lines.length - 1)];
+      return { x: before.vertical ? before.value : after.vertical ? after.value : point2.x, y: !before.vertical ? before.value : !after.vertical ? after.value : point2.y };
+    });
+    const trunk = compact([base[0], ...shifted, base.at(-1)]);
+    const points = displayPath([...leads[0], ...trunk, ...leads[1]]);
+    const valid = simplePath(points) && trunk.slice(1).every((point2, index2) => segmentInsideDucts(document2, trunk[index2], point2) && !bodies.some((rect) => crossesBody(trunk[index2], point2, rect)));
+    const crowded = parts.some((part) => part.crowded) || !valid;
+    routes.set(id2, { ...original, ...valid ? { sections: [points], trunk } : {}, ...crowded ? { capacityWarning: true, message: valid ? "\u7EBF\u69FD\u5185\u5BFC\u7EBF\u8F83\u5BC6\uFF0C\u5F53\u524D\u90E8\u5206\u5BFC\u7EBF\u95F4\u8DDD\u4E0D\u8DB3\uFF0C\u8BF7\u52A0\u5BBD\u7EBF\u69FD\u3002" : "\u7EBF\u69FD\u8F6C\u5F2F\u7A7A\u95F4\u4E0D\u8DB3\uFF0C\u90E8\u5206\u5BFC\u7EBF\u6682\u65F6\u5171\u7528\u4E2D\u5FC3\u8DEF\u5F84\uFF0C\u8BF7\u52A0\u5BBD\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" } : {} });
+  }
+  return routes;
 }
 function routeWireInDucts(document2, wire) {
-  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).join("|");
+  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).sort().join("|");
   let cached = routeCache.get(document2.components);
   if (cached?.signature !== signature) {
-    cached = { signature, routes: /* @__PURE__ */ new Map() };
+    cached = recentGeometry.get(signature) ?? { signature, centers: /* @__PURE__ */ new Map(), layouts: /* @__PURE__ */ new Map() };
     routeCache.set(document2.components, cached);
+    if (recentGeometry.size >= 6 && !recentGeometry.has(signature)) recentGeometry.delete(recentGeometry.keys().next().value);
+    recentGeometry.set(signature, cached);
   }
-  const id2 = `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
-  const previous = cached.routes.get(id2);
-  if (previous) return previous;
-  const route = calculateRoute(document2, wire);
-  cached.routes.set(id2, route);
-  return route;
+  const wires = document2.wires.filter((candidate) => automaticWire(candidate) && candidate.id !== wire.id);
+  wires.push(wire);
+  const membership = wires.map(routeKey).sort().join("|");
+  let routes = cached.layouts.get(membership);
+  if (!routes) {
+    if (cached.centers.size > 4e3) cached.centers.clear();
+    for (const candidate of wires) if (!cached.centers.has(routeKey(candidate))) cached.centers.set(routeKey(candidate), calculateRoute(document2, candidate));
+    routes = assignLanes(document2, wires, cached.centers);
+    if (cached.layouts.size >= 8) cached.layouts.clear();
+    cached.layouts.set(membership, routes);
+  }
+  return routes.get(routeKey(wire));
 }
 function simplify(points) {
   const result = [];
@@ -33914,6 +34138,27 @@ function externalRoute(document2, source, target) {
   const bodies = document2.components.filter((c) => !isLayoutObject(c.type));
   const clear = (points) => points.slice(1).every((p, i) => !bodies.some((c) => crossesBody(points[i], p, bounds(c))));
   if ([source, target].some((t, i) => bodies.some((c) => c.id !== t.component.id && crossesBody((i ? to : from)[0], (i ? to : from)[1], bounds(c))))) return { status: "blocked", sections: [from, to.reverse()], trunk: [], message: "\u5916\u90E8\u5F15\u7EBF\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5E03\u5C40\u3002" };
+  const upper = a.y <= b.y ? source : target, lower2 = upper === source ? target : source;
+  const u = upper === source ? a : b, l = upper === source ? b : a;
+  if (routingSide(upper.terminal) === "bottom" && routingSide(lower2.terminal) === "top" && u.y <= l.y) {
+    const fan = terminalFan(lower2), spacing = Math.min(6, (l.y - u.y) / Math.max(1, fan.pins.length + 1));
+    const lane = (l.y + u.y) / 2 + (Math.sign(l.x - u.x) || 1) * ((fan.pins.length - 1) / 2 - fan.rank) * spacing;
+    const middle2 = compact([u, { x: u.x, y: lane }, { x: l.x, y: lane }, l]);
+    const oriented = upper === source ? middle2 : [...middle2].reverse();
+    const points = displayPath([...from, ...oriented, ...[...to].reverse()]);
+    if (clear(oriented) && simplePath(points)) return { status: "routed", sections: [points], trunk: [] };
+  }
+  if (routingSide(upper.terminal) === "bottom" && routingSide(lower2.terminal) === "bottom") {
+    const rect = bounds(lower2.component), fan = terminalFan(lower2), gap = rect.top - TERMINAL_CLEARANCE - u.y;
+    if (gap >= 0) {
+      const spacing = Math.min(6, gap / Math.max(1, fan.pins.length + 1));
+      const above = u.y + gap / 2 + (fan.rank - (fan.pins.length - 1) / 2) * spacing;
+      const below = l.y + fan.rank * 6;
+      const choices2 = [rect.left - TERMINAL_CLEARANCE - fan.rank * 6, rect.right + TERMINAL_CLEARANCE + fan.rank * 6].map((x) => compact([u, { x: u.x, y: above }, { x, y: above }, { x, y: below }, { x: l.x, y: below }, l]));
+      const options = choices2.map((points) => upper === source ? points : [...points].reverse()).filter((points) => clear(points) && simplePath(displayPath([...from, ...points, ...[...to].reverse()]))).sort(comparePaths);
+      if (options.length) return { status: "routed", sections: [displayPath([...from, ...options[0], ...[...to].reverse()])], trunk: [] };
+    }
+  }
   const choices = [[a, { x: a.x, y: b.y }, b], [a, { x: b.x, y: a.y }, b]];
   for (const c of bodies) {
     const r = bounds(c);
@@ -33927,7 +34172,9 @@ function calculateRoute(document2, wire) {
   const source = resolveTerminal(document2, wire.from), target = resolveTerminal(document2, wire.to);
   const external = source.terminal.routingRole === "external" || target.terminal.routingRole === "external";
   const internal = source.terminal.routingRole === "internal" || target.terminal.routingRole === "internal";
-  if (external && !internal) return externalRoute(document2, source, target);
+  const belowCabinetSupply = [source, target].find((terminal) => terminal.component.type === "supply" && document2.components.some((component2) => isWireDuct(component2.type)) && terminal.component.position.y > Math.max(...document2.components.filter((component2) => isWireDuct(component2.type)).map((component2) => bounds(component2).bottom)));
+  const boundary = belowCabinetSupply && (belowCabinetSupply === source ? target : source);
+  if (external && !internal || boundary && (boundary.terminal.routingRole === "external" || boundary.component.type === "pe-terminal")) return externalRoute(document2, source, target);
   const network2 = networkFor(document2.components);
   if (!network2.ducts.length) return { status: "missing", sections: [terminalLead(source), terminalLead(target).reverse()], trunk: [], message: "\u8BF7\u5148\u5E03\u7F6E\u7EBF\u69FD\uFF0C\u518D\u81EA\u52A8\u8D70\u7EBF\u3002" };
   const starts = entriesFor(document2, source, network2), ends = entriesFor(document2, target, network2);
@@ -33935,21 +34182,15 @@ function calculateRoute(document2, wire) {
   if (!starts.length || !ends.length) return { status: "blocked", sections, trunk: [], message: "\u7AEF\u5B50\u51FA\u7EBF\u65B9\u5411\u6CA1\u6709\u53EF\u8FDB\u5165\u7684\u7EBF\u69FD\uFF0C\u6216\u5F15\u51FA\u6BB5\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8C03\u6574\u5143\u4EF6\u6216\u7EBF\u69FD\u3002" };
   const choices = [];
   for (const from of starts) for (const to of ends) {
-    const trunk2 = shortestPath(document2, network2, from, to);
-    if (trunk2) {
-      const points2 = displayPath([...from.lead, ...trunk2, ...[...to.lead].reverse()]);
-      if (simplePath(points2)) choices.push({ from, to, trunk: trunk2, points: points2 });
+    const trunk = shortestPath(document2, network2, from, to);
+    if (trunk) {
+      const points = displayPath([...from.lead, ...trunk, ...[...to.lead].reverse()]);
+      if (simplePath(points)) choices.push({ from, to, trunk, points });
     }
   }
   const best = choices.sort((a, b) => pathLength(a.points) - pathLength(b.points) || a.from.length + a.to.length - b.from.length - b.to.length || comparePaths(a.points, b.points))[0];
   if (!best) return { status: "disconnected", sections, trunk: [], message: "\u4E24\u7AEF\u7EBF\u69FD\u672A\u8FDE\u901A\u6216\u69FD\u5185\u88AB\u5143\u4EF6\u6321\u4F4F\uFF0C\u8BF7\u8FDE\u63A5\u7EBF\u69FD\u6216\u8C03\u6574\u5E03\u5C40\u3002" };
-  let trunk = laneRoute(document2, network2, wire, best.trunk);
-  let points = displayPath([...best.from.lead, ...trunk, ...[...best.to.lead].reverse()]);
-  if (!simplePath(points)) {
-    trunk = best.trunk;
-    points = best.points;
-  }
-  return { status: "routed", sections: [points], trunk };
+  return { status: "routed", sections: [best.points], trunk: best.trunk, leads: [best.from.lead, [...best.to.lead].reverse()] };
 }
 
 // app/simulator/editor/duct-routing.ts
@@ -34278,7 +34519,10 @@ function DeviceNode({ data, selected: selected2 }) {
           const clip = `lead-${component2.id}-${wire.id}-${terminal.id}`;
           return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: data.diagnostics.some((d) => d.wireIds.includes(wire.id)) ? "#ef4444" : wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }) })
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { clipPath: `url(#${clip})`, children: [
+              data.selectedWireIds?.includes(wire.id) && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: "#3478f6", strokeOpacity: 0.65, strokeWidth: 9, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
+              /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" })
+            ] })
           ] }, clip);
         }) }),
         /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-caption", children: [
@@ -34297,7 +34541,7 @@ function DeviceNode({ data, selected: selected2 }) {
           const key4 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
           const state = data.terminalStates[key4];
           const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key4));
-          const color2 = terminalColor(terminal);
+          const color2 = data.terminalColors?.[key4] ?? terminalColor(terminal);
           return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
             Handle,
             {
@@ -34431,7 +34675,9 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       "data-routing": wire.routing,
       "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        (selected2 || data.highlighted || data.energized) && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-outline", d: path, fill: "none", stroke: selected2 ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32", strokeWidth: selected2 ? 9 : 7, strokeOpacity: selected2 || data.highlighted ? 0.65 : 0.4, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        selected2 && [endpoints.from, endpoints.to].map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("circle", { className: "sim-wire-selected-endpoint", cx: point2.x, cy: point2.y, r: 5, fill: "white", stroke: "#3478f6", strokeWidth: 2, vectorEffect: "non-scaling-stroke", pointerEvents: "none" }, index2)),
         selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(EdgeLabelRenderer, { children: [
           points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
             "button",
@@ -34471,6 +34717,19 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       ]
     }
   );
+}
+
+// app/simulator/editor/node-geometry.ts
+function deviceNodeGeometry(component2) {
+  const size = componentSize(component2);
+  return {
+    ...size,
+    measured: size,
+    handles: getDefinition(component2.type).terminals.map((original) => {
+      const terminal = transformedTerminal(component2, original);
+      return { id: terminal.id, type: "source", position: terminal.side, x: terminal.x, y: terminal.y, width: 0, height: 0 };
+    })
+  };
 }
 
 // app/simulator/editor/simulation-session.ts
@@ -35572,7 +35831,9 @@ function Workspace(props) {
   const [simulation, setSimulation] = (0, import_react16.useState)(null);
   const [session] = (0, import_react16.useState)(createSimulationSession);
   const sessionGeneration = session.generation;
-  const [assessment, setAssessment] = (0, import_react16.useState)(null);
+  const [assessmentReports, setAssessment] = (0, import_react16.useState)(null);
+  const assessment = assessmentReports?.assessment ?? null;
+  const workmanship = assessmentReports?.workmanship ?? null;
   const [panelOpen, setPanelOpen] = (0, import_react16.useState)(false);
   const [panelTab, setPanelTab] = (0, import_react16.useState)("runtime");
   const [localDrawing, setLocalDrawing] = (0, import_react16.useState)({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
@@ -35783,7 +36044,7 @@ function Workspace(props) {
     while (circuit.components.some((component3) => component3.label === `${prefix2}${index2}`)) index2++;
     const id2 = `${type}-${crypto.randomUUID().slice(0, 8)}`;
     const required = role && requirements.find((item) => item.role === role);
-    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
+    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { rotation: required.component.rotation, settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
     try {
       changed(role ? addCourseComponent(docRef.current, role, component2) : { ...docRef.current, components: [...docRef.current.components, component2] });
       setPendingRole(null);
@@ -35799,16 +36060,19 @@ function Workspace(props) {
     const from = { componentId: connection.source, terminalId: connection.sourceHandle };
     const to = { componentId: connection.target, terminalId: connection.targetHandle };
     if (from.componentId === to.componentId && from.terminalId === to.terminalId) return;
-    const same = (a, b) => a.componentId === b.componentId && a.terminalId === b.terminalId;
-    if (circuit.wires.some((wire) => same(wire.from, from) && same(wire.to, to) || same(wire.from, to) && same(wire.to, from))) {
+    const same2 = (a, b) => a.componentId === b.componentId && a.terminalId === b.terminalId;
+    if (circuit.wires.some((wire) => same2(wire.from, from) && same2(wire.to, to) || same2(wire.from, to) && same2(wire.to, from))) {
       setMessage("\u8FD9\u4E24\u4E2A\u7AEF\u5B50\u5DF2\u7ECF\u76F8\u8FDE\u3002");
       return;
     }
     const sourceComponent = circuit.components.find((component2) => component2.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find((terminal) => terminal.id === from.terminalId);
-    const newColor = colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal);
+    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal));
+    const newColor = colorChoice.color;
     const automatic = wireStyle === "duct";
     changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] });
+    if (colorChoice.conflict) setMessage("\u540C\u4E00\u5BFC\u901A\u7EC4\u5B58\u5728\u4E0D\u540C\u7EBF\u8272\u3002\u9009\u4E2D\u4EFB\u4E00\u5BFC\u7EBF\uFF0C\u518D\u9009\u62E9\u989C\u8272\uFF0C\u53EF\u7EDF\u4E00\u6574\u7EC4\u3002");
+    if (colorChoice.sourceConflict) setMessage("\u4E0D\u540C\u7535\u6E90\u76F8\u63A5\u5165\u4E86\u540C\u4E00\u5BFC\u901A\u7EC4\uFF0C\u8BF7\u68C0\u67E5\u63A5\u7EBF\uFF1B\u7EDF\u4E00\u989C\u8272\u4E0D\u80FD\u6D88\u9664\u7535\u6C14\u51B2\u7A81\u3002");
   };
   const onWaypoints = (0, import_react16.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
   const configure = (0, import_react16.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
@@ -35841,7 +36105,8 @@ function Workspace(props) {
   }, [frozen, props.documentKey, onDocumentChange]);
   const linkedComponents = (0, import_react16.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
   const diagnostics = (0, import_react16.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...componentSize(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const terminalColors = (0, import_react16.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
+  const nodes = (0, import_react16.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = (0, import_react16.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
@@ -35878,7 +36143,7 @@ function Workspace(props) {
   const setWireColor = (next) => {
     setColor(next);
     setColorOverride(true);
-    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map((wire) => selectedWires.includes(wire.id) ? { ...wire, color: next } : wire) });
+    if (selectedWires.length) changed(setWireGroupColor(circuit, selectedWires, next));
   };
   const setStyle = (next) => {
     if (frozen) return;
@@ -35986,7 +36251,7 @@ function Workspace(props) {
   };
   const librarySections = poolGroups(category, search);
   const safetyDiagnostics = simulation?.diagnostics ?? [];
-  const routingProblems = (0, import_react16.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed"), [circuit]);
+  const routingProblems = (0, import_react16.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed" || item.route.capacityWarning), [circuit]);
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
@@ -36259,7 +36524,7 @@ function Workspace(props) {
         routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
           /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("b", { children: [
             routingProblems.length,
-            " \u6839\u5BFC\u7EBF\u6682\u672A\u5165\u69FD"
+            " \u6839\u5BFC\u7EBF\u9700\u8981\u6574\u7406"
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
         ] }),
@@ -36298,6 +36563,7 @@ function Workspace(props) {
               safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { children: safetyDiagnostics.length })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { className: panelTab === "workmanship" ? "active" : "", onClick: () => setPanelTab("workmanship"), children: "\u7AEF\u5B50\u5DE5\u827A" }),
             /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(X, { size: 16 }) })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-diagnostics-body", children: [
@@ -36341,7 +36607,22 @@ function Workspace(props) {
                 /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
                 /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) }),
+            panelTab === "workmanship" && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_jsx_runtime17.Fragment, { children: workmanship ? workmanship.status === "unsupported" ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u672C\u8BFE\u7A0B\u4E0D\u4F5C\u5341\u8BFE\u7AEF\u5B50\u6392\u5DE5\u827A\u5224\u5B9A\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: `sim-assessment-status sim-workmanship-status ${workmanship.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: workmanship.status === "passed" ? "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u901A\u8FC7" : "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u5F85\u5B8C\u5584" }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: "\u5DE5\u827A\u7ED3\u679C\u72EC\u7ACB\u4E8E\u7535\u6C14\u8BFE\u7A0B\u5224\u5B9A" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("ul", { className: "sim-check-list", children: workmanship.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+                check.label
+              ] }, check.id)) }),
+              workmanship.diagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(ChevronRight, { size: 14 })
+              ] }, `${diagnostic2.code}-${index2}`))
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u6838\u5BF9\u7AEF\u5B50\u4E2D\u8F6C\u3001PE \u4E0E\u7EBF\u8272\u4E00\u81F4\u6027\u3002" }) })
           ] })
         ] }),
         message && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "sim-toast", role: "status", children: [
@@ -36556,7 +36837,7 @@ async function api(path, init2) {
   }
 }
 var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) });
-var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then((result) => result.assessment);
+var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then(({ assessment, workmanship }) => ({ assessment, workmanship }));
 
 // app/simulator/TrainingProjects.tsx
 var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
@@ -37610,6 +37891,50 @@ function LessonSchematic({ lessonId = "motor-jog", compact: compact2 = false }) 
   return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
 }
 
+// app/simulator/core/wiring-workmanship.ts
+var same = (a, b) => terminalKey(a) === terminalKey(b);
+var includes = (wire, ref2) => same(wire.from, ref2) || same(wire.to, ref2);
+function assessWiringWorkmanship(document2, lessonId = document2.lessonId) {
+  const assignments = getCourseTerminalAssignments(lessonId);
+  if (!assignments.length) return { status: "unsupported", checks: [], diagnostics: [] };
+  const validation = validateDocument(document2);
+  if (!validation.valid) return { status: "unsupported", checks: [], diagnostics: validation.errors.map((message) => ({ code: "INVALID_DOCUMENT", message, severity: "warning", componentIds: [], terminalIds: [], wireIds: [] })) };
+  const checks = [], diagnostics = [];
+  const id2 = (role) => document2.roles?.[role] ?? role;
+  for (const assignment of assignments.filter((item) => item.used)) {
+    const strip = document2.components.find((component2) => component2.id === id2(assignment.stripRole));
+    const external = { componentId: id2(assignment.componentRole), terminalId: assignment.terminalId };
+    const outside = { componentId: id2(assignment.stripRole), terminalId: `B${assignment.position}` };
+    const inside = { ...outside, terminalId: `T${assignment.position}` };
+    const externalWires = document2.wires.filter((wire) => includes(wire, external));
+    const outsideWires = document2.wires.filter((wire) => includes(wire, outside));
+    const insideWires = document2.wires.filter((wire) => includes(wire, inside));
+    const passed = strip?.type === "terminal-strip16" && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === 1 && insideWires.length > 0;
+    const stripLabel = assignment.stripRole === "xt16" ? "XT1" : "XT2";
+    const label = `${assignment.label} \u7ECF ${stripLabel} \u7B2C ${assignment.position} \u4F4D\u4E0A\u4E0B\u4E2D\u8F6C\uFF0C\u67DC\u5916\u7AEF\u5B50\u65E0\u65C1\u8DEF\u7EBF`;
+    checks.push({ id: `${assignment.stripRole}-${assignment.position}`, label, passed });
+    if (!passed) diagnostics.push({ code: strip?.type === "terminal-strip16" ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map((wire) => wire.id))] });
+  }
+  const groups = getWireColorGroups(document2);
+  for (const group of groups.filter((item) => item.wireIds.length && (item.colors.length > 1 || item.sourcePotentials.length > 1))) {
+    if (group.colors.length > 1) diagnostics.push({ code: "WIRE_GROUP_COLOR_CONFLICT", message: "\u6C38\u4E45\u5BFC\u901A\u7684\u540C\u4E00\u7EC4\u5BFC\u7EBF\u989C\u8272\u4E0D\u4E00\u81F4\uFF0C\u8BF7\u9009\u62E9\u5176\u4E2D\u4E00\u6839\u5BFC\u7EBF\u7EDF\u4E00\u6574\u7EC4\u989C\u8272\u3002", severity: "warning", componentIds: [...new Set(group.terminalIds.map((key4) => key4.split("::")[0]))], terminalIds: group.terminalIds, wireIds: group.wireIds });
+    if (group.sourcePotentials.length > 1) diagnostics.push({ code: "WIRE_GROUP_SOURCE_CONFLICT", message: `\u540C\u4E00\u6C38\u4E45\u5BFC\u901A\u7EC4\u63A5\u5165 ${group.sourcePotentials.join("\u3001")}\uFF0C\u7EDF\u4E00\u989C\u8272\u4E0D\u80FD\u4FEE\u590D\u8BE5\u63A5\u7EBF\u51B2\u7A81\u3002`, severity: "error", componentIds: [...new Set(group.terminalIds.map((key4) => key4.split("::")[0]))], terminalIds: group.terminalIds, wireIds: group.wireIds });
+  }
+  checks.push({ id: "permanent-group-colors", label: "\u6C38\u4E45\u5BFC\u901A\u7EC4\u7684\u4E0A\u4E0B\u7AEF\u5B50\u53CA\u5BFC\u7EBF\u989C\u8272\u4E00\u81F4", passed: !groups.some((group) => group.wireIds.length && group.colors.length > 1) });
+  checks.push({ id: "permanent-group-sources", label: "\u6C38\u4E45\u5BFC\u901A\u7EC4\u6CA1\u6709\u5408\u5E76\u4E0D\u540C\u7535\u6E90\u5BFC\u4F53", passed: !groups.some((group) => group.sourcePotentials.length > 1) });
+  const earth = document2.components.find((component2) => component2.id === id2("pe") && component2.type === "pe-terminal");
+  const peKeys = ["source", ...new Set(assignments.filter((assignment) => assignment.componentRole.startsWith("m")).map((assignment) => assignment.componentRole))].map((role) => `${id2(role)}::PE`);
+  const earthGroup = groups.find((group) => group.terminalIds.includes(`${id2("source")}::PE`));
+  const ordinaryStripPE = earthGroup?.terminalIds.some((key4) => document2.components.find((component2) => component2.id === key4.split("::")[0])?.type === "terminal-strip16") ?? false;
+  const pePassed = !!earth && !!earthGroup && peKeys.every((key4) => earthGroup.terminalIds.includes(key4)) && !ordinaryStripPE && peKeys.every((key4) => document2.wires.some((wire) => {
+    const endpoints = [wire.from, wire.to];
+    return endpoints.some((ref2) => terminalKey(ref2) === key4) && endpoints.some((ref2) => ref2.componentId === earth.id && getDefinition(earth.type).terminals.some((terminal) => terminal.id === ref2.terminalId));
+  }));
+  checks.push({ id: "dedicated-pe", label: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u4F7F\u7528\u72EC\u7ACB\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50\uFF0C\u4E0D\u5360\u666E\u901A\u7AEF\u5B50\u6392\u4F4D\u7F6E", passed: pePassed });
+  if (!pePassed) diagnostics.push({ code: "DEDICATED_PE_REQUIRED", message: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u5E94\u76F4\u63A5\u63A5\u5165\u72EC\u7ACB PE \u7AEF\u5B50\uFF0C\u4E0D\u80FD\u7528\u666E\u901A XT \u4F4D\u7F6E\u66FF\u4EE3\u3002", severity: "warning", componentIds: [id2("pe"), ...peKeys.map((key4) => key4.split("::")[0])], terminalIds: peKeys, wireIds: earthGroup?.wireIds ?? [] });
+  return { status: checks.every((check) => check.passed) ? "passed" : "incomplete", checks, diagnostics };
+}
+
 // app/simulator/core/reference-entry.ts
 function parseReferenceEntry(pathname, search) {
   if (pathname !== "/" && pathname.replace(/\/$/, "") !== "/circuit") return { kind: "none" };
@@ -38325,7 +38650,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
         ] })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorEditor, { clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
-      }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => assessLesson(doc, doc.lessonId) : assessOnServer, onImportDrawing: async (file) => {
+      }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => ({ assessment: assessLesson(doc, doc.lessonId), workmanship: assessWiringWorkmanship(doc) }) : assessOnServer, onImportDrawing: async (file) => {
         if (STATIC_DEMO) throw new Error("\u9759\u6001\u6F14\u793A\u8BF7\u4F7F\u7528\u7535\u8DEF JSON \u5BFC\u5165\uFF1B\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
         const token = boundary.capture();
         const form = new FormData();

@@ -100,3 +100,40 @@ test("drawing requests have a finite deadline, forbid redirects, and never retry
   await rejected;
   assert.equal(request.mock.callCount(), 1);
 });
+
+for (const competing of [false, true]) test(`uncertain drawing write is read back once without retry (${competing ? 'competing update retained' : 'committed write recovered'})`, async t => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-drawing-uncertain-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const stems = ['电动机点动控制电路', '电动机连续运行控制电路', '点动与连续运行电路', '接触器互锁正反转电路', '双重联锁正反转控制电路', '自动往返控制电路', '顺序控制电路', '延时起动控制电路', 'Y-△降压起动控制电路', '双速电机运行控制电路'];
+  const bytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j44kAAAAASUVORK5CYII=', 'base64');
+  for (const stem of stems) for (const suffix of ['原理图', '布局图']) await writeFile(path.join(directory, `${stem}${suffix}.png`), bytes);
+  const adminPath = path.join(directory, 'admin.json');
+  await writeFile(adminPath, JSON.stringify({ origin: isolatedOrigin, username: 'fixture', password: 'fixture' }));
+  const projects = stems.map((_stem, i) => ({ id: `project-${String(i + 1).padStart(2, '0')}`, drawings: Object.fromEntries(['schematic', 'layout'].map(kind => [kind, { id: `old-${i}-${kind}`, version: `old-version-${i}-${kind}` }])) }));
+  let puts = 0, readsAfterUncertainWrite = 0;
+  const json = body => new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } });
+  t.mock.method(globalThis, 'fetch', async (url, init = {}) => {
+    const route = new URL(url).pathname;
+    if (route === '/api/auth/sign-in/username' || route === '/api/auth/sign-out') return json({});
+    if (route === '/api/session') return json({ user: { role: 'admin' } });
+    if (route === '/api/training-projects') { if (puts) readsAfterUncertainWrite++; return json({ items: projects }); }
+    if (route === '/api/media' && init.method === 'POST') return json({ media: { id: 'new-media' } });
+    if (route.startsWith('/api/media/')) return new Response(route.endsWith('/old-0-schematic') ? Buffer.concat([bytes, Buffer.from('old')]) : bytes);
+    if (route === '/api/training-projects/project-01' && init.method === 'PUT') {
+      puts++;
+      const request = JSON.parse(init.body); assert.equal(request.expectedVersion, 'old-version-0-schematic');
+      projects[0].drawings.schematic = { id: competing ? 'other-media' : request.mediaId, version: 'new-uuid-version' };
+      throw new DOMException('fixture uncertain write', 'TimeoutError');
+    }
+    throw new Error(`Unexpected fixture request ${route}`);
+  });
+  const pending = importTrainingDrawings(['--directory', directory, '--replace', '--url', isolatedOrigin, '--admin-file', adminPath, '--artifact-dir', directory], {});
+  if (competing) await assert.rejects(pending, error => error.name === 'TimeoutError'); else await pending;
+  assert.equal(puts, 1, 'uncertain PUT must never be retried'); assert.ok(readsAfterUncertainWrite >= 1);
+  const manifest = JSON.parse(await readFile(path.join(directory, 'training-drawing-import.json'), 'utf8'));
+  assert.equal(manifest.entries[0].previousMediaId, 'old-0-schematic');
+  assert.equal(manifest.entries[0].previousVersion, 'old-version-0-schematic');
+  assert.ok(manifest.entries[0].previousSha256);
+  if (!competing) { assert.equal(manifest.entries[0].recoveredFromUncertainWrite, true); assert.equal(manifest.entries[0].version, 'new-uuid-version'); assert.equal(manifest.entries[0].verified, true); }
+  else { assert.equal(projects[0].drawings.schematic.id, 'other-media'); assert.equal(manifest.entries[0].verified, false); }
+});

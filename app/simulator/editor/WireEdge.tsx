@@ -41,7 +41,9 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
     data-routing={wire.routing}
     data-routing-status={wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual"}
   >
-    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: data.highlighted ? "#ef4444" : wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
+    {(selected || data.highlighted || data.energized) && <path className="sim-wire-outline" d={path} fill="none" stroke={selected ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32"} strokeWidth={selected ? 9 : 7} strokeOpacity={selected || data.highlighted ? 0.65 : 0.4} vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />}
+    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
+    {selected && [endpoints.from,endpoints.to].map((point,index)=><circle key={index} className="sim-wire-selected-endpoint" cx={point.x} cy={point.y} r={5} fill="white" stroke="#3478f6" strokeWidth={2} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
     {selected && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && <EdgeLabelRenderer>
       {points.map((point, index) => <button
         key={index}
