@@ -12,5 +12,10 @@ for(let n=1;n<=10;n++)test(`course ${n}: editable blank placement includes FU2, 
   assert.ok(wired.components.find(c=>c.type.startsWith("motor")).position.y>blank.components.find(c=>c.id==="xt16").position.y);
   if(n===1)assert.equal(blank.components.some(c=>c.type==="overload"),false);
   if(n===6)assert.equal(blank.components.filter(c=>c.type==="limit-switch").length,4);
-  if(n===9)assert.equal(blank.components.filter(c=>c.type.startsWith("push-")).length,2);
+  if(n===9){
+    assert.equal(blank.components.filter(c=>c.type.startsWith("push-")).length,3);
+    const spare=blank.components.find(c=>c.id===blank.roles.sb3);
+    assert.match(spare.label,/预留不接线/);
+    assert.ok(wired.wires.every(w=>w.from.componentId!==spare.id && w.to.componentId!==spare.id));
+  }
 });

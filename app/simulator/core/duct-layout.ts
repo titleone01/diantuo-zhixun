@@ -11,9 +11,9 @@ export const TRAINING_LAYOUT_REFERENCES: Record<string, LayoutReference> = {
   "motor-course-04": { file: "接触器互锁正反转电路布局图.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-05": { file: "双重联锁正反转控制电路布局图.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-06": { file: "自动往返控制电路布局图.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"], limits: ["sq1", "sq2", "sq3", "sq4"] },
-  "motor-course-07": { file: "顺序控制电路布局图.png", rows: [power, ["km1", "km1_aux", "km2", "km2_aux"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
+  "motor-course-07": { file: "顺序控制电路布局图.png", rows: [power, ["km1", "km2"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
   "motor-course-08": { file: "延时起动控制电路布局图.png", rows: [power, ["ka", "km", "kt"], ["fr"]], buttons: ["sb1", "sb2"] },
-  "motor-course-09": { file: "Y-△降压起动控制电路布局图.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2"] },
+  "motor-course-09": { file: "Y-△降压起动控制电路布局图.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-10": { file: "双速电机运行控制电路布局图.png", rows: [power, ["km1", "km2", "km3"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
 };
 const buttonTypes = new Set(["push-no", "push-nc", "push-latching-red", "push-latching-green", "switch1", "switch2"]);
@@ -32,7 +32,8 @@ export const trainingLayoutReference = (document: CircuitDocument) => referenceF
 const DUCT_WIDTH = 32;
 const CLEARANCE = 40;
 const SEPARATION = 76;
-const rowWidth = (row: CircuitComponent[]) => row.reduce((sum, component, index) => sum + componentSize(component).width + (index ? component.id === "fu2b" ? 16 : SEPARATION : 0), 0);
+const rowGap = (previous: CircuitComponent | undefined, component: CircuitComponent) => !previous ? 0 : component.id === "fu2b" ? 16 : component.type === "auxiliary-no" && component.linkedTo === previous.id ? 12 : SEPARATION;
+const rowWidth = (row: CircuitComponent[]) => row.reduce((sum, component, index) => sum + componentSize(component).width + rowGap(row[index - 1], component), 0);
 
 /** Transcribe the six reference channels. Do not add per-device or external control ducts. */
 export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument {
@@ -45,7 +46,12 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
     if (id === "fu2" && !component) return ["fu2a", "fu2b"].map(key => byId.get(document.roles?.[key] ?? key)).filter((value): value is CircuitComponent => !!value);
     return component ? [component] : [];
   });
-  const rows = reference.rows.map(resolve);
+  const referencedRows = reference.rows.map(resolve);
+  const referencedIds = new Set(referencedRows.flat().map(component => component.id));
+  // Additional contacts belong to their original KM group, not an extra KM
+  // position in the user's drawing. Existing saved layouts remain untouched.
+  const rows = referencedRows.map(row => row.flatMap(component => [component, ...document.components.filter(aux =>
+    aux.type === "auxiliary-no" && aux.linkedTo === component.id && !referencedIds.has(aux.id))]));
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
   const xt2 = document.roles?.xt2 && byId.get(document.roles.xt2);
   const terminalPractice = !!document.roles?.xt16;
@@ -71,7 +77,7 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
     const height = Math.max(index === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map(component => componentSize(component).height));
     let x = ductWidth / 2 + CLEARANCE;
     for (const [column, component] of row.entries()) {
-      if (column) x += component.id === "fu2b" ? 16 : SEPARATION;
+      x += rowGap(row[column - 1], component);
       positions.set(component.id, { x, y: y + ductWidth / 2 + CLEARANCE });
       x += componentSize(component).width;
     }

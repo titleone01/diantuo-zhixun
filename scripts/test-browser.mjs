@@ -7,6 +7,7 @@ import { buildRelease } from './release-tools.mjs';
 import { createFixture } from './isolated-fixture.mjs';
 import { lessonFunctions, TestClient } from './test-fixtures.mjs';
 import { importTrainingDrawings } from './import-training-drawings.mjs';
+import { verifySourceDrawings } from './prepare-source-drawings.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const filter = process.argv.slice(2);
 if (filter.length && (filter.length !== 2 || filter[0] !== '--grep' || !filter[1])) throw new Error('Expected --grep <test title pattern> or no arguments');
@@ -23,9 +24,11 @@ try {
   const linked = await admin.call('/training-projects/project-01', 'PUT', { mediaId: media.id, kind: 'schematic', expectedVersion: null });
   assert.equal(linked.status, 200);
   let drawingEntries = [];
-  if (process.env.DIANTUO_TERMINAL_DRAWINGS) {
+  const drawingDirectory = process.env.DIANTUO_SOURCE_DRAWINGS || process.env.DIANTUO_TERMINAL_DRAWINGS;
+  if (drawingDirectory) {
+    await verifySourceDrawings(drawingDirectory);
     const artifactDirectory = path.join(directory, 'drawing-evidence');
-    await importTrainingDrawings(['--directory', process.env.DIANTUO_TERMINAL_DRAWINGS, '--replace', '--url', fixture.origin, '--admin-file', fixture.adminFile, '--artifact-dir', artifactDirectory]);
+    await importTrainingDrawings(['--directory', drawingDirectory, '--replace', '--url', fixture.origin, '--admin-file', fixture.adminFile, '--artifact-dir', artifactDirectory]);
     drawingEntries = JSON.parse(await readFile(path.join(artifactDirectory, 'training-drawing-import.json'), 'utf8')).entries;
     await admin.login(JSON.parse(await readFile(fixture.adminFile, 'utf8')));
   }

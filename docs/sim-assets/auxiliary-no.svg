@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="59.25px" height="205.5px" viewBox="0 0 59.25 205.5">
+  <metadata>{"source":"contactor380.svg","sourceSha256":"ed41405cb50fa5e5ea99ef7ff68ea8ec30a9ae1aadc0fdfb868a375dce24ade9","role":"linked normally open contact; complete teaching frame","scale":1.5,"originalOffset":{"x":112,"y":31}}</metadata>
+  <rect class="auxiliary-shell" x="0.5" y="0.5" width="58.25" height="204.5" rx="4" fill="#ececec" stroke="#000" stroke-width="1"/>
+  <rect x="0.5" y="50" width="58.25" height="92.5" fill="#515151" stroke="#000" stroke-width="1"/>
+  <g transform="translate(-168 -46.5) scale(1.5)"><path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(99, 124, 207)"
+        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />
+<path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(56, 56, 56)" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />
+<path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(56, 56, 56)"
+        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />
+<path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />
+<path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />
+<path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"
+        fill="rgb(124, 227, 153)"
+        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />
+<path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" /><text kerning="auto" font-family="Arial, Microsoft YaHei, sans-serif" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"
+        y="63.3589999999999px">
+        <tspan font-size="10px" font-family="Arial, Microsoft YaHei, sans-serif" fill="#333333">13NO</tspan>
+    </text>
+<text kerning="auto" font-family="Arial, Microsoft YaHei, sans-serif" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">
+        <tspan font-size="10px" font-family="Arial, Microsoft YaHei, sans-serif" fill="#333333">14NO</tspan>
+    </text></g>
+</svg>

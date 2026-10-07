@@ -32344,9 +32344,9 @@ var TRAINING_LAYOUT_REFERENCES = {
   "motor-course-04": { file: "\u63A5\u89E6\u5668\u4E92\u9501\u6B63\u53CD\u8F6C\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-05": { file: "\u53CC\u91CD\u8054\u9501\u6B63\u53CD\u8F6C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-06": { file: "\u81EA\u52A8\u5F80\u8FD4\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr"]], buttons: ["sb1", "sb2", "sb3"], limits: ["sq1", "sq2", "sq3", "sq4"] },
-  "motor-course-07": { file: "\u987A\u5E8F\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km1_aux", "km2", "km2_aux"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
+  "motor-course-07": { file: "\u987A\u5E8F\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2"], ["fr1", "fr2"]], buttons: ["sb1", "sb2", "sb3", "sb4"] },
   "motor-course-08": { file: "\u5EF6\u65F6\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["ka", "km", "kt"], ["fr"]], buttons: ["sb1", "sb2"] },
-  "motor-course-09": { file: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2"] },
+  "motor-course-09": { file: "Y-\u25B3\u964D\u538B\u8D77\u52A8\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km", "kmd", "kmy"], ["fr", "kt"]], buttons: ["sb1", "sb2", "sb3"] },
   "motor-course-10": { file: "\u53CC\u901F\u7535\u673A\u8FD0\u884C\u63A7\u5236\u7535\u8DEF\u5E03\u5C40\u56FE.png", rows: [power, ["km1", "km2", "km3"], ["fr"]], buttons: ["sb1", "sb2", "sb3"] }
 };
 var buttonTypes = /* @__PURE__ */ new Set(["push-no", "push-nc", "push-latching-red", "push-latching-green", "switch1", "switch2"]);
@@ -32361,7 +32361,8 @@ function referenceFor(document2) {
 var DUCT_WIDTH = 32;
 var CLEARANCE = 40;
 var SEPARATION = 76;
-var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + (index2 ? component2.id === "fu2b" ? 16 : SEPARATION : 0), 0);
+var rowGap = (previous, component2) => !previous ? 0 : component2.id === "fu2b" ? 16 : component2.type === "auxiliary-no" && component2.linkedTo === previous.id ? 12 : SEPARATION;
+var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + rowGap(row[index2 - 1], component2), 0);
 function arrangeTrainingDucts(document2) {
   if (document2.components.some((component2) => isWireDuct(component2.type)) || !document2.components.length) return document2;
   const reference = referenceFor(document2);
@@ -32371,7 +32372,9 @@ function arrangeTrainingDucts(document2) {
     if (id2 === "fu2" && !component2) return ["fu2a", "fu2b"].map((key4) => byId.get(document2.roles?.[key4] ?? key4)).filter((value) => !!value);
     return component2 ? [component2] : [];
   });
-  const rows = reference.rows.map(resolve);
+  const referencedRows = reference.rows.map(resolve);
+  const referencedIds = new Set(referencedRows.flat().map((component2) => component2.id));
+  const rows = referencedRows.map((row) => row.flatMap((component2) => [component2, ...document2.components.filter((aux) => aux.type === "auxiliary-no" && aux.linkedTo === component2.id && !referencedIds.has(aux.id))]));
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
   const xt2 = document2.roles?.xt2 && byId.get(document2.roles.xt2);
   const terminalPractice = !!document2.roles?.xt16;
@@ -32395,7 +32398,7 @@ function arrangeTrainingDucts(document2) {
     const height = Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((component2) => componentSize(component2).height));
     let x = ductWidth / 2 + CLEARANCE;
     for (const [column, component2] of row.entries()) {
-      if (column) x += component2.id === "fu2b" ? 16 : SEPARATION;
+      x += rowGap(row[column - 1], component2);
       positions.set(component2.id, { x, y: y + ductWidth / 2 + CLEARANCE });
       x += componentSize(component2).width;
     }
@@ -32588,6 +32591,10 @@ function createMotorPracticeDocument(id2, options = {}) {
     delete document2.roles.fu2b;
     document2.roles.fu2 = "fu2";
   }
+  if (id2 === "motor-course-09") {
+    document2.components.push({ id: "sb3", type: "push-no", label: "SB3\uFF08\u9884\u7559\u4E0D\u63A5\u7EBF\uFF09", position: { x: 0, y: 0 } });
+    if (document2.roles) document2.roles.sb3 = "sb3";
+  }
   for (const wire of document2.wires) for (const ref2 of [wire.from, wire.to]) {
     if (ref2.componentId === "fu2a") ref2.componentId = "fu2";
     else if (ref2.componentId === "fu2b") {
@@ -32732,6 +32739,8 @@ function assessMotorCourse(document2, lessonId) {
   if (new Set(Object.values(roles)).size !== Object.values(roles).length) diagnostics.push(issue("LESSON_ROLE_DUPLICATED", "\u4E0D\u540C\u56FE\u5185\u4F4D\u53F7\u4E0D\u80FD\u7ED1\u5B9A\u5230\u540C\u4E00\u4E2A\u5668\u4EF6\u5B9E\u4F8B", [], "warning"));
   if (diagnostics.length) return { status: "incomplete", passed: 0, total: 1, checks: [{ id: "roles", label: "\u8BFE\u7A0B\u5668\u4EF6\u89D2\u8272\u5B8C\u6574\u4E14\u7C7B\u578B\u6B63\u786E", passed: false }], diagnostics };
   const assigned = new Set(Object.values(roles));
+  const spare = number === 9 && document2.components.find((component2) => component2.id === document2.roles?.sb3);
+  if (spare && spare.type === "push-no" && !document2.wires.some((wire) => wire.from.componentId === spare.id || wire.to.componentId === spare.id)) assigned.add(spare.id);
   const uncovered = document2.components.filter((component2) => !assigned.has(component2.id) && (getDefinition(component2.type).load || getDefinition(component2.type).contacts?.some((contact) => ["switch", "push", "overload"].includes(contact.control)) || component2.type === "fuse" || component2.type === "fuse3" || component2.type === "fuse2"));
   if (uncovered.length) return { status: "unsupported", passed: 0, total: 1, checks: [{ id: "coverage", label: "\u6240\u58F0\u660E\u7684\u8D1F\u8F7D\u3001\u5F00\u5173\u548C\u4FDD\u62A4\u5668\u4EF6\u5747\u5728\u8BFE\u7A0B\u8BC4\u4F30\u8303\u56F4\u5185", passed: false }], diagnostics: [issue("UNASSESSED_COMPONENTS", "\u5B58\u5728\u672A\u88AB\u672C\u8BFE\u7A0B\u52A8\u4F5C\u4E0E\u4FDD\u62A4\u68C0\u67E5\u8986\u76D6\u7684\u989D\u5916\u8D1F\u8F7D\u3001\u63A7\u5236\u6216\u4FDD\u62A4\u5668\u4EF6", uncovered.map((component2) => component2.id))] };
   const motorRoles = Object.keys(roles).filter((role) => getDefinition(document2.components.find((component2) => component2.id === roles[role]).type).load?.kind === "motor");
@@ -34416,7 +34425,6 @@ function DeviceArtwork({ type, active = false, pressed = false, closed = false, 
     ] }, terminal.id)) })
   ] });
   if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
-  if (type === "auxiliary-no") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: `sim-device-artwork ${className}`, viewBox: "112 31 39.5 137", role: "img", "aria-label": "\u63A5\u89E6\u5668\u5E38\u5F00\u8F85\u52A9\u89E6\u70B9\u533A\u57DF", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("image", { href: `${"/diantuo-zhixun/"}sim-assets/contactor380.svg`, width: "151.5", height: "191.5" }) });
   const asset = type === "relay380" ? "relay220" : type;
   return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
     "img",

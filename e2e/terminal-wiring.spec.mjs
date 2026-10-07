@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 const fixture = JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE, 'utf8'));
+const sourceDrawings = JSON.parse(await readFile(new URL('../shared/training-drawing-sources.json', import.meta.url), 'utf8'));
 
 async function login(page) {
   await page.goto('/');
@@ -145,14 +146,16 @@ test('simulation visibility: timer ticks and ten stop-restart cycles never remov
   }
   expect(await page.evaluate(()=>window.wireVisibilitySamples)).toEqual([]);
 });
-test('twenty revised drawings: both member browsers read matching PNGs and anonymous is denied',async({page,browser})=>{
-  test.skip(!fixture.drawingEntries?.length,'This run has no private revised drawing directory configured');
+test('twenty source drawings: both member browsers read matching PNGs and anonymous is denied',async({page,browser})=>{
+  test.skip(!fixture.drawingEntries?.length,'This run has no private source drawing directory configured');
   await login(page);expect(fixture.drawingEntries).toHaveLength(20);
   const memberB=await browser.newContext(); const second=await memberB.newPage(); const anonymous=await browser.newContext();
   try {
     await second.goto('/'); await second.getByLabel('账号',{exact:true}).fill(fixture.accounts[1].username);await second.getByLabel('密码',{exact:true}).fill(fixture.accounts[1].password);await second.getByRole('button',{name:'登录',exact:true}).click();
     await expect(second.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();
     for(const entry of fixture.drawingEntries){
+      const original=sourceDrawings.entries.find(source=>source.projectId===entry.projectId && source.kind===entry.kind);
+      expect(original).toBeDefined();expect(entry.sha256).toBe(original.sha256);
       for(const member of [page,second]){
         const response=await member.request.get(`/api/media/${entry.mediaId}`);expect(response.status()).toBe(200);expect(response.headers()['content-type']).toBe('image/png');
         expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(entry.sha256);
@@ -160,4 +163,36 @@ test('twenty revised drawings: both member browsers read matching PNGs and anony
       expect((await anonymous.request.get(`/api/media/${entry.mediaId}`)).status()).toBe(401);
     }
   }finally{await memberB.close();await anonymous.close();}
+});
+
+test('complete auxiliary artwork: real dragging, moving, connected terminal-strip rotation and reload retain screw coordinates',async({page})=>{
+  await login(page);
+  const document = { schemaVersion: 1, title: 'Complete auxiliary contact browser', components: [
+    {id:'owner',type:'contactor380',label:'KM1',position:{x:80,y:120}},
+    {id:'aux',type:'auxiliary-no',label:'KM1 辅助',linkedTo:'owner',position:{x:330,y:120}},
+    {id:'a',type:'terminal',label:'A',position:{x:490,y:120}},
+    {id:'b',type:'terminal-strip16',label:'XT1',position:{x:680,y:120}},
+  ],wires:[] };
+  const draft=await create(page,document);await open(page,draft);
+  const artwork=page.locator('[data-device-id="aux"] > img.sim-device-artwork');
+  await expect(artwork).toBeVisible();
+  await expect(artwork).toHaveAttribute('src',/auxiliary-no\.svg$/);
+  expect(await artwork.evaluate(img=>img.complete && img.naturalWidth>0 && img.naturalHeight>0)).toBe(true);
+  const asset=await page.request.get(await artwork.getAttribute('src'));expect(asset.status()).toBe(200);
+  const svg=await asset.text();expect(svg).toContain('class="auxiliary-shell"');expect(svg).not.toMatch(/21NC|22NC|<image\b/);
+  await drag(page,'aux::13','a::A');await drag(page,'aux::14','b::B1');
+  await expect(page.locator('.sim-wire')).toHaveCount(2);const initial=await endpoints(page);
+  await page.screenshot({path:path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT,'complete-auxiliary-contact.png')});
+  const box=await page.locator('[data-device-id="aux"]').boundingBox();
+  await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();
+  await page.mouse.move(box.x+box.width/2+65,box.y+box.height/2+40,{steps:12});await page.mouse.up();
+  const strip=page.locator('[data-device-id="b"]'),stripBox=await strip.boundingBox();
+  await strip.click({position:{x:stripBox.width/2,y:stripBox.height/2}});
+  await expect(page.getByRole('button',{name:'旋转90°',exact:true})).toBeEnabled();
+  for(let i=0;i<3;i++)await page.getByRole('button',{name:'旋转90°',exact:true}).click();
+  await page.locator('.react-flow__controls-fitview').click();await page.locator('.react-flow__controls-zoomout').click();
+  const moved=await endpoints(page);expect(moved).not.toEqual(initial);
+  const saved=page.waitForResponse(r=>r.url().endsWith(`/api/circuits/${draft.id}`)&&r.request().method()==='PUT');
+  await page.getByRole('button',{name:'保存草稿',exact:true}).click();expect((await saved).status()).toBe(200);
+  await page.reload();await expect(page.locator('.sim-wire')).toHaveCount(2);expect(await endpoints(page)).toEqual(moved);
 });

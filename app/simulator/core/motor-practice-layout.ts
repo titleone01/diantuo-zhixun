@@ -16,6 +16,12 @@ export function createMotorPracticeDocument(id: string, options: { wired?: boole
     delete document.roles.fu2b;
     document.roles.fu2 = "fu2";
   }
+  if (id === "motor-course-09") {
+    // The placement PNG has three buttons; its schematic connects only SB1/SB2.
+    // The user confirmed that the third position is an unwired spare.
+    document.components.push({ id: "sb3", type: "push-no", label: "SB3（预留不接线）", position: { x: 0, y: 0 } });
+    if (document.roles) document.roles.sb3 = "sb3";
+  }
   for (const wire of document.wires) for (const ref of [wire.from, wire.to]) {
     if (ref.componentId === "fu2a") ref.componentId = "fu2";
     else if (ref.componentId === "fu2b") {
