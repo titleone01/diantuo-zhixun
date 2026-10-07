@@ -35,4 +35,29 @@ Chromium另覆盖十课标准动作、缺PE反例、保护边界、端子颜色�
 
 ## 正式发布
 
-代码提交、不可变包、停写备份、空目录恢复、版本图纸恢复、现网资源和数据保留的实际结果在完成后追加。实施与隔离测试不代替正式发布验收。
+2026-10-07 14:10（北京时间）已完成原站切换及二十个课程图纸槽的恢复。用户授权现有导入工具在程序内部使用管理员凭据；未输出凭据、会话或令牌。未改域名、账号权限和业务库，未新增数据库迁移。
+
+- 功能源码提交：`4c29aebc2caaee88d01f8edcf5d96b2b5115ef74`，构建时Git状态干净。不可变发布ID：`f699a108fc823104561529a2b18fa4c42e34a93f491d1d1d4a86adabc2fceca4`。产物及独立证据位于受限ACL目录 `C:\Users\admin\diantuo-production\20261007-source-drawings`；正式产物为其 `release` 子目录。后续报告提交只修改维护文档，运行包继续对应上述功能提交。
+- 重新确认原端口3000为本项目loopback，Wrangler及workerd均属于启动器23844。仅停止这一进程树，原Tunnel30056继续运行；没有按程序名批量停止进程。
+- 停写备份 `backup-pre-activation` 包括完整D1/R2、WAL/SHM、运行私有配置和 `.local`，清单及字节哈希通过。在新的 `restore-pre-activation` 空目录恢复108个state文件，SQLite完整性和外键通过；原业务行和86个历史R2对象哈希一致。使用新发布包验证恢复副本的草稿、作品、器件端子及已应用迁移契约通过，未把恢复副本覆盖正式数据。
+- 激活原 `.wrangler/active-release.json`，继续使用 `E:\vibecoding\电拓智训\.wrangler\state`。新启动器41736、Wrangler40352、loopback workerd42552已就绪。桌面入口继续使用激活指针，不构建开发源码。
+- 通过带expectedVersion的管理员接口更新20槽；复用19个原始媒体，只上传用户新版06布置图1张。20个读回哈希均与权威原始清单相同，最终槽媒体ID和新版本一致；本次没有不确定写入或自动重试。记录在 `drawing-import/training-drawing-import.json`，包括原修订媒体及其版本、哈希，旧附件仍注册且保留。
+- 本机及公网 `/`、`app-VAQUYIUI.js`、`app-UISTWYQW.css`、`auxiliary-no.svg` 均200，逐资源SHA-256与不可变产物相同；两处会话接口200且匿名user为空，两处各42个业务/新旧附件匿名请求401，Tunnel `/ready` 200。`production-smoke.json`保存实际入口和资源证据。Pages产物 `index-32NQZKG2.js` 已本轮构建，但本次未另行发布GitHub Pages。
+- 新的匿名Chromium真实打开公网登录页：HTTP200、账号/密码框及登录按钮可见，0页面错误，未填写凭据或写业务数据；记录在 `production-page.json`。现有真实成员页刷新后读取07课原始布置图与原理图，并载入55根线的新示范；两个关联NO模块均加载独立完整SVG（自然尺寸59×206），底部XT1为16位。
+
+发布后逐行SHA-256比对保留以下业务内容，只有预期的课程关联、会话/限流及元数据允许变化：
+
+| 内容 | 停写前 | 发布后 | 已有行/文件变化 |
+|---|---:|---:|---|
+| 用户及认证账号 | 42 / 42 | 42 / 42 | 0 |
+| 草稿 | 57 | 57 | 0 |
+| 发布作品 | 46 | 46 | 0 |
+| 评估记录 | 315 | 315 | 0 |
+| 草稿/作品附件关联 | 48 / 38 | 48 / 38 | 0 |
+| 媒体及历史R2对象 | 86 | 87 | 原86个保留且哈希不变，仅新增06布局 |
+| 已应用迁移 | 6 | 6 | 0 |
+| 课程图纸槽 | 20 | 20 | 20个版本关联按本次原图恢复 |
+
+`business-before.json`、`business-restored.json`、`business-after.json`保存哈希证据，不输出原始业务行。`previous-active-release.json`保留切换前指针；`rollback-compatibility.json`确认旧包 `4d124011…` 与最新state的文档、端子及迁移兼容，可切回旧代码且保留最新业务数据，未为验证实际回切。课程图回退应按版本恢复旧关联，不用旧数据库覆盖新增业务。
+
+功能交付bundle `implementation.bundle` 已验证完整历史，SHA-256为 `1BAB49BCCB73201773BCC24782B203BE3344C645A77608DDEB72D6D8538EC276`；与修改前bundle均位于 `E:\vibecoding\电拓智训备份\source-drawings-20261007`。公开页面、隔离验收及当前网络入口为本轮实际证据，不代替长期多人持续运行或其他真实设备/运营商验收。
