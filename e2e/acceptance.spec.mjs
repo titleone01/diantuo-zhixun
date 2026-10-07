@@ -302,7 +302,7 @@ test('formal course picker creates ten editable blank practices and saves separa
   const draftIds = new Set();
   for (let index = 0; index < projects.length; index++) {
     await page.getByRole('link', { name: '图纸集', exact: true }).click();
-    await page.getByRole('tab', { name: /^课程图纸/ }).click();
+    await expect(page.locator('.dt-reference-card')).toHaveCount(10);
     await page.locator('.dt-reference-card').filter({ has: page.getByText(projects[index].name, { exact: true }) }).click();
     await page.getByRole('button', { name: '进入电路配置', exact: true }).click(); await page.getByRole('button', { name: '创建练习', exact: true }).click();
     const lessonId = `motor-course-${String(index + 1).padStart(2, '0')}`;

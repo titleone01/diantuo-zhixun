@@ -37,14 +37,9 @@ async function measure(page, scenario, phase) {
 
 async function open(page, scenario) {
   await page.getByRole('link', { name: '图纸集', exact: true }).click();
-  if (scenario === 'course-drawing') {
-    await page.getByRole('tab', { name: /^课程图纸/ }).click();
-    await page.locator('.dt-reference-card').filter({ has: page.getByText(fixture.modalCourse.name, { exact: true }) }).click();
-  } else {
-    await page.getByRole('tab', { name: /^工业电路图纸/ }).click();
-    await page.locator('.dt-reference-card').first().click();
-    if (scenario === 'reference-video') await page.getByRole('dialog').getByRole('tab', { name: '教学视频', exact: true }).click();
-  }
+  await expect(page.locator('.dt-reference-card')).toHaveCount(10);
+  await page.locator('.dt-reference-card').filter({ has: page.getByText(fixture.modalCourse.name, { exact: true }) }).click();
+  if(scenario==='course-layout')await page.getByRole('dialog').getByRole('tab',{name:'元件布置图',exact:true}).click();
   await settle(page);
 }
 
@@ -75,7 +70,7 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1366, height: 76
       await page.getByLabel('密码', { exact: true }).fill(fixture.accounts[0].password);
       await page.getByRole('button', { name: '登录', exact: true }).click();
       await expect(page.getByRole('button', { name: '开始仿真', exact: true })).toBeVisible();
-      for (const scenario of ['reference-drawing', 'reference-video', 'course-drawing']) {
+      for (const scenario of ['course-drawing', 'course-layout']) {
         step = `${scenario}:open`;
         await open(page, scenario);
         const initial = await measure(page, scenario, 'initial');
@@ -86,10 +81,8 @@ for (const viewport of [{ width: 1920, height: 1080 }, { width: 1366, height: 76
         if (!initial.footerFullyVisible || !initial.practiceFullyVisible || !initial.practiceReceivesPointer) issues.push(`${scenario}: initial action area is not wholly visible and pointer-accessible`);
 
         step = `${scenario}:interior-scroll`;
-        if (scenario !== 'reference-video') {
-          for (let index = 0; index < 5; index++) await page.getByRole('dialog').getByRole('button', { name: '放大原图', exact: true }).click();
-          await settle(page);
-        }
+        for (let index = 0; index < 5; index++) await page.getByRole('dialog').getByRole('button', { name: '放大原图', exact: true }).click();
+        await settle(page);
         const enlarged = await measure(page, scenario, 'before-interior-wheel');
         results.push(enlarged);
         if (enlarged.area) {

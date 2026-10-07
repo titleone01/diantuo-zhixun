@@ -25,11 +25,15 @@ try {
   assert.equal(uploaded.status, 201); const media = (await uploaded.json()).media;
   const linked = await admin.call('/training-projects/project-01', 'PUT', { mediaId: media.id, kind: 'schematic', expectedVersion: null });
   assert.equal(linked.status, 200);
+  assert.equal((await admin.call('/training-projects/project-01','PUT',{mediaId:media.id,kind:'layout',expectedVersion:null})).status,200);
   let drawingEntries = [];
   if (process.env.DIANTUO_TERMINAL_DRAWINGS) {
     const artifactDirectory = path.join(directory, 'drawing-evidence');
     await importTrainingDrawings(['--directory', process.env.DIANTUO_TERMINAL_DRAWINGS, '--replace', '--url', fixture.origin, '--admin-file', fixture.adminFile, '--artifact-dir', artifactDirectory]);
     drawingEntries = JSON.parse(await readFile(path.join(artifactDirectory, 'training-drawing-import.json'), 'utf8')).entries;
+    const sources=JSON.parse(await readFile(path.join(root,'architecture/course-drawings-2026-10-07.json'),'utf8')).entries;
+    assert.equal(drawingEntries.length,20);
+    for(const source of sources){const entry=drawingEntries.find(item=>item.projectId===source.projectId&&item.kind===source.kind);assert.equal(entry?.name,source.file);assert.equal(entry?.sha256,source.sha256);}
     await admin.login(JSON.parse(await readFile(fixture.adminFile, 'utf8')));
   }
   const projects = await admin.call('/training-projects'); assert.equal(projects.status, 200);
