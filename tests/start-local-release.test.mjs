@@ -2,11 +2,12 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import { createServer } from 'node:http';
 import path from 'node:path';
 import test from 'node:test';
 import { unusedPort } from '../scripts/backend-test-runner.mjs';
 
-async function fixture(failure = false) {
+async function fixture(failure = false, existing = false) {
   const root = await mkdtemp(path.join(tmpdir(), 'diantuo-launch-release-'));
   await mkdir(path.join(root, 'scripts'));
   await mkdir(path.join(root, '.wrangler'));
@@ -25,12 +26,30 @@ async function fixture(failure = false) {
   `);
   // These mutation entry points must never run after activation, even on failure.
   await writeFile(path.join(root, 'scripts/bootstrap-admin.mjs'), "throw new Error('FORBIDDEN_BOOTSTRAP')");
-  const child = spawn(process.execPath, [path.join(root, 'scripts/start-local.mjs')], { windowsHide: true });
+  const server = existing ? createServer((request, response) => {
+    if (request.url === '/') {
+      response.setHeader('content-type', 'text/html');
+      response.end('<h1>existing isolated member site</h1>');
+    } else {
+      response.setHeader('content-type', 'application/json');
+      response.statusCode = request.method === 'POST' ? 401 : 200;
+      response.end(JSON.stringify(request.method === 'POST' ? { code: 'AUTH_REQUIRED' } : { user: null }));
+    }
+  }) : null;
+  if (server) await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
+  const child = spawn(process.execPath, [path.join(root, 'scripts/start-local.mjs')], { windowsHide: true, timeout: 15000 });
   let output = '';
   child.stdout.on('data', data => { output += data; });
   child.stderr.on('data', data => { output += data; });
-  const code = await new Promise((resolve, reject) => { child.once('error', reject); child.once('exit', resolve); });
-  return { root, code, output, port };
+  try {
+    const code = await new Promise((resolve, reject) => { child.once('error', reject); child.once('exit', resolve); });
+    return { root, code, output, port };
+  } finally {
+    if (server) {
+      server.closeAllConnections();
+      await new Promise(resolve => server.close(resolve));
+    }
+  }
 }
 
 test('desktop local entry delegates activated release with the original persistent state', async () => {
@@ -45,5 +64,13 @@ test('invalid activated release fails closed without building or bootstrapping',
   const { root, code, output } = await fixture(true);
   assert.notEqual(code, 0);
   assert.doesNotMatch(output, /FORBIDDEN_BOOTSTRAP/);
+  await assert.rejects(readFile(path.join(root, '.wrangler/delegated.json')), { code: 'ENOENT' });
+});
+
+test('already-running healthy member site exits cleanly without restarting or preparing state', async () => {
+  const { root, code, output } = await fixture(false, true);
+  assert.equal(code, 0, output);
+  assert.match(output, /已有成员站服务正在运行/);
+  assert.doesNotMatch(output, /FORBIDDEN_BOOTSTRAP|Assertion failed/);
   await assert.rejects(readFile(path.join(root, '.wrangler/delegated.json')), { code: 'ENOENT' });
 });
