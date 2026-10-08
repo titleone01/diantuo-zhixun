@@ -1,6 +1,10 @@
 # 成员站本地运行手册
 
-## 2026-10-07 十课版本（当前正式版本）
+## 2026-10-08 登录恢复（当前运行版本）
+
+现网 HTTPS 同源登录已修复；原五个 test 成员在本机 HTTP 和公网 HTTPS 的登录、会话、退出及再次登录均通过，用户实际确认 HTTPS 登录恢复。当前发布 ID 为 `1d747b55fd3058a3a526e422517117e49a8de5f30f9aa34097531723d68717a5`，位于 `C:\Users\admin\diantuo-production\20261008-login-repair\release`，继续使用原 state、账号、密码和 Tunnel。启动检查已覆盖页面、会话与匿名同源 POST。公网 HTTP 跳转修复包已验证，但最后切换因工具审批拦截，待用户手动执行 `.local/apply-login-repair-20261008.ps1`；不得将其写成已上线。完整证据、备份恢复、最终包信息和未验证项见[登录恢复记录](login-access-repair-2026-10-08.md)。
+
+## 2026-10-07 十课版本（此前）
 
 14:31已按最新授权发布十课收敛版本，成员站及Pages的新练习仅提供01–10课；自由接线、百科、旧课程草稿/作品/附件/评估继续保留，旧记录显示“历史练习”。两对话修复均已合并main；完整保留原20张PNG、06最新布局、16位端子、07独立辅助触点和09预留不接线SB3。发布包代码源为 `b9f470e`，发布ID为 `c8b22ffd73886d773d46c4c38b424d4c718619e2b02311f83835c301c8eba3a7`，位于 `C:\Users\admin\diantuo-production\20261007-ten-courses\release`；继续使用原state、固定网址及Tunnel。停写完整备份、独立恢复、20图哈希、本机/公网/Pages和历史数据保留见[十课交付记录](ten-course-consolidation-2026-10-07.md)。当前工具托管服务主管PID7416，Wrangler33288，监听3000仅loopback，记录在该发布目录的私有 `service-launch.json`。今后重启仍可使用桌面入口及 `start:local`，均识别同一发布指针。
 
