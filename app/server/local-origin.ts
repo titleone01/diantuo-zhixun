@@ -28,7 +28,12 @@ export function normalizeLocalRequest(request: Request, env: LocalOrigins): Requ
   if (url.protocol !== "https:" && forwardedProtocol !== "https") {
     if (request.method !== "GET" && request.method !== "HEAD") throw new ApiError(400, "HTTPS_REQUIRED", "请通过 HTTPS 提交");
     url.protocol = "https:";
-    return Response.redirect(url.href, 308);
+    // The local Wrangler proxy also rewrites absolute response headers back to
+    // HTTP when their text contains the incoming host. DNS names are case
+    // insensitive; uppercase DNS text preserves this HTTPS Location through
+    // that proxy without changing its destination. Real-proxy tests guard it.
+    const location = `${url.protocol}//${url.host.toUpperCase()}${url.pathname}${url.search}${url.hash}`;
+    return new Response(null, { status: 308, headers: { location } });
   }
   if (url.pathname.replace(/\/$/, "") === "/api/bootstrap") return json({ error: "初始化仅限本机", code: "LOCAL_ONLY" }, 403);
   const internalOrigin = url.origin;

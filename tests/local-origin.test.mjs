@@ -59,7 +59,7 @@ test("loopback and the fixed HTTPS origin stay isolated; spoofed hosts and origi
 test("HTTP public navigation redirects to HTTPS, mutations require HTTPS, and bootstrap stays local", () => {
   const redirect = normalizeLocalRequest(new Request("http://train.example.com/login?from=profile"), env);
   assert.equal(redirect.status, 308);
-  assert.equal(redirect.headers.get("location"), "https://train.example.com/login?from=profile");
+  assert.equal(new URL(redirect.headers.get("location")).href, "https://train.example.com/login?from=profile");
   assert.throws(() => normalizeLocalRequest(new Request("http://train.example.com/api/circuits", { method: "POST" }), env), error => error.code === "HTTPS_REQUIRED");
   const bootstrap = normalizeLocalRequest(new Request("http://train.example.com/api/bootstrap", { method: "POST", headers: { "x-forwarded-proto": "https" } }), env);
   assert.equal(bootstrap.status, 403);
