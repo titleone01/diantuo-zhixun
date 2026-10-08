@@ -24,7 +24,7 @@ export async function physicalWindowsNetwork() {
       $address = Get-NetIPAddress -InterfaceIndex $adapter.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue | Where-Object { $_.AddressState -eq 'Preferred' -and $_.IPAddress -notlike '169.254.*' } | Select-Object -First 1
       $dns = Get-DnsClientServerAddress -InterfaceIndex $adapter.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue
       if ($route -and $address -and $dns.ServerAddresses) {
-        [pscustomobject]@{ name=$adapter.Name; address=$address.IPAddress; resolvers=@($dns.ServerAddresses); metric=([int]$route.RouteMetric + [int]$interface.InterfaceMetric) }
+        [pscustomobject]@{ name=$adapter.Name; interfaceIndex=$adapter.ifIndex; address=$address.IPAddress; resolvers=@($dns.ServerAddresses); metric=([int]$route.RouteMetric + [int]$interface.InterfaceMetric) }
       }
     }
     $profiles | Sort-Object metric | Select-Object -First 1 | ConvertTo-Json -Compress
