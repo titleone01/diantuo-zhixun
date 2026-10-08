@@ -2,7 +2,7 @@
 
 ## 2026-10-08 登录恢复（当前运行版本）
 
-现网 HTTPS 同源登录已修复；原五个 test 成员在本机 HTTP 和公网 HTTPS 的登录、会话、退出及再次登录均通过，用户实际确认 HTTPS 登录恢复。当前发布 ID 为 `1d747b55fd3058a3a526e422517117e49a8de5f30f9aa34097531723d68717a5`，位于 `C:\Users\admin\diantuo-production\20261008-login-repair\release`，继续使用原 state、账号、密码和 Tunnel。启动检查已覆盖页面、会话与匿名同源 POST。公网 HTTP 跳转修复包已验证，但最后切换因工具审批拦截，待用户手动执行 `.local/apply-login-repair-20261008.ps1`；不得将其写成已上线。完整证据、备份恢复、最终包信息和未验证项见[登录恢复记录](login-access-repair-2026-10-08.md)。
+现网 HTTPS 同源登录及公网 HTTP 导航跳转已修复并切换。公网 `http://train.titleone.space/` 为 308 到原 HTTPS，跟随一次跳转为 200；原五个 test 成员在本机 HTTP 和公网 HTTPS 的登录、会话、退出及再次登录均通过，用户实际确认 HTTPS 登录恢复。当前发布 ID 为 `9c30ea2b61274d2fc297c5b174d3c6336c5519f82eb36c15bf63093433f0a34e`，位于 `C:\Users\admin\diantuo-production\20261008-login-repair\release-final`，继续使用原 state、账号、密码和 Tunnel。启动检查已覆盖页面、会话与匿名同源 POST，重复启动探针自然退出 0。工具审批拦截后由用户手动完成本次停写备份及切换；固定 PID、固定备份路径的本次 `.local` 维护脚本不用于日常重启。日常仍使用桌面入口或 `start:local`。最新完整备份恢复、业务保留、636 项回归/25 项后台验收及未验证项见[登录恢复记录](login-access-repair-2026-10-08.md)。
 
 ## 2026-10-07 十课版本（此前）
 
