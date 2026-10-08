@@ -31,6 +31,16 @@ export function normalizeLocalRequest(request: Request, env: LocalOrigins): Requ
     return Response.redirect(url.href, 308);
   }
   if (url.pathname.replace(/\/$/, "") === "/api/bootstrap") return json({ error: "初始化仅限本机", code: "LOCAL_ONLY" }, 403);
+  const internalOrigin = url.origin;
   url.protocol = "https:";
-  return new Request(url.href, request);
+  const normalized = new Request(url.href, request);
+  // Wrangler's local proxy rewrites same-host URL headers to its HTTP origin.
+  // Only browser-confirmed same-origin HTTPS tunnel requests can restore it;
+  // same-site/cross-site/missing metadata and all other origins remain rejected.
+  if (internalOrigin !== remote.origin && forwardedProtocol === "https"
+    && request.headers.get("origin") === internalOrigin
+    && request.headers.get("sec-fetch-site") === "same-origin") {
+    normalized.headers.set("origin", remote.origin);
+  }
+  return normalized;
 }

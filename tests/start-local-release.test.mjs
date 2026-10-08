@@ -14,6 +14,7 @@ async function fixture(failure = false) {
   const port = await unusedPort();
   // Move only the probe port in this isolated fixture, never contact production.
   await writeFile(path.join(root, 'scripts/start-local.mjs'), source.replaceAll('3000', String(port)));
+  await writeFile(path.join(root, 'scripts/site-readiness.mjs'), await readFile(new URL('../scripts/site-readiness.mjs', import.meta.url), 'utf8'));
   await writeFile(path.join(root, '.wrangler/active-release.json'), failure ? 'invalid' : '{}');
   await writeFile(path.join(root, 'scripts/start-release.mjs'), `
     import { readFile, writeFile } from 'node:fs/promises';

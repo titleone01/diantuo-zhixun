@@ -3,6 +3,7 @@ import { access, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { physicalWindowsNetwork, tunnelDnsRelay } from "./tunnel-network.mjs";
+import { probeMemberSite } from "./site-readiness.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const privateDir = resolve(root, ".local/network-access");
@@ -17,12 +18,12 @@ try {
   const value = vars.match(/^APP_PUBLIC_ORIGIN\s*=\s*(.+)$/m)?.[1]?.trim().replace(/^(["'])(.*)\1$/, "$2");
   const publicUrl = new URL(value ?? "");
   if (publicUrl.protocol !== "https:" || publicUrl.username || publicUrl.password || publicUrl.pathname !== "/" || publicUrl.search || publicUrl.hash) throw new Error("APP_PUBLIC_ORIGIN 必须是完整的 HTTPS 站点地址。");
-  const local = await fetch("http://localhost:3000/api/session", { signal: AbortSignal.timeout(2500) });
-  if (!local.ok || !Object.hasOwn(await local.json(), "user")) throw new Error("请先在另一个终端运行 npm run start:local，等待成员站就绪。");
+  if (!(await probeMemberSite("http://localhost:3000", { timeoutMs: 2500 })).ready) throw new Error("本机页面、会话或同源请求检查未通过；请运行 npm run start:local 并检查服务日志。");
   // A running connector is left alone. This command never stops a process
   // found by port, executable name, or a previously recorded PID.
   const existing = await fetch(`http://${metrics}/ready`, { signal: AbortSignal.timeout(1500) }).catch(() => null);
   if (existing?.ok) {
+    if (!(await probeMemberSite(publicUrl.origin, { timeoutMs: 10000 })).ready) throw new Error("已有隧道连接，但公网页面、会话或同源请求检查未通过；请检查成员站日志。");
     console.log(`已有隧道连接正在运行。访问：${publicUrl.origin}/`);
   } else {
     const network = await physicalWindowsNetwork();

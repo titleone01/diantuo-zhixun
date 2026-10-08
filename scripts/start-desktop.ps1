@@ -16,13 +16,15 @@ function Show-Result([string]$message, [bool]$failed = $false) {
     [Windows.Forms.MessageBox]::Show($message, '电拓智训', [Windows.Forms.MessageBoxButtons]::OK, $icon) | Out-Null
 }
 
-function Test-Local {
+function Test-Site([string]$origin, [int]$timeoutMs) {
     try {
-        $response = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:3000/api/session' -TimeoutSec 3
-        $body = $response.Content | ConvertFrom-Json
-        return ($response.StatusCode -eq 200 -and $null -ne $body -and $body.PSObject.Properties.Name -contains 'user')
+        $output = & $script:nodePath (Join-Path $root 'scripts/check-site-access.mjs') --url $origin --timeout-ms $timeoutMs
+        if ($LASTEXITCODE -ne 0) { return $false }
+        return ($output | ConvertFrom-Json).ready -eq $true
     } catch { return $false }
 }
+
+function Test-Local { return Test-Site 'http://127.0.0.1:3000' 3000 }
 
 function Test-Tunnel {
     try { return (Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:20251/ready' -TimeoutSec 3).StatusCode -eq 200 }
@@ -75,16 +77,11 @@ try {
         $tunnel = Start-Helper 'scripts/start-tunnel.mjs' 'tunnel'
         Wait-Ready $tunnel { Test-Tunnel } '固定网址连接' 90
     }
-    $publicReady = $false
-    try {
-        $response = Invoke-WebRequest -UseBasicParsing -Uri "$($uri.GetLeftPart([UriPartial]::Authority))/api/session" -TimeoutSec 20
-        $body = $response.Content | ConvertFrom-Json
-        $publicReady = $response.StatusCode -eq 200 -and $null -ne $body -and $body.PSObject.Properties.Name -contains 'user'
-    } catch { }
+    $publicReady = Test-Site ($uri.GetLeftPart([UriPartial]::Authority)) 15000
     $result = [ordered]@{ checkedAt = (Get-Date).ToString('o'); localReady = $true; tunnelReady = $true; publicReady = $publicReady; publicUrl = $uri.GetLeftPart([UriPartial]::Authority) }
     $result | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $logDir 'last-result.json') -Encoding UTF8
     if (-not $NoOpen) { Start-Process 'http://localhost:3000/' }
-    $notice = if ($publicReady) { '固定网址已验证可访问。' } else { '本机服务和连接已启动，固定网址暂未验证成功；请稍后重试网址。' }
+    $notice = if ($publicReady) { '固定网址的页面、会话及同源请求已通过检查。' } else { '本机服务和连接已启动，固定网址的页面、会话或同源请求检查失败；请查看日志。' }
     Show-Result "电拓智训已在后台运行。`r`n`r`n本机：http://localhost:3000/`r`n其他电脑：$($result.publicUrl)/`r`n`r`n$notice`r`n关闭浏览器不会停止服务。请保持本机开机、联网且不休眠。`r`n关机后，下次开机再双击此快捷方式。" (-not $publicReady)
 } catch {
     $message = $_.Exception.Message

@@ -15,6 +15,32 @@ test("HTTPS tunnel retains the same-origin mutation and request body", async () 
   assert.doesNotThrow(() => assertOrigin(normalized));
 });
 
+test("Wrangler's HTTP header rewrite is restored only for browser same-origin HTTPS requests", async () => {
+  const headers = { origin: "http://train.example.com", "x-forwarded-proto": "https", "sec-fetch-site": "same-origin", "content-type": "application/json" };
+  const request = new Request("http://train.example.com/api/auth/sign-in/username", { method: "POST", headers, body: '{"username":"synthetic"}' });
+  const normalized = normalizeLocalRequest(request, env);
+  assert.equal(normalized.url, "https://train.example.com/api/auth/sign-in/username");
+  assert.equal(normalized.headers.get("origin"), env.APP_PUBLIC_ORIGIN);
+  assert.equal(await normalized.text(), '{"username":"synthetic"}');
+  assert.doesNotThrow(() => assertOrigin(normalized));
+
+  for (const site of [undefined, "same-site", "cross-site", "none"]) {
+    const rejectedHeaders = new Headers(headers);
+    if (site === undefined) rejectedHeaders.delete("sec-fetch-site");
+    else rejectedHeaders.set("sec-fetch-site", site);
+    const rejected = new Request("http://train.example.com/api/circuits", { method: "POST", headers: rejectedHeaders });
+    assert.throws(() => assertOrigin(normalizeLocalRequest(rejected, env)), error => error.status === 403);
+  }
+  for (const origin of ["null", "http://train.example.com:443", "http://train.example.com.evil", "https://evil.example"]) {
+    const rejected = new Request("http://train.example.com/api/circuits", { method: "POST", headers: { ...headers, origin } });
+    assert.throws(() => assertOrigin(normalizeLocalRequest(rejected, env)), error => error.status === 403);
+  }
+  const directHttps = new Request("https://train.example.com/api/circuits", { method: "POST", headers });
+  assert.throws(() => assertOrigin(normalizeLocalRequest(directHttps, env)), error => error.status === 403);
+  const loopback = new Request("http://localhost:3000/api/circuits", { method: "POST", headers });
+  assert.throws(() => assertOrigin(normalizeLocalRequest(loopback, env)), error => error.status === 403);
+});
+
 test("loopback and the fixed HTTPS origin stay isolated; spoofed hosts and origins fail", () => {
   for (const host of ["localhost", "127.0.0.1", "[::1]"]) {
     const request = new Request(`http://${host}:3000/api/session`);

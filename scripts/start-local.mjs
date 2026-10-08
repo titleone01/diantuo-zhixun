@@ -3,6 +3,7 @@ import { lstat } from "node:fs/promises";
 import { connect } from "node:net";
 import { resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
+import { probeMemberSite } from "./site-readiness.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const origin = "http://localhost:3000";
@@ -19,12 +20,7 @@ async function portOccupied() {
   });
 }
 async function ready() {
-  try {
-    const response = await fetch(`${origin}/api/session`, { signal: AbortSignal.timeout(2000) });
-    if (!response.ok) return false;
-    const value = await response.json();
-    return value && Object.hasOwn(value, "user");
-  } catch { return false; }
+  return (await probeMemberSite(origin)).ready;
 }
 function child(args, options = {}) {
   return spawn(process.execPath, args, { cwd: root, env, stdio: "inherit", windowsHide: true, ...options });
@@ -44,7 +40,7 @@ if (await portOccupied()) {
     console.log(`已有成员站服务正在运行：${origin}。未修改文件、未重启服务。`);
     process.exit(0);
   }
-  console.error("3000 端口已被其他服务占用；未停止或修改该服务。请先在对应终端停止它后再运行。");
+  console.error("3000 端口已有服务，但页面、会话或同源请求检查未通过；请查看服务日志。现有服务仍保留。");
   process.exit(1);
 }
 
