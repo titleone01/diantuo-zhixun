@@ -1,4 +1,4 @@
-import { getDefinition, equivalentComponentType } from "./catalog";
+import { getDefinition, equivalentComponentType, isTerminalStrip } from "./catalog";
 import { createMotorCourseDocument } from "./motor-courses";
 import { buildCircuitNetwork, initialRuntime, networkVoltage, simulate } from "./engine";
 import { terminalKey } from "./types";
@@ -25,6 +25,12 @@ export function assessMotorCourse(document: CircuitDocument, lessonId: string): 
   const combinedFuse = document.components.find(component => component.id === (document.roles?.fu2 ?? "fu2") && component.type === "fuse2");
   for (const [role, standardId] of Object.entries(standard.roles || {})) {
     if (combinedFuse && /^fu2[ab]$/.test(role)) { roles.fu2 = combinedFuse.id; continue; }
+    // New practice boards place PE in an explicitly marked slot on XT1.
+    // The electrical safety pass below still verifies the actual PE wiring.
+    if (role === "pe" && !document.roles?.pe) {
+      const strip = document.components.find(component => component.id === (document.roles?.xt16 ?? "xt16") && isTerminalStrip(component.type) && !!component.pePositions?.length);
+      if (strip) { roles.pe = strip.id; continue; }
+    }
     const expected = standard.components.find(component => component.id === standardId)!;
     const id = document.roles?.[role] || (!document.roles && document.components.some(component => component.id === standardId) ? standardId : undefined);
     const actual = document.components.find(component => component.id === id);

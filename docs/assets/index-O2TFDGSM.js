@@ -3,9 +3,9 @@ import {
   __toESM
 } from "./chunks/chunk-MYXFJE25.js";
 
-// E:/vibecoding/电拓智训/node_modules/react/cjs/react.development.js
+// node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react.development.js"(exports, module) {
+  "node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -975,9 +975,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react/index.js
+// node_modules/react/index.js
 var require_react = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/index.js"(exports, module) {
+  "node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -987,9 +987,9 @@ var require_react = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/scheduler/cjs/scheduler.development.js
+// node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -1246,9 +1246,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/scheduler/index.js
+// node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/scheduler/index.js"(exports, module) {
+  "node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1258,9 +1258,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom.development.js
+// node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop2() {
@@ -1502,9 +1502,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react-dom/index.js
+// node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/index.js"(exports, module) {
+  "node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -1515,9 +1515,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react-dom/cjs/react-dom-client.development.js
+// node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id2) {
@@ -21414,9 +21414,9 @@ var require_react_dom_client_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react-dom/client.js
+// node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react-dom/client.js"(exports, module) {
+  "node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21427,9 +21427,9 @@ var require_client = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react/cjs/react-jsx-runtime.development.js
+// node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -21684,9 +21684,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/react/jsx-runtime.js
+// node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/react/jsx-runtime.js"(exports, module) {
+  "node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21696,9 +21696,9 @@ var require_jsx_runtime = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
 var require_use_sync_external_store_shim_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
+  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
@@ -21760,9 +21760,9 @@ var require_use_sync_external_store_shim_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/index.js
+// node_modules/use-sync-external-store/shim/index.js
 var require_shim = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/index.js"(exports, module) {
+  "node_modules/use-sync-external-store/shim/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21772,9 +21772,9 @@ var require_shim = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
+// node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
 var require_with_selector_development = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
+  "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
     "use strict";
     (function() {
       function is(x, y) {
@@ -21839,9 +21839,9 @@ var require_with_selector_development = __commonJS({
   }
 });
 
-// E:/vibecoding/电拓智训/node_modules/use-sync-external-store/shim/with-selector.js
+// node_modules/use-sync-external-store/shim/with-selector.js
 var require_with_selector = __commonJS({
-  "E:/vibecoding/\u7535\u62D3\u667A\u8BAD/node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
+  "node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21858,13 +21858,13 @@ var import_client = __toESM(require_client(), 1);
 // app/simulator/SimulatorApp.tsx
 var import_react22 = __toESM(require_react(), 1);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 var import_react3 = __toESM(require_react(), 1);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs
 var toKebabCase = (string) => string?.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs
 function toLucideIconData(iconName, iconNode, aliases = []) {
   if (iconNode == null) {
     throw new Error("[lucide]: iconNode is required when icon name is used");
@@ -21877,7 +21877,7 @@ function toLucideIconData(iconName, iconNode, aliases = []) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs
 var toCamelCase = (string) => {
   let out = "";
   let upperNext = false;
@@ -21896,21 +21896,21 @@ var toCamelCase = (string) => {
   return out;
 };
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs
 var toPascalCase = (string) => {
   const camelCase = toCamelCase(string);
   return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
 };
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
+// node_modules/lucide-react/dist/esm/Icon.mjs
 var import_react2 = __toESM(require_react(), 1);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs
 var mergeClasses = (...classes) => classes.filter((className, index2, array2) => {
   return Boolean(className) && className.trim() !== "" && array2.indexOf(className) === index2;
 }).join(" ").trim();
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
+// node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs
 var defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -21923,7 +21923,7 @@ var defaultAttributes = {
   "stroke-linejoin": "round"
 };
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
+// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs
 function isDefined(value) {
   return value !== null && value !== void 0;
 }
@@ -21976,7 +21976,7 @@ function buildLucideIconNode(icon, params = {}) {
   ];
 }
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
+// node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs
 function buildLucideIconForReact(icon, params = {}) {
   return buildLucideIconNode(icon, {
     ...params,
@@ -21991,7 +21991,7 @@ function buildLucideIconForReact(icon, params = {}) {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
+// node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs
 var hasA11yProp = (props) => {
   for (const prop in props) {
     if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
@@ -22001,12 +22001,12 @@ var hasA11yProp = (props) => {
   return false;
 };
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/context.mjs
+// node_modules/lucide-react/dist/esm/context.mjs
 var import_react = __toESM(require_react(), 1);
 var LucideContext = (0, import_react.createContext)({});
 var useLucideContext = () => (0, import_react.useContext)(LucideContext);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/Icon.mjs
+// node_modules/lucide-react/dist/esm/Icon.mjs
 var Icon = (0, import_react2.forwardRef)(
   ({
     color: color2,
@@ -22060,7 +22060,7 @@ var Icon = (0, import_react2.forwardRef)(
   }
 );
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/createLucideIcon.mjs
+// node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   const iconData = typeof iconDataOrName === "string" ? toLucideIconData(iconDataOrName, iconNode, aliases) : iconDataOrName;
   const Component = (0, import_react3.forwardRef)(
@@ -22077,7 +22077,7 @@ function createLucideIcon(iconDataOrName, iconNode = [], aliases = []) {
   return Component;
 }
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
+// node_modules/lucide-react/dist/esm/icons/arrow-left.mjs
 var __iconData = {
   name: "arrow-left",
   size: 24,
@@ -22089,7 +22089,7 @@ var __iconData = {
 __iconData.node;
 var ArrowLeft = createLucideIcon(__iconData);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
+// node_modules/lucide-react/dist/esm/icons/arrow-right.mjs
 var __iconData2 = {
   name: "arrow-right",
   size: 24,
@@ -22101,7 +22101,7 @@ var __iconData2 = {
 __iconData2.node;
 var ArrowRight = createLucideIcon(__iconData2);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/bolt.mjs
+// node_modules/lucide-react/dist/esm/icons/bolt.mjs
 var __iconData3 = {
   name: "bolt",
   size: 24,
@@ -22119,7 +22119,7 @@ var __iconData3 = {
 __iconData3.node;
 var Bolt = createLucideIcon(__iconData3);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/book-open.mjs
+// node_modules/lucide-react/dist/esm/icons/book-open.mjs
 var __iconData4 = {
   name: "book-open",
   size: 24,
@@ -22137,7 +22137,7 @@ var __iconData4 = {
 __iconData4.node;
 var BookOpen = createLucideIcon(__iconData4);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/boxes.mjs
+// node_modules/lucide-react/dist/esm/icons/boxes.mjs
 var __iconData5 = {
   name: "boxes",
   size: 24,
@@ -22177,7 +22177,7 @@ var __iconData5 = {
 __iconData5.node;
 var Boxes = createLucideIcon(__iconData5);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/check-check.mjs
+// node_modules/lucide-react/dist/esm/icons/check-check.mjs
 var __iconData6 = {
   name: "check-check",
   size: 24,
@@ -22189,7 +22189,7 @@ var __iconData6 = {
 __iconData6.node;
 var CheckCheck = createLucideIcon(__iconData6);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
+// node_modules/lucide-react/dist/esm/icons/chevron-left.mjs
 var __iconData7 = {
   name: "chevron-left",
   size: 24,
@@ -22198,7 +22198,7 @@ var __iconData7 = {
 __iconData7.node;
 var ChevronLeft = createLucideIcon(__iconData7);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
+// node_modules/lucide-react/dist/esm/icons/chevron-right.mjs
 var __iconData8 = {
   name: "chevron-right",
   size: 24,
@@ -22207,7 +22207,7 @@ var __iconData8 = {
 __iconData8.node;
 var ChevronRight = createLucideIcon(__iconData8);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
+// node_modules/lucide-react/dist/esm/icons/circuit-board.mjs
 var __iconData9 = {
   name: "circuit-board",
   size: 24,
@@ -22222,7 +22222,7 @@ var __iconData9 = {
 __iconData9.node;
 var CircuitBoard = createLucideIcon(__iconData9);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/copy.mjs
+// node_modules/lucide-react/dist/esm/icons/copy.mjs
 var __iconData10 = {
   name: "copy",
   size: 24,
@@ -22234,7 +22234,7 @@ var __iconData10 = {
 __iconData10.node;
 var Copy = createLucideIcon(__iconData10);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/download.mjs
+// node_modules/lucide-react/dist/esm/icons/download.mjs
 var __iconData11 = {
   name: "download",
   size: 24,
@@ -22247,7 +22247,7 @@ var __iconData11 = {
 __iconData11.node;
 var Download = createLucideIcon(__iconData11);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/external-link.mjs
+// node_modules/lucide-react/dist/esm/icons/external-link.mjs
 var __iconData12 = {
   name: "external-link",
   size: 24,
@@ -22260,7 +22260,7 @@ var __iconData12 = {
 __iconData12.node;
 var ExternalLink = createLucideIcon(__iconData12);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-image.mjs
+// node_modules/lucide-react/dist/esm/icons/file-image.mjs
 var __iconData13 = {
   name: "file-image",
   size: 24,
@@ -22280,7 +22280,7 @@ var __iconData13 = {
 __iconData13.node;
 var FileImage = createLucideIcon(__iconData13);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
+// node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
 var __iconData14 = {
   name: "file-plus-corner",
   size: 24,
@@ -22301,7 +22301,7 @@ var __iconData14 = {
 __iconData14.node;
 var FilePlusCorner = createLucideIcon(__iconData14);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/file-up.mjs
+// node_modules/lucide-react/dist/esm/icons/file-up.mjs
 var __iconData15 = {
   name: "file-up",
   size: 24,
@@ -22321,7 +22321,7 @@ var __iconData15 = {
 __iconData15.node;
 var FileUp = createLucideIcon(__iconData15);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/folder-open.mjs
+// node_modules/lucide-react/dist/esm/icons/folder-open.mjs
 var __iconData16 = {
   name: "folder-open",
   size: 24,
@@ -22338,7 +22338,7 @@ var __iconData16 = {
 __iconData16.node;
 var FolderOpen = createLucideIcon(__iconData16);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/globe.mjs
+// node_modules/lucide-react/dist/esm/icons/globe.mjs
 var __iconData17 = {
   name: "globe",
   size: 24,
@@ -22351,7 +22351,7 @@ var __iconData17 = {
 __iconData17.node;
 var Globe = createLucideIcon(__iconData17);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
+// node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
 var __iconData18 = {
   name: "grip-horizontal",
   size: 24,
@@ -22367,7 +22367,7 @@ var __iconData18 = {
 __iconData18.node;
 var GripHorizontal = createLucideIcon(__iconData18);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/heart.mjs
+// node_modules/lucide-react/dist/esm/icons/heart.mjs
 var __iconData19 = {
   name: "heart",
   size: 24,
@@ -22384,7 +22384,7 @@ var __iconData19 = {
 __iconData19.node;
 var Heart = createLucideIcon(__iconData19);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/house.mjs
+// node_modules/lucide-react/dist/esm/icons/house.mjs
 var __iconData20 = {
   name: "house",
   size: 24,
@@ -22403,7 +22403,7 @@ var __iconData20 = {
 __iconData20.node;
 var House = createLucideIcon(__iconData20);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/key-round.mjs
+// node_modules/lucide-react/dist/esm/icons/key-round.mjs
 var __iconData21 = {
   name: "key-round",
   size: 24,
@@ -22421,7 +22421,7 @@ var __iconData21 = {
 __iconData21.node;
 var KeyRound = createLucideIcon(__iconData21);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/link.mjs
+// node_modules/lucide-react/dist/esm/icons/link.mjs
 var __iconData22 = {
   name: "link",
   size: 24,
@@ -22433,7 +22433,7 @@ var __iconData22 = {
 __iconData22.node;
 var Link = createLucideIcon(__iconData22);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
+// node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
 var __iconData23 = {
   name: "locate-fixed",
   size: 24,
@@ -22449,7 +22449,7 @@ var __iconData23 = {
 __iconData23.node;
 var LocateFixed = createLucideIcon(__iconData23);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/log-out.mjs
+// node_modules/lucide-react/dist/esm/icons/log-out.mjs
 var __iconData24 = {
   name: "log-out",
   size: 24,
@@ -22462,7 +22462,7 @@ var __iconData24 = {
 __iconData24.node;
 var LogOut = createLucideIcon(__iconData24);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
+// node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
 var __iconData25 = {
   name: "maximize-2",
   size: 24,
@@ -22476,7 +22476,7 @@ var __iconData25 = {
 __iconData25.node;
 var Maximize2 = createLucideIcon(__iconData25);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
+// node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
 var __iconData26 = {
   name: "minimize-2",
   size: 24,
@@ -22490,7 +22490,7 @@ var __iconData26 = {
 __iconData26.node;
 var Minimize2 = createLucideIcon(__iconData26);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/minus.mjs
+// node_modules/lucide-react/dist/esm/icons/minus.mjs
 var __iconData27 = {
   name: "minus",
   size: 24,
@@ -22499,7 +22499,7 @@ var __iconData27 = {
 __iconData27.node;
 var Minus = createLucideIcon(__iconData27);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
+// node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
 var __iconData28 = {
   name: "panel-right-close",
   size: 24,
@@ -22512,7 +22512,7 @@ var __iconData28 = {
 __iconData28.node;
 var PanelRightClose = createLucideIcon(__iconData28);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/play.mjs
+// node_modules/lucide-react/dist/esm/icons/play.mjs
 var __iconData29 = {
   name: "play",
   size: 24,
@@ -22529,7 +22529,7 @@ var __iconData29 = {
 __iconData29.node;
 var Play = createLucideIcon(__iconData29);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/plus.mjs
+// node_modules/lucide-react/dist/esm/icons/plus.mjs
 var __iconData30 = {
   name: "plus",
   size: 24,
@@ -22541,7 +22541,7 @@ var __iconData30 = {
 __iconData30.node;
 var Plus = createLucideIcon(__iconData30);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/redo-2.mjs
+// node_modules/lucide-react/dist/esm/icons/redo-2.mjs
 var __iconData31 = {
   name: "redo-2",
   size: 24,
@@ -22553,7 +22553,7 @@ var __iconData31 = {
 __iconData31.node;
 var Redo2 = createLucideIcon(__iconData31);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
+// node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
 var __iconData32 = {
   name: "refresh-cw",
   size: 24,
@@ -22567,7 +22567,7 @@ var __iconData32 = {
 __iconData32.node;
 var RefreshCw = createLucideIcon(__iconData32);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
+// node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
 var __iconData33 = {
   name: "rotate-ccw",
   size: 24,
@@ -22579,7 +22579,7 @@ var __iconData33 = {
 __iconData33.node;
 var RotateCcw = createLucideIcon(__iconData33);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
+// node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
 var __iconData34 = {
   name: "rotate-cw",
   size: 24,
@@ -22591,7 +22591,7 @@ var __iconData34 = {
 __iconData34.node;
 var RotateCw = createLucideIcon(__iconData34);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/search.mjs
+// node_modules/lucide-react/dist/esm/icons/search.mjs
 var __iconData35 = {
   name: "search",
   size: 24,
@@ -22603,7 +22603,7 @@ var __iconData35 = {
 __iconData35.node;
 var Search = createLucideIcon(__iconData35);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/shield-check.mjs
+// node_modules/lucide-react/dist/esm/icons/shield-check.mjs
 var __iconData36 = {
   name: "shield-check",
   size: 24,
@@ -22621,17 +22621,36 @@ var __iconData36 = {
 __iconData36.node;
 var ShieldCheck = createLucideIcon(__iconData36);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/square.mjs
+// node_modules/lucide-react/dist/esm/icons/sliders-horizontal.mjs
 var __iconData37 = {
+  name: "sliders-horizontal",
+  size: 24,
+  node: [
+    ["path", { d: "M10 5H3", key: "1qgfaw" }],
+    ["path", { d: "M12 19H3", key: "yhmn1j" }],
+    ["path", { d: "M14 3v4", key: "1sua03" }],
+    ["path", { d: "M16 17v4", key: "1q0r14" }],
+    ["path", { d: "M21 12h-9", key: "1o4lsq" }],
+    ["path", { d: "M21 19h-5", key: "1rlt1p" }],
+    ["path", { d: "M21 5h-7", key: "1oszz2" }],
+    ["path", { d: "M8 10v4", key: "tgpxqk" }],
+    ["path", { d: "M8 12H3", key: "a7s4jb" }]
+  ]
+};
+__iconData37.node;
+var SlidersHorizontal = createLucideIcon(__iconData37);
+
+// node_modules/lucide-react/dist/esm/icons/square.mjs
+var __iconData38 = {
   name: "square",
   size: 24,
   node: [["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]]
 };
-__iconData37.node;
-var Square = createLucideIcon(__iconData37);
+__iconData38.node;
+var Square = createLucideIcon(__iconData38);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/star.mjs
-var __iconData38 = {
+// node_modules/lucide-react/dist/esm/icons/star.mjs
+var __iconData39 = {
   name: "star",
   size: 24,
   node: [
@@ -22644,11 +22663,11 @@ var __iconData38 = {
     ]
   ]
 };
-__iconData38.node;
-var Star = createLucideIcon(__iconData38);
+__iconData39.node;
+var Star = createLucideIcon(__iconData39);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-var __iconData39 = {
+// node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
+var __iconData40 = {
   name: "triangle-alert",
   size: 24,
   node: [
@@ -22664,11 +22683,11 @@ var __iconData39 = {
   ],
   aliases: ["alert-triangle"]
 };
-__iconData39.node;
-var TriangleAlert = createLucideIcon(__iconData39);
+__iconData40.node;
+var TriangleAlert = createLucideIcon(__iconData40);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/undo-2.mjs
-var __iconData40 = {
+// node_modules/lucide-react/dist/esm/icons/undo-2.mjs
+var __iconData41 = {
   name: "undo-2",
   size: 24,
   node: [
@@ -22676,11 +22695,11 @@ var __iconData40 = {
     ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
   ]
 };
-__iconData40.node;
-var Undo2 = createLucideIcon(__iconData40);
+__iconData41.node;
+var Undo2 = createLucideIcon(__iconData41);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconData41 = {
+// node_modules/lucide-react/dist/esm/icons/user-round.mjs
+var __iconData42 = {
   name: "user-round",
   size: 24,
   node: [
@@ -22689,11 +22708,11 @@ var __iconData41 = {
   ],
   aliases: ["user-2"]
 };
-__iconData41.node;
-var UserRound = createLucideIcon(__iconData41);
+__iconData42.node;
+var UserRound = createLucideIcon(__iconData42);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/video.mjs
-var __iconData42 = {
+// node_modules/lucide-react/dist/esm/icons/video.mjs
+var __iconData43 = {
   name: "video",
   size: 24,
   node: [
@@ -22707,11 +22726,11 @@ var __iconData42 = {
     ["rect", { x: "2", y: "6", width: "14", height: "12", rx: "2", key: "158x01" }]
   ]
 };
-__iconData42.node;
-var Video = createLucideIcon(__iconData42);
+__iconData43.node;
+var Video = createLucideIcon(__iconData43);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconData43 = {
+// node_modules/lucide-react/dist/esm/icons/x.mjs
+var __iconData44 = {
   name: "x",
   size: 24,
   node: [
@@ -22719,11 +22738,11 @@ var __iconData43 = {
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
   ]
 };
-__iconData43.node;
-var X = createLucideIcon(__iconData43);
+__iconData44.node;
+var X = createLucideIcon(__iconData44);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
-var __iconData44 = {
+// node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
+var __iconData45 = {
   name: "zoom-in",
   size: 24,
   node: [
@@ -22733,11 +22752,11 @@ var __iconData44 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData44.node;
-var ZoomIn = createLucideIcon(__iconData44);
+__iconData45.node;
+var ZoomIn = createLucideIcon(__iconData45);
 
-// E:/vibecoding/电拓智训/node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
-var __iconData45 = {
+// node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
+var __iconData46 = {
   name: "zoom-out",
   size: 24,
   node: [
@@ -22746,18 +22765,18 @@ var __iconData45 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData45.node;
-var ZoomOut = createLucideIcon(__iconData45);
+__iconData46.node;
+var ZoomOut = createLucideIcon(__iconData46);
 
 // app/simulator/editor/SimulatorEditor.tsx
 var import_react15 = __toESM(require_react(), 1);
 var import_react_dom3 = __toESM(require_react_dom(), 1);
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
+// node_modules/@xyflow/react/dist/esm/index.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
 var import_react5 = __toESM(require_react());
 
-// E:/vibecoding/电拓智训/node_modules/classcat/index.js
+// node_modules/classcat/index.js
 function cc(names) {
   if (typeof names === "string" || typeof names === "number") return "" + names;
   let out = "";
@@ -22775,7 +22794,7 @@ function cc(names) {
   return out;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-dispatch/src/dispatch.js
+// node_modules/d3-dispatch/src/dispatch.js
 var noop = { value: () => {
 } };
 function dispatch() {
@@ -22845,7 +22864,7 @@ function set(type, name, callback) {
 }
 var dispatch_default = dispatch;
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespaces.js
+// node_modules/d3-selection/src/namespaces.js
 var xhtml = "http://www.w3.org/1999/xhtml";
 var namespaces_default = {
   svg: "http://www.w3.org/2000/svg",
@@ -22855,14 +22874,14 @@ var namespaces_default = {
   xmlns: "http://www.w3.org/2000/xmlns/"
 };
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/namespace.js
+// node_modules/d3-selection/src/namespace.js
 function namespace_default(name) {
   var prefix2 = name += "", i = prefix2.indexOf(":");
   if (i >= 0 && (prefix2 = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
   return namespaces_default.hasOwnProperty(prefix2) ? { space: namespaces_default[prefix2], local: name } : name;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/creator.js
+// node_modules/d3-selection/src/creator.js
 function creatorInherit(name) {
   return function() {
     var document2 = this.ownerDocument, uri = this.namespaceURI;
@@ -22879,7 +22898,7 @@ function creator_default(name) {
   return (fullname.local ? creatorFixed : creatorInherit)(fullname);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selector.js
+// node_modules/d3-selection/src/selector.js
 function none() {
 }
 function selector_default(selector) {
@@ -22888,7 +22907,7 @@ function selector_default(selector) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/select.js
+// node_modules/d3-selection/src/selection/select.js
 function select_default(select) {
   if (typeof select !== "function") select = selector_default(select);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22902,12 +22921,12 @@ function select_default(select) {
   return new Selection(subgroups, this._parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/array.js
+// node_modules/d3-selection/src/array.js
 function array(x) {
   return x == null ? [] : Array.isArray(x) ? x : Array.from(x);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selectorAll.js
+// node_modules/d3-selection/src/selectorAll.js
 function empty() {
   return [];
 }
@@ -22917,7 +22936,7 @@ function selectorAll_default(selector) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectAll.js
+// node_modules/d3-selection/src/selection/selectAll.js
 function arrayAll(select) {
   return function() {
     return array(select.apply(this, arguments));
@@ -22937,7 +22956,7 @@ function selectAll_default(select) {
   return new Selection(subgroups, parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/matcher.js
+// node_modules/d3-selection/src/matcher.js
 function matcher_default(selector) {
   return function() {
     return this.matches(selector);
@@ -22949,7 +22968,7 @@ function childMatcher(selector) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChild.js
+// node_modules/d3-selection/src/selection/selectChild.js
 var find = Array.prototype.find;
 function childFind(match) {
   return function() {
@@ -22963,7 +22982,7 @@ function selectChild_default(match) {
   return this.select(match == null ? childFirst : childFind(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/selectChildren.js
+// node_modules/d3-selection/src/selection/selectChildren.js
 var filter = Array.prototype.filter;
 function children() {
   return Array.from(this.children);
@@ -22977,7 +22996,7 @@ function selectChildren_default(match) {
   return this.selectAll(match == null ? children : childrenFilter(typeof match === "function" ? match : childMatcher(match)));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/filter.js
+// node_modules/d3-selection/src/selection/filter.js
 function filter_default(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -22990,12 +23009,12 @@ function filter_default(match) {
   return new Selection(subgroups, this._parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sparse.js
+// node_modules/d3-selection/src/selection/sparse.js
 function sparse_default(update) {
   return new Array(update.length);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/enter.js
+// node_modules/d3-selection/src/selection/enter.js
 function enter_default() {
   return new Selection(this._enter || this._groups.map(sparse_default), this._parents);
 }
@@ -23022,14 +23041,14 @@ EnterNode.prototype = {
   }
 };
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/constant.js
+// node_modules/d3-selection/src/constant.js
 function constant_default(x) {
   return function() {
     return x;
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/data.js
+// node_modules/d3-selection/src/selection/data.js
 function bindIndex(parent, group, enter, update, exit, data) {
   var i = 0, node, groupLength = group.length, dataLength = data.length;
   for (; i < dataLength; ++i) {
@@ -23101,12 +23120,12 @@ function arraylike(data) {
   return typeof data === "object" && "length" in data ? data : Array.from(data);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/exit.js
+// node_modules/d3-selection/src/selection/exit.js
 function exit_default() {
   return new Selection(this._exit || this._groups.map(sparse_default), this._parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/join.js
+// node_modules/d3-selection/src/selection/join.js
 function join_default(onenter, onupdate, onexit) {
   var enter = this.enter(), update = this, exit = this.exit();
   if (typeof onenter === "function") {
@@ -23124,7 +23143,7 @@ function join_default(onenter, onupdate, onexit) {
   return enter && update ? enter.merge(update).order() : update;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/merge.js
+// node_modules/d3-selection/src/selection/merge.js
 function merge_default(context) {
   var selection2 = context.selection ? context.selection() : context;
   for (var groups0 = this._groups, groups1 = selection2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -23140,7 +23159,7 @@ function merge_default(context) {
   return new Selection(merges, this._parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/order.js
+// node_modules/d3-selection/src/selection/order.js
 function order_default() {
   for (var groups = this._groups, j = -1, m = groups.length; ++j < m; ) {
     for (var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0; ) {
@@ -23153,7 +23172,7 @@ function order_default() {
   return this;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/sort.js
+// node_modules/d3-selection/src/selection/sort.js
 function sort_default(compare) {
   if (!compare) compare = ascending;
   function compareNode(a, b) {
@@ -23173,7 +23192,7 @@ function ascending(a, b) {
   return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/call.js
+// node_modules/d3-selection/src/selection/call.js
 function call_default() {
   var callback = arguments[0];
   arguments[0] = this;
@@ -23181,12 +23200,12 @@ function call_default() {
   return this;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/nodes.js
+// node_modules/d3-selection/src/selection/nodes.js
 function nodes_default() {
   return Array.from(this);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/node.js
+// node_modules/d3-selection/src/selection/node.js
 function node_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length; i < n; ++i) {
@@ -23197,19 +23216,19 @@ function node_default() {
   return null;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/size.js
+// node_modules/d3-selection/src/selection/size.js
 function size_default() {
   let size = 0;
   for (const node of this) ++size;
   return size;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/empty.js
+// node_modules/d3-selection/src/selection/empty.js
 function empty_default() {
   return !this.node();
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/each.js
+// node_modules/d3-selection/src/selection/each.js
 function each_default(callback) {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23219,7 +23238,7 @@ function each_default(callback) {
   return this;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/attr.js
+// node_modules/d3-selection/src/selection/attr.js
 function attrRemove(name) {
   return function() {
     this.removeAttribute(name);
@@ -23263,12 +23282,12 @@ function attr_default(name, value) {
   return this.each((value == null ? fullname.local ? attrRemoveNS : attrRemove : typeof value === "function" ? fullname.local ? attrFunctionNS : attrFunction : fullname.local ? attrConstantNS : attrConstant)(fullname, value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/window.js
+// node_modules/d3-selection/src/window.js
 function window_default(node) {
   return node.ownerDocument && node.ownerDocument.defaultView || node.document && node || node.defaultView;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/style.js
+// node_modules/d3-selection/src/selection/style.js
 function styleRemove(name) {
   return function() {
     this.style.removeProperty(name);
@@ -23293,7 +23312,7 @@ function styleValue(node, name) {
   return node.style.getPropertyValue(name) || window_default(node).getComputedStyle(node, null).getPropertyValue(name);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/property.js
+// node_modules/d3-selection/src/selection/property.js
 function propertyRemove(name) {
   return function() {
     delete this[name];
@@ -23315,7 +23334,7 @@ function property_default(name, value) {
   return arguments.length > 1 ? this.each((value == null ? propertyRemove : typeof value === "function" ? propertyFunction : propertyConstant)(name, value)) : this.node()[name];
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/classed.js
+// node_modules/d3-selection/src/selection/classed.js
 function classArray(string) {
   return string.trim().split(/^|\s+/);
 }
@@ -23378,7 +23397,7 @@ function classed_default(name, value) {
   return this.each((typeof value === "function" ? classedFunction : value ? classedTrue : classedFalse)(names, value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/text.js
+// node_modules/d3-selection/src/selection/text.js
 function textRemove() {
   this.textContent = "";
 }
@@ -23397,7 +23416,7 @@ function text_default(value) {
   return arguments.length ? this.each(value == null ? textRemove : (typeof value === "function" ? textFunction : textConstant)(value)) : this.node().textContent;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/html.js
+// node_modules/d3-selection/src/selection/html.js
 function htmlRemove() {
   this.innerHTML = "";
 }
@@ -23416,7 +23435,7 @@ function html_default(value) {
   return arguments.length ? this.each(value == null ? htmlRemove : (typeof value === "function" ? htmlFunction : htmlConstant)(value)) : this.node().innerHTML;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/raise.js
+// node_modules/d3-selection/src/selection/raise.js
 function raise() {
   if (this.nextSibling) this.parentNode.appendChild(this);
 }
@@ -23424,7 +23443,7 @@ function raise_default() {
   return this.each(raise);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/lower.js
+// node_modules/d3-selection/src/selection/lower.js
 function lower() {
   if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
 }
@@ -23432,7 +23451,7 @@ function lower_default() {
   return this.each(lower);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/append.js
+// node_modules/d3-selection/src/selection/append.js
 function append_default(name) {
   var create2 = typeof name === "function" ? name : creator_default(name);
   return this.select(function() {
@@ -23440,7 +23459,7 @@ function append_default(name) {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/insert.js
+// node_modules/d3-selection/src/selection/insert.js
 function constantNull() {
   return null;
 }
@@ -23451,7 +23470,7 @@ function insert_default(name, before) {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/remove.js
+// node_modules/d3-selection/src/selection/remove.js
 function remove() {
   var parent = this.parentNode;
   if (parent) parent.removeChild(this);
@@ -23460,7 +23479,7 @@ function remove_default() {
   return this.each(remove);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/clone.js
+// node_modules/d3-selection/src/selection/clone.js
 function selection_cloneShallow() {
   var clone3 = this.cloneNode(false), parent = this.parentNode;
   return parent ? parent.insertBefore(clone3, this.nextSibling) : clone3;
@@ -23473,12 +23492,12 @@ function clone_default(deep) {
   return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/datum.js
+// node_modules/d3-selection/src/selection/datum.js
 function datum_default(value) {
   return arguments.length ? this.property("__data__", value) : this.node().__data__;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/on.js
+// node_modules/d3-selection/src/selection/on.js
 function contextListener(listener) {
   return function(event) {
     listener.call(this, event, this.__data__);
@@ -23541,7 +23560,7 @@ function on_default(typename, value, options) {
   return this;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/dispatch.js
+// node_modules/d3-selection/src/selection/dispatch.js
 function dispatchEvent2(node, type, params) {
   var window2 = window_default(node), event = window2.CustomEvent;
   if (typeof event === "function") {
@@ -23567,7 +23586,7 @@ function dispatch_default2(type, params) {
   return this.each((typeof params === "function" ? dispatchFunction : dispatchConstant)(type, params));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/iterator.js
+// node_modules/d3-selection/src/selection/iterator.js
 function* iterator_default() {
   for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
     for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
@@ -23576,7 +23595,7 @@ function* iterator_default() {
   }
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/selection/index.js
+// node_modules/d3-selection/src/selection/index.js
 var root = [null];
 function Selection(groups, parents) {
   this._groups = groups;
@@ -23628,19 +23647,19 @@ Selection.prototype = selection.prototype = {
 };
 var selection_default = selection;
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/select.js
+// node_modules/d3-selection/src/select.js
 function select_default2(selector) {
   return typeof selector === "string" ? new Selection([[document.querySelector(selector)]], [document.documentElement]) : new Selection([[selector]], root);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/sourceEvent.js
+// node_modules/d3-selection/src/sourceEvent.js
 function sourceEvent_default(event) {
   let sourceEvent;
   while (sourceEvent = event.sourceEvent) event = sourceEvent;
   return event;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-selection/src/pointer.js
+// node_modules/d3-selection/src/pointer.js
 function pointer_default(event, node) {
   event = sourceEvent_default(event);
   if (node === void 0) node = event.currentTarget;
@@ -23660,7 +23679,7 @@ function pointer_default(event, node) {
   return [event.pageX, event.pageY];
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-drag/src/noevent.js
+// node_modules/d3-drag/src/noevent.js
 var nonpassive = { passive: false };
 var nonpassivecapture = { capture: true, passive: false };
 function nopropagation(event) {
@@ -23671,7 +23690,7 @@ function noevent_default(event) {
   event.stopImmediatePropagation();
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-drag/src/nodrag.js
+// node_modules/d3-drag/src/nodrag.js
 function nodrag_default(view) {
   var root2 = view.document.documentElement, selection2 = select_default2(view).on("dragstart.drag", noevent_default, nonpassivecapture);
   if ("onselectstart" in root2) {
@@ -23697,10 +23716,10 @@ function yesdrag(view, noclick) {
   }
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-drag/src/constant.js
+// node_modules/d3-drag/src/constant.js
 var constant_default2 = (x) => () => x;
 
-// E:/vibecoding/电拓智训/node_modules/d3-drag/src/event.js
+// node_modules/d3-drag/src/event.js
 function DragEvent(type, {
   sourceEvent,
   subject,
@@ -23732,7 +23751,7 @@ DragEvent.prototype.on = function() {
   return value === this._ ? this : value;
 };
 
-// E:/vibecoding/电拓智训/node_modules/d3-drag/src/drag.js
+// node_modules/d3-drag/src/drag.js
 function defaultFilter(event) {
   return !event.ctrlKey && !event.button;
 }
@@ -23877,7 +23896,7 @@ function drag_default() {
   return drag;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-color/src/define.js
+// node_modules/d3-color/src/define.js
 function define_default(constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype;
   prototype.constructor = constructor;
@@ -23888,7 +23907,7 @@ function extend(parent, definition) {
   return prototype;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-color/src/color.js
+// node_modules/d3-color/src/color.js
 function Color() {
 }
 var darker = 0.7;
@@ -24225,7 +24244,7 @@ function hsl2rgb(h, m1, m2) {
   return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basis.js
+// node_modules/d3-interpolate/src/basis.js
 function basis(t1, v0, v1, v2, v3) {
   var t2 = t1 * t1, t3 = t2 * t1;
   return ((1 - 3 * t1 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
@@ -24238,7 +24257,7 @@ function basis_default(values) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/basisClosed.js
+// node_modules/d3-interpolate/src/basisClosed.js
 function basisClosed_default(values) {
   var n = values.length;
   return function(t) {
@@ -24247,10 +24266,10 @@ function basisClosed_default(values) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/constant.js
+// node_modules/d3-interpolate/src/constant.js
 var constant_default3 = (x) => () => x;
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/color.js
+// node_modules/d3-interpolate/src/color.js
 function linear(a, d) {
   return function(t) {
     return a + t * d;
@@ -24271,7 +24290,7 @@ function nogamma(a, b) {
   return d ? linear(a, d) : constant_default3(isNaN(a) ? b : a);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/rgb.js
+// node_modules/d3-interpolate/src/rgb.js
 var rgb_default = (function rgbGamma(y) {
   var color2 = gamma(y);
   function rgb2(start2, end) {
@@ -24311,7 +24330,7 @@ function rgbSpline(spline) {
 var rgbBasis = rgbSpline(basis_default);
 var rgbBasisClosed = rgbSpline(basisClosed_default);
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/numberArray.js
+// node_modules/d3-interpolate/src/numberArray.js
 function numberArray_default(a, b) {
   if (!b) b = [];
   var n = a ? Math.min(b.length, a.length) : 0, c = b.slice(), i;
@@ -24324,7 +24343,7 @@ function isNumberArray(x) {
   return ArrayBuffer.isView(x) && !(x instanceof DataView);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/array.js
+// node_modules/d3-interpolate/src/array.js
 function genericArray(a, b) {
   var nb = b ? b.length : 0, na = a ? Math.min(nb, a.length) : 0, x = new Array(na), c = new Array(nb), i;
   for (i = 0; i < na; ++i) x[i] = value_default(a[i], b[i]);
@@ -24335,7 +24354,7 @@ function genericArray(a, b) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/date.js
+// node_modules/d3-interpolate/src/date.js
 function date_default(a, b) {
   var d = /* @__PURE__ */ new Date();
   return a = +a, b = +b, function(t) {
@@ -24343,14 +24362,14 @@ function date_default(a, b) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/number.js
+// node_modules/d3-interpolate/src/number.js
 function number_default(a, b) {
   return a = +a, b = +b, function(t) {
     return a * (1 - t) + b * t;
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/object.js
+// node_modules/d3-interpolate/src/object.js
 function object_default(a, b) {
   var i = {}, c = {}, k;
   if (a === null || typeof a !== "object") a = {};
@@ -24368,7 +24387,7 @@ function object_default(a, b) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/string.js
+// node_modules/d3-interpolate/src/string.js
 var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
 var reB = new RegExp(reA.source, "g");
 function zero(b) {
@@ -24410,13 +24429,13 @@ function string_default(a, b) {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/value.js
+// node_modules/d3-interpolate/src/value.js
 function value_default(a, b) {
   var t = typeof b, c;
   return b == null || t === "boolean" ? constant_default3(b) : (t === "number" ? number_default : t === "string" ? (c = color(b)) ? (b = c, rgb_default) : string_default : b instanceof color ? rgb_default : b instanceof Date ? date_default : isNumberArray(b) ? numberArray_default : Array.isArray(b) ? genericArray : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object_default : number_default)(a, b);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/decompose.js
+// node_modules/d3-interpolate/src/transform/decompose.js
 var degrees = 180 / Math.PI;
 var identity = {
   translateX: 0,
@@ -24442,7 +24461,7 @@ function decompose_default(a, b, c, d, e, f) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/parse.js
+// node_modules/d3-interpolate/src/transform/parse.js
 var svgNode;
 function parseCss(value) {
   const m = new (typeof DOMMatrix === "function" ? DOMMatrix : WebKitCSSMatrix)(value + "");
@@ -24457,7 +24476,7 @@ function parseSvg(value) {
   return decompose_default(value.a, value.b, value.c, value.d, value.e, value.f);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/transform/index.js
+// node_modules/d3-interpolate/src/transform/index.js
 function interpolateTransform(parse, pxComma, pxParen, degParen) {
   function pop(s) {
     return s.length ? s.pop() + " " : "";
@@ -24512,7 +24531,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
 var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
 
-// E:/vibecoding/电拓智训/node_modules/d3-interpolate/src/zoom.js
+// node_modules/d3-interpolate/src/zoom.js
 var epsilon2 = 1e-12;
 function cosh(x) {
   return ((x = Math.exp(x)) + 1 / x) / 2;
@@ -24557,7 +24576,7 @@ var zoom_default = (function zoomRho(rho, rho2, rho4) {
   return zoom;
 })(Math.SQRT2, 2, 4);
 
-// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timer.js
+// node_modules/d3-timer/src/timer.js
 var frame = 0;
 var timeout = 0;
 var interval = 0;
@@ -24659,7 +24678,7 @@ function sleep(time) {
   }
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-timer/src/timeout.js
+// node_modules/d3-timer/src/timeout.js
 function timeout_default(callback, delay, time) {
   var t = new Timer();
   delay = delay == null ? 0 : +delay;
@@ -24670,7 +24689,7 @@ function timeout_default(callback, delay, time) {
   return t;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/schedule.js
+// node_modules/d3-transition/src/transition/schedule.js
 var emptyOn = dispatch_default("start", "end", "cancel", "interrupt");
 var emptyTween = [];
 var CREATED = 0;
@@ -24781,7 +24800,7 @@ function create(node, id2, self) {
   }
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/interrupt.js
+// node_modules/d3-transition/src/interrupt.js
 function interrupt_default(node, name) {
   var schedules = node.__transition, schedule, active, empty2 = true, i;
   if (!schedules) return;
@@ -24800,14 +24819,14 @@ function interrupt_default(node, name) {
   if (empty2) delete node.__transition;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/interrupt.js
+// node_modules/d3-transition/src/selection/interrupt.js
 function interrupt_default2(name) {
   return this.each(function() {
     interrupt_default(this, name);
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/tween.js
+// node_modules/d3-transition/src/transition/tween.js
 function tweenRemove(id2, name) {
   var tween0, tween1;
   return function() {
@@ -24868,13 +24887,13 @@ function tweenValue(transition2, name, value) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/interpolate.js
+// node_modules/d3-transition/src/transition/interpolate.js
 function interpolate_default(a, b) {
   var c;
   return (typeof b === "number" ? number_default : b instanceof color ? rgb_default : (c = color(b)) ? (b = c, rgb_default) : string_default)(a, b);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attr.js
+// node_modules/d3-transition/src/transition/attr.js
 function attrRemove2(name) {
   return function() {
     this.removeAttribute(name);
@@ -24924,7 +24943,7 @@ function attr_default2(name, value) {
   return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i, value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/attrTween.js
+// node_modules/d3-transition/src/transition/attrTween.js
 function attrInterpolate(name, i) {
   return function(t) {
     this.setAttribute(name, i.call(this, t));
@@ -24964,7 +24983,7 @@ function attrTween_default(name, value) {
   return this.tween(key4, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/delay.js
+// node_modules/d3-transition/src/transition/delay.js
 function delayFunction(id2, value) {
   return function() {
     init(this, id2).delay = +value.apply(this, arguments);
@@ -24980,7 +24999,7 @@ function delay_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? delayFunction : delayConstant)(id2, value)) : get2(this.node(), id2).delay;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/duration.js
+// node_modules/d3-transition/src/transition/duration.js
 function durationFunction(id2, value) {
   return function() {
     set2(this, id2).duration = +value.apply(this, arguments);
@@ -24996,7 +25015,7 @@ function duration_default(value) {
   return arguments.length ? this.each((typeof value === "function" ? durationFunction : durationConstant)(id2, value)) : get2(this.node(), id2).duration;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/ease.js
+// node_modules/d3-transition/src/transition/ease.js
 function easeConstant(id2, value) {
   if (typeof value !== "function") throw new Error();
   return function() {
@@ -25008,7 +25027,7 @@ function ease_default(value) {
   return arguments.length ? this.each(easeConstant(id2, value)) : get2(this.node(), id2).ease;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/easeVarying.js
+// node_modules/d3-transition/src/transition/easeVarying.js
 function easeVarying(id2, value) {
   return function() {
     var v = value.apply(this, arguments);
@@ -25021,7 +25040,7 @@ function easeVarying_default(value) {
   return this.each(easeVarying(this._id, value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/filter.js
+// node_modules/d3-transition/src/transition/filter.js
 function filter_default2(match) {
   if (typeof match !== "function") match = matcher_default(match);
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
@@ -25034,7 +25053,7 @@ function filter_default2(match) {
   return new Transition(subgroups, this._parents, this._name, this._id);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/merge.js
+// node_modules/d3-transition/src/transition/merge.js
 function merge_default2(transition2) {
   if (transition2._id !== this._id) throw new Error();
   for (var groups0 = this._groups, groups1 = transition2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
@@ -25050,7 +25069,7 @@ function merge_default2(transition2) {
   return new Transition(merges, this._parents, this._name, this._id);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/on.js
+// node_modules/d3-transition/src/transition/on.js
 function start(name) {
   return (name + "").trim().split(/^|\s+/).every(function(t) {
     var i = t.indexOf(".");
@@ -25071,7 +25090,7 @@ function on_default2(name, listener) {
   return arguments.length < 2 ? get2(this.node(), id2).on.on(name) : this.each(onFunction(id2, name, listener));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/remove.js
+// node_modules/d3-transition/src/transition/remove.js
 function removeFunction(id2) {
   return function() {
     var parent = this.parentNode;
@@ -25083,7 +25102,7 @@ function remove_default2() {
   return this.on("end.remove", removeFunction(this._id));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/select.js
+// node_modules/d3-transition/src/transition/select.js
 function select_default3(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selector_default(select);
@@ -25099,7 +25118,7 @@ function select_default3(select) {
   return new Transition(subgroups, this._parents, name, id2);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selectAll.js
+// node_modules/d3-transition/src/transition/selectAll.js
 function selectAll_default2(select) {
   var name = this._name, id2 = this._id;
   if (typeof select !== "function") select = selectorAll_default(select);
@@ -25119,13 +25138,13 @@ function selectAll_default2(select) {
   return new Transition(subgroups, parents, name, id2);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/selection.js
+// node_modules/d3-transition/src/transition/selection.js
 var Selection2 = selection_default.prototype.constructor;
 function selection_default2() {
   return new Selection2(this._groups, this._parents);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/style.js
+// node_modules/d3-transition/src/transition/style.js
 function styleNull(name, interpolate) {
   var string00, string10, interpolate0;
   return function() {
@@ -25166,7 +25185,7 @@ function style_default2(name, value, priority) {
   return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i, value), priority).on("end.style." + name, null);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/styleTween.js
+// node_modules/d3-transition/src/transition/styleTween.js
 function styleInterpolate(name, i, priority) {
   return function(t) {
     this.style.setProperty(name, i.call(this, t), priority);
@@ -25190,7 +25209,7 @@ function styleTween_default(name, value, priority) {
   return this.tween(key4, styleTween(name, value, priority == null ? "" : priority));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/text.js
+// node_modules/d3-transition/src/transition/text.js
 function textConstant2(value) {
   return function() {
     this.textContent = value;
@@ -25206,7 +25225,7 @@ function text_default2(value) {
   return this.tween("text", typeof value === "function" ? textFunction2(tweenValue(this, "text", value)) : textConstant2(value == null ? "" : value + ""));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/textTween.js
+// node_modules/d3-transition/src/transition/textTween.js
 function textInterpolate(i) {
   return function(t) {
     this.textContent = i.call(this, t);
@@ -25230,7 +25249,7 @@ function textTween_default(value) {
   return this.tween(key4, textTween(value));
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/transition.js
+// node_modules/d3-transition/src/transition/transition.js
 function transition_default() {
   var name = this._name, id0 = this._id, id1 = newId();
   for (var groups = this._groups, m = groups.length, j = 0; j < m; ++j) {
@@ -25249,7 +25268,7 @@ function transition_default() {
   return new Transition(groups, this._parents, name, id1);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/end.js
+// node_modules/d3-transition/src/transition/end.js
 function end_default() {
   var on0, on1, that = this, id2 = that._id, size = that.size();
   return new Promise(function(resolve, reject) {
@@ -25270,7 +25289,7 @@ function end_default() {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/transition/index.js
+// node_modules/d3-transition/src/transition/index.js
 var id = 0;
 function Transition(groups, parents, name, id2) {
   this._groups = groups;
@@ -25318,12 +25337,12 @@ Transition.prototype = transition.prototype = {
   [Symbol.iterator]: selection_prototype[Symbol.iterator]
 };
 
-// E:/vibecoding/电拓智训/node_modules/d3-ease/src/cubic.js
+// node_modules/d3-ease/src/cubic.js
 function cubicInOut(t) {
   return ((t *= 2) <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/transition.js
+// node_modules/d3-transition/src/selection/transition.js
 var defaultTiming = {
   time: null,
   // Set on use.
@@ -25357,14 +25376,14 @@ function transition_default2(name) {
   return new Transition(groups, this._parents, name, id2);
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-transition/src/selection/index.js
+// node_modules/d3-transition/src/selection/index.js
 selection_default.prototype.interrupt = interrupt_default2;
 selection_default.prototype.transition = transition_default2;
 
-// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/constant.js
+// node_modules/d3-zoom/src/constant.js
 var constant_default4 = (x) => () => x;
 
-// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/event.js
+// node_modules/d3-zoom/src/event.js
 function ZoomEvent(type, {
   sourceEvent,
   target,
@@ -25380,7 +25399,7 @@ function ZoomEvent(type, {
   });
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/transform.js
+// node_modules/d3-zoom/src/transform.js
 function Transform(k, x, y) {
   this.k = k;
   this.x = x;
@@ -25429,7 +25448,7 @@ function transform(node) {
   return node.__zoom;
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/noevent.js
+// node_modules/d3-zoom/src/noevent.js
 function nopropagation2(event) {
   event.stopImmediatePropagation();
 }
@@ -25438,7 +25457,7 @@ function noevent_default2(event) {
   event.stopImmediatePropagation();
 }
 
-// E:/vibecoding/电拓智训/node_modules/d3-zoom/src/zoom.js
+// node_modules/d3-zoom/src/zoom.js
 function defaultFilter2(event) {
   return (!event.ctrlKey || event.type === "wheel") && !event.button;
 }
@@ -25753,7 +25772,7 @@ function zoom_default2() {
   return zoom;
 }
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/system/dist/esm/index.js
+// node_modules/@xyflow/system/dist/esm/index.js
 var errorMessages = {
   error001: (lib = "react") => `Seems like you have not used ${lib === "svelte" ? "SvelteFlowProvider" : "ReactFlowProvider"} as an ancestor. Help: https://${lib}flow.dev/error#001`,
   error002: () => "It looks like you've created a new nodeTypes or edgeTypes object. If this wasn't on purpose please define the nodeTypes/edgeTypes outside of the component or memoize them.",
@@ -28441,11 +28460,11 @@ function XYResizer({ domNode, nodeId, getStoreItems, onChange, onEnd }) {
   };
 }
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var import_react4 = __toESM(require_react(), 1);
 var import_with_selector = __toESM(require_with_selector(), 1);
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
+// node_modules/@xyflow/react/node_modules/zustand/esm/vanilla.mjs
 var createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
@@ -28477,7 +28496,7 @@ var createStoreImpl = (createState) => {
 };
 var createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
+// node_modules/@xyflow/react/node_modules/zustand/esm/traditional.mjs
 var { useDebugValue } = import_react4.default;
 var { useSyncExternalStoreWithSelector } = import_with_selector.default;
 var identity3 = (arg) => arg;
@@ -28500,7 +28519,7 @@ var createWithEqualityFnImpl = (createState, defaultEqualityFn) => {
 };
 var createWithEqualityFn = (createState, defaultEqualityFn) => createState ? createWithEqualityFnImpl(createState, defaultEqualityFn) : createWithEqualityFnImpl;
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
+// node_modules/@xyflow/react/node_modules/zustand/esm/shallow.mjs
 function shallow$1(objA, objB) {
   if (Object.is(objA, objB)) {
     return true;
@@ -28538,7 +28557,7 @@ function shallow$1(objA, objB) {
   return true;
 }
 
-// E:/vibecoding/电拓智训/node_modules/@xyflow/react/dist/esm/index.js
+// node_modules/@xyflow/react/dist/esm/index.js
 var import_react_dom = __toESM(require_react_dom());
 var StoreContext = (0, import_react5.createContext)(null);
 var Provider$1 = StoreContext.Provider;
@@ -31853,7 +31872,11 @@ var DUCT_MAX_SIZE = 4e3;
 var isTimer = (type) => type === "timer380" || type === "timer380-8pin";
 var isRelay = (type) => type === "relay380" || type === "relay380-jzc1-22";
 var isLayoutObject = (type) => isWireDuct(type) || type === "din-rail";
-var canRotate = (type) => type === "supply" || type === "terminal-strip16";
+var isTerminalStrip = (type) => type === "terminal-strip16" || type === "terminal-strip20";
+var terminalStripCapacity = (type) => type === "terminal-strip20" ? 20 : type === "terminal-strip16" ? 16 : 0;
+var canRotate = (type) => type === "supply" || isTerminalStrip(type) || type === "limit-switch";
+var canMirror = (type) => type === "supply";
+var isEarthPosition = (component2, terminalId) => isTerminalStrip(component2.type) && /^[TB]\d+$/.test(terminalId) && !!component2.pePositions?.includes(Number(terminalId.slice(1)));
 var isWireDuct = (type) => type === "wire-duct" || type === "wire-duct-vertical";
 var contactor = (ratedVoltage) => ({
   type: ratedVoltage === 220 ? "contactor220" : "contactor380",
@@ -31928,6 +31951,7 @@ var CATALOG = [
   compactTerminal({ type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" }),
   compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [{ ...pin("A", 32.497, 27.498, "top", "earth"), routingRole: "internal" }, { ...pin("B", 32.497, 73.498, "bottom", "earth"), routingRole: "external" }], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
   { type: "terminal-strip16", name: "16\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 729, height: 76.125, terminals: Array.from({ length: 16 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 16 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768416\u4F4D\u6559\u5B66\u56FE\uFF0C\u517132\u4E2A\u7A33\u5B9A\u63A5\u7EBF\u7AEF\u5B50\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u4E16\u754C\u5355\u4F4D\u4E0D\u4EE3\u8868\u5B89\u88C5\u5C3A\u5BF8\u3002" },
+  { type: "terminal-strip20", name: "20\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 911.25, height: 76.125, terminals: Array.from({ length: 20 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 20 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768420\u4F4D\u6559\u5B66\u56FE\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u6807\u8BB0PE\u7684\u69FD\u4F4D\u4EC5\u7528\u4E8E\u4FDD\u62A4\u63A5\u5730\uFF0C\u4E0D\u4EE3\u8868\u771F\u5B9E\u5668\u4EF6\u7684\u5939\u7EBF\u5BB9\u91CF\u6216\u5B89\u88C5\u5C3A\u5BF8\u3002" },
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
   { type: "wire-duct-vertical", name: "\u7EB5\u5411\u7EBF\u69FD", category: "terminals", width: 60, height: 420, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" }
 ];
@@ -31955,11 +31979,20 @@ function resolveTerminal(document2, ref2) {
 }
 function transformedTerminal(component2, terminal) {
   const { width: w, height: h } = getDefinition(component2.type), angle = component2.rotation ?? 0;
+  if (component2.mirrored && canMirror(component2.type)) terminal = { ...terminal, y: h - terminal.y, side: terminal.side === "top" ? "bottom" : terminal.side === "bottom" ? "top" : terminal.side, ...terminal.routingSide ? { routingSide: terminal.routingSide === "top" ? "bottom" : terminal.routingSide === "bottom" ? "top" : terminal.routingSide } : {} };
+  if (isEarthPosition(component2, terminal.id)) terminal = { ...terminal, electrical: "earth", color: "#e2bc20", label: `${terminal.label} PE` };
   const sides = ["top", "right", "bottom", "left"];
   const side = sides[(sides.indexOf(terminal.side) + angle / 90) % 4];
   const point2 = angle === 90 ? { x: h - terminal.y, y: terminal.x } : angle === 180 ? { x: w - terminal.x, y: h - terminal.y } : angle === 270 ? { x: terminal.y, y: w - terminal.x } : { x: terminal.x, y: terminal.y };
   const routingSide2 = terminal.routingSide && sides[(sides.indexOf(terminal.routingSide) + angle / 90) % 4];
   return { ...terminal, ...point2, side, ...routingSide2 ? { routingSide: routingSide2 } : {} };
+}
+function mirrorComponent(component2) {
+  if (!canMirror(component2.type)) throw new Error("\u6B64\u5143\u4EF6\u4E0D\u652F\u6301\u955C\u50CF");
+  const before = componentSize(component2);
+  const next = { ...component2, rotation: 0, mirrored: !component2.mirrored };
+  const after = componentSize(next);
+  return { ...next, position: { x: component2.position.x + (before.width - after.width) / 2, y: component2.position.y + (before.height - after.height) / 2 } };
 }
 function rotateComponent(component2) {
   if (!canRotate(component2.type)) throw new Error("\u6B64\u5143\u4EF6\u4E0D\u652F\u6301\u65CB\u8F6C");
@@ -32277,6 +32310,8 @@ function validateDocument(input) {
     if (!point(component2.position)) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u4E16\u754C\u5750\u6807\u65E0\u6548`);
     if (component2.size !== void 0 && (type === void 0 || !isLayoutObject(type) || !record(component2.size) || Object.keys(component2.size).some((key4) => key4 !== "width" && key4 !== "height") || ![component2.size.width, component2.size.height].every((value) => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7EBF\u69FD\u957F\u5BBD\u987B\u4E3A ${DUCT_MIN_SIZE} \u81F3 ${DUCT_MAX_SIZE} \u4E2A\u4E16\u754C\u5355\u4F4D`);
     if (component2.rotation !== void 0 && (!type || !canRotate(type) || ![0, 90, 180, 270].includes(component2.rotation))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u65CB\u8F6C\u987B\u4E3A\u5141\u8BB8\u7684\u76F4\u89D2\u89D2\u5EA6`);
+    if (component2.mirrored !== void 0 && (!type || !canMirror(type) || typeof component2.mirrored !== "boolean")) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u955C\u50CF\u8BBE\u7F6E\u65E0\u6548`);
+    if (component2.pePositions !== void 0 && (!type || !terminalStripCapacity(type) || !Array.isArray(component2.pePositions) || new Set(component2.pePositions).size !== component2.pePositions.length || component2.pePositions.some((value) => typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > terminalStripCapacity(type)))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684PE\u69FD\u4F4D\u987B\u4E3A\u7AEF\u5B50\u6392\u5185\u4E0D\u91CD\u590D\u7684\u4F4D\u7F6E\u7F16\u53F7`);
     if (type === "din-rail" && record(component2.size) && component2.size.height !== 24) errors.push(`\u5BFC\u8F68 ${component2.id} \u7684\u539A\u5EA6\u987B\u4E3A24`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
     if (component2.settings !== void 0 && (!isTimer(String(type)) || !record(component2.settings) || Object.keys(component2.settings).some((key4) => key4 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < TIMER_MIN_MS || component2.settings.delayMs > (type === "timer380-8pin" ? TIMER_MAX_MS : TIMER_LEGACY_MAX_MS))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 ${type === "timer380-8pin" ? 3e5 : 36e5} \u6BEB\u79D2`);
@@ -32309,6 +32344,7 @@ function validateDocument(input) {
       connected.add(key4);
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`\u5BFC\u7EBF ${wire.id} \u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272`);
+    if (wire.colorMode !== void 0 && wire.colorMode !== "auto" && wire.colorMode !== "manual") errors.push(`\u5BFC\u7EBF ${wire.id} \u7EBF\u8272\u6A21\u5F0F\u65E0\u6548`);
     if (wire.style !== void 0 && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve" && wire.style !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u6837\u5F0F\u65E0\u6548`);
     if (wire.routing !== void 0 && wire.routing !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u81EA\u52A8\u8D70\u7EBF\u6A21\u5F0F\u65E0\u6548`);
     if (wire.waypoints !== void 0 && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`\u5BFC\u7EBF ${wire.id} \u6298\u70B9\u65E0\u6548`);
@@ -32359,8 +32395,8 @@ function referenceFor(document2) {
   return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document2.components.filter((component2) => buttonTypes.has(component2.type)).map((component2) => component2.id), limits: ids(["limit-switch"]) };
 }
 var DUCT_WIDTH = 32;
-var CLEARANCE = 40;
-var SEPARATION = 76;
+var CLEARANCE = 28;
+var SEPARATION = 44;
 var rowGap = (previous, component2) => !previous ? 0 : component2.id === "fu2b" ? 16 : component2.type === "auxiliary-no" && component2.linkedTo === previous.id ? 12 : SEPARATION;
 var rowWidth = (row) => row.reduce((sum, component2, index2) => sum + componentSize(component2).width + rowGap(row[index2 - 1], component2), 0);
 function arrangeTrainingDucts(document2) {
@@ -32378,14 +32414,14 @@ function arrangeTrainingDucts(document2) {
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
   const xt2 = document2.roles?.xt2 && byId.get(document2.roles.xt2);
   const terminalPractice = !!document2.roles?.xt16;
-  const practiceWidth = document2.lessonId === "motor-course-10" ? 128 : document2.lessonId === "motor-course-09" ? 96 : 80;
+  const practiceWidth = document2.lessonId === "motor-course-10" ? 96 : 64;
   const ductWidth = terminalPractice ? practiceWidth : DUCT_WIDTH;
   const sources = document2.components.filter((component2) => component2.type === "supply");
   const loads = document2.components.filter((component2) => loadTypes.has(component2.type));
   const earths = document2.components.filter((component2) => component2.type === "pe-terminal");
   const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths, ...xt2 ? [xt2] : []].map((component2) => component2.id));
   const terminals = document2.components.filter((component2) => !placed.has(component2.id) && !isLayoutObject(component2.type));
-  const width = Math.max(880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + ductWidth));
+  const width = Math.max(terminalPractice ? 760 : 880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + ductWidth), ...terminals.map((component2) => componentSize(component2).width + 56));
   const limitsHeight = limits.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 40 : 0), 0);
   const buttonsHeight = buttons.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 28 : 0), 0);
   const baseHeight = rows.reduce((sum, row, index2) => sum + ductWidth + CLEARANCE * 2 + Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((c) => componentSize(c).height)), 0);
@@ -32406,7 +32442,7 @@ function arrangeTrainingDucts(document2) {
     y += ductWidth + CLEARANCE * 2 + height + extraRowHeight;
     channels.push(y);
   }
-  const bottom = y, sideX = width + ductWidth / 2 + 80;
+  const bottom = y, sideX = width + ductWidth / 2 + 48;
   let buttonY = xt2 ? ductWidth / 2 + CLEARANCE + limitsHeight + 60 : Math.max(56, bottom - buttonsHeight);
   const controlsX = xt2 ? sideX + componentSize(xt2).width + 80 : sideX;
   for (const component2 of buttons) {
@@ -32426,7 +32462,7 @@ function arrangeTrainingDucts(document2) {
     positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
     sourceX += componentSize(component2).width + 30;
   }
-  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + ductWidth / 2 + 32;
   let externalX = 56;
   for (const component2 of terminalRow) {
     positions.set(component2.id, { x: externalX, y: terminalY });
@@ -32458,6 +32494,40 @@ function putWiresInDucts(document2) {
 
 // app/simulator/core/wire-colors.ts
 var SOURCE_WIRE_COLORS = { L1: "#e7b000", L2: "#20b963", L3: "#f04452", N: "#3478f6", PE: "#659f2f" };
+var CONTROL_WIRE_COLOR = "#20252b";
+var isControlFuse = (document2, component2) => (component2.type === "fuse" || component2.type === "fuse2") && (["fu2", "fu2a", "fu2b"].some((role) => component2.id === (document2.roles?.[role] ?? role)) || /^FU2(?:\b|[-（])/i.test(component2.label));
+function controlTerminals(document2) {
+  const adjacent = /* @__PURE__ */ new Map();
+  const join = (a, b) => {
+    if (!adjacent.has(a)) adjacent.set(a, /* @__PURE__ */ new Set());
+    if (!adjacent.has(b)) adjacent.set(b, /* @__PURE__ */ new Set());
+    adjacent.get(a).add(b);
+    adjacent.get(b).add(a);
+  };
+  const seeds = [], barriers = /* @__PURE__ */ new Set();
+  for (const component2 of document2.components) {
+    const definition = getDefinition(component2.type);
+    if (isControlFuse(document2, component2)) {
+      for (const [input, output] of definition.fixedConnections ?? []) {
+        seeds.push(`${component2.id}::${output}`);
+        barriers.add(`${component2.id}::${input}`);
+      }
+      continue;
+    }
+    if (component2.type === "supply") for (const terminal of definition.terminals) barriers.add(`${component2.id}::${terminal.id}`);
+    for (const [a, b] of definition.fixedConnections ?? []) join(`${component2.id}::${a}`, `${component2.id}::${b}`);
+    for (const contact of definition.contacts ?? []) join(`${component2.id}::${contact.terminals[0]}`, `${component2.id}::${contact.terminals[1]}`);
+  }
+  for (const wire of document2.wires) join(terminalKey(wire.from), terminalKey(wire.to));
+  const visited = /* @__PURE__ */ new Set(), pending = [...seeds];
+  while (pending.length) {
+    const key4 = pending.pop();
+    if (visited.has(key4) || barriers.has(key4)) continue;
+    visited.add(key4);
+    for (const next of adjacent.get(key4) ?? []) pending.push(next);
+  }
+  return visited;
+}
 var normalizeColor = (color2) => {
   const value = color2.toLowerCase();
   return /^#[\da-f]{3}$/.test(value) ? `#${[...value.slice(1)].map((character) => character + character).join("")}` : value;
@@ -32492,18 +32562,20 @@ function getWireColorGroups(document2) {
       add(id2);
       if (component2.type === "supply" && SOURCE_WIRE_COLORS[terminal.id]) sources.set(id2, terminal.id);
     }
-    for (const [a, b] of definition.fixedConnections ?? []) join(`${component2.id}::${a}`, `${component2.id}::${b}`);
+    if (!isControlFuse(document2, component2)) for (const [a, b] of definition.fixedConnections ?? []) join(`${component2.id}::${a}`, `${component2.id}::${b}`);
   }
   for (const wire of document2.wires) join(terminalKey(wire.from), terminalKey(wire.to));
   const groups = /* @__PURE__ */ new Map();
+  const control = controlTerminals(document2);
   for (const id2 of parent.keys()) {
     const key4 = root2(id2);
     let group = groups.get(key4);
     if (!group) {
-      group = { id: key4, terminalIds: [], wireIds: [], colors: [], sourcePotentials: [], sourceColors: [] };
+      group = { id: key4, terminalIds: [], wireIds: [], colors: [], sourcePotentials: [], sourceColors: [], controlCircuit: false };
       groups.set(key4, group);
     }
     group.terminalIds.push(id2);
+    group.controlCircuit ||= control.has(id2);
     const potential = sources.get(id2);
     if (potential) {
       group.sourcePotentials.push(potential);
@@ -32522,15 +32594,28 @@ function resolveConnectionColor(document2, from, to, fallback = "#56616f") {
   const groups = getWireColorGroups(document2).filter((group) => keys.some((key4) => group.terminalIds.includes(key4)));
   const colors = unique(groups.flatMap((group) => group.colors));
   const sourceColors = unique(groups.flatMap((group) => group.sourceColors));
-  return { color: colors.length === 1 ? colors[0] : !colors.length && sourceColors.length === 1 ? sourceColors[0] : normalizeColor(fallback), conflict: colors.length > 1, sourceConflict: sourceColors.length > 1 };
+  return { color: colors.length === 1 ? colors[0] : !colors.length && sourceColors.length === 1 ? sourceColors[0] : !colors.length && groups.some((group) => group.controlCircuit) ? CONTROL_WIRE_COLOR : normalizeColor(fallback), conflict: colors.length > 1, sourceConflict: sourceColors.length > 1 };
 }
 function setWireGroupColor(document2, wireIds, color2) {
   if (!/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(color2)) throw new Error("\u5BFC\u7EBF\u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272");
   const selected2 = new Set(wireIds);
   const affected = new Set(getWireColorGroups(document2).filter((group) => group.wireIds.some((id2) => selected2.has(id2))).flatMap((group) => group.wireIds));
   const nextColor = normalizeColor(color2);
-  if (!document2.wires.some((wire) => affected.has(wire.id) && wire.color !== nextColor)) return document2;
-  return { ...document2, wires: document2.wires.map((wire) => affected.has(wire.id) ? { ...wire, color: nextColor } : wire) };
+  if (!document2.wires.some((wire) => affected.has(wire.id) && (wire.color !== nextColor || wire.colorMode !== "manual"))) return document2;
+  return { ...document2, wires: document2.wires.map((wire) => affected.has(wire.id) ? { ...wire, color: nextColor, colorMode: "manual" } : wire) };
+}
+function normalizeAutomaticControlWireColors(document2) {
+  const byId = new Map(document2.wires.map((wire) => [wire.id, wire]));
+  const colors = /* @__PURE__ */ new Map();
+  for (const group of getWireColorGroups(document2)) {
+    if (!group.controlCircuit || group.sourceColors.length) continue;
+    const members = group.wireIds.map((id2) => byId.get(id2));
+    const savedColors = unique(members.filter((wire) => wire.colorMode !== "auto").map((wire) => normalizeColor(wire.color)));
+    if (savedColors.length > 1) continue;
+    const color2 = savedColors[0] ?? CONTROL_WIRE_COLOR;
+    for (const wire of members) if (wire.colorMode === "auto" && normalizeColor(wire.color) !== color2) colors.set(wire.id, color2);
+  }
+  return colors.size ? { ...document2, wires: document2.wires.map((wire) => colors.has(wire.id) ? { ...wire, color: colors.get(wire.id) } : wire) } : document2;
 }
 function normalizeDemonstrationWireColors(document2) {
   const wires = new Map(document2.wires.map((wire) => [wire.id, wire]));
@@ -32538,45 +32623,81 @@ function normalizeDemonstrationWireColors(document2) {
   for (const group of getWireColorGroups(document2)) {
     if (!group.wireIds.length || group.sourceColors.length > 1) continue;
     const first = [...group.wireIds].sort((a, b) => a.localeCompare(b, "en", { numeric: true }))[0];
-    const color2 = group.sourceColors[0] ?? normalizeColor(wires.get(first).color);
+    const color2 = group.sourceColors[0] ?? (group.controlCircuit ? CONTROL_WIRE_COLOR : normalizeColor(wires.get(first).color));
     for (const id2 of group.wireIds) colors.set(id2, color2);
   }
   return { ...document2, wires: document2.wires.map((wire) => ({ ...wire, color: colors.get(wire.id) ?? wire.color })) };
 }
 
 // app/simulator/core/terminal-wiring.ts
+var externalTypes = /* @__PURE__ */ new Set(["supply", "motor", "motor-star-delta", "motor-dahlander", "push-no", "push-nc", "limit-switch"]);
+var plans = /* @__PURE__ */ new Map();
 function getCourseTerminalAssignments(lessonId) {
   if (!lessonId || !/^motor-course-(?:0[1-9]|10)$/.test(lessonId)) return [];
-  const number = Number(lessonId.slice(-2));
+  const cached = plans.get(lessonId);
+  if (cached) return cached.map((item) => ({ ...item }));
+  const reference = createMotorCourseDocument(lessonId, { wired: true });
+  const parent = /* @__PURE__ */ new Map();
+  const root2 = (key4) => {
+    if (!parent.has(key4)) parent.set(key4, key4);
+    const next = parent.get(key4);
+    if (next === key4) return key4;
+    const result = root2(next);
+    parent.set(key4, result);
+    return result;
+  };
+  const join = (a, b) => parent.set(root2(b), root2(a));
+  for (const wire of reference.wires) join(terminalKey(wire.from), terminalKey(wire.to));
+  join("pe::A", "pe::B");
+  const external = reference.components.filter((component2) => externalTypes.has(component2.type));
+  const externalIds = new Set(external.map((component2) => component2.id));
   const assignments = [];
-  const add = (stripRole, position, componentRole, terminalId, used = true) => assignments.push({ stripRole, position, componentRole, terminalId, label: `${componentRole === "source" ? "\u7535\u6E90" : componentRole.toUpperCase()} ${terminalId}`, used });
-  ["L1", "L2", "L3"].forEach((terminal, i) => add("xt16", i + 1, "source", terminal));
-  (number >= 9 ? ["U1", "V1", "W1"] : ["U", "V", "W"]).forEach((terminal, i) => add("xt16", i + 4, number === 7 ? "m1" : "m", terminal));
-  if (number === 7) ["U", "V", "W"].forEach((terminal, i) => add("xt16", i + 7, "m2", terminal));
-  if (number >= 9) ["U2", "V2", "W2"].forEach((terminal, i) => add("xt16", i + 7, "m", terminal));
-  if (number === 6) for (let sq = 1; sq <= 4; sq++) ["11", "12", "23", "24"].forEach((terminal, i) => add("xt2", 20 - sq * 4 - i, `sq${sq}`, terminal, sq <= 2 || i < 2));
-  return assignments;
+  const positions = /* @__PURE__ */ new Map();
+  for (const component2 of external) {
+    const terminals = component2.type === "supply" ? ["L1", "L2", "L3", "N", "PE"] : getDefinition(component2.type).terminals.map((terminal) => terminal.id).filter((terminal) => parent.has(`${component2.id}::${terminal}`));
+    for (const terminalId of terminals) {
+      const group = root2(`${component2.id}::${terminalId}`);
+      if (!positions.has(group)) positions.set(group, positions.size + 1);
+      const requiresInternal = [...parent.keys()].some((key4) => root2(key4) === group && !externalIds.has(key4.split("::")[0]) && !key4.startsWith("pe::"));
+      assignments.push({ stripRole: "xt16", position: positions.get(group), componentRole: component2.id, terminalId, label: `${component2.type === "supply" ? "\u7535\u6E90" : component2.label} ${terminalId}`, used: true, requiresInternal });
+    }
+  }
+  if (positions.size > 20) throw new Error(`\u8BFE\u7A0B\u5916\u63A5\u72EC\u7ACB\u8282\u70B9\u9700\u8981 ${positions.size} \u4F4D\uFF0C\u8D85\u8FC720\u4F4D\u7AEF\u5B50\u6392\u5BB9\u91CF`);
+  plans.set(lessonId, assignments);
+  return assignments.map((item) => ({ ...item }));
+}
+function getCourseTerminalCount(lessonId) {
+  return Math.max(0, ...getCourseTerminalAssignments(lessonId).map((item) => item.position)) > 16 ? 20 : 16;
 }
 function terminalizeMotorCourse(document2) {
   const assignments = getCourseTerminalAssignments(document2.lessonId);
   if (!assignments.length) return document2;
   if (document2.components.some((component2) => component2.id === "xt16" || component2.id === "xt2")) throw new Error("\u65B0\u8BFE\u7A0B\u6A21\u677F\u5DF2\u5305\u542B\u7AEF\u5B50\u6392\uFF0C\u4E0D\u80FD\u91CD\u590D\u8F6C\u6362");
-  const roles = { ...document2.roles, xt16: "xt16", ...document2.lessonId === "motor-course-06" ? { xt2: "xt2" } : {} };
-  const components = [...document2.components, { id: "xt16", type: "terminal-strip16", label: "XT1\uFF0816\u4F4D\uFF09", position: { x: 0, y: 0 } }, ...document2.lessonId === "motor-course-06" ? [{ id: "xt2", type: "terminal-strip16", label: "XT2\uFF08\u9650\u4F4D\uFF09", rotation: 270, position: { x: 0, y: 0 } }] : []];
+  const count = getCourseTerminalCount(document2.lessonId);
+  const earthId = document2.roles?.pe ?? "pe";
+  const roles = { ...document2.roles, xt16: "xt16" };
+  delete roles.pe;
+  const components = [...document2.components.filter((component2) => component2.id !== earthId).map((component2) => component2.type === "supply" ? { ...component2, mirrored: true } : component2), { id: "xt16", type: count === 20 ? "terminal-strip20" : "terminal-strip16", label: `XT1\uFF08${count}\u4F4D\uFF0C5\u4E3APE\uFF09`, pePositions: [5], position: { x: 0, y: 0 } }];
   const resolve = (assignment) => ({ componentId: document2.roles?.[assignment.componentRole] ?? assignment.componentRole, terminalId: assignment.terminalId });
-  const mapping = new Map(assignments.filter((assignment) => assignment.used).map((assignment) => [terminalKey(resolve(assignment)), assignment]));
+  const mapping = new Map(assignments.map((assignment) => [terminalKey(resolve(assignment)), assignment]));
   const remap = (ref2) => {
     const assignment = mapping.get(terminalKey(ref2));
     return assignment ? { componentId: assignment.stripRole, terminalId: `T${assignment.position}` } : { ...ref2 };
   };
-  const wires = document2.wires.map((wire) => ({ ...wire, from: remap(wire.from), to: remap(wire.to) }));
-  if (document2.wires.length) for (const assignment of assignments.filter((item) => item.used)) {
+  const seenConnections = /* @__PURE__ */ new Set();
+  const wires = document2.wires.filter((wire) => ![wire.from, wire.to].some((ref2) => ref2.componentId === earthId)).map((wire) => ({ ...wire, from: remap(wire.from), to: remap(wire.to) })).filter((wire) => {
+    const ends = [terminalKey(wire.from), terminalKey(wire.to)].sort(), connection = ends.join("|");
+    if (ends[0] === ends[1] || seenConnections.has(connection)) return false;
+    seenConnections.add(connection);
+    return true;
+  });
+  if (document2.wires.length) for (const assignment of assignments) {
     const external = resolve(assignment);
     const component2 = document2.components.find((item) => item.id === external.componentId);
     if (!component2 || !getDefinition(component2.type).terminals.some((terminal) => terminal.id === external.terminalId)) throw new Error(`\u8BFE\u7A0B\u5916\u90E8\u7AEF\u5B50\u4E0D\u5B58\u5728\uFF1A${assignment.label}`);
     const original = document2.wires.find((wire) => [wire.from, wire.to].some((ref2) => terminalKey(ref2) === terminalKey(external)));
-    if (!original) throw new Error(`\u8BFE\u7A0B\u5916\u90E8\u7AEF\u5B50\u7F3A\u5C11\u793A\u8303\u63A5\u7EBF\uFF1A${assignment.label}`);
-    wires.push({ id: `terminal-${assignment.stripRole}-${assignment.position}`, from: { componentId: assignment.stripRole, terminalId: `B${assignment.position}` }, to: external, color: assignment.componentRole === "source" ? SOURCE_WIRE_COLORS[assignment.terminalId] : original.color, style: "orthogonal", routing: "duct" });
+    if (!original && !(assignment.componentRole === "source" && assignment.terminalId === "N")) throw new Error(`\u8BFE\u7A0B\u5916\u90E8\u7AEF\u5B50\u7F3A\u5C11\u793A\u8303\u63A5\u7EBF\uFF1A${assignment.label}`);
+    wires.push({ id: `terminal-${assignment.componentRole}-${assignment.terminalId}`, from: { componentId: assignment.stripRole, terminalId: `B${assignment.position}` }, to: external, color: assignment.componentRole === "source" ? SOURCE_WIRE_COLORS[assignment.terminalId] : original.color, style: "orthogonal", routing: "duct" });
   }
   return { ...document2, components, roles, wires };
 }
@@ -32721,6 +32842,13 @@ function assessMotorCourse(document2, lessonId) {
     if (combinedFuse && /^fu2[ab]$/.test(role)) {
       roles.fu2 = combinedFuse.id;
       continue;
+    }
+    if (role === "pe" && !document2.roles?.pe) {
+      const strip = document2.components.find((component2) => component2.id === (document2.roles?.xt16 ?? "xt16") && isTerminalStrip(component2.type) && !!component2.pePositions?.length);
+      if (strip) {
+        roles.pe = strip.id;
+        continue;
+      }
     }
     const expected = standard.components.find((component2) => component2.id === standardId);
     const id2 = document2.roles?.[role] || (!document2.roles && document2.components.some((component2) => component2.id === standardId) ? standardId : void 0);
@@ -33203,7 +33331,7 @@ function network(document2, runtime, options = {}) {
     for (const [a, b] of def.fixedConnections ?? []) {
       const excluded = options.excludeFixedConnection;
       const cut = excluded?.componentId === component2.id && (excluded.terminals[0] === a && excluded.terminals[1] === b || excluded.terminals[0] === b && excluded.terminals[1] === a);
-      if (!cut && options.excludeComponent !== component2.id && (!options.protectiveOnly || component2.type === "terminal" || component2.type === "pe-terminal") && (!options.neutralOnly || component2.type === "terminal")) net.connect({ a: key2(component2.id, a), b: key2(component2.id, b), componentId: component2.id });
+      if (!cut && options.excludeComponent !== component2.id && (!options.protectiveOnly || component2.type === "terminal" || component2.type === "pe-terminal" || isEarthPosition(component2, a) && isEarthPosition(component2, b)) && (!options.neutralOnly || component2.type === "terminal" || isTerminalStrip(component2.type) && !isEarthPosition(component2, a) && !isEarthPosition(component2, b))) net.connect({ a: key2(component2.id, a), b: key2(component2.id, b), componentId: component2.id });
     }
     if (!options.permanentOnly && !options.protectiveOnly && !options.neutralOnly) {
       for (const contact of def.contacts ?? []) if (options.excludeComponent !== component2.id && !(options.excludeMainContacts === component2.id && contact.id.startsWith("pole-")) && !(options.openPushContacts === component2.id && contact.control === "push") && !(options.openLatchingContacts === component2.id && ["push-latching-red", "push-latching-green"].includes(component2.type) && contact.control === "switch") && contactClosed(component2, contact, runtime)) net.connect({ a: key2(component2.id, contact.terminals[0]), b: key2(component2.id, contact.terminals[1]), componentId: component2.id, contactId: contact.id });
@@ -33232,7 +33360,8 @@ function safety(document2, runtime, net) {
     }
   }
   if (net.connected(key2(source.id, "N"), key2(source.id, "PE"))) diagnostics.push(pathDiagnostic(net, key2(source.id, "N"), key2(source.id, "PE"), "NEUTRAL_EARTH_BRIDGE", "\u8BAD\u7EC3\u677F\u4E0B\u6E38 N \u4E0E PE \u88AB\u8FDE\u63A5\uFF1B\u4E24\u8005\u987B\u4FDD\u6301\u72EC\u7ACB"));
-  for (const component2 of document2.components) for (const terminal of getDefinition(component2.type).terminals) {
+  for (const component2 of document2.components) for (const original of getDefinition(component2.type).terminals) {
+    const terminal = transformedTerminal(component2, original);
     if (terminal.electrical !== "earth") continue;
     const id2 = key2(component2.id, terminal.id), live = net.potentials(id2).find(phase2);
     if (live) diagnostics.push(pathDiagnostic(net, key2(source.id, live), id2, "EARTH_TERMINAL_LIVE", `${component2.label} \u7684\u4FDD\u62A4\u5730\u7AEF\u5B50 ${terminal.label} \u63A5\u5165\u4E86 ${live}\uFF1B\u4FDD\u62A4\u5730\u7AEF\u5B50\u4E0D\u80FD\u7528\u4E8E\u76F8\u7EBF\u5BFC\u901A`));
@@ -34095,7 +34224,7 @@ function assignLanes(document2, wires, centers) {
   return routes;
 }
 function routeWireInDucts(document2, wire) {
-  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).sort().join("|");
+  const signature = document2.components.map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}:${component2.mirrored ?? false}`).sort().join("|");
   let cached = routeCache.get(document2.components);
   if (cached?.signature !== signature) {
     cached = recentGeometry.get(signature) ?? { signature, centers: /* @__PURE__ */ new Map(), layouts: /* @__PURE__ */ new Map() };
@@ -34405,11 +34534,11 @@ function ContactorStateArtwork({ type, active, className = "" }) {
 
 // app/simulator/editor/DeviceArtwork.tsx
 var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
-function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "", rotation = 0, result, delayMs, running = false }) {
+function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "", rotation = 0, mirrored = false, pePositions = [], result, delayMs, running = false }) {
   if (rotation) {
     const d = getDefinition(type);
     const translate = rotation === 90 ? `${d.height}px, 0px` : rotation === 180 ? `${d.width}px, ${d.height}px` : `0px, ${d.width}px`;
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-rotated-artwork", style: { position: "absolute", left: 0, top: 0, width: d.width, height: d.height, transformOrigin: "0 0", transform: `translate(${translate}) rotate(${rotation}deg)` }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type, active, pressed, closed, direction, speed }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-rotated-artwork", style: { position: "absolute", left: 0, top: 0, width: d.width, height: d.height, transformOrigin: "0 0", transform: `translate(${translate}) rotate(${rotation}deg)` }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type, active, pressed, closed, direction, speed, mirrored, pePositions, result, delayMs, running }) });
   }
   if (type === "din-rail") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-device-artwork sim-rail-artwork", role: "img", "aria-label": "\u5B89\u88C5\u5BFC\u8F68" });
   if (type === "relay380-jzc1-22" || type === "timer380" || type === "timer380-8pin") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(RelayArtwork, { type, active, result, delayMs, running });
@@ -34420,11 +34549,15 @@ function DeviceArtwork({ type, active = false, pressed = false, closed = false, 
   if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
   if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: "\u7EBF\u69FD" }) });
   if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-supply-name", children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${terminal.y / getDefinition(type).height * 100}%` }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { children: terminal.label }),
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-supply-name", style: mirrored ? { top: "62%" } : void 0, children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${(mirrored ? getDefinition(type).height - terminal.y : terminal.y) / getDefinition(type).height * 100}%` }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { style: mirrored ? { bottom: "auto", top: 9 } : void 0, children: terminal.label }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
     ] }, terminal.id)) })
+  ] });
+  if (isTerminalStrip(type)) return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: `sim-device-artwork ${className}`, style: { position: "relative", display: "block", width: "100%", height: "100%" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/${type}.svg`, alt: getDefinition(type).name, draggable: false, style: { display: "block", width: "100%", height: "100%" } }),
+    pePositions.map((position) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-label": `\u7B2C${position}\u4F4D PE`, style: { position: "absolute", left: `${(position - 1) / terminalStripCapacity(type) * 100}%`, top: 0, width: `${100 / terminalStripCapacity(type)}%`, height: "100%", boxShadow: "inset 0 0 0 3px #e3c530", background: "linear-gradient(135deg,transparent 40%,#219b6544 40%,#219b6544 60%,transparent 60%)", pointerEvents: "none" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { style: { position: "absolute", left: 0, right: 0, top: "42%", textAlign: "center", fontSize: 8, color: "#fff2a0" }, children: "PE" }) }, position))
   ] });
   if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
   const asset = type === "relay380" ? "relay220" : type;
@@ -34501,6 +34634,8 @@ function DeviceNode({ data, selected: selected2 }) {
   const leads = data.document?.wires.flatMap((wire) => [wire.from, wire.to].filter((ref2) => ref2.componentId === component2.id).map((ref2) => ({ wire, terminal: definition.terminals.find((terminal) => terminal.id === ref2.terminalId) }))) ?? [];
   const faulty = data.diagnostics.some((d) => d.componentIds.includes(component2.id) && d.severity !== "info");
   const momentary = component2.type === "push-no" || component2.type === "push-nc" || component2.type === "limit-switch";
+  const actuatorPoint = { x: definition.width * 0.5, y: definition.height * 0.48 };
+  const actuatorPosition = component2.rotation === 90 ? { left: definition.height - actuatorPoint.y, top: actuatorPoint.x } : component2.rotation === 180 ? { left: definition.width - actuatorPoint.x, top: definition.height - actuatorPoint.y } : component2.rotation === 270 ? { left: actuatorPoint.y, top: definition.width - actuatorPoint.x } : { left: actuatorPoint.x, top: actuatorPoint.y };
   const latching = component2.type === "push-latching-red" || component2.type === "push-latching-green";
   const knife = component2.type === "knife-switch3";
   const breaker = component2.type === "breaker1" || component2.type === "breaker3";
@@ -34524,15 +34659,18 @@ function DeviceNode({ data, selected: selected2 }) {
       "data-runtime-speed": result?.speed,
       children: [
         duct && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: rail ? 24 : DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: rail ? 24 : DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(DeviceArtwork, { rotation: component2.rotation, result, delayMs: component2.settings?.delayMs, running, type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(DeviceArtwork, { rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, result, delayMs: component2.settings?.delayMs, running, type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
         data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
           const clip = `lead-${component2.id}-${wire.id}-${terminal.id}`;
+          const traced = data.selectedWireIds?.includes(wire.id);
+          const path = wirePath(data.document, wire);
           return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { clipPath: `url(#${clip})`, children: [
-              data.selectedWireIds?.includes(wire.id) && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: "#3478f6", strokeOpacity: 0.65, strokeWidth: 9, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
-              /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: wirePath(data.document, wire), transform: `translate(${-component2.position.x} ${-component2.position.y})`, fill: "none", stroke: wire.color, strokeWidth: data.selectedWireIds?.includes(wire.id) ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" })
-            ] })
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { transform: `translate(${-component2.position.x} ${-component2.position.y})`, children: [
+              traced && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { className: "sim-wire-trace-halo", d: path, fill: "none", stroke: "#3478f6", strokeOpacity: 0.72, strokeWidth: 11, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
+              /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: path, fill: "none", stroke: wire.color, strokeWidth: traced ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
+              traced && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round" })
+            ] }) })
           ] }, clip);
         }) }),
         /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-caption", children: [
@@ -34552,6 +34690,8 @@ function DeviceNode({ data, selected: selected2 }) {
           const state = data.terminalStates[key4];
           const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key4));
           const color2 = data.terminalColors?.[key4] ?? terminalColor(terminal);
+          const pending = data.pendingTerminalKey === key4;
+          const traced = leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
           return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
             Handle,
             {
@@ -34559,17 +34699,24 @@ function DeviceNode({ data, selected: selected2 }) {
               type: "source",
               position: sidePosition[terminal.side],
               isConnectable: !running && !data.readOnly,
-              className: `sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""}`,
+              className: `sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""} ${pending ? "is-connection-start" : ""} ${traced ? "is-trace-endpoint" : ""}`,
               style: { left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color2 },
               title: `${component2.label} \xB7 ${terminal.label}${state ? ` \xB7 ${state.potential}` : ""}`,
               "aria-label": `${component2.label} \u7AEF\u5B50 ${terminal.label}`,
               "data-terminal-key": key4,
+              "data-connection-start": pending,
+              "data-wire-traced": traced,
               "data-terminal-energized": running && !!state?.energized,
               "data-world-x": component2.position.x + terminal.x,
               "data-world-y": component2.position.y + terminal.y,
               children: [
                 /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
-                !contactor2 && !timer2 && component2.type !== "relay380-jzc1-22" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
+                pending || traced ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { className: "sim-terminal-label sim-terminal-focus-label", children: [
+                  pending ? "\u8D77\u70B9 \xB7 " : "",
+                  component2.label,
+                  " \xB7 ",
+                  terminal.label
+                ] }) : !contactor2 && !timer2 && component2.type !== "relay380-jzc1-22" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
               ]
             },
             terminal.id
@@ -34579,6 +34726,7 @@ function DeviceNode({ data, selected: selected2 }) {
           "button",
           {
             className: `sim-actuator sim-push-actuator nodrag nopan ${component2.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`,
+            style: component2.type === "limit-switch" ? actuatorPosition : void 0,
             "aria-pressed": pressed,
             title: "\u6309\u4F4F\u64CD\u4F5C\uFF0C\u677E\u5F00\u590D\u4F4D",
             "aria-label": `${component2.label} ${component2.type === "limit-switch" ? "\u9650\u4F4D\u5F00\u5173" : definition.name}`,
@@ -34683,10 +34831,12 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
       "data-from-world": JSON.stringify(endpoints.from),
       "data-to-world": JSON.stringify(endpoints.to),
       "data-routing": wire.routing,
+      "data-wire-traced": !!selected2,
       "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual",
       children: [
-        (selected2 || data.highlighted || data.energized) && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-outline", d: path, fill: "none", stroke: selected2 ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32", strokeWidth: selected2 ? 9 : 7, strokeOpacity: selected2 || data.highlighted ? 0.65 : 0.4, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
+        (selected2 || data.highlighted || data.energized) && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-outline", d: path, fill: "none", stroke: selected2 ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32", strokeWidth: selected2 ? 11 : 7, strokeOpacity: selected2 ? 0.72 : data.highlighted ? 0.65 : 0.4, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
         /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        selected2 && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
         selected2 && [endpoints.from, endpoints.to].map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("circle", { className: "sim-wire-selected-endpoint", cx: point2.x, cy: point2.y, r: 5, fill: "white", stroke: "#3478f6", strokeWidth: 2, vectorEffect: "non-scaling-stroke", pointerEvents: "none" }, index2)),
         selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(EdgeLabelRenderer, { children: [
           points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
@@ -34824,7 +34974,7 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     let loadingTask;
     void (async () => {
       try {
-        const pdfjs = await import("./chunks/pdf-SHV2ZG4A.js");
+        const pdfjs = await import("./chunks/pdf-XJT72RMM.js");
         if (!active) return;
         const base = "/diantuo-zhixun/";
         const assets = `${base.endsWith("/") ? base : `${base}/`}sim-assets/pdfjs/`;
@@ -34971,8 +35121,9 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
   (0, import_react11.useEffect)(() => {
     if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 });
   }, [zoom]);
-  const availableWidth = Math.max(1, bounds2.width - 24);
-  const availableHeight = Math.max(1, bounds2.height - 24 - (isPdf ? 76 : 0));
+  const inset = compact2 ? 8 : 24;
+  const availableWidth = Math.max(1, bounds2.width - inset);
+  const availableHeight = Math.max(1, bounds2.height - inset - (isPdf ? 76 : 0));
   const fittedWidth = ratio ? Math.min(availableWidth, availableHeight * ratio) : availableWidth;
   function fit() {
     setZoom(1);
@@ -35534,7 +35685,7 @@ function referenceVideoForDocument(document2, hasDrawing = false) {
 // app/simulator/editor/library-presentation.ts
 var household = ["switch1", "switch2", "lamp", "breaker1", "breaker3"];
 var industrial = ["breaker1", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380-jzc1-22", "timer380-8pin", "motor-dahlander"];
-var helpers = ["supply", "terminal", "terminal-strip16", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical", "din-rail"];
+var helpers = ["supply", "terminal", "terminal-strip16", "terminal-strip20", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical", "din-rail"];
 var poolLabel = {
   switch1: "\u5355\u5F00\u5355\u63A7",
   switch2: "\u5355\u5F00\u53CC\u63A7",
@@ -35545,6 +35696,7 @@ var poolLabel = {
   fuse3: "\u4E09\u8054\u7194\u65AD\u5668\uFF08FU\uFF09",
   fuse2: "\u53CC\u8054\u7194\u65AD\u5668\uFF08FU\uFF09",
   "terminal-strip16": "16\u4F4D\u7AEF\u5B50\u6392\uFF08XT\uFF09",
+  "terminal-strip20": "20\u4F4D\u7AEF\u5B50\u6392\uFF08XT\uFF09",
   "knife-switch3": "\u5200\u5F00\u5173\uFF08QS\uFF09",
   "push-nc": "\u590D\u5408\u590D\u4F4D\uFF08SB\uFF09\n\uFF08\u7EA2\u8272\uFF09",
   "push-no": "\u590D\u5408\u590D\u4F4D\uFF08SB\uFF09\n\uFF08\u7EFF\u8272\uFF09",
@@ -35606,7 +35758,7 @@ function shortCircuitNoticeKey(generation, diagnostic2) {
 
 // app/simulator/editor/selection-clipboard.ts
 var clone = (value) => JSON.parse(JSON.stringify(value));
-var prefixes = { supply: "\u7535\u6E90", terminal: "XT", "terminal-strip16": "XT", "pe-terminal": "PE", "wire-duct": "WD", "wire-duct-vertical": "WD", "auxiliary-no": "NO" };
+var prefixes = { supply: "\u7535\u6E90", terminal: "XT", "terminal-strip16": "XT", "terminal-strip20": "XT", "pe-terminal": "PE", "wire-duct": "WD", "wire-duct-vertical": "WD", "auxiliary-no": "NO" };
 var prefix = (component2) => component2.label.match(/^([A-Z]+)\d+/)?.[1] ?? prefixes[component2.type] ?? component2.label.slice(0, 50);
 function copySelection(document2, selected2) {
   const ids = new Set(selected2);
@@ -35644,7 +35796,7 @@ var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 var nodeTypes = { electrical: DeviceNode };
 var edgeTypes = { electrical: WireEdge };
 var COLORS2 = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
-var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail": "DR", "relay380-jzc1-22": "KA", "timer380-8pin": "KT" };
+var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "terminal-strip20": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail": "DR", "relay380-jzc1-22": "KA", "timer380-8pin": "KT" };
 var clone2 = (value) => JSON.parse(JSON.stringify(value));
 function parseImport(value) {
   const result = validateDocument(value);
@@ -35654,6 +35806,12 @@ function parseImport(value) {
 function Workspace(props) {
   const { document: circuit, onDocumentChange, onSave, onPublish, onAssess, onImportDrawing, renderSchematic, onRunningChange, readOnly = false } = props;
   const flow = useReactFlow();
+  const flowStore = useStoreApi();
+  const pendingTerminal = useStore((state) => state.connectionClickStartHandle);
+  const cancelConnection = (0, import_react15.useCallback)(() => {
+    flowStore.setState({ connectionClickStartHandle: null });
+    flowStore.getState().cancelConnection();
+  }, [flowStore]);
   const docRef = (0, import_react15.useRef)(circuit);
   (0, import_react15.useLayoutEffect)(() => {
     docRef.current = circuit;
@@ -35741,6 +35899,12 @@ function Workspace(props) {
   (0, import_react15.useLayoutEffect)(() => {
     frozenRef.current = frozen;
   }, [frozen]);
+  (0, import_react15.useLayoutEffect)(() => {
+    cancelConnection();
+  }, [props.documentKey, frozen, cancelConnection]);
+  (0, import_react15.useLayoutEffect)(() => {
+    if (pendingTerminal && !circuit.components.some((component2) => component2.id === pendingTerminal.nodeId && getDefinition(component2.type).terminals.some((terminal) => terminal.id === pendingTerminal.id))) cancelConnection();
+  }, [circuit.components, pendingTerminal, cancelConnection]);
   const initial = (0, import_react15.useMemo)(() => initialRuntime(circuit, false), [circuit]);
   const frameInitialView = (0, import_react15.useCallback)(() => {
     const components = docRef.current.components;
@@ -35783,6 +35947,7 @@ function Workspace(props) {
     if (frozen) return;
     const previous = docRef.current;
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
+    cancelConnection();
     setPast((items) => [...items.slice(-79), clone2(previous)]);
     setFuture([]);
     setAssessment(null);
@@ -35790,7 +35955,7 @@ function Workspace(props) {
     setFocusedDiagnostic(null);
     docRef.current = next;
     onDocumentChange(next);
-  }, [frozen, onDocumentChange]);
+  }, [frozen, onDocumentChange, cancelConnection]);
   const undo = (0, import_react15.useCallback)(() => {
     if (frozen || !past.length) return;
     const previous = past[past.length - 1], current = clone2(docRef.current);
@@ -35898,7 +36063,7 @@ function Workspace(props) {
     while (circuit.components.some((component3) => component3.label === `${prefix2}${index2}`)) index2++;
     const id2 = `${type}-${crypto.randomUUID().slice(0, 8)}`;
     const required = role && requirements.find((item) => item.role === role);
-    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { rotation: required.component.rotation, settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
+    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { rotation: required.component.rotation, mirrored: required.component.mirrored, pePositions: required.component.pePositions, settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
     try {
       changed(role ? addCourseComponent(docRef.current, role, component2) : { ...docRef.current, components: [...docRef.current.components, component2] });
       setPendingRole(null);
@@ -35921,10 +36086,10 @@ function Workspace(props) {
     }
     const sourceComponent = circuit.components.find((component2) => component2.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find((terminal) => terminal.id === from.terminalId);
-    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceTerminal ? color2 : terminalColor(sourceTerminal));
-    const newColor = colorChoice.color;
+    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceComponent || !sourceTerminal ? color2 : terminalColor(transformedTerminal(sourceComponent, sourceTerminal)));
+    const newColor = colorOverride ? color2 : colorChoice.color;
     const automatic = wireStyle === "duct";
-    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] });
+    changed(normalizeAutomaticControlWireColors({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, colorMode: colorOverride ? "manual" : "auto", style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] }));
     if (colorChoice.conflict) setMessage("\u540C\u4E00\u5BFC\u901A\u7EC4\u5B58\u5728\u4E0D\u540C\u7EBF\u8272\u3002\u9009\u4E2D\u4EFB\u4E00\u5BFC\u7EBF\uFF0C\u518D\u9009\u62E9\u989C\u8272\uFF0C\u53EF\u7EDF\u4E00\u6574\u7EC4\u3002");
     if (colorChoice.sourceConflict) setMessage("\u4E0D\u540C\u7535\u6E90\u76F8\u63A5\u5165\u4E86\u540C\u4E00\u5BFC\u901A\u7EC4\uFF0C\u8BF7\u68C0\u67E5\u63A5\u7EBF\uFF1B\u7EDF\u4E00\u989C\u8272\u4E0D\u80FD\u6D88\u9664\u7535\u6C14\u51B2\u7A81\u3002");
   };
@@ -35960,7 +36125,7 @@ function Workspace(props) {
   const linkedComponents = (0, import_react15.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
   const diagnostics = (0, import_react15.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
   const terminalColors = (0, import_react15.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
-  const nodes = (0, import_react15.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const nodes = (0, import_react15.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selectable: !running, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, pendingTerminalKey: pendingTerminal ? `${pendingTerminal.nodeId}::${pendingTerminal.id}` : void 0, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, pendingTerminal, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = (0, import_react15.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
@@ -36007,6 +36172,9 @@ function Workspace(props) {
   const hasDucts = circuit.components.some((component2) => isWireDuct(component2.type));
   const selectedStyles = [...new Set(circuit.wires.filter((wire) => selectedWires.includes(wire.id)).map((wire) => wire.routing === "duct" ? "duct" : wire.style ?? "orthogonal"))];
   const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? wireStyle;
+  const selectedComponent = selectedNodes.length === 1 ? circuit.components.find((component2) => component2.id === selectedNodes[0]) : void 0;
+  const pendingComponent = pendingTerminal && circuit.components.find((component2) => component2.id === pendingTerminal.nodeId);
+  const pendingTerminalLabel = pendingComponent && getDefinition(pendingComponent.type).terminals.find((terminal) => terminal.id === pendingTerminal?.id)?.label;
   const arrangeDucts = () => {
     if (frozen) return;
     try {
@@ -36115,6 +36283,11 @@ function Workspace(props) {
     const element = editorElement.current;
     if (!element) return;
     const onKeyDown = (event) => {
+      if (event.key === "Escape" && (flowStore.getState().connectionClickStartHandle || flowStore.getState().connection.inProgress)) {
+        event.preventDefault();
+        cancelConnection();
+        return;
+      }
       if (event.key === "Escape" && pendingRole) {
         event.preventDefault();
         setPendingRole(null);
@@ -36281,7 +36454,7 @@ function Workspace(props) {
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Redo2, { size: 18 }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen || selectedNodes.length !== 1 || !canRotate(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? ""), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((c) => c.id === selectedNodes[0] ? rotateComponent(c) : c) }), children: "\u65CB\u8F6C90\xB0" }),
+        selectedComponent && canMirror(selectedComponent.type) ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen, onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent.id ? mirrorComponent(component2) : component2) }), children: "\u4E0A\u4E0B\u955C\u50CF" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen || !selectedComponent || !canRotate(selectedComponent.type), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent?.id ? rotateComponent(component2) : component2) }), children: "\u65CB\u8F6C90\xB0" }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-toolbar-spacer" }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
@@ -36310,22 +36483,32 @@ function Workspace(props) {
             onNodesChange: nodesChanged,
             onEdgesChange: edgesChanged,
             onConnect: connect,
+            onEdgeClick: () => {
+              cancelConnection();
+              board.current?.focus();
+            },
             onNodeClick: (event, node) => {
               if (running || !(event.shiftKey || event.ctrlKey || event.metaKey)) return;
               setSelectedNodes(selectedNodes.includes(node.id) ? selectedNodes.filter((id2) => id2 !== node.id) : [...selectedNodes, node.id]);
             },
             connectionMode: ConnectionMode.Loose,
             connectionLineType: wireStyle === "straight" ? ConnectionLineType.Straight : wireStyle === "curve" ? ConnectionLineType.Bezier : ConnectionLineType.Step,
+            connectOnClick: true,
             onConnectStart: (_event, params) => {
+              board.current?.focus();
               if (colorOverride) return;
               const component2 = circuit.components.find((item) => item.id === params.nodeId);
               const terminal = component2 && getDefinition(component2.type).terminals.find((item) => item.id === params.handleId);
-              if (terminal) setColor(terminalColor(terminal));
+              if (component2 && terminal) setColor(terminalColor(transformedTerminal(component2, terminal)));
+            },
+            onClickConnectStart: () => {
+              board.current?.focus();
+              setSelectedWires([]);
             },
             connectionLineStyle: { stroke: color2, strokeWidth: 3, vectorEffect: "non-scaling-stroke" },
             nodesDraggable: !frozen,
             nodesConnectable: !frozen,
-            elementsSelectable: !running,
+            elementsSelectable: true,
             deleteKeyCode: null,
             minZoom: 0.22,
             maxZoom: 2,
@@ -36355,6 +36538,7 @@ function Workspace(props) {
             },
             onPaneClick: (event) => {
               board.current?.focus();
+              cancelConnection();
               setFocusedDiagnostic(null);
               setColorsOpen(false);
               if (pendingRole && !frozen) {
@@ -36493,9 +36677,9 @@ function Workspace(props) {
         } })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { className: "sim-editor-footer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { role: "status", children: [
           /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: running ? "live" : "" }),
-          running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u7AEF\u5B50\u63A5\u7EBF \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
+          pendingComponent ? `\u63A5\u7EBF\u8D77\u70B9\uFF1A${pendingComponent.label} \xB7 ${pendingTerminalLabel}\uFF0C\u8BF7\u70B9\u51FB\u53E6\u4E00\u7AEF\u5B50\uFF1BEsc \u6216\u7A7A\u767D\u5904\u53D6\u6D88` : selectedWires.length ? `\u5DF2\u9009\u4E2D ${selectedWires.length} \u6839\u5BFC\u7EBF \xB7 \u84DD\u8272\u6D41\u52A8\u7528\u4E8E\u5DE1\u7EBF\uFF0C\u5E26\u7535\u770B\u7AEF\u5B50\u7EA2\u70B9` : running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
           circuit.components.length,
@@ -36613,7 +36797,7 @@ function DocumentPreview({ document: document2, className = "" }) {
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
   const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, delayMs: component2.settings?.delayMs }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, delayMs: component2.settings?.delayMs }) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
   ] }, component2.id);
   return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
@@ -36789,18 +36973,21 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
     /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
   ] });
   return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "dt-training-projects", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", className: "dt-project-options-toggle", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: [
-      toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8",
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { "aria-hidden": "true", children: toolsOpen ? "\u25B4" : "\u25BE" })
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-toolbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", className: "dt-project-options-toggle", "aria-label": toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", title: toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(SlidersHorizontal, { size: 15 }) }),
+      hasSlots && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
+        setEnlarged(false);
+        if (project2) setKind(item);
+        else if (!readOnly) onSelectCurrentDrawing?.(item);
+      }, children: [
+        LABELS3[item],
+        project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
+      ] }, item)) }),
+      media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-view-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u67E5\u770B", title: "\u653E\u5927\u67E5\u770B", onClick: () => setEnlarged(true), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Maximize2, { size: 15 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("a", { href: media.url, target: "_blank", rel: "noreferrer", "aria-label": "\u67E5\u770B\u539F\u56FE", title: "\u67E5\u770B\u539F\u56FE", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(ExternalLink, { size: 15 }) })
+      ] })
     ] }),
-    hasSlots && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
-      setEnlarged(false);
-      if (project2) setKind(item);
-      else if (!readOnly) onSelectCurrentDrawing?.(item);
-    }, children: [
-      LABELS3[item],
-      project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
-    ] }, item)) }),
     /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { children: [
         "\u9879\u76EE\u56FE\u7EB8",
@@ -36833,23 +37020,16 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
       project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
     ] }),
     error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { role: "alert", className: "dt-error", children: error }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
-    media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools dt-project-view-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", onClick: () => setEnlarged(true), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Maximize2, { size: 14 }),
-        "\u653E\u5927\u67E5\u770B"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("a", { href: media.url, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(ExternalLink, { size: 14 }),
-        "\u67E5\u770B\u539F\u56FE"
-      ] }),
-      project2 && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
+    project2 && media && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-apply", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { title: project2.name, children: project2.name }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
         if (!readOnly) {
           onUseDrawing(media.id, { ...project2, media }, kind);
           setSelected("");
         }
       }, children: "\u7528\u4E8E\u5F53\u524D\u7EC3\u4E60" })
     ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
     enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: title }),
@@ -37676,18 +37856,19 @@ function assessWiringWorkmanship(document2, lessonId = document2.lessonId) {
   const checks = [], diagnostics = [];
   const id2 = (role) => document2.roles?.[role] ?? role;
   for (const assignment of assignments.filter((item) => item.used)) {
-    const strip = document2.components.find((component2) => component2.id === id2(assignment.stripRole));
+    const strip2 = document2.components.find((component2) => component2.id === id2(assignment.stripRole));
     const external = { componentId: id2(assignment.componentRole), terminalId: assignment.terminalId };
     const outside = { componentId: id2(assignment.stripRole), terminalId: `B${assignment.position}` };
     const inside = { ...outside, terminalId: `T${assignment.position}` };
     const externalWires = document2.wires.filter((wire) => includes(wire, external));
     const outsideWires = document2.wires.filter((wire) => includes(wire, outside));
     const insideWires = document2.wires.filter((wire) => includes(wire, inside));
-    const passed = strip?.type === "terminal-strip16" && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === 1 && insideWires.length > 0;
-    const stripLabel = assignment.stripRole === "xt16" ? "XT1" : "XT2";
+    const expectedOutsideCount = assignments.filter((item) => item.stripRole === assignment.stripRole && item.position === assignment.position && item.used).length;
+    const passed = !!strip2 && terminalStripCapacity(strip2.type) >= assignment.position && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === expectedOutsideCount && (!assignment.requiresInternal || insideWires.length > 0);
+    const stripLabel = "XT1";
     const label = `${assignment.label} \u7ECF ${stripLabel} \u7B2C ${assignment.position} \u4F4D\u4E0A\u4E0B\u4E2D\u8F6C\uFF0C\u67DC\u5916\u7AEF\u5B50\u65E0\u65C1\u8DEF\u7EBF`;
-    checks.push({ id: `${assignment.stripRole}-${assignment.position}`, label, passed });
-    if (!passed) diagnostics.push({ code: strip?.type === "terminal-strip16" ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map((wire) => wire.id))] });
+    checks.push({ id: `${assignment.stripRole}-${assignment.position}-${assignment.componentRole}-${assignment.terminalId}`, label, passed });
+    if (!passed) diagnostics.push({ code: strip2 && isTerminalStrip(strip2.type) ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map((wire) => wire.id))] });
   }
   const groups = getWireColorGroups(document2);
   for (const group of groups.filter((item) => item.wireIds.length && (item.colors.length > 1 || item.sourcePotentials.length > 1))) {
@@ -37696,16 +37877,18 @@ function assessWiringWorkmanship(document2, lessonId = document2.lessonId) {
   }
   checks.push({ id: "permanent-group-colors", label: "\u6C38\u4E45\u5BFC\u901A\u7EC4\u7684\u4E0A\u4E0B\u7AEF\u5B50\u53CA\u5BFC\u7EBF\u989C\u8272\u4E00\u81F4", passed: !groups.some((group) => group.wireIds.length && group.colors.length > 1) });
   checks.push({ id: "permanent-group-sources", label: "\u6C38\u4E45\u5BFC\u901A\u7EC4\u6CA1\u6709\u5408\u5E76\u4E0D\u540C\u7535\u6E90\u5BFC\u4F53", passed: !groups.some((group) => group.sourcePotentials.length > 1) });
-  const earth = document2.components.find((component2) => component2.id === id2("pe") && component2.type === "pe-terminal");
-  const peKeys = ["source", ...new Set(assignments.filter((assignment) => assignment.componentRole.startsWith("m")).map((assignment) => assignment.componentRole))].map((role) => `${id2(role)}::PE`);
+  const earthAssignments = assignments.filter((assignment) => assignment.terminalId === "PE");
+  const peKeys = earthAssignments.map((assignment) => `${id2(assignment.componentRole)}::PE`);
   const earthGroup = groups.find((group) => group.terminalIds.includes(`${id2("source")}::PE`));
-  const ordinaryStripPE = earthGroup?.terminalIds.some((key4) => document2.components.find((component2) => component2.id === key4.split("::")[0])?.type === "terminal-strip16") ?? false;
-  const pePassed = !!earth && !!earthGroup && peKeys.every((key4) => earthGroup.terminalIds.includes(key4)) && !ordinaryStripPE && peKeys.every((key4) => document2.wires.some((wire) => {
-    const endpoints = [wire.from, wire.to];
-    return endpoints.some((ref2) => terminalKey(ref2) === key4) && endpoints.some((ref2) => ref2.componentId === earth.id && getDefinition(earth.type).terminals.some((terminal) => terminal.id === ref2.terminalId));
-  }));
-  checks.push({ id: "dedicated-pe", label: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u4F7F\u7528\u72EC\u7ACB\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50\uFF0C\u4E0D\u5360\u666E\u901A\u7AEF\u5B50\u6392\u4F4D\u7F6E", passed: pePassed });
-  if (!pePassed) diagnostics.push({ code: "DEDICATED_PE_REQUIRED", message: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u5E94\u76F4\u63A5\u63A5\u5165\u72EC\u7ACB PE \u7AEF\u5B50\uFF0C\u4E0D\u80FD\u7528\u666E\u901A XT \u4F4D\u7F6E\u66FF\u4EE3\u3002", severity: "warning", componentIds: [id2("pe"), ...peKeys.map((key4) => key4.split("::")[0])], terminalIds: peKeys, wireIds: earthGroup?.wireIds ?? [] });
+  const strip = document2.components.find((component2) => component2.id === id2("xt16"));
+  const ordinaryStripPE = earthGroup?.terminalIds.some((key4) => {
+    const [componentId, terminalId] = key4.split("::");
+    const component2 = document2.components.find((item) => item.id === componentId);
+    return component2 && isTerminalStrip(component2.type) && !component2.pePositions?.includes(Number(terminalId.slice(1)));
+  }) ?? false;
+  const pePassed = !!strip && !!earthGroup && peKeys.every((key4) => earthGroup.terminalIds.includes(key4)) && !ordinaryStripPE && earthAssignments.every((assignment) => strip.pePositions?.includes(assignment.position));
+  checks.push({ id: "integrated-pe", label: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u63A5\u5165\u4E3B\u7AEF\u5B50\u6392\u7684\u4E13\u7528 PE \u4F4D\uFF0C\u4E0E\u76F8\u7EBF\u548C N \u9694\u79BB", passed: pePassed });
+  if (!pePassed) diagnostics.push({ code: "DEDICATED_PE_REQUIRED", message: "\u7535\u6E90\u548C\u5404\u7535\u673A PE \u5E94\u63A5\u5165\u4E3B\u7AEF\u5B50\u6392\u4E2D\u660E\u786E\u6807\u8BB0\u7684 PE \u4F4D\uFF0C\u4E0D\u80FD\u5360\u7528\u672A\u6807\u8BB0\u7684\u666E\u901A\u4F4D\u7F6E\u3002", severity: "warning", componentIds: [id2("xt16"), ...peKeys.map((key4) => key4.split("::")[0])], terminalIds: peKeys, wireIds: earthGroup?.wireIds ?? [] });
   return { status: checks.every((check) => check.passed) ? "passed" : "incomplete", checks, diagnostics };
 }
 
@@ -38852,6 +39035,7 @@ lucide-react/dist/esm/icons/rotate-ccw.mjs:
 lucide-react/dist/esm/icons/rotate-cw.mjs:
 lucide-react/dist/esm/icons/search.mjs:
 lucide-react/dist/esm/icons/shield-check.mjs:
+lucide-react/dist/esm/icons/sliders-horizontal.mjs:
 lucide-react/dist/esm/icons/square.mjs:
 lucide-react/dist/esm/icons/star.mjs:
 lucide-react/dist/esm/icons/triangle-alert.mjs:

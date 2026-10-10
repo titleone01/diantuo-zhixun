@@ -1,4 +1,4 @@
-import { getDefinition } from "./catalog";
+import { isTerminalStrip, terminalStripCapacity } from "./catalog";
 import { getCourseTerminalAssignments } from "./terminal-wiring";
 import { terminalKey } from "./types";
 import { validateDocument } from "./validation";
@@ -26,11 +26,12 @@ export function assessWiringWorkmanship(document: CircuitDocument, lessonId = do
     const externalWires = document.wires.filter(wire => includes(wire, external));
     const outsideWires = document.wires.filter(wire => includes(wire, outside));
     const insideWires = document.wires.filter(wire => includes(wire, inside));
-    const passed = strip?.type === "terminal-strip16" && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === 1 && insideWires.length > 0;
-    const stripLabel = assignment.stripRole === "xt16" ? "XT1" : "XT2";
+    const expectedOutsideCount = assignments.filter(item => item.stripRole === assignment.stripRole && item.position === assignment.position && item.used).length;
+    const passed = !!strip && terminalStripCapacity(strip.type) >= assignment.position && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === expectedOutsideCount && (!assignment.requiresInternal || insideWires.length > 0);
+    const stripLabel = "XT1";
     const label = `${assignment.label} 经 ${stripLabel} 第 ${assignment.position} 位上下中转，柜外端子无旁路线`;
-    checks.push({ id: `${assignment.stripRole}-${assignment.position}`, label, passed });
-    if (!passed) diagnostics.push({ code: strip?.type === "terminal-strip16" ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map(wire => wire.id))] });
+    checks.push({ id: `${assignment.stripRole}-${assignment.position}-${assignment.componentRole}-${assignment.terminalId}`, label, passed });
+    if (!passed) diagnostics.push({ code: strip && isTerminalStrip(strip.type) ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map(wire => wire.id))] });
   }
   const groups = getWireColorGroups(document);
   for (const group of groups.filter(item => item.wireIds.length && (item.colors.length > 1 || item.sourcePotentials.length > 1))) {
@@ -39,15 +40,17 @@ export function assessWiringWorkmanship(document: CircuitDocument, lessonId = do
   }
   checks.push({ id: "permanent-group-colors", label: "永久导通组的上下端子及导线颜色一致", passed: !groups.some(group => group.wireIds.length && group.colors.length > 1) });
   checks.push({ id: "permanent-group-sources", label: "永久导通组没有合并不同电源导体", passed: !groups.some(group => group.sourcePotentials.length > 1) });
-  const earth = document.components.find(component => component.id === id("pe") && component.type === "pe-terminal");
-  const peKeys = ["source", ...new Set(assignments.filter(assignment => assignment.componentRole.startsWith("m")).map(assignment => assignment.componentRole))].map(role => `${id(role)}::PE`);
+  const earthAssignments = assignments.filter(assignment => assignment.terminalId === "PE");
+  const peKeys = earthAssignments.map(assignment => `${id(assignment.componentRole)}::PE`);
   const earthGroup = groups.find(group => group.terminalIds.includes(`${id("source")}::PE`));
-  const ordinaryStripPE = earthGroup?.terminalIds.some(key => document.components.find(component => component.id === key.split("::")[0])?.type === "terminal-strip16") ?? false;
-  const pePassed = !!earth && !!earthGroup && peKeys.every(key => earthGroup.terminalIds.includes(key)) && !ordinaryStripPE && peKeys.every(key => document.wires.some(wire => {
-    const endpoints = [wire.from, wire.to];
-    return endpoints.some(ref => terminalKey(ref) === key) && endpoints.some(ref => ref.componentId === earth.id && getDefinition(earth.type).terminals.some(terminal => terminal.id === ref.terminalId));
-  }));
-  checks.push({ id: "dedicated-pe", label: "电源和各电机 PE 使用独立保护接地端子，不占普通端子排位置", passed: pePassed });
-  if (!pePassed) diagnostics.push({ code: "DEDICATED_PE_REQUIRED", message: "电源和各电机 PE 应直接接入独立 PE 端子，不能用普通 XT 位置替代。", severity: "warning", componentIds: [id("pe"), ...peKeys.map(key => key.split("::")[0])], terminalIds: peKeys, wireIds: earthGroup?.wireIds ?? [] });
+  const strip = document.components.find(component => component.id === id("xt16"));
+  const ordinaryStripPE = earthGroup?.terminalIds.some(key => {
+    const [componentId, terminalId] = key.split("::");
+    const component = document.components.find(item => item.id === componentId);
+    return component && isTerminalStrip(component.type) && !component.pePositions?.includes(Number(terminalId.slice(1)));
+  }) ?? false;
+  const pePassed = !!strip && !!earthGroup && peKeys.every(key => earthGroup.terminalIds.includes(key)) && !ordinaryStripPE && earthAssignments.every(assignment => strip.pePositions?.includes(assignment.position));
+  checks.push({ id: "integrated-pe", label: "电源和各电机 PE 接入主端子排的专用 PE 位，与相线和 N 隔离", passed: pePassed });
+  if (!pePassed) diagnostics.push({ code: "DEDICATED_PE_REQUIRED", message: "电源和各电机 PE 应接入主端子排中明确标记的 PE 位，不能占用未标记的普通位置。", severity: "warning", componentIds: [id("xt16"), ...peKeys.map(key => key.split("::")[0])], terminalIds: peKeys, wireIds: earthGroup?.wireIds ?? [] });
   return { status: checks.every(check => check.passed) ? "passed" : "incomplete", checks, diagnostics };
 }

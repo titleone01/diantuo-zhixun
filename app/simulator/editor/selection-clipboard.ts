@@ -3,7 +3,7 @@ import { validateDocument } from "../core/validation";
 
 export type SelectionClipboard = { components: CircuitComponent[]; wires: CircuitWire[] };
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
-const prefixes: Record<string,string> = {supply:"电源",terminal:"XT","terminal-strip16":"XT","pe-terminal":"PE","wire-duct":"WD","wire-duct-vertical":"WD","auxiliary-no":"NO"};
+const prefixes: Record<string,string> = {supply:"电源",terminal:"XT","terminal-strip16":"XT","terminal-strip20":"XT","pe-terminal":"PE","wire-duct":"WD","wire-duct-vertical":"WD","auxiliary-no":"NO"};
 const prefix = (component: CircuitComponent) => component.label.match(/^([A-Z]+)\d+/)?.[1] ?? prefixes[component.type] ?? component.label.slice(0,50);
 
 export function copySelection(document: CircuitDocument, selected: string[]): SelectionClipboard {

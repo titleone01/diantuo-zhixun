@@ -23,7 +23,12 @@ export const DUCT_MAX_SIZE = 4000;
 export const isTimer = (type: string) => type === "timer380" || type === "timer380-8pin";
 export const isRelay = (type: string) => type === "relay380" || type === "relay380-jzc1-22";
 export const isLayoutObject = (type: string) => isWireDuct(type) || type === "din-rail";
-export const canRotate = (type: string) => type === "supply" || type === "terminal-strip16";
+export const isTerminalStrip = (type: string) => type === "terminal-strip16" || type === "terminal-strip20";
+export const terminalStripCapacity = (type: string) => type === "terminal-strip20" ? 20 : type === "terminal-strip16" ? 16 : 0;
+// Supply rotation stays readable for historical documents; new editing uses mirror.
+export const canRotate = (type: string) => type === "supply" || isTerminalStrip(type) || type === "limit-switch";
+export const canMirror = (type: string) => type === "supply";
+export const isEarthPosition = (component: CircuitComponent, terminalId: string) => isTerminalStrip(component.type) && /^[TB]\d+$/.test(terminalId) && !!component.pePositions?.includes(Number(terminalId.slice(1)));
 export const isWireDuct = (type: string) => type === "wire-duct" || type === "wire-duct-vertical";
 const contactor = (ratedVoltage: 220 | 380): ComponentDefinition => ({
   type: ratedVoltage === 220 ? "contactor220" : "contactor380", name: `交流接触器（${ratedVoltage}V）`, category: "industrial", width: 151.5, height: 191.5,
@@ -70,6 +75,7 @@ export const CATALOG: ComponentDefinition[] = [
   compactTerminal({ type:"terminal",name:"双极接线端子",category:"terminals",width:121.5,height:101.5,terminals:[pin("A",32.497,27.498,"top","contact","1上"),pin("B",32.497,73.498,"bottom","contact","1下"),pin("A2",88.497,27.498,"top","contact","2上"),pin("B2",88.497,73.498,"bottom","contact","2下")],fixedConnections:[["A","B"],["A2","B2"]],description:"左列 A/B 相通，右列 A2/B2 相通；两极互相绝缘。" }),
   compactTerminal({ type:"pe-terminal",name:"保护接地端子",category:"terminals",width:60.75,height:101.5,terminals:[{...pin("A",32.497,27.498,"top","earth"),routingRole:"internal"},{...pin("B",32.497,73.498,"bottom","earth"),routingRole:"external"}],fixedConnections:[["A","B"]],description:"永久保护连接示意，不能代替 N 返回导体。" }),
   { type:"terminal-strip16",name:"16位端子排（教学）",category:"terminals",width:729,height:76.125,terminals:Array.from({length:16},(_,i)=>[pin(`T${i+1}`,(i*60.75+32.497)*0.75,27.498*0.75,"top","contact",`${i+1}上`),pin(`B${i+1}`,(i*60.75+32.497)*0.75,73.498*0.75,"bottom","contact",`${i+1}下`)]).flat().map(t=>({...t,routingRole:t.side==="top"?"internal" as const:"external" as const})),fixedConnections:Array.from({length:16},(_,i)=>[`T${i+1}`,`B${i+1}`] as [string,string]),description:"由原站端子素材派生的16位教学图，共32个稳定接线端子；每位上下相通，不同位互相绝缘。世界单位不代表安装尺寸。"},
+  { type:"terminal-strip20",name:"20位端子排（教学）",category:"terminals",width:911.25,height:76.125,terminals:Array.from({length:20},(_,i)=>[pin(`T${i+1}`,(i*60.75+32.497)*0.75,27.498*0.75,"top","contact",`${i+1}上`),pin(`B${i+1}`,(i*60.75+32.497)*0.75,73.498*0.75,"bottom","contact",`${i+1}下`)]).flat().map(t=>({...t,routingRole:t.side==="top"?"internal" as const:"external" as const})),fixedConnections:Array.from({length:20},(_,i)=>[`T${i+1}`,`B${i+1}`] as [string,string]),description:"由原站端子素材派生的20位教学图；每位上下相通，不同位互相绝缘。标记PE的槽位仅用于保护接地，不代表真实器件的夹线容量或安装尺寸。"},
   { type:"wire-duct",name:"横向线槽",category:"terminals",width:420,height:60,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
   { type:"wire-duct-vertical",name:"纵向线槽",category:"terminals",width:60,height:420,terminals:[],description:"可移动的二维导线整理对象，无电气端子、无负载；沿线槽调整导线折点，不改变电气连接。" },
 ];
@@ -100,11 +106,20 @@ export function resolveTerminal(document: CircuitDocument, ref: TerminalRef) {
 /** Clockwise quarter turns in world coordinates; the terminal identity never changes. */
 export function transformedTerminal(component: CircuitComponent, terminal: Terminal): Terminal {
   const {width:w,height:h}=getDefinition(component.type), angle=component.rotation??0;
+  if (component.mirrored && canMirror(component.type)) terminal = { ...terminal, y: h-terminal.y, side: terminal.side === "top" ? "bottom" : terminal.side === "bottom" ? "top" : terminal.side, ...(terminal.routingSide ? {routingSide:terminal.routingSide === "top" ? "bottom" : terminal.routingSide === "bottom" ? "top" : terminal.routingSide} : {}) };
+  if (isEarthPosition(component, terminal.id)) terminal = {...terminal,electrical:"earth",color:"#e2bc20",label:`${terminal.label} PE`};
   const sides: Terminal["side"][]=["top","right","bottom","left"];
   const side=sides[(sides.indexOf(terminal.side)+angle/90)%4];
   const point=angle===90?{x:h-terminal.y,y:terminal.x}:angle===180?{x:w-terminal.x,y:h-terminal.y}:angle===270?{x:terminal.y,y:w-terminal.x}:{x:terminal.x,y:terminal.y};
   const routingSide=terminal.routingSide && sides[(sides.indexOf(terminal.routingSide)+angle/90)%4];
   return {...terminal,...point,side,...(routingSide?{routingSide}:{})};
+}
+export function mirrorComponent(component: CircuitComponent): CircuitComponent {
+  if (!canMirror(component.type)) throw new Error("此元件不支持镜像");
+  const before = componentSize(component);
+  const next = {...component,rotation:0 as const,mirrored:!component.mirrored};
+  const after = componentSize(next);
+  return {...next,position:{x:component.position.x+(before.width-after.width)/2,y:component.position.y+(before.height-after.height)/2}};
 }
 export function rotateComponent(component: CircuitComponent): CircuitComponent {
   if(!canRotate(component.type))throw new Error("此元件不支持旋转");

@@ -3,7 +3,7 @@ import test from "node:test";
 import { build } from "esbuild";
 
 const bundle = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/motor-courses"; export * from "./app/simulator/core/engine"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/validation"; export * from "./app/simulator/core/terminal-wiring"; export * from "./app/simulator/core/wire-colors"; export * from "./app/simulator/core/wiring-workmanship";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
-const { createLessonDocument, createMotorCourseDocument, assessLesson, validateDocument, getDefinition, componentSize, getCourseTerminalAssignments, terminalizeMotorCourse, getWireColorGroups, resolveConnectionColor, getConnectedTerminalColor, setWireGroupColor, normalizeDemonstrationWireColors, assessWiringWorkmanship } = await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString("base64")}`);
+const { createLessonDocument, createMotorCourseDocument, assessLesson, validateDocument, getDefinition, componentSize, getCourseTerminalAssignments, getCourseTerminalCount, terminalizeMotorCourse, getWireColorGroups, resolveConnectionColor, getConnectedTerminalColor, setWireGroupColor, normalizeDemonstrationWireColors, normalizeAutomaticControlWireColors, CONTROL_WIRE_COLOR, assessWiringWorkmanship } = await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString("base64")}`);
 const key = ref => `${ref.componentId}::${ref.terminalId}`;
 const component = (id, type) => ({ id, type, label: id, position: { x: 0, y: 0 } });
 const wire = (id, a, ap, b, bp, color = "#f04452") => ({ id, from: { componentId: a, terminalId: ap }, to: { componentId: b, terminalId: bp }, color });
@@ -17,7 +17,9 @@ for (let number = 1; number <= 10; number++) test(`course ${number}: every exter
   assert.deepEqual(blank.components, demo.components);
   assert.deepEqual(blank.roles, demo.roles);
   assert.equal(demo.roles.xt16, "xt16");
-  assert.equal(demo.components.filter(c => c.type === "terminal-strip16").length, number === 6 ? 2 : 1);
+  assert.equal(demo.components.filter(c => c.type.startsWith("terminal-strip")).length, 1);
+  assert.equal(demo.components.find(c=>c.id==="xt16").type, number===10?"terminal-strip20":"terminal-strip16");
+  assert.equal(demo.components.some(c=>c.type==="pe-terminal"),false);
   const assignments = getCourseTerminalAssignments(lessonId);
   for (const assignment of assignments) {
     const external = `${demo.roles[assignment.componentRole]}::${assignment.terminalId}`;
@@ -26,7 +28,7 @@ for (let number = 1; number <= 10; number++) test(`course ${number}: every exter
     if (!assignment.used) continue;
     const outside = `${demo.roles[assignment.stripRole]}::B${assignment.position}`, inside = `${demo.roles[assignment.stripRole]}::T${assignment.position}`;
     assert.ok(attached.some(w => [w.from, w.to].some(ref => key(ref) === outside)));
-    assert.ok(demo.wires.some(w => [w.from, w.to].some(ref => key(ref) === inside)));
+    if(assignment.requiresInternal) assert.ok(demo.wires.some(w => [w.from, w.to].some(ref => key(ref) === inside)));
   }
   assert.equal(assessLesson(demo).status, "passed");
   assert.equal(assessWiringWorkmanship(demo).status, "passed");
@@ -35,17 +37,21 @@ for (let number = 1; number <= 10; number++) test(`course ${number}: every exter
   for (const external of demo.components.filter(c => c.type === "supply" || getDefinition(c.type).load?.kind === "motor")) assert.ok(external.position.y >= strip.position.y + componentSize(strip).height);
 });
 
-test("XT2 has explicit 16-to-1 rotated mapping, four used NC and only two used NO pairs", () => {
-  const assignments = getCourseTerminalAssignments("motor-course-06").filter(a => a.stripRole === "xt2");
-  assert.deepEqual(assignments.map(a => [a.position, a.componentRole, a.terminalId, a.used]), [
-    [16,"sq1","11",true],[15,"sq1","12",true],[14,"sq1","23",true],[13,"sq1","24",true],
-    [12,"sq2","11",true],[11,"sq2","12",true],[10,"sq2","23",true],[9,"sq2","24",true],
-    [8,"sq3","11",true],[7,"sq3","12",true],[6,"sq3","23",false],[5,"sq3","24",false],
-    [4,"sq4","11",true],[3,"sq4","12",true],[2,"sq4","23",false],[1,"sq4","24",false],
-  ]);
-  const demo = createLessonDocument("motor-course-06", { wired: true });
-  assert.equal(demo.components.find(c => c.id === "xt2").rotation, 270);
-  assert.equal(demo.roles.xt2, "xt2");
+test("terminal capacity counts only original wire nets; N and PE retain dedicated source positions", () => {
+  const counts=[10,11,12,12,14,16,16,11,14,17];
+  for(let n=1;n<=10;n++){
+    const id=`motor-course-${String(n).padStart(2,"0")}`,assignments=getCourseTerminalAssignments(id);
+    assert.equal(new Set(assignments.map(a=>a.position)).size,counts[n-1]);
+    assert.equal(getCourseTerminalCount(id),n===10?20:16);
+    assert.deepEqual(assignments.filter(a=>a.componentRole==="source").map(a=>[a.terminalId,a.position]),[["L1",1],["L2",2],["L3",3],["N",4],["PE",5]]);
+    assert.ok(assignments.filter(a=>a.terminalId==="PE").every(a=>a.position===5));
+  }
+  const assignments=getCourseTerminalAssignments("motor-course-06");
+  assert.equal(assignments.filter(a=>a.componentRole.startsWith("sq")).length,12);
+  assert.ok(assignments.every(a=>a.stripRole==="xt16"));
+  const demo=createLessonDocument("motor-course-06",{wired:true});
+  assert.equal(demo.roles.xt2,undefined);
+  assert.deepEqual(demo.components.find(c=>c.id==="xt16").pePositions,[5]);
 });
 
 for (const number of [6, 7, 9, 10]) test(`course ${number}: conversion rewrites EVERY original branch without modifying its input`, () => {
@@ -53,10 +59,14 @@ for (const number of [6, 7, 9, 10]) test(`course ${number}: conversion rewrites 
   const before = JSON.stringify(raw), converted = terminalizeMotorCourse(raw);
   const assignments = new Map(getCourseTerminalAssignments(raw.lessonId).filter(a => a.used).map(a => [`${a.componentRole}::${a.terminalId}`, a]));
   for (const original of raw.wires) {
-    const next = converted.wires.find(w => w.id === original.id);
+    if([original.from,original.to].some(ref=>ref.componentId==="pe")) continue;
+    const expected=[original.from,original.to].map(ref=>{const a=assignments.get(key(ref));return a?{componentId:a.stripRole,terminalId:`T${a.position}`}:ref;});
+    if(key(expected[0])===key(expected[1]))continue;
+    const next = converted.wires.find(w => [key(w.from),key(w.to)].sort().join("|")===[key(expected[0]),key(expected[1])].sort().join("|"));
+    assert.ok(next,"each original branch survives or collapses onto an already equivalent connection");
     for (const end of ["from", "to"]) {
       const a = assignments.get(key(original[end]));
-      assert.deepEqual(next[end], a ? { componentId: a.stripRole, terminalId: `T${a.position}` } : original[end]);
+      assert.ok([next.from,next.to].some(ref=>key(ref)===key(a ? { componentId: a.stripRole, terminalId: `T${a.position}` } : original[end])));
     }
   }
   assert.equal(JSON.stringify(raw), before);
@@ -79,7 +89,7 @@ test("old electrical grades remain independent of the new workmanship result", (
 
 test("PE on an ordinary XT is reported even if all conductors use the same green color", () => {
   const demo = createLessonDocument("motor-course-01", { wired: true });
-  demo.wires.push(wire("pe-on-strip", "pe", "A", "xt16", "T16", "#659f2f"));
+  demo.wires.push(wire("pe-on-strip", "source", "PE", "xt16", "T16", "#659f2f"));
   const report = assessWiringWorkmanship(demo);
   assert.equal(report.status, "incomplete");
   assert.ok(report.diagnostics.some(d => d.code === "DEDICATED_PE_REQUIRED"));
@@ -144,4 +154,56 @@ test("demonstration normalization is stable under wire reorder and never touches
   assert.deepEqual(normalized.wires.map(({ color, ...w }) => w), raw.wires.map(({ color, ...w }) => w));
   assert.equal(JSON.stringify(raw), before);
   assert.equal(assessLesson(normalized).status, "passed");
+});
+
+for(let number=1;number<=10;number++)test(`course ${number}: all FU2 downstream control conductors are black, including open contacts`,()=>{
+  const doc=createLessonDocument(`motor-course-${String(number).padStart(2,"0")}`,{wired:true});
+  const byId=new Map(doc.wires.map(w=>[w.id,w]));
+  const controlGroups=getWireColorGroups(doc).filter(g=>g.controlCircuit&&g.wireIds.length);
+  assert.ok(controlGroups.length>2,"both rails and intermediate open-contact sections are classified");
+  for(const group of controlGroups)for(const id of group.wireIds)assert.equal(byId.get(id).color,CONTROL_WIRE_COLOR,id);
+  for(const [terminal,color] of [["L1","#e7b000"],["L2","#20b963"],["L3","#f04452"],["N","#3478f6"],["PE","#659f2f"]])assert.equal(doc.wires.find(w=>[w.from,w.to].some(r=>r.componentId==="source"&&r.terminalId===terminal)).color,color);
+  for(const id of ["1","3"])assert.notEqual(getConnectedTerminalColor(doc,{componentId:"fu2",terminalId:id}),CONTROL_WIRE_COLOR);
+});
+
+test("FU2 downstream pending connections default black while group recolor stays below the fuse",()=>{
+  const doc=createLessonDocument("motor-course-02");
+  assert.equal(resolveConnectionColor(doc,{componentId:"fu2",terminalId:"2"}).color,CONTROL_WIRE_COLOR);
+  const demo=createLessonDocument("motor-course-02",{wired:true}),target=demo.wires.find(w=>[w.from,w.to].some(r=>r.componentId==="fu2"&&r.terminalId==="2"));
+  const changed=setWireGroupColor(demo,[target.id],"#222222");
+  assert.equal(getConnectedTerminalColor(changed,{componentId:"fu2",terminalId:"1"}),"#e7b000");
+  assert.equal(getConnectedTerminalColor(changed,{componentId:"fu2",terminalId:"2"}),"#222222");
+});
+
+
+test("closing the FU2 connection last recolors previously automatic wires across open controls",()=>{
+  const doc=createLessonDocument("motor-course-02");
+  doc.wires=[wire("first","km","A1","sb2","24","#84909c"),wire("middle","sb2","23","sb1","12","#84909c"),wire("return","km","A2","fu2","4","#20b963"),wire("upstream","source","L1","fu2","1","#e7b000")].map(w=>({...w,colorMode:"auto"}));
+  const last={...wire("last","sb1","11","fu2","2","#84909c"),colorMode:"auto"};
+  const connected={...doc,wires:[...doc.wires,last]},before=JSON.stringify(connected),next=normalizeAutomaticControlWireColors(connected);
+  assert.equal(JSON.stringify(connected),before,"color normalization is immutable");
+  assert.ok(next.wires.filter(w=>w.id!=="upstream").every(w=>w.color===CONTROL_WIRE_COLOR));
+  assert.equal(next.wires.find(w=>w.id==="upstream").color,"#e7b000");
+  assert.equal(normalizeAutomaticControlWireColors(next),next,"unchanged colors are a no-op");
+});
+
+test("manual and historical wire colors remain authoritative when FU2 is connected last",()=>{
+  for(const mode of [undefined,"manual"]){
+    const doc=createLessonDocument("motor-course-01");
+    doc.wires=[{...wire("saved","sb","24","km","A1","#8052cd"),...(mode?{colorMode:mode}:{})},{...wire("branch","km","13","sb","24","#84909c"),colorMode:"auto"},{...wire("last","sb","23","fu2","2","#84909c"),colorMode:"auto"}];
+    const next=normalizeAutomaticControlWireColors(doc);
+    assert.equal(next.wires.find(w=>w.id==="saved").color,"#8052cd");
+    assert.equal(next.wires.find(w=>w.id==="branch").color,"#8052cd");
+    assert.equal(next.wires.find(w=>w.id==="last").color,CONTROL_WIRE_COLOR);
+  }
+});
+
+test("color modes round-trip, reject invalid values, and mark explicit color edits",()=>{
+  const doc=createLessonDocument("motor-course-01",{wired:true});
+  for(const mode of ["auto","manual"]){doc.wires[0].colorMode=mode;const checked=validateDocument(JSON.parse(JSON.stringify(doc)));assert.equal(checked.valid,true);assert.equal(checked.document.wires[0].colorMode,mode);}
+  doc.wires[0].colorMode="unexpected";assert.equal(validateDocument(doc).valid,false);
+  delete doc.wires[0].colorMode;
+  const changed=setWireGroupColor(doc,[doc.wires[0].id],doc.wires[0].color);
+  assert.equal(changed.wires[0].colorMode,"manual");
+  assert.equal(doc.wires[0].colorMode,undefined);
 });

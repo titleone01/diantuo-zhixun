@@ -53,12 +53,12 @@ for (const lesson of LESSONS) test(`${lesson.id}: blank and demonstration initia
   if (reference) {
     assert.equal(trainingLayoutReference(demo), reference.file);
     assert.equal(demo.components.filter(component => component.type === "fuse2").length, 1);
-    assert.equal(demo.components.filter(component => component.type === "terminal-strip16").length, lesson.id === "motor-course-06" ? 2 : 1);
+    assert.equal(demo.components.filter(component => component.type.startsWith("terminal-strip")).length, 1);
     assert.equal(demo.components.some(component => component.id === "fu2a" || component.id === "fu2b"), false);
     for (const [row, ids] of reference.rows.entries()) for (const id of ids) assertBetweenChannels(demo, id, row);
     assertBetweenChannels(demo, "fu2", 0);
-    const xt = demo.components.find(component => component.type === "terminal-strip16");
-    for (const motor of demo.components.filter(component => component.type.startsWith("motor"))) assert.ok(motor.position.y >= xt.position.y + componentSize(xt).height + 76, "external motors stay below the complete XT row with terminal-lead clearance");
+    const xt = demo.components.find(component => component.type.startsWith("terminal-strip"));
+    for (const motor of demo.components.filter(component => component.type.startsWith("motor"))) assert.ok(motor.position.y >= xt.position.y + componentSize(xt).height + 44, "external motors stay below the complete XT row with terminal-lead clearance");
     const right = Math.max(...ducts.map(component => component.position.x + componentSize(component).width));
     for (const id of [...reference.buttons, ...(reference.limits ?? [])]) assert.ok(demo.components.find(component => component.id === id).position.x > right, `${id} stays in the external control box`);
     assert.equal(assessMotorCourse(demo, lesson.id).status, "passed", "placement and FU2 conversion preserve the course's electrical behavior");

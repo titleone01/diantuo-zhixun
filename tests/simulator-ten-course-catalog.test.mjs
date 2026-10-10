@@ -47,18 +47,17 @@ for(const lesson of core.LEGACY_LESSONS)test(`historical ${lesson.id} retains va
   assert.equal(core.assessLesson(restored.document).status,'passed');
 });
 
-test('course 06 follows the updated XT2/SQ layout in both blank and wired practices',()=>{
+test('course 06 keeps all external controls on one 16-position main strip in blank and wired practices',()=>{
   for(const wired of [false,true]){
-    const doc=core.createLessonDocument('motor-course-06',{wired});
-    const byRole=role=>doc.components.find(component=>component.id===doc.roles[role]);
-    const xt2=byRole('xt2'),xt1=byRole('xt16'),sq=['sq1','sq2','sq3','sq4'].map(byRole),sb=['sb1','sb2','sb3'].map(byRole);
-    assert.equal(xt2.rotation,270);
-    assert.equal(core.getDefinition(xt2.type).fixedConnections.length,16);
-    for(const component of [...sq,...sb])assert.ok(component.position.x>=xt2.position.x+core.componentSize(xt2).width);
-    for(const group of [sq,sb])for(let i=1;i<group.length;i++)assert.ok(group[i].position.y>group[i-1].position.y+core.componentSize(group[i-1]).height);
-    assert.ok(sb[0].position.y>sq[3].position.y+core.componentSize(sq[3]).height);
+    const doc=core.createLessonDocument('motor-course-06',{wired}),byRole=role=>doc.components.find(component=>component.id===doc.roles[role]);
+    const xt1=byRole('xt16'),controls=['sq1','sq2','sq3','sq4','sb1','sb2','sb3'].map(byRole);
+    assert.equal(doc.roles.xt2,undefined);
+    assert.equal(core.getDefinition(xt1.type).fixedConnections.length,16);
+    const right=Math.max(...doc.components.filter(c=>core.isWireDuct(c.type)).map(c=>c.position.x+core.componentSize(c).width));
+    for(const component of controls)assert.ok(component.position.x>right);
     assert.ok(xt1.position.y>byRole('fr').position.y+core.componentSize(byRole('fr')).height);
     assert.equal(byRole('qf').type,'breaker3');
     if(!wired)assert.equal(doc.wires.length,0);
+    else for(const component of controls)for(const wire of doc.wires.filter(w=>w.from.componentId===component.id||w.to.componentId===component.id))assert.ok([wire.from,wire.to].some(ref=>ref.componentId===xt1.id&&ref.terminalId.startsWith('B')));
   }
 });

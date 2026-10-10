@@ -24,6 +24,7 @@ export type DeviceNodeData = {
   resize?: (id: string, bounds: Point & ComponentSize, finish?: boolean) => void;
   cancelResize?: () => void;
   selectedWireIds?: string[];
+  pendingTerminalKey?: string;
 };
 export type ElectricalNode = Node<DeviceNodeData, "electrical">;
 
@@ -50,6 +51,13 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
   const leads = data.document?.wires.flatMap(wire => [wire.from, wire.to].filter(ref => ref.componentId === component.id).map(ref => ({ wire, terminal: definition.terminals.find(terminal => terminal.id === ref.terminalId)! }))) ?? [];
   const faulty = data.diagnostics.some(d => d.componentIds.includes(component.id) && d.severity !== "info");
   const momentary = component.type === "push-no" || component.type === "push-nc" || component.type === "limit-switch";
+  // Keep the SQ operation target on the same artwork point after quarter turns;
+  // the small instruction remains upright for the operator.
+  const actuatorPoint = { x: definition.width * .5, y: definition.height * .48 };
+  const actuatorPosition = component.rotation === 90 ? { left: definition.height - actuatorPoint.y, top: actuatorPoint.x }
+    : component.rotation === 180 ? { left: definition.width - actuatorPoint.x, top: definition.height - actuatorPoint.y }
+    : component.rotation === 270 ? { left: actuatorPoint.y, top: definition.width - actuatorPoint.x }
+    : { left: actuatorPoint.x, top: actuatorPoint.y };
   const latching = component.type === "push-latching-red" || component.type === "push-latching-green";
   const knife = component.type === "knife-switch3";
   const breaker = component.type === "breaker1" || component.type === "breaker3";
@@ -72,9 +80,18 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     data-runtime-speed={result?.speed}
   >
     {duct && <NodeResizer isVisible={!!selected && !running && !data.readOnly} minWidth={DUCT_MIN_SIZE} minHeight={rail ? 24 : DUCT_MIN_SIZE} maxWidth={DUCT_MAX_SIZE} maxHeight={rail ? 24 : DUCT_MAX_SIZE} keepAspectRatio={false} handleClassName="sim-duct-resize-handle" lineClassName="sim-duct-resize-line" onResizeStart={onResizeStart} onResize={onResize} onResizeEnd={onResizeEnd} />}
-    <DeviceArtwork rotation={component.rotation} result={result} delayMs={component.settings?.delayMs} running={running} type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
+    <DeviceArtwork rotation={component.rotation} mirrored={component.mirrored} pePositions={component.pePositions} result={result} delayMs={component.settings?.delayMs} running={running} type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
     {data.document && !!leads.length && <svg className="sim-terminal-leads" width={size.width} height={size.height} aria-hidden="true">
-      {leads.map(({ wire, terminal }) => { const clip = `lead-${component.id}-${wire.id}-${terminal.id}`; return <g key={clip}><defs><clipPath id={clip}><rect x="0" y="0" width={size.width} height={size.height} /></clipPath></defs><g clipPath={`url(#${clip})`}>{data.selectedWireIds?.includes(wire.id) && <path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke="#3478f6" strokeOpacity={0.65} strokeWidth={9} vectorEffect="non-scaling-stroke" strokeLinecap="round"/>}<path d={wirePath(data.document!, wire)} transform={`translate(${-component.position.x} ${-component.position.y})`} fill="none" stroke={wire.color} strokeWidth={data.selectedWireIds?.includes(wire.id) ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" /></g></g>; })}
+      {leads.map(({ wire, terminal }) => {
+        const clip = `lead-${component.id}-${wire.id}-${terminal.id}`;
+        const traced = data.selectedWireIds?.includes(wire.id);
+        const path = wirePath(data.document!, wire);
+        return <g key={clip}><defs><clipPath id={clip}><rect x="0" y="0" width={size.width} height={size.height} /></clipPath></defs><g clipPath={`url(#${clip})`}><g transform={`translate(${-component.position.x} ${-component.position.y})`}>
+          {traced && <path className="sim-wire-trace-halo" d={path} fill="none" stroke="#3478f6" strokeOpacity={0.72} strokeWidth={11} vectorEffect="non-scaling-stroke" strokeLinecap="round"/>}
+          <path d={path} fill="none" stroke={wire.color} strokeWidth={traced ? 4 : 3} vectorEffect="non-scaling-stroke" strokeLinecap="round" />
+          {traced && <path className="sim-wire-trace-flow" d={path} fill="none" stroke="#fff" strokeWidth={3} strokeDasharray="5 15" vectorEffect="non-scaling-stroke" strokeLinecap="round"/>}
+        </g></g></g>;
+      })}
     </svg>}
     <div className="sim-device-caption"><b>{component.label}</b><span>{definition.name}</span>{timer && <span>教学双延时 · {(component.settings?.delayMs ?? 3000) / 1000} s</span>}{component.type === "auxiliary-no" && <span>{data.linkedComponents.find(item => item.id === component.linkedTo)?.label ?? "未关联"}</span>}</div>
     {faulty && definition.load?.kind === "motor" && <span className="sim-motor-diagnostic" role="status" title={data.diagnostics.filter(d => d.componentIds.includes(component.id)).map(d => d.message).join("；")}>诊断</span>}
@@ -84,24 +101,29 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
       const state = data.terminalStates[key];
       const isFaulty = data.diagnostics.some(d => d.terminalIds.includes(key));
       const color = data.terminalColors?.[key] ?? terminalColor(terminal);
+      const pending = data.pendingTerminalKey === key;
+      const traced = leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
       return <Handle
         key={terminal.id}
         id={terminal.id}
         type="source"
         position={sidePosition[terminal.side]}
         isConnectable={!running && !data.readOnly}
-        className={`sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""}`}
+        className={`sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""} ${pending ? "is-connection-start" : ""} ${traced ? "is-trace-endpoint" : ""}`}
         style={{ left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color }}
         title={`${component.label} · ${terminal.label}${state ? ` · ${state.potential}` : ""}`}
         aria-label={`${component.label} 端子 ${terminal.label}`}
         data-terminal-key={key}
+        data-connection-start={pending}
+        data-wire-traced={traced}
         data-terminal-energized={running && !!state?.energized}
         data-world-x={component.position.x + terminal.x}
         data-world-y={component.position.y + terminal.y}
-      ><i className="sim-terminal-indicator" aria-hidden="true" />{!contactor && !timer && component.type !== "relay380-jzc1-22" && <span className="sim-terminal-label">{terminal.label}</span>}</Handle>;
+      ><i className="sim-terminal-indicator" aria-hidden="true" />{(pending || traced) ? <span className="sim-terminal-label sim-terminal-focus-label">{pending ? "起点 · " : ""}{component.label} · {terminal.label}</span> : !contactor && !timer && component.type !== "relay380-jzc1-22" && <span className="sim-terminal-label">{terminal.label}</span>}</Handle>;
     })}
     {running && momentary && <button
       className={`sim-actuator sim-push-actuator nodrag nopan ${component.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`}
+      style={component.type === "limit-switch" ? actuatorPosition : undefined}
       aria-pressed={pressed}
       title="按住操作，松开复位"
       aria-label={`${component.label} ${component.type === "limit-switch" ? "限位开关" : definition.name}`}

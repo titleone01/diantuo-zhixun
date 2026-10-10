@@ -309,7 +309,8 @@ test('formal course picker creates ten editable blank practices and saves separa
     await expect(page.getByLabel('选择训练课程', { exact: true })).toHaveValue(lessonId);
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     await expect(page.locator('[data-component-type="fuse2"]')).toHaveCount(1);
-    await expect(page.locator('[data-component-type="terminal-strip16"] .sim-terminal')).toHaveCount(index === 5 ? 64 : 32);
+    await expect(page.locator('[data-component-type^="terminal-strip"]')).toHaveCount(1);
+    await expect(page.locator(`[data-component-type="terminal-strip${index === 9 ? 20 : 16}"] .sim-terminal`)).toHaveCount(index === 9 ? 40 : 32);
     await expect(page.locator('[data-component-type^="wire-duct"]')).toHaveCount(6);
     const saved = page.waitForResponse(response => response.url().endsWith('/api/circuits') && response.request().method() === 'POST');
     await page.getByRole('button', { name: '保存草稿', exact: true }).click();

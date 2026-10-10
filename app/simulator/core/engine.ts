@@ -1,4 +1,4 @@
-import { getDefinition, isTimer, equivalentComponentType } from "./catalog";
+import { getDefinition, isTimer, equivalentComponentType, isTerminalStrip, isEarthPosition, transformedTerminal } from "./catalog";
 import { createLessonDocument, getLesson } from "./lessons";
 import { validateDocument } from "./validation";
 import { terminalKey } from "./types";
@@ -42,7 +42,7 @@ function network(document:CircuitDocument,runtime:Runtime, options: NetworkOptio
     for(const [a,b] of def.fixedConnections??[]){
       const excluded=options.excludeFixedConnection;
       const cut=excluded?.componentId===component.id&&((excluded.terminals[0]===a&&excluded.terminals[1]===b)||(excluded.terminals[0]===b&&excluded.terminals[1]===a));
-      if(!cut&&options.excludeComponent!==component.id&&(!options.protectiveOnly||component.type==="terminal"||component.type==="pe-terminal")&&(!options.neutralOnly||component.type==="terminal"))net.connect({a:key(component.id,a),b:key(component.id,b),componentId:component.id});
+      if(!cut&&options.excludeComponent!==component.id&&(!options.protectiveOnly||component.type==="terminal"||component.type==="pe-terminal"||isEarthPosition(component,a)&&isEarthPosition(component,b))&&(!options.neutralOnly||component.type==="terminal"||isTerminalStrip(component.type)&&!isEarthPosition(component,a)&&!isEarthPosition(component,b)))net.connect({a:key(component.id,a),b:key(component.id,b),componentId:component.id});
     }
     if(!options.permanentOnly&&!options.protectiveOnly&&!options.neutralOnly)for(const contact of def.contacts??[])if(options.excludeComponent!==component.id&&!(options.excludeMainContacts===component.id&&contact.id.startsWith("pole-"))&&!(options.openPushContacts===component.id&&contact.control==="push")&&!(options.openLatchingContacts===component.id&&["push-latching-red","push-latching-green"].includes(component.type)&&contact.control==="switch")&&contactClosed(component,contact,runtime))net.connect({a:key(component.id,contact.terminals[0]),b:key(component.id,contact.terminals[1]),componentId:component.id,contactId:contact.id});
   }
@@ -61,7 +61,8 @@ function safety(document:CircuitDocument,runtime:Runtime,net:Network){
     for(let a=0;a<3;a++)for(let b=a+1;b<potentials.length;b++){const left=potentials[a],right=potentials[b],at=key(source.id,left),bt=key(source.id,right);if(net.connected(at,bt))diagnostics.push(pathDiagnostic(net,at,bt,right==="PE"?"PHASE_EARTH_SHORT":right==="N"?"PHASE_NEUTRAL_SHORT":"PHASE_SHORT",`${left} 与 ${right} 经导线或闭合触点短接，教学电源已停止仿真`));}
   }
   if(net.connected(key(source.id,"N"),key(source.id,"PE")))diagnostics.push(pathDiagnostic(net,key(source.id,"N"),key(source.id,"PE"),"NEUTRAL_EARTH_BRIDGE","训练板下游 N 与 PE 被连接；两者须保持独立"));
-  for(const component of document.components)for(const terminal of getDefinition(component.type).terminals){
+  for(const component of document.components)for(const original of getDefinition(component.type).terminals){
+    const terminal=transformedTerminal(component,original);
     if(terminal.electrical!=="earth")continue;
     const id=key(component.id,terminal.id),live=net.potentials(id).find(phase);
     if(live)diagnostics.push(pathDiagnostic(net,key(source.id,live),id,"EARTH_TERMINAL_LIVE",`${component.label} 的保护地端子 ${terminal.label} 接入了 ${live}；保护地端子不能用于相线导通`));

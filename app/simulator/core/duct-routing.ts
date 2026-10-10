@@ -322,7 +322,7 @@ function assignLanes(document: CircuitDocument, wires: CircuitWire[], centers: M
 
 /** Geometry and wire membership both invalidate shared-lane allocation. */
 export function routeWireInDucts(document: CircuitDocument, wire: CircuitWire): DuctRoute {
-  const signature = document.components.map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}:${component.rotation ?? 0}`).sort().join("|");
+  const signature = document.components.map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}:${component.rotation ?? 0}:${component.mirrored ?? false}`).sort().join("|");
   let cached = routeCache.get(document.components);
   if (cached?.signature !== signature) {
     cached = recentGeometry.get(signature) ?? { signature, centers: new Map(), layouts: new Map() };

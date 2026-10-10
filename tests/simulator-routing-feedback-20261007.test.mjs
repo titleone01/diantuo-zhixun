@@ -68,15 +68,16 @@ for(const lesson of ['motor-course-01','motor-course-09','motor-course-10'])test
   for(let i=0;i<routes.length;i++)for(let j=i+1;j<routes.length;j++)for(let a=1;a<routes[i].length;a++)for(let b=1;b<routes[j].length;b++)assert.equal(collinearOverlap(routes[i][a-1],routes[i][a],routes[j][b-1],routes[j][b]),false,`${terminals[i]}/${terminals[j]}`);
  }
 });
-test('course 06 rotated XT2 preserves outward world direction and separates cabinet input from external SQ wiring',()=>{
- const document=createLessonDocument('motor-course-06',{wired:true}),strip=document.components.find(c=>c.id===document.roles.xt2);assert.equal(strip.rotation,270);
- for(const wire of document.wires.filter(wire=>wire.from.componentId===strip.id||wire.to.componentId===strip.id)){
+test('course 06 main strip preserves outward direction for every SQ tail',()=>{
+ const document=createLessonDocument('motor-course-06',{wired:true}),strip=document.components.find(c=>c.id===document.roles.xt16);
+ for(const wire of document.wires.filter(wire=>[wire.from,wire.to].some(ref=>ref.componentId.startsWith('sq')))){
   const ref=wire.from.componentId===strip.id?wire.from:wire.to,terminal=resolveTerminal(document,ref),route=routeWireInDucts(document,wire);assertGeometry(document,wire,route);
-  const points=wire.from.componentId===strip.id?route.sections[0]:[...route.sections[0]].reverse();assert.equal(points[0].y,points[1].y);
-  assert.ok(terminal.terminal.side==='left'?points[1].x<points[0].x:points[1].x>points[0].x);
-  assert.equal(route.trunk.length===0,terminal.terminal.routingRole==='external');
+  const points=wire.from.componentId===strip.id?route.sections[0]:[...route.sections[0]].reverse();assert.equal(points[0].x,points[1].x);
+  assert.ok(points[1].y>points[0].y);
+  assert.equal(terminal.terminal.routingRole,'external');assert.equal(route.trunk.length,0);
  }
 });
+
 test('a cabinet lead may cross the horizontal duct edge before its 12-unit clearance anchor',()=>{
  const document={schemaVersion:1,title:'Close horizontal duct',components:[c('fr','overload',200,100),c('target','terminal',700,100),c('top','wire-duct',0,50,{width:1000,height:40}),c('bottom','wire-duct',0,400,{width:1000,height:40}),c('right','wire-duct-vertical',960,50,{width:40,height:390})],wires:[]};
  const wire=w('nearby','fr','95','target','A'),route=routeWireInDucts(document,wire);assertGeometry(document,wire,route);assert.equal(route.sections[0][0].x,route.sections[0][1].x);assert.equal(route.trunk[0].y,70);
@@ -109,7 +110,7 @@ function assertSimpleExteriorPath(document,wire,points){
   }
  }
 }
-// The confirmed lower group remains XT 7/8/9 -> U2/V2/W2. Both rows exit
+// The confirmed lower group remains XT 9/10/11 -> U2/V2/W2. Both rows exit
 // downwards in the same order. Their routes around the solid motor can have
 // perpendicular crossings; these are presentation intersections, not junctions.
 // Upper facing terminals have no such constraint and must remain uncrossed.
@@ -118,7 +119,7 @@ for(const lesson of ['motor-course-09','motor-course-10'])test(`${lesson}: confi
   const document=createLessonDocument(lesson,{wired:true}),motor=document.components.find(c=>c.id==='m');motor.position.x+=dx;motor.position.y+=dy;
   for(const [group,terminals] of [[0,['U1','V1','W1']],[1,['U2','V2','W2']]]){
    const wires=terminals.map(terminal=>document.wires.find(wire=>wire.to.componentId==='m'&&wire.to.terminalId===terminal));
-   if(group===1)assert.deepEqual(wires.map(wire=>wire.from),[7,8,9].map(slot=>({componentId:'xt16',terminalId:`B${slot}`})));
+   if(group===1)assert.deepEqual(wires.map(wire=>wire.from),[9,10,11].map(slot=>({componentId:'xt16',terminalId:`B${slot}`})));
    const routes=wires.map(wire=>{const route=routeWireInDucts(document,wire);assertGeometry(document,wire,route);assert.equal(route.trunk.length,0);assertSimpleExteriorPath(document,wire,route.sections[0]);assert.deepEqual(route,routeWireInDucts(JSON.parse(JSON.stringify(document)),wire));return route.sections[0];});
    const crossings=phaseIntersections(routes);
    if(group===0)assert.equal(crossings.length,0,'facing upper phases must not cross');

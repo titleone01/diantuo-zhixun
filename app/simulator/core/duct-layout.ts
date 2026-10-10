@@ -30,8 +30,8 @@ function referenceFor(document: CircuitDocument): LayoutReference {
 export const trainingLayoutReference = (document: CircuitDocument) => referenceFor(document).file;
 
 const DUCT_WIDTH = 32;
-const CLEARANCE = 40;
-const SEPARATION = 76;
+const CLEARANCE = 28;
+const SEPARATION = 44;
 const rowGap = (previous: CircuitComponent | undefined, component: CircuitComponent) => !previous ? 0 : component.id === "fu2b" ? 16 : component.type === "auxiliary-no" && component.linkedTo === previous.id ? 12 : SEPARATION;
 const rowWidth = (row: CircuitComponent[]) => row.reduce((sum, component, index) => sum + componentSize(component).width + rowGap(row[index - 1], component), 0);
 
@@ -55,8 +55,9 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   const buttons = resolve(reference.buttons), limits = resolve(reference.limits ?? []);
   const xt2 = document.roles?.xt2 && byId.get(document.roles.xt2);
   const terminalPractice = !!document.roles?.xt16;
-  // New practices leave room for separate wire lanes. Existing documents keep their saved sizes.
-  const practiceWidth = document.lessonId === "motor-course-10" ? 128 : document.lessonId === "motor-course-09" ? 96 : 80;
+  // Compact cabinet spacing retains real body clearance and separate wire lanes.
+  // Documents that already contain ducts returned above keep their saved layout.
+  const practiceWidth = document.lessonId === "motor-course-10" ? 96 : 64;
   const ductWidth = terminalPractice ? practiceWidth : DUCT_WIDTH;
   const sources = document.components.filter(component => component.type === "supply");
   const loads = document.components.filter(component => loadTypes.has(component.type));
@@ -64,7 +65,7 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   const placed = new Set([...rows.flat(), ...buttons, ...limits, ...sources, ...loads, ...earths, ...(xt2 ? [xt2] : [])].map(component => component.id));
   // Custom intermediary terminals use the XT area in the existing reference.
   const terminals = document.components.filter(component => !placed.has(component.id) && !isLayoutObject(component.type));
-  const width = Math.max(880, ...rows.map(row => rowWidth(row) + CLEARANCE * 2 + ductWidth));
+  const width = Math.max(terminalPractice ? 760 : 880, ...rows.map(row => rowWidth(row) + CLEARANCE * 2 + ductWidth), ...terminals.map(component => componentSize(component).width + 56));
   const limitsHeight = limits.reduce((sum,c,index)=>sum+componentSize(c).height+(index?40:0),0);
   const buttonsHeight = buttons.reduce((sum,c,index)=>sum+componentSize(c).height+(index?28:0),0);
   const baseHeight = rows.reduce((sum,row,index)=>sum+ductWidth+CLEARANCE*2+Math.max(index===2?getDefinition("overload").height:getDefinition("contactor380").height,...row.map(c=>componentSize(c).height)),0);
@@ -85,7 +86,7 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
     y += ductWidth + CLEARANCE * 2 + height + extraRowHeight;
     channels.push(y);
   }
-  const bottom = y, sideX = width + ductWidth / 2 + 80;
+  const bottom = y, sideX = width + ductWidth / 2 + 48;
   // The reference button box is outside the right duct, in the lower board area.
   let buttonY = xt2 ? ductWidth/2+CLEARANCE+limitsHeight+60 : Math.max(56, bottom - buttonsHeight);
   const controlsX = xt2 ? sideX + componentSize(xt2).width + 80 : sideX;
@@ -96,7 +97,7 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   if(xt2)positions.set(xt2.id,{x:sideX,y:ductWidth/2+CLEARANCE+(limitsHeight-componentSize(xt2).height)/2});
   let sourceX = 56;
   if(!terminalPractice)for (const component of sources) { positions.set(component.id, { x: sourceX, y: -componentSize(component).height - 65 }); sourceX += componentSize(component).width + 30; }
-  const terminalRow = [...earths, ...terminals], terminalY = bottom + 75;
+  const terminalRow = [...earths, ...terminals], terminalY = bottom + ductWidth / 2 + 32;
   let externalX = 56;
   for (const component of terminalRow) {
     positions.set(component.id, { x: externalX, y: terminalY });

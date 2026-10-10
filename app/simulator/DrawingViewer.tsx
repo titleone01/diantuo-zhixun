@@ -58,8 +58,9 @@ function DrawingViewerContent({ src, title, type, children, contentKey, compact 
   }, [src, isPdf, contentKey]);
   useEffect(() => { if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 }); }, [zoom]);
 
-  const availableWidth = Math.max(1, bounds.width - 24);
-  const availableHeight = Math.max(1, bounds.height - 24 - (isPdf ? 76 : 0));
+  const inset = compact ? 8 : 24;
+  const availableWidth = Math.max(1, bounds.width - inset);
+  const availableHeight = Math.max(1, bounds.height - inset - (isPdf ? 76 : 0));
   const fittedWidth = ratio ? Math.min(availableWidth, availableHeight * ratio) : availableWidth;
   function fit() { setZoom(1); viewport.current?.scrollTo({ left: 0, top: 0 }); }
   function beginDrag(event: PointerEvent<HTMLDivElement>) {

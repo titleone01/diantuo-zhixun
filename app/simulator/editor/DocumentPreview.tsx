@@ -23,7 +23,7 @@ export default function DocumentPreview({ document, className = "" }: { document
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
   const device = ({ component, definition }: typeof boxes[number]) => <g key={component.id}>
-    <foreignObject x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}><div className="sim-preview-device" style={{ width: definition.width, height: definition.height }}><DeviceArtwork type={component.type} rotation={component.rotation} delayMs={component.settings?.delayMs} /></div></foreignObject>
+    <foreignObject x={component.position.x} y={component.position.y} width={definition.width} height={definition.height}><div className="sim-preview-device" style={{ width: definition.width, height: definition.height }}><DeviceArtwork type={component.type} rotation={component.rotation} mirrored={component.mirrored} pePositions={component.pePositions} delayMs={component.settings?.delayMs} /></div></foreignObject>
     <text x={component.position.x + definition.width / 2} y={component.position.y + definition.height + 16} textAnchor="middle" fill="#536579" fontSize="10">{component.label}</text>
   </g>;
   return <svg className={`sim-document-preview ${className}`} viewBox={`${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`} role="img" aria-label={`${document.title}的实际接线快照`}>

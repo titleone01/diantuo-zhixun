@@ -185,7 +185,8 @@ test("new simulator: sprites retain original aspect ratio and calibrated handles
     });
     // Each strip cell crops the original left pole and applies the same 0.75
     // illustration transform as its catalog anchors.
-    const renderedCircles=def.type==="terminal-strip16"?Array.from({length:16},(_,i)=>circles.filter(c=>c.x<60.75).map(c=>({x:i*45.5625+c.x*0.75,y:c.y*0.75}))).flat():circles;
+    const stripCount=def.type==="terminal-strip16"?16:def.type==="terminal-strip20"?20:0;
+    const renderedCircles=stripCount?Array.from({length:stripCount},(_,i)=>circles.filter(c=>c.x<60.75).map(c=>({x:i*45.5625+c.x*0.75,y:c.y*0.75}))).flat():circles;
     for(const pin of def.terminals)assert.ok(renderedCircles.some(c=>Math.abs(c.x-pin.x)<0.01&&Math.abs(c.y-pin.y)<0.01),`${def.type}/${pin.id} must align to an actual vector circle center`);
   }
 });

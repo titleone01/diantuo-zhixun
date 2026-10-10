@@ -1,6 +1,6 @@
 import "./chunk-MYXFJE25.js";
 
-// E:/vibecoding/电拓智训/node_modules/pdfjs-dist/build/pdf.mjs
+// node_modules/pdfjs-dist/build/pdf.mjs
 var isNodeJS = typeof process === "object" && process + "" === "[object process]" && !process.versions.nw && !(process.versions.electron && process.type && process.type !== "browser");
 var BBOX_INIT = [Infinity, Infinity, -Infinity, -Infinity];
 var F32_BBOX_INIT = new Float32Array(BBOX_INIT);

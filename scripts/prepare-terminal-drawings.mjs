@@ -40,12 +40,12 @@ function sheet(title,subtitle,width,height,body,metadata) {
 
 function assignmentsFor(core,document) {
   const assignments=core.getCourseTerminalAssignments(document.lessonId);
-  return document.components.filter(c=>c.type==='terminal-strip16').map(strip=>({strip,rows:Array.from({length:16},(_,i)=>{
-    const position=i+1,assignment=assignments.find(a=>document.roles?.[a.stripRole]===strip.id&&a.position===position);
+  return document.components.filter(c=>core.isTerminalStrip(c.type)).map(strip=>({strip,rows:Array.from({length:core.terminalStripCapacity(strip.type)},(_,i)=>{
+    const position=i+1,slotAssignments=assignments.filter(a=>document.roles?.[a.stripRole]===strip.id&&a.position===position),assignment=slotAssignments[0];
     const internal=document.wires.flatMap(w=>[w.from,w.to].filter(ref=>ref.componentId===strip.id&&ref.terminalId===`T${position}`).map(()=>w.from.componentId===strip.id&&w.from.terminalId===`T${position}`?w.to:w.from));
     const external=document.wires.flatMap(w=>[w.from,w.to].filter(ref=>ref.componentId===strip.id&&ref.terminalId===`B${position}`).map(()=>w.from.componentId===strip.id&&w.from.terminalId===`B${position}`?w.to:w.from));
     const label=ref=>`${document.components.find(c=>c.id===ref.componentId)?.label??ref.componentId}:${ref.terminalId}`;
-    return {position,assignment,internal:internal.map(label),external:external.map(label)};
+    return {position,assignment,assignments:slotAssignments,internal:internal.map(label),external:external.map(label),earth:strip.pePositions?.includes(position)};
   })}));
 }
 
@@ -54,15 +54,15 @@ function terminalTables(core,document,x,y,width) {
   const tableWidth=(width-24*(strips.length-1))/strips.length;
   for(const [i,{strip,rows}] of strips.entries()){
     const sx=x+i*(tableWidth+24),rowHeight=35;
-    parts.push(rect(sx,y,tableWidth,46,'class="section"'),text(sx+12,y+29,`${strip.label} · 16 位分配 / 同号 T-B 永久导通`,19,'font-weight="700"'));
-    parts.push(text(sx+8,y+68,'位',13),text(sx+48,y+68,'柜外 B（电源 / 电机 / SQ）',13),text(sx+tableWidth*.32,y+68,'同位内部桥',12),text(sx+tableWidth*.46,y+68,'柜内 T（实际接点）',13));
-    for(const row of rows){const ry=y+82+(row.position-1)*rowHeight,bridgeX=sx+tableWidth*.32;parts.push(line(sx,ry, sx+tableWidth,ry,'stroke="#ccd5df"'),text(sx+9,ry+23,row.position,14),text(sx+48,ry+23,row.external.join(' / ')||'备用 · 未接',13),text(sx+tableWidth*.46,ry+23,row.internal.join(' / ')||'备用 · 未接',12),`<g data-fixed-component="${esc(strip.id)}" data-fixed-a="T${row.position}" data-fixed-b="B${row.position}">${line(bridgeX,ry+21,bridgeX+76,ry+21)}${circle(bridgeX,ry+21,3,'fill="#fff"')}${circle(bridgeX+76,ry+21,3,'fill="#fff"')}${text(bridgeX,ry+13,`B${row.position}`,9)}${text(bridgeX+54,ry+13,`T${row.position}`,9)}</g>`);}
+    parts.push(rect(sx,y,tableWidth,46,'class="section"'),text(sx+12,y+29,`${strip.label} · ${rows.length} 位分配 / 同号 T-B 永久导通`,19,'font-weight="700"'));
+    parts.push(text(sx+8,y+68,'位',13),text(sx+48,y+68,'柜外 B（电源 / 电机 / 按钮 / SQ）',13),text(sx+tableWidth*.32,y+68,'同位内部桥',12),text(sx+tableWidth*.46,y+68,'柜内 T（实际接点）',13));
+    for(const row of rows){const ry=y+82+(row.position-1)*rowHeight,bridgeX=sx+tableWidth*.32;parts.push(line(sx,ry, sx+tableWidth,ry,'stroke="#ccd5df"'),text(sx+9,ry+23,`${row.position}${row.earth?' PE':''}`,row.earth?11:14),text(sx+48,ry+23,row.external.join(' / ')||'备用 · 未接',13),text(sx+tableWidth*.46,ry+23,row.internal.join(' / ')||'备用 · 未接',12),`<g data-fixed-component="${esc(strip.id)}" data-fixed-a="T${row.position}" data-fixed-b="B${row.position}">${line(bridgeX,ry+21,bridgeX+76,ry+21)}${circle(bridgeX,ry+21,3,'fill="#fff"')}${circle(bridgeX+76,ry+21,3,'fill="#fff"')}${text(bridgeX,ry+13,`B${row.position}`,9)}${text(bridgeX+54,ry+13,`T${row.position}`,9)}</g>`);}
   }
-  return {svg:parts.join(''),height:82+16*35+12};
+  return {svg:parts.join(''),height:82+Math.max(0,...strips.map(item=>item.rows.length))*35+12};
 }
 
 function permanentConnections(core,document,x,y,width) {
-  const items=document.components.flatMap(c=>c.type==='terminal-strip16'?[]:(core.getDefinition(c.type).fixedConnections??[]).map(([a,b])=>({componentId:c.id,label:c.label.replace(/（.*?）/g,''),a,b}))),columns=4,cellWidth=width/columns,parts=[rect(x,y,width,44,'class="section"'),text(x+12,y+28,'其余永久内部连接 · 与上方器件为同一对象，用于核对，不是新增导线',17,'font-weight="700"')];
+  const items=document.components.flatMap(c=>core.isTerminalStrip(c.type)?[]:(core.getDefinition(c.type).fixedConnections??[]).map(([a,b])=>({componentId:c.id,label:c.label.replace(/（.*?）/g,''),a,b}))),columns=4,cellWidth=width/columns,parts=[rect(x,y,width,44,'class="section"'),text(x+12,y+28,'其余永久内部连接 · 与上方器件为同一对象，用于核对，不是新增导线',17,'font-weight="700"')];
   for(const [i,pair] of items.entries()){const xx=x+(i%columns)*cellWidth+15,yy=y+75+Math.floor(i/columns)*45;parts.push(`<g data-fixed-component="${esc(pair.componentId)}" data-fixed-a="${esc(pair.a)}" data-fixed-b="${esc(pair.b)}">${text(xx,yy-10,`${pair.label}:${pair.a}`,12)}${text(xx+cellWidth*.58,yy-10,`${pair.label}:${pair.b}`,12)}${line(xx,yy,xx+cellWidth*.78,yy)}${circle(xx,yy,3,'fill="#fff"')}${circle(xx+cellWidth*.78,yy,3,'fill="#fff"')}</g>`);}
   return {svg:parts.join(''),height:75+Math.ceil(items.length/columns)*45};
 }
@@ -90,7 +90,7 @@ export function createSchematicModel(core,document) {
   const components=new Map(document.components.map(c=>[c.id,c])),anchors=new Map(),blocks=[],symbols=[],represented=new Set(),nodes=wireNodes(document);
   const n=Number(document.lessonId.slice(-2));
   const get=id=>components.get(document.roles?.[id]??id);
-  const shortLabel=c=>c.type==='terminal-strip16'?(c.id===document.roles.xt2?'XT2':'XT1'):c.type==='auxiliary-no'?`${components.get(c.linkedTo)?.label??c.label}辅`:c.label.replace(/（.*?）/g,'');
+  const shortLabel=c=>core.isTerminalStrip(c.type)?(c.id===document.roles.xt2?'XT2':'XT1'):c.type==='auxiliary-no'?`${components.get(c.linkedTo)?.label??c.label}辅`:c.label.replace(/（.*?）/g,'');
   const pin=(c,t,x,y,direction)=>{anchors.set(key(c.id,t),{x,y,direction});return circle(x,y,3,'fill="#fff"')+text(x+8,y-6,`${shortLabel(c)}:${t}`,12,'class="label"');};
   const block=(x,y,w,h,title)=>{blocks.push({x,y,w,h});return rect(x,y,w,h,'rx="5" fill="#fff"')+text(x+9,y+24,title.split(' · ')[0].replace(/（.*?）/g,''),17,'font-weight="700"');};
   function triple(role,x,y,kind='contact'){
@@ -102,12 +102,14 @@ export function createSchematicModel(core,document) {
   for(const [i,t] of ['L1','L2','L3','N','PE'].entries())src+=pin(source,t,190+i*135,279,'down');symbols.push(src);
   const strip=get('xt16');
   function xtGroup(positions,x,y,title){const incoming=positions[0]===1;let svg=block(x,y,Math.max(280,positions.length*92+12),98,'XT1');for(const [i,pos] of positions.entries()){const xx=x+42+i*92;svg+=pin(strip,`${incoming?'B':'T'}${pos}`,xx,y,'up')+pin(strip,`${incoming?'T':'B'}${pos}`,xx,y+98,'down')+line(xx,y,xx,y+98)+rect(xx-8,y+42,16,16,'fill="#edf4ff"')+text(xx+12,y+59,pos,14);represented.add(key(strip.id,`B${pos}`));represented.add(key(strip.id,`T${pos}`));}svg+=text(x+10,y+80,title,12,'class="label"');symbols.push(svg);}
-  xtGroup([1,2,3],210,350,'电源进线 1–3');triple('qf',210,525);triple('fu1',210,750,'fuse');
+  xtGroup([1,2,3,4,5],110,350,'电源 L1 / L2 / L3 / N / PE');triple('qf',210,525);triple('fu1',210,750,'fuse');
   if(n<=3||n===8||n===9){triple('km',120,975);if(n!==1)triple('fr',120,1195,'thermal');if(n===9){triple('kmd',455,975);triple('kmy',455,1195);}}
   else if(n===10){triple('fr',210,975,'thermal');triple('km1',25,1195);triple('km2',360,1195);triple('km3',690,1195);}
   else{triple('km1',25,975);triple('km2',500,975);triple(n===7?'fr1':'fr',25,1195,'thermal');if(n===7)triple('fr2',500,1195,'thermal');}
-  const assignments=assignmentsFor(core,document).find(a=>a.strip.id===strip.id).rows.filter(row=>row.position>3&&row.assignment?.used);
+  const assignments=assignmentsFor(core,document).find(a=>a.strip.id===strip.id).rows.filter(row=>row.position>5&&row.assignments.some(a=>a.componentRole.startsWith('m')));
   xtGroup(assignments.map(row=>row.position),90,1460,'电机出线');
+  const controls=assignmentsFor(core,document).find(a=>a.strip.id===strip.id).rows.filter(row=>row.position>5&&!assignments.includes(row)&&row.assignments.some(a=>a.componentRole.startsWith('sb')||a.componentRole.startsWith('sq')));
+  if(controls.length)xtGroup(controls.map(row=>row.position),1170,n===6?2100:1850,'按钮与限位开关出线');
   for(const [index,motor] of document.components.filter(c=>core.getDefinition(c.type).load?.kind==='motor').entries()){
     const six=motor.type!=='motor',x=index?505:85,y=1700,w=six?620:330;let svg=block(x,y,w,250,`${motor.label} · ${six?motor.type==='motor-star-delta'?'三组独立绕组 Y / Δ':'六端 Δ / YY 教学模式':'三相电机 3~'}`);
     const ports=six?['U1','V1','W1','U2','V2','W2']:['U','V','W'];
@@ -119,10 +121,10 @@ export function createSchematicModel(core,document) {
     }
     svg+=pin(motor,'PE',x+w,y+215,'right')+line(x+w,y+215,x+w-28,y+215)+line(x+w-28,y+201,x+w-28,y+229);symbols.push(svg);
   }
-  const pe=get('pe');let peSvg=block(935,1690,135,120,'独立 PE');peSvg+=pin(pe,'A',970,1690,'up')+pin(pe,'B',970,1810,'down')+line(970,1690,970,1810);symbols.push(peSvg);
+  const pe=get('pe');if(pe){let peSvg=block(935,1690,135,120,'独立 PE');peSvg+=pin(pe,'A',970,1690,'up')+pin(pe,'B',970,1810,'down')+line(970,1690,970,1810);symbols.push(peSvg);}
   const cp=controlPositions(n),controlX=1170,controlY=180,dx=140,dy=n===6?190:148;
   const used=new Set(document.wires.flatMap(w=>[key(w.from.componentId,w.from.terminalId),key(w.to.componentId,w.to.terminalId)]));
-  for(const c of document.components){const def=core.getDefinition(c.type);if(core.isLayoutObject(c.type)||c.type==='supply'||c.type==='terminal-strip16'||c.type==='pe-terminal'||def.load?.kind==='motor')continue;
+  for(const c of document.components){const def=core.getDefinition(c.type);if(core.isLayoutObject(c.type)||c.type==='supply'||core.isTerminalStrip(c.type)||c.type==='pe-terminal'||def.load?.kind==='motor')continue;
     const atoms=[...(def.contacts??[]).filter(a=>!a.id.startsWith('pole')).map(a=>({...a,kind:a.normallyClosed?'nc':'no'})),...(c.id===get('fu2')?.id?(def.fixedConnections??[]).map((terminals,i)=>({id:`fixed-${i}`,terminals,kind:'fuse'})):[]),...(def.load?.kind==='coil'?[{id:'coil',terminals:def.load.terminals,kind:'coil'}]:[])];
     for(const atom of atoms){if(!atom.terminals.every(t=>used.has(key(c.id,t))))continue;const role=Object.entries(document.roles??{}).find(([,id])=>id===c.id)?.[0]??c.id;const position=cp[`${role}:${atom.id}`];assert.ok(position,`缺少控制符号位置 ${role}:${atom.id}`);const [col,row]=position,x=controlX+col*dx,y=controlY+row*dy,w=94,h=c.type==='limit-switch'?120:96;
       let svg=block(x,y,w,h,shortLabel(c));const xx=x+w/2,a=atom.terminals[0],b=atom.terminals[1];svg+=pin(c,a,xx,y,'up')+pin(c,b,xx,y+h,'down')+line(xx,y,xx,y+36)+line(xx,y+h-24,xx,y+h);
@@ -140,7 +142,7 @@ export function createSchematicModel(core,document) {
     symbols.push(line(x,y,x+(up?-26:26),y)+rect(x+(up?-20:6),y-5,14,10,'fill="#edf4ff"')+text(x+(up?-26:0),y-9,`XT2:${assignment.position}`,11,'class="label"'));
   }}
   for(const wire of document.wires)for(const ref of [wire.from,wire.to])assert.ok(anchors.has(key(ref.componentId,ref.terminalId)),`图纸未表现端子 ${key(ref.componentId,ref.terminalId)}`);
-  return {width:2260,bodyHeight:2020,anchors,blocks,symbols,nodes,represented};
+  return {width:2260,bodyHeight:n===6?2280:2020,anchors,blocks,symbols,nodes,represented};
 }
 
 function routeBetween(a,b,blocks,lanes,occupied,node) {
@@ -175,8 +177,8 @@ export function renderSchematic(core,document) {
   const connections=document.wires.map((wire,index)=>{const a=m.anchors.get(key(wire.from.componentId,wire.from.terminalId)),b=m.anchors.get(key(wire.to.componentId,wire.to.terminalId)),node=m.nodes.get(key(wire.from.componentId,wire.from.terminalId));const shift=6+(index%5)*4,lanes={x:[45+shift,1000+shift,1080+shift,2210,...m.blocks.flatMap(r=>[r.x-23-shift,r.x+r.w+23+shift])],y:[155+shift,1990+shift,...m.blocks.flatMap(r=>[r.y-23-shift,r.y+r.h+23+shift])]};const points=routeBetween(a,b,m.blocks,lanes,occupied,node);points.slice(1).forEach((p,i)=>occupied.push({a:points[i],b:p,node}));return {id:wire.id,from:wire.from,to:wire.to,points,color:wire.color,node};});
   const routes=connections.map(w=>{const d=w.points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' ');return `<g data-wire-id="${esc(w.id)}" data-from="${esc(key(w.from.componentId,w.from.terminalId))}" data-to="${esc(key(w.to.componentId,w.to.terminalId))}"><path d="${d}" style="stroke:#fff;stroke-width:6" class="wire"/><path d="${d}" style="stroke:${esc(w.color)};stroke-width:2.5" class="wire"/></g>`;}).join('');
   const dots=[...connections.flatMap(w=>[w.points[0],w.points.at(-1)]),...wireJunctions(connections)].map(p=>circle(p.x,p.y,3,'fill="#263646"')).join('');
-  const tables=terminalTables(core,document,55,2090,m.width-110),permanent=permanentConnections(core,document,55,2110+tables.height,m.width-110),height=2110+tables.height+permanent.height+90;
-  const body=text(50,145,'主回路 · 源 → XT1 → QF / FU / KM / FR → XT1 → 电机',17,'font-weight="700"')+text(1150,145,'控制回路 · 触点均按未动作状态绘制',17,'font-weight="700"')+routes+m.symbols.join('')+dots+text(55,2030,'实线为实际导线；触点 / 线圈 / 绕组不视作导线短接；线路交叉无连接点则不导通。',15)+text(55,2057,'XT1 上下为柜内 T / 柜外 B；XT2 旋转后柜内在左、柜外在右。N 不参与 380V 控制，PE 独立。',15)+tables.svg+permanent.svg;
+  const tables=terminalTables(core,document,55,m.bodyHeight+70,m.width-110),permanent=permanentConnections(core,document,55,m.bodyHeight+90+tables.height,m.width-110),height=m.bodyHeight+90+tables.height+permanent.height+90;
+  const body=text(50,145,'主回路 · 源 → XT1 → QF / FU / KM / FR → XT1 → 电机',17,'font-weight="700"')+text(1150,145,'控制回路 · 触点均按未动作状态绘制',17,'font-weight="700"')+routes+m.symbols.join('')+dots+text(55,m.bodyHeight+10,'实线为实际导线；触点 / 线圈 / 绕组不视作导线短接；线路交叉无连接点则不导通。',15)+text(55,m.bodyHeight+37,'XT1 上下为柜内 T / 柜外 B；第5位为专用 PE。N 不参与 380V 控制，PE 独立。',15)+tables.svg+permanent.svg;
   return {svg:sheet(`${document.title} · 修订原理图`,'实体导线、开关触点、线圈和电机端子均来自同一份示范电路；表内编号与图内接点相同。',m.width,height,body,{lessonId:document.lessonId,kind:'schematic',documentSha256:hash(JSON.stringify(document)),wireCount:document.wires.length}),width:m.width,height,connections};
 }
 
@@ -196,15 +198,15 @@ export function renderLayout(core,document) {
   const boardHeight=(maxY-minY)*scale,board=[];
   for(const c of [...boxes].sort((a,b)=>Number(core.isLayoutObject(b.type))-Number(core.isLayoutObject(a.type)))){const x=c.position.x,y=c.position.y,def=core.getDefinition(c.type);if(core.isLayoutObject(c.type)){board.push(rect(x,y,c.width,c.height,`fill="${core.isWireDuct(c.type)?'#e2e7ed':'#f2f4f7'}" stroke-dasharray="${core.isWireDuct(c.type)?'7 4':'0'}"`));continue;}
     let svg=rect(x,y,c.width,c.height,'rx="3" fill="#fff"')+text(x+c.width/2,y+Math.min(c.height/2,36),c.label,20,'text-anchor="middle" font-weight="700"');
-    if(c.type==='terminal-strip16'){
-      svg='';for(let i=1;i<=16;i++){const top=core.transformedTerminal(c,def.terminals.find(t=>t.id===`T${i}`)),bottom=core.transformedTerminal(c,def.terminals.find(t=>t.id===`B${i}`));svg+=line(x+top.x,y+top.y,x+bottom.x,y+bottom.y)+circle(x+top.x,y+top.y,6)+circle(x+bottom.x,y+bottom.y,6)+text(c.rotation===90||c.rotation===270?x+c.width+17:x+(top.x+bottom.x)/2,y+(top.y+bottom.y)/2+5,i,14,'text-anchor="middle" class="label"');}svg+=rect(x,y,c.width,c.height)+text(x+c.width/2,y-13,c.label,19,'text-anchor="middle" font-weight="700"');
+    if(core.isTerminalStrip(c.type)){
+      svg='';for(let i=1;i<=core.terminalStripCapacity(c.type);i++){const top=core.transformedTerminal(c,def.terminals.find(t=>t.id===`T${i}`)),bottom=core.transformedTerminal(c,def.terminals.find(t=>t.id===`B${i}`));svg+=line(x+top.x,y+top.y,x+bottom.x,y+bottom.y)+circle(x+top.x,y+top.y,6)+circle(x+bottom.x,y+bottom.y,6)+text(c.rotation===90||c.rotation===270?x+c.width+17:x+(top.x+bottom.x)/2,y+(top.y+bottom.y)/2+5,`${i}${c.pePositions?.includes(i)?' PE':''}`,14,'text-anchor="middle" class="label"');}svg+=rect(x,y,c.width,c.height)+text(x+c.width/2,y-13,c.label,19,'text-anchor="middle" font-weight="700"');
     }else if(c.type==='supply'){svg+=text(x+c.width/2,y+c.height-15,'L1   L2   L3   N   PE',13,'text-anchor="middle"');}
     else if(c.type.startsWith('motor'))svg+=circle(x+c.width/2,y+c.height/2,34)+text(x+c.width/2,y+c.height/2+7,'M',24,'text-anchor="middle"');
     board.push(`<g data-component-id="${esc(c.id)}" data-component-type="${c.type}">${svg}</g>`);
   }
   const tablesY=Math.ceil(offsetY+maxY*scale+40),width=1720,tables=terminalTables(core,document,55,tablesY,width-110),height=tablesY+tables.height+90;
-  const body=text(55,145,'柜内主器件依三层布置；柜外电源 / 电机经 XT1；06 的四个限位开关经 XT2。',16)+`<g transform="translate(${offsetX},${offsetY}) scale(${scale})">${board.join('')}</g>`+tables.svg;
-  return {svg:sheet(`${document.title} · 修订元件布置图`,'从当前课程的二维世界位置与端子契约生成；16 位逐位编号，非厂家尺寸安装图。',width,height,body,{lessonId:document.lessonId,kind:'layout',documentSha256:hash(JSON.stringify(document)),boardHeight}),width,height};
+  const body=text(55,145,'柜内主器件依三层紧凑布置；柜外电源、电机、按钮及限位开关均经 XT1，PE 为主排专用第5位。',16)+`<g transform="translate(${offsetX},${offsetY}) scale(${scale})">${board.join('')}</g>`+tables.svg;
+  return {svg:sheet(`${document.title} · 修订元件布置图`,'从当前课程的二维世界位置与端子契约生成；16 / 20 位逐位编号，非厂家尺寸安装图。',width,height,body,{lessonId:document.lessonId,kind:'layout',documentSha256:hash(JSON.stringify(document)),boardHeight}),width,height};
 }
 
 export async function prepareTerminalDrawings({directory=DRAWING_DIRECTORY,courses=[1,2,3,4,5,6,7,8,9,10],png=true}={}) {

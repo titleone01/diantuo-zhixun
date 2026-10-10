@@ -39,7 +39,7 @@ async function collapseDiagram(page) {
   const button = page.getByRole('button', { name: '收起图纸', exact: true }); if (await button.isVisible()) await button.click();
 }
 
-test('integrated: ten blank courses share six-duct layouts and FU2/XT16, clear and examples keep one layout', async ({ page }) => {
+test('integrated: ten blank courses share six-duct layouts and FU2/XT16-or-20, clear and examples keep one layout', async ({ page }) => {
   test.setTimeout(120000);
   await login(page); await disclosure(page);
   for (let number = 1; number <= 10; number++) {
@@ -53,7 +53,8 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16, clear a
     expect(ducts(document).filter(component => component.type === 'wire-duct')).toHaveLength(4);
     expect(ducts(document).filter(component => component.type === 'wire-duct-vertical')).toHaveLength(2);
     expect(document.components.filter(component => component.type === 'fuse2')).toHaveLength(1);
-    expect(document.components.filter(component => component.type === 'terminal-strip16')).toHaveLength(number === 6 ? 2 : 1);
+    const strips = document.components.filter(component => component.type.startsWith('terminal-strip'));
+    expect(strips).toHaveLength(1); expect(strips[0].type).toBe(number === 10 ? 'terminal-strip20' : 'terminal-strip16');
     const placement = document.components.map(({ id, type, position, size }) => ({ id, type, position, size }));
     await page.getByRole('button', { name: '载入示范接线', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(fixture.drafts[`${lesson}:correct`].document.wires.length);

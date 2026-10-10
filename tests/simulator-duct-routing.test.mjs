@@ -51,7 +51,7 @@ function assertNoBodyReentry(document,ref,points,hasTrunk=true){
       ? point.x>=left&&point.x<=right&&Math.max(previous.y,point.y)>=top&&Math.min(previous.y,point.y)<=bottom
       : previous.y===point.y&&point.y>=top&&point.y<=bottom&&Math.max(previous.x,point.x)>=left&&Math.min(previous.x,point.x)<=right;
   }));
-  if(terminal.side==="bottom" && body.type==="terminal-strip16")assert.equal(entryIndex,-1,"external tail must not return to a duct");
+  if(terminal.side==="bottom" && ["terminal-strip16","terminal-strip20"].includes(body.type))assert.equal(entryIndex,-1,"external tail must not return to a duct");
   // A zero-length trunk joins leads at one point; removing their shared
   // out-and-back spur can leave a direct exterior tail with no duct entrance.
   else if(!hasTrunk && entryIndex<0)assert.equal(entryIndex,-1);

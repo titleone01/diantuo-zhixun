@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal, flushSync } from "react-dom";
-import { Background, BackgroundVariant, ConnectionMode, ConnectionLineType, ControlButton, Controls, ReactFlow, ReactFlowProvider, useReactFlow, type Connection, type EdgeChange, type NodeChange } from "@xyflow/react";
+import { Background, BackgroundVariant, ConnectionMode, ConnectionLineType, ControlButton, Controls, ReactFlow, ReactFlowProvider, useReactFlow, useStore, useStoreApi, type Connection, type EdgeChange, type NodeChange } from "@xyflow/react";
 import { CheckCheck, ChevronLeft, ChevronRight, Copy, Download, FileImage, FolderOpen, Maximize2, PanelRightClose, Play, Redo2, Search, ShieldCheck, Square, Undo2, X } from "lucide-react";
-import { CATALOG, componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, isWireDuct, isLayoutObject, isTimer, isRelay, canRotate, rotateComponent, equivalentComponentType } from "../core/catalog";
+import { CATALOG, componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, transformedTerminal, isWireDuct, isLayoutObject, isTimer, isRelay, canRotate, rotateComponent, canMirror, mirrorComponent, equivalentComponentType } from "../core/catalog";
 import { courseRequirements, bindCourseRole, addCourseComponent } from "../core/course-roles";
 import { initialRuntime, simulate } from "../core/engine";
 import { validateDocument } from "../core/validation";
 import type { CircuitComponent, CircuitDocument, ComponentSize, ComponentType, Diagnostic, AssessmentReports, Point, SimulationAction, SimulationResult } from "../core/types";
-import { getWireColorGroups, resolveConnectionColor, setWireGroupColor } from "../core/wire-colors";
+import { getWireColorGroups, normalizeAutomaticControlWireColors, resolveConnectionColor, setWireGroupColor } from "../core/wire-colors";
 import DeviceArtwork from "./DeviceArtwork";
 import DeviceNode, { type ElectricalNode } from "./DeviceNode";
 import WireEdge, { type ElectricalEdge } from "./WireEdge";
@@ -53,7 +53,7 @@ export type SimulatorEditorProps = {
 const nodeTypes = { electrical: DeviceNode };
 const edgeTypes = { electrical: WireEdge };
 const COLORS = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
-const LABELS: Record<ComponentType, string> = { supply: "电源", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail":"DR", "relay380-jzc1-22":"KA", "timer380-8pin":"KT" };
+const LABELS: Record<ComponentType, string> = { supply: "电源", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "terminal-strip20": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail":"DR", "relay380-jzc1-22":"KA", "timer380-8pin":"KT" };
 const clone = (value: CircuitDocument) => JSON.parse(JSON.stringify(value)) as CircuitDocument;
 type EditorWireStyle = "orthogonal" | "straight" | "curve" | "duct";
 
@@ -67,6 +67,13 @@ function parseImport(value: unknown): CircuitDocument {
 function Workspace(props: SimulatorEditorProps) {
   const { document: circuit, onDocumentChange, onSave, onPublish, onAssess, onImportDrawing, renderSchematic, onRunningChange, readOnly = false } = props;
   const flow = useReactFlow<ElectricalNode, ElectricalEdge>();
+  const flowStore = useStoreApi<ElectricalNode, ElectricalEdge>();
+  // The same XYFlow state owns both clicks and the visible starting terminal.
+  const pendingTerminal = useStore(state => state.connectionClickStartHandle);
+  const cancelConnection = useCallback(() => {
+    flowStore.setState({ connectionClickStartHandle: null });
+    flowStore.getState().cancelConnection();
+  }, [flowStore]);
   const docRef = useRef(circuit);
   useLayoutEffect(()=>{docRef.current=circuit;},[circuit]);
   const [category, setCategory] = useState<"all" | "industrial" | "lighting">("all");
@@ -138,6 +145,10 @@ function Workspace(props: SimulatorEditorProps) {
   const frozen = running || readOnly;
   const frozenRef = useRef(frozen);
   useLayoutEffect(() => { frozenRef.current = frozen; }, [frozen]);
+  useLayoutEffect(() => { cancelConnection(); }, [props.documentKey, frozen, cancelConnection]);
+  useLayoutEffect(() => {
+    if (pendingTerminal && !circuit.components.some(component => component.id === pendingTerminal.nodeId && getDefinition(component.type).terminals.some(terminal => terminal.id === pendingTerminal.id))) cancelConnection();
+  }, [circuit.components, pendingTerminal, cancelConnection]);
   const initial = useMemo(() => initialRuntime(circuit, false), [circuit]);
   const frameInitialView = useCallback(() => {
     const components = docRef.current.components;
@@ -173,10 +184,11 @@ function Workspace(props: SimulatorEditorProps) {
     if (frozen) return;
     const previous = docRef.current;
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
+    cancelConnection();
     setPast(items => [...items.slice(-79), clone(previous)]);
     setFuture([]); setAssessment(null); setSimulation(null); setFocusedDiagnostic(null);
     docRef.current=next;onDocumentChange(next);
-  }, [frozen, onDocumentChange]);
+  }, [frozen, onDocumentChange, cancelConnection]);
 
   const undo = useCallback(() => {
     if (frozen || !past.length) return;
@@ -255,7 +267,7 @@ function Workspace(props: SimulatorEditorProps) {
     while (circuit.components.some(component => component.label === `${prefix}${index}`)) index++;
     const id = `${type}-${crypto.randomUUID().slice(0, 8)}`;
     const required=role&&requirements.find(item=>item.role===role);
-    const component: CircuitComponent={ id, type, label: required?required.component.label:`${prefix}${index}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...(required ? {rotation:required.component.rotation,settings:required.component.settings,linkedTo:required.component.linkedTo?docRef.current.roles?.[required.component.linkedTo]:undefined}: {}) };
+    const component: CircuitComponent={ id, type, label: required?required.component.label:`${prefix}${index}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...(required ? {rotation:required.component.rotation,mirrored:required.component.mirrored,pePositions:required.component.pePositions,settings:required.component.settings,linkedTo:required.component.linkedTo?docRef.current.roles?.[required.component.linkedTo]:undefined}: {}) };
     try{changed(role?addCourseComponent(docRef.current,role,component):{...docRef.current,components:[...docRef.current.components,component]});setPendingRole(null);}catch(error){setMessage((error as Error).message);return;}
     setSelectedNodes([id]); setSelectedWires([]);
   };
@@ -268,11 +280,11 @@ function Workspace(props: SimulatorEditorProps) {
     if (circuit.wires.some(wire => (same(wire.from, from) && same(wire.to, to)) || (same(wire.from, to) && same(wire.to, from)))) { setMessage("这两个端子已经相连。"); return; }
     const sourceComponent = circuit.components.find(component => component.id === from.componentId);
     const sourceTerminal = sourceComponent && getDefinition(sourceComponent.type).terminals.find(terminal => terminal.id === from.terminalId);
-    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceTerminal ? color : terminalColor(sourceTerminal));
-    const newColor = colorChoice.color;
+    const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceComponent || !sourceTerminal ? color : terminalColor(transformedTerminal(sourceComponent, sourceTerminal)));
+    const newColor = colorOverride ? color : colorChoice.color;
     // Automatic routing is an explicit style; manual styles remain manual.
     const automatic = wireStyle === "duct";
-    changed({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : undefined }] });
+    changed(normalizeAutomaticControlWireColors({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, colorMode: colorOverride ? "manual" : "auto", style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : undefined }] }));
     if (colorChoice.conflict) setMessage("同一导通组存在不同线色。选中任一导线，再选择颜色，可统一整组。");
     if (colorChoice.sourceConflict) setMessage("不同电源相接入了同一导通组，请检查接线；统一颜色不能消除电气冲突。");
   };
@@ -302,7 +314,7 @@ function Workspace(props: SimulatorEditorProps) {
 
   const diagnostics = useMemo(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
   const terminalColors = useMemo(() => Object.fromEntries(getWireColorGroups(circuit).filter(group => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap(group => group.terminalIds.map(id => [id, group.colors[0]]))), [circuit]);
-  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: isLayoutObject(component.type) ? "sim-duct-flow-node" : undefined, zIndex: isLayoutObject(component.type) ? 0 : 2, position: component.position, selected: selectedNodes.includes(component.id), ...deviceNodeGeometry(component), style: componentSize(component), data: { component, document: circuit, selectedWireIds: selectedWires, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const nodes = useMemo<ElectricalNode[]>(() => circuit.components.map(component => ({ id: component.id, type: "electrical", className: isLayoutObject(component.type) ? "sim-duct-flow-node" : undefined, zIndex: isLayoutObject(component.type) ? 0 : 2, position: component.position, selectable: !running, selected: selectedNodes.includes(component.id), ...deviceNodeGeometry(component), style: componentSize(component), data: { component, document: circuit, selectedWireIds: selectedWires, pendingTerminalKey: pendingTerminal ? `${pendingTerminal.nodeId}::${pendingTerminal.id}` : undefined, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, pendingTerminal, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
   const edges = useMemo<ElectricalEdge[]>(() => circuit.wires.map(wire => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some(diagnostic => diagnostic.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
 
   const nodesChanged = (changes: NodeChange<ElectricalNode>[]) => {
@@ -330,6 +342,9 @@ function Workspace(props: SimulatorEditorProps) {
   const hasDucts = circuit.components.some(component => isWireDuct(component.type));
   const selectedStyles = [...new Set(circuit.wires.filter(wire => selectedWires.includes(wire.id)).map(wire => wire.routing === "duct" ? "duct" : wire.style ?? "orthogonal"))];
   const displayedWireStyle = selectedStyles.length > 1 ? "mixed" : selectedStyles[0] ?? wireStyle;
+  const selectedComponent = selectedNodes.length === 1 ? circuit.components.find(component => component.id === selectedNodes[0]) : undefined;
+  const pendingComponent = pendingTerminal && circuit.components.find(component => component.id === pendingTerminal.nodeId);
+  const pendingTerminalLabel = pendingComponent && getDefinition(pendingComponent.type).terminals.find(terminal => terminal.id === pendingTerminal?.id)?.label;
   const arrangeDucts = () => {
     if (frozen) return;
     try {
@@ -413,6 +428,7 @@ function Workspace(props: SimulatorEditorProps) {
     const element = editorElement.current;
     if (!element) return;
     const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape" && (flowStore.getState().connectionClickStartHandle || flowStore.getState().connection.inProgress)) { event.preventDefault(); cancelConnection(); return; }
     if(event.key === "Escape" && pendingRole){event.preventDefault();setPendingRole(null);return;}
     if (event.key === "Escape" && resizing.current) { event.preventDefault(); cancelResize(); return; }
     if ((event.target as HTMLElement).matches("input,textarea,select")) return;
@@ -447,7 +463,7 @@ function Workspace(props: SimulatorEditorProps) {
         <label className="sim-line-select"><span>线条样式</span><select aria-label="线条样式" disabled={frozen} value={displayedWireStyle} onChange={event => setStyle(event.target.value as typeof wireStyle)}>{displayedWireStyle === "mixed" && <option value="mixed" disabled>多种样式</option>}<option value="duct">自动走线槽</option><option value="orthogonal">自定义直角</option><option value="straight">直线</option><option value="curve">曲线</option></select></label>
         <div className="sim-history"><button aria-label="复制选中对象" title="复制 Ctrl+C · Shift 多选" disabled={frozen || !selectedNodes.length} onClick={copySelected}><Copy size={18}/></button><button aria-label="粘贴对象" title="粘贴 Ctrl+V" disabled={frozen || !canPaste || clipboardOwner!==props.clipboardScope} onClick={pasteSelected}>粘贴</button><button aria-label="撤销" title="撤销 Ctrl+Z" disabled={frozen || !past.length} onClick={undo}><Undo2 size={18} /></button><button aria-label="重做" title="重做 Ctrl+Shift+Z" disabled={frozen || !future.length} onClick={redo}><Redo2 size={18} /></button></div>
         <button className="sim-button sim-outline" aria-label={hasDucts ? "导线全部入槽" : "预布线槽"} disabled={frozen || !circuit.components.length} onClick={arrangeDucts}>{hasDucts ? "导线全部入槽" : "预布线槽"}</button>
-        <button className="sim-button" disabled={frozen || selectedNodes.length !== 1 || !canRotate(circuit.components.find(c=>c.id===selectedNodes[0])?.type??"")} onClick={()=>changed({...docRef.current,components:docRef.current.components.map(c=>c.id===selectedNodes[0]?rotateComponent(c):c)})}>旋转90°</button>
+        {selectedComponent && canMirror(selectedComponent.type) ? <button className="sim-button" disabled={frozen} onClick={() => changed({ ...docRef.current, components: docRef.current.components.map(component => component.id === selectedComponent.id ? mirrorComponent(component) : component) })}>上下镜像</button> : <button className="sim-button" disabled={frozen || !selectedComponent || !canRotate(selectedComponent.type)} onClick={() => changed({ ...docRef.current, components: docRef.current.components.map(component => component.id === selectedComponent?.id ? rotateComponent(component) : component) })}>旋转90°</button>}
         <div className="sim-toolbar-spacer" />
         <button className="sim-button sim-export" onClick={() => openTransfer("export")}><Download size={16} /><span>导出图纸到本地</span></button>
         <button className="sim-button sim-import" disabled={frozen} onClick={() => openTransfer("import")}><FolderOpen size={16} /><span>导入本地保存的图纸</span></button>
@@ -456,14 +472,17 @@ function Workspace(props: SimulatorEditorProps) {
         <ReactFlow<ElectricalNode, ElectricalEdge>
           nodes={nodes} edges={edges} nodeTypes={nodeTypes} edgeTypes={edgeTypes}
           onNodesChange={nodesChanged} onEdgesChange={edgesChanged} onConnect={connect}
+          onEdgeClick={() => { cancelConnection(); board.current?.focus(); }}
           onNodeClick={(event,node)=>{
             if(running || !(event.shiftKey || event.ctrlKey || event.metaKey))return;
             setSelectedNodes(selectedNodes.includes(node.id) ? selectedNodes.filter(id=>id!==node.id) : [...selectedNodes,node.id]);
           }}
           connectionMode={ConnectionMode.Loose} connectionLineType={wireStyle === "straight" ? ConnectionLineType.Straight : wireStyle === "curve" ? ConnectionLineType.Bezier : ConnectionLineType.Step}
-          onConnectStart={(_event, params) => { if (colorOverride) return; const component = circuit.components.find(item => item.id === params.nodeId); const terminal = component && getDefinition(component.type).terminals.find(item => item.id === params.handleId); if (terminal) setColor(terminalColor(terminal)); }}
+          connectOnClick
+          onConnectStart={(_event, params) => { board.current?.focus(); if (colorOverride) return; const component = circuit.components.find(item => item.id === params.nodeId); const terminal = component && getDefinition(component.type).terminals.find(item => item.id === params.handleId); if (component && terminal) setColor(terminalColor(transformedTerminal(component, terminal))); }}
+          onClickConnectStart={() => { board.current?.focus(); setSelectedWires([]); }}
           connectionLineStyle={{ stroke: color, strokeWidth: 3, vectorEffect: "non-scaling-stroke" }}
-          nodesDraggable={!frozen} nodesConnectable={!frozen} elementsSelectable={!running}
+          nodesDraggable={!frozen} nodesConnectable={!frozen} elementsSelectable
           deleteKeyCode={null} minZoom={0.22} maxZoom={2} snapToGrid snapGrid={[8, 8]} defaultViewport={{ x: 35, y: 85, zoom: 0.78 }} fitViewOptions={{ padding: 0.22, maxZoom: 0.92 }}
           onNodeDragStart={() => { if (!resizing.current) dragBefore.current = clone(docRef.current); }}
           onNodeDragStop={(_event, node) => {
@@ -473,7 +492,7 @@ function Workspace(props: SimulatorEditorProps) {
             dragBefore.current = null;
           }}
           onEdgeDoubleClick={(event, edge) => { if (frozen) return; event.stopPropagation(); const wire = circuit.wires.find(item => item.id === edge.id); if (wire && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal")) onWaypoints(wire.id, [...(wire.waypoints ?? []), flow.screenToFlowPosition({ x: event.clientX, y: event.clientY })]); }}
-          onPaneClick={event => { board.current?.focus(); setFocusedDiagnostic(null); setColorsOpen(false); if(pendingRole&&!frozen){const entry=requirements.find(item=>item.role===pendingRole);if(entry)addComponent(entry.component.type,flow.screenToFlowPosition({x:event.clientX,y:event.clientY}),pendingRole);} }}
+          onPaneClick={event => { board.current?.focus(); cancelConnection(); setFocusedDiagnostic(null); setColorsOpen(false); if(pendingRole&&!frozen){const entry=requirements.find(item=>item.role===pendingRole);if(entry)addComponent(entry.component.type,flow.screenToFlowPosition({x:event.clientX,y:event.clientY}),pendingRole);} }}
           aria-label="电路接线画布"
         ><Background variant={BackgroundVariant.Dots} gap={18} size={1} color="#ccd4de" /><Controls showInteractive={false} showFitView={false}><ControlButton className="react-flow__controls-fitview" aria-label="适应画布" title="适应画布" onClick={frameInitialView}><Maximize2 size={16}/></ControlButton></Controls></ReactFlow>
         <button className="sim-library-toggle" aria-label={libraryOpen ? "收起器件库" : "展开器件库"} onClick={() => setLibraryOpen(!libraryOpen)}>{libraryOpen ? <ChevronLeft size={22} /> : <ChevronRight size={22} />}</button>
@@ -494,7 +513,7 @@ function Workspace(props: SimulatorEditorProps) {
         {message && <div className="sim-toast" role="status">{message}<button aria-label="关闭提示" onClick={() => setMessage("")}><X size={14} /></button></div>}
         {shortAlert && <ShortCircuitAlert diagnostic={shortAlert} onClose={() => setDismissedShort(shortKey)} onLocate={() => { setDismissedShort(shortKey); setPanelOpen(true); setPanelTab("safety"); focusDiagnostic(shortAlert); }} />}
       </div>
-      <footer className="sim-editor-footer"><span><i className={running ? "live" : ""} />{running ? "运行中 · 接线编辑已锁定" : displayedWireStyle === "duct" ? "拖动端子接线 · 导线自动沿连通线槽走线" : "拖动端子接线 · 选中直角导线双击添加折点"}</span><span>{circuit.components.length} 个元件<span className="sim-footer-divider">·</span>{circuit.wires.length} 根导线<button aria-label="查看运行和诊断" onClick={() => { setPanelOpen(!panelOpen); setPanelTab(running ? "runtime" : "safety"); if (!panelOpen) setTimeout(frameInitialView, 80); }}><PanelRightClose size={15} /></button></span></footer>
+      <footer className="sim-editor-footer"><span role="status"><i className={running ? "live" : ""} />{pendingComponent ? `接线起点：${pendingComponent.label} · ${pendingTerminalLabel}，请点击另一端子；Esc 或空白处取消` : selectedWires.length ? `已选中 ${selectedWires.length} 根导线 · 蓝色流动用于巡线，带电看端子红点` : running ? "运行中 · 接线编辑已锁定" : displayedWireStyle === "duct" ? "拖动接线 / 依次点击两个端子 · 导线自动沿连通线槽走线" : "拖动接线 / 依次点击两个端子 · 选中直角导线双击添加折点"}</span><span>{circuit.components.length} 个元件<span className="sim-footer-divider">·</span>{circuit.wires.length} 根导线<button aria-label="查看运行和诊断" onClick={() => { setPanelOpen(!panelOpen); setPanelTab(running ? "runtime" : "safety"); if (!panelOpen) setTimeout(frameInitialView, 80); }}><PanelRightClose size={15} /></button></span></footer>
     </section>
     {transferMode && <Modal backdropClass="sim-transfer-backdrop" className="sim-transfer-dialog" title={transferMode === "export" ? "导出电路 JSON" : "导入电路 JSON"} onClose={() => setTransferMode(null)}><header><h2>{transferMode === "export" ? "导出电路" : "导入电路"}</h2><button className="sim-button" aria-label="关闭电路文件窗口" onClick={() => setTransferMode(null)}><X size={18}/></button></header><p>{transferMode === "export" ? "以下 JSON 包含元件、端子连接和走线路径。可下载文件，或复制后另存为 .json 文件。" : "选择电路 JSON 文件，或粘贴完整内容。导入将替换当前画布，可撤销；保存时会更新当前草稿。如需独立草稿，请先关闭窗口并新建电路，再导入。"}</p><textarea ref={transferInput} aria-label={transferMode === "export" ? "导出的电路 JSON" : "待导入的电路 JSON"} spellCheck={false} readOnly={transferMode === "export"} value={transferText} onChange={event => { setTransferText(event.target.value); setTransferNotice(""); }} placeholder={transferMode === "import" ? "在此粘贴完整电路 JSON" : undefined}/>{transferNotice && <p className="sim-transfer-notice" role="status">{transferNotice}</p>}<footer>{transferMode === "export" ? <><button className="sim-button" onClick={async () => { try { await navigator.clipboard.writeText(transferText); setTransferNotice("电路 JSON 已复制。"); } catch { transferInput.current?.focus(); transferInput.current?.select(); setTransferNotice("浏览器未允许自动复制。已选中全部 JSON，请按 Ctrl+C 复制。"); } }}><Copy size={16}/>复制 JSON</button><button className="sim-button sim-primary" onClick={exportDocument}><Download size={16}/>下载 JSON 文件</button></> : <><button className="sim-button" disabled={frozen} onClick={() => importInput.current?.click()}><FolderOpen size={16}/>选择 JSON 文件</button><button className="sim-button sim-primary" disabled={frozen || !transferText.trim()} onClick={() => { try { importDocument(transferText); } catch (error) { setTransferNotice(error instanceof Error ? error.message : "导入失败。"); } }}>导入粘贴内容</button></>}</footer></Modal>}
     <input ref={importInput} type="file" accept="application/json,.json" className="sim-hidden-input" onChange={async event => { const file = event.target.files?.[0]; event.target.value = ""; if (file) await importFile(file); }} />

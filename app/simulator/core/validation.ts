@@ -1,4 +1,4 @@
-import { TIMER_MIN_MS, TIMER_MAX_MS, TIMER_LEGACY_MAX_MS, CATALOG, DUCT_MAX_SIZE, DUCT_MIN_SIZE, isLayoutObject, isTimer, isRelay, canRotate } from "./catalog";
+import { TIMER_MIN_MS, TIMER_MAX_MS, TIMER_LEGACY_MAX_MS, CATALOG, DUCT_MAX_SIZE, DUCT_MIN_SIZE, isLayoutObject, isTimer, isRelay, canRotate, canMirror, terminalStripCapacity } from "./catalog";
 import { getReferenceDrawing } from "./reference-drawings";
 import type { CircuitDocument } from "./types";
 
@@ -46,6 +46,8 @@ export function validateDocument(input: unknown): DocumentValidation {
     if (!point(component.position)) errors.push(`元件 ${component.id} 的世界坐标无效`);
     if (component.size !== undefined && (type === undefined || !isLayoutObject(type) || !record(component.size) || Object.keys(component.size).some(key => key !== "width" && key !== "height") || ![component.size.width, component.size.height].every(value => typeof value === "number" && Number.isFinite(value) && value >= DUCT_MIN_SIZE && value <= DUCT_MAX_SIZE))) errors.push(`元件 ${component.id} 的线槽长宽须为 ${DUCT_MIN_SIZE} 至 ${DUCT_MAX_SIZE} 个世界单位`);
     if (component.rotation !== undefined && (!type || !canRotate(type) || ![0,90,180,270].includes(component.rotation as number))) errors.push(`元件 ${component.id} 的旋转须为允许的直角角度`);
+    if (component.mirrored !== undefined && (!type || !canMirror(type) || typeof component.mirrored !== "boolean")) errors.push(`元件 ${component.id} 的镜像设置无效`);
+    if (component.pePositions !== undefined && (!type || !terminalStripCapacity(type) || !Array.isArray(component.pePositions) || new Set(component.pePositions).size !== component.pePositions.length || component.pePositions.some(value => typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > terminalStripCapacity(type)))) errors.push(`元件 ${component.id} 的PE槽位须为端子排内不重复的位置编号`);
     if (type === "din-rail" && record(component.size) && component.size.height !== 24) errors.push(`导轨 ${component.id} 的厚度须为24`);
     if (component.linkedTo !== undefined && (component.type !== "auxiliary-no" || !safeId(component.linkedTo))) errors.push(`元件 ${component.id} 的辅助触点机械绑定无效`);
     if (component.settings !== undefined && (!isTimer(String(type)) || !record(component.settings) || Object.keys(component.settings).some(key => key !== "delayMs") || typeof component.settings.delayMs !== "number" || !Number.isFinite(component.settings.delayMs) || component.settings.delayMs < TIMER_MIN_MS || component.settings.delayMs > (type === "timer380-8pin" ? TIMER_MAX_MS : TIMER_LEGACY_MAX_MS))) errors.push(`元件 ${component.id} 的延时设置须为 1 至 ${type === "timer380-8pin" ? 300000 : 3600000} 毫秒`);
@@ -75,6 +77,7 @@ export function validateDocument(input: unknown): DocumentValidation {
       connected.add(key);
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`导线 ${wire.id} 颜色须为十六进制颜色`);
+    if (wire.colorMode !== undefined && wire.colorMode !== "auto" && wire.colorMode !== "manual") errors.push(`导线 ${wire.id} 线色模式无效`);
     if (wire.style !== undefined && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve" && wire.style !== "duct") errors.push(`导线 ${wire.id} 样式无效`);
     if (wire.routing !== undefined && wire.routing !== "duct") errors.push(`导线 ${wire.id} 自动走线模式无效`);
     if (wire.waypoints !== undefined && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`导线 ${wire.id} 折点无效`);
