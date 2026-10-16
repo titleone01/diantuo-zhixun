@@ -274,14 +274,28 @@ test('formal course picker creates ten editable blank practices and saves separa
     await expect(page.getByLabel('选择训练课程', { exact: true })).toHaveValue(lessonId);
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     await expect(page.locator('[data-component-type="fuse2"]')).toHaveCount(1);
-    await expect(page.locator('[data-component-type^="terminal-strip"]')).toHaveCount(1);
-    await expect(page.locator(`[data-component-type="terminal-strip${index === 9 ? 20 : 16}"] .sim-terminal`)).toHaveCount(index === 9 ? 40 : 32);
+    await expect(page.locator('[data-component-type^="terminal-strip"]')).toHaveCount(index === 5 ? 2 : 1);
+    const primaryStrip = page.locator('[data-device-id="xt16"]');
+    await expect(primaryStrip).toHaveAttribute('data-component-type', index === 9 ? 'terminal-strip20' : 'terminal-strip16');
+    await expect(primaryStrip.locator('.sim-terminal')).toHaveCount(index === 9 ? 40 : 32);
+    const limitStrip = page.locator('[data-device-id="xt2"]');
+    await expect(limitStrip).toHaveCount(index === 5 ? 1 : 0);
+    if (index === 5) {
+      await expect(limitStrip).toHaveAttribute('data-component-type', 'terminal-strip16');
+      await expect(limitStrip.locator('.sim-terminal')).toHaveCount(32);
+    }
     await expect(page.locator('[data-component-type^="wire-duct"]')).toHaveCount(6);
     const saved = page.waitForResponse(response => response.url().endsWith('/api/circuits') && response.request().method() === 'POST');
     await page.getByRole('button', { name: '保存草稿', exact: true }).click();
     const response = await saved; expect(response.status()).toBe(201);
     const circuit = (await response.json()).circuit;
     expect(circuit.document.lessonId).toBe(lessonId); expect(circuit.document.wires).toHaveLength(0);
+    expect(circuit.document.roles.xt16).toBe('xt16');
+    expect(circuit.document.components.find(component => component.id === 'xt16').pePositions).toEqual([5]);
+    if (index === 5) {
+      expect(circuit.document.roles.xt2).toBe('xt2');
+      expect(circuit.document.components.find(component => component.id === 'xt2')).toMatchObject({ type: 'terminal-strip16', rotation: 270 });
+    }
     expect(draftIds.has(circuit.id)).toBe(false); draftIds.add(circuit.id);
     const readback = await page.request.get(`/api/circuits/${circuit.id}`); expect(readback.status()).toBe(200);
     expect((await readback.json()).circuit.document).toEqual(circuit.document);

@@ -44,8 +44,13 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16-or-20, c
     expect(ducts(document).filter(component => component.type === 'wire-duct-vertical')).toHaveLength(2);
     expect(document.components.filter(component => component.type === 'fuse2')).toHaveLength(1);
     const strips = document.components.filter(component => component.type.startsWith('terminal-strip'));
-    expect(strips).toHaveLength(1); expect(strips[0].type).toBe(number === 10 ? 'terminal-strip20' : 'terminal-strip16');
-    const placement = document.components.map(({ id, type, position, size }) => ({ id, type, position, size }));
+    expect(strips.map(({ id, type, rotation = 0, pePositions = [] }) => ({ id, type, rotation, pePositions }))).toEqual([
+      { id: 'xt16', type: number === 10 ? 'terminal-strip20' : 'terminal-strip16', rotation: 0, pePositions: [5] },
+      ...(number === 6 ? [{ id: 'xt2', type: 'terminal-strip16', rotation: 270, pePositions: [] }] : []),
+    ]);
+    expect(document.roles.xt16).toBe('xt16');
+    expect(document.roles.xt2).toBe(number === 6 ? 'xt2' : undefined);
+    const placement = document.components.map(({ id, type, position, size, rotation, pePositions }) => ({ id, type, position, size, rotation, pePositions }));
     await page.getByRole('button', { name: '载入示范接线', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(fixture.drafts[`${lesson}:correct`].document.wires.length);
     await expect(page.locator('.sim-wire[data-routing-status]:not([data-routing-status="routed"])')).toHaveCount(0);
@@ -57,11 +62,11 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16-or-20, c
     }
     document = await exportDocument(page); expect(document.wires.length).toBeGreaterThan(0);
     expect(document.wires.every(wire => wire.style === 'orthogonal' && wire.routing === 'duct')).toBe(true);
-    expect(document.components.map(({ id, type, position, size }) => ({ id, type, position, size }))).toEqual(placement);
+    expect(document.components.map(({ id, type, position, size, rotation, pePositions }) => ({ id, type, position, size, rotation, pePositions }))).toEqual(placement);
     await page.getByRole('button', { name: '清空接线练习', exact: true }).click(); await page.getByRole('button', { name: '创建练习', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(0);
     document = await exportDocument(page); expect(document.wires).toHaveLength(0);
-    expect(document.components.map(({ id, type, position, size }) => ({ id, type, position, size }))).toEqual(placement);
+    expect(document.components.map(({ id, type, position, size, rotation, pePositions }) => ({ id, type, position, size, rotation, pePositions }))).toEqual(placement);
   }
   await newDocument(page); expect((await exportDocument(page)).wires).toHaveLength(0);
   await importDocument(page, { ...smallDocument, wires: [{ ...wire, style: 'curve', routing: undefined, waypoints: [{ x: 350, y: 300 }] }] });

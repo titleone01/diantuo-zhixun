@@ -3,15 +3,27 @@ import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 const fixture=JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE,'utf8'));
 const ids=Array.from({length:10},(_,i)=>`motor-course-${String(i+1).padStart(2,'0')}`);
-async function login(page){
-  await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(fixture.accounts[0].username);await page.getByLabel('密码',{exact:true}).fill(fixture.accounts[0].password);
+async function login(page,account=0){
+  await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(fixture.accounts[account].username);await page.getByLabel('密码',{exact:true}).fill(fixture.accounts[account].password);
   await page.getByRole('button',{name:'登录',exact:true}).click();await expect(page.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();
 }
 async function controls(page){const details=page.locator('.dt-document-disclosure');if(await details.getAttribute('open')===null)await details.locator('summary').click();}
 async function exported(page) { return readWorkspaceDocument(page); }
 async function open(page,draft){
-  await page.getByRole('link',{name:'个人中心',exact:true}).click();await page.getByRole('button',{name:'草稿箱',exact:true}).click();await page.getByLabel('每页草稿数量').selectOption('50');
-  await page.getByRole('row').filter({has:page.getByText(draft.title,{exact:true})}).getByRole('button',{name:'编辑',exact:true}).click();await expect(page.locator('.sim-canvas-heading b')).toHaveText(draft.title);
+  await page.getByRole('link',{name:'个人中心',exact:true}).click();await page.getByRole('button',{name:'草稿箱',exact:true}).click();
+  const responseForPage=number=>page.waitForResponse(response=>{
+    const url=new URL(response.url());return url.pathname==='/api/circuits'&&url.searchParams.get('pageSize')==='50'&&url.searchParams.get('page')===String(number);
+  });
+  const firstPage=responseForPage(1);await page.getByLabel('每页草稿数量').selectOption('50');expect((await firstPage).status()).toBe(200);
+  const table=page.locator('.dt-profile-draft-table');await expect(table).toHaveAttribute('aria-busy','false');
+  const row=page.getByRole('row').filter({has:page.getByText(draft.title,{exact:true})}),next=page.getByRole('button',{name:'下一页草稿',exact:true});
+  let pagesVisited=1;
+  while(await row.count()===0&&await next.isEnabled()){
+    const loaded=responseForPage(pagesVisited+1);await next.click();expect((await loaded).status()).toBe(200);
+    await expect(table).toHaveAttribute('aria-busy','false');pagesVisited++;
+  }
+  await expect(row).toHaveCount(1);await row.getByRole('button',{name:'编辑',exact:true}).click();await expect(page.locator('.sim-canvas-heading b')).toHaveText(draft.title);
+  return pagesVisited;
 }
 async function catalog(page){
   await expect(page.locator('.dt-reference-card')).toHaveCount(10);await expect(page.getByRole('tab',{name:'工业控制',exact:true})).toHaveCount(0);await expect(page.getByRole('tab',{name:'课程项目',exact:true})).toHaveCount(0);
@@ -34,6 +46,21 @@ for(const id of ['motor-jog','motor-self-hold','lighting-single','lighting-two-w
   const saving=page.waitForResponse(r=>r.url().endsWith(`/api/circuits/${draft.id}`)&&r.request().method()==='PUT');await page.getByRole('button',{name:'保存草稿',exact:true}).click();expect((await saving).status()).toBe(200);
   await page.goto('/circuit?diagram=32');await expect(page.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();await expect(page.getByText(/原站参考图的新建入口已停用/)).toBeVisible();expect(await exported(page)).toEqual(changed);
   const readback=await page.request.get(`/api/circuits/${draft.id}`);expect((await readback.json()).circuit.document).toEqual(changed);
+});
+
+test('ten-course scope: historical draft opens after fifty newer drafts without losing its document',async({page})=>{
+  await login(page,1);
+  const headers={origin:new URL(page.url()).origin};
+  const document={...fixture.drafts['legacy:motor-jog'].document,title:'Historical pagination retained'};
+  const response=await page.request.post('/api/circuits',{headers,data:{title:document.title,document}});expect(response.status()).toBe(201);
+  const draft=(await response.json()).circuit;
+  for(let index=0;index<51;index++){
+    const title=`Newer pagination fixture ${index}`;
+    const created=await page.request.post('/api/circuits',{headers,data:{title,document:{...fixture.drafts.wiring.document,title}}});expect(created.status()).toBe(201);
+  }
+  expect(await open(page,draft)).toBeGreaterThan(1);
+  expect(await exported(page)).toEqual(draft.document);
+  const readback=await page.request.get(`/api/circuits/${draft.id}`);expect(readback.status()).toBe(200);expect((await readback.json()).circuit.document).toEqual(draft.document);
 });
 test('ten-course scope: built Pages provides ten practices and examples without private API requests',async({page})=>{
   test.skip(!process.env.DIANTUO_STATIC_URL,'No built Pages fixture');const calls=[];page.on('request',r=>{if(new URL(r.url()).pathname.includes('/api/'))calls.push(r.url());});

@@ -141,6 +141,8 @@ async function moveWindow(page,panel,left,top) {
 
 test('drawing improvements: fixed window reaches the whole page, all resize handles work and viewport changes keep its title reachable',async({page})=>{
   await login(page); const panel=await openProjectDrawing(page);
+  // Hover waits for the initial Fit View animation before taking its baseline.
+  await page.locator('[data-device-id]').first().hover();
   const viewport=await page.locator('.react-flow__viewport').getAttribute('style');
   await moveWindow(page,panel,24,20); let rect=await panel.boundingBox();
   expect(rect.x).toBeCloseTo(24,0);expect(rect.y).toBeCloseTo(20,0);
