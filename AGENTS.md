@@ -1,12 +1,16 @@
 # 电拓智训项目协作约束
 
+## 2026-10-13 文件夹整理约束
+
+日常根目录使用简洁视图，技术文件只设置 Hidden 属性，源码路径不变；`02-开发文件.cmd` 可展开或收起。备份统一在项目内 `备份与迁移/`，仅保留一组核验通过的关键备份，不再向 `E:\vibecoding` 散放备份、依赖暂存或整合副本。新的临时工作使用系统临时目录或 `.local/`，完成后依保留要求整理。正式版本副本位于 `.local/releases/<releaseId>/`，随完整项目迁移；迁移前停写，跨电脑公网 DPAPI 凭据需重新接入。不得把隐藏文件当作无用文件删除。整理记录和迁移说明见根目录 `00-项目导航.html`。
+
 ## 接手入口与当前运行边界 2026 年 10 月 4 日
 
 先读本文件、`architecture/3d-wiring.md`、`architecture/simulator-2d.md`、`architecture/local-runbook.md`。先检查 `git status --short` 和端口/PID，保留全部已有修改；多个 Agent 明确文件范围，构建、依赖安装和运行服务由一名负责人协调。
 
 当前产品是二维邀请成员站：新建入口仅提供十个电机课程。四个早期课程和18张原站参考图仅用于历史草稿、作品、媒体和评估兼容，不再提供新建入口。当前范围见 `architecture/ten-course-consolidation-2026-10-07.md`。`app/simulator/core/` 保存共享文档/器件/电气/课程契约，`editor/` 管画布与仿真会话，`SimulatorApp.tsx` 管账号及工作区，`app/server/` 管权限和 API，`worker/local.ts` 是本机入口，`db/migrations/` 是实际迁移来源。详细目录和维护债务见 `architecture/project-maintenance.md`，本轮证据见 `architecture/project-health-report-2026-10-03.md`。
 
-2026-09-30 后已存在固定公网 Tunnel 入口，见运行手册。下方“先本地验收、不部署公网”是实施权限边界，不表示现网不存在：日常修复不要另建站点、切换域名、启动第二个生产源站或自动执行远程部署。端口 3000 监听 loopback，隧道与本机共用唯一业务库。
+2026-09-30 后已存在固定公网 Tunnel 入口，见运行手册。下方“先本地验收、不部署公网”是实施权限边界，不表示现网不存在：日常修复不要另建站点、切换域名、启动第二个生产源站。端口 3000 监听 loopback，隧道与本机共用唯一业务库。
 
 - 不读取或输出 `.dev.vars`、`.local/` 中的真实秘密、密码、会话和令牌；只核对变量名/存在性。不要提交这些目录或把私有图纸放入 `public/`。
 - 不删除 `.wrangler/state/`、`.local-training/`、历史源码/模型/用户数据。数据库备份须一致性处理 WAL；恢复演练与真实环境分开。迁移只新增文件，不改已应用的历史 SQL。

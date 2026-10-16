@@ -4,12 +4,13 @@ import { FileUp, ExternalLink, Maximize2, RefreshCw, SlidersHorizontal, X } from
 import { COURSE_PROJECTS } from './course-projects';
 import { api, ApiError, jsonBody, STATIC_DEMO, type Member } from './api';
 import DrawingViewer, { type DrawingZoom } from './DrawingViewer';
+import type { DrawingPreview } from './drawing-preview';
 import './training-projects.css';
 
 export type DrawingKind = 'schematic' | 'layout';
 export type DrawingMedia = { id: string; url: string; type: string; version?: string; name?: string; size?: number };
 export type Project = { id: string; name: string; title: string; lessonId: string | null; drawingStatus: 'pending' | 'uploaded'; updatedAt: number | null; media: DrawingMedia | null; drawings?: { schematic: DrawingMedia | null; layout: DrawingMedia | null } };
-type Props = { documentKey?: string; readOnly?: boolean; user: Member; fallback?: ReactNode; viewerControls?: DrawingZoom; onUseDrawing?: (mediaId: string, project: Project, kind?: DrawingKind) => void; selectedProjectId?: string; currentDrawings?: Partial<Record<DrawingKind, DrawingMedia>>; currentKind?: DrawingKind; onSelectCurrentDrawing?: (kind: DrawingKind) => void; onPreviewContextChange?: (referenceVideoAllowed: boolean) => void };
+type Props = { documentKey?: string; readOnly?: boolean; user: Member; fallback?: ReactNode; fallbackPreview?: DrawingPreview | null; onPreviewChange?: (preview: DrawingPreview | null) => void; viewerControls?: DrawingZoom; onUseDrawing?: (mediaId: string, project: Project, kind?: DrawingKind) => void; selectedProjectId?: string; currentDrawings?: Partial<Record<DrawingKind, DrawingMedia>>; currentKind?: DrawingKind; onSelectCurrentDrawing?: (kind: DrawingKind) => void; onPreviewContextChange?: (referenceVideoAllowed: boolean) => void };
 const LABELS: Record<DrawingKind, string> = { schematic: '原理图', layout: '元件布置图' };
 const projectMedia = (project: Project, kind: DrawingKind) => project.drawings ? project.drawings[kind] : kind === 'schematic' ? project.media : null;
 function Drawing({ media, title, viewerControls }: { media: DrawingMedia; title: string; viewerControls?: DrawingZoom }) { return <DrawingViewer compact src={media.url} type={media.type} title={title} {...viewerControls}/>; }
@@ -17,7 +18,7 @@ function Drawing({ media, title, viewerControls }: { media: DrawingMedia; title:
 export default function TrainingProjects(props: Props) {
   return <TrainingProjectsContent key={`${props.user.id}:${props.documentKey ?? ''}:${props.selectedProjectId ?? ''}`} {...props}/>;
 }
-function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = 'schematic', onSelectCurrentDrawing, onPreviewContextChange }: Props) {
+function TrainingProjectsContent({ user, fallback, fallbackPreview, onPreviewChange, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = 'schematic', onSelectCurrentDrawing, onPreviewContextChange }: Props) {
   const [projects, setProjects] = useState<Project[]>(COURSE_PROJECTS);
   const [selected, setSelected] = useState('');
   const [kind, setKind] = useState<DrawingKind>('schematic');
@@ -34,6 +35,10 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
   const media = project ? projectMedia(project, kind) : currentDrawings?.[currentKind];
   const title = `${project?.title || '当前练习'} · ${LABELS[shownKind]}`;
   const hasSlots = !!project || !!currentDrawings;
+  const mediaId = media?.id, mediaUrl = media?.url, mediaType = media?.type;
+  useEffect(() => {
+    onPreviewChange?.(mediaId && mediaUrl ? { key: `${mediaId}:${shownKind}`, src: mediaUrl, type: mediaType, title } : hasSlots ? null : fallbackPreview ?? null);
+  }, [mediaId, mediaUrl, mediaType, shownKind, title, hasSlots, fallbackPreview, onPreviewChange]);
   useEffect(() => { onPreviewContextChange?.(!hasSlots); }, [hasSlots, documentKey, onPreviewContextChange]);
   async function upload(file?: File) {
     if (readOnly || refreshing || busy || !file || !project) return;
@@ -74,7 +79,7 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
     </div>
     {error && <p role="alert" className="dt-error">{error}</p>}
     {project && media && onUseDrawing && <div className="dt-project-apply"><span title={project.name}>{project.name}</span><button disabled={readOnly || busy || refreshing} onClick={() => { if (!readOnly) { onUseDrawing(media.id, {...project, media}, kind); setSelected(''); } }}>用于当前练习</button></div>}
-    <div className={`dt-project-preview${media?.type === 'application/pdf' ? ' is-pdf' : ''}`}>{project ? media ? <Drawing media={media} title={title} viewerControls={viewerControls}/> : pending : currentDrawings && !media ? pending : fallback}</div>
+    <div className={`dt-project-preview${media?.type === 'application/pdf' ? ' is-pdf' : ''}`}>{media ? <Drawing media={media} title={title} viewerControls={viewerControls}/> : hasSlots ? pending : fallback}</div>
     {enlarged && media && <Modal backdropClass="dt-training-projects dt-project-zoom-backdrop" className="dt-project-zoom-dialog" title={title} onClose={() => setEnlarged(false)}><header><strong>{title}</strong><button aria-label="关闭放大图纸" onClick={() => setEnlarged(false)}><X size={20}/></button></header><div className="dt-project-zoom-content"><DrawingViewer key={`${media.id}-${shownKind}`} src={media.url} type={media.type} title={title}/></div></Modal>}
   </section>;
 }

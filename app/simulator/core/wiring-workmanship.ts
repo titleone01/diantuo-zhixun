@@ -12,7 +12,10 @@ const includes = (wire: CircuitDocument["wires"][number], ref: TerminalRef) => s
 /** Independent installation practice feedback. It never changes the electrical
  * lesson status, engine, document, or historical assessment records. */
 export function assessWiringWorkmanship(document: CircuitDocument, lessonId = document.lessonId): WorkmanshipReport {
-  const assignments = getCourseTerminalAssignments(lessonId);
+  // A saved single-strip course remains on its original installation contract.
+  // A declared but missing XT2 must still fail the dual-strip checks.
+  const dual = !!document.roles?.xt2 || document.components.some(component => component.id === "xt2");
+  const assignments = getCourseTerminalAssignments(lessonId, dual ? "dual" : "single");
   if (!assignments.length) return { status: "unsupported", checks: [], diagnostics: [] };
   const validation = validateDocument(document);
   if (!validation.valid) return { status: "unsupported", checks: [], diagnostics: validation.errors.map(message => ({ code: "INVALID_DOCUMENT", message, severity: "warning", componentIds: [], terminalIds: [], wireIds: [] })) };
@@ -28,8 +31,9 @@ export function assessWiringWorkmanship(document: CircuitDocument, lessonId = do
     const insideWires = document.wires.filter(wire => includes(wire, inside));
     const expectedOutsideCount = assignments.filter(item => item.stripRole === assignment.stripRole && item.position === assignment.position && item.used).length;
     const passed = !!strip && terminalStripCapacity(strip.type) >= assignment.position && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === expectedOutsideCount && (!assignment.requiresInternal || insideWires.length > 0);
-    const stripLabel = "XT1";
-    const label = `${assignment.label} 经 ${stripLabel} 第 ${assignment.position} 位上下中转，柜外端子无旁路线`;
+    const stripLabel = assignment.stripRole === "xt2" ? "XT2" : "XT1";
+    const direction = strip?.rotation === 90 || strip?.rotation === 270 ? "左右" : "上下";
+    const label = `${assignment.label} 经 ${stripLabel} 第 ${assignment.position} 位${direction}中转，柜外端子无旁路线`;
     checks.push({ id: `${assignment.stripRole}-${assignment.position}-${assignment.componentRole}-${assignment.terminalId}`, label, passed });
     if (!passed) diagnostics.push({ code: strip && isTerminalStrip(strip.type) ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map(wire => wire.id))] });
   }

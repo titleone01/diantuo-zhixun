@@ -37,6 +37,9 @@ async function measure(page, scenario, phase) {
 
 async function open(page, scenario) {
   await page.getByRole('link', { name: '图纸集', exact: true }).click();
+  // Ten placeholder cards exist before the owned fixture media finishes loading.
+  // Wait for the loaded catalog before storing a project snapshot in the modal.
+  await expect(page.getByText('正在读取课程图纸…', { exact: true })).toHaveCount(0);
   await expect(page.locator('.dt-reference-card')).toHaveCount(10);
   await page.locator('.dt-reference-card').filter({ has: page.getByText(fixture.modalCourse.name, { exact: true }) }).click();
   if(scenario==='course-layout')await page.getByRole('dialog').getByRole('tab',{name:'元件布置图',exact:true}).click();

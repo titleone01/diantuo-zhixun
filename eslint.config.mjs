@@ -23,6 +23,7 @@ const eslintConfig = defineConfig([
     ".openai/**",
     "outputs/**",
     "work/**",
+    "备份与迁移/**",
     "coverage/**",
     "public/sim-assets/pdfjs/**",
     "next-env.d.ts",

@@ -1,0 +1,8 @@
+.dt-drawing-window { height: 100dvh; width: 100%; display: flex; flex-direction: column; padding: 12px; box-sizing: border-box; background: #f4f7fc; color: #15365c; font: 14px "Microsoft YaHei", sans-serif; }
+.dt-drawing-window > header { display: flex; align-items: center; gap: 10px; }
+.dt-drawing-window > header strong { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dt-drawing-window > header button { padding: 7px 12px; background: white; border: 1px solid #bfd0e8; color: #2b5fa8; border-radius: 5px; cursor: pointer; white-space: nowrap; }
+.dt-drawing-window > header button[aria-pressed="true"] { background: #e5efff; }
+.dt-drawing-window-state { font-size: 12px; color: #617691; margin: 8px 0; }
+.dt-drawing-window > .dt-drawing-viewer { flex: 1; min-height: 0; background: white; border: 1px solid #d6e1ef; border-radius: 6px; }
+@media (max-width: 500px) { .dt-drawing-window > header { flex-wrap: wrap; } .dt-drawing-window > header strong { flex-basis: 100%; } }

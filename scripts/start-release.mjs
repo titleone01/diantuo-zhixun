@@ -1,6 +1,6 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { assertStopped, checkReleaseCompatibility, containedPath, verifyArchive } from './release-tools.mjs';
+import { assertStopped, checkReleaseCompatibility, containedPath, runtimeProcessIdentity, verifyArchive } from './release-tools.mjs';
 import { launch, localOnlyEnvironment, unusedPort } from './backend-test-runner.mjs';
 
 // Explicit operator action only: no build, migrations, bootstrap, restore or tunnel changes.
@@ -28,8 +28,16 @@ const root = path.resolve(import.meta.dirname, '..');
 let inspector = await unusedPort(); while (inspector === port) inspector = await unusedPort();
 const child = launch([path.join(root, 'node_modules/wrangler/bin/wrangler.js'), 'dev', '--local', '--config', configFile, '--ip', '127.0.0.1', '--port', String(port), '--inspector-port', String(inspector), '--persist-to', pointer.state, '--no-show-interactive-dev-session'], runtime,
   { ...localOnlyEnvironment(process.env), WRANGLER_SEND_METRICS: 'false', WRANGLER_SEND_ERROR_REPORTS: 'false', WRANGLER_REGISTRY_PATH: path.join(runtime, 'registry') });
-await writeFile(leaseFile, JSON.stringify({ pid: child.child.pid, origin, releaseId: manifest.id }));
+const lease = JSON.stringify({ pid: child.child.pid, origin, releaseId: manifest.id, processIdentity: await runtimeProcessIdentity(child.child.pid) });
 const stop = () => { void child.stop(); };
 process.once('SIGINT', stop); process.once('SIGTERM', stop);
-try { process.exitCode = await child.result; }
-finally { await child.stop(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
+try {
+  await writeFile(leaseFile, lease);
+  process.exitCode = await child.result;
+} finally {
+  await child.stop();
+  process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop);
+  // Preserve a replacement or damaged record; remove only this launch's lease.
+  try { if (await readFile(leaseFile, 'utf8') === lease) await unlink(leaseFile); }
+  catch (error) { if (error.code !== 'ENOENT') console.error('Runtime lease cleanup failed; original record retained.'); }
+}

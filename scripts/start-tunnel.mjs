@@ -3,9 +3,10 @@ import { access, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { promisify } from "node:util";
-import { physicalWindowsNetwork, tunnelDnsRelay } from "./tunnel-network.mjs";
+import { discoverTunnelEdges, physicalWindowsNetwork, tunnelDnsRelay } from "./tunnel-network.mjs";
 import { probeMemberSite } from "./site-readiness.mjs";
 import { acquireTunnelLauncher, superviseTunnel } from "./tunnel-supervisor.mjs";
+import { findLoopbackProxy, proxyEdgeRelay, tunnelConnectionPlan } from "./tunnel-egress.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const privateDir = resolve(root, ".local/network-access");
@@ -17,10 +18,17 @@ let releaseLauncher;
 const controller = new AbortController();
 const stop = () => controller.abort();
 
-async function startConnector(network, dnsRelay) {
-  const networkArgs = network ? ["--edge-bind-address", network.address] : [];
+async function startConnector(network, dnsRelay, { attempt = 0 } = {}) {
+  const plan = tunnelConnectionPlan(network, attempt);
+  const networkArgs = network && plan.route === "physical" ? ["--edge-bind-address", network.address] : [];
+  const protocol = plan.protocol;
+  // cloudflared 2026.9.3's dns-resolver-addrs controls virtual-network DNS,
+  // not edge discovery. Supply freshly resolved addresses so OS fake-IP cannot
+  // replace them. --edge is version-specific; see the recovery runbook.
+  const edgeArgs = dnsRelay?.edgeAddresses?.flatMap(address => ["--edge", address]) ?? [];
   const runArgs = dnsRelay ? ["--dns-resolver-addrs", dnsRelay.resolverAddress] : [];
-  const args = ["tunnel", "--no-autoupdate", "--protocol", "http2", ...networkArgs, "--loglevel", "info", "--metrics", metrics, "--pidfile", resolve(privateDir, "tunnel.pid"), "run", ...runArgs, "--token-file", tokenFile];
+  const args = ["tunnel", "--no-autoupdate", "--protocol", protocol, ...edgeArgs, ...networkArgs, "--loglevel", "info", "--metrics", metrics, "--pidfile", resolve(privateDir, "tunnel.pid"), "run", ...runArgs, "--token-file", tokenFile];
+  console.log(`连接方式：${protocol}，${plan.route === "proxy" ? "本机代理" : networkArgs.length ? "物理网卡" : "系统路由"}；DNS 使用加密查询及安全回退。`);
   const child = spawn(binary, args, { cwd: root, stdio: "inherit", windowsHide: true });
   let ended = false;
   const exited = new Promise(resolveResult => {
@@ -30,6 +38,11 @@ async function startConnector(network, dnsRelay) {
   if (child.pid) await writeFile(resolve(privateDir, "tunnel-launch.pid"), `${child.pid}\n`).catch(error => console.error(`无法记录隧道进程：${error.message}`));
   return {
     exited,
+    async isHealthy() {
+      const response = await fetch(`http://${metrics}/ready`, { signal: AbortSignal.timeout(2000) }).catch(() => null);
+      const result = await response?.json().catch(() => null);
+      return response?.ok === true && result?.readyConnections > 0;
+    },
     async stop() {
       if (ended || !child.pid) return;
       // This PID comes from our live ChildProcess, never from a file or port scan.
@@ -71,13 +84,30 @@ try {
     process.once("SIGTERM", stop);
     console.log(`外网入口：${publicUrl.origin}/\n保持本地成员站和本终端运行；按 Ctrl+C 仅停止本次启动的隧道。`);
     await superviseTunnel({
-      selectNetwork: physicalWindowsNetwork,
-      createDnsRelay: tunnelDnsRelay,
+      async selectNetwork() {
+        const network = await physicalWindowsNetwork();
+        return network ? { ...network, proxy: await findLoopbackProxy() } : network;
+      },
+      async createDnsRelay(network, { attempt }) {
+        const relay = await tunnelDnsRelay(network);
+        try {
+          relay.edgeAddresses = await discoverTunnelEdges(relay);
+          console.log(`已通过安全 DNS 动态发现 ${relay.edgeAddresses.length} 个隧道节点。`);
+          if (tunnelConnectionPlan(network, attempt).route === "proxy") {
+            const bridge = await proxyEdgeRelay(relay.edgeAddresses, network.proxy);
+            const closeDns = relay.close;
+            relay.close = () => { bridge.close(); closeDns(); };
+            relay.edgeAddresses = bridge.edgeAddresses;
+          }
+          return relay;
+        } catch (error) { relay.close(); throw error; }
+      },
       startConnector,
       signal: controller.signal,
       onState(event) {
         if (event.type === "waiting") console.log(`等待可用网络：${event.message}`);
         if (event.type === "network-change") console.log("检测到网卡、IP 或 DNS 变化，正在重新连接隧道。");
+        if (event.type === "unhealthy") console.log("隧道持续没有健康连接，正在刷新 DNS 并切换协议或出站路由。");
         if (event.type === "retry") console.log(`隧道连接退出，${Math.ceil(event.delayMs / 1000)} 秒后重新检测网络。`);
         if (event.type === "starting") console.log(event.network ? `隧道使用当前物理网卡 ${event.network.name}（${event.network.address}）及其 DNS，换网后会自动重连。` : "隧道使用系统路由。");
       },

@@ -68,12 +68,12 @@ for(const lesson of ['motor-course-01','motor-course-09','motor-course-10'])test
   for(let i=0;i<routes.length;i++)for(let j=i+1;j<routes.length;j++)for(let a=1;a<routes[i].length;a++)for(let b=1;b<routes[j].length;b++)assert.equal(collinearOverlap(routes[i][a-1],routes[i][a],routes[j][b-1],routes[j][b]),false,`${terminals[i]}/${terminals[j]}`);
  }
 });
-test('course 06 main strip preserves outward direction for every SQ tail',()=>{
- const document=createLessonDocument('motor-course-06',{wired:true}),strip=document.components.find(c=>c.id===document.roles.xt16);
+test('course 06 vertical XT2 preserves outward direction for every clockwise SQ tail',()=>{
+ const document=createLessonDocument('motor-course-06',{wired:true}),strip=document.components.find(c=>c.id===document.roles.xt2);
  for(const wire of document.wires.filter(wire=>[wire.from,wire.to].some(ref=>ref.componentId.startsWith('sq')))){
   const ref=wire.from.componentId===strip.id?wire.from:wire.to,terminal=resolveTerminal(document,ref),route=routeWireInDucts(document,wire);assertGeometry(document,wire,route);
-  const points=wire.from.componentId===strip.id?route.sections[0]:[...route.sections[0]].reverse();assert.equal(points[0].x,points[1].x);
-  assert.ok(points[1].y>points[0].y);
+  const points=wire.from.componentId===strip.id?route.sections[0]:[...route.sections[0]].reverse();assert.equal(points[0].y,points[1].y);
+  assert.ok(points[1].x>points[0].x);
   assert.equal(terminal.terminal.routingRole,'external');assert.equal(route.trunk.length,0);
  }
 });

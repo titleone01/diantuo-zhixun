@@ -161,3 +161,57 @@ test("launcher ownership excludes a second launch and is released on shutdown", 
   const closeAgain = await acquireTunnelLauncher(root);
   await closeAgain();
 });
+
+test("a live but disconnected connector is replaced after a continuous grace period", async () => {
+  const f = fixture(Array(9).fill(router));
+  const start = f.options.startConnector;
+  const attempts = [];
+  let time = 0;
+  f.options.now = () => time;
+  f.options.unhealthyMs = 3;
+  f.options.startConnector = async (profile, relay, options) => {
+    attempts.push(options.attempt);
+    return { ...await start(profile, relay), isHealthy: async () => false };
+  };
+  const wait = f.options.wait;
+  f.options.wait = async ms => { time += 1; await wait(ms); };
+  await superviseTunnel(f.options);
+  assert.deepEqual(attempts, [0, 1, 2]);
+  assert.equal(f.states.filter(state => state.type === "unhealthy").length, 2);
+  assert.equal(f.events.filter(event => event[0] === "stopped").length, 3);
+  f.assertClosed();
+});
+
+test("one healthy connection and intermittent readiness failures do not trigger restarts", async () => {
+  const f = fixture(Array(9).fill(router));
+  const start = f.options.startConnector;
+  let time = 0;
+  let probes = 0;
+  f.options.now = () => time;
+  f.options.unhealthyMs = 3;
+  f.options.startConnector = async (profile, relay) => ({ ...await start(profile, relay), isHealthy: async () => (++probes % 3 === 0) });
+  const wait = f.options.wait;
+  f.options.wait = async ms => { time += 1; await wait(ms); };
+  await superviseTunnel(f.options);
+  assert.equal(f.starts.length, 1);
+  assert.equal(f.states.some(state => state.type === "unhealthy"), false);
+  f.assertClosed();
+});
+
+test("a proxy appearing or disappearing resets the plan before building the next relay", async () => {
+  const proxy = { ...router, proxy: { host: "127.0.0.1", port: 7897 } };
+  const f = fixture([router, router, router, proxy, proxy, router]);
+  const start = f.options.startConnector;
+  const relay = f.options.createDnsRelay;
+  const plans = [];
+  let time = 0;
+  f.options.now = () => time;
+  f.options.unhealthyMs = 0;
+  f.options.createDnsRelay = async (profile, options) => { plans.push([profile.proxy?.port ?? null, options.attempt]); return relay(profile); };
+  f.options.startConnector = async (profile, dnsRelay) => ({ ...await start(profile, dnsRelay), isHealthy: async () => false });
+  const wait = f.options.wait;
+  f.options.wait = async ms => { time += 1; await wait(ms); };
+  await superviseTunnel(f.options);
+  assert.deepEqual(plans, [[null, 0], [null, 1], [null, 2], [7897, 0], [7897, 1], [null, 0]]);
+  f.assertClosed();
+});

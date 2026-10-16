@@ -7,6 +7,7 @@ const definitions = {
   'push-latching-red': { moving: [5, 6], part: 'push-cap', width: 101.5, height: 183.5 },
   'push-latching-green': { moving: [5, 6], part: 'push-cap', width: 101.5, height: 183.5 },
   breaker1: { moving: [4, 5, 6], part: 'breaker-handle', width: 51.5, height: 187.5 },
+  breaker2: { moving: [13, 14, 15, 16], part: 'breaker-handle', width: 100.5, height: 187.5 },
   breaker3: { moving: [22, 23, 24, 25], part: 'breaker-handle', width: 149.5, height: 187.5 },
 };
 const shapes = {};
@@ -17,7 +18,7 @@ for (const [name, definition] of Object.entries(definitions)) {
   body = body.replace(/<path\b[\s\S]*?\/>/g, path => {
     const current = index++;
     // Mechanical status windows, identified in the preserved original artwork.
-    if ((name === 'breaker1' && current === 7) || (name === 'breaker3' && [4, 13, 26].includes(current))) path = path.replace('<path ', '<path class="sim-breaker-status" ');
+    if ((name === 'breaker1' && current === 7) || (name === 'breaker2' && [4, 17].includes(current)) || (name === 'breaker3' && [4, 13, 26].includes(current))) path = path.replace('<path ', '<path class="sim-breaker-status" ');
     return `${current === definition.moving[0] ? `<g class="sim-motion-${definition.part}" data-motion-part="${definition.part}">` : ''}${path}${current === definition.moving.at(-1) ? '</g>' : ''}`;
   });
   if (index <= definition.moving.at(-1)) throw new Error(`Source changed: ${name}`);

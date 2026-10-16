@@ -56,9 +56,12 @@ test('final schematic: a mouse resize to exactly 560 preserves manual width and 
   expect((await geometry(page)).width).toBeCloseTo(560, 0);
   await page.getByRole('button', { name: '复位图纸窗口', exact: true }).click();
   const reset = await geometry(page);
-  expect(reset.inlineWidth).toContain('50%'); expect(reset.width).toBeLessThan(560);
+  expect(reset.width).toBeLessThan(560);
   await page.setViewportSize({ width: 1366, height: 900 });
-  expect((await geometry(page)).width).toBeCloseTo(initial.width, 0);
+  // CSSOM may simplify numeric calc/min/max expressions. Verify responsive
+  // geometry instead of relying on the serialized spelling of the expression.
+  await expect.poll(async () => (await geometry(page)).width).toBeCloseTo(initial.width, 0);
+  expect(Math.abs((await geometry(page)).width - reset.width)).toBeGreaterThan(5);
   // A second manual resize after reset must acquire manual intent again.
   const repeated = await resizeWidthWithMouse(page, 560);
   expect(repeated.after.inlineWidth).toBe('560px');

@@ -4,15 +4,16 @@ import { terminalKey } from "./types";
 import type { CircuitComponent, CircuitDocument, CircuitWire, TerminalRef } from "./types";
 import { SOURCE_WIRE_COLORS } from "./wire-colors";
 
-export type CourseTerminalAssignment = { stripRole: "xt16"; position: number; componentRole: string; terminalId: string; label: string; used: boolean; requiresInternal: boolean };
+export type CourseTerminalAssignment = { stripRole: "xt16" | "xt2"; position: number; componentRole: string; terminalId: string; label: string; used: boolean; requiresInternal: boolean };
 const externalTypes = new Set(["supply", "motor", "motor-star-delta", "motor-dahlander", "push-no", "push-nc", "limit-switch"]);
 const plans = new Map<string, CourseTerminalAssignment[]>();
 
 /** Each distinct external conductor network gets one position. Only wires and
  * the old PE bridge are merged: contacts, coils and windings never are. */
-export function getCourseTerminalAssignments(lessonId?: string): CourseTerminalAssignment[] {
+export function getCourseTerminalAssignments(lessonId?: string, layout: "single" | "dual" = "dual"): CourseTerminalAssignment[] {
   if (!lessonId || !/^motor-course-(?:0[1-9]|10)$/.test(lessonId)) return [];
-  const cached = plans.get(lessonId);
+  const planKey = `${lessonId}:${layout}`;
+  const cached = plans.get(planKey);
   if (cached) return cached.map(item => ({ ...item }));
   const reference = createMotorCourseDocument(lessonId, { wired: true });
   const parent = new Map<string, string>();
@@ -39,12 +40,20 @@ export function getCourseTerminalAssignments(lessonId?: string): CourseTerminalA
     }
   }
   if (positions.size > 20) throw new Error(`课程外接独立节点需要 ${positions.size} 位，超过20位端子排容量`);
-  plans.set(lessonId, assignments);
-  return assignments.map(item => ({ ...item }));
+  // Keep the current XT1 slots for all other external devices. SQ uses its
+  // own positions, including explicit cabinet-side jumpers between shared nets.
+  const next = assignments.map(assignment => {
+    if (lessonId !== "motor-course-06" || layout === "single" || !/^sq[1-4]$/.test(assignment.componentRole)) return assignment;
+    const sq = Number(assignment.componentRole.slice(2));
+    const terminal = ["11", "12", "23", "24"].indexOf(assignment.terminalId);
+    return { ...assignment, stripRole: "xt2" as const, position: 20 - sq * 4 - terminal };
+  });
+  plans.set(planKey, next);
+  return next.map(item => ({ ...item }));
 }
 
 export function getCourseTerminalCount(lessonId?: string): 16 | 20 {
-  return Math.max(0, ...getCourseTerminalAssignments(lessonId).map(item => item.position)) > 16 ? 20 : 16;
+  return Math.max(0, ...getCourseTerminalAssignments(lessonId).filter(item => item.stripRole === "xt16").map(item => item.position)) > 16 ? 20 : 16;
 }
 
 /** Pure transformation for NEW templates only. Existing member documents are
@@ -54,9 +63,11 @@ export function terminalizeMotorCourse(document: CircuitDocument): CircuitDocume
   if (!assignments.length) return document;
   if (document.components.some(component => component.id === "xt16" || component.id === "xt2")) throw new Error("新课程模板已包含端子排，不能重复转换");
   const count = getCourseTerminalCount(document.lessonId);
+  const dual = document.lessonId === "motor-course-06";
   const earthId = document.roles?.pe ?? "pe";
-  const roles: Record<string, string> = { ...document.roles, xt16: "xt16" }; delete roles.pe;
-  const components: CircuitComponent[] = [...document.components.filter(component => component.id !== earthId).map(component => component.type === "supply" ? { ...component, mirrored: true } : component), { id: "xt16", type: count === 20 ? "terminal-strip20" : "terminal-strip16", label: `XT1（${count}位，5为PE）`, pePositions: [5], position: { x: 0, y: 0 } }];
+  const roles: Record<string, string> = { ...document.roles, xt16: "xt16", ...(dual ? { xt2: "xt2" } : {}) }; delete roles.pe;
+  const components: CircuitComponent[] = [...document.components.filter(component => component.id !== earthId).map(component => component.type === "supply" ? { ...component, mirrored: true } : dual && component.type === "limit-switch" ? { ...component, rotation: 90 as const } : component), { id: "xt16", type: count === 20 ? "terminal-strip20" : "terminal-strip16", label: `XT1（${count}位，5为PE）`, pePositions: [5], position: { x: 0, y: 0 } }];
+  if (dual) components.push({ id: "xt2", type: "terminal-strip16", label: "XT2（限位）", rotation: 270, position: { x: 0, y: 0 } });
   const resolve = (assignment: CourseTerminalAssignment): TerminalRef => ({ componentId: document.roles?.[assignment.componentRole] ?? assignment.componentRole, terminalId: assignment.terminalId });
   const mapping = new Map(assignments.map(assignment => [terminalKey(resolve(assignment)), assignment]));
   const remap = (ref: TerminalRef): TerminalRef => {

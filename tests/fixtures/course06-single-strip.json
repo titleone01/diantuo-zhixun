@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": 1,
+  "title": "电动机自动往返控制电路",
+  "lessonId": "motor-course-06",
+  "trainingProjectId": "project-06",
+  "components": [
+    {
+      "id": "source",
+      "type": "supply",
+      "label": "三相电源",
+      "position": {
+        "x": 56,
+        "y": 1093.625
+      },
+      "mirrored": true
+    },
+    {
+      "id": "qf",
+      "type": "breaker3",
+      "label": "QF",
+      "position": {
+        "x": 60,
+        "y": 60
+      }
+    },
+    {
+      "id": "fu1",
+      "type": "fuse3",
+      "label": "FU1（三联）",
+      "position": {
+        "x": 253.5,
+        "y": 60
+      }
+    },
+    {
+      "id": "km1",
+      "type": "contactor380",
+      "label": "KM1",
+      "position": {
+        "x": 60,
+        "y": 371.5
+      }
+    },
+    {
+      "id": "km2",
+      "type": "contactor380",
+      "label": "KM2",
+      "position": {
+        "x": 255.5,
+        "y": 371.5
+      }
+    },
+    {
+      "id": "fr",
+      "type": "overload",
+      "label": "FR",
+      "position": {
+        "x": 60,
+        "y": 683
+      }
+    },
+    {
+      "id": "m",
+      "type": "motor",
+      "label": "M",
+      "position": {
+        "x": 330,
+        "y": 1093.625
+      }
+    },
+    {
+      "id": "sb3",
+      "type": "push-nc",
+      "label": "SB3",
+      "position": {
+        "x": 865,
+        "y": 726
+      }
+    },
+    {
+      "id": "sb1",
+      "type": "push-no",
+      "label": "SB1",
+      "position": {
+        "x": 865,
+        "y": 303
+      }
+    },
+    {
+      "id": "sb2",
+      "type": "push-no",
+      "label": "SB2",
+      "position": {
+        "x": 865,
+        "y": 514.5
+      }
+    },
+    {
+      "id": "sq1",
+      "type": "limit-switch",
+      "label": "SQ1",
+      "position": {
+        "x": 865,
+        "y": 60
+      }
+    },
+    {
+      "id": "sq2",
+      "type": "limit-switch",
+      "label": "SQ2",
+      "position": {
+        "x": 994.5,
+        "y": 60
+      }
+    },
+    {
+      "id": "sq3",
+      "type": "limit-switch",
+      "label": "SQ3",
+      "position": {
+        "x": 1124,
+        "y": 60
+      }
+    },
+    {
+      "id": "sq4",
+      "type": "limit-switch",
+      "label": "SQ4",
+      "position": {
+        "x": 1253.5,
+        "y": 60
+      }
+    },
+    {
+      "id": "fu2",
+      "type": "fuse2",
+      "label": "FU2",
+      "position": {
+        "x": 447,
+        "y": 60
+      }
+    },
+    {
+      "id": "xt16",
+      "type": "terminal-strip16",
+      "label": "XT1（16位，5为PE）",
+      "pePositions": [
+        5
+      ],
+      "position": {
+        "x": 56,
+        "y": 973.5
+      }
+    },
+    {
+      "id": "training-duct-1",
+      "type": "wire-duct",
+      "label": "WD1",
+      "position": {
+        "x": -32,
+        "y": -32
+      },
+      "size": {
+        "width": 849,
+        "height": 64
+      }
+    },
+    {
+      "id": "training-duct-2",
+      "type": "wire-duct",
+      "label": "WD2",
+      "position": {
+        "x": -32,
+        "y": 279.5
+      },
+      "size": {
+        "width": 849,
+        "height": 64
+      }
+    },
+    {
+      "id": "training-duct-3",
+      "type": "wire-duct",
+      "label": "WD3",
+      "position": {
+        "x": -32,
+        "y": 591
+      },
+      "size": {
+        "width": 849,
+        "height": 64
+      }
+    },
+    {
+      "id": "training-duct-4",
+      "type": "wire-duct",
+      "label": "WD4",
+      "position": {
+        "x": -32,
+        "y": 877.5
+      },
+      "size": {
+        "width": 849,
+        "height": 64
+      }
+    },
+    {
+      "id": "training-duct-5",
+      "type": "wire-duct-vertical",
+      "label": "WD5",
+      "position": {
+        "x": -32,
+        "y": -32
+      },
+      "size": {
+        "width": 64,
+        "height": 973.5
+      }
+    },
+    {
+      "id": "training-duct-6",
+      "type": "wire-duct-vertical",
+      "label": "WD6",
+      "position": {
+        "x": 753,
+        "y": -32
+      },
+      "size": {
+        "width": 64,
+        "height": 973.5
+      }
+    },
+    {
+      "id": "training-rail-1",
+      "type": "din-rail",
+      "label": "导轨1",
+      "position": {
+        "x": 32,
+        "y": 143.75
+      },
+      "size": {
+        "width": 721,
+        "height": 24
+      }
+    },
+    {
+      "id": "training-rail-2",
+      "type": "din-rail",
+      "label": "导轨2",
+      "position": {
+        "x": 32,
+        "y": 455.25
+      },
+      "size": {
+        "width": 721,
+        "height": 24
+      }
+    },
+    {
+      "id": "training-rail-3",
+      "type": "din-rail",
+      "label": "导轨3",
+      "position": {
+        "x": 32,
+        "y": 754.25
+      },
+      "size": {
+        "width": 721,
+        "height": 24
+      }
+    }
+  ],
+  "wires": [
+    {
+      "id": "wire-2",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T1"
+      },
+      "to": {
+        "componentId": "qf",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-3",
+      "from": {
+        "componentId": "qf",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "fu1",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-4",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T2"
+      },
+      "to": {
+        "componentId": "qf",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-5",
+      "from": {
+        "componentId": "qf",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "fu1",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-6",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T3"
+      },
+      "to": {
+        "componentId": "qf",
+        "terminalId": "5"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-7",
+      "from": {
+        "componentId": "qf",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "fu1",
+        "terminalId": "5"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-8",
+      "from": {
+        "componentId": "qf",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "fu2",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-9",
+      "from": {
+        "componentId": "qf",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "fu2",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-10",
+      "from": {
+        "componentId": "km1",
+        "terminalId": "A2"
+      },
+      "to": {
+        "componentId": "fu2",
+        "terminalId": "4"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-11",
+      "from": {
+        "componentId": "km2",
+        "terminalId": "A2"
+      },
+      "to": {
+        "componentId": "fu2",
+        "terminalId": "4"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-12",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-13",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-14",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "5"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-15",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "5"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-16",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-17",
+      "from": {
+        "componentId": "fu1",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "1"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-18",
+      "from": {
+        "componentId": "km1",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-19",
+      "from": {
+        "componentId": "km1",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-20",
+      "from": {
+        "componentId": "km1",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "5"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-21",
+      "from": {
+        "componentId": "km2",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-22",
+      "from": {
+        "componentId": "km2",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "3"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-23",
+      "from": {
+        "componentId": "km2",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "5"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-25",
+      "from": {
+        "componentId": "fr",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "xt16",
+        "terminalId": "T6"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-26",
+      "from": {
+        "componentId": "fr",
+        "terminalId": "4"
+      },
+      "to": {
+        "componentId": "xt16",
+        "terminalId": "T7"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-27",
+      "from": {
+        "componentId": "fr",
+        "terminalId": "6"
+      },
+      "to": {
+        "componentId": "xt16",
+        "terminalId": "T8"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-28",
+      "from": {
+        "componentId": "fu2",
+        "terminalId": "2"
+      },
+      "to": {
+        "componentId": "fr",
+        "terminalId": "95"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-29",
+      "from": {
+        "componentId": "fr",
+        "terminalId": "96"
+      },
+      "to": {
+        "componentId": "xt16",
+        "terminalId": "T9"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-31",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T10"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "13"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-33",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T10"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "13"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-36",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T11"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "14"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-39",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T12"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "14"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-43",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T15"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "21"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-45",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "T16"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "21"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-46",
+      "from": {
+        "componentId": "km2",
+        "terminalId": "22"
+      },
+      "to": {
+        "componentId": "km1",
+        "terminalId": "A1"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "wire-47",
+      "from": {
+        "componentId": "km1",
+        "terminalId": "22"
+      },
+      "to": {
+        "componentId": "km2",
+        "terminalId": "A1"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-source-L1",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B1"
+      },
+      "to": {
+        "componentId": "source",
+        "terminalId": "L1"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-source-L2",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B2"
+      },
+      "to": {
+        "componentId": "source",
+        "terminalId": "L2"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-source-L3",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B3"
+      },
+      "to": {
+        "componentId": "source",
+        "terminalId": "L3"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-source-N",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B4"
+      },
+      "to": {
+        "componentId": "source",
+        "terminalId": "N"
+      },
+      "color": "#3478f6",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-source-PE",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B5"
+      },
+      "to": {
+        "componentId": "source",
+        "terminalId": "PE"
+      },
+      "color": "#659f2f",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-m-U",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B6"
+      },
+      "to": {
+        "componentId": "m",
+        "terminalId": "U"
+      },
+      "color": "#e7b000",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-m-V",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B7"
+      },
+      "to": {
+        "componentId": "m",
+        "terminalId": "V"
+      },
+      "color": "#20b963",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-m-W",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B8"
+      },
+      "to": {
+        "componentId": "m",
+        "terminalId": "W"
+      },
+      "color": "#f04452",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-m-PE",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B5"
+      },
+      "to": {
+        "componentId": "m",
+        "terminalId": "PE"
+      },
+      "color": "#659f2f",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb3-11",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B9"
+      },
+      "to": {
+        "componentId": "sb3",
+        "terminalId": "11"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb3-12",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B10"
+      },
+      "to": {
+        "componentId": "sb3",
+        "terminalId": "12"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb1-23",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B10"
+      },
+      "to": {
+        "componentId": "sb1",
+        "terminalId": "23"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb1-24",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B11"
+      },
+      "to": {
+        "componentId": "sb1",
+        "terminalId": "24"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb2-23",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B10"
+      },
+      "to": {
+        "componentId": "sb2",
+        "terminalId": "23"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sb2-24",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B12"
+      },
+      "to": {
+        "componentId": "sb2",
+        "terminalId": "24"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq1-11",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B11"
+      },
+      "to": {
+        "componentId": "sq1",
+        "terminalId": "11"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq1-12",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B13"
+      },
+      "to": {
+        "componentId": "sq1",
+        "terminalId": "12"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq1-23",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B10"
+      },
+      "to": {
+        "componentId": "sq1",
+        "terminalId": "23"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq1-24",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B12"
+      },
+      "to": {
+        "componentId": "sq1",
+        "terminalId": "24"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq2-11",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B12"
+      },
+      "to": {
+        "componentId": "sq2",
+        "terminalId": "11"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq2-12",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B14"
+      },
+      "to": {
+        "componentId": "sq2",
+        "terminalId": "12"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq2-23",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B10"
+      },
+      "to": {
+        "componentId": "sq2",
+        "terminalId": "23"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq2-24",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B11"
+      },
+      "to": {
+        "componentId": "sq2",
+        "terminalId": "24"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq3-11",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B13"
+      },
+      "to": {
+        "componentId": "sq3",
+        "terminalId": "11"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq3-12",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B15"
+      },
+      "to": {
+        "componentId": "sq3",
+        "terminalId": "12"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq4-11",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B14"
+      },
+      "to": {
+        "componentId": "sq4",
+        "terminalId": "11"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    },
+    {
+      "id": "terminal-sq4-12",
+      "from": {
+        "componentId": "xt16",
+        "terminalId": "B16"
+      },
+      "to": {
+        "componentId": "sq4",
+        "terminalId": "12"
+      },
+      "color": "#20252b",
+      "style": "orthogonal",
+      "routing": "duct"
+    }
+  ],
+  "roles": {
+    "source": "source",
+    "qf": "qf",
+    "fu1": "fu1",
+    "km1": "km1",
+    "km2": "km2",
+    "fr": "fr",
+    "m": "m",
+    "sb3": "sb3",
+    "sb1": "sb1",
+    "sb2": "sb2",
+    "sq1": "sq1",
+    "sq2": "sq2",
+    "sq3": "sq3",
+    "sq4": "sq4",
+    "fu2": "fu2",
+    "xt16": "xt16"
+  }
+}

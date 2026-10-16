@@ -36,7 +36,7 @@ const bundle = await build({
     build.onLoad({ filter: /^artwork$/, namespace: 'reference-editor-test' }, () => ({ contents: 'export default ()=>null;' }));
   } }],
 });
-const { Editor, Picker, Floating, Video, referenceVideoForDiagram, createLessonDocument, validateDocument, reset, begin, flush, unmount, deferFunctionalUpdates } = await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString('base64')}`);
+const { Editor, Picker, Floating, Video, referenceVideoForDiagram, createLessonDocument, validateDocument, reset, begin, flush, unmount } = await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString('base64')}`);
 const Workspace = Editor({}).props.children.type;
 function all(node, predicate) {
   if (!node || typeof node !== 'object') return [];
@@ -65,27 +65,6 @@ function editor(document, extra = {}) {
   return { ...ui, render, document: () => current, updates, picker: () => ui.find(node => node.type === Picker), window: () => ui.find(node => node.type === Floating), button: label => ui.find(node => node.type === 'button' && node.props['aria-label'] === label) };
 }
 const example = () => createLessonDocument('motor-self-hold', { wired: true });
-
-test('copied objects cannot be pasted in read-only or running editors and are cleared by account changes', () => {
-  const restore = environment();
-  try {
-    const original = example();
-    const ui = editor(original, { clipboardScope: 'account-a:session-1' });
-    ui.find(node => typeof node.props?.onNodesChange === 'function').props.onNodesChange([{ type: 'select', id: original.components[0].id, selected: true }]);
-    ui.render(); ui.button('复制选中对象').props.onClick(); ui.render();
-    assert.equal(ui.button('粘贴对象').props.disabled, false);
-    ui.update({ readOnly: true });
-    assert.equal(ui.button('粘贴对象').props.disabled, true);
-    ui.button('粘贴对象').props.onClick(); assert.equal(ui.updates.length, 0);
-    ui.update({ readOnly: false });
-    ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render();
-    assert.equal(ui.button('粘贴对象').props.disabled, true);
-    ui.button('粘贴对象').props.onClick(); assert.equal(ui.updates.length, 0);
-    ui.update({ clipboardScope: 'account-b:session-2' });
-    assert.equal(ui.button('粘贴对象').props.disabled, true);
-    assert.deepEqual(ui.document(), original);
-  } finally { restore(); }
-});
 
 test('opening historical reference and private drawings preserves their graph without a legacy picker', () => {
   const restore = environment();
@@ -144,48 +123,6 @@ test('a slow personal image upload cannot replace a later edit', async () => {
   } finally { restore(); }
 });
 
-test('slow JSON imports cannot overwrite later edits, a running session, a replaced workspace or read-only state', async () => {
-  const restore = environment();
-  try {
-    for (const transition of ['edit', 'run', 'replace', 'read-only', 'unmount']) {
-      const original = example(), incoming = createLessonDocument('motor-jog', { wired: true });
-      const ui = editor(original);
-      let resolveText;
-      const text = new Promise(resolve => { resolveText = resolve; });
-      const input = ui.find(node => node.type === 'input' && node.props.accept === 'application/json,.json');
-      const pending = input.props.onChange({ target: { files: [{ size: 200, text: () => text }], value: 'slow.json' } });
-      if (transition === 'edit') { ui.find(node => typeof node.props?.onNodesChange === 'function').props.onNodesChange([{type:'position',id:original.components[0].id,position:{x:0,y:0}}]); ui.render(); }
-      else if (transition === 'run') { ui.find(node => node.type === 'button' && node.props.children?.some?.(child => child === '开始仿真')).props.onClick(); ui.render(); }
-      else if (transition === 'replace') ui.update({ documentKey: 'another-workspace', document: incoming });
-      else if (transition === 'read-only') ui.update({ readOnly: true });
-      else unmount();
-      const count = ui.updates.length;
-      resolveText(JSON.stringify(incoming)); await pending;
-      assert.equal(ui.updates.length, count, `${transition}: stale file read must not change the document`);
-    }
-  } finally { restore(); }
-});
-
-test('the latest JSON file selection wins while a normal import remains undoable', async () => {
-  const restore = environment();
-  try {
-    const original = example(), incoming = createLessonDocument('motor-jog', { wired: true });
-    const ui = editor(original);
-    const input = ui.find(node => node.type === 'input' && node.props.accept === 'application/json,.json');
-    let resolveOld, resolveNew;
-    const oldText = new Promise(resolve => { resolveOld = resolve; });
-    const newText = new Promise(resolve => { resolveNew = resolve; });
-    const read = text => input.props.onChange({ target: { files: [{ size: 200, text: () => text }], value: 'circuit.json' } });
-    const oldRead = read(oldText), newRead = read(newText);
-    resolveOld(JSON.stringify({ ...original, title: 'Superseded selection' })); await oldRead;
-    assert.equal(ui.updates.length, 0, 'an earlier selection cannot win even when it finishes first');
-    resolveNew(JSON.stringify(incoming)); await newRead; ui.render();
-    assert.deepEqual(ui.document(), incoming);
-    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), original);
-    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), incoming);
-  } finally { restore(); }
-});
-
 test('floating reference changes retain video tab, drawing zoom, position and collapse state, with exact new video metadata', () => {
   const restore = environment();
   try {
@@ -240,7 +177,7 @@ test('floating resize cancellation restores responsive or manual sizing intent, 
   } finally { restore(); }
 });
 
-test('duct resizing commits one undo entry per gesture, supports redo and cancel, and refuses frozen edits', () => {
+test('duct resizing supports cancellation and refuses frozen edits', () => {
   const restore = environment();
   try {
     const original = { ...example(), components: [...example().components, {id:'duct', type:'wire-duct', label:'WD1', position:{x:70,y:90}}] };
@@ -248,14 +185,9 @@ test('duct resizing commits one undo entry per gesture, supports redo and cancel
     const duct = () => ui.find(node => Array.isArray(node.props?.nodes)).props.nodes.find(node => node.id === 'duct').data;
     duct().beginResize('duct');
     for (const width of [320, 400, 480]) { duct().resize('duct', {x:70,y:90,width,height:64}); ui.render(); }
-    assert.equal(ui.button('撤销').props.disabled, true, 'unfinished gesture does not fill history');
     duct().resize('duct', {x:55,y:75,width:480,height:84}, true); ui.render();
     const resized = structuredClone(ui.document());
     assert.equal(validateDocument(resized).valid, true);
-    deferFunctionalUpdates(); // React may evaluate history updaters after the parent has changed the current document.
-    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), original);
-    assert.equal(ui.button('撤销').props.disabled, true, 'all drag updates undo together');
-    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), resized);
     duct().beginResize('duct'); duct().resize('duct', {x:1,y:2,width:900,height:130}); ui.render();
     duct().cancelResize(); ui.render(); assert.deepEqual(ui.document(), resized);
     ui.update({readOnly:true}); const count=ui.updates.length;
@@ -267,7 +199,7 @@ test('duct resizing commits one undo entry per gesture, supports redo and cancel
   } finally { restore(); }
 });
 
-test('prelayout and all-wires routing preserve the graph, existing duct positions and manual bends with one undo', () => {
+test('prelayout and all-wires routing preserve the graph, existing duct positions and manual bends', () => {
   const restore = environment();
   try {
     const base = example();
@@ -279,9 +211,6 @@ test('prelayout and all-wires routing preserve the graph, existing duct position
     assert.deepEqual(arranged.wires.map(({ style, routing, ...wire }) => wire), before.wires.map(({ style, routing, ...wire }) => wire));
     assert.ok(arranged.wires.every(wire => wire.style === 'orthogonal' && wire.routing === 'duct'));
     assert.equal(validateDocument(arranged).valid, true);
-    ui.button('撤销').props.onClick(); ui.render(); assert.deepEqual(ui.document(), before);
-    assert.equal(ui.button('撤销').props.disabled, true, 'prelayout and conversion are one operation');
-    ui.button('重做').props.onClick(); ui.render(); assert.deepEqual(ui.document(), arranged);
     const custom = { ...arranged, components: arranged.components.map(component => component.type.startsWith('wire-duct') ? { ...component, position: { x: component.position.x + 13, y: component.position.y + 21 }, size: { width: 384, height: 72 } } : component), wires: before.wires };
     const existing = editor(custom);
     existing.button('导线全部入槽').props.onClick(); existing.render();
@@ -289,8 +218,6 @@ test('prelayout and all-wires routing preserve the graph, existing duct position
     const count = existing.updates.length;
     existing.button('导线全部入槽').props.onClick(); existing.render();
     assert.equal(existing.updates.length, count, 'repeating the same operation is idempotent');
-    existing.button('撤销').props.onClick(); existing.render(); assert.deepEqual(existing.document(), custom);
-    assert.equal(existing.button('撤销').props.disabled, true);
     assert.deepEqual(original, before, 'the original object is never rewritten');
   } finally { restore(); }
 });
@@ -322,7 +249,6 @@ test('automatic and all three manual styles remain distinct and restore preserve
     flow().props.onConnect({ source: 'source', sourceHandle: 'L1', target: 'source', targetHandle: 'L2' }); ui.render();
     assert.equal(ui.document().wires.at(-1).style, 'orthogonal'); assert.equal(ui.document().wires.at(-1).routing, 'duct');
     assert.equal(validateDocument(ui.document()).valid, true);
-    ui.button('撤销').props.onClick(); ui.render(); assert.equal(ui.document().wires.length, original.wires.length);
   } finally { restore(); }
 });
 
@@ -398,4 +324,35 @@ test('a live short warns once, confirming preserves the fault, and a fresh sessi
     toggle().props.onClick(); ui.render(); toggle().props.onClick(); ui.render(); assert.ok(alert());
     assert.deepEqual(ui.document(),document,'a warning never edits the electrical document');
   } finally { restore(); }
+});
+
+test('equipotential tracing keeps edit selection narrow, labels a whole net and refuses frozen changes', () => {
+  const restore = environment();
+  try {
+    const document = { schemaVersion:1, title:'Branch tracing fixture', components:['a','b','c'].map((id,index)=>({id,type:'terminal',label:id,position:{x:index*200,y:0}})), wires:[
+      {id:'ab',from:{componentId:'a',terminalId:'A'},to:{componentId:'b',terminalId:'A'},color:'#3478f6'},
+      {id:'bc',from:{componentId:'b',terminalId:'B'},to:{componentId:'c',terminalId:'A'},color:'#3478f6'},
+    ] };
+    const ui = editor(document), flow = () => ui.find(node => Array.isArray(node.props?.edges));
+    ui.find(node => node.type==='button' && node.props.children==='等电位').props.onClick(); ui.render();
+    flow().props.onEdgesChange([{type:'select',id:'ab',selected:true}]);
+    flow().props.onEdgeClick({}, {id:'ab'}); ui.render();
+    assert.deepEqual(flow().props.edges.filter(edge=>edge.selected).map(edge=>edge.id), ['ab']);
+    assert.deepEqual(flow().props.edges.filter(edge=>edge.data.traced).map(edge=>edge.id), ['ab','bc']);
+    const trace = () => ui.find(node => typeof node.props?.onNumber==='function' && node.props.net);
+    trace().props.onNumber(' 4 '); ui.render();
+    assert.ok(ui.document().wires.every(wire=>wire.wireNumber==='4'));
+    ui.find(node=>node.type==='select' && node.props['aria-label']==='线条样式').props.onChange({target:{value:'curve'}}); ui.render();
+    assert.equal(ui.document().wires[0].style,'curve'); assert.equal(ui.document().wires[1].style,undefined);
+    flow().props.onEdgesChange([{type:'select',id:'ab',selected:true}]); flow().props.onEdgeClick({}, {id:'ab'}); ui.render();
+    ui.update({readOnly:true});
+    assert.equal(trace().props.frozen,true);
+    const before=structuredClone(ui.document()); trace().props.onNumber('9'); ui.render();
+    assert.deepEqual(ui.document(),before);
+    assert.equal(flow().props.edges.filter(edge=>edge.data.traced).length,2);
+  } finally { restore(); }
+});
+
+test('removed editor transfer, clipboard and history controls have no hidden UI entry', () => {
+ const restore=environment();try{const ui=editor(example());for(const label of ['复制选中对象','粘贴对象','撤销','重做'])assert.equal(ui.button(label),undefined);assert.equal(ui.find(node=>node.type==='input'&&node.props.accept==='application/json,.json'),undefined);assert.equal(ui.find(node=>node.props?.className==='sim-history'),undefined);}finally{restore();}
 });

@@ -1,3 +1,4 @@
+import { readWorkspaceDocument, loadWorkspaceFixture } from './workspace-fixtures.mjs';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
@@ -19,19 +20,8 @@ async function disclosure(page, open = true) {
   const control = page.locator('.dt-document-disclosure');
   if ((await control.getAttribute('open') !== null) !== open) await control.locator('summary').click();
 }
-async function exportDocument(page) {
-  await page.getByRole('button', { name: '导出图纸到本地', exact: true }).click();
-  const document = JSON.parse(await page.getByLabel('导出的电路 JSON', { exact: true }).inputValue());
-  await page.getByRole('button', { name: '关闭电路文件窗口', exact: true }).click();
-  return document;
-}
-async function importDocument(page, document) {
-  await page.getByRole('button', { name: '导入本地保存的图纸', exact: true }).click();
-  await page.getByLabel('待导入的电路 JSON', { exact: true }).fill(JSON.stringify(document));
-  await page.getByRole('button', { name: '导入粘贴内容', exact: true }).click();
-  await expect(page.getByRole('dialog', { name: '导入电路 JSON', exact: true })).not.toBeVisible();
-  await expect(page.locator('[data-device-id]')).toHaveCount(document.components.length);
-}
+async function exportDocument(page) { return readWorkspaceDocument(page); }
+async function importDocument(page, document) { await loadWorkspaceFixture(page, document); }
 async function newDocument(page) {
   await disclosure(page); await page.getByRole('button', { name: '新建电路', exact: true }).click(); await disclosure(page, false);
 }
@@ -58,6 +48,13 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16-or-20, c
     const placement = document.components.map(({ id, type, position, size }) => ({ id, type, position, size }));
     await page.getByRole('button', { name: '载入示范接线', exact: true }).click();
     await expect(page.locator('.sim-wire')).toHaveCount(fixture.drafts[`${lesson}:correct`].document.wires.length);
+    await expect(page.locator('.sim-wire[data-routing-status]:not([data-routing-status="routed"])')).toHaveCount(0);
+    await expect(page.getByRole('status', { name: '自动走线提示', exact: true })).toHaveCount(0);
+    if (number === 10) {
+      await collapseDiagram(page);
+      await page.locator('.react-flow__controls-fitview').click();
+      await page.locator('.react-flow').screenshot({ path: '.local/acceptance-public/demo-routing-light-duct.png' });
+    }
     document = await exportDocument(page); expect(document.wires.length).toBeGreaterThan(0);
     expect(document.wires.every(wire => wire.style === 'orthogonal' && wire.routing === 'duct')).toBe(true);
     expect(document.components.map(({ id, type, position, size }) => ({ id, type, position, size }))).toEqual(placement);
@@ -68,12 +65,10 @@ test('integrated: ten blank courses share six-duct layouts and FU2/XT16-or-20, c
   }
   await newDocument(page); expect((await exportDocument(page)).wires).toHaveLength(0);
   await importDocument(page, { ...smallDocument, wires: [{ ...wire, style: 'curve', routing: undefined, waypoints: [{ x: 350, y: 300 }] }] });
-  const before = await exportDocument(page);
   await page.getByRole('button', { name: '预布线槽', exact: true }).click();
   let arranged = await exportDocument(page); expect(ducts(arranged)).toHaveLength(6);
   expect(arranged.wires[0]).toMatchObject({ style: 'orthogonal', routing: 'duct' });
-  await page.getByRole('button', { name: '撤销', exact: true }).click(); expect(await exportDocument(page)).toEqual(before);
-  await page.getByRole('button', { name: '重做', exact: true }).click();
+
   await page.getByRole('button', { name: '导线全部入槽', exact: true }).click();
   const existingPlacement = arranged.components;
   arranged = await exportDocument(page); expect(ducts(arranged)).toHaveLength(6);
@@ -123,34 +118,7 @@ test('integrated: legacy duct import and canonical routing save and reload witho
   expect((await (await page.request.get('/api/circuits')).json()).total).toBe(totalBefore);
 });
 
-test('integrated: cross-document group paste remains one undo operation and running interruptions cannot edit it', async ({ page }) => {
-  await login(page); await newDocument(page);
-  await importDocument(page, { ...smallDocument, wires: [{ ...wire, style: 'curve', routing: undefined, waypoints: [{ x: 320, y: 260 }] }] });
-  await collapseDiagram(page); await page.locator('.react-flow__controls-fitview').click();
-  await page.locator('[data-device-id="ia"]').click(); await page.locator('[data-device-id="ib"]').click({ modifiers: ['Shift'] });
-  await page.getByRole('button', { name: '复制选中对象', exact: true }).focus(); await page.keyboard.press('Control+c');
-  await newDocument(page);
-  await importDocument(page, { schemaVersion: 1, title: 'Paste target', components: [{ id: 'ic', type: 'terminal', label: 'C', position: { x: 100, y: 300 } }], wires: [] });
-  await page.getByRole('button', { name: '粘贴对象', exact: true }).focus();
-  for (let index = 0; index < 8; index++) await page.keyboard.press('Control+v');
-  await expect(page.locator('[data-device-id]')).toHaveCount(17); await expect(page.locator('.sim-wire')).toHaveCount(8);
-  let document = await exportDocument(page); const copiedIds = new Set(document.components.filter(component => component.id !== 'ic').map(component => component.id));
-  expect(copiedIds.size).toBe(16); expect(copiedIds.has('ia') || copiedIds.has('ib')).toBe(false);
-  expect(document.wires.every(wire => copiedIds.has(wire.from.componentId) && copiedIds.has(wire.to.componentId) && wire.color === '#203040')).toBe(true);
-  for (let index = 0; index < 8; index++) await page.getByRole('button', { name: '撤销', exact: true }).click();
-  await expect(page.locator('[data-device-id]')).toHaveCount(1); await expect(page.locator('.sim-wire')).toHaveCount(0);
-  for (let index = 0; index < 8; index++) await page.getByRole('button', { name: '重做', exact: true }).click();
-  document = await exportDocument(page);
-  for (let cycle = 0; cycle < 3; cycle++) {
-    await page.getByRole('button', { name: '开始仿真', exact: true }).click();
-    await expect(page.getByRole('button', { name: '粘贴对象', exact: true })).toBeDisabled();
-    await expect(page.getByRole('button', { name: '撤销', exact: true })).toBeDisabled();
-    await page.keyboard.press('Control+v'); await page.keyboard.press('Delete');
-    await expect(page.locator('[data-device-id]')).toHaveCount(17);
-    await page.getByRole('button', { name: '结束仿真', exact: true }).click();
-    expect(await exportDocument(page)).toEqual(document);
-  }
-});
+
 
 test('integrated: switching an unsaved course preserves its parked circuit and failed quota preserves the active document', async ({ page }) => {
   await login(page); await newDocument(page); await importDocument(page, smallDocument);
@@ -169,9 +137,8 @@ test('integrated: switching an unsaved course preserves its parked circuit and f
   expect(await page.evaluate(() => Object.fromEntries(Object.keys(localStorage).filter(key => key.startsWith('diantuo:simulator:recovery:')).map(key => [key, localStorage.getItem(key)])))).toEqual(recoveryBefore);
 });
 
-test('integrated: personal drawing upload and undo retain authenticated previews and wiring', async ({ page }) => {
+test('integrated: personal drawing upload retains authenticated previews and wiring', async ({ page }) => {
   await login(page); await newDocument(page); await importDocument(page,smallDocument);
-  const original=await exportDocument(page);
   const bytes=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGP4DwQACfsD/fteaysAAAAASUVORK5CYII=','base64');
   const uploading=page.waitForResponse(response=>response.url().endsWith('/api/media')&&response.request().method()==='POST');
   await page.locator('input[type="file"][accept="image/png,image/jpeg,image/webp"]').setInputFiles({name:'fixture-reference.png',mimeType:'image/png',buffer:bytes});
@@ -179,8 +146,7 @@ test('integrated: personal drawing upload and undo retain authenticated previews
   const preview=page.locator(`.sim-diagram img[src="/api/media/${media.id}"]`);
   await expect(preview).toBeVisible();await expect.poll(()=>preview.evaluate(image=>image.complete&&image.naturalWidth>0)).toBe(true);
   const uploaded=await exportDocument(page);expect(uploaded.drawingMediaId).toBe(media.id);
-  await page.getByRole('button',{name:'撤销',exact:true}).click();expect(await exportDocument(page)).toEqual(original);await expect(preview).toHaveCount(0);
-  await page.getByRole('button',{name:'重做',exact:true}).click();expect(await exportDocument(page)).toEqual(uploaded);await expect(preview).toBeVisible();
+  expect(await exportDocument(page)).toEqual(uploaded);await expect(preview).toBeVisible();
   await page.getByRole('button',{name:'选择图纸',exact:true}).click();await expect(page.locator('.dt-reference-card')).toHaveCount(10);
   await page.getByRole('link',{name:'模拟电路',exact:true}).click();expect(await exportDocument(page)).toEqual(uploaded);
 });
@@ -188,12 +154,12 @@ test('integrated: personal drawing upload and undo retain authenticated previews
 for (const viewport of [{ width: 1366, height: 768 }, { width: 1920, height: 1080 }]) {
   test(`integrated: essential editing controls remain reachable at ${viewport.width}x${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport); await login(page);
-    for (const name of ['开始仿真', '保存草稿', '检查接线', '导入本地保存的图纸', '导出图纸到本地', '收起图纸']) {
-      const button = page.getByRole('button', { name, exact: true }); await button.scrollIntoViewIfNeeded(); await expect(button).toBeVisible(); await button.click({ trial: true });
+    for (const name of ['开始仿真', '保存草稿', '检查接线', '标注线号 1', '标注线号 10', '收起图纸']) {
+      const button = page.getByRole('button', { name, exact: true }); await button.scrollIntoViewIfNeeded(); await expect(button).toBeVisible(); if(await button.isEnabled()) await button.click({ trial: true });
       const box = await button.boundingBox(); expect(box.x).toBeGreaterThanOrEqual(0); expect(box.y).toBeGreaterThanOrEqual(0); expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1); expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
     }
     await disclosure(page); const course = page.getByLabel('选择训练课程', { exact: true }); await course.selectOption('motor-course-02'); await page.getByRole('button', { name: '创建练习', exact: true }).click(); await expect(page.locator('.sim-canvas-heading b')).toHaveText(fixture.drafts['motor-course-02:correct'].document.title); await disclosure(page, false);
-    for (const name of ['导线全部入槽', '撤销', '复制选中对象', '粘贴对象']) { const control = page.getByRole('button', { name, exact: true }); await control.scrollIntoViewIfNeeded(); await expect(control).toBeVisible(); }
+    for (const name of ['导线全部入槽', '标注线号 1', '标注线号 10']) { const control = page.getByRole('button', { name, exact: true }); await control.scrollIntoViewIfNeeded(); await expect(control).toBeVisible(); }
   });
 }
 
@@ -221,10 +187,9 @@ test('integrated: three automatic wires keep separate repeatable tracks and thei
   await expect.poll(() => duct.getAttribute('data-world-x')).not.toBe(before);
   await expect.poll(async () => (await geometry()).every(wire => wire.status !== 'routed')).toBe(true);
   await expect(page.locator('.sim-routing-notice')).toContainText('未连通');
-  const disconnected = await exportDocument(page); expect(disconnected.wires).toEqual(wires); await geometry();
-  await page.getByRole('button', { name: '撤销', exact: true }).click(); await expect.poll(geometry).toEqual(first);
+  const disconnected = await exportDocument(page); expect(disconnected.wires).toEqual(wires); const disconnectedGeometry = await geometry();
   const saving = page.waitForResponse(response => response.url().endsWith('/api/circuits') && response.request().method() === 'POST'); await page.getByRole('button', { name: '保存草稿', exact: true }).click(); expect((await saving).status()).toBe(201);
-  await page.reload(); await expect(page.locator('.sim-wire')).toHaveCount(3); expect(await geometry()).toEqual(first);
+  await page.reload(); await expect(page.locator('.sim-wire')).toHaveCount(3); expect(await geometry()).toEqual(disconnectedGeometry); await expect.poll(async()=>(await geometry()).every(wire=>wire.status!=='routed')).toBe(true);
   await importDocument(page, { ...document, title: 'Missing duct endpoints retained', components });
   await expect.poll(async () => (await geometry()).map(wire => wire.status)).toEqual(['missing', 'missing', 'missing']); await expect(page.locator('.sim-routing-notice')).toContainText('先布置线槽');
   expect((await exportDocument(page)).wires).toEqual(wires); await geometry();

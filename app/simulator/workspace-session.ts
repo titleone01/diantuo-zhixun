@@ -50,7 +50,7 @@ export function parkRecovery(storage: Pick<Storage, 'getItem' | 'setItem'>, owne
   const key = `${ownerKey}:parked:${Date.now()}:${crypto.randomUUID()}`;
   persistRecovery(storage,key,state);
   // Readback detects a storage implementation that silently dropped the write.
-  if(storage.getItem(key)!==JSON.stringify(state))throw new Error('本机暂存写入未确认，请保存或导出当前接线');
+  if(storage.getItem(key)!==JSON.stringify(state))throw new Error('本机暂存写入未确认，请保存当前草稿');
   return key;
 }
 export function listParkedRecovery(storage: Pick<Storage,'key' | 'length' | 'getItem'>, ownerKey: string): ParkedRecovery[] {

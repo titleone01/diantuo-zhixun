@@ -1,6 +1,7 @@
 import { Handle, NodeResizer, Position, type Node, type NodeProps } from "@xyflow/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { TIMER_MIN_MS, TIMER_MAX_MS, TIMER_DEFAULT_MS, componentSize, DUCT_MAX_SIZE, DUCT_MIN_SIZE, getDefinition, isLayoutObject, isTimer, transformedTerminal } from "../core/catalog";
+import { terminalDisplayLabel } from "../core/terminal-labels";
 import { terminalKey } from "../core/types";
 import type { CircuitComponent, CircuitDocument, ComponentRuntime, ComponentSize, Diagnostic, Point, Runtime, SimulationAction, TerminalState } from "../core/types";
 import DeviceArtwork from "./DeviceArtwork";
@@ -24,6 +25,8 @@ export type DeviceNodeData = {
   resize?: (id: string, bounds: Point & ComponentSize, finish?: boolean) => void;
   cancelResize?: () => void;
   selectedWireIds?: string[];
+  tracedTerminalIds?: string[];
+  wireNumbers?: Record<string, string>;
   pendingTerminalKey?: string;
 };
 export type ElectricalNode = Node<DeviceNodeData, "electrical">;
@@ -60,7 +63,7 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     : { left: actuatorPoint.x, top: actuatorPoint.y };
   const latching = component.type === "push-latching-red" || component.type === "push-latching-green";
   const knife = component.type === "knife-switch3";
-  const breaker = component.type === "breaker1" || component.type === "breaker3";
+  const breaker = component.type === "breaker1" || component.type === "breaker2" || component.type === "breaker3";
   const toggle = breaker || knife || latching || component.type === "switch1" || component.type === "switch2";
   const closed = !!runtime.switches[component.id];
   const pressed = !!runtime.pressed[component.id];
@@ -80,7 +83,7 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     data-runtime-speed={result?.speed}
   >
     {duct && <NodeResizer isVisible={!!selected && !running && !data.readOnly} minWidth={DUCT_MIN_SIZE} minHeight={rail ? 24 : DUCT_MIN_SIZE} maxWidth={DUCT_MAX_SIZE} maxHeight={rail ? 24 : DUCT_MAX_SIZE} keepAspectRatio={false} handleClassName="sim-duct-resize-handle" lineClassName="sim-duct-resize-line" onResizeStart={onResizeStart} onResize={onResize} onResizeEnd={onResizeEnd} />}
-    <DeviceArtwork rotation={component.rotation} mirrored={component.mirrored} pePositions={component.pePositions} result={result} delayMs={component.settings?.delayMs} running={running} type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
+    <DeviceArtwork rotation={component.rotation} mirrored={component.mirrored} pePositions={component.pePositions} terminalLabels={component.terminalLabels} result={result} delayMs={component.settings?.delayMs} running={running} type={component.type} active={!!result?.active} pressed={pressed} closed={!!runtime.switches[component.id]} direction={result?.direction} speed={result?.speed} />
     {data.document && !!leads.length && <svg className="sim-terminal-leads" width={size.width} height={size.height} aria-hidden="true">
       {leads.map(({ wire, terminal }) => {
         const clip = `lead-${component.id}-${wire.id}-${terminal.id}`;
@@ -97,12 +100,13 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
     {faulty && definition.load?.kind === "motor" && <span className="sim-motor-diagnostic" role="status" title={data.diagnostics.filter(d => d.componentIds.includes(component.id)).map(d => d.message).join("；")}>诊断</span>}
     {definition.terminals.map(original => {
       const terminal = transformedTerminal(component,original);
+      const displayLabel = terminalDisplayLabel(component, terminal);
       const key = terminalKey({ componentId: component.id, terminalId: terminal.id });
       const state = data.terminalStates[key];
-      const isFaulty = data.diagnostics.some(d => d.terminalIds.includes(key));
+      const isFaulty = data.diagnostics.some(d => d.severity !== "info" && d.terminalIds.includes(key));
       const color = data.terminalColors?.[key] ?? terminalColor(terminal);
       const pending = data.pendingTerminalKey === key;
-      const traced = leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
+      const traced = data.tracedTerminalIds?.includes(key) ?? leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
       return <Handle
         key={terminal.id}
         id={terminal.id}
@@ -111,15 +115,16 @@ export default function DeviceNode({ data, selected }: NodeProps<ElectricalNode>
         isConnectable={!running && !data.readOnly}
         className={`sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""} ${pending ? "is-connection-start" : ""} ${traced ? "is-trace-endpoint" : ""}`}
         style={{ left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color }}
-        title={`${component.label} · ${terminal.label}${state ? ` · ${state.potential}` : ""}`}
-        aria-label={`${component.label} 端子 ${terminal.label}`}
+        title={`${component.label} · ${displayLabel}${state ? ` · ${state.potential}` : ""}`}
+        aria-label={`${component.label} 端子 ${displayLabel}`}
         data-terminal-key={key}
         data-connection-start={pending}
         data-wire-traced={traced}
+        data-wire-number={data.wireNumbers?.[key]}
         data-terminal-energized={running && !!state?.energized}
         data-world-x={component.position.x + terminal.x}
         data-world-y={component.position.y + terminal.y}
-      ><i className="sim-terminal-indicator" aria-hidden="true" />{(pending || traced) ? <span className="sim-terminal-label sim-terminal-focus-label">{pending ? "起点 · " : ""}{component.label} · {terminal.label}</span> : !contactor && !timer && component.type !== "relay380-jzc1-22" && <span className="sim-terminal-label">{terminal.label}</span>}</Handle>;
+      ><i className="sim-terminal-indicator" aria-hidden="true" />{data.wireNumbers?.[key] && <span className="sim-wire-number" title={`线号 ${data.wireNumbers[key]}`}>{data.wireNumbers[key]}</span>}{(pending || traced) ? <span className="sim-terminal-label sim-terminal-focus-label">{pending ? "起点 · " : ""}{component.label} · {displayLabel}</span> : !contactor && !timer && component.type !== "relay380-jzc1-22" && <span className="sim-terminal-label">{displayLabel}</span>}</Handle>;
     })}
     {running && momentary && <button
       className={`sim-actuator sim-push-actuator nodrag nopan ${component.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`}

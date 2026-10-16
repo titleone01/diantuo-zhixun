@@ -44,7 +44,7 @@ test('20-position block matches vector dimensions, keeps every slot isolated and
   const definition=getDefinition('terminal-strip20');
   assert.equal(definition.terminals.length,40);assert.equal(definition.fixedConnections.length,20);
   const svg=await readFile(new URL('../public/sim-assets/terminal-strip20.svg',import.meta.url),'utf8');
-  assert.match(svg,/viewBox="0 0 911.25 76.125"/);assert.match(svg,/>20<\/text>/);
+  assert.match(svg,/viewBox="0 0 911.25 76.125"/);assert.doesNotMatch(svg,/<text\b/);
   const strip={...component('xt','terminal-strip20'),pePositions:[5]};
   assert.equal(validateDocument(doc([strip])).valid,true);
   assert.equal(resolveTerminal(doc([strip]),{componentId:'xt',terminalId:'T5'}).terminal.electrical,'earth');

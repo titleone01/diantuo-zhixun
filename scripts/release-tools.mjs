@@ -170,14 +170,37 @@ export async function checkReleaseCompatibility(release, state, manifest) {
   if (!schemaChecked) throw new Error('Cannot verify applied schema before activation');
 }
 
+/** PID numbers may be reused after a failed launch or a Windows restart. */
+export async function runtimeProcessIdentity(pid) {
+  if (!Number.isSafeInteger(pid) || pid < 1) throw new Error("Invalid runtime PID");
+  try {
+    if (process.platform === "win32") {
+      const powershell = path.join(process.env.SystemRoot || "C:\\Windows", "System32/WindowsPowerShell/v1.0/powershell.exe");
+      const ticks = execFileSync(powershell, ["-NoProfile", "-NonInteractive", "-Command", `(Get-Process -Id ${pid} -ErrorAction Stop).StartTime.ToUniversalTime().Ticks.ToString()`],
+        { encoding: "utf8", timeout: 5000, windowsHide: true, stdio: ["ignore", "pipe", "ignore"] }).trim();
+      return /^\d+$/.test(ticks) ? `win32:${ticks}` : null;
+    }
+    if (process.platform === "linux") {
+      const [stat, boot] = await Promise.all([readFile(`/proc/${pid}/stat`, "utf8"), readFile("/proc/sys/kernel/random/boot_id", "utf8")]);
+      const started = stat.slice(stat.lastIndexOf(")") + 2).trim().split(/\s+/)[19];
+      return /^\d+$/.test(started) ? `linux:${boot.trim()}:${started}` : null;
+    }
+  } catch { /* Unavailable identity is never evidence that a live writer stopped. */ }
+  return null;
+}
+
 export async function assertStopped({ stopped, origin, leaseFile }) {
   if (stopped !== true || !origin || !leaseFile) throw new Error("Backup/activation requires explicit stop-writes acknowledgement, loopback origin and runtime lease");
   const url = new URL(origin);
   if (url.protocol !== "http:" || !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) || url.username || url.password || url.pathname !== "/" || url.search || url.hash) throw new Error("Expected a loopback origin");
   try {
     const lease = JSON.parse(await readFile(leaseFile, "utf8"));
-    if (!Number.isSafeInteger(lease.pid) || lease.pid < 1) throw new Error("Invalid runtime lease");
-    try { process.kill(lease.pid, 0); throw new Error("Runtime lease still owns a live process"); }
+    if (!Number.isSafeInteger(lease.pid) || lease.pid < 1 || (lease.processIdentity != null && (typeof lease.processIdentity !== "string" || !lease.processIdentity))) throw new Error("Invalid runtime lease");
+    try {
+      process.kill(lease.pid, 0);
+      const identity = lease.processIdentity ? await runtimeProcessIdentity(lease.pid) : null;
+      if (!identity || identity === lease.processIdentity) throw new Error("Runtime lease still owns a live process");
+    }
     catch (error) { if (error.code !== "ESRCH") throw error; }
   } catch (error) { if (error.code !== "ENOENT") throw error; }
   const response = await fetch(`${url.origin}/api/session`, { signal: AbortSignal.timeout(5000) }).catch(error => {

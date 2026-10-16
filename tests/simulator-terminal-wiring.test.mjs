@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { build } from "esbuild";
+import { readFile } from "node:fs/promises";
 
 const bundle = await build({ stdin: { contents: 'export * from "./app/simulator/core/lessons"; export * from "./app/simulator/core/motor-courses"; export * from "./app/simulator/core/engine"; export * from "./app/simulator/core/catalog"; export * from "./app/simulator/core/validation"; export * from "./app/simulator/core/terminal-wiring"; export * from "./app/simulator/core/wire-colors"; export * from "./app/simulator/core/wiring-workmanship";', resolveDir: process.cwd() }, bundle: true, format: "esm", platform: "node", write: false, logLevel: "silent" });
 const { createLessonDocument, createMotorCourseDocument, assessLesson, validateDocument, getDefinition, componentSize, getCourseTerminalAssignments, getCourseTerminalCount, terminalizeMotorCourse, getWireColorGroups, resolveConnectionColor, getConnectedTerminalColor, setWireGroupColor, normalizeDemonstrationWireColors, normalizeAutomaticControlWireColors, CONTROL_WIRE_COLOR, assessWiringWorkmanship } = await import(`data:text/javascript;base64,${Buffer.from(bundle.outputFiles[0].text).toString("base64")}`);
@@ -17,7 +18,7 @@ for (let number = 1; number <= 10; number++) test(`course ${number}: every exter
   assert.deepEqual(blank.components, demo.components);
   assert.deepEqual(blank.roles, demo.roles);
   assert.equal(demo.roles.xt16, "xt16");
-  assert.equal(demo.components.filter(c => c.type.startsWith("terminal-strip")).length, 1);
+  assert.equal(demo.components.filter(c => c.type.startsWith("terminal-strip")).length, number===6?2:1);
   assert.equal(demo.components.find(c=>c.id==="xt16").type, number===10?"terminal-strip20":"terminal-strip16");
   assert.equal(demo.components.some(c=>c.type==="pe-terminal"),false);
   const assignments = getCourseTerminalAssignments(lessonId);
@@ -41,17 +42,47 @@ test("terminal capacity counts only original wire nets; N and PE retain dedicate
   const counts=[10,11,12,12,14,16,16,11,14,17];
   for(let n=1;n<=10;n++){
     const id=`motor-course-${String(n).padStart(2,"0")}`,assignments=getCourseTerminalAssignments(id);
-    assert.equal(new Set(assignments.map(a=>a.position)).size,counts[n-1]);
+    const single=getCourseTerminalAssignments(id,"single");
+    assert.equal(new Set(single.map(a=>a.position)).size,counts[n-1]);
     assert.equal(getCourseTerminalCount(id),n===10?20:16);
     assert.deepEqual(assignments.filter(a=>a.componentRole==="source").map(a=>[a.terminalId,a.position]),[["L1",1],["L2",2],["L3",3],["N",4],["PE",5]]);
     assert.ok(assignments.filter(a=>a.terminalId==="PE").every(a=>a.position===5));
   }
   const assignments=getCourseTerminalAssignments("motor-course-06");
   assert.equal(assignments.filter(a=>a.componentRole.startsWith("sq")).length,12);
-  assert.ok(assignments.every(a=>a.stripRole==="xt16"));
+  assert.ok(assignments.filter(a=>a.componentRole.startsWith("sq")).every(a=>a.stripRole==="xt2"));
+  assert.ok(assignments.filter(a=>!a.componentRole.startsWith("sq")).every(a=>a.stripRole==="xt16"));
   const demo=createLessonDocument("motor-course-06",{wired:true});
-  assert.equal(demo.roles.xt2,undefined);
+  assert.equal(demo.roles.xt2,"xt2");
   assert.deepEqual(demo.components.find(c=>c.id==="xt16").pePositions,[5]);
+});
+
+test("course 06 preserves saved single-strip documents and detects a missing or bypassed XT2",async()=>{
+  const legacy=JSON.parse(await readFile(new URL('./fixtures/course06-single-strip.json',import.meta.url),'utf8'));
+  const before=JSON.stringify(legacy),validated=validateDocument(legacy);
+  assert.equal(validated.valid,true);assert.deepEqual(validated.document,legacy);
+  assert.equal(assessLesson(legacy).status,"passed");
+  assert.equal(assessWiringWorkmanship(legacy).status,"passed");
+  assert.equal(JSON.stringify(legacy),before);
+  const demo=createLessonDocument('motor-course-06',{wired:true});
+  const report=assessWiringWorkmanship(demo);
+  assert.equal(report.checks.filter(check=>check.label.includes('经 XT2')).length,12);
+  assert.ok(report.checks.filter(check=>check.label.includes('经 XT2')).every(check=>check.label.includes('左右中转')));
+  const missing={...demo,components:demo.components.filter(c=>c.id!=='xt2'),wires:demo.wires.filter(w=>w.from.componentId!=='xt2'&&w.to.componentId!=='xt2')};
+  assert.notEqual(assessWiringWorkmanship(missing).status,'passed');
+  assert.ok(assessWiringWorkmanship(missing).diagnostics.some(d=>d.code==='INVALID_DOCUMENT'));
+  for(const wire of demo.wires.filter(w=>w.id.startsWith('terminal-sq'))){
+    assert.equal(wire.from.componentId,'xt2');
+    assert.equal(demo.wires.filter(other=>[other.from,other.to].some(ref=>key(ref)===key(wire.to))).length,1);
+  }
+  const unused=new Set(['T6','B6','T5','B5','T2','B2','T1','B1']);
+  assert.ok(demo.wires.every(w=>[w.from,w.to].every(ref=>ref.componentId!=='xt2'||!unused.has(ref.terminalId))));
+  const bypass=structuredClone(demo);
+  const tail=bypass.wires.find(w=>w.id==='terminal-sq1-11');
+  const inside=bypass.wires.find(w=>[w.from,w.to].some(ref=>ref.componentId==='xt2'&&ref.terminalId==='T16'));
+  bypass.wires.push({id:'sq-bypass',from:tail.to,to:inside.from.componentId==='xt2'&&inside.from.terminalId==='T16'?inside.to:inside.from,color:tail.color});
+  assert.equal(assessLesson(bypass).status,'passed');
+  assert.ok(assessWiringWorkmanship(bypass).diagnostics.some(d=>d.code==='TERMINAL_BOUNDARY_BYPASS'&&d.wireIds.includes('sq-bypass')));
 });
 
 for (const number of [6, 7, 9, 10]) test(`course ${number}: conversion rewrites EVERY original branch without modifying its input`, () => {

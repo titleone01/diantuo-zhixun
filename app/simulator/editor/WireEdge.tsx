@@ -5,6 +5,7 @@ import { wireEndpoints, wirePath, wireRoute } from "./geometry";
 import { ductWireRoute } from "./duct-routing";
 
 export type WireData = {
+  traced?: boolean;
   document: CircuitDocument;
   wire: CircuitWire;
   running: boolean;
@@ -19,6 +20,7 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
   const flow = useReactFlow();
   const [dragged, setDragged] = useState<{ index: number; point: Point } | null>(null);
   if (!data) return null;
+  const traced = data.traced ?? !!selected;
   const points = [...(data.wire.waypoints ?? [])];
   if (dragged) points[dragged.index] = dragged.point;
   const wire = { ...data.wire, waypoints: points };
@@ -32,20 +34,21 @@ export default function WireEdge({ id, data, selected }: EdgeProps<ElectricalEdg
     setDragged({ index, point });
   };
   return <g
-    className={`sim-wire ${selected ? "is-selected" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`}
+    className={`sim-wire ${selected ? "is-selected" : ""} ${traced ? "is-traced" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`}
     data-wire-id={id}
     data-from-terminal={`${wire.from.componentId}::${wire.from.terminalId}`}
     data-to-terminal={`${wire.to.componentId}::${wire.to.terminalId}`}
     data-from-world={JSON.stringify(endpoints.from)}
     data-to-world={JSON.stringify(endpoints.to)}
     data-routing={wire.routing}
-    data-wire-traced={!!selected}
+    data-wire-traced={traced}
+    data-wire-number={wire.wireNumber}
     data-routing-status={wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual"}
   >
-    {(selected || data.highlighted || data.energized) && <path className="sim-wire-outline" d={path} fill="none" stroke={selected ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32"} strokeWidth={selected ? 11 : 7} strokeOpacity={selected ? 0.72 : data.highlighted ? 0.65 : 0.4} vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />}
-    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: wire.color, strokeWidth: selected ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
-    {selected && <path className="sim-wire-trace-flow" d={path} fill="none" stroke="#fff" strokeWidth={3} strokeDasharray="5 15" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />}
-    {selected && [endpoints.from,endpoints.to].map((point,index)=><circle key={index} className="sim-wire-selected-endpoint" cx={point.x} cy={point.y} r={5} fill="white" stroke="#3478f6" strokeWidth={2} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
+    {(traced || data.highlighted || data.energized) && <path className="sim-wire-outline" d={path} fill="none" stroke={traced ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32"} strokeWidth={traced ? 11 : 7} strokeOpacity={traced ? 0.72 : data.highlighted ? 0.65 : 0.4} vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />}
+    <BaseEdge id={id} path={path} interactionWidth={18} style={{ stroke: wire.color, strokeWidth: traced ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" }} />
+    {traced && <path className="sim-wire-trace-flow" d={path} fill="none" stroke="#fff" strokeWidth={3} strokeDasharray="5 15" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" />}
+    {traced && [endpoints.from,endpoints.to].map((point,index)=><circle key={index} className="sim-wire-selected-endpoint" cx={point.x} cy={point.y} r={5} fill="white" stroke="#3478f6" strokeWidth={2} vectorEffect="non-scaling-stroke" pointerEvents="none" />)}
     {selected && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && <EdgeLabelRenderer>
       {points.map((point, index) => <button
         key={index}

@@ -1,3 +1,4 @@
+import { loadWorkspaceFixture } from './workspace-fixtures.mjs';
 import { test, expect } from '@playwright/test';
 import { mkdir, readFile } from 'node:fs/promises';
 const fixture=JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE,'utf8'));
@@ -11,7 +12,7 @@ async function open(page){
   await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(fixture.accounts[0].username);await page.getByLabel('密码',{exact:true}).fill(fixture.accounts[0].password);
   await page.getByRole('button',{name:'登录',exact:true}).click();await expect(page.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();
   await page.locator('.dt-document-disclosure summary').click();await page.getByRole('button',{name:'新建电路',exact:true}).click();
-  await page.getByRole('button',{name:'导入本地保存的图纸',exact:true}).click();await page.getByLabel('待导入的电路 JSON',{exact:true}).fill(JSON.stringify(document));await page.getByRole('button',{name:'导入粘贴内容',exact:true}).click();
+  await loadWorkspaceFixture(page, document);
   await expect(page.locator('[data-device-id]')).toHaveCount(4);
   const disclosure=page.locator('.dt-document-disclosure');if(await disclosure.getAttribute('open')!==null)await disclosure.locator('summary').click();
   const collapse=page.getByRole('button',{name:'收起图纸',exact:true});if(await collapse.isVisible())await collapse.click();
@@ -66,9 +67,9 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
   // Open a horizontal gap while each terminal still has its own nearest duct.
   // Moving the right duct far downward can legitimately route both ends via the left duct.
   await test.step('routing: disconnect duct',async()=>{const right=page.locator('[data-device-id="route-right"]');await drag(page,right,60,0,await clearDuctPoint(right));await expect(wire).toHaveAttribute('data-routing-status','disconnected');await expect(page.locator('.sim-routing-notice')).toContainText('未连通');await geometry(page);});
-  await test.step('routing: undo disconnection',async()=>{await page.getByRole('button',{name:'撤销',exact:true}).click();await expect(wire).toHaveAttribute('data-routing-status','routed');expect(await geometry(page)).toEqual(moved);});
+  await test.step('routing: reconnect duct with a real drag',async()=>{const right=page.locator('[data-device-id="route-right"]');await right.hover({position:{x:20,y:2}});const scale=(await right.boundingBox()).width/400; await drag(page,right,(320-Number(await right.getAttribute('data-world-x')))*scale,0,await clearDuctPoint(right));await expect.poll(async()=>Number(await right.getAttribute('data-world-x'))).toBeLessThan(340);await expect(wire).toHaveAttribute('data-routing-status','routed');await geometry(page);});
   await test.step('routing: resize duct',async()=>{
-  const left=page.locator('[data-device-id="route-left"]'),box=await left.boundingBox(),point=await clearDuctPoint(left);await left.click({position:{x:box.width*point.x,y:box.height*point.y}});const resize=page.locator('[data-id="route-left"] .sim-duct-resize-handle.bottom.right');await expect(resize).toBeVisible();await drag(page,resize,24,16);
+  const left=page.locator('[data-device-id="route-left"]'),box=await left.boundingBox(),point=await clearDuctPoint(left);await left.click({position:{x:box.width*point.x,y:box.height*point.y}});const resize=page.locator('[data-id="route-left"] .sim-duct-resize-handle.bottom.left');await expect(resize).toBeVisible();await drag(page,resize,-24,16);
   await expect.poll(async()=>(await geometry(page)).path).not.toBe(moved.path);await expect(wire).toHaveAttribute('data-routing-status','routed');
   });
   const resized=await geometry(page);
@@ -79,9 +80,7 @@ test('duct routing follows real drag, movement, resize, disconnect, save and rel
 test('motor-course-02: top and bottom duct entrances render without foldbacks',async({page})=>{
   await open(page);
   const document=fixture.drafts['motor-course-02:correct'].document;
-  await page.getByRole('button',{name:'导入本地保存的图纸',exact:true}).click();
-  await page.getByLabel('待导入的电路 JSON',{exact:true}).fill(JSON.stringify(document));
-  await page.getByRole('button',{name:'导入粘贴内容',exact:true}).click();
+  await loadWorkspaceFixture(page, document);
   await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length);
   for(const wire of await page.locator('.sim-wire').all()){
     await expect(wire).toHaveAttribute('data-routing-status','routed');
@@ -103,9 +102,7 @@ test('exterior motor leads stay separated after real terminal drag, motor moveme
   await open(page);
   const document=structuredClone(fixture.drafts['motor-course-09:correct'].document);
   document.wires=document.wires.filter(w=>!(w.to.componentId==='m'&&w.to.terminalId==='U1'));
-  await page.getByRole('button',{name:'导入本地保存的图纸',exact:true}).click();
-  await page.getByLabel('待导入的电路 JSON',{exact:true}).fill(JSON.stringify(document));
-  await page.getByRole('button',{name:'导入粘贴内容',exact:true}).click();
+  await loadWorkspaceFixture(page, document);
   const disclosure=page.locator('.dt-document-disclosure');if(await disclosure.getAttribute('open')!==null)await disclosure.locator('summary').click();
   await page.getByLabel('线条样式',{exact:true}).selectOption('duct');
   await page.locator('.react-flow__controls-fitview').click();
@@ -148,12 +145,4 @@ test('exterior motor leads stay separated after real terminal drag, motor moveme
   await page.reload();await expect(page.locator('.sim-wire')).toHaveCount(document.wires.length+1);expect(await motorGeometry()).toEqual(moved);
   await page.locator('.react-flow__controls-fitview').click();await page.locator('[data-device-id="m"]').hover();
   await mkdir('.local/acceptance-public',{recursive:true});await page.locator('.react-flow').screenshot({path:'.local/acceptance-public/exterior-motor-leads-fixed.png'});
-});
-test('repeated group paste and undo preserve a stable editable document',async({page})=>{
-  await open(page);await page.locator('[data-device-id="route-a"]').click();await page.locator('[data-device-id="route-b"]').click({modifiers:['Shift']});
-  await page.getByRole('button',{name:'复制选中对象',exact:true}).focus();await page.keyboard.press('Control+c');
-  for(let index=0;index<8;index++)await page.keyboard.press('Control+v');await expect(page.locator('[data-device-id]')).toHaveCount(20);
-  for(let index=0;index<8;index++)await page.getByRole('button',{name:'撤销',exact:true}).click();await expect(page.locator('[data-device-id]')).toHaveCount(4);
-  for(let index=0;index<8;index++)await page.getByRole('button',{name:'重做',exact:true}).click();await expect(page.locator('[data-device-id]')).toHaveCount(20);
-  await page.getByRole('button',{name:'开始仿真',exact:true}).click();await expect(page.getByRole('button',{name:'粘贴对象',exact:true})).toBeDisabled();await page.getByRole('button',{name:'结束仿真',exact:true}).click();
 });

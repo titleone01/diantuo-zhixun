@@ -31,7 +31,7 @@ const result = await build({
   chunkNames: "assets/chunks/[name]-[hash]",
   format: "esm",
   platform: "browser",
-  target: ["es2022"],
+  target: ["es2020"],
   conditions: ["style"],
   define: {
     "__STATIC_DEMO__": "true",
@@ -55,6 +55,7 @@ const scriptUrl = relativeUrl(entryPath);
 const stylesheetUrl = entryMetadata.cssBundle ? relativeUrl(entryMetadata.cssBundle) : null;
 
 let html = await readFile(path.join(projectRoot, "github-pages", "index.html"), "utf8");
+html = html.replaceAll('__APP_BASE__', base);
 html = html.replace(
   "</head>",
   `    <link rel="icon" href="${base}favicon.svg" />\n${stylesheetUrl ? `    <link rel="stylesheet" href="${stylesheetUrl}" />\n` : ""}  </head>`,

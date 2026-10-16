@@ -1,3 +1,4 @@
+import { readWorkspaceDocument } from './workspace-fixtures.mjs';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 const fixture=JSON.parse(await readFile(process.env.DIANTUO_BROWSER_FIXTURE,'utf8'));
@@ -7,7 +8,7 @@ async function login(page){
   await page.getByRole('button',{name:'登录',exact:true}).click();await expect(page.getByRole('button',{name:'开始仿真',exact:true})).toBeVisible();
 }
 async function controls(page){const details=page.locator('.dt-document-disclosure');if(await details.getAttribute('open')===null)await details.locator('summary').click();}
-async function exported(page){await page.getByRole('button',{name:'导出图纸到本地',exact:true}).click();const doc=JSON.parse(await page.getByLabel('导出的电路 JSON',{exact:true}).inputValue());await page.getByRole('button',{name:'关闭电路文件窗口',exact:true}).click();return doc;}
+async function exported(page) { return readWorkspaceDocument(page); }
 async function open(page,draft){
   await page.getByRole('link',{name:'个人中心',exact:true}).click();await page.getByRole('button',{name:'草稿箱',exact:true}).click();await page.getByLabel('每页草稿数量').selectOption('50');
   await page.getByRole('row').filter({has:page.getByText(draft.title,{exact:true})}).getByRole('button',{name:'编辑',exact:true}).click();await expect(page.locator('.sim-canvas-heading b')).toHaveText(draft.title);

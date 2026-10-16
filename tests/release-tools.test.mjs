@@ -4,8 +4,50 @@ import { lstat, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { activateRelease, backupState, buildDocumentContract, containedPath, emptyDestination, inventory, restoreState, stateBusinessDigest, verifyArchive } from "../scripts/release-tools.mjs";
+import { activateRelease, assertStopped, backupState, buildDocumentContract, containedPath, emptyDestination, inventory, restoreState, runtimeProcessIdentity, stateBusinessDigest, verifyArchive } from "../scripts/release-tools.mjs";
 import { unusedPort } from "../scripts/backend-test-runner.mjs";
+
+test('runtime leases distinguish reused PIDs while retaining live and legacy writer protection', async t => {
+  const identity = await runtimeProcessIdentity(process.pid);
+  if (!identity) { t.skip('Process start identity is unavailable on this platform'); return; }
+  const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-lease-pid-test-'));
+  const leaseFile = path.join(directory, 'runtime-lease.json');
+  const options = { stopped: true, origin: `http://127.0.0.1:${await unusedPort()}`, leaseFile };
+  await writeFile(leaseFile, JSON.stringify({ pid: process.pid }));
+  await assert.rejects(assertStopped(options), /live process/);
+  await writeFile(leaseFile, JSON.stringify({ pid: process.pid, processIdentity: identity }));
+  await assert.rejects(assertStopped(options), /live process/);
+  const reused = identity.replace(/\d$/, digit => digit === '0' ? '1' : '0');
+  await writeFile(leaseFile, JSON.stringify({ pid: process.pid, processIdentity: reused }));
+  await assertStopped(options);
+  const { createServer } = await import('node:http');
+  const server = createServer((request, response) => response.end('{}'));
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  try {
+    await assert.rejects(assertStopped({ ...options, origin: `http://127.0.0.1:${server.address().port}` }), /accepting requests/);
+  } finally { await new Promise(resolve => server.close(resolve)); }
+  await writeFile(leaseFile, JSON.stringify({ pid: process.pid, processIdentity: true }));
+  await assert.rejects(assertStopped(options), /Invalid runtime lease/);
+});
+
+test('a failed release child removes its own runtime lease', { timeout: 45000 }, async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'diantuo-release-failure-test-'));
+  const runtime = path.join(directory, 'runtime'), release = path.join(directory, 'release');
+  await mkdir(path.join(runtime, 'state'), { recursive: true });
+  await mkdir(path.join(release, 'assets'), { recursive: true });
+  await writeFile(path.join(release, 'worker.js'), 'export default { fetch() { return new Response("fixture"); } };');
+  await buildDocumentContract(release);
+  // Wrangler rejects this date after spawning; it never opens a real database.
+  await writeFile(path.join(release, 'runtime.json'), JSON.stringify({ main: 'worker.js', compatibility_date: 'invalid-date', assets: {} }));
+  await writeFile(path.join(release, 'manifest.json'), JSON.stringify({ format: 1, kind: 'release', id: 'fixture', files: await inventory(release) }));
+  await writeFile(path.join(runtime, 'active-release.json'), JSON.stringify({ release, releaseId: 'fixture', state: path.join(runtime, 'state') }));
+  await writeFile(path.join(runtime, 'base-config.json'), JSON.stringify({ name: 'owned-failure-fixture', d1_databases: [], r2_buckets: [] }));
+  const child = spawnSync(process.execPath, [path.resolve(import.meta.dirname, '../scripts/start-release.mjs'), runtime, String(await unusedPort())], { encoding: 'utf8', timeout: 35000, windowsHide: true });
+  assert.equal(child.error, undefined);
+  assert.notEqual(child.status, 0, 'The invalid fixture must fail startup');
+  assert.match(child.stdout + child.stderr, /compatibility_date|invalid-date/);
+  await assert.rejects(lstat(path.join(runtime, 'runtime-lease.json')), error => error.code === 'ENOENT');
+});
 
 test("archives reject traversal, modified bytes, extra files and nonempty restore targets", async () => {
   const directory = await mkdtemp(path.join(tmpdir(), "diantuo-archive-test-"));

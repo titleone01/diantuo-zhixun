@@ -1,7 +1,7 @@
 import {
   __commonJS,
   __toESM
-} from "./chunks/chunk-MYXFJE25.js";
+} from "./chunks/chunk-66GNSNWO.js";
 
 // node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
@@ -1991,15 +1991,15 @@ var require_react_dom_client_development = __commonJS({
         return error;
       }
       function describeBuiltInComponentFrame(name) {
-        if (void 0 === prefix2)
+        if (void 0 === prefix)
           try {
             throw Error();
           } catch (x) {
             var match = x.stack.trim().match(/\n( *(at )?)/);
-            prefix2 = match && match[1] || "";
+            prefix = match && match[1] || "";
             suffix = -1 < x.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x.stack.indexOf("@") ? "@unknown:0:0" : "";
           }
-        return "\n" + prefix2 + name + suffix;
+        return "\n" + prefix + name + suffix;
       }
       function describeNativeComponentFrame(fn, construct) {
         if (!fn || reentry) return "";
@@ -2678,8 +2678,8 @@ var require_react_dom_client_development = __commonJS({
                 node.removeAttribute(name);
                 return;
               case "boolean":
-                var prefix3 = name.toLowerCase().slice(0, 5);
-                if ("data-" !== prefix3 && "aria-" !== prefix3) {
+                var prefix2 = name.toLowerCase().slice(0, 5);
+                if ("data-" !== prefix2 && "aria-" !== prefix2) {
                   node.removeAttribute(name);
                   return;
                 }
@@ -4149,11 +4149,11 @@ var require_react_dom_client_development = __commonJS({
         ), dispatchQueue.push({ event: nativeEvent, listeners: doc }), nativeEvent.target = activeElement)));
       }
       function makePrefixMap(styleProp, eventName) {
-        var prefixes2 = {};
-        prefixes2[styleProp.toLowerCase()] = eventName.toLowerCase();
-        prefixes2["Webkit" + styleProp] = "webkit" + eventName;
-        prefixes2["Moz" + styleProp] = "moz" + eventName;
-        return prefixes2;
+        var prefixes = {};
+        prefixes[styleProp.toLowerCase()] = eventName.toLowerCase();
+        prefixes["Webkit" + styleProp] = "webkit" + eventName;
+        prefixes["Moz" + styleProp] = "moz" + eventName;
+        return prefixes;
       }
       function getVendorPrefixedEventName(eventName) {
         if (prefixedEventNames[eventName]) return prefixedEventNames[eventName];
@@ -4185,11 +4185,11 @@ var require_react_dom_client_development = __commonJS({
         }
         return kind;
       }
-      function addObjectToProperties(object, properties, indent, prefix3) {
+      function addObjectToProperties(object, properties, indent, prefix2) {
         for (var key4 in object)
-          hasOwnProperty.call(object, key4) && "_" !== key4[0] && addValueToProperties(key4, object[key4], properties, indent, prefix3);
+          hasOwnProperty.call(object, key4) && "_" !== key4[0] && addValueToProperties(key4, object[key4], properties, indent, prefix2);
       }
-      function addValueToProperties(propertyName, value, properties, indent, prefix3) {
+      function addValueToProperties(propertyName, value, properties, indent, prefix2) {
         switch (typeof value) {
           case "object":
             if (null === value) {
@@ -4209,7 +4209,7 @@ var require_react_dom_client_development = __commonJS({
                   break;
                 }
                 properties.push([
-                  prefix3 + "\xA0\xA0".repeat(indent) + propertyName,
+                  prefix2 + "\xA0\xA0".repeat(indent) + propertyName,
                   "<" + typeName2
                 ]);
                 null !== key4 && addValueToProperties(
@@ -4217,7 +4217,7 @@ var require_react_dom_client_development = __commonJS({
                   key4,
                   properties,
                   indent + 1,
-                  prefix3
+                  prefix2
                 );
                 propertyName = false;
                 for (var propKey in value)
@@ -4226,7 +4226,7 @@ var require_react_dom_client_development = __commonJS({
                     value[propKey],
                     properties,
                     indent + 1,
-                    prefix3
+                    prefix2
                   );
                 properties.push([
                   "",
@@ -4242,7 +4242,7 @@ var require_react_dom_client_development = __commonJS({
                   break;
                 } else if (propKey === ENTRIES_ARRAY) {
                   properties.push([
-                    prefix3 + "\xA0\xA0".repeat(indent) + propertyName,
+                    prefix2 + "\xA0\xA0".repeat(indent) + propertyName,
                     ""
                   ]);
                   for (propertyName = 0; propertyName < value.length; propertyName++)
@@ -4251,7 +4251,7 @@ var require_react_dom_client_development = __commonJS({
                       typeName2[1],
                       properties,
                       indent + 1,
-                      prefix3
+                      prefix2
                     );
                   return;
                 }
@@ -4263,7 +4263,7 @@ var require_react_dom_client_development = __commonJS({
                     value.value,
                     properties,
                     indent,
-                    prefix3
+                    prefix2
                   ), properties.length > typeName2) {
                     properties = properties[typeName2];
                     properties[1] = "Promise<" + (properties[1] || "Object") + ">";
@@ -4274,7 +4274,7 @@ var require_react_dom_client_development = __commonJS({
                   value.reason,
                   properties,
                   indent,
-                  prefix3
+                  prefix2
                 ), properties.length > typeName2)) {
                   properties = properties[typeName2];
                   properties[1] = "Rejected Promise<" + properties[1] + ">";
@@ -4288,10 +4288,10 @@ var require_react_dom_client_development = __commonJS({
               }
               "Object" === typeName2 && (propKey = Object.getPrototypeOf(value)) && "function" === typeof propKey.constructor && (typeName2 = propKey.constructor.name);
               properties.push([
-                prefix3 + "\xA0\xA0".repeat(indent) + propertyName,
+                prefix2 + "\xA0\xA0".repeat(indent) + propertyName,
                 "Object" === typeName2 ? 3 > indent ? "" : "\u2026" : typeName2
               ]);
-              3 > indent && addObjectToProperties(value, properties, indent + 1, prefix3);
+              3 > indent && addObjectToProperties(value, properties, indent + 1, prefix2);
               return;
             }
           case "function":
@@ -4310,7 +4310,7 @@ var require_react_dom_client_development = __commonJS({
             value = String(value);
         }
         properties.push([
-          prefix3 + "\xA0\xA0".repeat(indent) + propertyName,
+          prefix2 + "\xA0\xA0".repeat(indent) + propertyName,
           value
         ]);
       }
@@ -6572,14 +6572,14 @@ var require_react_dom_client_development = __commonJS({
           queue = queue.firstBaseUpdate;
           if (null !== queue) {
             do {
-              var clone3 = {
+              var clone2 = {
                 lane: queue.lane,
                 tag: queue.tag,
                 payload: queue.payload,
                 callback: null,
                 next: null
               };
-              null === newLast ? newFirst = newLast = clone3 : newLast = newLast.next = clone3;
+              null === newLast ? newFirst = newLast = clone2 : newLast = newLast.next = clone2;
               queue = queue.next;
             } while (null !== queue);
             null === newLast ? newFirst = newLast = capturedUpdate : newLast = newLast.next = capturedUpdate;
@@ -18508,7 +18508,7 @@ var require_react_dom_client_development = __commonJS({
       var fiberStack = [];
       var index$jscomp$0 = -1, contextStackCursor = createCursor(null), contextFiberStackCursor = createCursor(null), rootInstanceStackCursor = createCursor(null), hostTransitionProviderCursor = createCursor(null), disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
       disabledLog.__reactDisabledLog = true;
-      var prefix2, suffix, reentry = false;
+      var prefix, suffix, reentry = false;
       var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map)();
       var current = null, isRendering = false, hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler.unstable_scheduleCallback, cancelCallback$1 = Scheduler.unstable_cancelCallback, shouldYield = Scheduler.unstable_shouldYield, requestPaint = Scheduler.unstable_requestPaint, now$1 = Scheduler.unstable_now, getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler.unstable_ImmediatePriority, UserBlockingPriority = Scheduler.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler.unstable_NormalPriority, LowPriority = Scheduler.unstable_LowPriority, IdlePriority = Scheduler.unstable_IdlePriority, log$1 = Scheduler.log, unstable_setDisableYieldValue = Scheduler.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionUpdateLane = 256, nextTransitionDeferredLane = 262144, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, hasReadOnlyValue = {
         button: true,
@@ -21715,11 +21715,11 @@ var require_use_sync_external_store_shim_development = __commonJS({
             "The result of getSnapshot should be cached to avoid an infinite loop"
           ), didWarnUncachedGetSnapshot = true);
         }
-        cachedValue = useState15({
+        cachedValue = useState18({
           inst: { value, getSnapshot }
         });
         var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
-        useLayoutEffect8(
+        useLayoutEffect10(
           function() {
             inst.value = value;
             inst.getSnapshot = getSnapshot;
@@ -21727,7 +21727,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
           },
           [subscribe, value, getSnapshot]
         );
-        useEffect14(
+        useEffect16(
           function() {
             checkIfSnapshotChanged(inst) && forceUpdate({ inst });
             return subscribe(function() {
@@ -21753,7 +21753,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState15 = React2.useState, useEffect14 = React2.useEffect, useLayoutEffect8 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React2 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState18 = React2.useState, useEffect16 = React2.useEffect, useLayoutEffect10 = React2.useLayoutEffect, useDebugValue2 = React2.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React2.useSyncExternalStore ? React2.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
@@ -21781,9 +21781,9 @@ var require_with_selector_development = __commonJS({
         return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore2 = shim.useSyncExternalStore, useRef14 = React2.useRef, useEffect14 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
+      var React2 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore2 = shim.useSyncExternalStore, useRef16 = React2.useRef, useEffect16 = React2.useEffect, useMemo4 = React2.useMemo, useDebugValue2 = React2.useDebugValue;
       exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-        var instRef = useRef14(null);
+        var instRef = useRef16(null);
         if (null === instRef.current) {
           var inst = { hasValue: false, value: null };
           instRef.current = inst;
@@ -21824,7 +21824,7 @@ var require_with_selector_development = __commonJS({
           [getSnapshot, getServerSnapshot, selector, isEqual]
         );
         var value = useSyncExternalStore2(subscribe, instRef[0], instRef[1]);
-        useEffect14(
+        useEffect16(
           function() {
             inst.hasValue = true;
             inst.value = value;
@@ -21851,12 +21851,43 @@ var require_with_selector = __commonJS({
   }
 });
 
+// app/simulator/browser-runtime.ts
+function installBrowserRuntime() {
+  if (typeof Array.prototype.at !== "function") Object.defineProperty(Array.prototype, "at", {
+    configurable: true,
+    writable: true,
+    value: function at(index2) {
+      if (this == null) throw new TypeError("Array.at requires an array-like value");
+      const source2 = Object(this);
+      const length = Math.min(Math.max(Math.floor(Number(source2.length) || 0), 0), Number.MAX_SAFE_INTEGER);
+      const number = Number(index2) || 0;
+      const offset = number < 0 ? Math.ceil(number) : Math.floor(number);
+      const position = offset < 0 ? length + offset : offset;
+      return position < 0 || position >= length ? void 0 : source2[position];
+    }
+  });
+  const source = globalThis.crypto;
+  if (source && typeof source.randomUUID !== "function" && typeof source.getRandomValues === "function") {
+    Object.defineProperty(source, "randomUUID", { configurable: true, writable: true, value: () => {
+      const bytes = source.getRandomValues(new Uint8Array(16));
+      bytes[6] = bytes[6] & 15 | 64;
+      bytes[8] = bytes[8] & 63 | 128;
+      const hex2 = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+      return `${hex2.slice(0, 8)}-${hex2.slice(8, 12)}-${hex2.slice(12, 16)}-${hex2.slice(16, 20)}-${hex2.slice(20)}`;
+    } });
+  }
+}
+function cloneCircuitDocument(document2) {
+  return typeof globalThis.structuredClone === "function" ? globalThis.structuredClone(document2) : JSON.parse(JSON.stringify(document2));
+}
+installBrowserRuntime();
+
 // github-pages/main.tsx
-var import_react23 = __toESM(require_react(), 1);
+var import_react27 = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
 
 // app/simulator/SimulatorApp.tsx
-var import_react22 = __toESM(require_react(), 1);
+var import_react26 = __toESM(require_react(), 1);
 
 // node_modules/lucide-react/dist/esm/createLucideIcon.mjs
 var import_react3 = __toESM(require_react(), 1);
@@ -22234,21 +22265,8 @@ var __iconData10 = {
 __iconData10.node;
 var Copy = createLucideIcon(__iconData10);
 
-// node_modules/lucide-react/dist/esm/icons/download.mjs
-var __iconData11 = {
-  name: "download",
-  size: 24,
-  node: [
-    ["path", { d: "M12 15V3", key: "m9g1x1" }],
-    ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-    ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
-  ]
-};
-__iconData11.node;
-var Download = createLucideIcon(__iconData11);
-
 // node_modules/lucide-react/dist/esm/icons/external-link.mjs
-var __iconData12 = {
+var __iconData11 = {
   name: "external-link",
   size: 24,
   node: [
@@ -22257,11 +22275,11 @@ var __iconData12 = {
     ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
   ]
 };
-__iconData12.node;
-var ExternalLink = createLucideIcon(__iconData12);
+__iconData11.node;
+var ExternalLink = createLucideIcon(__iconData11);
 
 // node_modules/lucide-react/dist/esm/icons/file-image.mjs
-var __iconData13 = {
+var __iconData12 = {
   name: "file-image",
   size: 24,
   node: [
@@ -22277,11 +22295,11 @@ var __iconData13 = {
     ["path", { d: "m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22", key: "wt3hpn" }]
   ]
 };
-__iconData13.node;
-var FileImage = createLucideIcon(__iconData13);
+__iconData12.node;
+var FileImage = createLucideIcon(__iconData12);
 
 // node_modules/lucide-react/dist/esm/icons/file-plus-corner.mjs
-var __iconData14 = {
+var __iconData13 = {
   name: "file-plus-corner",
   size: 24,
   node: [
@@ -22298,11 +22316,11 @@ var __iconData14 = {
   ],
   aliases: ["file-plus-2"]
 };
-__iconData14.node;
-var FilePlusCorner = createLucideIcon(__iconData14);
+__iconData13.node;
+var FilePlusCorner = createLucideIcon(__iconData13);
 
 // node_modules/lucide-react/dist/esm/icons/file-up.mjs
-var __iconData15 = {
+var __iconData14 = {
   name: "file-up",
   size: 24,
   node: [
@@ -22318,11 +22336,11 @@ var __iconData15 = {
     ["path", { d: "m15 15-3-3-3 3", key: "15xj92" }]
   ]
 };
-__iconData15.node;
-var FileUp = createLucideIcon(__iconData15);
+__iconData14.node;
+var FileUp = createLucideIcon(__iconData14);
 
 // node_modules/lucide-react/dist/esm/icons/folder-open.mjs
-var __iconData16 = {
+var __iconData15 = {
   name: "folder-open",
   size: 24,
   node: [
@@ -22335,11 +22353,11 @@ var __iconData16 = {
     ]
   ]
 };
-__iconData16.node;
-var FolderOpen = createLucideIcon(__iconData16);
+__iconData15.node;
+var FolderOpen = createLucideIcon(__iconData15);
 
 // node_modules/lucide-react/dist/esm/icons/globe.mjs
-var __iconData17 = {
+var __iconData16 = {
   name: "globe",
   size: 24,
   node: [
@@ -22348,11 +22366,11 @@ var __iconData17 = {
     ["path", { d: "M2 12h20", key: "9i4pu4" }]
   ]
 };
-__iconData17.node;
-var Globe = createLucideIcon(__iconData17);
+__iconData16.node;
+var Globe = createLucideIcon(__iconData16);
 
 // node_modules/lucide-react/dist/esm/icons/grip-horizontal.mjs
-var __iconData18 = {
+var __iconData17 = {
   name: "grip-horizontal",
   size: 24,
   node: [
@@ -22364,11 +22382,11 @@ var __iconData18 = {
     ["circle", { cx: "5", cy: "15", r: "1", key: "5r1jwy" }]
   ]
 };
-__iconData18.node;
-var GripHorizontal = createLucideIcon(__iconData18);
+__iconData17.node;
+var GripHorizontal = createLucideIcon(__iconData17);
 
 // node_modules/lucide-react/dist/esm/icons/heart.mjs
-var __iconData19 = {
+var __iconData18 = {
   name: "heart",
   size: 24,
   node: [
@@ -22381,11 +22399,11 @@ var __iconData19 = {
     ]
   ]
 };
-__iconData19.node;
-var Heart = createLucideIcon(__iconData19);
+__iconData18.node;
+var Heart = createLucideIcon(__iconData18);
 
 // node_modules/lucide-react/dist/esm/icons/house.mjs
-var __iconData20 = {
+var __iconData19 = {
   name: "house",
   size: 24,
   node: [
@@ -22400,11 +22418,11 @@ var __iconData20 = {
   ],
   aliases: ["home"]
 };
-__iconData20.node;
-var House = createLucideIcon(__iconData20);
+__iconData19.node;
+var House = createLucideIcon(__iconData19);
 
 // node_modules/lucide-react/dist/esm/icons/key-round.mjs
-var __iconData21 = {
+var __iconData20 = {
   name: "key-round",
   size: 24,
   node: [
@@ -22418,11 +22436,11 @@ var __iconData21 = {
     ["circle", { cx: "16.5", cy: "7.5", r: ".5", fill: "currentColor", key: "w0ekpg" }]
   ]
 };
-__iconData21.node;
-var KeyRound = createLucideIcon(__iconData21);
+__iconData20.node;
+var KeyRound = createLucideIcon(__iconData20);
 
 // node_modules/lucide-react/dist/esm/icons/link.mjs
-var __iconData22 = {
+var __iconData21 = {
   name: "link",
   size: 24,
   node: [
@@ -22430,11 +22448,11 @@ var __iconData22 = {
     ["path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71", key: "19qd67" }]
   ]
 };
-__iconData22.node;
-var Link = createLucideIcon(__iconData22);
+__iconData21.node;
+var Link = createLucideIcon(__iconData21);
 
 // node_modules/lucide-react/dist/esm/icons/locate-fixed.mjs
-var __iconData23 = {
+var __iconData22 = {
   name: "locate-fixed",
   size: 24,
   node: [
@@ -22446,11 +22464,11 @@ var __iconData23 = {
     ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
   ]
 };
-__iconData23.node;
-var LocateFixed = createLucideIcon(__iconData23);
+__iconData22.node;
+var LocateFixed = createLucideIcon(__iconData22);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.mjs
-var __iconData24 = {
+var __iconData23 = {
   name: "log-out",
   size: 24,
   node: [
@@ -22459,11 +22477,11 @@ var __iconData24 = {
     ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
   ]
 };
-__iconData24.node;
-var LogOut = createLucideIcon(__iconData24);
+__iconData23.node;
+var LogOut = createLucideIcon(__iconData23);
 
 // node_modules/lucide-react/dist/esm/icons/maximize-2.mjs
-var __iconData25 = {
+var __iconData24 = {
   name: "maximize-2",
   size: 24,
   node: [
@@ -22473,11 +22491,11 @@ var __iconData25 = {
     ["path", { d: "M9 21H3v-6", key: "wtvkvv" }]
   ]
 };
-__iconData25.node;
-var Maximize2 = createLucideIcon(__iconData25);
+__iconData24.node;
+var Maximize2 = createLucideIcon(__iconData24);
 
 // node_modules/lucide-react/dist/esm/icons/minimize-2.mjs
-var __iconData26 = {
+var __iconData25 = {
   name: "minimize-2",
   size: 24,
   node: [
@@ -22487,20 +22505,20 @@ var __iconData26 = {
     ["path", { d: "M4 14h6v6", key: "rmj7iw" }]
   ]
 };
-__iconData26.node;
-var Minimize2 = createLucideIcon(__iconData26);
+__iconData25.node;
+var Minimize2 = createLucideIcon(__iconData25);
 
 // node_modules/lucide-react/dist/esm/icons/minus.mjs
-var __iconData27 = {
+var __iconData26 = {
   name: "minus",
   size: 24,
   node: [["path", { d: "M5 12h14", key: "1ays0h" }]]
 };
-__iconData27.node;
-var Minus = createLucideIcon(__iconData27);
+__iconData26.node;
+var Minus = createLucideIcon(__iconData26);
 
 // node_modules/lucide-react/dist/esm/icons/panel-right-close.mjs
-var __iconData28 = {
+var __iconData27 = {
   name: "panel-right-close",
   size: 24,
   node: [
@@ -22509,11 +22527,11 @@ var __iconData28 = {
     ["path", { d: "m8 9 3 3-3 3", key: "12hl5m" }]
   ]
 };
-__iconData28.node;
-var PanelRightClose = createLucideIcon(__iconData28);
+__iconData27.node;
+var PanelRightClose = createLucideIcon(__iconData27);
 
 // node_modules/lucide-react/dist/esm/icons/play.mjs
-var __iconData29 = {
+var __iconData28 = {
   name: "play",
   size: 24,
   node: [
@@ -22526,11 +22544,11 @@ var __iconData29 = {
     ]
   ]
 };
-__iconData29.node;
-var Play = createLucideIcon(__iconData29);
+__iconData28.node;
+var Play = createLucideIcon(__iconData28);
 
 // node_modules/lucide-react/dist/esm/icons/plus.mjs
-var __iconData30 = {
+var __iconData29 = {
   name: "plus",
   size: 24,
   node: [
@@ -22538,23 +22556,11 @@ var __iconData30 = {
     ["path", { d: "M12 5v14", key: "s699le" }]
   ]
 };
-__iconData30.node;
-var Plus = createLucideIcon(__iconData30);
-
-// node_modules/lucide-react/dist/esm/icons/redo-2.mjs
-var __iconData31 = {
-  name: "redo-2",
-  size: 24,
-  node: [
-    ["path", { d: "m15 14 5-5-5-5", key: "12vg1m" }],
-    ["path", { d: "M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13", key: "6uklza" }]
-  ]
-};
-__iconData31.node;
-var Redo2 = createLucideIcon(__iconData31);
+__iconData29.node;
+var Plus = createLucideIcon(__iconData29);
 
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconData32 = {
+var __iconData30 = {
   name: "refresh-cw",
   size: 24,
   node: [
@@ -22564,11 +22570,11 @@ var __iconData32 = {
     ["path", { d: "M8 16H3v5", key: "1cv678" }]
   ]
 };
-__iconData32.node;
-var RefreshCw = createLucideIcon(__iconData32);
+__iconData30.node;
+var RefreshCw = createLucideIcon(__iconData30);
 
 // node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs
-var __iconData33 = {
+var __iconData31 = {
   name: "rotate-ccw",
   size: 24,
   node: [
@@ -22576,11 +22582,11 @@ var __iconData33 = {
     ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
   ]
 };
-__iconData33.node;
-var RotateCcw = createLucideIcon(__iconData33);
+__iconData31.node;
+var RotateCcw = createLucideIcon(__iconData31);
 
 // node_modules/lucide-react/dist/esm/icons/rotate-cw.mjs
-var __iconData34 = {
+var __iconData32 = {
   name: "rotate-cw",
   size: 24,
   node: [
@@ -22588,11 +22594,11 @@ var __iconData34 = {
     ["path", { d: "M21 3v5h-5", key: "1q7to0" }]
   ]
 };
-__iconData34.node;
-var RotateCw = createLucideIcon(__iconData34);
+__iconData32.node;
+var RotateCw = createLucideIcon(__iconData32);
 
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconData35 = {
+var __iconData33 = {
   name: "search",
   size: 24,
   node: [
@@ -22600,11 +22606,11 @@ var __iconData35 = {
     ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
   ]
 };
-__iconData35.node;
-var Search = createLucideIcon(__iconData35);
+__iconData33.node;
+var Search = createLucideIcon(__iconData33);
 
 // node_modules/lucide-react/dist/esm/icons/shield-check.mjs
-var __iconData36 = {
+var __iconData34 = {
   name: "shield-check",
   size: 24,
   node: [
@@ -22618,11 +22624,11 @@ var __iconData36 = {
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ]
 };
-__iconData36.node;
-var ShieldCheck = createLucideIcon(__iconData36);
+__iconData34.node;
+var ShieldCheck = createLucideIcon(__iconData34);
 
 // node_modules/lucide-react/dist/esm/icons/sliders-horizontal.mjs
-var __iconData37 = {
+var __iconData35 = {
   name: "sliders-horizontal",
   size: 24,
   node: [
@@ -22637,20 +22643,20 @@ var __iconData37 = {
     ["path", { d: "M8 12H3", key: "a7s4jb" }]
   ]
 };
-__iconData37.node;
-var SlidersHorizontal = createLucideIcon(__iconData37);
+__iconData35.node;
+var SlidersHorizontal = createLucideIcon(__iconData35);
 
 // node_modules/lucide-react/dist/esm/icons/square.mjs
-var __iconData38 = {
+var __iconData36 = {
   name: "square",
   size: 24,
   node: [["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]]
 };
-__iconData38.node;
-var Square = createLucideIcon(__iconData38);
+__iconData36.node;
+var Square = createLucideIcon(__iconData36);
 
 // node_modules/lucide-react/dist/esm/icons/star.mjs
-var __iconData39 = {
+var __iconData37 = {
   name: "star",
   size: 24,
   node: [
@@ -22663,11 +22669,11 @@ var __iconData39 = {
     ]
   ]
 };
-__iconData39.node;
-var Star = createLucideIcon(__iconData39);
+__iconData37.node;
+var Star = createLucideIcon(__iconData37);
 
 // node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-var __iconData40 = {
+var __iconData38 = {
   name: "triangle-alert",
   size: 24,
   node: [
@@ -22683,23 +22689,11 @@ var __iconData40 = {
   ],
   aliases: ["alert-triangle"]
 };
-__iconData40.node;
-var TriangleAlert = createLucideIcon(__iconData40);
-
-// node_modules/lucide-react/dist/esm/icons/undo-2.mjs
-var __iconData41 = {
-  name: "undo-2",
-  size: 24,
-  node: [
-    ["path", { d: "M9 14 4 9l5-5", key: "102s5s" }],
-    ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
-  ]
-};
-__iconData41.node;
-var Undo2 = createLucideIcon(__iconData41);
+__iconData38.node;
+var TriangleAlert = createLucideIcon(__iconData38);
 
 // node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconData42 = {
+var __iconData39 = {
   name: "user-round",
   size: 24,
   node: [
@@ -22708,11 +22702,11 @@ var __iconData42 = {
   ],
   aliases: ["user-2"]
 };
-__iconData42.node;
-var UserRound = createLucideIcon(__iconData42);
+__iconData39.node;
+var UserRound = createLucideIcon(__iconData39);
 
 // node_modules/lucide-react/dist/esm/icons/video.mjs
-var __iconData43 = {
+var __iconData40 = {
   name: "video",
   size: 24,
   node: [
@@ -22726,11 +22720,11 @@ var __iconData43 = {
     ["rect", { x: "2", y: "6", width: "14", height: "12", rx: "2", key: "158x01" }]
   ]
 };
-__iconData43.node;
-var Video = createLucideIcon(__iconData43);
+__iconData40.node;
+var Video = createLucideIcon(__iconData40);
 
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconData44 = {
+var __iconData41 = {
   name: "x",
   size: 24,
   node: [
@@ -22738,11 +22732,11 @@ var __iconData44 = {
     ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
   ]
 };
-__iconData44.node;
-var X = createLucideIcon(__iconData44);
+__iconData41.node;
+var X = createLucideIcon(__iconData41);
 
 // node_modules/lucide-react/dist/esm/icons/zoom-in.mjs
-var __iconData45 = {
+var __iconData42 = {
   name: "zoom-in",
   size: 24,
   node: [
@@ -22752,11 +22746,11 @@ var __iconData45 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData45.node;
-var ZoomIn = createLucideIcon(__iconData45);
+__iconData42.node;
+var ZoomIn = createLucideIcon(__iconData42);
 
 // node_modules/lucide-react/dist/esm/icons/zoom-out.mjs
-var __iconData46 = {
+var __iconData43 = {
   name: "zoom-out",
   size: 24,
   node: [
@@ -22765,11 +22759,11 @@ var __iconData46 = {
     ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
   ]
 };
-__iconData46.node;
-var ZoomOut = createLucideIcon(__iconData46);
+__iconData43.node;
+var ZoomOut = createLucideIcon(__iconData43);
 
 // app/simulator/editor/SimulatorEditor.tsx
-var import_react15 = __toESM(require_react(), 1);
+var import_react18 = __toESM(require_react(), 1);
 var import_react_dom3 = __toESM(require_react_dom(), 1);
 
 // node_modules/@xyflow/react/dist/esm/index.js
@@ -22876,9 +22870,9 @@ var namespaces_default = {
 
 // node_modules/d3-selection/src/namespace.js
 function namespace_default(name) {
-  var prefix2 = name += "", i = prefix2.indexOf(":");
-  if (i >= 0 && (prefix2 = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
-  return namespaces_default.hasOwnProperty(prefix2) ? { space: namespaces_default[prefix2], local: name } : name;
+  var prefix = name += "", i = prefix.indexOf(":");
+  if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
+  return namespaces_default.hasOwnProperty(prefix) ? { space: namespaces_default[prefix], local: name } : name;
 }
 
 // node_modules/d3-selection/src/creator.js
@@ -23481,12 +23475,12 @@ function remove_default() {
 
 // node_modules/d3-selection/src/selection/clone.js
 function selection_cloneShallow() {
-  var clone3 = this.cloneNode(false), parent = this.parentNode;
-  return parent ? parent.insertBefore(clone3, this.nextSibling) : clone3;
+  var clone2 = this.cloneNode(false), parent = this.parentNode;
+  return parent ? parent.insertBefore(clone2, this.nextSibling) : clone2;
 }
 function selection_cloneDeep() {
-  var clone3 = this.cloneNode(true), parent = this.parentNode;
-  return parent ? parent.insertBefore(clone3, this.nextSibling) : clone3;
+  var clone2 = this.cloneNode(true), parent = this.parentNode;
+  return parent ? parent.insertBefore(clone2, this.nextSibling) : clone2;
 }
 function clone_default(deep) {
   return this.select(deep ? selection_cloneDeep : selection_cloneShallow);
@@ -26852,7 +26846,7 @@ function adoptUserNodes(nodes, nodeLookup, parentLookup, options = {}) {
     if (userNode.parentId) {
       updateChildNode(internalNode, nodeLookup, parentLookup, options, rootParentIndex);
     }
-    hasSelectedNodes ||= userNode.selected ?? false;
+    hasSelectedNodes || (hasSelectedNodes = userNode.selected ?? false);
   }
   return { nodesInitialized, hasSelectedNodes };
 }
@@ -31872,8 +31866,8 @@ var DUCT_MAX_SIZE = 4e3;
 var isTimer = (type) => type === "timer380" || type === "timer380-8pin";
 var isRelay = (type) => type === "relay380" || type === "relay380-jzc1-22";
 var isLayoutObject = (type) => isWireDuct(type) || type === "din-rail";
-var isTerminalStrip = (type) => type === "terminal-strip16" || type === "terminal-strip20";
-var terminalStripCapacity = (type) => type === "terminal-strip20" ? 20 : type === "terminal-strip16" ? 16 : 0;
+var isTerminalStrip = (type) => type === "terminal-strip10" || type === "terminal-strip16" || type === "terminal-strip20";
+var terminalStripCapacity = (type) => type === "terminal-strip20" ? 20 : type === "terminal-strip16" ? 16 : type === "terminal-strip10" ? 10 : 0;
 var canRotate = (type) => type === "supply" || isTerminalStrip(type) || type === "limit-switch";
 var canMirror = (type) => type === "supply";
 var isEarthPosition = (component2, terminalId) => isTerminalStrip(component2.type) && /^[TB]\d+$/.test(terminalId) && !!component2.pePositions?.includes(Number(terminalId.slice(1)));
@@ -31903,6 +31897,7 @@ var pushButton = (type) => ({
 var CATALOG = [
   { type: "supply", name: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90", category: "power", width: 230, height: 70, terminals: [pin("L1", 25, 58, "bottom", "phase"), pin("L2", 70, 58, "bottom", "phase"), pin("L3", 115, 58, "bottom", "phase"), pin("N", 160, 58, "bottom", "neutral"), pin("PE", 205, 58, "bottom", "earth")], description: "\u6559\u5B66\u7535\u6E90\uFF1A\u76F8\u95F4 380V\uFF0C\u76F8\u5BF9\u4E2D\u6027\u7EBF 220V\uFF0C50Hz\uFF1BN \u4E0E PE \u72EC\u7ACB\u3002" },
   { type: "breaker3", name: "\u4E09\u6781\u65AD\u8DEF\u5668", category: "power", width: 149.5, height: 187.5, terminals: [pin("1", 25.498, 20.499, "top"), pin("3", 74.498, 20.499, "top"), pin("5", 123.498, 20.499, "top"), pin("2", 25.498, 166.498, "bottom"), pin("4", 74.498, 166.498, "bottom"), pin("6", 123.498, 166.498, "bottom")], contacts: threeContacts("switch"), description: "\u4E09\u6781\u540C\u6B65\u5206\u5408\u7684\u6559\u5B66\u65AD\u8DEF\u5668\uFF1B\u4E0D\u6A21\u62DF\u771F\u5B9E\u8131\u6263\u66F2\u7EBF\u3002" },
+  { type: "breaker2", name: "\u4E24\u6781\u65AD\u8DEF\u5668", category: "power", width: 100.5, height: 187.5, terminals: [pin("1", 25.498, 20.499, "top"), pin("3", 74.498, 20.499, "top"), pin("2", 25.498, 166.498, "bottom"), pin("4", 74.498, 166.498, "bottom")], contacts: threeContacts("switch").slice(0, 2), description: "\u4E24\u6781\u540C\u6B65\u5206\u5408\u7684\u4E8C\u7EF4\u6559\u5B66\u7A7A\u5F00\uFF1B1-2\u30013-4\u4E24\u8DEF\u4E92\u76F8\u7EDD\u7F18\uFF0C\u4E0D\u6A21\u62DF\u771F\u5B9E\u8131\u6263\u66F2\u7EBF\u3002" },
   { type: "breaker1", name: "\u5355\u6781\u65AD\u8DEF\u5668", category: "power", width: 51.5, height: 187.5, terminals: [pin("1", 25.499, 20.499, "top"), pin("2", 25.499, 166.499, "bottom")], contacts: [{ id: "pole", terminals: ["1", "2"], control: "switch" }], description: "\u5355\u6781\u5F00\u5173\u4FDD\u62A4\u793A\u610F\uFF0C\u7528\u4E8E\u7167\u660E\u56DE\u8DEF\u7684\u76F8\u7EBF\u3002" },
   // Use the exact terminal-circle centers of the original SVG; the old source handle table is vertically offset.
   { type: "knife-switch3", name: "\u4E09\u6781\u5200\u5F00\u5173\uFF08QS\uFF09", category: "industrial", width: 208.5, height: 292, terminals: [pin("1", 30.499, 21.999, "top", "contact", "L1"), pin("3", 106.499, 21.999, "top", "contact", "L2"), pin("5", 182.499, 21.999, "top", "contact", "L3"), pin("2", 30.499, 280.999, "bottom", "contact", "T1"), pin("4", 106.499, 280.999, "bottom", "contact", "T2"), pin("6", 182.499, 280.999, "bottom", "contact", "T3")], contacts: threeContacts("switch"), description: "\u4E09\u7EC4\u72EC\u7ACB\u4E3B\u89E6\u70B9\u540C\u6B65\u5206\u5408\u7684\u6559\u5B66\u5200\u5F00\u5173\uFF1B\u7AEF\u5B50 L1/T1\u3001L2/T2\u3001L3/T3 \u914D\u5BF9\uFF0C\u4E0D\u5E26\u81EA\u52A8\u8131\u6263\u6A21\u578B\u3002" },
@@ -31950,6 +31945,7 @@ var CATALOG = [
   ...["motor-star-delta", "motor-dahlander"].map((type) => ({ type, name: type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A\uFF08Y / \u0394\uFF09" : "\u53CC\u901F\u7535\u673A\uFF08\u0394 / YY \u6559\u5B66\uFF09", category: "industrial", width: 280.5, height: 211.5, terminals: [pin("U1", 135.498, 10.499, "top", "load"), pin("V1", 193.498, 10.499, "top", "load"), pin("W1", 251.498, 10.499, "top", "load"), pin("U2", 135.498, 200.5, "bottom", "load"), pin("V2", 193.498, 200.5, "bottom", "load"), pin("W2", 251.498, 200.5, "bottom", "load"), pin("PE", 269.498, 109.499, "right", "earth")], load: { kind: "motor", terminals: ["U1", "V1", "W1", "U2", "V2", "W2"], ratedVoltage: 380, motorModel: type === "motor-star-delta" ? "star-delta" : "dahlander" }, description: type === "motor-star-delta" ? "\u539F\u7AD9\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF1B\u72EC\u7ACB\u7684\u4E09\u7EC4\u7ED5\u7EC4\u7528\u4E8E\u661F\u5F62/\u4E09\u89D2\u5F62\u6559\u5B66\u62D3\u6251\u5224\u5B9A\uFF0CPE\u5355\u72EC\u68C0\u67E5\u3002" : "\u590D\u7528\u539F\u7AD9\u901A\u7528\u516D\u7AEF\u5B50\u7535\u673A\u5916\u89C2\uFF0C\u7535\u6C14\u6A21\u578B\u4E3A \u0394 / YY \u53CC\u901F\u6559\u5B66\u5B9A\u4E49\uFF1B\u6CA1\u6709\u5BA3\u79F0\u6E90\u7AD9\u5B58\u5728\u72EC\u7ACB\u53CC\u901F\u578B\u53F7\u3002" })),
   compactTerminal({ type: "terminal", name: "\u53CC\u6781\u63A5\u7EBF\u7AEF\u5B50", category: "terminals", width: 121.5, height: 101.5, terminals: [pin("A", 32.497, 27.498, "top", "contact", "1\u4E0A"), pin("B", 32.497, 73.498, "bottom", "contact", "1\u4E0B"), pin("A2", 88.497, 27.498, "top", "contact", "2\u4E0A"), pin("B2", 88.497, 73.498, "bottom", "contact", "2\u4E0B")], fixedConnections: [["A", "B"], ["A2", "B2"]], description: "\u5DE6\u5217 A/B \u76F8\u901A\uFF0C\u53F3\u5217 A2/B2 \u76F8\u901A\uFF1B\u4E24\u6781\u4E92\u76F8\u7EDD\u7F18\u3002" }),
   compactTerminal({ type: "pe-terminal", name: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", category: "terminals", width: 60.75, height: 101.5, terminals: [{ ...pin("A", 32.497, 27.498, "top", "earth"), routingRole: "internal" }, { ...pin("B", 32.497, 73.498, "bottom", "earth"), routingRole: "external" }], fixedConnections: [["A", "B"]], description: "\u6C38\u4E45\u4FDD\u62A4\u8FDE\u63A5\u793A\u610F\uFF0C\u4E0D\u80FD\u4EE3\u66FF N \u8FD4\u56DE\u5BFC\u4F53\u3002" }),
+  { type: "terminal-strip10", name: "10\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 455.625, height: 76.125, terminals: Array.from({ length: 10 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 10 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768410\u4F4D\u6559\u5B66\u56FE\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\u3001\u4F4D\u95F4\u7EDD\u7F18\uFF0C\u6807\u8BB0\u7531\u4F7F\u7528\u8005\u624B\u52A8\u586B\u5199\u3002" },
   { type: "terminal-strip16", name: "16\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 729, height: 76.125, terminals: Array.from({ length: 16 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 16 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768416\u4F4D\u6559\u5B66\u56FE\uFF0C\u517132\u4E2A\u7A33\u5B9A\u63A5\u7EBF\u7AEF\u5B50\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u4E16\u754C\u5355\u4F4D\u4E0D\u4EE3\u8868\u5B89\u88C5\u5C3A\u5BF8\u3002" },
   { type: "terminal-strip20", name: "20\u4F4D\u7AEF\u5B50\u6392\uFF08\u6559\u5B66\uFF09", category: "terminals", width: 911.25, height: 76.125, terminals: Array.from({ length: 20 }, (_, i) => [pin(`T${i + 1}`, (i * 60.75 + 32.497) * 0.75, 27.498 * 0.75, "top", "contact", `${i + 1}\u4E0A`), pin(`B${i + 1}`, (i * 60.75 + 32.497) * 0.75, 73.498 * 0.75, "bottom", "contact", `${i + 1}\u4E0B`)]).flat().map((t) => ({ ...t, routingRole: t.side === "top" ? "internal" : "external" })), fixedConnections: Array.from({ length: 20 }, (_, i) => [`T${i + 1}`, `B${i + 1}`]), description: "\u7531\u539F\u7AD9\u7AEF\u5B50\u7D20\u6750\u6D3E\u751F\u768420\u4F4D\u6559\u5B66\u56FE\uFF1B\u6BCF\u4F4D\u4E0A\u4E0B\u76F8\u901A\uFF0C\u4E0D\u540C\u4F4D\u4E92\u76F8\u7EDD\u7F18\u3002\u6807\u8BB0PE\u7684\u69FD\u4F4D\u4EC5\u7528\u4E8E\u4FDD\u62A4\u63A5\u5730\uFF0C\u4E0D\u4EE3\u8868\u771F\u5B9E\u5668\u4EF6\u7684\u5939\u7EBF\u5BB9\u91CF\u6216\u5B89\u88C5\u5C3A\u5BF8\u3002" },
   { type: "wire-duct", name: "\u6A2A\u5411\u7EBF\u69FD", category: "terminals", width: 420, height: 60, terminals: [], description: "\u53EF\u79FB\u52A8\u7684\u4E8C\u7EF4\u5BFC\u7EBF\u6574\u7406\u5BF9\u8C61\uFF0C\u65E0\u7535\u6C14\u7AEF\u5B50\u3001\u65E0\u8D1F\u8F7D\uFF1B\u6CBF\u7EBF\u69FD\u8C03\u6574\u5BFC\u7EBF\u6298\u70B9\uFF0C\u4E0D\u6539\u53D8\u7535\u6C14\u8FDE\u63A5\u3002" },
@@ -32267,6 +32263,86 @@ function referenceDrawingImageUrl(id2, base = "/") {
   return `${base.replace(/\/?$/, "/")}sim-assets/${drawing.imageFilename}`;
 }
 
+// app/simulator/core/wire-nets.ts
+var validWireNumber = (value) => typeof value === "string" && value === value.trim() && [...value].length >= 1 && [...value].length <= 24 && !/[\p{Cc}\p{Cf}\p{Cs}\p{Zl}\p{Zp}]/u.test(value);
+function getWiringNets(document2) {
+  const parent = /* @__PURE__ */ new Map();
+  const root2 = (id2) => {
+    if (!parent.has(id2)) parent.set(id2, id2);
+    let result = id2;
+    while (parent.get(result) !== result) result = parent.get(result);
+    let current = id2;
+    while (parent.get(current) !== current) {
+      const next = parent.get(current);
+      parent.set(current, result);
+      current = next;
+    }
+    return result;
+  };
+  const join = (a, b) => {
+    const first = root2(a), second = root2(b);
+    if (first !== second) parent.set(second, first);
+  };
+  for (const component2 of document2.components) {
+    const definition = getDefinition(component2.type);
+    for (const terminal of definition.terminals) root2(terminalKey({ componentId: component2.id, terminalId: terminal.id }));
+    if (component2.type === "terminal" || component2.type === "pe-terminal" || isTerminalStrip(component2.type) || definition.load?.kind === "coil") {
+      for (const [a, b] of definition.fixedConnections ?? []) join(`${component2.id}::${a}`, `${component2.id}::${b}`);
+    }
+  }
+  for (const wire of document2.wires) join(terminalKey(wire.from), terminalKey(wire.to));
+  const groups = /* @__PURE__ */ new Map();
+  for (const terminal of parent.keys()) {
+    const id2 = root2(terminal);
+    if (!groups.has(id2)) groups.set(id2, { id: id2, terminalIds: [], wireIds: [], numbers: [] });
+    groups.get(id2).terminalIds.push(terminal);
+  }
+  for (const wire of document2.wires) {
+    const group = groups.get(root2(terminalKey(wire.from)));
+    group.wireIds.push(wire.id);
+    if (wire.wireNumber) group.numbers.push(wire.wireNumber);
+  }
+  return [...groups.values()].map((group) => ({
+    id: group.terminalIds.sort()[0],
+    terminalIds: group.terminalIds,
+    wireIds: group.wireIds.sort(),
+    numbers: [...new Set(group.numbers)].sort()
+  })).sort((a, b) => a.id.localeCompare(b.id));
+}
+function connectionWireNumber(document2, from, to) {
+  const endpoints = /* @__PURE__ */ new Set([terminalKey(from), terminalKey(to)]);
+  const numbers = [...new Set(getWiringNets(document2).filter((group) => group.terminalIds.some((id2) => endpoints.has(id2))).flatMap((group) => group.numbers))];
+  return { wireNumber: numbers.length === 1 ? numbers[0] : void 0, conflict: numbers.length > 1 };
+}
+function setWiringNetNumber(document2, wireId, input) {
+  const number = input.trim();
+  if (number && !validWireNumber(number)) throw new Error("\u7EBF\u53F7\u987B\u4E3A 1\u201324 \u4E2A\u53EF\u6253\u5370\u5B57\u7B26\uFF0C\u4E0D\u5F97\u5305\u542B\u63A7\u5236\u5B57\u7B26\u3002");
+  const group = getWiringNets(document2).find((item) => item.wireIds.includes(wireId));
+  if (!group) return document2;
+  const ids = new Set(group.wireIds);
+  if (!document2.wires.some((wire) => ids.has(wire.id) && wire.wireNumber !== (number || void 0))) return document2;
+  return { ...document2, wires: document2.wires.map((wire) => {
+    if (!ids.has(wire.id)) return wire;
+    const rest = { ...wire };
+    delete rest.wireNumber;
+    return number ? { ...rest, wireNumber: number } : rest;
+  }) };
+}
+function wireNumberNotices(nets) {
+  const notices = [];
+  const numbers = /* @__PURE__ */ new Map();
+  for (const net of nets) {
+    if (net.numbers.length > 1) notices.push({ message: `\u540C\u4E00\u63A5\u7EBF\u8282\u70B9\u6709\u591A\u4E2A\u7EBF\u53F7\uFF1A${net.numbers.join("\u3001")}\uFF0C\u8BF7\u7EDF\u4E00\u7EC4\u5185\u7EBF\u53F7\u3002`, netIds: [net.id], wireIds: net.wireIds });
+    for (const number of net.numbers) numbers.set(number, [...numbers.get(number) ?? [], net]);
+  }
+  for (const [number, groups] of numbers) if (groups.length > 1) notices.push({
+    message: `\u7EBF\u53F7 ${number} \u7528\u4E8E ${groups.length} \u4E2A\u4E0D\u76F8\u8FDE\u7684\u63A5\u7EBF\u8282\u70B9\uFF0C\u8BF7\u6838\u5BF9\u3002`,
+    netIds: groups.map((group) => group.id),
+    wireIds: groups.flatMap((group) => group.wireIds)
+  });
+  return notices;
+}
+
 // app/simulator/core/validation.ts
 var record = (value) => !!value && typeof value === "object" && !Array.isArray(value);
 var safeId = (value) => typeof value === "string" && /^[a-zA-Z0-9_-]{1,80}$/.test(value) && !["__proto__", "constructor", "prototype"].includes(value);
@@ -32312,6 +32388,7 @@ function validateDocument(input) {
     if (component2.rotation !== void 0 && (!type || !canRotate(type) || ![0, 90, 180, 270].includes(component2.rotation))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u65CB\u8F6C\u987B\u4E3A\u5141\u8BB8\u7684\u76F4\u89D2\u89D2\u5EA6`);
     if (component2.mirrored !== void 0 && (!type || !canMirror(type) || typeof component2.mirrored !== "boolean")) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u955C\u50CF\u8BBE\u7F6E\u65E0\u6548`);
     if (component2.pePositions !== void 0 && (!type || !terminalStripCapacity(type) || !Array.isArray(component2.pePositions) || new Set(component2.pePositions).size !== component2.pePositions.length || component2.pePositions.some((value) => typeof value !== "number" || !Number.isInteger(value) || value < 1 || value > terminalStripCapacity(type)))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684PE\u69FD\u4F4D\u987B\u4E3A\u7AEF\u5B50\u6392\u5185\u4E0D\u91CD\u590D\u7684\u4F4D\u7F6E\u7F16\u53F7`);
+    if (component2.terminalLabels !== void 0 && (!type || !terminalStripCapacity(type) || !record(component2.terminalLabels) || Object.entries(component2.terminalLabels).some(([position, label]) => !/^[1-9]\d*$/.test(position) || Number(position) > terminalStripCapacity(type) || !validWireNumber(label)))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u7AEF\u5B50\u6807\u6CE8\u987B\u4E3A\u6709\u6548\u4F4D\u7F6E\u53CA1\u201324\u4E2A\u53EF\u6253\u5370\u5B57\u7B26`);
     if (type === "din-rail" && record(component2.size) && component2.size.height !== 24) errors.push(`\u5BFC\u8F68 ${component2.id} \u7684\u539A\u5EA6\u987B\u4E3A24`);
     if (component2.linkedTo !== void 0 && (component2.type !== "auxiliary-no" || !safeId(component2.linkedTo))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u8F85\u52A9\u89E6\u70B9\u673A\u68B0\u7ED1\u5B9A\u65E0\u6548`);
     if (component2.settings !== void 0 && (!isTimer(String(type)) || !record(component2.settings) || Object.keys(component2.settings).some((key4) => key4 !== "delayMs") || typeof component2.settings.delayMs !== "number" || !Number.isFinite(component2.settings.delayMs) || component2.settings.delayMs < TIMER_MIN_MS || component2.settings.delayMs > (type === "timer380-8pin" ? TIMER_MAX_MS : TIMER_LEGACY_MAX_MS))) errors.push(`\u5143\u4EF6 ${component2.id} \u7684\u5EF6\u65F6\u8BBE\u7F6E\u987B\u4E3A 1 \u81F3 ${type === "timer380-8pin" ? 3e5 : 36e5} \u6BEB\u79D2`);
@@ -32345,6 +32422,7 @@ function validateDocument(input) {
     }
     if (typeof wire.color !== "string" || !/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(wire.color)) errors.push(`\u5BFC\u7EBF ${wire.id} \u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272`);
     if (wire.colorMode !== void 0 && wire.colorMode !== "auto" && wire.colorMode !== "manual") errors.push(`\u5BFC\u7EBF ${wire.id} \u7EBF\u8272\u6A21\u5F0F\u65E0\u6548`);
+    if (wire.wireNumber !== void 0 && !validWireNumber(wire.wireNumber)) errors.push(`\u5BFC\u7EBF ${wire.id} \u7684\u7EBF\u53F7\u987B\u4E3A 1\u201324 \u4E2A\u53EF\u6253\u5370\u5B57\u7B26`);
     if (wire.style !== void 0 && wire.style !== "orthogonal" && wire.style !== "straight" && wire.style !== "curve" && wire.style !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u6837\u5F0F\u65E0\u6548`);
     if (wire.routing !== void 0 && wire.routing !== "duct") errors.push(`\u5BFC\u7EBF ${wire.id} \u81EA\u52A8\u8D70\u7EBF\u6A21\u5F0F\u65E0\u6548`);
     if (wire.waypoints !== void 0 && (!Array.isArray(wire.waypoints) || wire.waypoints.length > 256 || !wire.waypoints.every(point))) errors.push(`\u5BFC\u7EBF ${wire.id} \u6298\u70B9\u65E0\u6548`);
@@ -32391,7 +32469,7 @@ function referenceFor(document2) {
   const own = document2.lessonId && TRAINING_LAYOUT_REFERENCES[document2.lessonId];
   if (own) return own;
   const ids = (types) => document2.components.filter((component2) => types.includes(component2.type)).map((component2) => component2.id);
-  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
+  const rows = [ids(["breaker3", "breaker1", "breaker2", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
   return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document2.components.filter((component2) => buttonTypes.has(component2.type)).map((component2) => component2.id), limits: ids(["limit-switch"]) };
 }
 var DUCT_WIDTH = 32;
@@ -32423,9 +32501,9 @@ function arrangeTrainingDucts(document2) {
   const terminals = document2.components.filter((component2) => !placed.has(component2.id) && !isLayoutObject(component2.type));
   const width = Math.max(terminalPractice ? 760 : 880, ...rows.map((row) => rowWidth(row) + CLEARANCE * 2 + ductWidth), ...terminals.map((component2) => componentSize(component2).width + 56));
   const limitsHeight = limits.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 40 : 0), 0);
+  const sideLimitsHeight = xt2 ? Math.max(limitsHeight, componentSize(xt2).height) : limitsHeight;
+  const limitGap = limits.length > 1 ? (sideLimitsHeight - limits.reduce((sum, component2) => sum + componentSize(component2).height, 0)) / (limits.length - 1) : 0;
   const buttonsHeight = buttons.reduce((sum, c, index2) => sum + componentSize(c).height + (index2 ? 28 : 0), 0);
-  const baseHeight = rows.reduce((sum, row, index2) => sum + ductWidth + CLEARANCE * 2 + Math.max(index2 === 2 ? getDefinition("overload").height : getDefinition("contactor380").height, ...row.map((c) => componentSize(c).height)), 0);
-  const extraRowHeight = xt2 ? Math.max(0, limitsHeight + buttonsHeight + 140 - baseHeight) / rows.length : 0;
   const positions = /* @__PURE__ */ new Map();
   const channels = [0];
   const rails = [];
@@ -32439,24 +32517,26 @@ function arrangeTrainingDucts(document2) {
       x += componentSize(component2).width;
     }
     if (row.length && !document2.components.some((c) => c.type === "din-rail")) rails.push({ id: `training-rail-${index2 + 1}`, type: "din-rail", label: `\u5BFC\u8F68${index2 + 1}`, position: { x: ductWidth / 2, y: y + ductWidth / 2 + CLEARANCE + height / 2 - 12 }, size: { width: width - ductWidth, height: 24 } });
-    y += ductWidth + CLEARANCE * 2 + height + extraRowHeight;
+    y += ductWidth + CLEARANCE * 2 + height;
     channels.push(y);
   }
   const bottom = y, sideX = width + ductWidth / 2 + 48;
-  let buttonY = xt2 ? ductWidth / 2 + CLEARANCE + limitsHeight + 60 : Math.max(56, bottom - buttonsHeight);
+  let buttonY = xt2 ? ductWidth / 2 + CLEARANCE + sideLimitsHeight + 60 : Math.max(56, bottom - buttonsHeight);
   const controlsX = xt2 ? sideX + componentSize(xt2).width + 80 : sideX;
+  let buttonX = sideX;
   for (const component2 of buttons) {
-    positions.set(component2.id, { x: controlsX, y: buttonY });
-    buttonY += componentSize(component2).height + 28;
+    positions.set(component2.id, { x: xt2 ? buttonX : controlsX, y: buttonY });
+    if (xt2) buttonX += componentSize(component2).width + 28;
+    else buttonY += componentSize(component2).height + 28;
   }
   let limitX = sideX;
   let limitY = ductWidth / 2 + CLEARANCE;
   for (const component2 of limits) {
     positions.set(component2.id, { x: xt2 ? controlsX : limitX, y: limitY });
-    if (xt2) limitY += componentSize(component2).height + 40;
+    if (xt2) limitY += componentSize(component2).height + limitGap;
     else limitX += componentSize(component2).width + 44;
   }
-  if (xt2) positions.set(xt2.id, { x: sideX, y: ductWidth / 2 + CLEARANCE + (limitsHeight - componentSize(xt2).height) / 2 });
+  if (xt2) positions.set(xt2.id, { x: sideX, y: ductWidth / 2 + CLEARANCE + (sideLimitsHeight - componentSize(xt2).height) / 2 });
   let sourceX = 56;
   if (!terminalPractice) for (const component2 of sources) {
     positions.set(component2.id, { x: sourceX, y: -componentSize(component2).height - 65 });
@@ -32575,7 +32655,7 @@ function getWireColorGroups(document2) {
       groups.set(key4, group);
     }
     group.terminalIds.push(id2);
-    group.controlCircuit ||= control.has(id2);
+    group.controlCircuit || (group.controlCircuit = control.has(id2));
     const potential = sources.get(id2);
     if (potential) {
       group.sourcePotentials.push(potential);
@@ -32595,14 +32675,6 @@ function resolveConnectionColor(document2, from, to, fallback = "#56616f") {
   const colors = unique(groups.flatMap((group) => group.colors));
   const sourceColors = unique(groups.flatMap((group) => group.sourceColors));
   return { color: colors.length === 1 ? colors[0] : !colors.length && sourceColors.length === 1 ? sourceColors[0] : !colors.length && groups.some((group) => group.controlCircuit) ? CONTROL_WIRE_COLOR : normalizeColor(fallback), conflict: colors.length > 1, sourceConflict: sourceColors.length > 1 };
-}
-function setWireGroupColor(document2, wireIds, color2) {
-  if (!/^#[\da-f]{3}(?:[\da-f]{3})?(?:[\da-f]{2})?$/i.test(color2)) throw new Error("\u5BFC\u7EBF\u989C\u8272\u987B\u4E3A\u5341\u516D\u8FDB\u5236\u989C\u8272");
-  const selected2 = new Set(wireIds);
-  const affected = new Set(getWireColorGroups(document2).filter((group) => group.wireIds.some((id2) => selected2.has(id2))).flatMap((group) => group.wireIds));
-  const nextColor = normalizeColor(color2);
-  if (!document2.wires.some((wire) => affected.has(wire.id) && (wire.color !== nextColor || wire.colorMode !== "manual"))) return document2;
-  return { ...document2, wires: document2.wires.map((wire) => affected.has(wire.id) ? { ...wire, color: nextColor, colorMode: "manual" } : wire) };
 }
 function normalizeAutomaticControlWireColors(document2) {
   const byId = new Map(document2.wires.map((wire) => [wire.id, wire]));
@@ -32632,17 +32704,18 @@ function normalizeDemonstrationWireColors(document2) {
 // app/simulator/core/terminal-wiring.ts
 var externalTypes = /* @__PURE__ */ new Set(["supply", "motor", "motor-star-delta", "motor-dahlander", "push-no", "push-nc", "limit-switch"]);
 var plans = /* @__PURE__ */ new Map();
-function getCourseTerminalAssignments(lessonId) {
+function getCourseTerminalAssignments(lessonId, layout = "dual") {
   if (!lessonId || !/^motor-course-(?:0[1-9]|10)$/.test(lessonId)) return [];
-  const cached = plans.get(lessonId);
+  const planKey = `${lessonId}:${layout}`;
+  const cached = plans.get(planKey);
   if (cached) return cached.map((item) => ({ ...item }));
   const reference = createMotorCourseDocument(lessonId, { wired: true });
   const parent = /* @__PURE__ */ new Map();
   const root2 = (key4) => {
     if (!parent.has(key4)) parent.set(key4, key4);
-    const next = parent.get(key4);
-    if (next === key4) return key4;
-    const result = root2(next);
+    const next2 = parent.get(key4);
+    if (next2 === key4) return key4;
+    const result = root2(next2);
     parent.set(key4, result);
     return result;
   };
@@ -32663,21 +32736,29 @@ function getCourseTerminalAssignments(lessonId) {
     }
   }
   if (positions.size > 20) throw new Error(`\u8BFE\u7A0B\u5916\u63A5\u72EC\u7ACB\u8282\u70B9\u9700\u8981 ${positions.size} \u4F4D\uFF0C\u8D85\u8FC720\u4F4D\u7AEF\u5B50\u6392\u5BB9\u91CF`);
-  plans.set(lessonId, assignments);
-  return assignments.map((item) => ({ ...item }));
+  const next = assignments.map((assignment) => {
+    if (lessonId !== "motor-course-06" || layout === "single" || !/^sq[1-4]$/.test(assignment.componentRole)) return assignment;
+    const sq = Number(assignment.componentRole.slice(2));
+    const terminal = ["11", "12", "23", "24"].indexOf(assignment.terminalId);
+    return { ...assignment, stripRole: "xt2", position: 20 - sq * 4 - terminal };
+  });
+  plans.set(planKey, next);
+  return next.map((item) => ({ ...item }));
 }
 function getCourseTerminalCount(lessonId) {
-  return Math.max(0, ...getCourseTerminalAssignments(lessonId).map((item) => item.position)) > 16 ? 20 : 16;
+  return Math.max(0, ...getCourseTerminalAssignments(lessonId).filter((item) => item.stripRole === "xt16").map((item) => item.position)) > 16 ? 20 : 16;
 }
 function terminalizeMotorCourse(document2) {
   const assignments = getCourseTerminalAssignments(document2.lessonId);
   if (!assignments.length) return document2;
   if (document2.components.some((component2) => component2.id === "xt16" || component2.id === "xt2")) throw new Error("\u65B0\u8BFE\u7A0B\u6A21\u677F\u5DF2\u5305\u542B\u7AEF\u5B50\u6392\uFF0C\u4E0D\u80FD\u91CD\u590D\u8F6C\u6362");
   const count = getCourseTerminalCount(document2.lessonId);
+  const dual = document2.lessonId === "motor-course-06";
   const earthId = document2.roles?.pe ?? "pe";
-  const roles = { ...document2.roles, xt16: "xt16" };
+  const roles = { ...document2.roles, xt16: "xt16", ...dual ? { xt2: "xt2" } : {} };
   delete roles.pe;
-  const components = [...document2.components.filter((component2) => component2.id !== earthId).map((component2) => component2.type === "supply" ? { ...component2, mirrored: true } : component2), { id: "xt16", type: count === 20 ? "terminal-strip20" : "terminal-strip16", label: `XT1\uFF08${count}\u4F4D\uFF0C5\u4E3APE\uFF09`, pePositions: [5], position: { x: 0, y: 0 } }];
+  const components = [...document2.components.filter((component2) => component2.id !== earthId).map((component2) => component2.type === "supply" ? { ...component2, mirrored: true } : dual && component2.type === "limit-switch" ? { ...component2, rotation: 90 } : component2), { id: "xt16", type: count === 20 ? "terminal-strip20" : "terminal-strip16", label: `XT1\uFF08${count}\u4F4D\uFF0C5\u4E3APE\uFF09`, pePositions: [5], position: { x: 0, y: 0 } }];
+  if (dual) components.push({ id: "xt2", type: "terminal-strip16", label: "XT2\uFF08\u9650\u4F4D\uFF09", rotation: 270, position: { x: 0, y: 0 } });
   const resolve = (assignment) => ({ componentId: document2.roles?.[assignment.componentRole] ?? assignment.componentRole, terminalId: assignment.terminalId });
   const mapping = new Map(assignments.map((assignment) => [terminalKey(resolve(assignment)), assignment]));
   const remap = (ref2) => {
@@ -32882,7 +32963,7 @@ function assessMotorCourse(document2, lessonId) {
   let actions = [];
   function capture(label, action) {
     event = label;
-    unsupported ||= !result.supported;
+    unsupported || (unsupported = !result.supported);
     trace.push({ event, ...action ? { action } : {}, powerOn: result.runtime.powerOn, faultLatched: result.runtime.faultLatched, components: result.components, diagnosticCodes: result.diagnostics.map((item) => item.code) });
     diagnostics.push(...result.diagnostics.filter((item) => item.severity === "error" || ["PE_MISSING", "MOTOR_PHASE_MISSING", "MOTOR_WINDING_OPEN", "AUXILIARY_OWNER_MISSING"].includes(item.code)).map((item) => ({ ...item, event, actionSequence: [...actions] })));
     samples.push(result);
@@ -33089,39 +33170,39 @@ function assessMotorCourse(document2, lessonId) {
     }
   }
   for (const [index2, mode] of modes.entries()) {
-    const prefix2 = `mode-${index2}`;
+    const prefix = `mode-${index2}`;
     fresh(`${mode.name}\u4FDD\u62A4\u9A8C\u8BC1`);
     mode.start();
-    add(`${prefix2}-run`, `${mode.name}\u6A21\u5F0F\u53EF\u4EE5\u542F\u52A8\u5E76\u8FBE\u5230\u76EE\u6807\u72B6\u6001`, mode.expected.every(motorMatches));
+    add(`${prefix}-run`, `${mode.name}\u6A21\u5F0F\u53EF\u4EE5\u542F\u52A8\u5E76\u8FBE\u5230\u76EE\u6807\u72B6\u6001`, mode.expected.every(motorMatches));
     if (stopRole) {
       press(stopRole);
-      add(`${prefix2}-stop`, `${mode.name}\u6A21\u5F0F\u4E0B\u505C\u6B62\u6309\u94AE\u6709\u6548`, allStopped() && allReleased(), "STOP_INEFFECTIVE", [stopRole, ...motorRoles], "error");
+      add(`${prefix}-stop`, `${mode.name}\u6A21\u5F0F\u4E0B\u505C\u6B62\u6309\u94AE\u6709\u6548`, allStopped() && allReleased(), "STOP_INEFFECTIVE", [stopRole, ...motorRoles], "error");
       for (const held of mode.held || []) release(held);
       release(stopRole);
-      add(`${prefix2}-stop-reset`, `${mode.name}\u505C\u6B62\u6309\u94AE\u91CA\u653E\u540E\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
+      add(`${prefix}-stop-reset`, `${mode.name}\u505C\u6B62\u6309\u94AE\u91CA\u653E\u540E\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
     }
     fresh(`${mode.name}QF\u9A8C\u8BC1`);
     mode.start();
     step({ type: "toggle", componentId: roles.qf }, "QF \u65AD\u5F00");
-    add(`${prefix2}-qf`, `${mode.name}\u65AD\u5F00 QF \u5207\u65AD\u7535\u673A\u548C\u7EBF\u5708`, allStopped() && allReleased(), "PROTECTION_BYPASS", ["qf", ...motorRoles], "error");
+    add(`${prefix}-qf`, `${mode.name}\u65AD\u5F00 QF \u5207\u65AD\u7535\u673A\u548C\u7EBF\u5708`, allStopped() && allReleased(), "PROTECTION_BYPASS", ["qf", ...motorRoles], "error");
     for (const held of mode.held || []) release(held);
     step({ type: "toggle", componentId: roles.qf }, "QF \u91CD\u65B0\u5408\u95F8");
-    add(`${prefix2}-qf-reset`, `${mode.name}\u91CD\u65B0\u5408\u95F8\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
+    add(`${prefix}-qf-reset`, `${mode.name}\u91CD\u65B0\u5408\u95F8\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
     fresh(`${mode.name}\u5931\u538B\u9A8C\u8BC1`);
     mode.start();
     step({ type: "power", enabled: false }, "\u6559\u5B66\u7535\u6E90\u65AD\u7535");
-    add(`${prefix2}-power-off`, `${mode.name}\u65AD\u7535\u540E\u7535\u673A\u548C\u7EBF\u5708\u5168\u90E8\u91CA\u653E`, allStopped() && allReleased(), "UNEXPECTED_RUN", motorRoles, "error");
+    add(`${prefix}-power-off`, `${mode.name}\u65AD\u7535\u540E\u7535\u673A\u548C\u7EBF\u5708\u5168\u90E8\u91CA\u653E`, allStopped() && allReleased(), "UNEXPECTED_RUN", motorRoles, "error");
     for (const held of mode.held || []) release(held);
     step({ type: "power", enabled: true }, "\u6559\u5B66\u7535\u6E90\u6062\u590D");
-    add(`${prefix2}-power-reset`, `${mode.name}\u5931\u538B\u6062\u590D\u540E\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
+    add(`${prefix}-power-reset`, `${mode.name}\u5931\u538B\u6062\u590D\u540E\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", motorRoles, "error");
     for (const fr of frRoles) {
       fresh(`${mode.name}${fr.toUpperCase()}\u9A8C\u8BC1`);
       mode.start();
       step({ type: "trip-overload", componentId: roles[fr] }, `${fr.toUpperCase()} \u8FC7\u8F7D\u52A8\u4F5C`);
-      add(`${prefix2}-${fr}-trip`, `${mode.name}\u4E0B ${fr.toUpperCase()} \u52A8\u4F5C\u5207\u65AD\u5168\u90E8\u7535\u673A`, allStopped() && allReleased(), "OVERLOAD_INEFFECTIVE", [fr, ...motorRoles], "error");
+      add(`${prefix}-${fr}-trip`, `${mode.name}\u4E0B ${fr.toUpperCase()} \u52A8\u4F5C\u5207\u65AD\u5168\u90E8\u7535\u673A`, allStopped() && allReleased(), "OVERLOAD_INEFFECTIVE", [fr, ...motorRoles], "error");
       for (const held of mode.held || []) release(held);
       step({ type: "reset-overload", componentId: roles[fr] }, `${fr.toUpperCase()} \u590D\u4F4D`);
-      add(`${prefix2}-${fr}-reset`, `${mode.name}\u4E0B ${fr.toUpperCase()} \u590D\u4F4D\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", [fr, ...motorRoles], "error");
+      add(`${prefix}-${fr}-reset`, `${mode.name}\u4E0B ${fr.toUpperCase()} \u590D\u4F4D\u4E0D\u81EA\u884C\u91CD\u542F`, allStopped(), "UNEXPECTED_RESTART", [fr, ...motorRoles], "error");
     }
   }
   const protective = network(document2, initialRuntime(document2), { protectiveOnly: true });
@@ -33172,7 +33253,7 @@ function assessMotorCourse(document2, lessonId) {
         }
         const necessaryFuses = fusePoles.filter((pole) => !fromPhase(cutFusePole(pole), terminal));
         necessaryFuses.forEach((pole) => usedFuses.add(pole.id));
-        fuseProtected &&= necessaryFuses.length > 0;
+        fuseProtected && (fuseProtected = necessaryFuses.length > 0);
         if (!necessaryFuses.length) {
           const potential = net.potentials(terminal).find(phase);
           const path = potential ? net.path(key(roles.source, potential), terminal) : [];
@@ -33181,14 +33262,14 @@ function assessMotorCourse(document2, lessonId) {
         }
         const necessaryFr = frRoles.filter((fr) => !fromPhase(cut(fr), terminal));
         necessaryFr.forEach((fr) => usedFr.add(fr));
-        overloadProtected &&= !frRoles.length || necessaryFr.length > 0;
+        overloadProtected && (overloadProtected = !frRoles.length || necessaryFr.length > 0);
         if (frRoles.length && !necessaryFr.length) {
           const bypassed = pathGuard(frRoles, terminal);
           pathFailure("OVERLOAD_MAIN_BYPASS", "\u6B64\u4E3B\u56DE\u8DEF\u76F8\u8DEF\u7ED5\u8FC7 FR \u68C0\u6D4B\u901A\u9053", bypassed ? cut(bypassed) : net, terminal, [...frRoles, role], sample);
         }
         const activeMain = mainContactors.filter((km) => sample.components[roles[km]]?.active);
         const controlled = activeMain.some((km) => !fromPhase(cut(km, true), terminal));
-        contactorControlled &&= controlled;
+        contactorControlled && (contactorControlled = controlled);
         if (!controlled) {
           const bypassed = pathGuard(activeMain, terminal);
           pathFailure("CONTACTOR_BYPASS", "\u6B64\u4E3B\u56DE\u8DEF\u76F8\u8DEF\u4E0D\u53D7\u63A5\u89E6\u5668\u4E3B\u89E6\u70B9\u63A7\u5236", bypassed ? cut(bypassed, true) : net, terminal, [...activeMain, role], sample);
@@ -33197,7 +33278,7 @@ function assessMotorCourse(document2, lessonId) {
     }
     for (const component2 of document2.components.filter((item) => getDefinition(item.type).load?.kind === "coil" && sample.components[item.id]?.active)) {
       sawCoil = true;
-      controlProtected &&= sample.components[component2.id].voltage === 380;
+      controlProtected && (controlProtected = sample.components[component2.id].voltage === 380);
       const stopGuards = number === 7 ? component2.id === roles.km2 ? ["sb2"] : component2.id === roles.km1 && !sample.components[roles.km2]?.active ? ["sb1"] : [] : stopRole ? [stopRole] : [];
       for (const guard of [...stopGuards, ...frRoles]) {
         const isOverload = frRoles.includes(guard);
@@ -33211,7 +33292,7 @@ function assessMotorCourse(document2, lessonId) {
       }
       for (const terminal of [key(component2.id, getDefinition(component2.type).load.terminals[0]), key(component2.id, getDefinition(component2.type).load.terminals[1])]) {
         const qfProtected = !fromPhase(cut("qf"), terminal), hasFuse = controlFusePoles.some((pole) => !fromPhase(cutFusePole(pole), terminal));
-        controlProtected &&= fromPhase(net, terminal) && qfProtected && hasFuse;
+        controlProtected && (controlProtected = fromPhase(net, terminal) && qfProtected && hasFuse);
         if (!qfProtected) pathFailure("CONTROL_PROTECTION_BYPASS", "\u63A7\u5236\u5BFC\u4F53\u7ED5\u8FC7 QF", cut("qf"), terminal, ["qf"], sample);
         if (!hasFuse) {
           const bypassed = pathGuard(controlFuses, terminal);
@@ -33620,7 +33701,7 @@ function settleCircuit(document2, previousRuntime, action, openPushContacts, ope
         const timer2 = runtime.timers?.[c.id];
         components[c.id] = { ...components[c.id], state: timer2?.energized ? timer2.done ? "done" : "timing" : "released", elapsedMs: timer2?.elapsedMs ?? 0, remainingMs: Math.max(0, timerDelay(c) - (timer2?.elapsedMs ?? 0)) };
       }
-      if (runtime.powerOn && v.value === void 0 && !v.earth) diagnostics.push(diagnostic("OPEN_CONTROL_PATH", `${c.label} \u7EBF\u5708\u5C1A\u672A\u5F62\u6210\u5B8C\u6574\u4F9B\u7535\u4E0E\u8FD4\u56DE\u8DEF\u5F84`, "info", [key2(c.id, def.load.terminals[0]), key2(c.id, def.load.terminals[1])]));
+      if (runtime.powerOn && v.value === void 0 && !v.earth) diagnostics.push(diagnostic("OPEN_CONTROL_PATH", `${c.label} \u5F53\u524D\u672A\u5F97\u7535\uFF0C\u63A7\u5236\u56DE\u8DEF\u672A\u5BFC\u901A`, "info", [key2(c.id, def.load.terminals[0]), key2(c.id, def.load.terminals[1])]));
     } else if (def.load?.kind === "lamp") {
       const a = key2(c.id, "L"), b = key2(c.id, "N"), v = voltage(net, a, b);
       const active = runtime.powerOn && !runtime.faultLatched && !v.earth && v.value === 220;
@@ -33631,7 +33712,7 @@ function settleCircuit(document2, previousRuntime, action, openPushContacts, ope
       const motor = motorState(document2, c, net, runtime);
       components[c.id] = motor.state;
       diagnostics.push(...motor.diagnostics);
-      supported &&= motor.supported;
+      supported && (supported = motor.supported);
     } else if (c.type === "supply") components[c.id] = { active: runtime.powerOn && !runtime.faultLatched, state: runtime.faultLatched ? "fault" : runtime.powerOn ? "on" : "off" };
     else if (c.type === "overload") components[c.id] = { active: !!runtime.overloads[c.id], state: runtime.overloads[c.id] ? "tripped" : "ready" };
     else if (c.type === "push-no" || c.type === "push-nc" || c.type === "limit-switch") components[c.id] = { active: !!runtime.pressed[c.id], state: runtime.pressed[c.id] ? "pressed" : "released" };
@@ -33655,7 +33736,7 @@ function simulate(document2, previousRuntime, action) {
     const summarize = () => ({ ...result, supported: result.supported && supportedDuringWindow, diagnostics: uniqueDiagnostics([...earlierHazards, ...result.diagnostics]) });
     for (let iteration = 0; iteration < 1024; iteration++) {
       const now2 = result.runtime.timeMs ?? 0;
-      supportedDuringWindow &&= result.supported;
+      supportedDuringWindow && (supportedDuringWindow = result.supported);
       earlierHazards.push(...result.diagnostics.filter((d) => d.severity === "error" || ["PE_MISSING", "MOTOR_PHASE_MISSING"].includes(d.code)).map((d) => ({ ...d, event: d.event ?? `\u865A\u62DF\u65F6\u95F4 ${now2}ms` })));
       const deadlines = document2.components.filter((c) => isTimer(c.type)).flatMap((c) => {
         const timer2 = result.runtime.timers?.[c.id];
@@ -33718,7 +33799,7 @@ function auditReachable(document2, expected, componentIds) {
     if (!next.supported) supported = false;
     if (!next.supported || !actual || error) {
       passed = false;
-      counterexample ??= { ...error ?? diagnostic("BEHAVIOR_COUNTEREXAMPLE", "\u5B58\u5728\u64CD\u4F5C\u7EC4\u5408\u672A\u6EE1\u8DB3\u8BFE\u7A0B\u76EE\u6807\uFF1B\u68C0\u67E5\u540C\u65F6\u6309\u952E\u3001\u4FDD\u62A4\u94FE\u6216\u4F9B\u7535\u8DEF\u5F84", target ? "warning" : "error", [], [], componentIds), event: JSON.stringify(event), expected: target ? "\u76EE\u6807\u8D1F\u8F7D\u4E0E\u63A7\u5236\u5668\u4EF6\u5904\u4E8E\u8FD0\u884C\u72B6\u6001" : "\u76EE\u6807\u8D1F\u8F7D\u4E0E\u63A7\u5236\u5668\u4EF6\u5904\u4E8E\u505C\u6B62\u72B6\u6001", actual: componentIds.map((id2) => `${id2}: ${next.components[id2]?.state ?? "\u7F3A\u5931"}`).join("\uFF0C"), actionSequence: path };
+      counterexample ?? (counterexample = { ...error ?? diagnostic("BEHAVIOR_COUNTEREXAMPLE", "\u5B58\u5728\u64CD\u4F5C\u7EC4\u5408\u672A\u6EE1\u8DB3\u8BFE\u7A0B\u76EE\u6807\uFF1B\u68C0\u67E5\u540C\u65F6\u6309\u952E\u3001\u4FDD\u62A4\u94FE\u6216\u4F9B\u7535\u8DEF\u5F84", target ? "warning" : "error", [], [], componentIds), event: JSON.stringify(event), expected: target ? "\u76EE\u6807\u8D1F\u8F7D\u4E0E\u63A7\u5236\u5668\u4EF6\u5904\u4E8E\u8FD0\u884C\u72B6\u6001" : "\u76EE\u6807\u8D1F\u8F7D\u4E0E\u63A7\u5236\u5668\u4EF6\u5904\u4E8E\u505C\u6B62\u72B6\u6001", actual: componentIds.map((id2) => `${id2}: ${next.components[id2]?.state ?? "\u7F3A\u5931"}`).join("\uFF0C"), actionSequence: path });
     }
     const mark = signature(state);
     if (!state.faultLatched && !seen.has(mark)) {
@@ -33755,7 +33836,7 @@ function assessLesson(document2, lessonId = document2.lessonId) {
     diagnostics.push(diagnostic("LESSON_LOAD_UNCOVERED", `\u5F53\u524D\u8BFE\u7A0B\u672A\u5B9A\u4E49\u8FD9\u4E9B\u989D\u5916\u8D1F\u8F7D\u7684\u63A7\u5236\u548C\u4FDD\u62A4\u76EE\u6807\uFF1A${uncoveredLoads.map((c) => c.label).join("\u3001")}\uFF1B\u4FDD\u7559\u81EA\u7531\u8FD0\u884C\u7ED3\u679C\uFF0C\u4F46\u4E0D\u80FD\u5224\u5B9A\u6574\u4EFD\u7535\u8DEF\u5408\u683C`, "warning", uncoveredLoads.flatMap((c) => getDefinition(c.type).load.terminals.map((t) => key2(c.id, t))), [], uncoveredLoads.map((c) => c.id)));
   }
   const capture = (event, action) => {
-    unsupported ||= !result.supported;
+    unsupported || (unsupported = !result.supported);
     diagnostics.push(...result.diagnostics.filter((d) => d.severity !== "info").map((d) => ({ ...d, event })));
     trace.push({ event, action, powerOn: result.runtime.powerOn, faultLatched: result.runtime.faultLatched, components: result.components, diagnosticCodes: result.diagnostics.map((d) => d.code) });
   };
@@ -33820,7 +33901,7 @@ function assessLesson(document2, lessonId = document2.lessonId) {
       const state = next.runtime;
       return state.powerOn && !state.faultLatched && !!state.switches[roles.breaker] && !state.overloads[roles.overload] && (!selfHold || !state.pressed[roles.stop]) && (!!state.pressed[roles.start] || selfHold && !!before.contactors[roles.contactor]);
     }, [roles.contactor, roles.motor]);
-    unsupported ||= !audit.supported;
+    unsupported || (unsupported = !audit.supported);
     add("reachable-behavior", "\u540C\u65F6\u6309\u952E\u3001\u5206\u5408\u95F8\u548C\u5931\u538B\u6062\u590D\u7684\u6240\u6709\u53EF\u8FBE\u72B6\u6001\u7B26\u5408\u76EE\u6807", audit.passed);
     if (audit.diagnostic) diagnostics.push(audit.diagnostic);
   } else {
@@ -33861,7 +33942,7 @@ function assessLesson(document2, lessonId = document2.lessonId) {
       const state = next.runtime, control = lessonId === "lighting-single" ? !!state.switches[roles.switchA] : state.switches[roles.switchA] === state.switches[roles.switchB] ? sameThrowLit : !sameThrowLit;
       return state.powerOn && !state.faultLatched && !!state.switches[roles.breaker] && control;
     }, [lamp]);
-    unsupported ||= !audit.supported;
+    unsupported || (unsupported = !audit.supported);
     add("reachable-behavior", "\u6240\u6709\u5F00\u5173\u53CA\u7535\u6E90\u64CD\u4F5C\u5747\u65E0\u5371\u9669\u65C1\u8DEF\u5E76\u7B26\u5408\u7167\u660E\u76EE\u6807", audit.passed);
     if (audit.diagnostic) diagnostics.push(audit.diagnostic);
   }
@@ -33872,8 +33953,144 @@ function assessLesson(document2, lessonId = document2.lessonId) {
   return { status: unsupported ? "unsupported" : passed === checks.length ? "passed" : severe ? "failed" : "incomplete", passed, total: checks.length, checks, diagnostics: uniqueDiagnostics(diagnostics), trace };
 }
 
-// app/simulator/editor/RelayArtwork.tsx
+// app/simulator/core/terminal-labels.ts
+function setTerminalLabel(document2, componentId, position, input) {
+  const component2 = document2.components.find((item) => item.id === componentId);
+  if (!component2 || !isTerminalStrip(component2.type) || !Number.isInteger(position) || position < 1 || position > terminalStripCapacity(component2.type)) throw new Error("\u8BF7\u9009\u62E9\u7AEF\u5B50\u6392\u5185\u7684\u6709\u6548\u4F4D\u7F6E\u3002");
+  const label = input.trim();
+  if (label && !validWireNumber(label)) throw new Error("\u7AEF\u5B50\u6807\u6CE8\u987B\u4E3A 1\u201324 \u4E2A\u53EF\u6253\u5370\u5B57\u7B26\u3002");
+  if ((component2.terminalLabels?.[position] ?? "") === label) return document2;
+  const terminalLabels = { ...component2.terminalLabels };
+  if (label) terminalLabels[position] = label;
+  else delete terminalLabels[position];
+  const next = { ...component2 };
+  if (Object.keys(terminalLabels).length) next.terminalLabels = terminalLabels;
+  else delete next.terminalLabels;
+  return { ...document2, components: document2.components.map((item) => item.id === componentId ? next : item) };
+}
+function terminalDisplayLabel(component2, terminal) {
+  if (!isTerminalStrip(component2.type)) return terminal.label;
+  const position = Number(terminal.id.slice(1));
+  const label = component2.terminalLabels?.[position];
+  return label ? `${label}\uFF08\u7B2C${position}\u4F4D${terminal.id.startsWith("T") ? "\u4E0A" : "\u4E0B"}\uFF09` : terminal.label;
+}
+
+// app/simulator/editor/WireNumberToolbar.tsx
+var import_react6 = __toESM(require_react(), 1);
 var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+function WireNumberToolbar({ numbers, target, disabled, onNumber }) {
+  const [custom, setCustom] = (0, import_react6.useState)(numbers.length === 1 ? numbers[0] : "");
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("form", { className: "sim-wire-number-toolbar", "aria-label": "\u5BFC\u7EBF\u7EBF\u53F7\u6807\u6CE8", onSubmit: (event) => {
+    event.preventDefault();
+    if (!disabled) onNumber(custom);
+  }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "sim-wire-number-heading", children: "\u7EBF\u53F7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "sim-wire-number-choices", role: "group", "aria-label": "\u7EBF\u53F71\u81F310", children: Array.from({ length: 10 }, (_, index2) => String(index2 + 1)).map((number) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", "aria-label": `\u6807\u6CE8\u7EBF\u53F7 ${number}`, "aria-pressed": numbers.length === 1 && numbers[0] === number, disabled, onClick: () => onNumber(number), children: number }, number)) }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u7EBF\u53F7", placeholder: "0\u3001U1\u2026", value: custom, disabled, maxLength: 48, onChange: (event) => setCustom(event.target.value) }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "submit", disabled: disabled || !custom.trim(), children: "\u6807\u6CE8" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", disabled: disabled || !numbers.length, onClick: () => onNumber(""), children: "\u6E05\u9664" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("output", { "aria-label": "\u5F53\u524D\u7EBF\u53F7\u76EE\u6807", title: target, children: target })
+  ] });
+}
+
+// app/simulator/editor/TerminalLabelsPanel.tsx
+var import_react7 = __toESM(require_react(), 1);
+var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
+function TerminalLabelsPanel({ component: component2, disabled, onLabel, onClear, onClose }) {
+  const panel = (0, import_react7.useRef)(null);
+  (0, import_react7.useLayoutEffect)(() => {
+    const scroller = panel.current?.closest(".sim-library-scroller");
+    if (scroller) scroller.scrollTop = 0;
+  }, [component2.id]);
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("section", { ref: panel, className: "sim-terminal-labels-panel", "aria-label": "\u7AEF\u5B50\u6807\u6CE8", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("strong", { children: [
+        component2.label,
+        " \xB7 \u7AEF\u5B50\u6807\u6CE8"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { type: "button", "aria-label": "\u5173\u95ED\u7AEF\u5B50\u6807\u6CE8", onClick: onClose, children: "\xD7" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { children: "\u9010\u4F4D\u586B\u5199\uFF0C\u4E0A\u4E0B\u7AEF\u5171\u7528\u6807\u8BB0\uFF1B\u7A7A\u767D\u8868\u793A\u672A\u6807\u6CE8\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "sim-terminal-labels-grid", children: Array.from({ length: terminalStripCapacity(component2.type) }, (_, index2) => index2 + 1).map((position) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { children: [
+        "\u7B2C",
+        position,
+        "\u4F4D",
+        component2.pePositions?.includes(position) ? " \xB7 PE" : ""
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("input", { "aria-label": `${component2.label} \u7B2C${position}\u4F4D\u6807\u6CE8`, value: component2.terminalLabels?.[position] ?? "", maxLength: 48, disabled, onChange: (event) => onLabel(position, event.target.value) })
+    ] }, position)) }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { type: "button", className: "sim-button", disabled: disabled || !Object.keys(component2.terminalLabels ?? {}).length, onClick: onClear, children: "\u6E05\u7A7A\u5168\u90E8\u6807\u6CE8" })
+  ] });
+}
+
+// app/simulator/editor/diagnostic-presentation.ts
+function presentDiagnostics(diagnostics) {
+  return {
+    runtime: diagnostics.filter((item) => item.severity === "info"),
+    safety: diagnostics.filter((item) => item.severity !== "info")
+  };
+}
+
+// app/simulator/editor/WireTracePanel.tsx
+var import_react8 = __toESM(require_react(), 1);
+var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+function WireTracePanel({ document: document2, net, selectedCount, frozen, mode, notices, onNumber, onLocate, onClose }) {
+  const [number, setNumber] = (0, import_react8.useState)(net.numbers.length === 1 ? net.numbers[0] : "");
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { className: "sim-wire-trace-panel", "aria-label": "\u5DE1\u7EBF\u4E0E\u7EBF\u53F7", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("strong", { children: mode === "net" ? "\u7B49\u7535\u4F4D\u5DE1\u7EBF" : "\u5355\u6839\u9009\u7EBF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("button", { type: "button", "aria-label": "\u5173\u95ED\u5DE1\u7EBF", onClick: onClose, children: "\xD7" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { children: [
+      selectedCount,
+      " \u6839\u5B9E\u9645\u9009\u4E2D \xB7 \u6B64\u8282\u70B9 ",
+      net.wireIds.length,
+      " \u6839\u5BFC\u7EBF / ",
+      net.terminalIds.length,
+      " \u4E2A\u7AEF\u5B50"
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("form", { onSubmit: (event) => {
+      event.preventDefault();
+      onNumber(number);
+    }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("label", { children: [
+        "\u7EC4\u5185\u7EBF\u53F7",
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("input", { "aria-label": "\u7EC4\u5185\u7EBF\u53F7", value: number, disabled: frozen, onChange: (event) => setNumber(event.target.value), onKeyDown: (event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            event.stopPropagation();
+            onClose();
+          }
+        }, placeholder: net.numbers.length > 1 ? "\u591A\u4E2A\u7EBF\u53F7\uFF0C\u586B\u5199\u4EE5\u7EDF\u4E00" : "\u5982 1\u30014\u3001U1" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("button", { type: "submit", disabled: frozen, children: "\u8BBE\u7F6E\u6574\u7EC4\u7EBF\u53F7" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("button", { type: "button", disabled: frozen || !net.numbers.length, onClick: () => {
+        setNumber("");
+        onNumber("");
+      }, children: "\u6E05\u9664\u7EBF\u53F7" })
+    ] }),
+    notices.map((notice) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "sim-wire-number-warning", role: "status", children: notice.message }, notice.message)),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "sim-wire-trace-note", children: "\u6309\u5BFC\u7EBF\u4E0E\u7AEF\u5B50\u6865\u63A5\u5206\u7EC4\uFF0C\u8DE8\u5668\u4EF6\u5206\u6BB5\u3002\u7EBF\u53F7\u7531\u4F60\u6838\u5BF9\u539F\u56FE\u586B\u5199\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("ul", { "aria-label": "\u63A5\u7EBF\u8282\u70B9\u7AEF\u5B50\u6E05\u5355", children: net.terminalIds.map((key4) => {
+      const [id2, terminalId] = key4.split("::");
+      const component2 = document2.components.find((item) => item.id === id2);
+      const terminal = component2 && getDefinition(component2.type).terminals.find((item) => item.id === terminalId);
+      return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("button", { type: "button", onClick: () => onLocate(id2), title: "\u5B9A\u4F4D\u6B64\u7AEF\u5B50\u6240\u5728\u5668\u4EF6", children: [
+        net.numbers.length ? /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("b", { children: [
+          net.numbers.join(" / "),
+          " \xB7 "
+        ] }) : null,
+        component2?.label ?? id2,
+        " \xB7 ",
+        component2 && terminal ? terminalDisplayLabel(component2, terminal) : terminalId
+      ] }) }, key4);
+    }) })
+  ] });
+}
+
+// app/simulator/editor/RelayArtwork.tsx
+var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
 function timerDisplay(ms) {
   const seconds = Math.ceil(Math.max(0, ms) / 1e3);
   return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
@@ -33881,35 +34098,35 @@ function timerDisplay(ms) {
 function RelayArtwork({ type, active = false, result, delayMs = 3e3, running = false }) {
   const definition = getDefinition(type), timer2 = type !== "relay380-jzc1-22";
   const remaining = running && result?.active ? result.remainingMs ?? delayMs : delayMs;
-  if (!timer2) return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 151.5 191.5", role: "img", "aria-label": definition.name, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "1", y: "1", width: "149.5", height: "189.5", rx: "6", fill: "#303538", stroke: "#111", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "5", y: "64", width: "141.5", height: "87", fill: "#e9ecef", stroke: "#1f252a" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("path", { d: "M8 94H143", stroke: "#148dc7", strokeWidth: "3" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "75.75", y: "84", textAnchor: "middle", fontSize: "13", fill: "#303538", children: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "17", y: "111", width: "17", height: "20", rx: "2", fill: active ? "#d83333" : "#181d21" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "87", y: "123", textAnchor: "middle", fontSize: "11", children: "JZC1-22 \u98CE\u683C" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "86", y: "140", textAnchor: "middle", fontSize: "9", children: "380V \xB7 \u6559\u5B66\u793A\u610F" }),
-    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#16191c", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("NC") ? "#e8bf38" : "#53be78", strokeWidth: "3" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: t.x, y: t.y === 14 ? 29 : t.y < 100 ? 60 : 187, textAnchor: "middle", fill: "#f5f5f5", fontSize: "8", children: t.label })
+  if (!timer2) return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 151.5 191.5", role: "img", "aria-label": definition.name, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "1", y: "1", width: "149.5", height: "189.5", rx: "6", fill: "#303538", stroke: "#111", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "5", y: "64", width: "141.5", height: "87", fill: "#e9ecef", stroke: "#1f252a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("path", { d: "M8 94H143", stroke: "#148dc7", strokeWidth: "3" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "75.75", y: "84", textAnchor: "middle", fontSize: "13", fill: "#303538", children: "\u4E2D\u95F4\u7EE7\u7535\u5668 KA" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "17", y: "111", width: "17", height: "20", rx: "2", fill: active ? "#d83333" : "#181d21" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "87", y: "123", textAnchor: "middle", fontSize: "11", children: "JZC1-22 \u98CE\u683C" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "86", y: "140", textAnchor: "middle", fontSize: "9", children: "380V \xB7 \u6559\u5B66\u793A\u610F" }),
+    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#16191c", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("NC") ? "#e8bf38" : "#53be78", strokeWidth: "3" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: t.x, y: t.y === 14 ? 29 : t.y < 100 ? 60 : 187, textAnchor: "middle", fill: "#f5f5f5", fontSize: "8", children: t.label })
     ] }, t.id))
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 201.5 201.5", role: "img", "aria-label": definition.name, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "1", y: "1", width: "199.5", height: "199.5", rx: "9", fill: "#d9dbda", stroke: "#303536", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rect", { x: "27", y: "53", width: "147.5", height: "68", rx: "5", fill: "#414141", stroke: "#111", strokeWidth: "3" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { "data-timer-display": "true", x: "100.75", y: "101", textAnchor: "middle", fontFamily: "monospace", fontSize: "40", fill: "#ff2929", children: timerDisplay(remaining) }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("text", { "data-timer-seconds": "true", x: "100.75", y: "115", textAnchor: "middle", fontSize: "9", fill: "#ffaaaa", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: "sim-device-artwork", viewBox: "0 0 201.5 201.5", role: "img", "aria-label": definition.name, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "1", y: "1", width: "199.5", height: "199.5", rx: "9", fill: "#d9dbda", stroke: "#303536", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "27", y: "53", width: "147.5", height: "68", rx: "5", fill: "#414141", stroke: "#111", strokeWidth: "3" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { "data-timer-display": "true", x: "100.75", y: "101", textAnchor: "middle", fontFamily: "monospace", fontSize: "40", fill: "#ff2929", children: timerDisplay(remaining) }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("text", { "data-timer-seconds": "true", x: "100.75", y: "115", textAnchor: "middle", fontSize: "9", fill: "#ffaaaa", children: [
       (Math.max(0, remaining) / 1e3).toFixed(3),
       " s"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { "data-timer-indicator": "UP", "data-lit": running && result?.state === "done", cx: "13", cy: "76", r: "5", fill: running && result?.state === "done" ? "#33ce6a" : "#343e37" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "13", y: "91", textAnchor: "middle", fontSize: "8", children: "UP" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { "data-timer-indicator": "ON", "data-lit": running && !!result?.active, cx: "188.5", cy: "76", r: "5", fill: running && result?.active ? "#ed9c2e" : "#403a2c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "188.5", y: "91", textAnchor: "middle", fontSize: "8", children: "ON" }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { x: "100.75", y: "138", textAnchor: "middle", fontSize: "12", children: "\u901A\u7535\u5EF6\u65F6\u65F6\u95F4\u7EE7\u7535\u5668" }),
-    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#232628", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("COM") ? "#efa259" : t.label.includes("NC") ? "#edc846" : "#65c889", strokeWidth: "3" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("text", { "data-timer-terminal": t.id, x: t.x, y: t.y < 100 ? 28 : 175, textAnchor: "middle", fontSize: "10", fontWeight: "600", children: t.label })
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("circle", { "data-timer-indicator": "UP", "data-lit": running && result?.state === "done", cx: "13", cy: "76", r: "5", fill: running && result?.state === "done" ? "#33ce6a" : "#343e37" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "13", y: "91", textAnchor: "middle", fontSize: "8", children: "UP" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("circle", { "data-timer-indicator": "ON", "data-lit": running && !!result?.active, cx: "188.5", cy: "76", r: "5", fill: running && result?.active ? "#ed9c2e" : "#403a2c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "188.5", y: "91", textAnchor: "middle", fontSize: "8", children: "ON" }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { x: "100.75", y: "138", textAnchor: "middle", fontSize: "12", children: "\u901A\u7535\u5EF6\u65F6\u65F6\u95F4\u7EE7\u7535\u5668" }),
+    definition.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("circle", { cx: t.x, cy: t.y, r: "7", fill: "#232628", stroke: t.electrical === "coil" ? "#e75b5b" : t.label.includes("COM") ? "#efa259" : t.label.includes("NC") ? "#edc846" : "#65c889", strokeWidth: "3" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("text", { "data-timer-terminal": t.id, x: t.x, y: t.y < 100 ? 28 : 175, textAnchor: "middle", fontSize: "10", fontWeight: "600", children: t.label })
     ] }, t.id))
   ] });
 }
@@ -33932,7 +34149,7 @@ var recentGeometry = /* @__PURE__ */ new Map();
 var routeKey = (wire) => `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
 var automaticWire = (wire) => wire.routing === "duct" || wire.style === "duct";
 var routingSide = (terminal) => terminal.routingSide ?? terminal.side;
-var cabinetEquipment = /* @__PURE__ */ new Set(["breaker1", "breaker3", "knife-switch3", "contactor220", "contactor380", "overload", "fuse", "fuse2", "fuse3", "relay380", "relay380-jzc1-22", "timer380", "timer380-8pin", "auxiliary-no"]);
+var cabinetEquipment = /* @__PURE__ */ new Set(["breaker1", "breaker2", "breaker3", "knife-switch3", "contactor220", "contactor380", "overload", "fuse", "fuse2", "fuse3", "relay380", "relay380-jzc1-22", "timer380", "timer380-8pin", "auxiliary-no"]);
 function networkFor(components) {
   const signature = components.filter((component2) => isWireDuct(component2.type)).map((component2) => `${component2.id}:${component2.type}:${component2.position.x}:${component2.position.y}:${component2.size?.width}:${component2.size?.height}:${component2.rotation ?? 0}`).join("|");
   const cached = cache.get(components);
@@ -34432,6 +34649,11 @@ var switchMotionShapes = {
     "height": 187.5,
     "body": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,146.499 L47.499,146.499 C49.156,146.499 50.499,147.842 50.499,149.499 L50.499,176.499 C50.499,182.22 46.22,186.499 40.499,186.499 L10.499,186.499 C4.976,186.499 0.499,182.22 0.499,176.499 L0.499,149.499 C0.499,147.842 1.843,146.499 3.499,146.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,39.499 L47.499,39.499 C49.156,39.499 50.499,40.842 50.499,42.499 L50.499,144.499 C50.499,146.156 49.156,147.499 47.499,147.499 L3.499,147.499 C1.843,147.499 0.499,146.156 0.499,144.499 L0.499,42.499 C0.499,40.842 1.843,39.499 3.499,39.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M10.499,0.499 L40.499,0.499 C46.22,0.499 50.499,4.976 50.499,10.499 L50.499,37.499 C50.499,39.156 49.156,40.499 47.499,40.499 L3.499,40.499 C1.843,40.499 0.499,39.156 0.499,37.499 L0.499,10.499 C0.499,4.976 4.976,0.499 10.499,0.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(72, 119, 189)" d="M10.499,72.499 L40.499,72.499 L40.499,135.499 L10.499,135.499 L10.499,72.499 Z" />\r\n    <g class="sim-motion-breaker-handle" data-motion-part="breaker-handle"><path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M10.499,99.499 L40.499,99.499 C43.261,99.499 45.499,101.737 45.499,104.499 L45.499,130.499 C45.499,133.260 43.261,135.499 40.499,135.499 L10.499,135.499 C7.738,135.499 5.499,133.260 5.499,130.499 L5.499,104.499 C5.499,101.737 7.738,99.499 10.499,99.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(72, 119, 189)"\r\n        d="M5.499,127.499 L45.499,127.499 L45.499,130.499 C45.499,133.260 43.261,135.499 40.499,135.499 L10.499,135.499 C7.738,135.499 5.499,133.260 5.499,130.499 L5.499,127.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(124, 177, 255)"\r\n        d="M10.499,99.499 L40.499,99.499 C43.261,99.499 45.499,101.737 45.499,104.499 L45.499,105.499 L5.499,105.499 L5.499,104.499 C5.499,101.737 7.738,99.499 10.499,99.499 Z" /></g>\r\n    <path class="sim-breaker-status" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M35.499,47.499 L39.499,47.499 C40.52,47.499 40.499,47.947 40.499,48.499 L40.499,52.499 C40.499,53.51 40.52,53.499 39.499,53.499 L35.499,53.499 C34.947,53.499 34.499,53.51 34.499,52.499 L34.499,48.499 C34.499,47.947 34.947,47.499 35.499,47.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M25.499,10.499 C31.21,10.499 35.499,14.976 35.499,20.499 C35.499,26.22 31.21,30.498 25.499,30.498 C19.976,30.498 15.498,26.22 15.498,20.499 C15.498,14.976 19.976,10.499 25.499,10.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M25.499,16.499 C27.708,16.499 29.498,18.289 29.498,20.499 C29.498,22.708 27.708,24.499 25.499,24.499 C23.289,24.499 21.498,22.708 21.498,20.499 C21.498,18.289 23.289,16.499 25.499,16.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M25.499,156.499 C31.21,156.499 35.499,160.976 35.499,166.499 C35.499,172.22 31.21,176.499 25.499,176.499 C19.976,176.499 15.498,172.22 15.498,166.499 C15.498,160.976 19.976,156.499 25.499,156.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M25.499,162.499 C27.708,162.499 29.498,164.290 29.498,166.499 C29.498,168.708 27.708,170.499 25.499,170.499 C23.289,170.499 21.498,168.708 21.498,166.499 C21.498,164.290 23.289,162.499 25.499,162.499 Z" />\r\n'
   },
+  "breaker2": {
+    "width": 100.5,
+    "height": 187.5,
+    "body": '<title>\u4E24\u6781\u540C\u6B65\u7A7A\u6C14\u5F00\u5173\uFF1A\u539F\u7AD9\u7D20\u6750\u6D3E\u751F\u6559\u5B66\u793A\u610F</title>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,146.499 L47.499,146.499 C49.156,146.499 50.499,147.842 50.499,149.499 L50.499,176.499 C50.499,182.22 46.22,186.499 40.499,186.499 L10.499,186.499 C4.976,186.499 0.499,182.22 0.499,176.499 L0.499,149.499 C0.499,147.842 1.842,146.499 3.499,146.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,39.499 L47.499,39.499 C49.156,39.499 50.499,40.842 50.499,42.499 L50.499,144.499 C50.499,146.156 49.156,147.499 47.499,147.499 L3.499,147.499 C1.842,147.499 0.499,146.156 0.499,144.499 L0.499,42.499 C0.499,40.842 1.842,39.499 3.499,39.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M10.499,0.499 L40.499,0.499 C46.22,0.499 50.499,4.976 50.499,10.499 L50.499,37.499 C50.499,39.156 49.156,40.499 47.499,40.499 L3.499,40.499 C1.842,40.499 0.499,39.156 0.499,37.499 L0.499,10.499 C0.499,4.976 4.976,0.499 10.499,0.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(72, 119, 189)" d="M10.499,72.499 L40.499,72.499 L40.499,135.499 L10.499,135.499 L10.499,72.499 Z" />\r\n    <path class="sim-breaker-status" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M35.499,47.499 L39.499,47.499 C40.52,47.499 40.499,47.947 40.499,48.499 L40.499,52.499 C40.499,53.51 40.52,53.499 39.499,53.499 L35.499,53.499 C34.947,53.499 34.499,53.51 34.499,52.499 L34.499,48.499 C34.499,47.947 34.947,47.499 35.499,47.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M25.498,10.499 C31.22,10.499 35.499,14.976 35.499,20.499 C35.499,26.21 31.22,30.499 25.498,30.499 C19.976,30.499 15.498,26.21 15.498,20.499 C15.498,14.976 19.976,10.499 25.498,10.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M25.498,16.499 C27.708,16.499 29.498,18.289 29.498,20.499 C29.498,22.708 27.708,24.499 25.498,24.499 C23.290,24.499 21.499,22.708 21.499,20.499 C21.499,18.289 23.290,16.499 25.498,16.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M25.498,156.498 C31.22,156.498 35.499,160.976 35.499,166.498 C35.499,172.21 31.22,176.499 25.498,176.499 C19.976,176.499 15.498,172.21 15.498,166.498 C15.498,160.976 19.976,156.498 25.498,156.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M25.498,162.498 C27.708,162.498 29.498,164.290 29.498,166.498 C29.498,168.708 27.708,170.498 25.498,170.498 C23.290,170.498 21.499,168.708 21.499,166.498 C21.499,164.290 23.290,162.498 25.498,162.498 Z" />\r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    \r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M52.499,146.499 L96.499,146.499 C98.156,146.499 99.499,147.842 99.499,149.499 L99.499,176.499 C99.499,182.22 95.22,186.499 89.499,186.499 L59.499,186.499 C53.976,186.499 49.499,182.22 49.499,176.499 L49.499,149.499 C49.499,147.842 50.842,146.499 52.499,146.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M52.499,39.499 L96.499,39.499 C98.156,39.499 99.499,40.842 99.499,42.499 L99.499,144.499 C99.499,146.156 98.156,147.499 96.499,147.499 L52.499,147.499 C50.842,147.499 49.499,146.156 49.499,144.499 L49.499,42.499 C49.499,40.842 50.842,39.499 52.499,39.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M59.499,0.499 L89.499,0.499 C95.22,0.499 99.499,4.976 99.499,10.499 L99.499,37.499 C99.499,39.156 98.156,40.499 96.499,40.499 L52.499,40.499 C50.842,40.499 49.499,39.156 49.499,37.499 L49.499,10.499 C49.499,4.976 53.976,0.499 59.499,0.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(72, 119, 189)" d="M59.499,72.499 L89.499,72.499 L89.499,135.499 L59.499,135.499 L59.499,72.499 Z" />\r\n    <g class="sim-motion-breaker-handle" data-motion-part="breaker-handle"><path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M10.499,99.499 L89.499,99.499 C92.25999999999999,99.499 94.499,101.738 94.499,104.499 L94.499,130.499 C94.499,133.260 92.25999999999999,135.499 89.499,135.499 L10.499,135.499 C7.738,135.499 5.499,133.260 5.499,130.499 L5.499,104.499 C5.499,101.738 7.738,99.499 10.499,99.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(72, 119, 189)"\r\n        d="M5.499,127.499 L94.499,127.499 L94.499,130.499 C94.499,133.260 92.25999999999999,135.499 89.499,135.499 L10.499,135.499 C7.738,135.499 5.499,133.260 5.499,130.499 L5.499,127.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(55, 85, 129)"\r\n        d="M63.498999999999995,135.499 L63.498999999999995,123.499 L75.499,123.499 L75.499,135.499 L63.498999999999995,135.499 ZM24.499,123.499 L36.499,123.499 L36.499,135.499 L24.499,135.499 L24.499,123.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(124, 177, 255)"\r\n        d="M10.499,99.499 L89.499,99.499 C92.25999999999999,99.499 94.499,101.738 94.499,104.499 L94.499,105.499 L5.499,105.499 L5.499,104.499 C5.499,101.738 7.738,99.499 10.499,99.499 Z" /></g>\r\n    <path class="sim-breaker-status" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M84.499,47.499 L88.499,47.499 C89.52,47.499 89.499,47.947 89.499,48.499 L89.499,52.499 C89.499,53.51 89.52,53.499 88.499,53.499 L84.499,53.499 C83.947,53.499 83.499,53.51 83.499,52.499 L83.499,48.499 C83.499,47.947 83.947,47.499 84.499,47.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M74.498,10.499 C80.21,10.499 84.499,14.976 84.499,20.499 C84.499,26.21 80.21,30.499 74.498,30.499 C68.976,30.499 64.498,26.21 64.498,20.499 C64.498,14.976 68.976,10.499 74.498,10.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M74.498,16.499 C76.708,16.499 78.498,18.289 78.498,20.499 C78.498,22.708 76.708,24.499 74.498,24.499 C72.290,24.499 70.499,22.708 70.499,20.499 C70.499,18.289 72.290,16.499 74.498,16.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M74.498,156.498 C80.21,156.498 84.499,160.976 84.499,166.498 C84.499,172.21 80.21,176.499 74.498,176.499 C68.976,176.499 64.498,172.21 64.498,166.498 C64.498,160.976 68.976,156.498 74.498,156.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M74.498,162.498 C76.708,162.498 78.498,164.290 78.498,166.498 C78.498,168.708 76.708,170.498 74.498,170.498 C72.290,170.498 70.499,168.708 70.499,166.498 C70.499,164.290 72.290,162.498 74.498,162.498 Z" />\r\n'
+  },
   "breaker3": {
     "width": 149.5,
     "height": 187.5,
@@ -34440,18 +34662,18 @@ var switchMotionShapes = {
 };
 
 // app/simulator/editor/SwitchMotionArtwork.tsx
-var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
 function SwitchMotionArtwork({ type, pressed = false, closed = false, className = "" }) {
   const shape = switchMotionShapes[type];
-  const breaker = type === "breaker1" || type === "breaker3";
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("svg", { className: `sim-device-artwork sim-switch-motion ${pressed ? "is-depressed" : ""} ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${shape.width} ${shape.height}`, role: "img", "aria-label": `${getDefinition(type).name} \xB7 ${breaker ? closed ? "\u5408\u95F8\uFF0C\u624B\u67C4\u5728\u4E0A" : "\u5206\u95F8\uFF0C\u624B\u67C4\u5728\u4E0B" : pressed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77"}`, "data-mechanism-state": breaker ? closed ? "closed" : "open" : pressed ? "pressed" : "released", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("g", { dangerouslySetInnerHTML: { __html: shape.body } }),
-    breaker && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("text", { className: "sim-breaker-position", x: shape.width / 2, y: closed ? 98 : 124, textAnchor: "middle", fill: "white", fontSize: "19", fontWeight: "700", "aria-hidden": "true", children: closed ? "I" : "O" })
+  const breaker = type === "breaker1" || type === "breaker2" || type === "breaker3";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("svg", { className: `sim-device-artwork sim-switch-motion ${pressed ? "is-depressed" : ""} ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${shape.width} ${shape.height}`, role: "img", "aria-label": `${getDefinition(type).name} \xB7 ${breaker ? closed ? "\u5408\u95F8\uFF0C\u624B\u67C4\u5728\u4E0A" : "\u5206\u95F8\uFF0C\u624B\u67C4\u5728\u4E0B" : pressed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77"}`, "data-mechanism-state": breaker ? closed ? "closed" : "open" : pressed ? "pressed" : "released", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("g", { dangerouslySetInnerHTML: { __html: shape.body } }),
+    breaker && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("text", { className: "sim-breaker-position", x: shape.width / 2, y: closed ? 98 : 124, textAnchor: "middle", fill: "white", fontSize: "19", fontWeight: "700", "aria-hidden": "true", children: closed ? "I" : "O" })
   ] });
 }
 
 // app/simulator/editor/MotorMotionArtwork.tsx
-var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
 function MotorMotionArtwork({ type, active, direction, speed, className = "" }) {
   const asset = type === "motor" ? "motor" : "motor6";
   const height = type === "motor" ? 191.5 : 211.5;
@@ -34460,7 +34682,7 @@ function MotorMotionArtwork({ type, active, direction, speed, className = "" }) 
   const name = type === "motor" ? "\u4E09\u76F8\u5F02\u6B65\u7535\u673A" : type === "motor-star-delta" ? "\u516D\u7AEF\u5B50\u7535\u673A" : "\u53CC\u901F\u7535\u673A";
   const directionText = direction === "reverse" ? "\u53CD\u8F6C" : direction === "forward" ? "\u6B63\u8F6C" : "\u8FD0\u884C";
   const stateText = active ? `${directionText}${speed === "high" ? " \xB7 \u9AD8\u901F" : speed === "low" ? " \xB7 \u4F4E\u901F" : ""}` : "\u505C\u6B62";
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
     "svg",
     {
       className: `sim-device-artwork sim-motor-motion-artwork ${active ? "is-active" : ""} ${className}`,
@@ -34472,20 +34694,20 @@ function MotorMotionArtwork({ type, active, direction, speed, className = "" }) 
       "data-motor-direction": direction,
       "data-motor-speed": speed,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("title", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("title", { children: [
           name,
           " \xB7 ",
           stateText
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-body.svg`, width: "280.5", height }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("g", { className: "sim-motor-motion-rotor", style: {
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("image", { href: `${base}-body.svg`, width: "280.5", height }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("g", { className: "sim-motor-motion-rotor", style: {
           transformOrigin: `${centerX}px 115.499px`,
           animationDirection: direction === "reverse" ? "reverse" : "normal",
           // These rates distinguish state visually; they are not mechanical RPM values.
           animationDuration: speed === "high" ? "0.4s" : speed === "low" ? "0.8s" : "0.6s"
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-blades.svg`, width: "280.5", height }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("image", { href: `${base}-hub.svg`, width: "280.5", height }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("text", { className: "sim-motor-motion-static", x: centerX, y: "180", textAnchor: "middle", children: stateText })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("image", { href: `${base}-blades.svg`, width: "280.5", height }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("image", { href: `${base}-hub.svg`, width: "280.5", height }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("text", { className: "sim-motor-motion-static", x: centerX, y: "180", textAnchor: "middle", children: stateText })
       ]
     }
   );
@@ -34499,7 +34721,7 @@ var knifeSwitchShape = {
 };
 
 // app/simulator/editor/KnifeSwitchArtwork.tsx
-var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
 var knifeSwitchMotionCss = `
 .sim-knife-motion.is-closed .sim-knife-back{display:none}
 .sim-knife-motion.is-closed .sim-knife-handle{transform:translateY(-40px)}
@@ -34508,60 +34730,61 @@ var knifeSwitchMotionCss = `
 .sim-knife-motion.is-closed .sim-knife-blade-3{transform-origin:center;transform:rotate(15deg) translate(12.5px,-18px)}
 `;
 function KnifeSwitchArtwork({ closed = false, className = "" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("svg", { className: `sim-device-artwork sim-knife-motion ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${knifeSwitchShape.width} ${knifeSwitchShape.height}`, role: "img", "aria-label": `\u4E09\u6781\u5200\u5F00\u5173\uFF08QS\uFF09 \xB7 ${closed ? "\u5DF2\u5408\u95F8" : "\u5DF2\u5206\u95F8"}`, "data-mechanism-state": closed ? "closed" : "open", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("style", { children: knifeSwitchMotionCss }),
-    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("g", { dangerouslySetInnerHTML: { __html: knifeSwitchShape.body } })
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("svg", { className: `sim-device-artwork sim-knife-motion ${closed ? "is-closed" : ""} ${className}`, viewBox: `0 0 ${knifeSwitchShape.width} ${knifeSwitchShape.height}`, role: "img", "aria-label": `\u4E09\u6781\u5200\u5F00\u5173\uFF08QS\uFF09 \xB7 ${closed ? "\u5DF2\u5408\u95F8" : "\u5DF2\u5206\u95F8"}`, "data-mechanism-state": closed ? "closed" : "open", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("style", { children: knifeSwitchMotionCss }),
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("g", { dangerouslySetInnerHTML: { __html: knifeSwitchShape.body } })
   ] });
 }
 
 // app/simulator/editor/contactor-state-shapes.ts
 var contactorStateShapes = {
-  "contactor220": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n',
-  "contactor380": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(236, 236, 236)"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(81, 81, 81)" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(56, 56, 56)" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(99, 124, 207)"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n'
+  "contactor220": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(93, 158, 255)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n',
+  "contactor380": '\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(208, 208, 208)"\r\n        d="M122.499,185.500 L122.499,171.500 L148.500,171.500 L148.500,185.500 L122.499,185.500 ZM122.499,5.499 L148.500,5.499 L148.500,19.499 L122.499,19.499 L122.499,5.499 ZM62.499,171.500 L88.500,171.500 L88.500,185.500 L62.499,185.500 L62.499,171.500 ZM62.499,5.499 L88.500,5.499 L88.500,19.499 L62.499,19.499 L62.499,5.499 ZM22.499,171.500 L48.500,171.500 L48.500,185.500 L22.499,185.500 L22.499,171.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M147.500,188.499 L146.500,188.499 L146.500,179.499 L146.497,179.499 C146.497,179.499 146.497,179.499 146.497,179.498 C146.497,174.528 142.468,170.499 137.497,170.499 C132.527,170.499 128.498,174.528 128.498,179.498 C128.498,179.512 128.499,179.524 128.500,179.538 L128.500,188.499 L123.500,188.499 L123.500,179.499 L105.500,179.499 L105.500,188.499 L84.500,188.499 L84.500,179.499 L84.497,179.499 C84.497,179.499 84.497,179.499 84.497,179.498 C84.497,174.528 80.468,170.499 75.498,170.499 C70.527,170.499 66.498,174.528 66.498,179.498 C66.498,179.509 66.499,179.520 66.499,179.531 L66.499,188.499 L46.499,188.499 L46.499,179.499 L46.498,179.499 C46.498,179.499 46.498,179.499 46.498,179.498 C46.498,174.528 42.468,170.499 37.498,170.499 C32.527,170.499 28.497,174.528 28.497,179.498 C28.497,179.514 28.499,179.530 28.499,179.545 L28.499,188.499 L3.499,188.499 C1.843,188.499 0.499,187.156 0.499,185.500 L0.499,5.499 C0.499,3.843 1.843,2.500 3.499,2.500 L28.499,2.500 L28.499,11.500 L46.499,11.500 L46.499,2.500 L66.499,2.500 L66.499,7.499 L66.728,7.499 C66.582,8.143 66.498,8.811 66.498,9.499 C66.498,14.469 70.527,18.498 75.498,18.498 C80.468,18.498 84.497,14.469 84.497,9.499 C84.497,8.811 84.413,8.143 84.267,7.499 L84.500,7.499 L84.500,2.500 L105.500,2.500 L105.500,11.500 L123.500,11.500 L123.500,2.500 L128.500,2.500 L128.500,7.499 L128.728,7.499 C128.582,8.143 128.498,8.811 128.498,9.499 C128.498,14.469 132.527,18.498 137.497,18.498 C142.468,18.498 146.497,14.469 146.497,9.499 C146.497,8.811 146.413,8.143 146.267,7.499 L146.500,7.499 L146.500,2.500 L147.500,2.500 C149.156,2.500 150.500,3.843 150.500,5.499 L150.500,185.500 C150.500,187.156 149.156,188.499 147.500,188.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45"\r\n        d="M144.500,188.500 L144.500,169.500 L150.500,169.500 L150.500,188.500 L144.500,188.500 ZM144.500,2.499 L150.500,2.499 L150.500,21.499 L144.500,21.499 L144.500,2.499 ZM0.499,169.500 L6.499,169.500 L6.499,188.500 L0.499,188.500 L0.499,169.500 ZM0.499,2.499 L6.499,2.499 L6.499,21.499 L0.499,21.499 L0.499,2.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,170.498 C142.20,170.498 146.498,174.975 146.498,180.498 C146.498,186.21 142.20,190.499 136.497,190.499 C130.974,190.499 126.497,186.21 126.497,180.498 C126.497,174.975 130.974,170.498 136.497,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,176.498 C138.707,176.498 140.497,178.289 140.497,180.498 C140.497,182.708 138.707,184.498 136.497,184.498 C134.288,184.498 132.498,182.708 132.498,180.498 C132.498,178.289 134.288,176.498 136.497,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,170.498 C120.20,170.498 124.498,174.975 124.498,180.498 C124.498,186.21 120.20,190.498 114.498,190.498 C108.974,190.498 104.497,186.21 104.497,180.498 C104.497,174.975 108.974,170.498 114.498,170.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,176.498 C116.707,176.498 118.497,178.289 118.497,180.498 C118.497,182.707 116.707,184.498 114.498,184.498 C112.288,184.498 110.497,182.707 110.497,180.498 C110.497,178.289 112.288,176.498 114.498,176.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M114.498,0.499 C120.20,0.499 124.498,4.975 124.498,10.498 C124.498,16.21 120.20,20.498 114.498,20.498 C108.974,20.498 104.497,16.21 104.497,10.498 C104.497,4.975 108.974,0.499 114.498,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M114.498,6.498 C116.707,6.498 118.497,8.289 118.497,10.498 C118.497,12.708 116.707,14.498 114.498,14.498 C112.288,14.498 110.497,12.708 110.497,10.498 C110.497,8.289 112.288,6.498 114.498,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M136.497,0.499 C142.20,0.499 146.498,4.975 146.498,10.498 C146.498,16.21 142.20,20.498 136.497,20.498 C130.974,20.498 126.497,16.21 126.497,10.498 C126.497,4.975 130.974,0.499 136.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M136.497,6.498 C138.707,6.498 140.497,8.289 140.497,10.498 C140.497,12.707 138.707,14.498 136.497,14.498 C134.288,14.498 132.498,12.707 132.498,10.498 C132.498,8.289 134.288,6.498 136.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M37.497,0.499 C43.20,0.499 47.498,4.975 47.498,10.498 C47.498,16.21 43.20,20.498 37.497,20.498 C31.974,20.498 27.497,16.21 27.497,10.498 C27.497,4.975 31.974,0.499 37.497,0.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M37.497,6.498 C39.706,6.498 41.497,8.289 41.497,10.498 C41.497,12.708 39.706,14.498 37.497,14.498 C35.288,14.498 33.497,12.708 33.497,10.498 C33.497,8.289 35.288,6.498 37.497,6.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M3.499,17.500 L147.500,17.500 C149.156,17.500 150.500,18.843 150.500,20.500 L150.500,170.499 C150.500,172.156 149.156,173.499 147.500,173.499 L3.499,173.499 C1.843,173.499 0.499,172.156 0.499,170.499 L0.499,20.500 C0.499,18.843 1.843,17.500 3.499,17.500 Z" />\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="7.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">1/L1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">3/L2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="53.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">5/L3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px"\r\n        y="63.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">13NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="6.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">2/T1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="44.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">4/T2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="82.5px" y="147.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">6/T3</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="120.5px" y="137.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">14NO</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="31.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A1</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="104.5px" y="29.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px"\r\n        y="29.3589999999999px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">21NC</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="102.5px" y="171.5px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">A2</tspan>\r\n    </text>\r\n    <text kerning="auto" font-family="Adobe Heiti Std" fill="rgb(0, 0, 0)" font-size="10px" x="122.5px" y="171.359px">\r\n        <tspan font-size="10px" font-family="PingFang SC" fill="#333333">22NC</tspan>\r\n    </text>\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45"\r\n        d="M149.500,134.721 L149.500,125.499 L115.500,125.499 L115.500,135.500 L3.499,135.500 C1.843,135.500 0.499,134.156 0.499,132.500 L0.499,58.499 C0.499,56.843 1.843,55.500 3.499,55.500 L115.500,55.500 L115.500,64.500 L149.500,64.500 L149.500,56.278 C150.109,56.827 150.500,57.614 150.500,58.499 L150.500,132.500 C150.500,133.385 150.109,134.172 149.500,134.721 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#b8c0c5"\r\n        d="M38.499,115.499 L112.500,115.499 C114.156,115.499 115.500,116.843 115.500,118.499 L115.500,134.500 C115.500,136.156 114.156,137.500 112.500,137.500 L38.499,137.500 C36.843,137.500 35.499,136.156 35.499,134.500 L35.499,118.499 C35.499,116.843 36.843,115.499 38.499,115.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M8.499,76.500 L32.500,76.500 C34.156,76.500 35.500,77.843 35.500,79.499 L35.500,106.500 C35.500,108.156 34.156,109.499 32.500,109.499 L8.499,109.499 C6.843,109.499 5.499,108.156 5.499,106.500 L5.499,79.499 C5.499,77.843 6.843,76.500 8.499,76.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M118.499,76.500 L142.500,76.500 C144.156,76.500 145.500,77.843 145.500,79.499 L145.500,106.500 C145.500,108.156 144.156,109.499 142.500,109.499 L118.499,109.499 C116.843,109.499 115.499,108.156 115.499,106.500 L115.499,79.499 C115.499,77.843 116.843,76.500 118.499,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31"\r\n        d="M46.500,76.500 L104.499,76.500 C106.156,76.500 107.500,77.843 107.500,79.499 L107.500,106.500 C107.500,108.156 106.156,109.499 104.499,109.499 L46.500,109.499 C44.843,109.499 43.499,108.156 43.499,106.500 L43.499,79.499 C43.499,77.843 44.843,76.500 46.500,76.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#343d45" d="M43.499,55.499 L107.500,55.499 L107.500,77.500 L43.499,77.500 L43.499,55.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M56.499,61.499 L94.500,61.499 L94.500,73.500 L56.499,73.500 L56.499,61.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M129.499,64.499 L141.500,64.499 L141.500,73.500 L129.499,73.500 L129.499,64.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31"\r\n        d="M129.499,113.499 L141.500,113.499 L141.500,125.500 L129.499,125.500 L129.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M9.499,113.499 L21.500,113.499 L21.500,125.500 L9.499,125.500 L9.499,113.499 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#222a31" d="M9.499,61.499 L21.500,61.499 L21.500,73.500 L9.499,73.500 L9.499,61.499 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M48.499,78.500 L64.500,78.500 C66.156,78.500 67.500,79.843 67.500,81.500 L67.500,104.499 C67.500,106.156 66.156,107.499 64.500,107.499 L48.499,107.499 C46.843,107.499 45.499,106.156 45.499,104.499 L45.499,81.500 C45.499,79.843 46.843,78.500 48.499,78.500 Z" />\r\n    <path class="sim-contactor-state-region" fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="#595ba4"\r\n        d="M86.499,78.500 L102.500,78.500 C104.156,78.500 105.500,79.843 105.500,81.500 L105.500,104.499 C105.500,106.156 104.156,107.499 102.500,107.499 L86.499,107.499 C84.843,107.499 83.499,106.156 83.499,104.499 L83.499,81.500 C83.499,79.843 84.843,78.500 86.499,78.500 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,21.499 C23.20,21.499 27.498,25.975 27.498,31.498 C27.498,37.21 23.20,41.498 17.497,41.498 C11.974,41.498 7.497,37.21 7.497,31.498 C7.497,25.975 11.974,21.499 17.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,27.498 C19.706,27.498 21.497,29.289 21.497,31.498 C21.497,33.707 19.706,35.499 17.497,35.499 C15.288,35.499 13.498,33.707 13.498,31.498 C13.498,29.289 15.288,27.498 17.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,21.499 C62.20,21.499 66.498,25.975 66.498,31.498 C66.498,37.21 62.20,41.498 56.497,41.498 C50.974,41.498 46.498,37.21 46.498,31.498 C46.498,25.975 50.974,21.499 56.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,27.498 C58.706,27.498 60.497,29.289 60.497,31.498 C60.497,33.707 58.706,35.499 56.497,35.499 C54.289,35.499 52.498,33.707 52.498,31.498 C52.498,29.289 54.289,27.498 56.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,21.499 C100.20,21.499 104.497,25.975 104.497,31.498 C104.497,37.21 100.20,41.498 94.497,41.498 C88.974,41.498 84.497,37.21 84.497,31.498 C84.497,25.975 88.974,21.499 94.497,21.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,27.498 C96.706,27.498 98.498,29.289 98.498,31.498 C98.498,33.707 96.706,35.499 94.497,35.499 C92.288,35.499 90.497,33.707 90.497,31.498 C90.497,29.289 92.288,27.498 94.497,27.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,31.499 C140.20,31.499 144.497,35.976 144.497,41.499 C144.497,47.21 140.20,51.498 134.497,51.498 C128.975,51.498 124.497,47.21 124.497,41.499 C124.497,35.976 128.975,31.499 134.497,31.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,37.498 C136.706,37.498 138.497,39.289 138.497,41.499 C138.497,43.708 136.706,45.498 134.497,45.498 C132.288,45.498 130.497,43.708 130.497,41.499 C130.497,39.289 132.288,37.498 134.497,37.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 223, 93)"\r\n        d="M17.497,149.498 C23.20,149.498 27.498,153.975 27.498,159.498 C27.498,165.21 23.20,169.498 17.497,169.498 C11.974,169.498 7.497,165.21 7.497,159.498 C7.497,153.975 11.974,149.498 17.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M17.497,155.498 C19.706,155.498 21.497,157.289 21.497,159.498 C21.497,161.708 19.706,163.498 17.497,163.498 C15.288,163.498 13.498,161.708 13.498,159.498 C13.498,157.289 15.288,155.498 17.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M56.497,149.498 C62.20,149.498 66.498,153.975 66.498,159.498 C66.498,165.21 62.20,169.498 56.497,169.498 C50.974,169.498 46.498,165.21 46.498,159.498 C46.498,153.975 50.974,149.498 56.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M56.497,155.498 C58.706,155.498 60.497,157.289 60.497,159.498 C60.497,161.708 58.706,163.498 56.497,163.498 C54.289,163.498 52.498,161.708 52.498,159.498 C52.498,157.289 54.289,155.498 56.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(255, 93, 93)"\r\n        d="M94.497,149.498 C100.20,149.498 104.497,153.975 104.497,159.498 C104.497,165.21 100.20,169.498 94.497,169.498 C88.974,169.498 84.497,165.21 84.497,159.498 C84.497,153.975 88.974,149.498 94.497,149.498 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M94.497,155.498 C96.706,155.498 98.498,157.289 98.498,159.498 C98.498,161.708 96.706,163.498 94.497,163.498 C92.288,163.498 90.497,161.708 90.497,159.498 C90.497,157.289 92.288,155.498 94.497,155.498 Z" />\r\n    <path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter"\r\n        fill="rgb(124, 227, 153)"\r\n        d="M134.497,138.499 C140.20,138.499 144.497,142.976 144.497,148.498 C144.497,154.21 140.20,158.499 134.497,158.499 C128.975,158.499 124.497,154.21 124.497,148.498 C124.497,142.976 128.975,138.499 134.497,138.499 Z" />\r\n    <path fill-rule="evenodd" fill="rgb(0, 0, 0)"\r\n        d="M134.497,144.499 C136.706,144.499 138.497,146.289 138.497,148.498 C138.497,150.707 136.706,152.499 134.497,152.499 C132.288,152.499 130.497,150.707 130.497,148.498 C130.497,146.289 132.288,144.499 134.497,144.499 Z" />\r\n'
 };
 
 // app/simulator/editor/ContactorStateArtwork.tsx
-var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
 function ContactorStateArtwork({ type, active, className = "" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("svg", { className: `sim-device-artwork sim-contactor-artwork ${active ? "is-engaged" : ""} ${className}`, viewBox: "0 0 151.5 191.5", role: "img", "aria-label": `\u4EA4\u6D41\u63A5\u89E6\u5668 \xB7 ${active ? "\u5438\u5408" : "\u91CA\u653E"}`, "data-contactor-engaged": active, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("g", { dangerouslySetInnerHTML: { __html: contactorStateShapes[type] } }),
-    active && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("g", { className: "sim-contactor-state-text", "aria-hidden": "true", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("text", { x: "57.5", y: "98", textAnchor: "middle", children: "\u5438" }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("text", { x: "94.5", y: "98", textAnchor: "middle", children: "\u5408" })
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("svg", { className: `sim-device-artwork sim-contactor-artwork ${active ? "is-engaged" : ""} ${className}`, viewBox: "0 0 151.5 191.5", role: "img", "aria-label": `\u4EA4\u6D41\u63A5\u89E6\u5668 \xB7 ${active ? "\u5438\u5408" : "\u91CA\u653E"}`, "data-contactor-engaged": active, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("g", { dangerouslySetInnerHTML: { __html: contactorStateShapes[type] } }),
+    active && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("g", { className: "sim-contactor-state-text", "aria-hidden": "true", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("text", { x: "57.5", y: "98", textAnchor: "middle", children: "\u5438" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("text", { x: "94.5", y: "98", textAnchor: "middle", children: "\u5408" })
     ] })
   ] });
 }
 
 // app/simulator/editor/DeviceArtwork.tsx
-var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
-function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "", rotation = 0, mirrored = false, pePositions = [], result, delayMs, running = false }) {
+var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
+function DeviceArtwork({ type, active = false, pressed = false, closed = false, direction, speed, className = "", rotation = 0, mirrored = false, pePositions = [], terminalLabels = {}, result, delayMs, running = false }) {
   if (rotation) {
     const d = getDefinition(type);
     const translate = rotation === 90 ? `${d.height}px, 0px` : rotation === 180 ? `${d.width}px, ${d.height}px` : `0px, ${d.width}px`;
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-rotated-artwork", style: { position: "absolute", left: 0, top: 0, width: d.width, height: d.height, transformOrigin: "0 0", transform: `translate(${translate}) rotate(${rotation}deg)` }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(DeviceArtwork, { type, active, pressed, closed, direction, speed, mirrored, pePositions, result, delayMs, running }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "sim-rotated-artwork", style: { position: "absolute", left: 0, top: 0, width: d.width, height: d.height, transformOrigin: "0 0", transform: `translate(${translate}) rotate(${rotation}deg)` }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DeviceArtwork, { type, active, pressed, closed, direction, speed, mirrored, pePositions, terminalLabels, result, delayMs, running }) });
   }
-  if (type === "din-rail") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-device-artwork sim-rail-artwork", role: "img", "aria-label": "\u5B89\u88C5\u5BFC\u8F68" });
-  if (type === "relay380-jzc1-22" || type === "timer380" || type === "timer380-8pin") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(RelayArtwork, { type, active, result, delayMs, running });
-  if (type === "contactor220" || type === "contactor380") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ContactorStateArtwork, { type, active, className });
-  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
-  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
-  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(KnifeSwitchArtwork, { closed, className });
-  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
-  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: "\u7EBF\u69FD" }) });
-  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "sim-supply-name", style: mirrored ? { top: "62%" } : void 0, children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${(mirrored ? getDefinition(type).height - terminal.y : terminal.y) / getDefinition(type).height * 100}%` }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { style: mirrored ? { bottom: "auto", top: 9 } : void 0, children: terminal.label }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
+  if (type === "din-rail") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "sim-device-artwork sim-rail-artwork", role: "img", "aria-label": "\u5B89\u88C5\u5BFC\u8F68" });
+  if (type === "relay380-jzc1-22" || type === "timer380" || type === "timer380-8pin") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(RelayArtwork, { type, active, result, delayMs, running });
+  if (type === "contactor220" || type === "contactor380") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ContactorStateArtwork, { type, active, className });
+  if (type === "push-no" || type === "push-nc" || type === "breaker1" || type === "breaker2" || type === "breaker3") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SwitchMotionArtwork, { type, pressed, closed, className });
+  if (type === "push-latching-red" || type === "push-latching-green") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SwitchMotionArtwork, { type, pressed: closed, className });
+  if (type === "knife-switch3") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(KnifeSwitchArtwork, { closed, className });
+  if (type === "motor" || type === "motor-star-delta" || type === "motor-dahlander") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(MotorMotionArtwork, { type, active, direction, speed, className });
+  if (type === "wire-duct" || type === "wire-duct-vertical") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: `sim-device-artwork sim-duct-artwork ${type === "wire-duct-vertical" ? "is-vertical" : ""} ${className}`, role: "img", "aria-label": getDefinition(type).name, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: "\u7EBF\u69FD" }) });
+  if (type === "supply") return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: `sim-device-artwork sim-supply-artwork ${className}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: "sim-supply-name", style: mirrored ? { top: "62%" } : void 0, children: "\u4E09\u76F8\u4E94\u7EBF\u7535\u6E90 \xB7 380 / 220 V" }),
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "sim-supply-ports", children: getDefinition(type).terminals.map((terminal) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("span", { style: { left: `${terminal.x / getDefinition(type).width * 100}%`, top: `${(mirrored ? getDefinition(type).height - terminal.y : terminal.y) / getDefinition(type).height * 100}%` }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("b", { style: mirrored ? { bottom: "auto", top: 9 } : void 0, children: terminal.label }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("i", { style: { borderColor: terminalColor(terminal) } })
     ] }, terminal.id)) })
   ] });
-  if (isTerminalStrip(type)) return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { className: `sim-device-artwork ${className}`, style: { position: "relative", display: "block", width: "100%", height: "100%" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/${type}.svg`, alt: getDefinition(type).name, draggable: false, style: { display: "block", width: "100%", height: "100%" } }),
-    pePositions.map((position) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-label": `\u7B2C${position}\u4F4D PE`, style: { position: "absolute", left: `${(position - 1) / terminalStripCapacity(type) * 100}%`, top: 0, width: `${100 / terminalStripCapacity(type)}%`, height: "100%", boxShadow: "inset 0 0 0 3px #e3c530", background: "linear-gradient(135deg,transparent 40%,#219b6544 40%,#219b6544 60%,transparent 60%)", pointerEvents: "none" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { style: { position: "absolute", left: 0, right: 0, top: "42%", textAlign: "center", fontSize: 8, color: "#fff2a0" }, children: "PE" }) }, position))
+  if (isTerminalStrip(type)) return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("span", { className: `sim-device-artwork ${className}`, style: { position: "relative", display: "block", width: "100%", height: "100%" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/${type}.svg`, alt: getDefinition(type).name, draggable: false, style: { display: "block", width: "100%", height: "100%" } }),
+    Object.entries(terminalLabels).map(([position, label]) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { "data-terminal-position": position, className: "sim-terminal-slot-label", title: label, style: { position: "absolute", left: `${(Number(position) - 1) / terminalStripCapacity(type) * 100}%`, top: "42%", width: `${100 / terminalStripCapacity(type)}%`, textAlign: "center", fontSize: 10, lineHeight: "13px", color: "#fff", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", pointerEvents: "none" }, children: label }, `label-${position}`)),
+    pePositions.map((position) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { "aria-label": `\u7B2C${position}\u4F4D PE`, style: { position: "absolute", left: `${(position - 1) / terminalStripCapacity(type) * 100}%`, top: 0, width: `${100 / terminalStripCapacity(type)}%`, height: "100%", boxShadow: "inset 0 0 0 3px #e3c530", background: "linear-gradient(135deg,transparent 40%,#219b6544 40%,#219b6544 60%,transparent 60%)", pointerEvents: "none" }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("b", { style: { position: "absolute", left: 0, right: 0, top: "19%", textAlign: "center", fontSize: 8, color: "#fff2a0" }, children: "PE" }) }, position))
   ] });
-  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
+  if (type === "pe-terminal") return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: `sim-device-artwork sim-pe-artwork ${className}`, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("img", { src: `${"/diantuo-zhixun/"}sim-assets/terminal.svg`, alt: "\u4FDD\u62A4\u63A5\u5730\u7AEF\u5B50", draggable: false }) });
   const asset = type === "relay380" ? "relay220" : type;
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
     "img",
     {
       className: `sim-device-artwork ${active ? "is-active" : ""} ${className}`,
@@ -34573,7 +34796,7 @@ function DeviceArtwork({ type, active = false, pressed = false, closed = false, 
 }
 
 // app/simulator/editor/DeviceNode.tsx
-var import_react7 = __toESM(require_react(), 1);
+var import_react10 = __toESM(require_react(), 1);
 
 // app/simulator/editor/labels.ts
 var LABELS = {
@@ -34609,28 +34832,28 @@ var runtimeLabel = (state) => LABELS[state ?? ""] ?? state ?? "\u672A\u5F97\u753
 var runtimeSummary = (result) => [runtimeLabel(result?.state), ...[result?.direction, result?.connection, result?.speed].filter((value) => !!value).map(runtimeLabel)].join(" \xB7 ");
 
 // app/simulator/editor/DeviceNode.tsx
-var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
 var sidePosition = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right };
 function DeviceNode({ data, selected: selected2 }) {
   const { component: component2, running, runtime, result, action } = data;
   const definition = getDefinition(component2.type);
   const size = componentSize(component2);
   const duct = isLayoutObject(component2.type);
-  const [settingsOpen, setSettingsOpen] = (0, import_react7.useState)(false);
-  const timerInput = (0, import_react7.useRef)(null);
-  (0, import_react7.useLayoutEffect)(() => {
+  const [settingsOpen, setSettingsOpen] = (0, import_react10.useState)(false);
+  const timerInput = (0, import_react10.useRef)(null);
+  (0, import_react10.useLayoutEffect)(() => {
     if (settingsOpen) timerInput.current?.focus();
   }, [settingsOpen]);
   const rail = component2.type === "din-rail";
   const timer2 = isTimer(component2.type);
   const contactor2 = component2.type === "contactor220" || component2.type === "contactor380";
-  const resizeActions = (0, import_react7.useRef)(data);
-  (0, import_react7.useLayoutEffect)(() => {
+  const resizeActions = (0, import_react10.useRef)(data);
+  (0, import_react10.useLayoutEffect)(() => {
     resizeActions.current = data;
   }, [data]);
-  const onResizeStart = (0, import_react7.useCallback)(() => resizeActions.current.beginResize?.(component2.id), [component2.id]);
-  const onResize = (0, import_react7.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2), [component2.id]);
-  const onResizeEnd = (0, import_react7.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2, true), [component2.id]);
+  const onResizeStart = (0, import_react10.useCallback)(() => resizeActions.current.beginResize?.(component2.id), [component2.id]);
+  const onResize = (0, import_react10.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2), [component2.id]);
+  const onResizeEnd = (0, import_react10.useCallback)((_event, bounds2) => resizeActions.current.resize?.(component2.id, bounds2, true), [component2.id]);
   const leads = data.document?.wires.flatMap((wire) => [wire.from, wire.to].filter((ref2) => ref2.componentId === component2.id).map((ref2) => ({ wire, terminal: definition.terminals.find((terminal) => terminal.id === ref2.terminalId) }))) ?? [];
   const faulty = data.diagnostics.some((d) => d.componentIds.includes(component2.id) && d.severity !== "info");
   const momentary = component2.type === "push-no" || component2.type === "push-nc" || component2.type === "limit-switch";
@@ -34638,12 +34861,12 @@ function DeviceNode({ data, selected: selected2 }) {
   const actuatorPosition = component2.rotation === 90 ? { left: definition.height - actuatorPoint.y, top: actuatorPoint.x } : component2.rotation === 180 ? { left: definition.width - actuatorPoint.x, top: definition.height - actuatorPoint.y } : component2.rotation === 270 ? { left: actuatorPoint.y, top: definition.width - actuatorPoint.x } : { left: actuatorPoint.x, top: actuatorPoint.y };
   const latching = component2.type === "push-latching-red" || component2.type === "push-latching-green";
   const knife = component2.type === "knife-switch3";
-  const breaker = component2.type === "breaker1" || component2.type === "breaker3";
+  const breaker = component2.type === "breaker1" || component2.type === "breaker2" || component2.type === "breaker3";
   const toggle = breaker || knife || latching || component2.type === "switch1" || component2.type === "switch2";
   const closed = !!runtime.switches[component2.id];
   const pressed = !!runtime.pressed[component2.id];
   const dispatch2 = (type) => action({ type, componentId: component2.id });
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
     "div",
     {
       className: `sim-device-node ${selected2 ? "is-selected" : ""} ${faulty ? "has-diagnostic" : ""} ${pressed ? "is-pressed" : ""} ${result?.active ? "is-active" : ""} ${definition.load?.kind === "motor" && result?.active ? "sim-motor-running" : ""}`,
@@ -34658,41 +34881,42 @@ function DeviceNode({ data, selected: selected2 }) {
       "data-runtime-connection": result?.connection,
       "data-runtime-speed": result?.speed,
       children: [
-        duct && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: rail ? 24 : DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: rail ? 24 : DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(DeviceArtwork, { rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, result, delayMs: component2.settings?.delayMs, running, type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
-        data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
+        duct && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(NodeResizer, { isVisible: !!selected2 && !running && !data.readOnly, minWidth: DUCT_MIN_SIZE, minHeight: rail ? 24 : DUCT_MIN_SIZE, maxWidth: DUCT_MAX_SIZE, maxHeight: rail ? 24 : DUCT_MAX_SIZE, keepAspectRatio: false, handleClassName: "sim-duct-resize-handle", lineClassName: "sim-duct-resize-line", onResizeStart, onResize, onResizeEnd }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(DeviceArtwork, { rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, terminalLabels: component2.terminalLabels, result, delayMs: component2.settings?.delayMs, running, type: component2.type, active: !!result?.active, pressed, closed: !!runtime.switches[component2.id], direction: result?.direction, speed: result?.speed }),
+        data.document && !!leads.length && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("svg", { className: "sim-terminal-leads", width: size.width, height: size.height, "aria-hidden": "true", children: leads.map(({ wire, terminal }) => {
           const clip = `lead-${component2.id}-${wire.id}-${terminal.id}`;
           const traced = data.selectedWireIds?.includes(wire.id);
           const path = wirePath(data.document, wire);
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("g", { transform: `translate(${-component2.position.x} ${-component2.position.y})`, children: [
-              traced && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { className: "sim-wire-trace-halo", d: path, fill: "none", stroke: "#3478f6", strokeOpacity: 0.72, strokeWidth: 11, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
-              /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { d: path, fill: "none", stroke: wire.color, strokeWidth: traced ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
-              traced && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round" })
+          return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("g", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("clipPath", { id: clip, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("rect", { x: "0", y: "0", width: size.width, height: size.height }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("g", { clipPath: `url(#${clip})`, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("g", { transform: `translate(${-component2.position.x} ${-component2.position.y})`, children: [
+              traced && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("path", { className: "sim-wire-trace-halo", d: path, fill: "none", stroke: "#3478f6", strokeOpacity: 0.72, strokeWidth: 11, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("path", { d: path, fill: "none", stroke: wire.color, strokeWidth: traced ? 4 : 3, vectorEffect: "non-scaling-stroke", strokeLinecap: "round" }),
+              traced && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round" })
             ] }) })
           ] }, clip);
         }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-caption", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("b", { children: component2.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: definition.name }),
-          timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "sim-device-caption", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("b", { children: component2.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: definition.name }),
+          timer2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("span", { children: [
             "\u6559\u5B66\u53CC\u5EF6\u65F6 \xB7 ",
             (component2.settings?.delayMs ?? 3e3) / 1e3,
             " s"
           ] }),
-          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
+          component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: data.linkedComponents.find((item) => item.id === component2.linkedTo)?.label ?? "\u672A\u5173\u8054" })
         ] }),
-        faulty && definition.load?.kind === "motor" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-motor-diagnostic", role: "status", title: data.diagnostics.filter((d) => d.componentIds.includes(component2.id)).map((d) => d.message).join("\uFF1B"), children: "\u8BCA\u65AD" }),
+        faulty && definition.load?.kind === "motor" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "sim-motor-diagnostic", role: "status", title: data.diagnostics.filter((d) => d.componentIds.includes(component2.id)).map((d) => d.message).join("\uFF1B"), children: "\u8BCA\u65AD" }),
         definition.terminals.map((original) => {
           const terminal = transformedTerminal(component2, original);
+          const displayLabel = terminalDisplayLabel(component2, terminal);
           const key4 = terminalKey({ componentId: component2.id, terminalId: terminal.id });
           const state = data.terminalStates[key4];
-          const isFaulty = data.diagnostics.some((d) => d.terminalIds.includes(key4));
+          const isFaulty = data.diagnostics.some((d) => d.severity !== "info" && d.terminalIds.includes(key4));
           const color2 = data.terminalColors?.[key4] ?? terminalColor(terminal);
           const pending = data.pendingTerminalKey === key4;
-          const traced = leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+          const traced = data.tracedTerminalIds?.includes(key4) ?? leads.some(({ wire, terminal: leadTerminal }) => leadTerminal.id === terminal.id && data.selectedWireIds?.includes(wire.id));
+          return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
             Handle,
             {
               id: terminal.id,
@@ -34701,28 +34925,30 @@ function DeviceNode({ data, selected: selected2 }) {
               isConnectable: !running && !data.readOnly,
               className: `sim-terminal sim-terminal-${terminal.side} ${state?.energized ? "is-energized" : ""} ${isFaulty ? "has-diagnostic" : ""} ${pending ? "is-connection-start" : ""} ${traced ? "is-trace-endpoint" : ""}`,
               style: { left: terminal.x, top: terminal.y, right: "auto", bottom: "auto", transform: "translate(-50%, -50%)", borderColor: color2 },
-              title: `${component2.label} \xB7 ${terminal.label}${state ? ` \xB7 ${state.potential}` : ""}`,
-              "aria-label": `${component2.label} \u7AEF\u5B50 ${terminal.label}`,
+              title: `${component2.label} \xB7 ${displayLabel}${state ? ` \xB7 ${state.potential}` : ""}`,
+              "aria-label": `${component2.label} \u7AEF\u5B50 ${displayLabel}`,
               "data-terminal-key": key4,
               "data-connection-start": pending,
               "data-wire-traced": traced,
+              "data-wire-number": data.wireNumbers?.[key4],
               "data-terminal-energized": running && !!state?.energized,
               "data-world-x": component2.position.x + terminal.x,
               "data-world-y": component2.position.y + terminal.y,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
-                pending || traced ? /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { className: "sim-terminal-label sim-terminal-focus-label", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("i", { className: "sim-terminal-indicator", "aria-hidden": "true" }),
+                data.wireNumbers?.[key4] && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "sim-wire-number", title: `\u7EBF\u53F7 ${data.wireNumbers[key4]}`, children: data.wireNumbers[key4] }),
+                pending || traced ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("span", { className: "sim-terminal-label sim-terminal-focus-label", children: [
                   pending ? "\u8D77\u70B9 \xB7 " : "",
                   component2.label,
                   " \xB7 ",
-                  terminal.label
-                ] }) : !contactor2 && !timer2 && component2.type !== "relay380-jzc1-22" && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-terminal-label", children: terminal.label })
+                  displayLabel
+                ] }) : !contactor2 && !timer2 && component2.type !== "relay380-jzc1-22" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "sim-terminal-label", children: displayLabel })
               ]
             },
             terminal.id
           );
         }),
-        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        running && momentary && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
           "button",
           {
             className: `sim-actuator sim-push-actuator nodrag nopan ${component2.type !== "limit-switch" ? "sim-mechanism-hit sim-button-cap-hit" : ""} ${pressed ? "is-pressed" : ""}`,
@@ -34759,16 +34985,16 @@ function DeviceNode({ data, selected: selected2 }) {
             children: component2.type === "limit-switch" ? pressed ? "\u5DF2\u6309\u4E0B" : "\u6309\u4F4F" : null
           }
         ),
-        !running && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-timer-controls nodrag nopan", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u51CF\u5C11\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.max(TIMER_MIN_MS, Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) - 1e3)) } }), children: "\u2212" }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u8BBE\u7F6E\u65F6\u95F4`, "aria-expanded": settingsOpen, onClick: () => setSettingsOpen((open) => !open), children: "\u8BBE\u7F6E" }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u589E\u52A0\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) + 1e3) } }), children: "+" })
+        !running && timer2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "sim-timer-controls nodrag nopan", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u51CF\u5C11\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.max(TIMER_MIN_MS, Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) - 1e3)) } }), children: "\u2212" }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u8BBE\u7F6E\u65F6\u95F4`, "aria-expanded": settingsOpen, onClick: () => setSettingsOpen((open) => !open), children: "\u8BBE\u7F6E" }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { disabled: data.readOnly, "aria-label": `${component2.label} \u589E\u52A0\u5EF6\u65F6`, onClick: () => data.configure(component2.id, { settings: { delayMs: Math.min(TIMER_MAX_MS, (component2.settings?.delayMs ?? TIMER_DEFAULT_MS) + 1e3) } }), children: "+" })
         ] }),
-        timer2 && (component2.settings?.delayMs ?? 3e3) > 3e5 && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "sim-legacy-timer-warning", children: "\u5386\u53F2\u8BBE\u7F6E\u8D85\u8FC75\u5206\u949F\uFF1B\u539F\u503C\u4FDD\u7559\uFF0C\u8BF7\u8C03\u6574\u540E\u5347\u7EA7" }),
-        !running && settingsOpen && timer2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-device-setting sim-timer-setting nodrag nopan", role: "group", "aria-label": `${component2.label} \u65F6\u95F4\u8BBE\u7F6E`, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { children: [
+        timer2 && (component2.settings?.delayMs ?? 3e3) > 3e5 && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "sim-legacy-timer-warning", children: "\u5386\u53F2\u8BBE\u7F6E\u8D85\u8FC75\u5206\u949F\uFF1B\u539F\u503C\u4FDD\u7559\uFF0C\u8BF7\u8C03\u6574\u540E\u5347\u7EA7" }),
+        !running && settingsOpen && timer2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "sim-device-setting sim-timer-setting nodrag nopan", role: "group", "aria-label": `${component2.label} \u65F6\u95F4\u8BBE\u7F6E`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { children: [
             "\u5EF6\u65F6",
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("input", { ref: timerInput, onKeyDown: (event) => {
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { ref: timerInput, onKeyDown: (event) => {
               if (event.key === "Escape") {
                 event.stopPropagation();
                 setSettingsOpen(false);
@@ -34779,21 +35005,21 @@ function DeviceNode({ data, selected: selected2 }) {
             } }),
             "\u79D2"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", "aria-label": `${component2.label} \u5173\u95ED\u65F6\u95F4\u8BBE\u7F6E`, onClick: () => setSettingsOpen(false), children: "\xD7" })
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-label": `${component2.label} \u5173\u95ED\u65F6\u95F4\u8BBE\u7F6E`, onClick: () => setSettingsOpen(false), children: "\xD7" })
         ] }),
-        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", children: [
+        !running && selected2 && component2.type === "auxiliary-no" && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { className: "sim-device-setting sim-link-setting nodrag nopan", children: [
           "\u5173\u8054\u7EBF\u5708",
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
-            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("option", { value: item.id, children: item.label }, item.id))
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("select", { "aria-label": `${component2.label} \u5173\u8054\u7EBF\u5708`, value: component2.linkedTo ?? "", disabled: data.readOnly, onChange: (event) => data.configure(component2.id, { linkedTo: event.target.value || void 0 }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("option", { value: "", children: "\u8BF7\u9009\u62E9 KM / KA" }),
+            data.linkedComponents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("option", { value: item.id, children: item.label }, item.id))
           ] })
         ] }),
-        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
-        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
+        running && toggle && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { className: `sim-actuator sim-toggle-actuator nodrag nopan ${breaker ? "sim-mechanism-hit sim-breaker-handle-hit" : latching ? "sim-mechanism-hit sim-button-cap-hit" : knife ? "sim-mechanism-hit sim-knife-handle-hit" : ""}`, style: knife ? { left: 17.499, top: 39.999, width: 178, height: 107, transform: "none" } : void 0, onClick: () => dispatch2("toggle"), "aria-pressed": closed, title: latching ? closed ? "\u5DF2\u6309\u4E0B \xB7 \u70B9\u51FB\u5F39\u8D77" : "\u5DF2\u5F39\u8D77 \xB7 \u70B9\u51FB\u6309\u4E0B" : closed ? "\u5DF2\u5408\u95F8 \xB7 \u70B9\u51FB\u5206\u95F8" : "\u5DF2\u5206\u95F8 \xB7 \u70B9\u51FB\u5408\u95F8", "aria-label": `${component2.label} ${latching ? closed ? "\u5F39\u8D77" : "\u6309\u4E0B" : closed ? "\u5206\u95F8" : "\u5408\u95F8"}`, children: breaker || knife || latching ? null : component2.type === "switch2" ? "\u5207\u6362" : closed ? "\u5206\u95F8" : "\u5408\u95F8" }),
+        running && component2.type === "overload" && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "sim-overload-actions nodrag nopan", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { onClick: () => dispatch2("trip-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D TEST`, children: "TEST" }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { onClick: () => dispatch2("reset-overload"), "aria-label": `${component2.label} \u8FC7\u8F7D RESET`, children: "RESET" })
         ] }),
-        running && !contactor2 && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
+        running && !contactor2 && (latching || result?.active || definition.load || component2.type === "overload" || component2.type === "auxiliary-no") && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("span", { className: `sim-node-runtime ${result?.active ? "is-active" : ""}`, children: [
           latching ? closed ? "\u5DF2\u6309\u4E0B" : "\u5DF2\u5F39\u8D77" : runtimeSummary(result),
           timer2 && result?.remainingMs !== void 0 && ` \xB7 ${(result.remainingMs / 1e3).toFixed(1)} s`
         ] })
@@ -34803,12 +35029,13 @@ function DeviceNode({ data, selected: selected2 }) {
 }
 
 // app/simulator/editor/WireEdge.tsx
-var import_react8 = __toESM(require_react(), 1);
-var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
+var import_react11 = __toESM(require_react(), 1);
+var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
 function WireEdge({ id: id2, data, selected: selected2 }) {
   const flow = useReactFlow();
-  const [dragged, setDragged] = (0, import_react8.useState)(null);
+  const [dragged, setDragged] = (0, import_react11.useState)(null);
   if (!data) return null;
+  const traced = data.traced ?? !!selected2;
   const points = [...data.wire.waypoints ?? []];
   if (dragged) points[dragged.index] = dragged.point;
   const wire = { ...data.wire, waypoints: points };
@@ -34821,25 +35048,26 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
     const point2 = flow.screenToFlowPosition({ x: event.clientX, y: event.clientY });
     setDragged({ index: index2, point: point2 });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
     "g",
     {
-      className: `sim-wire ${selected2 ? "is-selected" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`,
+      className: `sim-wire ${selected2 ? "is-selected" : ""} ${traced ? "is-traced" : ""} ${data.highlighted ? "has-diagnostic" : ""} ${data.energized ? "is-energized" : ""}`,
       "data-wire-id": id2,
       "data-from-terminal": `${wire.from.componentId}::${wire.from.terminalId}`,
       "data-to-terminal": `${wire.to.componentId}::${wire.to.terminalId}`,
       "data-from-world": JSON.stringify(endpoints.from),
       "data-to-world": JSON.stringify(endpoints.to),
       "data-routing": wire.routing,
-      "data-wire-traced": !!selected2,
+      "data-wire-traced": traced,
+      "data-wire-number": wire.wireNumber,
       "data-routing-status": wire.routing === "duct" ? ductWireRoute(data.document, wire).status : "manual",
       children: [
-        (selected2 || data.highlighted || data.energized) && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-outline", d: path, fill: "none", stroke: selected2 ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32", strokeWidth: selected2 ? 11 : 7, strokeOpacity: selected2 ? 0.72 : data.highlighted ? 0.65 : 0.4, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: wire.color, strokeWidth: selected2 ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
-        selected2 && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
-        selected2 && [endpoints.from, endpoints.to].map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("circle", { className: "sim-wire-selected-endpoint", cx: point2.x, cy: point2.y, r: 5, fill: "white", stroke: "#3478f6", strokeWidth: 2, vectorEffect: "non-scaling-stroke", pointerEvents: "none" }, index2)),
-        selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(EdgeLabelRenderer, { children: [
-          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        (traced || data.highlighted || data.energized) && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("path", { className: "sim-wire-outline", d: path, fill: "none", stroke: traced ? "#3478f6" : data.highlighted ? "#ef4444" : "#f1be32", strokeWidth: traced ? 11 : 7, strokeOpacity: traced ? 0.72 : data.highlighted ? 0.65 : 0.4, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(BaseEdge, { id: id2, path, interactionWidth: 18, style: { stroke: wire.color, strokeWidth: traced ? 4 : 3, opacity: 1, vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round" } }),
+        traced && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("path", { className: "sim-wire-trace-flow", d: path, fill: "none", stroke: "#fff", strokeWidth: 3, strokeDasharray: "5 15", vectorEffect: "non-scaling-stroke", strokeLinecap: "round", strokeLinejoin: "round", pointerEvents: "none" }),
+        traced && [endpoints.from, endpoints.to].map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("circle", { className: "sim-wire-selected-endpoint", cx: point2.x, cy: point2.y, r: 5, fill: "white", stroke: "#3478f6", strokeWidth: 2, vectorEffect: "non-scaling-stroke", pointerEvents: "none" }, index2)),
+        selected2 && !data.running && !data.readOnly && wire.routing !== "duct" && (!wire.style || wire.style === "orthogonal") && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(EdgeLabelRenderer, { children: [
+          points.map((point2, index2) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
             "button",
             {
               className: "sim-wire-waypoint nodrag nopan",
@@ -34869,7 +35097,7 @@ function WireEdge({ id: id2, data, selected: selected2 }) {
             },
             index2
           )),
-          !points.length && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
+          !points.length && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { className: "sim-wire-add-bend nodrag nopan", style: { transform: `translate(-50%, -50%) translate(${anchor.x}px, ${anchor.y}px)` }, onClick: (event) => {
             event.stopPropagation();
             data.onWaypoints(id2, [anchor]);
           }, children: "\u6DFB\u52A0\u6298\u70B9" })
@@ -34943,24 +35171,24 @@ function createSimulationSession() {
 }
 
 // app/simulator/DrawingViewer.tsx
-var import_react11 = __toESM(require_react(), 1);
+var import_react14 = __toESM(require_react(), 1);
 
 // app/simulator/PdfDrawing.tsx
-var import_react10 = __toESM(require_react(), 1);
-var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
+var import_react13 = __toESM(require_react(), 1);
+var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
 function PdfDrawing(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PdfDrawingContent, { ...props }, props.src);
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(PdfDrawingContent, { ...props }, props.src);
 }
 function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
-  const container = (0, import_react10.useRef)(null);
-  const canvas = (0, import_react10.useRef)(null);
-  const [width, setWidth] = (0, import_react10.useState)(0);
-  const [pdf, setPdf] = (0, import_react10.useState)(null);
-  const [pageNumber2, setPageNumber] = (0, import_react10.useState)(1);
-  const [state, setState] = (0, import_react10.useState)("loading");
-  const [error, setError] = (0, import_react10.useState)("");
-  const [retry, setRetry] = (0, import_react10.useState)(0);
-  (0, import_react10.useEffect)(() => {
+  const container = (0, import_react13.useRef)(null);
+  const canvas = (0, import_react13.useRef)(null);
+  const [width, setWidth] = (0, import_react13.useState)(0);
+  const [pdf, setPdf] = (0, import_react13.useState)(null);
+  const [pageNumber2, setPageNumber] = (0, import_react13.useState)(1);
+  const [state, setState] = (0, import_react13.useState)("loading");
+  const [error, setError] = (0, import_react13.useState)("");
+  const [retry, setRetry] = (0, import_react13.useState)(0);
+  (0, import_react13.useEffect)(() => {
     const element = container.current;
     if (!element) return;
     const measure = () => setWidth(Math.max(1, Math.floor(element.clientWidth)));
@@ -34969,12 +35197,12 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  (0, import_react10.useEffect)(() => {
+  (0, import_react13.useEffect)(() => {
     let active = true;
     let loadingTask;
     void (async () => {
       try {
-        const pdfjs = await import("./chunks/pdf-XJT72RMM.js");
+        const pdfjs = await import("./chunks/pdf-JNYOFPZ6.js");
         if (!active) return;
         const base = "/diantuo-zhixun/";
         const assets = `${base.endsWith("/") ? base : `${base}/`}sim-assets/pdfjs/`;
@@ -35003,7 +35231,7 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
       });
     };
   }, [src, retry]);
-  (0, import_react10.useEffect)(() => {
+  (0, import_react13.useEffect)(() => {
     if (!pdf || !width) return;
     let active = true;
     let task;
@@ -35041,58 +35269,58 @@ function PdfDrawingContent({ src, title = "PDF \u63A5\u7EBF\u56FE" }) {
       task?.cancel();
     };
   }, [pdf, pageNumber2, width]);
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-pagination", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-pdf-drawing", ref: container, "data-pdf-state": state, "data-pdf-page": pageNumber2, "data-pdf-pages": pdf?.numPages ?? 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-pdf-pagination", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", "aria-label": "PDF \u4E0A\u4E00\u9875", disabled: !pdf || pageNumber2 <= 1, onClick: () => setPageNumber((page) => Math.max(1, page - 1)), children: "\u4E0A\u4E00\u9875" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { "aria-live": "polite", children: pdf ? `${pageNumber2} / ${pdf.numPages} \u9875` : "PDF \u56FE\u7EB8" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", "aria-label": "PDF \u4E0B\u4E00\u9875", disabled: !pdf || pageNumber2 >= pdf.numPages, onClick: () => setPageNumber((page) => Math.min(pdf?.numPages ?? 1, page + 1)), children: "\u4E0B\u4E00\u9875" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
-      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("button", { type: "button", onClick: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-pdf-stage", "aria-busy": state === "loading" || state === "rendering", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("canvas", { ref: canvas, role: "img", "aria-label": `${title}\uFF0C\u7B2C ${pageNumber2} \u9875` }),
+      state === "error" ? /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-pdf-message", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: () => {
           setPdf(null);
           setPageNumber(1);
           setState("loading");
           setError("");
           setRetry((value) => value + 1);
         }, children: "\u91CD\u65B0\u52A0\u8F7D PDF" })
-      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
+      ] }) : state !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { className: "dt-pdf-message", role: "status", children: state === "loading" ? "\u6B63\u5728\u52A0\u8F7D PDF\u2026" : "\u6B63\u5728\u7ED8\u5236\u56FE\u7EB8\u2026" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("a", { className: "dt-pdf-original", href: src, target: "_blank", rel: "noreferrer", children: "\u67E5\u770B PDF \u539F\u6587\u4EF6" })
   ] });
 }
 
 // app/simulator/DrawingViewer.tsx
-var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
 function DrawingViewer(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(DrawingViewerContent, { ...props }, `${props.src ?? ""}:${props.type ?? ""}:${props.contentKey ?? ""}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(DrawingViewerContent, { ...props }, `${props.src ?? ""}:${props.type ?? ""}:${props.contentKey ?? ""}`);
 }
 function DrawingViewerContent({ src, title, type, children: children2, contentKey, compact: compact2 = false, zoom: controlledZoom, onZoomChange }) {
   const isPdf = type === "application/pdf";
-  const viewport = (0, import_react11.useRef)(null);
-  const content = (0, import_react11.useRef)(null);
-  const drag = (0, import_react11.useRef)(null);
-  const [ownZoom, setOwnZoom] = (0, import_react11.useState)(1);
+  const viewport = (0, import_react14.useRef)(null);
+  const content = (0, import_react14.useRef)(null);
+  const drag = (0, import_react14.useRef)(null);
+  const [ownZoom, setOwnZoom] = (0, import_react14.useState)(1);
   const zoom = controlledZoom ?? ownZoom;
   const setZoom = (value) => {
     if (onZoomChange) onZoomChange(value);
     else setOwnZoom(value);
   };
-  const changeZoom = (0, import_react11.useRef)(onZoomChange);
-  (0, import_react11.useLayoutEffect)(() => {
+  const changeZoom = (0, import_react14.useRef)(onZoomChange);
+  (0, import_react14.useLayoutEffect)(() => {
     changeZoom.current = onZoomChange;
   }, [onZoomChange]);
-  const [bounds2, setBounds] = (0, import_react11.useState)({ width: 0, height: 0 });
-  const [ratio, setRatio] = (0, import_react11.useState)(null);
-  const [dragging, setDragging] = (0, import_react11.useState)(false);
-  const [imageState, setImageState] = (0, import_react11.useState)("loading");
-  (0, import_react11.useEffect)(() => {
+  const [bounds2, setBounds] = (0, import_react14.useState)({ width: 0, height: 0 });
+  const [ratio, setRatio] = (0, import_react14.useState)(null);
+  const [dragging, setDragging] = (0, import_react14.useState)(false);
+  const [imageState, setImageState] = (0, import_react14.useState)("loading");
+  (0, import_react14.useEffect)(() => {
     changeZoom.current?.(1);
     viewport.current?.scrollTo({ left: 0, top: 0 });
   }, [src, contentKey]);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     const element = viewport.current;
     if (!element) return;
     const measure = () => setBounds({ width: element.clientWidth, height: element.clientHeight });
@@ -35101,7 +35329,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     const element = content.current;
     if (!isPdf && src || !element) return;
     const measure = () => {
@@ -35118,7 +35346,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
     observer.observe(element, { subtree: true, attributes: true, attributeFilter: ["width", "height", "viewBox"], childList: true });
     return () => observer.disconnect();
   }, [src, isPdf, contentKey]);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     if (zoom === 1) viewport.current?.scrollTo({ left: 0, top: 0 });
   }, [zoom]);
   const inset = compact2 ? 8 : 24;
@@ -35151,24 +35379,24 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
     setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: `dt-drawing-viewer${compact2 ? " is-compact" : ""}`, "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, "data-drawing-zoom": zoom, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
-    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 0.5, onClick: () => setZoom(Math.max(0.5, zoom - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ZoomOut, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("section", { className: `dt-drawing-viewer${compact2 ? " is-compact" : ""}`, "aria-label": `${title}\u5927\u56FE\u67E5\u770B`, "data-drawing-zoom": zoom, style: { "--drawing-viewport-width": `${availableWidth}px` }, children: [
+    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "dt-drawing-viewer-toolbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", "aria-label": "\u7F29\u5C0F\u539F\u56FE", disabled: zoom <= 0.5, onClick: () => setZoom(Math.max(0.5, zoom - 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomOut, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("output", { "aria-live": "polite", "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
         Math.round(zoom * 100),
         "%"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 4, onClick: () => setZoom(Math.min(4, zoom + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ZoomIn, { size: 17 }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("button", { type: "button", onClick: fit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Maximize2, { size: 15 }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u539F\u56FE", disabled: zoom >= 4, onClick: () => setZoom(Math.min(4, zoom + 0.25)), children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomIn, { size: 17 }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("button", { type: "button", onClick: fit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 15 }),
         "\u9002\u5E94\u7A97\u53E3"
       ] }),
-      src && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ExternalLink, { size: 15 }),
+      src && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("a", { href: src, target: "_blank", rel: "noopener noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ExternalLink, { size: 15 }),
         "\u67E5\u770B\u539F\u56FE"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
       "div",
       {
         ref: viewport,
@@ -35185,7 +35413,7 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds2.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { ref: content, className: "dt-drawing-viewer-content", style: { width: bounds2.width ? fittedWidth * zoom : "100%" }, children: !src ? children2 : isPdf ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(PdfDrawing, { src, title }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
             "img",
             {
               src,
@@ -35200,69 +35428,19 @@ function DrawingViewerContent({ src, title, type, children: children2, contentKe
             },
             src
           ) }),
-          !!src && !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
+          !!src && !isPdf && imageState !== "ready" && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "dt-drawing-viewer-message", role: imageState === "error" ? "alert" : "status", children: imageState === "error" ? "\u56FE\u7EB8\u672A\u80FD\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u767B\u5F55\u72B6\u6001\u6216\u91CD\u65B0\u6253\u5F00\u3002" : "\u6B63\u5728\u52A0\u8F7D\u539F\u56FE\u2026" })
         ]
       }
     ),
-    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
+    !compact2 && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { className: "dt-drawing-viewer-hint", children: "100% \u4E3A\u9002\u5E94\u7A97\u53E3 \xB7 \u653E\u5927\u540E\u53EF\u6309\u4F4F\u9F20\u6807\u62D6\u770B\uFF0C\u4E5F\u53EF\u6EDA\u52A8\u67E5\u770B" })
   ] });
 }
 
-// app/simulator/Modal.tsx
-var import_react12 = __toESM(require_react(), 1);
-var import_react_dom2 = __toESM(require_react_dom(), 1);
-var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
-function Modal({ children: children2, title, onClose, backdropClass = "dt-modal-backdrop", className = "dt-modal", role = "dialog" }) {
-  const element = (0, import_react12.useRef)(null);
-  const close = (0, import_react12.useRef)(onClose);
-  (0, import_react12.useEffect)(() => {
-    close.current = onClose;
-  }, [onClose]);
-  (0, import_react12.useEffect)(() => {
-    const previous = document.activeElement;
-    const dialog = element.current;
-    const controls = () => [...dialog?.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],[tabindex="0"]') ?? []].filter((item) => item.getClientRects().length);
-    (controls()[0] ?? dialog)?.focus({ preventScroll: true });
-    const keys = (event) => {
-      event.stopPropagation();
-      if (event.key === "Escape") {
-        event.preventDefault();
-        close.current();
-      }
-      if (event.key !== "Tab") return;
-      const items = controls(), first = items[0], last = items.at(-1);
-      if (!first) {
-        event.preventDefault();
-        dialog?.focus();
-      } else if (event.shiftKey && (document.activeElement === first || !dialog?.contains(document.activeElement))) {
-        event.preventDefault();
-        last?.focus();
-      } else if (!event.shiftKey && (document.activeElement === last || !dialog?.contains(document.activeElement))) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-    dialog?.addEventListener("keydown", keys);
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      dialog?.removeEventListener("keydown", keys);
-      document.body.style.overflow = overflow;
-      if (previous?.isConnected) previous.focus({ preventScroll: true });
-    };
-  }, []);
-  if (typeof document === "undefined") return null;
-  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: backdropClass, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("button", { type: "button", className: "dt-modal-dismiss-layer", tabIndex: -1, "aria-label": `\u5173\u95ED${title}`, onClick: onClose }),
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { ref: element, className: `${className} dt-modal-focus-root`, role, "aria-modal": "true", "aria-label": title, tabIndex: -1, children: children2 })
-  ] }), document.body);
-}
-
 // app/simulator/editor/FloatingSchematic.tsx
-var import_react14 = __toESM(require_react(), 1);
+var import_react16 = __toESM(require_react(), 1);
 
 // app/simulator/reference-video/ReferenceVideoPlayer.tsx
-var import_react13 = __toESM(require_react(), 1);
+var import_react15 = __toESM(require_react(), 1);
 
 // app/simulator/reference-video/controls.ts
 var VIDEO_RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -35272,13 +35450,13 @@ function videoSeekTarget(currentTime, duration, seconds) {
 }
 
 // app/simulator/reference-video/ReferenceVideoPlayer.tsx
-var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
 function Player({ video }) {
-  const element = (0, import_react13.useRef)(null);
-  const [duration, setDuration] = (0, import_react13.useState)(0);
-  const [speed, setSpeed] = (0, import_react13.useState)(1);
-  const [failed, setFailed] = (0, import_react13.useState)(false);
-  (0, import_react13.useEffect)(() => {
+  const element = (0, import_react15.useRef)(null);
+  const [duration, setDuration] = (0, import_react15.useState)(0);
+  const [speed, setSpeed] = (0, import_react15.useState)(1);
+  const [failed, setFailed] = (0, import_react15.useState)(false);
+  (0, import_react15.useEffect)(() => {
     const media = element.current;
     if (media && media.getAttribute("src") !== video.url) media.setAttribute("src", video.url);
     return () => {
@@ -35295,8 +35473,8 @@ function Player({ video }) {
     const target = videoSeekTarget(media.currentTime, media.duration, seconds);
     if (target !== null) media.currentTime = target;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-video", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
       "video",
       {
         ref: element,
@@ -35316,80 +35494,99 @@ function Player({ video }) {
         onError: () => setFailed(true)
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(RotateCcw, { size: 15 }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-video-controls", "aria-label": "\u89C6\u9891\u5FEB\u6377\u64CD\u4F5C", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(-10), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RotateCcw, { size: 15 }),
         "\u540E\u9000 10 \u79D2"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { children: [
         "\u500D\u901F",
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("select", { "aria-label": "\u89C6\u9891\u64AD\u653E\u901F\u5EA6", value: speed, onChange: (event) => {
           const rate = Number(event.target.value);
           if (element.current) element.current.playbackRate = rate;
           setSpeed(rate);
-        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("option", { value: rate, children: [
+        }, children: VIDEO_RATES.map((rate) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("option", { value: rate, children: [
           rate,
           "\xD7"
         ] }, rate)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", disabled: !Number.isFinite(duration) || duration <= 0 || failed, onClick: () => seek(10), children: [
         "\u524D\u8FDB 10 \u79D2",
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(RotateCw, { size: 15 })
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RotateCw, { size: 15 })
       ] })
     ] }),
-    failed && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("button", { type: "button", onClick: () => {
+    failed && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-video-error", role: "alert", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "\u89C6\u9891\u6682\u65F6\u65E0\u6CD5\u52A0\u8F7D\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u540E\u91CD\u8BD5\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: () => {
         setFailed(false);
         element.current?.load();
       }, children: "\u91CD\u65B0\u52A0\u8F7D" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dt-reference-video-note", children: "\u539F\u56FE\u7EB8\u6559\u5B66\u89C6\u9891 \xB7 \u5728\u7EBF\u64AD\u653E\uFF0C\u9700\u8FDE\u63A5\u7F51\u7EDC" })
   ] });
 }
 function ReferenceVideoPlayer({ video }) {
-  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "dt-reference-video-empty", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Video, { size: 38 }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
+  if (!video?.url) return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dt-reference-video-empty", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Video, { size: 38 }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: "\u6682\u65E0\u89C6\u9891" }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: "\u5F53\u524D\u56FE\u7EB8\u5C1A\u672A\u63D0\u4F9B\u5BF9\u5E94\u6559\u5B66\u89C6\u9891\u3002" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Player, { video: { ...video, url: video.url } }, video.url);
 }
 
 // app/simulator/editor/FloatingSchematic.tsx
-var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
 var DEFAULT_FRAME = { width: 560, height: 600 };
 var EDGES = { n: "\u4E0A\u8FB9", s: "\u4E0B\u8FB9", w: "\u5DE6\u8FB9", e: "\u53F3\u8FB9", nw: "\u5DE6\u4E0A\u89D2", ne: "\u53F3\u4E0A\u89D2", sw: "\u5DE6\u4E0B\u89D2", se: "\u53F3\u4E0B\u89D2" };
-function FloatingSchematic({ panelRef, boardRef, children: children2, documentKey, video, onChooseDrawing, selectionDisabled, zoom: controlledZoom, onZoomChange }) {
-  const [open, setOpen] = (0, import_react14.useState)(true);
-  const [tab, setTab] = (0, import_react14.useState)("schematic");
-  const [currentDocument, setCurrentDocument] = (0, import_react14.useState)(documentKey);
+function FloatingSchematic({ panelRef, boardRef, children: children2, documentKey, video, onChooseDrawing, onOpenDrawingWindow, selectionDisabled, zoom: controlledZoom, onZoomChange }) {
+  const [open, setOpen] = (0, import_react16.useState)(true);
+  const [tab, setTab] = (0, import_react16.useState)("schematic");
+  const [currentDocument, setCurrentDocument] = (0, import_react16.useState)(documentKey);
   if (currentDocument !== documentKey) {
     setCurrentDocument(documentKey);
     setOpen(true);
     setTab("schematic");
   }
-  const [ownZoom, setOwnZoom] = (0, import_react14.useState)(1);
+  const [ownZoom, setOwnZoom] = (0, import_react16.useState)(1);
   const zoom = controlledZoom ?? ownZoom;
   const setZoom = (value) => {
     if (onZoomChange) onZoomChange(value);
     else setOwnZoom(value);
   };
-  const [frame2, setFrame2] = (0, import_react14.useState)(DEFAULT_FRAME);
-  const [responsiveWidth, setResponsiveWidth] = (0, import_react14.useState)(true);
-  const [fullscreen, setFullscreen] = (0, import_react14.useState)(false);
-  const resizing = (0, import_react14.useRef)(null);
-  const [offset, setOffset] = (0, import_react14.useState)({ x: 0, y: 0 });
-  const drag = (0, import_react14.useRef)(null);
-  const [dragging, setDragging] = (0, import_react14.useState)(false);
-  const constrain = (0, import_react14.useCallback)((point2, size) => {
-    const board = boardRef.current, panel = panelRef.current;
-    if (!board || !panel || fullscreen) return point2;
-    const width = size?.width ?? panel.offsetWidth, height = size?.height ?? panel.offsetHeight;
-    const left = board.clientWidth - 20 - width, top = board.clientHeight - 70 - height;
-    return { x: Math.max(8 - left, Math.min(Math.max(8, board.clientWidth - width - 8) - left, point2.x)), y: Math.max(58 - top, Math.min(Math.max(58, board.clientHeight - height - 70) - top, point2.y)) };
-  }, [boardRef, panelRef, fullscreen]);
-  (0, import_react14.useEffect)(() => {
+  const [frame2, setFrame2] = (0, import_react16.useState)(DEFAULT_FRAME);
+  const [responsiveWidth, setResponsiveWidth] = (0, import_react16.useState)(true);
+  const [fullscreen, setFullscreen] = (0, import_react16.useState)(false);
+  const resizing = (0, import_react16.useRef)(null);
+  const [offset, setOffset] = (0, import_react16.useState)({ x: 0, y: 0 });
+  const drag = (0, import_react16.useRef)(null);
+  const [dragging, setDragging] = (0, import_react16.useState)(false);
+  const [bounds2, setBounds] = (0, import_react16.useState)({ width: 1200, height: 900, boardWidth: 1e3, top: 0, right: 20, bottom: 70 });
+  (0, import_react16.useEffect)(() => {
+    const measure = () => {
+      const board = boardRef.current, view2 = board?.ownerDocument?.defaultView;
+      const rect = board?.getBoundingClientRect?.();
+      const width = view2?.innerWidth ?? board?.clientWidth ?? 1200, height2 = view2?.innerHeight ?? board?.clientHeight ?? 900;
+      const next = { width, height: height2, boardWidth: board?.clientWidth ?? width, top: rect?.top ?? 0, right: rect ? Math.max(8, width - rect.right + 20) : 20, bottom: rect ? Math.max(8, height2 - rect.bottom + 70) : 70 };
+      setBounds((previous) => Object.keys(next).every((key4) => next[key4] === previous[key4]) ? previous : next);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (boardRef.current) observer.observe(boardRef.current);
+    const view = boardRef.current?.ownerDocument?.defaultView;
+    view?.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      view?.removeEventListener("resize", measure);
+    };
+  }, [boardRef]);
+  const constrain = (0, import_react16.useCallback)((point2, size) => {
+    const panel = panelRef.current;
+    if (!panel || fullscreen) return point2;
+    const width = size?.width ?? panel.offsetWidth, height2 = size?.height ?? panel.offsetHeight;
+    const left = bounds2.width - bounds2.right - width, top = bounds2.height - bounds2.bottom - height2;
+    return { x: Math.max(8 - left, Math.min(Math.max(8, bounds2.width - width - 8) - left, point2.x)), y: Math.max(8 - top, Math.min(bounds2.height - 40 - top, point2.y)) };
+  }, [bounds2, panelRef, fullscreen]);
+  (0, import_react16.useEffect)(() => {
     const clamp3 = () => setOffset((previous) => {
       const next = constrain(previous);
       return next.x === previous.x && next.y === previous.y ? previous : next;
@@ -35400,7 +35597,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     if (panelRef.current) observer.observe(panelRef.current);
     return () => observer.disconnect();
   }, [constrain, boardRef, panelRef, open]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react16.useEffect)(() => {
     if (!fullscreen) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -35427,7 +35624,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   }
-  const startResize = (0, import_react14.useCallback)((event) => {
+  const startResize = (0, import_react16.useCallback)((event) => {
     const edge = event.currentTarget.dataset.resizeEdge;
     if (!edge) return;
     if (event.button !== 0 || !panelRef.current) return;
@@ -35438,21 +35635,22 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
     setDragging(true);
   }, [panelRef, offset, responsiveWidth]);
   function moveResize(event) {
-    const start2 = resizing.current, board = boardRef.current;
-    if (!start2 || start2.id !== event.pointerId || !board) return;
+    const start2 = resizing.current;
+    if (!start2 || start2.id !== event.pointerId) return;
     const edge = start2.edge, dx = event.clientX - start2.x, dy = event.clientY - start2.y;
-    const maxWidth = Math.max(180, board.clientWidth - 16), maxHeight = Math.max(160, board.clientHeight - 132);
+    const maxWidth = Math.max(180, bounds2.width - 16), maxHeight = Math.max(160, bounds2.height - 16);
     const width = Math.min(maxWidth, Math.max(Math.min(320, maxWidth), start2.width + (edge.includes("w") ? -dx : edge.includes("e") ? dx : 0)));
-    const height = Math.min(maxHeight, Math.max(Math.min(260, maxHeight), start2.height + (edge.includes("n") ? -dy : edge.includes("s") ? dy : 0)));
-    setFrame2({ width, height });
+    const height2 = Math.min(maxHeight, Math.max(Math.min(260, maxHeight), start2.height + (edge.includes("n") ? -dy : edge.includes("s") ? dy : 0)));
+    setFrame2({ width, height: height2 });
     setResponsiveWidth(false);
-    setOffset(constrain({ x: start2.offset.x + (edge.includes("e") ? width - start2.width : 0), y: start2.offset.y + (edge.includes("s") ? height - start2.height : 0) }, { width, height }));
+    setOffset(constrain({ x: start2.offset.x + (edge.includes("e") ? width - start2.width : 0), y: start2.offset.y + (edge.includes("s") ? height2 - start2.height : 0) }, { width, height: height2 }));
   }
   function lostResizeCapture() {
     resizing.current = null;
     setDragging(false);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame2.width, height: open ? frame2.height : void 0, maxWidth: "calc(100% - 16px)", maxHeight: "calc(100% - 132px)" }, onKeyDown: (event) => {
+  const height = responsiveWidth ? Math.min(frame2.height, Math.max(160, bounds2.height - bounds2.bottom - bounds2.top - 80)) : frame2.height;
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { ref: panelRef, className: `sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`, "data-window-scale": "1.0", "data-drawing-zoom": zoom, role: fullscreen ? "dialog" : void 0, "aria-modal": fullscreen || void 0, "aria-label": fullscreen ? "\u56FE\u7EB8\u5927\u56FE\u67E5\u770B" : void 0, style: fullscreen ? { transform: "none" } : { position: "fixed", right: bounds2.right, bottom: bounds2.bottom, transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? `min(560px, max(320px, calc(${bounds2.boardWidth}px / 2 - 24px)))` : frame2.width, height: open ? height : void 0, maxWidth: "calc(100vw - 16px)", maxHeight: "calc(100dvh - 16px)" }, onKeyDown: (event) => {
     if (fullscreen && event.key === "Escape") {
       event.preventDefault();
       event.stopPropagation();
@@ -35470,7 +35668,7 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
       }
     }
   }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
       "div",
       {
         className: "sim-diagram-header",
@@ -35502,15 +35700,15 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
           setDragging(false);
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: tab === "schematic" ? "active" : "", onClick: () => {
             setTab("schematic");
             setOpen(true);
           }, children: "\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: tab === "video" ? "active" : "", onClick: () => {
             setTab("video");
             setOpen(true);
           }, children: "\u6559\u5B66\u89C6\u9891" }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-drag", "aria-label": "\u62D6\u52A8\u56FE\u7EB8\u7A97\u53E3", title: "\u62D6\u52A8\u7A97\u53E3\uFF1B\u65B9\u5411\u952E\u79FB\u52A8\uFF0C\u53CC\u51FB\u6807\u9898\u590D\u4F4D", onKeyDown: (event) => {
             const steps = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
             const step = steps[event.key];
             if (step) {
@@ -35518,54 +35716,55 @@ function FloatingSchematic({ panelRef, boardRef, children: children2, documentKe
               event.stopPropagation();
               setOffset((value) => constrain({ x: value.x + step[0], y: value.y + step[1] }));
             }
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(GripHorizontal, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(RotateCcw, { size: 15 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-fullscreen", "aria-label": fullscreen ? "\u9000\u51FA\u56FE\u7EB8\u5927\u56FE" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", title: fullscreen ? "\u9000\u51FA\u5927\u56FE \xB7 Esc" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", onClick: () => {
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(GripHorizontal, { size: 18 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-reset", "aria-label": "\u590D\u4F4D\u56FE\u7EB8\u7A97\u53E3", title: "\u590D\u4F4D\u4F4D\u7F6E\u548C\u5927\u5C0F", onClick: reset, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(RotateCcw, { size: 15 }) }),
+          onOpenDrawingWindow && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-detach", "aria-label": "\u72EC\u7ACB\u7A97\u53E3\u67E5\u770B\u56FE\u7EB8", title: "\u72EC\u7ACB\u7A97\u53E3\u67E5\u770B\u56FE\u7EB8", onClick: onOpenDrawingWindow, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ExternalLink, { size: 15 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-fullscreen", "aria-label": fullscreen ? "\u9000\u51FA\u56FE\u7EB8\u5927\u56FE" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", title: fullscreen ? "\u9000\u51FA\u5927\u56FE \xB7 Esc" : "\u5168\u5C4F\u67E5\u770B\u56FE\u7EB8", onClick: () => {
             setFullscreen(!fullscreen);
             setOpen(true);
             setTab("schematic");
-          }, children: fullscreen ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Minimize2, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 16 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => {
+          }, children: fullscreen ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Minimize2, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Maximize2, { size: 16 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-collapse", "aria-label": open ? "\u6536\u8D77\u56FE\u7EB8" : "\u5C55\u5F00\u56FE\u7EB8", onClick: () => {
             setFullscreen(false);
             setOpen(!open);
-          }, children: open ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Plus, { size: 19 }) })
+          }, children: open ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Minus, { size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Plus, { size: 19 }) })
         ]
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-diagram-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
-        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-guide", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("ol", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
+    open && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagram-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { hidden: tab !== "schematic", style: { height: "100%" }, children: children2 }),
+        tab === "video" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ReferenceVideoPlayer, { video }) : tab === "guide" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-guide", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: "\u4ECE\u63A5\u7EBF\u5230\u8FD0\u884C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("ol", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "\u628A\u5143\u4EF6\u62D6\u5165\u753B\u5E03\uFF0C\u62D6\u52A8\u5706\u5F62\u7AEF\u5B50\u8FDE\u63A5\u5BFC\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "\u540C\u4E00\u7AEF\u5B50\u53EF\u8FDE\u63A5\u591A\u6839\u7EBF\uFF1B\u4EA4\u53C9\u5BFC\u7EBF\u4E0D\u4F1A\u81EA\u52A8\u8FDE\u901A\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "\u9009\u4E2D\u5BFC\u7EBF\u540E\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9\uFF0C\u62D6\u52A8\u6298\u70B9\u8C03\u6574\u8D70\u7EBF\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "\u5F00\u59CB\u4EFF\u771F\u540E\u5408\u95F8\uFF0C\u64CD\u4F5C\u6309\u94AE\u89C2\u5BDF\u5143\u4EF6\u8054\u52A8\u3002" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u5206\u522B\u67E5\u770B\u5B89\u5168\u548C\u8BFE\u7A0B\u5224\u5B9A\u3002" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u8FD0\u884C\u671F\u95F4\u6682\u505C\u63A5\u7EBF\u7F16\u8F91\u3002\u9AD8\u4EAE\u8868\u793A\u5BFC\u7EBF\u5E26\u7535\uFF1B\u79BB\u6563\u6559\u5B66\u6A21\u578B\u4E0D\u8BA1\u7B97\u771F\u5B9E\u7535\u6D41\u5927\u5C0F\u3002" })
         ] }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "sim-diagram-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(BookOpen, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { className: "sim-diagram-fit", "aria-label": "\u9002\u5E94\u56FE\u7EB8", disabled: tab !== "schematic", title: "\u9002\u5E94\u7A97\u53E3", onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagram-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-guide", "aria-label": "\u9009\u62E9\u56FE\u7EB8", title: "\u9009\u62E9\u56FE\u7EB8", disabled: selectionDisabled || !onChooseDrawing, onClick: onChooseDrawing, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(BookOpen, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-help", "aria-label": "\u64CD\u4F5C\u8BF4\u660E", title: "\u64CD\u4F5C\u8BF4\u660E", onClick: () => setTab("guide"), children: "?" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-diagram-fit", "aria-label": "\u9002\u5E94\u56FE\u7EB8", disabled: tab !== "schematic", title: "\u9002\u5E94\u7A97\u53E3", onClick: () => {
           if (tab === "schematic") setZoom(1);
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Maximize2, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Maximize2, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("output", { "aria-label": "\u56FE\u7EB8\u7F29\u653E\u6BD4\u4F8B", children: [
           Math.round(zoom * 100),
           "%"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: tab !== "schematic" || zoom <= 0.5, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u7F29\u5C0F\u56FE\u7EB8", disabled: tab !== "schematic" || zoom <= 0.5, onClick: () => {
           if (tab === "schematic") setZoom(Math.max(0.5, zoom - 0.25));
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomOut, { size: 20 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: tab !== "schematic" || zoom >= 4, onClick: () => {
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ZoomOut, { size: 20 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u653E\u5927\u56FE\u7EB8", disabled: tab !== "schematic" || zoom >= 4, onClick: () => {
           if (tab === "schematic") setZoom(Math.min(4, zoom + 0.25));
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ZoomIn, { size: 20 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ZoomIn, { size: 20 }) })
       ] })
     ] }),
-    open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("button", { "data-resize-edge": edge, className: `sim-diagram-resize sim-diagram-resize-${edge}`, "aria-label": `\u8C03\u6574\u56FE\u7EB8\u7A97\u53E3${label}`, onPointerDown: startResize, onPointerMove: moveResize, onPointerUp: (event) => endResize(event), onPointerCancel: (event) => endResize(event, true), onLostPointerCapture: lostResizeCapture }, edge))
+    open && !fullscreen && Object.entries(EDGES).map(([edge, label]) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "data-resize-edge": edge, className: `sim-diagram-resize sim-diagram-resize-${edge}`, "aria-label": `\u8C03\u6574\u56FE\u7EB8\u7A97\u53E3${label}`, onPointerDown: startResize, onPointerMove: moveResize, onPointerUp: (event) => endResize(event), onPointerCancel: (event) => endResize(event, true), onLostPointerCapture: lostResizeCapture }, edge))
   ] });
 }
 
@@ -35683,18 +35882,19 @@ function referenceVideoForDocument(document2, hasDrawing = false) {
 }
 
 // app/simulator/editor/library-presentation.ts
-var household = ["switch1", "switch2", "lamp", "breaker1", "breaker3"];
-var industrial = ["breaker1", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380-jzc1-22", "timer380-8pin", "motor-dahlander"];
-var helpers = ["supply", "terminal", "terminal-strip16", "terminal-strip20", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical", "din-rail"];
+var industrial = ["breaker1", "breaker2", "breaker3", "fuse", "fuse2", "fuse3", "push-nc", "push-latching-red", "push-no", "push-latching-green", "limit-switch", "knife-switch3", "contactor220", "contactor380", "motor", "motor-star-delta", "overload", "relay380-jzc1-22", "timer380-8pin", "motor-dahlander"];
+var helpers = ["supply", "terminal", "terminal-strip10", "terminal-strip16", "terminal-strip20", "pe-terminal", "auxiliary-no", "wire-duct", "wire-duct-vertical", "din-rail"];
 var poolLabel = {
   switch1: "\u5355\u5F00\u5355\u63A7",
   switch2: "\u5355\u5F00\u53CC\u63A7",
   lamp: "\u706F\u6CE1\uFF08220V\uFF09",
   breaker1: "\u7A7A\u6C14\u5F00\u5173\uFF081P\uFF09",
+  breaker2: "\u7A7A\u6C14\u5F00\u5173\uFF082P\uFF09",
   breaker3: "\u7A7A\u6C14\u5F00\u5173\uFF083P\uFF09",
   fuse: "\u7194\u65AD\u5668\uFF08FU\uFF09",
   fuse3: "\u4E09\u8054\u7194\u65AD\u5668\uFF08FU\uFF09",
   fuse2: "\u53CC\u8054\u7194\u65AD\u5668\uFF08FU\uFF09",
+  "terminal-strip10": "10\u4F4D\u7AEF\u5B50\u6392\uFF08XT\uFF09",
   "terminal-strip16": "16\u4F4D\u7AEF\u5B50\u6392\uFF08XT\uFF09",
   "terminal-strip20": "20\u4F4D\u7AEF\u5B50\u6392\uFF08XT\uFF09",
   "knife-switch3": "\u5200\u5F00\u5173\uFF08QS\uFF09",
@@ -35718,8 +35918,7 @@ var poolLabel = {
 function poolGroups(category, search) {
   const definitions = new Map(CATALOG.map((item) => [item.type, item]));
   const groups = [
-    { id: "lighting", title: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6", types: category === "industrial" ? [] : household },
-    { id: "industrial", title: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6", types: category === "lighting" ? [] : industrial },
+    { id: "industrial", title: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6", types: industrial },
     { id: "helpers", title: "\u63A5\u7EBF\u8F85\u52A9", types: helpers }
   ];
   return groups.map((group) => ({ ...group, items: group.types.flatMap((type) => {
@@ -35728,20 +35927,70 @@ function poolGroups(category, search) {
   }) })).filter((group) => group.items.length);
 }
 
+// app/simulator/Modal.tsx
+var import_react17 = __toESM(require_react(), 1);
+var import_react_dom2 = __toESM(require_react_dom(), 1);
+var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
+function Modal({ children: children2, title, onClose, backdropClass = "dt-modal-backdrop", className = "dt-modal", role = "dialog" }) {
+  const element = (0, import_react17.useRef)(null);
+  const close = (0, import_react17.useRef)(onClose);
+  (0, import_react17.useEffect)(() => {
+    close.current = onClose;
+  }, [onClose]);
+  (0, import_react17.useEffect)(() => {
+    const previous = document.activeElement;
+    const dialog = element.current;
+    const controls = () => [...dialog?.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],[tabindex="0"]') ?? []].filter((item) => item.getClientRects().length);
+    (controls()[0] ?? dialog)?.focus({ preventScroll: true });
+    const keys = (event) => {
+      event.stopPropagation();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close.current();
+      }
+      if (event.key !== "Tab") return;
+      const items = controls(), first = items[0], last = items.at(-1);
+      if (!first) {
+        event.preventDefault();
+        dialog?.focus();
+      } else if (event.shiftKey && (document.activeElement === first || !dialog?.contains(document.activeElement))) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !dialog?.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    dialog?.addEventListener("keydown", keys);
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog?.removeEventListener("keydown", keys);
+      document.body.style.overflow = overflow;
+      if (previous?.isConnected) previous.focus({ preventScroll: true });
+    };
+  }, []);
+  if (typeof document === "undefined") return null;
+  return (0, import_react_dom2.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: backdropClass, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("button", { type: "button", className: "dt-modal-dismiss-layer", tabIndex: -1, "aria-label": `\u5173\u95ED${title}`, onClick: onClose }),
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { ref: element, className: `${className} dt-modal-focus-root`, role, "aria-modal": "true", "aria-label": title, tabIndex: -1, children: children2 })
+  ] }), document.body);
+}
+
 // app/simulator/editor/ShortCircuitAlert.tsx
-var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
 function ShortCircuitAlert({ diagnostic: diagnostic2, onClose, onLocate }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("footer", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", onClick: onLocate, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(LocateFixed, { size: 17 }),
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Modal, { role: "alertdialog", title: "\u77ED\u8DEF\u8B66\u544A", onClose, backdropClass: "sim-short-backdrop", className: "sim-short-dialog", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(TriangleAlert, { size: 58, "aria-hidden": "true" }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { id: "sim-short-title", children: "\u77ED\u8DEF\u8B66\u544A" }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { id: "sim-short-description", children: diagnostic2.message }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "sim-short-note", children: "\u6559\u5B66\u7535\u6E90\u5DF2\u4E2D\u6B62\u3002\u786E\u8BA4\u540E\u53EF\u67E5\u770B\u6545\u969C\u901A\u8DEF\uFF0C\u7ED3\u675F\u4EFF\u771F\u540E\u4FEE\u6539\u63A5\u7EBF\u3002" }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("footer", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", onClick: onLocate, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(LocateFixed, { size: 17 }),
         "\u5B9A\u4F4D\u6545\u969C"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", onClick: onClose, children: "\u786E\u5B9A" })
     ] })
   ] });
 }
@@ -35756,157 +36005,95 @@ function shortCircuitNoticeKey(generation, diagnostic2) {
   return JSON.stringify([generation, diagnostic2.code, [...diagnostic2.terminalIds].sort(), [...diagnostic2.wireIds].sort()]);
 }
 
-// app/simulator/editor/selection-clipboard.ts
-var clone = (value) => JSON.parse(JSON.stringify(value));
-var prefixes = { supply: "\u7535\u6E90", terminal: "XT", "terminal-strip16": "XT", "terminal-strip20": "XT", "pe-terminal": "PE", "wire-duct": "WD", "wire-duct-vertical": "WD", "auxiliary-no": "NO" };
-var prefix = (component2) => component2.label.match(/^([A-Z]+)\d+/)?.[1] ?? prefixes[component2.type] ?? component2.label.slice(0, 50);
-function copySelection(document2, selected2) {
-  const ids = new Set(selected2);
-  return clone({ components: document2.components.filter((c) => ids.has(c.id)), wires: document2.wires.filter((w) => ids.has(w.from.componentId) && ids.has(w.to.componentId)) });
-}
-function pasteSelection(document2, clipboard, offset = 32, makeId = () => crypto.randomUUID()) {
-  if (!clipboard.components.length) throw new Error("\u8BF7\u5148\u9009\u62E9\u5668\u4EF6\u6216\u7EBF\u69FD");
-  const ids = new Map(clipboard.components.map((c) => [c.id, `copy-${makeId()}`]));
-  const labels = new Set(document2.components.map((c) => c.label));
-  let clearedLinks = 0;
-  const components = clipboard.components.map((original) => {
-    const component2 = clone(original), stem = prefix(component2);
-    let index2 = 1;
-    while ([...labels].some((label) => label.startsWith(stem) && Number(label.slice(stem.length).match(/^\d+/)?.[0]) === index2)) index2++;
-    component2.id = ids.get(original.id);
-    component2.label = `${stem}${index2}`;
-    labels.add(component2.label);
-    component2.position = { x: component2.position.x + offset, y: component2.position.y + offset };
-    if (component2.linkedTo) {
-      const mapped = ids.get(component2.linkedTo);
-      if (!mapped) clearedLinks++;
-      component2.linkedTo = mapped;
-    }
-    return component2;
-  });
-  const wires = clipboard.wires.map((original) => ({ ...clone(original), id: `wire-${makeId()}`, from: { ...original.from, componentId: ids.get(original.from.componentId) }, to: { ...original.to, componentId: ids.get(original.to.componentId) }, waypoints: original.waypoints?.map((p) => ({ x: p.x + offset, y: p.y + offset })) }));
-  const next = { ...document2, components: [...document2.components, ...components], wires: [...document2.wires, ...wires] };
-  const checked = validateDocument(next);
-  if (!checked.valid) throw new Error(checked.errors.join("\uFF1B"));
-  return { document: next, componentIds: components.map((c) => c.id), wireIds: wires.map((w) => w.id), clearedLinks };
-}
-
 // app/simulator/editor/SimulatorEditor.tsx
-var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
 var nodeTypes = { electrical: DeviceNode };
 var edgeTypes = { electrical: WireEdge };
 var COLORS2 = ["#e7b000", "#20b963", "#f04452", "#3478f6", "#56616f", "#659f2f"];
-var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip16": "XT", "terminal-strip20": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail": "DR", "relay380-jzc1-22": "KA", "timer380-8pin": "KT" };
-var clone2 = (value) => JSON.parse(JSON.stringify(value));
-function parseImport(value) {
-  const result = validateDocument(value);
-  if (!result.valid || !result.document) throw new Error(result.errors.join("\uFF1B"));
-  return clone2(result.document);
-}
+var LABELS2 = { supply: "\u7535\u6E90", breaker3: "QF", breaker1: "QF", breaker2: "QF", fuse: "FU", fuse3: "FU", fuse2: "FU", "terminal-strip10": "XT", "terminal-strip16": "XT", "terminal-strip20": "XT", "knife-switch3": "QS", contactor220: "KM", contactor380: "KM", overload: "FR", "push-no": "SB", "push-nc": "SB", "push-latching-red": "SB", "push-latching-green": "SB", switch1: "S", switch2: "S", lamp: "EL", motor: "M", terminal: "XT", "pe-terminal": "PE", "auxiliary-no": "NO", relay380: "KA", timer380: "KT", "limit-switch": "SQ", "motor-star-delta": "M", "motor-dahlander": "M", "wire-duct": "WD", "wire-duct-vertical": "WD", "din-rail": "DR", "relay380-jzc1-22": "KA", "timer380-8pin": "KT" };
+var clone = (value) => JSON.parse(JSON.stringify(value));
 function Workspace(props) {
   const { document: circuit, onDocumentChange, onSave, onPublish, onAssess, onImportDrawing, renderSchematic, onRunningChange, readOnly = false } = props;
   const flow = useReactFlow();
   const flowStore = useStoreApi();
   const pendingTerminal = useStore((state) => state.connectionClickStartHandle);
-  const cancelConnection = (0, import_react15.useCallback)(() => {
+  const cancelConnection = (0, import_react18.useCallback)(() => {
     flowStore.setState({ connectionClickStartHandle: null });
     flowStore.getState().cancelConnection();
   }, [flowStore]);
-  const docRef = (0, import_react15.useRef)(circuit);
-  (0, import_react15.useLayoutEffect)(() => {
+  const docRef = (0, import_react18.useRef)(circuit);
+  (0, import_react18.useLayoutEffect)(() => {
     docRef.current = circuit;
   }, [circuit]);
-  const [category, setCategory] = (0, import_react15.useState)("all");
-  const [search, setSearch] = (0, import_react15.useState)("");
-  const [pendingRole, setPendingRole] = (0, import_react15.useState)(null);
-  const requirements = (0, import_react15.useMemo)(() => courseRequirements(circuit.lessonId), [circuit.lessonId]);
-  const [searchOpen, setSearchOpen] = (0, import_react15.useState)(false);
-  const [colorAnchor, setColorAnchor] = (0, import_react15.useState)({ left: 0, top: 0 });
-  const [libraryOpen, setLibraryOpen] = (0, import_react15.useState)(true);
-  const [selectedNodes, setSelectedNodes] = (0, import_react15.useState)([]);
-  const [selectedWires, setSelectedWires] = (0, import_react15.useState)([]);
-  const clipboard = (0, import_react15.useRef)(null);
-  const clipboardPastes = (0, import_react15.useRef)(0);
-  const [canPaste, setCanPaste] = (0, import_react15.useState)(false);
-  const [clipboardOwner, setClipboardOwner] = (0, import_react15.useState)(void 0);
-  (0, import_react15.useLayoutEffect)(() => {
-    clipboard.current = null;
-    clipboardPastes.current = 0;
-  }, [props.clipboardScope]);
-  const [past, setPast] = (0, import_react15.useState)([]);
-  const [future, setFuture] = (0, import_react15.useState)([]);
-  const [color2, setColor] = (0, import_react15.useState)(COLORS2[0]);
-  const [colorOverride, setColorOverride] = (0, import_react15.useState)(false);
-  const [wireStyle, setWireStyle] = (0, import_react15.useState)("duct");
-  const [colorsOpen, setColorsOpen] = (0, import_react15.useState)(false);
-  const [colorHost, setColorHost] = (0, import_react15.useState)(null);
-  const [running, setRunning] = (0, import_react15.useState)(false);
-  const [timerPaused, setTimerPaused] = (0, import_react15.useState)(false);
-  const [simulation, setSimulation] = (0, import_react15.useState)(null);
-  const [session] = (0, import_react15.useState)(createSimulationSession);
+  const [category, setCategory] = (0, import_react18.useState)("all");
+  const [search, setSearch] = (0, import_react18.useState)("");
+  const [pendingRole, setPendingRole] = (0, import_react18.useState)(null);
+  const requirements = (0, import_react18.useMemo)(() => courseRequirements(circuit.lessonId), [circuit.lessonId]);
+  const [searchOpen, setSearchOpen] = (0, import_react18.useState)(false);
+  const [colorAnchor, setColorAnchor] = (0, import_react18.useState)({ left: 0, top: 0 });
+  const [libraryOpen, setLibraryOpen] = (0, import_react18.useState)(true);
+  const [selectedNodes, setSelectedNodes] = (0, import_react18.useState)([]);
+  const [selectedWires, setSelectedWires] = (0, import_react18.useState)([]);
+  const [traceMode, setTraceMode] = (0, import_react18.useState)("single");
+  const [showWireNumbers, setShowWireNumbers] = (0, import_react18.useState)(true);
+  const [color2, setColor] = (0, import_react18.useState)(COLORS2[0]);
+  const [colorOverride, setColorOverride] = (0, import_react18.useState)(false);
+  const [wireStyle, setWireStyle] = (0, import_react18.useState)("duct");
+  const [colorsOpen, setColorsOpen] = (0, import_react18.useState)(false);
+  const [colorHost, setColorHost] = (0, import_react18.useState)(null);
+  const [running, setRunning] = (0, import_react18.useState)(false);
+  const [timerPaused, setTimerPaused] = (0, import_react18.useState)(false);
+  const [simulation, setSimulation] = (0, import_react18.useState)(null);
+  const [session] = (0, import_react18.useState)(createSimulationSession);
   const sessionGeneration = session.generation;
-  const [assessmentReports, setAssessment] = (0, import_react15.useState)(null);
+  const [assessmentReports, setAssessment] = (0, import_react18.useState)(null);
   const assessment = assessmentReports?.assessment ?? null;
   const workmanship = assessmentReports?.workmanship ?? null;
-  const [panelOpen, setPanelOpen] = (0, import_react15.useState)(false);
-  const [panelTab, setPanelTab] = (0, import_react15.useState)("runtime");
-  const [localDrawing, setLocalDrawing] = (0, import_react15.useState)({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
+  const [panelOpen, setPanelOpen] = (0, import_react18.useState)(false);
+  const [panelTab, setPanelTab] = (0, import_react18.useState)("runtime");
+  const [localDrawing, setLocalDrawing] = (0, import_react18.useState)({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
   if (localDrawing.documentKey !== props.documentKey || localDrawing.source !== props.drawingUrl) {
     setLocalDrawing({ documentKey: props.documentKey, source: props.drawingUrl, url: props.drawingUrl ?? "" });
   }
   const drawing = localDrawing.documentKey === props.documentKey && localDrawing.source === props.drawingUrl ? localDrawing.url : props.drawingUrl ?? "";
   const setDrawing = (url) => setLocalDrawing({ documentKey: props.documentKey, source: props.drawingUrl, url });
-  const [drawingZoom, setDrawingZoom] = (0, import_react15.useState)(1);
-  const drawingSelectionEpoch = (0, import_react15.useRef)(0);
-  const [message, setMessage] = (0, import_react15.useState)("");
-  const [busy, setBusy] = (0, import_react15.useState)("");
-  const [transferMode, setTransferMode] = (0, import_react15.useState)(null);
-  const [transferText, setTransferText] = (0, import_react15.useState)("");
-  const [transferNotice, setTransferNotice] = (0, import_react15.useState)("");
-  const transferInput = (0, import_react15.useRef)(null);
-  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react15.useState)(null);
-  const dragBefore = (0, import_react15.useRef)(null);
-  const resizing = (0, import_react15.useRef)(null);
-  const [dismissedShort, setDismissedShort] = (0, import_react15.useState)("");
+  const [drawingZoom, setDrawingZoom] = (0, import_react18.useState)(1);
+  const drawingSelectionEpoch = (0, import_react18.useRef)(0);
+  const [message, setMessage] = (0, import_react18.useState)("");
+  const [busy, setBusy] = (0, import_react18.useState)("");
+  const [focusedDiagnostic, setFocusedDiagnostic] = (0, import_react18.useState)(null);
+  const resizing = (0, import_react18.useRef)(null);
+  const [dismissedShort, setDismissedShort] = (0, import_react18.useState)("");
   const shortDiagnostic = running ? shortCircuitDiagnostic(simulation) : null;
   const shortKey = shortDiagnostic ? shortCircuitNoticeKey(sessionGeneration, shortDiagnostic) : "";
   if (!shortKey && dismissedShort) setDismissedShort("");
   const shortAlert = shortKey !== dismissedShort ? shortDiagnostic : null;
-  const [currentDocument, setCurrentDocument] = (0, import_react15.useState)(props.documentKey);
+  const [currentDocument, setCurrentDocument] = (0, import_react18.useState)(props.documentKey);
   if (currentDocument !== props.documentKey) {
     setCurrentDocument(props.documentKey);
     setPendingRole(null);
     setDismissedShort("");
-    setPast([]);
-    setFuture([]);
     setRunning(false);
     setSimulation(null);
     setAssessment(null);
     setSelectedNodes([]);
     setSelectedWires([]);
     setFocusedDiagnostic(null);
-    setTransferMode(null);
   }
-  const assessmentRequest = (0, import_react15.useRef)(0);
-  const board = (0, import_react15.useRef)(null);
-  const editorElement = (0, import_react15.useRef)(null);
-  const diagramPanel = (0, import_react15.useRef)(null);
-  const importInput = (0, import_react15.useRef)(null);
-  const importRequest = (0, import_react15.useRef)(0);
-  const drawingInput = (0, import_react15.useRef)(null);
+  const assessmentRequest = (0, import_react18.useRef)(0);
+  const board = (0, import_react18.useRef)(null);
+  const editorElement = (0, import_react18.useRef)(null);
+  const diagramPanel = (0, import_react18.useRef)(null);
+  const drawingInput = (0, import_react18.useRef)(null);
   const frozen = running || readOnly;
-  const frozenRef = (0, import_react15.useRef)(frozen);
-  (0, import_react15.useLayoutEffect)(() => {
-    frozenRef.current = frozen;
-  }, [frozen]);
-  (0, import_react15.useLayoutEffect)(() => {
+  (0, import_react18.useLayoutEffect)(() => {
     cancelConnection();
   }, [props.documentKey, frozen, cancelConnection]);
-  (0, import_react15.useLayoutEffect)(() => {
+  (0, import_react18.useLayoutEffect)(() => {
     if (pendingTerminal && !circuit.components.some((component2) => component2.id === pendingTerminal.nodeId && getDefinition(component2.type).terminals.some((terminal) => terminal.id === pendingTerminal.id))) cancelConnection();
   }, [circuit.components, pendingTerminal, cancelConnection]);
-  const initial = (0, import_react15.useMemo)(() => initialRuntime(circuit, false), [circuit]);
-  const frameInitialView = (0, import_react15.useCallback)(() => {
+  const initial = (0, import_react18.useMemo)(() => initialRuntime(circuit, false), [circuit]);
+  const frameInitialView = (0, import_react18.useCallback)(() => {
     const components = docRef.current.components;
     if (!components.length) {
       void flow.setViewport({ x: 50, y: 85, zoom: 0.78 });
@@ -35924,66 +36111,43 @@ function Workspace(props) {
     const zoom = Math.max(0.22, Math.min(0.9, (usableWidth - 30) / Math.max(1, maxX - minX), usableHeight / Math.max(1, maxY - minY)));
     void flow.setViewport({ x: 35 + (usableWidth - (maxX - minX) * zoom) / 2 - minX * zoom, y: 85 - minY * zoom, zoom }, { duration: 180 });
   }, [flow]);
-  (0, import_react15.useEffect)(() => {
+  (0, import_react18.useEffect)(() => {
     onRunningChange?.(running);
   }, [running, onRunningChange]);
-  (0, import_react15.useEffect)(() => () => {
+  (0, import_react18.useEffect)(() => () => {
     onRunningChange?.(false);
   }, [onRunningChange]);
-  (0, import_react15.useLayoutEffect)(() => {
+  (0, import_react18.useLayoutEffect)(() => {
     assessmentRequest.current++;
     session.clear();
     resizing.current = null;
     const timer2 = setTimeout(frameInitialView, 80);
     return () => clearTimeout(timer2);
   }, [props.documentKey, frameInitialView, session]);
-  (0, import_react15.useEffect)(() => () => session.clear(), [session]);
-  (0, import_react15.useEffect)(() => {
+  (0, import_react18.useEffect)(() => () => session.clear(), [session]);
+  (0, import_react18.useEffect)(() => {
     if (!message) return;
     const timer2 = setTimeout(() => setMessage(""), 4500);
     return () => clearTimeout(timer2);
   }, [message]);
-  const changed = (0, import_react15.useCallback)((next) => {
+  const changed = (0, import_react18.useCallback)((next) => {
     if (frozen) return;
     const previous = docRef.current;
     if (JSON.stringify(previous) === JSON.stringify(next)) return;
     cancelConnection();
-    setPast((items) => [...items.slice(-79), clone2(previous)]);
-    setFuture([]);
     setAssessment(null);
     setSimulation(null);
     setFocusedDiagnostic(null);
     docRef.current = next;
     onDocumentChange(next);
   }, [frozen, onDocumentChange, cancelConnection]);
-  const undo = (0, import_react15.useCallback)(() => {
-    if (frozen || !past.length) return;
-    const previous = past[past.length - 1], current = clone2(docRef.current);
-    setFuture((items) => [current, ...items]);
-    setPast((items) => items.slice(0, -1));
-    setAssessment(null);
-    setSimulation(null);
-    setFocusedDiagnostic(null);
-    onDocumentChange(previous);
-  }, [frozen, onDocumentChange, past]);
-  const redo = (0, import_react15.useCallback)(() => {
-    if (frozen || !future.length) return;
-    const current = clone2(docRef.current);
-    setPast((items) => [...items, current]);
-    const next = future[0];
-    setFuture((items) => items.slice(1));
-    setAssessment(null);
-    setSimulation(null);
-    setFocusedDiagnostic(null);
-    onDocumentChange(next);
-  }, [frozen, future, onDocumentChange]);
-  const deleteSelected = (0, import_react15.useCallback)(() => {
+  const deleteSelected = (0, import_react18.useCallback)(() => {
     if (frozen) return;
     changed({ ...docRef.current, components: docRef.current.components.filter((component2) => !selectedNodes.includes(component2.id)).map((component2) => component2.linkedTo && selectedNodes.includes(component2.linkedTo) ? { ...component2, linkedTo: void 0 } : component2), wires: docRef.current.wires.filter((wire) => !selectedWires.includes(wire.id) && !selectedNodes.includes(wire.from.componentId) && !selectedNodes.includes(wire.to.componentId)), roles: docRef.current.roles ? Object.fromEntries(Object.entries(docRef.current.roles).filter(([, componentId]) => !selectedNodes.includes(componentId))) : void 0 });
     setSelectedNodes([]);
     setSelectedWires([]);
   }, [frozen, changed, selectedNodes, selectedWires]);
-  const action = (0, import_react15.useCallback)((nextAction) => {
+  const action = (0, import_react18.useCallback)((nextAction) => {
     if (!running) return;
     const result = session.dispatch(nextAction, sessionGeneration);
     if (!result) return;
@@ -35997,34 +36161,8 @@ function Workspace(props) {
     if (nextAction.type === "advance-time") present();
     else (0, import_react_dom3.flushSync)(present);
   }, [running, session, sessionGeneration]);
-  const copySelected = () => {
-    if (frozen) return;
-    const selection2 = copySelection(docRef.current, selectedNodes);
-    if (!selection2.components.length) {
-      setMessage("\u8BF7\u9009\u62E9\u8981\u590D\u5236\u7684\u5668\u4EF6\u6216\u7EBF\u69FD\uFF0C\u53EF\u6309 Shift \u591A\u9009\u3002");
-      return;
-    }
-    clipboard.current = selection2;
-    clipboardPastes.current = 0;
-    setCanPaste(true);
-    setClipboardOwner(props.clipboardScope);
-    setMessage(`\u5DF2\u590D\u5236 ${selection2.components.length} \u4E2A\u5BF9\u8C61\u548C ${selection2.wires.length} \u6839\u7EC4\u5185\u5BFC\u7EBF\u3002`);
-  };
-  const pasteSelected = () => {
-    if (frozen || clipboardOwner !== props.clipboardScope || !clipboard.current) return;
-    try {
-      const pasted = pasteSelection(docRef.current, clipboard.current, 32 * (clipboardPastes.current + 1));
-      changed(pasted.document);
-      clipboardPastes.current++;
-      setSelectedNodes(pasted.componentIds);
-      setSelectedWires(pasted.wireIds);
-      setMessage(pasted.clearedLinks ? `\u5DF2\u7C98\u8D34\uFF1B${pasted.clearedLinks} \u4E2A\u7EC4\u5916\u8F85\u52A9\u5173\u8054\u5DF2\u6E05\u9664\uFF0C\u8BF7\u91CD\u65B0\u9009\u62E9\u7EBF\u5708\u3002` : "\u5DF2\u7C98\u8D34\uFF0C\u53EF\u6574\u4F53\u79FB\u52A8\uFF1B\u4E00\u6B21\u64A4\u9500\u6062\u590D\u3002");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "\u7C98\u8D34\u5931\u8D25\uFF0C\u5F53\u524D\u7535\u8DEF\u4FDD\u6301\u4E0D\u53D8\u3002");
-    }
-  };
   const hasTimers = circuit.components.some((component2) => isTimer(component2.type));
-  (0, import_react15.useEffect)(() => {
+  (0, import_react18.useEffect)(() => {
     if (!running || !hasTimers || timerPaused) return;
     const timer2 = setInterval(() => {
       if (session.current?.runtime.powerOn && session.current.supported && !session.current.runtime.faultLatched) action({ type: "advance-time", ms: 100 });
@@ -36058,12 +36196,12 @@ function Workspace(props) {
     if (frozen) return;
     const bounds2 = board.current?.getBoundingClientRect();
     const position = point2 ?? flow.screenToFlowPosition({ x: (bounds2?.left ?? 300) + (bounds2?.width ?? 900) * 0.4, y: (bounds2?.top ?? 120) + (bounds2?.height ?? 600) * 0.4 });
-    const prefix2 = LABELS2[type];
+    const prefix = LABELS2[type];
     let index2 = 1;
-    while (circuit.components.some((component3) => component3.label === `${prefix2}${index2}`)) index2++;
+    while (circuit.components.some((component3) => component3.label === `${prefix}${index2}`)) index2++;
     const id2 = `${type}-${crypto.randomUUID().slice(0, 8)}`;
     const required = role && requirements.find((item) => item.role === role);
-    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix2}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { rotation: required.component.rotation, mirrored: required.component.mirrored, pePositions: required.component.pePositions, settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
+    const component2 = { id: id2, type, label: required ? required.component.label : `${prefix}${index2}`, position: { x: Math.round(position.x / 8) * 8, y: Math.round(position.y / 8) * 8 }, ...required ? { rotation: required.component.rotation, mirrored: required.component.mirrored, pePositions: required.component.pePositions, settings: required.component.settings, linkedTo: required.component.linkedTo ? docRef.current.roles?.[required.component.linkedTo] : void 0 } : {} };
     try {
       changed(role ? addCourseComponent(docRef.current, role, component2) : { ...docRef.current, components: [...docRef.current.components, component2] });
       setPendingRole(null);
@@ -36089,17 +36227,19 @@ function Workspace(props) {
     const colorChoice = resolveConnectionColor(circuit, from, to, colorOverride || !sourceComponent || !sourceTerminal ? color2 : terminalColor(transformedTerminal(sourceComponent, sourceTerminal)));
     const newColor = colorOverride ? color2 : colorChoice.color;
     const automatic = wireStyle === "duct";
-    changed(normalizeAutomaticControlWireColors({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, colorMode: colorOverride ? "manual" : "auto", style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] }));
+    const numberChoice = connectionWireNumber(circuit, from, to);
+    changed(normalizeAutomaticControlWireColors({ ...circuit, wires: [...circuit.wires, { id: `wire-${crypto.randomUUID().slice(0, 10)}`, from, to, color: newColor, colorMode: colorOverride ? "manual" : "auto", ...numberChoice.wireNumber ? { wireNumber: numberChoice.wireNumber } : {}, style: wireStyle === "duct" ? "orthogonal" : wireStyle, routing: automatic ? "duct" : void 0 }] }));
+    if (numberChoice.conflict) setMessage("\u8FDE\u63A5\u7684\u4E24\u7EC4\u7EBF\u53F7\u4E0D\u540C\uFF0C\u539F\u7EBF\u53F7\u5DF2\u4FDD\u7559\uFF0C\u8BF7\u6838\u5BF9\u540E\u8BBE\u7F6E\u6574\u7EC4\u7EBF\u53F7\u3002");
     if (colorChoice.conflict) setMessage("\u540C\u4E00\u5BFC\u901A\u7EC4\u5B58\u5728\u4E0D\u540C\u7EBF\u8272\u3002\u9009\u4E2D\u4EFB\u4E00\u5BFC\u7EBF\uFF0C\u518D\u9009\u62E9\u989C\u8272\uFF0C\u53EF\u7EDF\u4E00\u6574\u7EC4\u3002");
     if (colorChoice.sourceConflict) setMessage("\u4E0D\u540C\u7535\u6E90\u76F8\u63A5\u5165\u4E86\u540C\u4E00\u5BFC\u901A\u7EC4\uFF0C\u8BF7\u68C0\u67E5\u63A5\u7EBF\uFF1B\u7EDF\u4E00\u989C\u8272\u4E0D\u80FD\u6D88\u9664\u7535\u6C14\u51B2\u7A81\u3002");
   };
-  const onWaypoints = (0, import_react15.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
-  const configure = (0, import_react15.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
-  const beginResize = (0, import_react15.useCallback)((id2) => {
+  const onWaypoints = (0, import_react18.useCallback)((id2, points) => changed({ ...docRef.current, wires: docRef.current.wires.map((wire) => wire.id === id2 ? { ...wire, waypoints: points } : wire) }), [changed]);
+  const configure = (0, import_react18.useCallback)((id2, patch) => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === id2 ? { ...component2, ...patch } : component2) }), [changed]);
+  const beginResize = (0, import_react18.useCallback)((id2) => {
     if (frozen || !isLayoutObject(docRef.current.components.find((component2) => component2.id === id2)?.type ?? "")) return;
-    resizing.current = { id: id2, before: clone2(docRef.current), documentKey: props.documentKey };
+    resizing.current = { id: id2, before: clone(docRef.current), documentKey: props.documentKey };
   }, [frozen, props.documentKey]);
-  const resize = (0, import_react15.useCallback)((id2, bounds2, finish = false) => {
+  const resize = (0, import_react18.useCallback)((id2, bounds2, finish = false) => {
     const gesture = resizing.current;
     if (frozen || !gesture || gesture.id !== id2 || gesture.documentKey !== props.documentKey || ![bounds2.x, bounds2.y, bounds2.width, bounds2.height].every(Number.isFinite)) return;
     const rail = docRef.current.components.find((c) => c.id === id2)?.type === "din-rail";
@@ -36110,23 +36250,39 @@ function Workspace(props) {
     setSimulation(null);
     setFocusedDiagnostic(null);
     if (finish) {
-      if (JSON.stringify(gesture.before) !== JSON.stringify(next)) {
-        setPast((items) => [...items.slice(-79), gesture.before]);
-        setFuture([]);
-      }
       resizing.current = null;
     }
   }, [frozen, props.documentKey, onDocumentChange]);
-  const cancelResize = (0, import_react15.useCallback)(() => {
+  const cancelResize = (0, import_react18.useCallback)(() => {
     const gesture = resizing.current;
     resizing.current = null;
     if (gesture && gesture.documentKey === props.documentKey && !frozen) onDocumentChange(gesture.before);
   }, [frozen, props.documentKey, onDocumentChange]);
-  const linkedComponents = (0, import_react15.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
-  const diagnostics = (0, import_react15.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
-  const terminalColors = (0, import_react15.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
-  const nodes = (0, import_react15.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selectable: !running, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: selectedWires, pendingTerminalKey: pendingTerminal ? `${pendingTerminal.nodeId}::${pendingTerminal.id}` : void 0, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, selectedWires, pendingTerminal, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
-  const edges = (0, import_react15.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, highlighted: diagnostics.some((diagnostic2) => diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, running, readOnly, diagnostics, simulation, onWaypoints]);
+  const linkedComponents = (0, import_react18.useMemo)(() => circuit.components.filter((component2) => component2.type === "contactor220" || component2.type === "contactor380" || isRelay(component2.type)).map(({ id: id2, label }) => ({ id: id2, label })), [circuit.components]);
+  const diagnostics = (0, import_react18.useMemo)(() => focusedDiagnostic ? [focusedDiagnostic] : simulation?.diagnostics ?? [], [focusedDiagnostic, simulation]);
+  const terminalColors = (0, import_react18.useMemo)(() => Object.fromEntries(getWireColorGroups(circuit).filter((group) => group.colors.length === 1 && group.sourcePotentials.length <= 1).flatMap((group) => group.terminalIds.map((id2) => [id2, group.colors[0]]))), [circuit]);
+  const wiringNets = (0, import_react18.useMemo)(() => getWiringNets(circuit), [circuit]);
+  const numberNotices = (0, import_react18.useMemo)(() => wireNumberNotices(wiringNets), [wiringNets]);
+  const traceNet = wiringNets.find((net) => net.wireIds.includes(selectedWires.at(-1) ?? ""));
+  const targetWire = circuit.wires.find((wire) => wire.id === selectedWires.at(-1));
+  const numberTarget = targetWire && traceNet ? `${circuit.components.find((c) => c.id === targetWire.from.componentId)?.label} \u2192 ${circuit.components.find((c) => c.id === targetWire.to.componentId)?.label} \xB7 ${traceNet.wireIds.length}\u6839\u7EBF` : "\u5148\u9009\u62E9\u5BFC\u7EBF";
+  const tracedWireIds = (0, import_react18.useMemo)(() => traceMode === "net" ? traceNet?.wireIds ?? [] : selectedWires, [traceMode, traceNet, selectedWires]);
+  const tracedTerminalIds = (0, import_react18.useMemo)(() => traceMode === "net" ? traceNet?.terminalIds ?? [] : circuit.wires.filter((wire) => selectedWires.includes(wire.id)).flatMap((wire) => [`${wire.from.componentId}::${wire.from.terminalId}`, `${wire.to.componentId}::${wire.to.terminalId}`]), [traceMode, traceNet, circuit.wires, selectedWires]);
+  const terminalWireNumbers = (0, import_react18.useMemo)(() => showWireNumbers ? Object.fromEntries(wiringNets.filter((net) => net.numbers.length > 0).flatMap((net) => net.terminalIds.map((id2) => [id2, net.numbers.join(" / ")]))) : {}, [wiringNets, showWireNumbers]);
+  const clearTrace = () => {
+    setSelectedWires([]);
+    cancelConnection();
+  };
+  const applyWireNumber = (number) => {
+    if (frozen || !traceNet) return;
+    try {
+      changed(setWiringNetNumber(docRef.current, traceNet.wireIds[0], number));
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "\u7EBF\u53F7\u8BBE\u7F6E\u5931\u8D25\u3002");
+    }
+  };
+  const nodes = (0, import_react18.useMemo)(() => circuit.components.map((component2) => ({ id: component2.id, type: "electrical", className: isLayoutObject(component2.type) ? "sim-duct-flow-node" : void 0, zIndex: isLayoutObject(component2.type) ? 0 : 2, position: component2.position, selectable: !running, selected: selectedNodes.includes(component2.id), ...deviceNodeGeometry(component2), style: componentSize(component2), data: { component: component2, document: circuit, selectedWireIds: tracedWireIds, tracedTerminalIds, wireNumbers: terminalWireNumbers, pendingTerminalKey: pendingTerminal ? `${pendingTerminal.nodeId}::${pendingTerminal.id}` : void 0, running, runtime: simulation?.runtime ?? initial, result: simulation?.components[component2.id], terminalStates: simulation?.terminals ?? {}, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize } })), [circuit, selectedNodes, tracedWireIds, tracedTerminalIds, terminalWireNumbers, pendingTerminal, running, simulation, initial, terminalColors, diagnostics, action, readOnly, linkedComponents, configure, beginResize, resize, cancelResize]);
+  const edges = (0, import_react18.useMemo)(() => circuit.wires.map((wire) => ({ id: wire.id, type: "electrical", zIndex: 1, source: wire.from.componentId, target: wire.to.componentId, sourceHandle: wire.from.terminalId, targetHandle: wire.to.terminalId, selected: selectedWires.includes(wire.id), data: { document: circuit, wire, running, readOnly, traced: tracedWireIds.includes(wire.id), highlighted: diagnostics.some((diagnostic2) => diagnostic2.severity !== "info" && diagnostic2.wireIds.includes(wire.id)), energized: simulation?.energizedWireIds.includes(wire.id) ?? false, onWaypoints } })), [circuit, selectedWires, tracedWireIds, running, readOnly, diagnostics, simulation, onWaypoints]);
   const nodesChanged = (changes) => {
     const selection2 = changes.filter((change) => change.type === "select");
     if (selection2.length) setSelectedNodes((current) => {
@@ -36162,7 +36318,7 @@ function Workspace(props) {
   const setWireColor = (next) => {
     setColor(next);
     setColorOverride(true);
-    if (selectedWires.length) changed(setWireGroupColor(circuit, selectedWires, next));
+    if (selectedWires.length) changed({ ...circuit, wires: circuit.wires.map((wire) => selectedWires.includes(wire.id) ? { ...wire, color: next, colorMode: "manual" } : wire) });
   };
   const setStyle = (next) => {
     if (frozen) return;
@@ -36180,54 +36336,10 @@ function Workspace(props) {
     try {
       changed(putWiresInDucts(arrangeTrainingDucts(docRef.current)));
       setWireStyle("duct");
-      setMessage(hasDucts ? "\u5DF2\u5207\u6362\u81EA\u52A8\u8D70\u7EBF\uFF1B\u672A\u5165\u69FD\u7684\u5BFC\u7EBF\u4F1A\u6301\u7EED\u663E\u793A\u63D0\u793A\uFF0C\u53EF\u64A4\u9500\u3002" : "\u5DF2\u6309\u8BFE\u7A0B\u5E03\u5C40\u9884\u5E03\u7EBF\u69FD\uFF0C\u63A5\u7EBF\u540E\u81EA\u52A8\u5165\u69FD\uFF1B\u53EF\u64A4\u9500\u3002");
+      setMessage(hasDucts ? "\u5DF2\u5207\u6362\u81EA\u52A8\u8D70\u7EBF\uFF1B\u672A\u5165\u69FD\u7684\u5BFC\u7EBF\u4F1A\u6301\u7EED\u663E\u793A\u63D0\u793A\u3002" : "\u5DF2\u6309\u8BFE\u7A0B\u5E03\u5C40\u9884\u5E03\u7EBF\u69FD\uFF0C\u63A5\u7EBF\u540E\u81EA\u52A8\u5165\u69FD\u3002");
       if (!hasDucts) setTimeout(frameInitialView, 80);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "\u7EBF\u69FD\u5E03\u7F6E\u5931\u8D25\u3002");
-    }
-  };
-  const openTransfer = (mode) => {
-    setTransferText(mode === "export" ? JSON.stringify(circuit, null, 2) : "");
-    setTransferNotice("");
-    setTransferMode(mode);
-  };
-  const exportDocument = () => {
-    const url = URL.createObjectURL(new Blob([transferText], { type: "application/json" }));
-    const anchor = globalThis.document.createElement("a");
-    anchor.href = url;
-    anchor.download = `${circuit.title || "\u7535\u62D3\u7535\u8DEF"}.json`;
-    globalThis.document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 6e4);
-    setTransferNotice("\u5DF2\u8BF7\u6C42\u4E0B\u8F7D\u3002\u82E5\u6D4F\u89C8\u5668\u6CA1\u6709\u4FDD\u5B58\u6587\u4EF6\uFF0C\u53EF\u590D\u5236\u4E0B\u65B9 JSON \u5E76\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002");
-  };
-  const importDocument = (text2) => {
-    if (frozen) throw new Error("\u8BF7\u5148\u7ED3\u675F\u4EFF\u771F\uFF0C\u518D\u5BFC\u5165\u7535\u8DEF\u3002");
-    if (new Blob([text2]).size > 5 * 1024 * 1024) throw new Error("\u7535\u8DEF\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7 5 MB\u3002");
-    const document2 = parseImport(JSON.parse(text2));
-    changed(document2);
-    setSelectedNodes([]);
-    setSelectedWires([]);
-    setTransferMode(null);
-    setMessage("\u7535\u8DEF\u5DF2\u5BFC\u5165\uFF0C\u53EF\u64A4\u9500\u672C\u6B21\u5BFC\u5165\u3002");
-    setTimeout(frameInitialView, 80);
-  };
-  const importFile = async (file) => {
-    if (frozenRef.current) return;
-    const request = ++importRequest.current;
-    const original = docRef.current;
-    const generation = session.generation;
-    try {
-      if (file.size > 5 * 1024 * 1024) throw new Error("\u7535\u8DEF\u6587\u4EF6\u4E0D\u80FD\u8D85\u8FC7 5 MB\u3002");
-      const text2 = await file.text();
-      if (request !== importRequest.current || original !== docRef.current || generation !== session.generation || frozenRef.current) {
-        setMessage("\u8BFB\u53D6\u671F\u95F4\u7535\u8DEF\u6216\u4EFF\u771F\u72B6\u6001\u5DF2\u53D8\u5316\uFF0C\u5F53\u524D\u63A5\u7EBF\u4FDD\u6301\u4E0D\u53D8\uFF0C\u8BF7\u91CD\u65B0\u5BFC\u5165\u3002");
-        return;
-      }
-      importDocument(text2);
-    } catch (error) {
-      setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
     }
   };
   const perform = async (key4, callback) => {
@@ -36245,7 +36357,7 @@ function Workspace(props) {
     setPanelOpen(true);
     setPanelTab(circuit.lessonId ? "lesson" : "safety");
     setTimeout(frameInitialView, 80);
-    if (!running) setSimulation(simulate(circuit, initialRuntime(circuit, false)));
+    if (!running) setSimulation(simulate(circuit, initialRuntime(circuit)));
     if (!circuit.lessonId) {
       setMessage("\u81EA\u7531\u63A5\u7EBF\u53EA\u62A5\u544A\u8FD0\u884C\u72B6\u6001\u548C\u5B89\u5168\u8BCA\u65AD\uFF1B\u8BF7\u9009\u62E9\u56FE\u7EB8\u8BFE\u7A0B\u540E\u8FDB\u884C\u8BFE\u7A0B\u5224\u5B9A\u3002");
       return;
@@ -36272,14 +36384,22 @@ function Workspace(props) {
     if (ids.length) flow.fitView({ nodes: ids.map((id2) => ({ id: id2 })), padding: 0.6, maxZoom: 1.25, duration: 300 });
   };
   const librarySections = poolGroups(category, search);
-  const safetyDiagnostics = simulation?.diagnostics ?? [];
-  const routingProblems = (0, import_react15.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed" || item.route.capacityWarning), [circuit]);
+  const { safety: safetyDiagnostics, runtime: runtimeInformation } = presentDiagnostics(simulation?.diagnostics ?? []);
+  const routingProblems = (0, import_react18.useMemo)(() => circuit.wires.filter((wire) => wire.routing === "duct").map((wire) => ({ wire, route: ductWireRoute(circuit, wire) })).filter((item) => item.route.status !== "routed"), [circuit]);
   const lessonDiagnostics = assessment?.diagnostics ?? [];
   const referenceDrawing = circuit.referenceDiagramId === void 0 ? void 0 : getReferenceDrawing(circuit.referenceDiagramId);
   const viewerControls = { zoom: drawingZoom, onZoomChange: setDrawingZoom };
-  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
-  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, 0, viewerControls) : drawingPreview ?? renderSchematic;
-  (0, import_react15.useEffect)(() => {
+  const drawingPreview = drawing ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { compact: true, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE", ...viewerControls }) : referenceDrawing ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { compact: true, src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title, ...viewerControls }) : null;
+  const previewDescriptor = (0, import_react18.useMemo)(
+    () => drawing ? { key: drawing, src: drawing, type: props.drawingType, title: "\u7528\u6237\u5BFC\u5165\u7684\u63A5\u7EBF\u56FE" } : referenceDrawing ? { key: String(referenceDrawing.id), src: referenceDrawingImageUrl(referenceDrawing.id, "/diantuo-zhixun/"), title: referenceDrawing.title } : renderSchematic && typeof renderSchematic !== "function" ? { key: props.documentKey ?? circuit.title, title: circuit.title, content: renderSchematic } : null,
+    [drawing, props.drawingType, referenceDrawing, renderSchematic, props.documentKey, circuit.title]
+  );
+  const onDrawingPreviewChange = props.onDrawingPreviewChange;
+  (0, import_react18.useEffect)(() => {
+    if (typeof renderSchematic !== "function") onDrawingPreviewChange?.(previewDescriptor);
+  }, [previewDescriptor, renderSchematic, onDrawingPreviewChange]);
+  const schematicContent = typeof renderSchematic === "function" ? renderSchematic(drawingPreview, 0, viewerControls, previewDescriptor) : drawingPreview ?? renderSchematic;
+  (0, import_react18.useEffect)(() => {
     const element = editorElement.current;
     if (!element) return;
     const onKeyDown = (event) => {
@@ -36299,24 +36419,13 @@ function Workspace(props) {
         return;
       }
       if (event.target.matches("input,textarea,select")) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        clearTrace();
+        setSelectedNodes([]);
+        return;
+      }
       if (event.target.closest('[contenteditable="true"]')) return;
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "c") {
-        event.preventDefault();
-        copySelected();
-      }
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "v") {
-        event.preventDefault();
-        pasteSelected();
-      }
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
-        event.preventDefault();
-        if (event.shiftKey) redo();
-        else undo();
-      }
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "y") {
-        event.preventDefault();
-        redo();
-      }
       if (event.key === "Delete" || event.key === "Backspace") {
         event.preventDefault();
         deleteSelected();
@@ -36325,147 +36434,157 @@ function Workspace(props) {
     element.addEventListener("keydown", onKeyDown);
     return () => element.removeEventListener("keydown", onKeyDown);
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("aside", { className: "sim-library", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { ref: editorElement, role: "group", "aria-label": "\u7535\u8DEF\u7F16\u8F91\u5668", className: `sim-editor ${libraryOpen ? "" : "library-collapsed"} ${running ? "is-running" : ""}`, "data-simulation-events": running ? JSON.stringify(session.trace) : void 0, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("aside", { className: "sim-library", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-library-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { children: "\u5668\u4EF6\u5E93" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-search-toggle", "aria-label": searchOpen ? "\u6536\u8D77\u5143\u4EF6\u641C\u7D22" : "\u5C55\u5F00\u5143\u4EF6\u641C\u7D22", onClick: () => {
           setSearchOpen(!searchOpen);
           if (searchOpen) setSearch("");
-        }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 16 }) })
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "lighting", className: category === "lighting" ? "active" : "", onClick: () => setCategory("lighting"), children: "\u5BB6\u5EAD\u7535\u8DEF\u7EC4\u4EF6" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-library-tabs", role: "tablist", "aria-label": "\u5143\u4EF6\u5206\u7C7B", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": category === "all", className: category === "all" ? "active" : "", onClick: () => setCategory("all"), children: "\u5168\u90E8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": category === "industrial", className: category === "industrial" ? "active" : "", onClick: () => setCategory("industrial"), children: "\u5DE5\u4E1A\u7535\u8DEF\u7EC4\u4EF6" })
       ] }),
-      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-library-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Search, { size: 14 }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
+      searchOpen && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "sim-library-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 14 }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", "aria-label": "\u641C\u7D22\u5143\u5668\u4EF6", value: search, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      requirements.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("details", { className: "sim-course-checklist", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("summary", { children: [
+      requirements.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("details", { className: "sim-course-checklist", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("summary", { children: [
           "\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355 \xB7 ",
           requirements.filter((r) => !!circuit.roles?.[r.role]).length,
           "/",
           requirements.length
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: pendingRole ? "\u70B9\u51FB\u753B\u5E03\u7A7A\u767D\u5904\u653E\u7F6E\uFF1BEsc\u53D6\u6D88" : "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50\u65F6\u4E0D\u80FD\u5408\u683C\uFF1B\u6309\u4F4D\u53F7\u6DFB\u52A0\u5668\u4EF6\uFF0C\u518D\u81EA\u884C\u6446\u653E\u548C\u63A5\u7EBF" }),
-        pendingRole && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: frozen, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: pendingRole ? "\u70B9\u51FB\u753B\u5E03\u7A7A\u767D\u5904\u653E\u7F6E\uFF1BEsc\u53D6\u6D88" : "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50\u65F6\u4E0D\u80FD\u5408\u683C\uFF1B\u6309\u4F4D\u53F7\u6DFB\u52A0\u5668\u4EF6\uFF0C\u518D\u81EA\u884C\u6446\u653E\u548C\u63A5\u7EBF" }),
+        pendingRole && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: frozen, onClick: () => {
           const entry = requirements.find((r) => r.role === pendingRole);
           if (entry) addComponent(entry.component.type, void 0, pendingRole);
         }, children: "\u653E\u5230\u53EF\u89C1\u753B\u5E03\u4E2D\u5FC3" }),
-        requirements.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: entry.component.label }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("small", { children: getDefinition(entry.component.type).name })
+        requirements.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: entry.component.label }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: getDefinition(entry.component.type).name })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: frozen || !!circuit.roles?.[entry.role], onClick: () => setPendingRole(entry.role), children: circuit.roles?.[entry.role] ? "\u5DF2\u7ED1\u5B9A" : "\u6DFB\u52A0\u5E76\u653E\u7F6E" })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: frozen || !!circuit.roles?.[entry.role], onClick: () => setPendingRole(entry.role), children: circuit.roles?.[entry.role] ? "\u5DF2\u7ED1\u5B9A" : "\u6DFB\u52A0\u5E76\u653E\u7F6E" })
         ] }, entry.role))
       ] }),
-      requirements.length > 0 && selectedNodes.length === 1 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-role-binding", children: [
+      requirements.length > 0 && selectedNodes.length === 1 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "sim-role-binding", children: [
         "\u8BFE\u7A0B\u4F4D\u53F7",
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7ED1\u5B9A\u8BFE\u7A0B\u4F4D\u53F7", disabled: frozen, value: Object.entries(circuit.roles ?? {}).find(([, id2]) => id2 === selectedNodes[0])?.[0] ?? "", onChange: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("select", { "aria-label": "\u7ED1\u5B9A\u8BFE\u7A0B\u4F4D\u53F7", disabled: frozen, value: Object.entries(circuit.roles ?? {}).find(([, id2]) => id2 === selectedNodes[0])?.[0] ?? "", onChange: (event) => {
           try {
             changed(bindCourseRole(docRef.current, selectedNodes[0], event.target.value));
           } catch (error) {
             setMessage(error.message);
           }
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "", children: "\u672A\u7ED1\u5B9A\uFF0F\u89E3\u9664\u7ED1\u5B9A" }),
-          requirements.filter((r) => equivalentComponentType(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? "", r.component.type)).map((r) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: r.role, disabled: !!circuit.roles?.[r.role] && circuit.roles[r.role] !== selectedNodes[0], children: r.component.label }, r.role))
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "", children: "\u672A\u7ED1\u5B9A\uFF0F\u89E3\u9664\u7ED1\u5B9A" }),
+          requirements.filter((r) => equivalentComponentType(circuit.components.find((c) => c.id === selectedNodes[0])?.type ?? "", r.component.type)).map((r) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: r.role, disabled: !!circuit.roles?.[r.role] && circuit.roles[r.role] !== selectedNodes[0], children: r.component.label }, r.role))
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-library-scroller", children: [
-        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-library-group", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: group.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-library-scroller", children: [
+        selectedComponent && isTerminalStrip(selectedComponent.type) && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(TerminalLabelsPanel, { component: selectedComponent, disabled: frozen, onLabel: (position, label) => {
+          try {
+            changed(setTerminalLabel(docRef.current, selectedComponent.id, position, label));
+          } catch (error) {
+            setMessage(error.message);
+          }
+        }, onClear: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => {
+          if (component2.id !== selectedComponent.id) return component2;
+          const next = { ...component2 };
+          delete next.terminalLabels;
+          return next;
+        }) }), onClose: () => setSelectedNodes([]) }),
+        librarySections.map((group) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "sim-library-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { children: group.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "sim-library-grid", children: group.items.map((definition) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "sim-library-item", disabled: frozen, draggable: !frozen, onDragStart: (event) => {
             event.dataTransfer.setData("application/x-diantuo-component", definition.type);
             event.dataTransfer.effectAllowed = "copy";
           }, onClick: () => addComponent(definition.type), title: `${definition.description} \u70B9\u51FB\u6216\u62D6\u5165\u753B\u5E03`, "aria-label": `\u6DFB\u52A0${definition.name}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DeviceArtwork, { type: definition.type }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DeviceArtwork, { type: definition.type }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: poolLabel[definition.type] ?? definition.name })
           ] }, definition.type)) })
         ] }, group.id)),
-        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
-        category !== "lighting" && !search && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-pending-library", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "PLC" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
+        !librarySections.length && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u5143\u4EF6" }),
+        !search && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-pending-library", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { children: "\u5F85\u652F\u6301" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: "PLC" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: "\u6682\u4E0D\u53EF\u63A5\u7EBF" })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { className: "sim-library-note", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { className: "sim-library-note", children: [
         "\u70B9\u51FB\u6DFB\u52A0\u6216\u62D6\u5165\u753B\u5E03",
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("br", {}),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("br", {}),
         "\u6559\u5B66\u793A\u610F\u5143\u4EF6 \xB7 \u7AEF\u5B50\u53EF\u91CD\u590D\u63A5\u7EBF"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-workspace", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toolbar", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
-          running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Play, { size: 14, fill: "currentColor" }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "sim-workspace", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-toolbar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: `sim-button sim-primary ${running ? "sim-stop" : ""}`, disabled: !!busy, onClick: startStop, children: [
+          running ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Square, { size: 14, fill: "currentColor" }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Play, { size: 14, fill: "currentColor" }),
           running ? "\u7ED3\u675F\u4EFF\u771F" : "\u5F00\u59CB\u4EFF\u771F"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !selectedNodes.length && !selectedWires.length, onClick: deleteSelected, children: "\u5220\u9664\u9009\u4E2D" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button sim-danger", disabled: frozen || !circuit.wires.length, onClick: () => {
           changed({ ...circuit, wires: [] });
           setSelectedWires([]);
         }, children: "\u5220\u9664\u6240\u6709\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-control", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-color-control", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "sim-button sim-outline", disabled: frozen, onClick: (event) => {
             const rect = event.currentTarget.getBoundingClientRect();
             setColorAnchor({ left: Math.max(8, Math.min(rect.left, window.innerWidth - 285)), top: rect.bottom + 6 });
             setColorHost(board.current);
             setColorsOpen(!colorsOpen);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { style: { backgroundColor: color2 } }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("i", { style: { backgroundColor: color2 } }),
             "\u8BBE\u7F6E\u5BFC\u7EBF\u989C\u8272"
           ] }),
-          colorsOpen && colorHost && (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-color-swatches", children: [
-              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
+          colorsOpen && colorHost && (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-color-popover", style: { position: "fixed", left: colorAnchor.left, top: colorAnchor.top }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-color-swatches", children: [
+              COLORS2.map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": `\u9009\u62E9\u5BFC\u7EBF\u989C\u8272 ${item}`, style: { backgroundColor: item }, className: color2 === item && colorOverride ? "active" : "", onClick: () => {
                 setWireColor(item);
                 setColorsOpen(false);
               } }, item)),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { "aria-label": "\u81EA\u5B9A\u4E49\u5BFC\u7EBF\u989C\u8272", type: "color", value: color2, onChange: (event) => setWireColor(event.target.value) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: `sim-auto-color ${!colorOverride ? "active" : ""}`, onClick: () => {
               setColorOverride(false);
               setColorsOpen(false);
             }, children: "\u65B0\u5BFC\u7EBF\u8DDF\u968F\u8D77\u70B9\u7AEF\u5B50\u989C\u8272" })
           ] }), colorHost)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("label", { className: "sim-line-select", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
-            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "duct", children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "sim-line-select", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: "\u7EBF\u6761\u6837\u5F0F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("select", { "aria-label": "\u7EBF\u6761\u6837\u5F0F", disabled: frozen, value: displayedWireStyle, onChange: (event) => setStyle(event.target.value), children: [
+            displayedWireStyle === "mixed" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "mixed", disabled: true, children: "\u591A\u79CD\u6837\u5F0F" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "duct", children: "\u81EA\u52A8\u8D70\u7EBF\u69FD" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "orthogonal", children: "\u81EA\u5B9A\u4E49\u76F4\u89D2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "straight", children: "\u76F4\u7EBF" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("option", { value: "curve", children: "\u66F2\u7EBF" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-history", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u590D\u5236\u9009\u4E2D\u5BF9\u8C61", title: "\u590D\u5236 Ctrl+C \xB7 Shift \u591A\u9009", disabled: frozen || !selectedNodes.length, onClick: copySelected, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u7C98\u8D34\u5BF9\u8C61", title: "\u7C98\u8D34 Ctrl+V", disabled: frozen || !canPaste || clipboardOwner !== props.clipboardScope, onClick: pasteSelected, children: "\u7C98\u8D34" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u64A4\u9500", title: "\u64A4\u9500 Ctrl+Z", disabled: frozen || !past.length, onClick: undo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Undo2, { size: 18 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u91CD\u505A", title: "\u91CD\u505A Ctrl+Shift+Z", disabled: frozen || !future.length, onClick: redo, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Redo2, { size: 18 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-trace-mode", role: "group", "aria-label": "\u9009\u7EBF\u6A21\u5F0F", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "button", "aria-pressed": traceMode === "single", onClick: () => setTraceMode("single"), children: "\u5355\u6839" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "button", "aria-pressed": traceMode === "net", onClick: () => {
+            cancelConnection();
+            setTraceMode("net");
+            if (selectedWires.length > 1) setSelectedWires(selectedWires.slice(-1));
+          }, children: "\u7B49\u7535\u4F4D" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
-        selectedComponent && canMirror(selectedComponent.type) ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen, onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent.id ? mirrorComponent(component2) : component2) }), children: "\u4E0A\u4E0B\u955C\u50CF" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: frozen || !selectedComponent || !canRotate(selectedComponent.type), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent?.id ? rotateComponent(component2) : component2) }), children: "\u65CB\u8F6C90\xB0" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-toolbar-spacer" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-export", onClick: () => openTransfer("export"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u51FA\u56FE\u7EB8\u5230\u672C\u5730" })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "sim-show-wire-numbers", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { type: "checkbox", checked: showWireNumbers, onChange: (event) => setShowWireNumbers(event.target.checked) }),
+          "\u663E\u793A\u7EBF\u53F7"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-import", disabled: frozen, onClick: () => openTransfer("import"), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5BFC\u5165\u672C\u5730\u4FDD\u5B58\u7684\u56FE\u7EB8" })
-        ] })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button sim-outline", "aria-label": hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD", disabled: frozen || !circuit.components.length, onClick: arrangeDucts, children: hasDucts ? "\u5BFC\u7EBF\u5168\u90E8\u5165\u69FD" : "\u9884\u5E03\u7EBF\u69FD" }),
+        selectedComponent && canMirror(selectedComponent.type) ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button", disabled: frozen, onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent.id ? mirrorComponent(component2) : component2) }), children: "\u4E0A\u4E0B\u955C\u50CF" }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button", disabled: frozen || !selectedComponent || !canRotate(selectedComponent.type), onClick: () => changed({ ...docRef.current, components: docRef.current.components.map((component2) => component2.id === selectedComponent?.id ? rotateComponent(component2) : component2) }), children: "\u65CB\u8F6C90\xB0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "sim-toolbar-spacer" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(WireNumberToolbar, { numbers: traceNet?.numbers ?? [], target: numberTarget, disabled: frozen || !traceNet, onNumber: applyWireNumber }, `${props.documentKey}:${traceNet?.id ?? "none"}:${JSON.stringify(traceNet?.numbers)}`)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-canvas", role: "group", "aria-label": "\u63A5\u7EBF\u5DE5\u4F5C\u53F0", ref: board, tabIndex: -1, onDragOver: (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = frozen ? "none" : "copy";
       }, onDrop: (event) => {
@@ -36473,7 +36592,7 @@ function Workspace(props) {
         const type = event.dataTransfer.getData("application/x-diantuo-component");
         if (CATALOG.some((item) => item.type === type)) addComponent(type, flow.screenToFlowPosition({ x: event.clientX, y: event.clientY }));
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
           index,
           {
             nodes,
@@ -36483,8 +36602,13 @@ function Workspace(props) {
             onNodesChange: nodesChanged,
             onEdgesChange: edgesChanged,
             onConnect: connect,
-            onEdgeClick: () => {
+            onEdgeClick: (_event, edge) => {
               cancelConnection();
+              setFocusedDiagnostic(null);
+              if (traceMode === "net") {
+                setSelectedWires([edge.id]);
+                setSelectedNodes([]);
+              }
               board.current?.focus();
             },
             onNodeClick: (event, node) => {
@@ -36516,19 +36640,11 @@ function Workspace(props) {
             snapGrid: [8, 8],
             defaultViewport: { x: 35, y: 85, zoom: 0.78 },
             fitViewOptions: { padding: 0.22, maxZoom: 0.92 },
-            onNodeDragStart: () => {
-              if (!resizing.current) dragBefore.current = clone2(docRef.current);
-            },
             onNodeDragStop: (_event, node) => {
               if (resizing.current || frozen) return;
               const finalDocument = { ...docRef.current, components: docRef.current.components.map((component2) => component2.id === node.id ? { ...component2, position: node.position } : component2) };
-              if (dragBefore.current && JSON.stringify(dragBefore.current) !== JSON.stringify(finalDocument)) {
-                const previous = dragBefore.current;
-                setPast((items) => [...items.slice(-79), previous]);
-                setFuture([]);
-                onDocumentChange(finalDocument);
-              }
-              dragBefore.current = null;
+              docRef.current = finalDocument;
+              onDocumentChange(finalDocument);
             },
             onEdgeDoubleClick: (event, edge) => {
               if (frozen) return;
@@ -36538,7 +36654,8 @@ function Workspace(props) {
             },
             onPaneClick: (event) => {
               board.current?.focus();
-              cancelConnection();
+              clearTrace();
+              setSelectedNodes([]);
               setFocusedDiagnostic(null);
               setColorsOpen(false);
               if (pendingRole && !frozen) {
@@ -36548,202 +36665,169 @@ function Workspace(props) {
             },
             "aria-label": "\u7535\u8DEF\u63A5\u7EBF\u753B\u5E03",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Maximize2, { size: 16 }) }) })
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Background, { variant: BackgroundVariant.Dots, gap: 18, size: 1, color: "#ccd4de" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Controls, { showInteractive: false, showFitView: false, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ControlButton, { className: "react-flow__controls-fitview", "aria-label": "\u9002\u5E94\u753B\u5E03", title: "\u9002\u5E94\u753B\u5E03", onClick: frameInitialView, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Maximize2, { size: 16 }) }) })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 22 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-canvas-heading", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: circuit.title }),
-          running && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-library-toggle", "aria-label": libraryOpen ? "\u6536\u8D77\u5668\u4EF6\u5E93" : "\u5C55\u5F00\u5668\u4EF6\u5E93", onClick: () => setLibraryOpen(!libraryOpen), children: libraryOpen ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronLeft, { size: 22 }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 22 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-canvas-heading", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: running ? "\u6B63\u5728\u4EFF\u771F" : "\u63A5\u7EBF\u5DE5\u4F5C\u53F0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: circuit.title }),
+          running && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("i", { className: simulation?.runtime.faultLatched ? "fault" : simulation?.supported === false ? "unsupported" : "live", children: simulation?.runtime.faultLatched ? "\u6545\u969C\u4E2D\u6B62" : simulation?.supported === false ? "\u6B64\u63A5\u6CD5\u6682\u4E0D\u652F\u6301" : "\u8FD0\u884C\u4E2D" })
         ] }),
-        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("b", { children: [
+        routingProblems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-routing-notice", role: "status", "aria-label": "\u81EA\u52A8\u8D70\u7EBF\u63D0\u793A", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("b", { children: [
             routingProblems.length,
             " \u6839\u5BFC\u7EBF\u9700\u8981\u6574\u7406"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: routingProblems[0].route.message ?? "\u672A\u627E\u5230\u53EF\u7528\u7684\u8FDE\u901A\u7EBF\u69FD\uFF0C\u8BF7\u68C0\u67E5\u7EBF\u69FD\u8FDE\u63A5\u548C\u5143\u4EF6\u906E\u6321\u3002" })
         ] }),
-        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+        running && hasTimers && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-clock", "aria-label": "\u6559\u5B66\u4EFF\u771F\u65F6\u949F", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
             "\u6559\u5B66\u65F6\u95F4 ",
             ((simulation?.runtime.timeMs ?? 0) / 1e3).toFixed(1),
             " s",
             simulation?.supported === false ? " \xB7 \u5DF2\u6682\u505C" : ""
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => setTimerPaused((value) => !value), children: timerPaused ? "\u7EE7\u7EED\u8BA1\u65F6" : "\u6682\u505C\u8BA1\u65F6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { disabled: simulation?.runtime.faultLatched || simulation?.supported === false, onClick: () => action({ type: "advance-time", ms: 1e3 }), children: "\u63A8\u8FDB 1 \u79D2" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-document-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 15 }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-document-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "sim-button", disabled: frozen || !!busy, onClick: () => drawingInput.current?.click(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileImage, { size: 15 }),
             "\u4E0A\u4F20\u56FE\u7EB8"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button", disabled: !onSave || !!busy, onClick: () => perform("save", onSave), children: busy === "save" ? "\u4FDD\u5B58\u4E2D\u2026" : "\u4FDD\u5B58\u8349\u7A3F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button sim-primary", disabled: !onPublish || !!busy || running, onClick: () => perform("publish", onPublish), children: "\u53D1\u5E03\u7535\u8DEF" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: props.onChooseCourse ? () => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FloatingSchematic, { panelRef: diagramPanel, boardRef: board, documentKey: props.documentKey, zoom: drawingZoom, onZoomChange: setDrawingZoom, video: referenceVideoForDocument(circuit, !!drawing || !!props.drawingUrl || props.referenceVideoAllowed === false), onChooseDrawing: props.onChooseCourse ? () => {
           if (!frozen) props.onChooseCourse?.();
-        } : void 0, selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagram-empty", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FileImage, { size: 38 }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
+        } : void 0, onOpenDrawingWindow: props.onOpenDrawingWindow, selectionDisabled: frozen, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "sim-diagram-scaled", children: schematicContent ?? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-diagram-empty", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(FileImage, { size: 38 }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: "\u53C2\u8003\u63A5\u7EBF\u56FE" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: "\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u6216\u4E0A\u4F20\u81EA\u5DF1\u7684\u63A5\u7EBF\u56FE\u3002" })
         ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShieldCheck, { size: 19 }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "sim-check-button", disabled: !!busy, onClick: checkCircuit, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ShieldCheck, { size: 19 }),
           busy === "assess" ? "\u6B63\u5728\u68C0\u67E5\u2026" : "\u68C0\u67E5\u63A5\u7EBF"
         ] }),
-        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-header", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
-              "\u5B89\u5168\u8BCA\u65AD",
-              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { children: safetyDiagnostics.length })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: panelTab === "workmanship" ? "active" : "", onClick: () => setPanelTab("workmanship"), children: "\u7AEF\u5B50\u5DE5\u827A" }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 16 }) })
+        traceNet && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(WireTracePanel, { document: circuit, net: traceNet, selectedCount: selectedWires.length, frozen, mode: traceMode, notices: numberNotices.filter((notice) => notice.netIds.includes(traceNet.id)), onNumber: applyWireNumber, onLocate: (id2) => {
+          void flow.fitView({ nodes: [{ id: id2 }], padding: 0.7, maxZoom: 1.25, duration: 180 });
+        }, onClose: clearTrace }, `${traceNet.id}:${JSON.stringify(traceNet.numbers)}`),
+        !traceNet && numberNotices.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-wire-number-notice", role: "status", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("b", { children: [
+            numberNotices.length,
+            " \u9879\u7EBF\u53F7\u6807\u6CE8\u63D0\u9192"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-diagnostics-body", children: [
-            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: running ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: numberNotices[0].message })
+        ] }),
+        panelOpen && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "sim-diagnostics", "aria-label": "\u7535\u8DEF\u68C0\u67E5\u7ED3\u679C", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-diagnostics-header", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: panelTab === "runtime" ? "active" : "", onClick: () => setPanelTab("runtime"), children: "\u8FD0\u884C\u72B6\u6001" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: panelTab === "safety" ? "active" : "", onClick: () => setPanelTab("safety"), children: [
+              "\u5B89\u5168\u8BCA\u65AD",
+              safetyDiagnostics.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("i", { children: safetyDiagnostics.length })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: panelTab === "lesson" ? "active" : "", onClick: () => setPanelTab("lesson"), children: "\u8BFE\u7A0B\u5224\u5B9A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: panelTab === "workmanship" ? "active" : "", onClick: () => setPanelTab("workmanship"), children: "\u7AEF\u5B50\u5DE5\u827A" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u6536\u8D77\u68C0\u67E5\u7ED3\u679C", className: "sim-panel-close", onClick: () => setPanelOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 16 }) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-diagnostics-body", children: [
+            panelTab === "runtime" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_jsx_runtime19.Fragment, { children: simulation ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-panel-note", children: "\u5143\u4EF6\u72B6\u6001\u7531\u5B9E\u9645\u63A5\u7EBF\u8BA1\u7B97\uFF1B\u7535\u673A\u8FD0\u884C\u5E76\u4E0D\u4EE3\u8868\u5B89\u5168\u5408\u683C\u3002" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "sim-runtime-list", children: circuit.components.filter((component2) => getDefinition(component2.type).load || component2.type === "overload").map((component2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
                   component2.label,
                   " \xB7 ",
                   getDefinition(component2.type).name
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { className: simulation?.components[component2.id]?.active ? "active" : "", children: runtimeSummary(simulation?.components[component2.id]) })
               ] }, component2.id)) }),
-              simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u518D\u64CD\u4F5C\u5F00\u5173\u548C\u6309\u94AE\u3002" }) }),
-            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
-            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-clear-state", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CheckCheck, { size: 30 }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
+              runtimeInformation.map((item, index2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "sim-diagnostic-row info", onClick: () => focusDiagnostic(item), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: "\u4FE1\u606F" }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: item.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 14 })
+              ] }, item.code + index2)),
+              running && simulation?.runtime.faultLatched && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "sim-button sim-danger", onClick: () => action({ type: "reset-fault" }), children: "\u590D\u4F4D\u6559\u5B66\u7535\u6E90\u6545\u969C" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\uFF0C\u67E5\u770B\u5F53\u524D\u5143\u4EF6\u72B6\u6001\u3002" }) }),
+            panelTab === "safety" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_jsx_runtime19.Fragment, { children: !simulation ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\u6216\u300C\u5F00\u59CB\u4EFF\u771F\u300D\u68C0\u67E5\u5F53\u524D\u7535\u8DEF\u3002" }) : safetyDiagnostics.length ? safetyDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: diagnostic2.severity === "error" ? "\u9519\u8BEF" : diagnostic2.severity === "warning" ? "\u63D0\u9192" : "\u4FE1\u606F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: diagnostic2.message }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 14 })
+            ] }, `${diagnostic2.code}-${index2}`)) : /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-clear-state", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CheckCheck, { size: 30 }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: "\u5F53\u524D\u72B6\u6001\u672A\u68C0\u51FA\u5B89\u5168\u6545\u969C" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: "\u5F00\u5173\u95ED\u5408\u540E\u7684\u6545\u969C\u4F1A\u5728\u8FD0\u884C\u4E2D\u7EE7\u7EED\u68C0\u67E5\uFF1B\u5B8C\u6574\u5408\u683C\u7ED3\u679C\u8FD8\u9700\u901A\u8FC7\u8BFE\u7A0B\u52A8\u4F5C\u3002" })
             ] }) }),
-            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? assessment.diagnostics.some((item) => item.code === "LESSON_ROLE_MISSING") ? "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50" : "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+            panelTab === "lesson" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_jsx_runtime19.Fragment, { children: !circuit.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u5F53\u524D\u662F\u81EA\u7531\u63A5\u7EBF\u3002\u5148\u4ECE\u56FE\u7EB8\u96C6\u9009\u62E9\u8BFE\u7A0B\uFF0C\u7CFB\u7EDF\u624D\u80FD\u5224\u65AD\u76EE\u6807\u52A8\u4F5C\u662F\u5426\u5B8C\u6210\u3002" }) : assessment ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: `sim-assessment-status ${assessment.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: assessment.status === "passed" ? "\u8BFE\u7A0B\u901A\u8FC7" : assessment.status === "incomplete" ? assessment.diagnostics.some((item) => item.code === "LESSON_ROLE_MISSING") ? "\u8BFE\u7A0B\u5668\u4EF6\u672A\u9F50" : "\u5C1A\u672A\u5B8C\u6210" : assessment.status === "unsupported" ? "\u6682\u4E0D\u652F\u6301\u6B64\u63A5\u6CD5" : "\u63A5\u7EBF\u672A\u901A\u8FC7" }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
                   assessment.passed,
                   " / ",
                   assessment.total,
                   " \u9879\u52A8\u4F5C\u7B26\u5408\u8981\u6C42"
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "sim-check-list", children: assessment.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
+              lessonDiagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) }),
-            panelTab === "workmanship" && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_jsx_runtime16.Fragment, { children: workmanship ? workmanship.status === "unsupported" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u672C\u8BFE\u7A0B\u4E0D\u4F5C\u5341\u8BFE\u7AEF\u5B50\u6392\u5DE5\u827A\u5224\u5B9A\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `sim-assessment-status sim-workmanship-status ${workmanship.status}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: workmanship.status === "passed" ? "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u901A\u8FC7" : "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u5F85\u5B8C\u5584" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "\u5DE5\u827A\u7ED3\u679C\u72EC\u7ACB\u4E8E\u7535\u6C14\u8BFE\u7A0B\u5224\u5B9A" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: busy === "assess" ? "\u6B63\u5728\u6309\u8BFE\u7A0B\u987A\u5E8F\u68C0\u67E5\u5408\u95F8\u3001\u542F\u505C\u548C\u4FDD\u62A4\u52A8\u4F5C\u2026" : "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u7CFB\u7EDF\u4F1A\u5728\u526F\u672C\u4E2D\u6267\u884C\u8BFE\u7A0B\u52A8\u4F5C\uFF0C\u4FDD\u7559\u5F53\u524D\u753B\u5E03\u3002" }) }),
+            panelTab === "workmanship" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_jsx_runtime19.Fragment, { children: workmanship ? workmanship.status === "unsupported" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u672C\u8BFE\u7A0B\u4E0D\u4F5C\u5341\u8BFE\u7AEF\u5B50\u6392\u5DE5\u827A\u5224\u5B9A\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: `sim-assessment-status sim-workmanship-status ${workmanship.status}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: workmanship.status === "passed" ? "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u901A\u8FC7" : "\u7AEF\u5B50\u63A5\u7EBF\u5DE5\u827A\u5F85\u5B8C\u5584" }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: "\u5DE5\u827A\u7ED3\u679C\u72EC\u7ACB\u4E8E\u7535\u6C14\u8BFE\u7A0B\u5224\u5B9A" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "sim-check-list", children: workmanship.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "sim-check-list", children: workmanship.checks.map((check) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { className: check.passed ? "passed" : "failed", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: check.passed ? "\u901A\u8FC7" : "\u672A\u901A\u8FC7" }),
                 check.label
               ] }, check.id)) }),
-              workmanship.diagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { children: "\u5B9A\u4F4D" }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: diagnostic2.message }),
-                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ChevronRight, { size: 14 })
+              workmanship.diagnostics.map((diagnostic2, index2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: `sim-diagnostic-row ${diagnostic2.severity}`, onClick: () => focusDiagnostic(diagnostic2), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: "\u5B9A\u4F4D" }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: diagnostic2.message }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChevronRight, { size: 14 })
               ] }, `${diagnostic2.code}-${index2}`))
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u6838\u5BF9\u7AEF\u5B50\u4E2D\u8F6C\u3001PE \u4E0E\u7EBF\u8272\u4E00\u81F4\u6027\u3002" }) })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "sim-empty", children: "\u70B9\u51FB\u300C\u68C0\u67E5\u63A5\u7EBF\u300D\uFF0C\u6838\u5BF9\u7AEF\u5B50\u4E2D\u8F6C\u3001PE \u4E0E\u7EBF\u8272\u4E00\u81F4\u6027\u3002" }) })
           ] })
         ] }),
-        message && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "sim-toast", role: "status", children: [
+        message && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "sim-toast", role: "status", children: [
           message,
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 14 }) })
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u63D0\u793A", onClick: () => setMessage(""), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 14 }) })
         ] }),
-        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
+        shortAlert && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ShortCircuitAlert, { diagnostic: shortAlert, onClose: () => setDismissedShort(shortKey), onLocate: () => {
           setDismissedShort(shortKey);
           setPanelOpen(true);
           setPanelTab("safety");
           focusDiagnostic(shortAlert);
         } })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("footer", { className: "sim-editor-footer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { role: "status", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { className: running ? "live" : "" }),
-          pendingComponent ? `\u63A5\u7EBF\u8D77\u70B9\uFF1A${pendingComponent.label} \xB7 ${pendingTerminalLabel}\uFF0C\u8BF7\u70B9\u51FB\u53E6\u4E00\u7AEF\u5B50\uFF1BEsc \u6216\u7A7A\u767D\u5904\u53D6\u6D88` : selectedWires.length ? `\u5DF2\u9009\u4E2D ${selectedWires.length} \u6839\u5BFC\u7EBF \xB7 \u84DD\u8272\u6D41\u52A8\u7528\u4E8E\u5DE1\u7EBF\uFF0C\u5E26\u7535\u770B\u7AEF\u5B50\u7EA2\u70B9` : running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("footer", { className: "sim-editor-footer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { role: "status", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("i", { className: running ? "live" : "" }),
+          pendingComponent ? `\u63A5\u7EBF\u8D77\u70B9\uFF1A${pendingComponent.label} \xB7 ${pendingTerminalLabel}\uFF0C\u8BF7\u70B9\u51FB\u53E6\u4E00\u7AEF\u5B50\uFF1BEsc \u6216\u7A7A\u767D\u5904\u53D6\u6D88` : selectedWires.length ? `\u5DF2\u9009\u4E2D ${selectedWires.length} \u6839\u5BFC\u7EBF \xB7 ${traceMode === "net" ? `\u5DE1\u7EBF\u8282\u70B9\u5305\u542B ${tracedWireIds.length} \u6839\u7EBF` : "\u84DD\u8272\u6D41\u52A8\u7528\u4E8E\u5DE1\u7EBF"}\uFF0C\u5E26\u7535\u770B\u7AEF\u5B50\u7EA2\u70B9` : running ? "\u8FD0\u884C\u4E2D \xB7 \u63A5\u7EBF\u7F16\u8F91\u5DF2\u9501\u5B9A" : displayedWireStyle === "duct" ? "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u5BFC\u7EBF\u81EA\u52A8\u6CBF\u8FDE\u901A\u7EBF\u69FD\u8D70\u7EBF" : "\u62D6\u52A8\u63A5\u7EBF / \u4F9D\u6B21\u70B9\u51FB\u4E24\u4E2A\u7AEF\u5B50 \xB7 \u9009\u4E2D\u76F4\u89D2\u5BFC\u7EBF\u53CC\u51FB\u6DFB\u52A0\u6298\u70B9"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { children: [
           circuit.components.length,
           " \u4E2A\u5143\u4EF6",
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "sim-footer-divider", children: "\xB7" }),
           circuit.wires.length,
           " \u6839\u5BFC\u7EBF",
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u67E5\u770B\u8FD0\u884C\u548C\u8BCA\u65AD", onClick: () => {
             setPanelOpen(!panelOpen);
             setPanelTab(running ? "runtime" : "safety");
             if (!panelOpen) setTimeout(frameInitialView, 80);
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(PanelRightClose, { size: 15 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(PanelRightClose, { size: 15 }) })
         ] })
       ] })
     ] }),
-    transferMode && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Modal, { backdropClass: "sim-transfer-backdrop", className: "sim-transfer-dialog", title: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF JSON" : "\u5BFC\u5165\u7535\u8DEF JSON", onClose: () => setTransferMode(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { children: transferMode === "export" ? "\u5BFC\u51FA\u7535\u8DEF" : "\u5BFC\u5165\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button", "aria-label": "\u5173\u95ED\u7535\u8DEF\u6587\u4EF6\u7A97\u53E3", onClick: () => setTransferMode(null), children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(X, { size: 18 }) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { children: transferMode === "export" ? "\u4EE5\u4E0B JSON \u5305\u542B\u5143\u4EF6\u3001\u7AEF\u5B50\u8FDE\u63A5\u548C\u8D70\u7EBF\u8DEF\u5F84\u3002\u53EF\u4E0B\u8F7D\u6587\u4EF6\uFF0C\u6216\u590D\u5236\u540E\u53E6\u5B58\u4E3A .json \u6587\u4EF6\u3002" : "\u9009\u62E9\u7535\u8DEF JSON \u6587\u4EF6\uFF0C\u6216\u7C98\u8D34\u5B8C\u6574\u5185\u5BB9\u3002\u5BFC\u5165\u5C06\u66FF\u6362\u5F53\u524D\u753B\u5E03\uFF0C\u53EF\u64A4\u9500\uFF1B\u4FDD\u5B58\u65F6\u4F1A\u66F4\u65B0\u5F53\u524D\u8349\u7A3F\u3002\u5982\u9700\u72EC\u7ACB\u8349\u7A3F\uFF0C\u8BF7\u5148\u5173\u95ED\u7A97\u53E3\u5E76\u65B0\u5EFA\u7535\u8DEF\uFF0C\u518D\u5BFC\u5165\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("textarea", { ref: transferInput, "aria-label": transferMode === "export" ? "\u5BFC\u51FA\u7684\u7535\u8DEF JSON" : "\u5F85\u5BFC\u5165\u7684\u7535\u8DEF JSON", spellCheck: false, readOnly: transferMode === "export", value: transferText, onChange: (event) => {
-        setTransferText(event.target.value);
-        setTransferNotice("");
-      }, placeholder: transferMode === "import" ? "\u5728\u6B64\u7C98\u8D34\u5B8C\u6574\u7535\u8DEF JSON" : void 0 }),
-      transferNotice && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "sim-transfer-notice", role: "status", children: transferNotice }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("footer", { children: transferMode === "export" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", onClick: async () => {
-          try {
-            await navigator.clipboard.writeText(transferText);
-            setTransferNotice("\u7535\u8DEF JSON \u5DF2\u590D\u5236\u3002");
-          } catch {
-            transferInput.current?.focus();
-            transferInput.current?.select();
-            setTransferNotice("\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u81EA\u52A8\u590D\u5236\u3002\u5DF2\u9009\u4E2D\u5168\u90E8 JSON\uFF0C\u8BF7\u6309 Ctrl+C \u590D\u5236\u3002");
-          }
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Copy, { size: 16 }),
-          "\u590D\u5236 JSON"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button sim-primary", onClick: exportDocument, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Download, { size: 16 }),
-          "\u4E0B\u8F7D JSON \u6587\u4EF6"
-        ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { className: "sim-button", disabled: frozen, onClick: () => importInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(FolderOpen, { size: 16 }),
-          "\u9009\u62E9 JSON \u6587\u4EF6"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { className: "sim-button sim-primary", disabled: frozen || !transferText.trim(), onClick: () => {
-          try {
-            importDocument(transferText);
-          } catch (error) {
-            setTransferNotice(error instanceof Error ? error.message : "\u5BFC\u5165\u5931\u8D25\u3002");
-          }
-        }, children: "\u5BFC\u5165\u7C98\u8D34\u5185\u5BB9" })
-      ] }) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: importInput, type: "file", accept: "application/json,.json", className: "sim-hidden-input", onChange: async (event) => {
-      const file = event.target.files?.[0];
-      event.target.value = "";
-      if (file) await importFile(file);
-    } }),
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { ref: drawingInput, type: "file", accept: "image/png,image/jpeg,image/webp", className: "sim-hidden-input", onChange: async (event) => {
       const file = event.target.files?.[0];
       event.target.value = "";
       if (!file || frozen) return;
@@ -36773,13 +36857,20 @@ function Workspace(props) {
   ] });
 }
 function SimulatorEditor(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Workspace, { ...props }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ReactFlowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Workspace, { ...props }) });
 }
 
 // app/simulator/editor/DocumentPreview.tsx
-var import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
 function DocumentPreview({ document: document2, className = "" }) {
   const boxes = document2.components.map((component2) => ({ component: component2, definition: componentSize(component2) }));
+  const numbers = getWiringNets(document2).filter((net) => net.numbers.length).flatMap((net) => net.terminalIds.map((key4) => {
+    const [componentId, terminalId] = key4.split("::");
+    const { terminal, world } = resolveTerminal(document2, { componentId, terminalId });
+    const x2 = world.x + (terminal.side === "left" ? -12 : terminal.side === "right" ? 12 : 9);
+    const y2 = world.y + (terminal.side === "top" ? -15 : terminal.side === "bottom" ? 24 : -8);
+    return { key: key4, x: x2, y: y2, text: net.numbers.join(" / ") };
+  }));
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   const include = (x2, y2) => {
     minX = Math.min(minX, x2);
@@ -36792,28 +36883,33 @@ function DocumentPreview({ document: document2, className = "" }) {
     include(component2.position.x + definition.width, component2.position.y + definition.height);
   }
   for (const wire of document2.wires) for (const point2 of wire.style === "curve" && wire.routing !== "duct" ? curveControlPoints(document2, wire) : wireRoute(document2, wire)) include(point2.x, point2.y);
+  for (const label of numbers) {
+    include(label.x - 12, label.y - 14);
+    include(label.x + Math.min(180, label.text.length * 7), label.y + 5);
+  }
   const x = boxes.length ? minX - 28 : 0;
   const y = boxes.length ? minY - 28 : 0;
   const right = boxes.length ? maxX + 28 : 500;
   const bottom = boxes.length ? maxY + 43 : 300;
-  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, delayMs: component2.settings?.delayMs }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
+  const device = ({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("g", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("foreignObject", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "sim-preview-device", style: { width: definition.width, height: definition.height }, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DeviceArtwork, { type: component2.type, rotation: component2.rotation, mirrored: component2.mirrored, pePositions: component2.pePositions, terminalLabels: component2.terminalLabels, delayMs: component2.settings?.delayMs }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("text", { x: component2.position.x + definition.width / 2, y: component2.position.y + definition.height + 16, textAnchor: "middle", fill: "#536579", fontSize: "10", children: component2.label })
   ] }, component2.id);
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("svg", { className: `sim-document-preview ${className}`, viewBox: `${x} ${y} ${Math.max(100, right - x)} ${Math.max(100, bottom - y)}`, role: "img", "aria-label": `${document2.title}\u7684\u5B9E\u9645\u63A5\u7EBF\u5FEB\u7167`, children: [
     boxes.filter(({ component: component2 }) => isLayoutObject(component2.type)).map(device),
-    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
+    document2.wires.map((wire) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)),
     boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(device),
-    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("g", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
+    boxes.filter(({ component: component2 }) => !isLayoutObject(component2.type)).map(({ component: component2, definition }) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("g", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("clipPath", { id: `preview-leads-${component2.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("rect", { x: component2.position.x, y: component2.position.y, width: definition.width, height: definition.height }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("g", { clipPath: `url(#preview-leads-${component2.id})`, children: document2.wires.filter((wire) => wire.from.componentId === component2.id || wire.to.componentId === component2.id).map((wire) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("path", { d: wirePath(document2, wire), fill: "none", stroke: wire.color, strokeWidth: 3, vectorEffect: "non-scaling-stroke", strokeLinejoin: "round", strokeLinecap: "round" }, wire.id)) })
     ] }, `leads-${component2.id}`)),
-    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
+    numbers.map((label) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("text", { "data-terminal-key": label.key, "data-wire-number": label.text, x: label.x, y: label.y, fill: "#153e72", stroke: "#edf5ff", strokeWidth: 3, paintOrder: "stroke", fontSize: 11, fontWeight: 600, children: label.text }, label.key)),
+    !boxes.length && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("text", { x: "250", y: "150", textAnchor: "middle", fill: "#8f9caf", fontSize: "15", children: "\u7A7A\u767D\u63A5\u7EBF\u753B\u5E03" })
   ] });
 }
 
 // app/simulator/TrainingProjects.tsx
-var import_react17 = __toESM(require_react(), 1);
+var import_react20 = __toESM(require_react(), 1);
 
 // shared/training-projects.json
 var training_projects_default = [
@@ -36885,28 +36981,28 @@ var jsonBody = (body, method = "POST") => ({ method, body: JSON.stringify(body) 
 var assessOnServer = (document2) => api("/assess", jsonBody({ document: document2, lessonId: document2.lessonId })).then(({ assessment, workmanship }) => ({ assessment, workmanship }));
 
 // app/simulator/TrainingProjects.tsx
-var import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
 var LABELS3 = { schematic: "\u539F\u7406\u56FE", layout: "\u5143\u4EF6\u5E03\u7F6E\u56FE" };
 var projectMedia = (project2, kind) => project2.drawings ? project2.drawings[kind] : kind === "schematic" ? project2.media : null;
 function Drawing({ media, title, viewerControls }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DrawingViewer, { compact: true, src: media.url, type: media.type, title, ...viewerControls });
 }
 function TrainingProjects(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(TrainingProjectsContent, { ...props }, `${props.user.id}:${props.documentKey ?? ""}:${props.selectedProjectId ?? ""}`);
 }
-function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
-  const [projects, setProjects] = (0, import_react17.useState)(COURSE_PROJECTS);
-  const [selected2, setSelected] = (0, import_react17.useState)("");
-  const [kind, setKind] = (0, import_react17.useState)("schematic");
-  const [error, setError] = (0, import_react17.useState)("");
-  const [busy, setBusy] = (0, import_react17.useState)(false);
-  const [refreshing, setRefreshing] = (0, import_react17.useState)(false);
-  const [enlarged, setEnlarged] = (0, import_react17.useState)(false);
-  const [toolsOpen, setToolsOpen] = (0, import_react17.useState)(false);
-  const toolsId = (0, import_react17.useId)();
-  const fileInput = (0, import_react17.useRef)(null);
-  const projectRequest = (0, import_react17.useRef)(0);
-  (0, import_react17.useEffect)(() => {
+function TrainingProjectsContent({ user, fallback, fallbackPreview, onPreviewChange, viewerControls, onUseDrawing, documentKey, readOnly = false, currentDrawings, currentKind = "schematic", onSelectCurrentDrawing, onPreviewContextChange }) {
+  const [projects, setProjects] = (0, import_react20.useState)(COURSE_PROJECTS);
+  const [selected2, setSelected] = (0, import_react20.useState)("");
+  const [kind, setKind] = (0, import_react20.useState)("schematic");
+  const [error, setError] = (0, import_react20.useState)("");
+  const [busy, setBusy] = (0, import_react20.useState)(false);
+  const [refreshing, setRefreshing] = (0, import_react20.useState)(false);
+  const [enlarged, setEnlarged] = (0, import_react20.useState)(false);
+  const [toolsOpen, setToolsOpen] = (0, import_react20.useState)(false);
+  const toolsId = (0, import_react20.useId)();
+  const fileInput = (0, import_react20.useRef)(null);
+  const projectRequest = (0, import_react20.useRef)(0);
+  (0, import_react20.useEffect)(() => {
     let active = true;
     const request = ++projectRequest.current;
     if (!STATIC_DEMO) api("/training-projects").then((r) => {
@@ -36923,7 +37019,11 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
   const media = project2 ? projectMedia(project2, kind) : currentDrawings?.[currentKind];
   const title = `${project2?.title || "\u5F53\u524D\u7EC3\u4E60"} \xB7 ${LABELS3[shownKind]}`;
   const hasSlots = !!project2 || !!currentDrawings;
-  (0, import_react17.useEffect)(() => {
+  const mediaId = media?.id, mediaUrl = media?.url, mediaType2 = media?.type;
+  (0, import_react20.useEffect)(() => {
+    onPreviewChange?.(mediaId && mediaUrl ? { key: `${mediaId}:${shownKind}`, src: mediaUrl, type: mediaType2, title } : hasSlots ? null : fallbackPreview ?? null);
+  }, [mediaId, mediaUrl, mediaType2, shownKind, title, hasSlots, fallbackPreview, onPreviewChange]);
+  (0, import_react20.useEffect)(() => {
     onPreviewContextChange?.(!hasSlots);
   }, [hasSlots, documentKey, onPreviewContextChange]);
   async function upload(file) {
@@ -36966,32 +37066,32 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
       setRefreshing(false);
     }
   }
-  const pending = /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-pending", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 30 }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : `${LABELS3[shownKind]}\u5C1A\u672A\u4E0A\u4F20` }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
+  const pending = /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-project-pending", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(FileUp, { size: 30 }),
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("strong", { children: project2?.name || "\u5F53\u524D\u7EC3\u4E60" }),
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : `${LABELS3[shownKind]}\u5C1A\u672A\u4E0A\u4F20` }),
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("small", { children: project2 && user.role === "admin" ? `\u8BF7\u9009\u62E9${LABELS3[shownKind]}\u6587\u4EF6\u4E0A\u4F20\u3002` : `\u6B64\u4F4D\u7F6E\u6CA1\u6709${LABELS3[shownKind]}\uFF0C\u4E0D\u4F1A\u4F7F\u7528\u5176\u4ED6\u56FE\u7EB8\u4EE3\u66FF\u3002` })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "dt-training-projects", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-toolbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", className: "dt-project-options-toggle", "aria-label": toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", title: toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(SlidersHorizontal, { size: 15 }) }),
-      hasSlots && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "dt-training-projects", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-project-toolbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", className: "dt-project-options-toggle", "aria-label": toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", title: toolsOpen ? "\u6536\u8D77\u9879\u76EE\u9009\u9879" : "\u9009\u62E9\u9879\u76EE\u56FE\u7EB8", "aria-expanded": toolsOpen, "aria-controls": toolsId, onClick: () => setToolsOpen((open) => !open), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SlidersHorizontal, { size: 15 }) }),
+      hasSlots && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-project-drawing-tabs", role: "tablist", "aria-label": "\u9879\u76EE\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { type: "button", role: "tab", "aria-selected": shownKind === item, className: shownKind === item ? "active" : "", disabled: busy || !project2 && (readOnly || !onSelectCurrentDrawing), onClick: () => {
         setEnlarged(false);
         if (project2) setKind(item);
         else if (!readOnly) onSelectCurrentDrawing?.(item);
       }, children: [
         LABELS3[item],
-        project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
+        project2 && !projectMedia(project2, item) || !project2 && !currentDrawings?.[item] ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("small", { children: "\u5F85\u4E0A\u4F20" }) : null
       ] }, item)) }),
-      media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-view-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u67E5\u770B", title: "\u653E\u5927\u67E5\u770B", onClick: () => setEnlarged(true), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Maximize2, { size: 15 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("a", { href: media.url, target: "_blank", rel: "noreferrer", "aria-label": "\u67E5\u770B\u539F\u56FE", title: "\u67E5\u770B\u539F\u56FE", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(ExternalLink, { size: 15 }) })
+      media && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-project-view-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", "aria-label": "\u653E\u5927\u67E5\u770B", title: "\u653E\u5927\u67E5\u770B", onClick: () => setEnlarged(true), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Maximize2, { size: 15 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("a", { href: media.url, target: "_blank", rel: "noreferrer", "aria-label": "\u67E5\u770B\u539F\u56FE", title: "\u67E5\u770B\u539F\u56FE", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ExternalLink, { size: 15 }) })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("label", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { id: toolsId, className: "dt-project-options", hidden: !toolsOpen, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { children: [
         "\u9879\u76EE\u56FE\u7EB8",
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u9879\u76EE\u56FE\u7EB8", disabled: busy || refreshing, value: selected2, onChange: (e) => {
           setSelected(e.target.value);
           setKind("schematic");
           setEnlarged(false);
@@ -36999,54 +37099,54 @@ function TrainingProjectsContent({ user, fallback, viewerControls, onUseDrawing,
           setToolsOpen(false);
           viewerControls?.onZoomChange(1);
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
-          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("option", { value: p.id, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("option", { value: "", children: "\u5F53\u524D\u7EC3\u4E60\u56FE\u7EB8" }),
+          projects.map((p) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("option", { value: p.id, children: [
             p.name,
             p.drawingStatus === "pending" ? " \xB7 \u5F85\u4E0A\u4F20" : ""
           ] }, p.id))
         ] })
       ] }),
-      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(RefreshCw, { size: 13 }),
+      !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-project-tools", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { type: "button", disabled: busy || refreshing, onClick: () => void refreshProjects(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(RefreshCw, { size: 13 }),
         refreshing ? "\u6B63\u5728\u5237\u65B0\u2026" : "\u5237\u65B0\u9879\u76EE\u56FE\u7EB8"
       ] }) }),
-      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(FileUp, { size: 15 }),
+      project2 && user.role === "admin" && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-project-tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { ref: fileInput, type: "file", disabled: readOnly || busy || refreshing, "aria-label": `\u4E0A\u4F20\u9879\u76EE${LABELS3[kind]}\u6587\u4EF6`, accept: "image/png,image/jpeg,image/webp,application/pdf", onChange: (e) => void upload(e.target.files?.[0]) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { disabled: readOnly || busy || refreshing, onClick: () => fileInput.current?.click(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(FileUp, { size: 15 }),
           busy ? `\u6B63\u5728\u4E0A\u4F20${LABELS3[kind]}\u2026` : `${media ? "\u66FF\u6362" : "\u4E0A\u4F20"}${LABELS3[kind]}`
         ] })
       ] }),
-      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
+      project2 && !project2.lessonId && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u53EF\u67E5\u770B\u56FE\u7EB8\uFF0C\u5BF9\u5E94\u52A8\u4F5C\u4EFF\u771F\u5F85\u6269\u5C55\u3002" })
     ] }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { role: "alert", className: "dt-error", children: error }),
-    project2 && media && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "dt-project-apply", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { title: project2.name, children: project2.name }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
+    error && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { role: "alert", className: "dt-error", children: error }),
+    project2 && media && onUseDrawing && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-project-apply", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { title: project2.name, children: project2.name }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { disabled: readOnly || busy || refreshing, onClick: () => {
         if (!readOnly) {
           onUseDrawing(media.id, { ...project2, media }, kind);
           setSelected("");
         }
       }, children: "\u7528\u4E8E\u5F53\u524D\u7EC3\u4E60" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: project2 ? media ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Drawing, { media, title, viewerControls }) : pending : currentDrawings && !media ? pending : fallback }),
-    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: title }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 20 }) })
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: `dt-project-preview${media?.type === "application/pdf" ? " is-pdf" : ""}`, children: media ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Drawing, { media, title, viewerControls }) : hasSlots ? pending : fallback }),
+    enlarged && media && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { backdropClass: "dt-training-projects dt-project-zoom-backdrop", className: "dt-project-zoom-dialog", title, onClose: () => setEnlarged(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("strong", { children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED\u653E\u5927\u56FE\u7EB8", onClick: () => setEnlarged(false), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "dt-project-zoom-content", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DrawingViewer, { src: media.url, type: media.type, title }, `${media.id}-${shownKind}`) })
     ] })
   ] });
 }
 
 // app/simulator/CourseLibrary.tsx
-var import_react18 = __toESM(require_react(), 1);
-var import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
+var import_react21 = __toESM(require_react(), 1);
+var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
 function CourseLibrary({ onPractice }) {
-  const [projects, setProjects] = (0, import_react18.useState)(COURSE_PROJECTS), [error, setError] = (0, import_react18.useState)(""), [loading, setLoading] = (0, import_react18.useState)(!STATIC_DEMO);
-  const [query, setQuery] = (0, import_react18.useState)(""), [level, setLevel] = (0, import_react18.useState)("all"), [preview, setPreview] = (0, import_react18.useState)(null), [kind, setKind] = (0, import_react18.useState)("schematic");
-  (0, import_react18.useEffect)(() => {
+  const [projects, setProjects] = (0, import_react21.useState)(COURSE_PROJECTS), [error, setError] = (0, import_react21.useState)(""), [loading, setLoading] = (0, import_react21.useState)(!STATIC_DEMO);
+  const [query, setQuery] = (0, import_react21.useState)(""), [level, setLevel] = (0, import_react21.useState)("all"), [preview, setPreview] = (0, import_react21.useState)(null), [kind, setKind] = (0, import_react21.useState)("schematic");
+  (0, import_react21.useEffect)(() => {
     let active = true;
     if (!STATIC_DEMO) api("/training-projects").then((result) => {
       if (active) setProjects(selectableProjects(result.items));
@@ -37063,63 +37163,63 @@ function CourseLibrary({ onPractice }) {
   const found = projects.filter((project2) => (level === "all" || difficulty(project2.id) === level) && project2.name.includes(query));
   const media = preview?.drawings?.[kind] ?? (kind === "schematic" ? preview?.media : null);
   const lesson = preview?.lessonId ? getLesson(preview.lessonId) : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dt-reference-filter", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-reference-filter", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { role: "tablist", "aria-label": "\u8BFE\u7A0B\u96BE\u5EA6", children: [["all", "\u5168\u90E8\u56FE\u7EB8"], ["basic", "\u57FA\u7840\u63A7\u5236"], ["intermediate", "\u8054\u9501\u63A7\u5236"], ["advanced", "\u5B9A\u65F6\u4E0E\u53D8\u901F"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { role: "tab", "aria-selected": level === id2, className: level === id2 ? "active" : "", onClick: () => setLevel(id2), children: [
         label,
         "(",
         projects.filter((project2) => id2 === "all" || difficulty(project2.id) === id2).length,
         ")"
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "dt-search", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "dt-search", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { placeholder: "\u641C\u7D22\u8BFE\u7A0B\u540D\u79F0", value: query, onChange: (event) => setQuery(event.target.value) })
       ] })
     ] }),
-    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u9759\u6001\u6F14\u793A\u652F\u6301\u5341\u8BFE\u63A5\u7EBF\u7EC3\u4E60\u548C\u793A\u8303\u3002\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-error", role: "alert", children: error }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("button", { className: "dt-reference-card", onClick: () => {
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u9759\u6001\u6F14\u793A\u652F\u6301\u5341\u8BFE\u63A5\u7EBF\u7EC3\u4E60\u548C\u793A\u8303\u3002\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-error", role: "alert", children: error }),
+    loading && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-empty", children: "\u6B63\u5728\u8BFB\u53D6\u8BFE\u7A0B\u56FE\u7EB8\u2026" }),
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-reference-grid", children: found.map((project2) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { className: "dt-reference-card", onClick: () => {
       setPreview(project2);
       setKind("schematic");
     }, children: [
-      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : STATIC_DEMO ? "\u6210\u5458\u7AD9\u67E5\u770B\u539F\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: project2.name })
+      project2.media?.type.startsWith("image/") ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("img", { src: project2.media.url, alt: project2.name }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-empty", children: project2.media ? "PDF \u539F\u7406\u56FE" : STATIC_DEMO ? "\u6210\u5458\u7AD9\u67E5\u770B\u539F\u56FE" : "\u539F\u7406\u56FE\u5F85\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: project2.name })
     ] }, project2.id)) }),
-    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
-    preview && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { children: preview.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(X, { size: 20 }) })
+    !loading && !found.length && !error && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-empty", children: "\u6CA1\u6709\u627E\u5230\u5339\u914D\u8BFE\u7A0B" }),
+    preview && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Modal, { className: "dt-modal dt-reference-modal", title: preview.name, onClose: () => setPreview(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { children: preview.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u5173\u95ED\u8BFE\u7A0B\u56FE\u7EB8", onClick: () => setPreview(null), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
-      media ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-empty", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: lesson?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-tabs", role: "tablist", "aria-label": "\u8BFE\u7A0B\u56FE\u7EB8\u7C7B\u578B", children: ["schematic", "layout"].map((value) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { role: "tab", "aria-selected": kind === value, className: kind === value ? "active" : "", onClick: () => setKind(value), children: value === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE" }, value)) }),
+      media ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DrawingViewer, { src: media.url, type: media.type, title: `${preview.name} \xB7 ${kind === "schematic" ? "\u539F\u7406\u56FE" : "\u5143\u4EF6\u5E03\u7F6E\u56FE"}` }, `${preview.id}-${kind}-${media.id}`) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-empty", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B" : "\u6B64\u7C7B\u56FE\u7EB8\u5C1A\u672A\u4E0A\u4F20" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: lesson?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-modal-actions", children: lesson ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
           onPractice(preview, true);
           setPreview(null);
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-primary", onClick: () => {
           onPractice(preview, false);
           setPreview(null);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "dt-hint", children: "\u672C\u9879\u76EE\u7684\u52A8\u4F5C\u4EFF\u771F\u6B63\u5728\u6269\u5C55\u3002" }) })
     ] })
   ] });
 }
 
 // app/simulator/ReferenceDrawings.tsx
-var import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
 function ReferenceDrawings({ onProjectPractice }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("main", { className: "dt-reference-library", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { children: "\u8BFE\u7A0B\u56FE\u7EB8 \xB7 10 \u4E2A\u63A5\u7EBF\u8BFE\u7A0B" }),
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(CourseLibrary, { onPractice: onProjectPractice })
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("main", { className: "dt-reference-library", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { children: "\u8BFE\u7A0B\u56FE\u7EB8 \xB7 10 \u4E2A\u63A5\u7EBF\u8BFE\u7A0B" }),
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CourseLibrary, { onPractice: onProjectPractice })
   ] });
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_react19 = __toESM(require_react(), 1);
+var import_react22 = __toESM(require_react(), 1);
 
 // app/simulator/profile/change-password.ts
 var PASSWORD_MIN_LENGTH = 12;
@@ -37147,25 +37247,25 @@ function passwordChangeError(error) {
 }
 
 // app/simulator/profile/ChangePassword.tsx
-var import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
 function ChangePassword({ request, onChanged }) {
-  const [open, setOpen] = (0, import_react19.useState)(false);
-  const [fields, setFields] = (0, import_react19.useState)(emptyPasswordFields);
-  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react19.useState)(true);
-  const [busy, setBusy] = (0, import_react19.useState)(false);
-  const [error, setError] = (0, import_react19.useState)("");
-  const pending = (0, import_react19.useRef)(false);
-  const mounted = (0, import_react19.useRef)(true);
-  const currentInput = (0, import_react19.useRef)(null);
-  const trigger = (0, import_react19.useRef)(null);
-  const id2 = (0, import_react19.useId)();
-  (0, import_react19.useEffect)(() => {
+  const [open, setOpen] = (0, import_react22.useState)(false);
+  const [fields, setFields] = (0, import_react22.useState)(emptyPasswordFields);
+  const [revokeOtherSessions, setRevokeOtherSessions] = (0, import_react22.useState)(true);
+  const [busy, setBusy] = (0, import_react22.useState)(false);
+  const [error, setError] = (0, import_react22.useState)("");
+  const pending = (0, import_react22.useRef)(false);
+  const mounted = (0, import_react22.useRef)(true);
+  const currentInput = (0, import_react22.useRef)(null);
+  const trigger = (0, import_react22.useRef)(null);
+  const id2 = (0, import_react22.useId)();
+  (0, import_react22.useEffect)(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
     };
   }, []);
-  (0, import_react19.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (open) currentInput.current?.focus();
   }, [open]);
   function close() {
@@ -37209,43 +37309,43 @@ function ChangePassword({ request, onChanged }) {
       if (mounted.current) setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(import_jsx_runtime24.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("button", { className: "dt-password-entry", ref: trigger, onClick: () => {
       setFields(emptyPasswordFields());
       setError("");
       setRevokeOtherSessions(true);
       setOpen(true);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(KeyRound, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(KeyRound, { size: 16 }),
       "\u4FEE\u6539\u5BC6\u7801"
     ] }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 20 }) })
+    open && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Modal, { role: "dialog", title: "\u4FEE\u6539\u5BC6\u7801", className: "dt-modal dt-password-modal", onClose: close, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { id: `${id2}-title`, children: "\u4FEE\u6539\u5BC6\u7801" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { "aria-label": "\u5173\u95ED\u4FEE\u6539\u5BC6\u7801", disabled: busy, onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(X, { size: 20 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-current`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { id: `${id2}-hint`, children: "\u65B0\u5BC6\u7801\u987B\u4E3A 12\u2013128 \u4E2A\u5B57\u7B26\u3002\u4FEE\u6539\u6210\u529F\u540E\uFF0C\u5F53\u524D\u6D4F\u89C8\u5668\u4FDD\u6301\u767B\u5F55\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { noValidate: true, onSubmit: submit, "aria-busy": busy, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { htmlFor: `${id2}-current`, children: [
           "\u5F53\u524D\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { ref: currentInput, id: `${id2}-current`, type: "password", autoComplete: "current-password", required: true, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.currentPassword, onChange: (event) => update("currentPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-new`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { htmlFor: `${id2}-new`, children: [
           "\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { id: `${id2}-new`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.newPassword, onChange: (event) => update("newPassword", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { htmlFor: `${id2}-confirmation`, children: [
           "\u786E\u8BA4\u65B0\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { id: `${id2}-confirmation`, type: "password", autoComplete: "new-password", required: true, minLength: PASSWORD_MIN_LENGTH, maxLength: PASSWORD_MAX_LENGTH, disabled: busy, value: fields.confirmation, onChange: (event) => update("confirmation", event.target.value) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "dt-password-revoke", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("label", { className: "dt-password-revoke", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("input", { type: "checkbox", checked: revokeOtherSessions, disabled: busy, onChange: (event) => setRevokeOtherSessions(event.target.checked) }),
           "\u540C\u65F6\u9000\u51FA\u5176\u4ED6\u8BBE\u5907\u4E0A\u7684\u767B\u5F55"
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "dt-modal-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "dt-modal-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { type: "button", disabled: busy, onClick: close, children: "\u53D6\u6D88" }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("button", { className: "dt-primary", type: "submit", disabled: busy, children: busy ? "\u6B63\u5728\u4FEE\u6539\u2026" : "\u786E\u8BA4\u4FEE\u6539" })
         ] })
       ] })
     ] })
@@ -37253,7 +37353,7 @@ function ChangePassword({ request, onChanged }) {
 }
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_react20 = __toESM(require_react(), 1);
+var import_react23 = __toESM(require_react(), 1);
 
 // app/simulator/profile/list-state.ts
 var PROFILE_PAGE_SIZE = 12;
@@ -37288,35 +37388,35 @@ var ProfileListRequests = class {
 };
 
 // app/simulator/profile/ProfileLibrary.tsx
-var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 var LOCAL_KEY = "diantuo:simulator:demo:v1";
 var date = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 var blankPage = (pageSize) => ({ items: [], page: 1, pageSize, total: 0, totalPages: 1 });
 function ProfileLibrary(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ProfileLibraryContent, { ...props }, `${props.ownerId}:${props.tab}:${props.refresh}`);
 }
 function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDraft, onDeleteDraft, onOpenPublication, onNew }) {
-  const [query, setQuery] = (0, import_react20.useState)("");
-  const [search, setSearch] = (0, import_react20.useState)("");
-  const [page, setPage] = (0, import_react20.useState)(1);
-  const [pageSize, setPageSize] = (0, import_react20.useState)(tab === "drafts" ? 10 : 12);
-  const [result, setResult] = (0, import_react20.useState)(() => blankPage(pageSize));
-  const [completedKey, setCompletedKey] = (0, import_react20.useState)("");
-  const [failure, setFailure] = (0, import_react20.useState)({ key: "", message: "" });
-  const [retry, setRetry] = (0, import_react20.useState)(0);
-  const requests = (0, import_react20.useRef)(new ProfileListRequests());
-  const requestRef = (0, import_react20.useRef)(request);
+  const [query, setQuery] = (0, import_react23.useState)("");
+  const [search, setSearch] = (0, import_react23.useState)("");
+  const [page, setPage] = (0, import_react23.useState)(1);
+  const [pageSize, setPageSize] = (0, import_react23.useState)(tab === "drafts" ? 10 : 12);
+  const [result, setResult] = (0, import_react23.useState)(() => blankPage(pageSize));
+  const [completedKey, setCompletedKey] = (0, import_react23.useState)("");
+  const [failure, setFailure] = (0, import_react23.useState)({ key: "", message: "" });
+  const [retry, setRetry] = (0, import_react23.useState)(0);
+  const requests = (0, import_react23.useRef)(new ProfileListRequests());
+  const requestRef = (0, import_react23.useRef)(request);
   const scope = { ownerId, session: refresh, tab, query, page, pageSize };
-  const scopeRef = (0, import_react20.useRef)(scope);
-  (0, import_react20.useLayoutEffect)(() => {
+  const scopeRef = (0, import_react23.useRef)(scope);
+  (0, import_react23.useLayoutEffect)(() => {
     requestRef.current = request;
     scopeRef.current = { ownerId, session: refresh, tab, query, page, pageSize };
   }, [request, ownerId, refresh, tab, query, page, pageSize]);
   const loadKey = JSON.stringify([ownerId, refresh, tab, query, page, pageSize, retry]);
   const loading = completedKey !== loadKey;
   const error = failure.key === loadKey ? failure.message : "";
-  const sentinel = (0, import_react20.useRef)(null);
-  (0, import_react20.useEffect)(() => {
+  const sentinel = (0, import_react23.useRef)(null);
+  (0, import_react23.useEffect)(() => {
     const requestState = requests.current;
     const ticket = requestState.begin(scopeRef.current);
     const accepts = () => requests.current.accepts(ticket, scopeRef.current);
@@ -37347,7 +37447,7 @@ function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDra
     return () => requestState.invalidate();
   }, [ownerId, tab, query, page, pageSize, refresh, retry, loadKey]);
   const more = tab !== "drafts" && result.page < result.totalPages;
-  (0, import_react20.useEffect)(() => {
+  (0, import_react23.useEffect)(() => {
     if (!more || loading || error || !sentinel.current || typeof IntersectionObserver === "undefined") return;
     let queued = false;
     const observer = new IntersectionObserver((entries) => {
@@ -37376,106 +37476,106 @@ function ProfileLibraryContent({ ownerId, tab, refresh, busy, request, onOpenDra
     setResult(blankPage(pageSize));
     setRetry((value) => value + 1);
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-profile-library", "data-list-tab": tab, "data-loaded-count": result.items.length, "data-total-count": result.total, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-list-tools", children: tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { children: [
         result.total,
         " \u4EFD\u79C1\u6709\u8349\u7A3F"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Search, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-text-button", onClick: onNew, children: "\u65B0\u5EFA\u7535\u8DEF" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { role: "search", "aria-label": tab === "favorites" ? "\u641C\u7D22\u6536\u85CF\u56FE\u7EB8" : "\u641C\u7D22\u6211\u7684\u7535\u8DEF", onSubmit: submit, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Search, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { "aria-label": "\u641C\u7D22\u4E2A\u4EBA\u7535\u8DEF", placeholder: "\u8BF7\u8F93\u5165\u7535\u8DEF\u540D\u79F0", value: search, maxLength: 100, onChange: (event) => setSearch(event.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { type: "submit", children: "\u641C\u7D22" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { children: [
         "\u5171 ",
         result.total,
         " \u4E2A"
       ] })
     ] }) }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-error", role: "alert", children: [
+    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-error", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
         requests.current.invalidate();
         setRetry((value) => value + 1);
       }, children: "\u91CD\u8BD5" })
     ] }),
-    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u6807\u9898" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("th", { children: "\u64CD\u4F5C" })
+    tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-draft-table", "aria-busy": loading, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6807\u9898" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u66F4\u65B0\u65F6\u95F4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u64CD\u4F5C" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: item.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("td", { children: date(item.updatedAt) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("td", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: !loading && result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: item.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: date(item.updatedAt) }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, onClick: () => onOpenDraft(item), children: "\u7F16\u8F91" }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, className: "dt-danger-text", onClick: () => onDeleteDraft(item), children: "\u5220\u9664" })
           ] })
         ] }, item.id)) })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("nav", { className: "dt-profile-pagination", "aria-label": "\u8349\u7A3F\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
           "\u6BCF\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("select", { "aria-label": "\u6BCF\u9875\u8349\u7A3F\u6570\u91CF", value: pageSize, onChange: (event) => {
             requests.current.invalidate();
             setPageSize(Number(event.target.value));
             setPage(1);
-          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: size, children: size }, size)) }),
+          }, children: PROFILE_DRAFT_PAGE_SIZES.map((size) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: size, children: size }, size)) }),
           "\u6761"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { children: [
           "\u7B2C ",
           result.page,
           " / ",
           result.totalPages,
           " \u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronLeft, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ChevronRight, { size: 16 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { "aria-label": "\u4E0A\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page <= 1, onClick: () => changePage(result.page - 1), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ChevronLeft, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { "aria-label": "\u4E0B\u4E00\u9875\u8349\u7A3F", disabled: loading || result.page >= result.totalPages, onClick: () => changePage(result.page + 1), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ChevronRight, { size: 16 }) })
       ] })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("article", { className: "dt-profile-publication", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DocumentPreview, { document: item.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-publication-info", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: item.author.name || item.author.username }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("small", { children: date(item.createdAt) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Heart, { size: 15 }),
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-publication-list", children: result.items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("article", { className: "dt-profile-publication", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-profile-publication-preview", "aria-label": `\u67E5\u770B ${item.title}`, onClick: () => onOpenPublication(item.id), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: item.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-profile-publication-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-card-title", onClick: () => onOpenPublication(item.id), children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: item.author.name || item.author.username }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: date(item.createdAt) }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-profile-reaction-counts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Heart, { size: 15 }),
             item.likes
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Star, { size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Star, { size: 15 }),
             item.favorites
           ] })
         ] })
       ] })
     ] }, item.id)) }),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
+    loading && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { className: "dt-profile-list-status", role: "status", children: [
       "\u6B63\u5728\u8BFB\u53D6",
       tab === "drafts" ? "\u8349\u7A3F" : tab === "favorites" ? "\u6536\u85CF" : "\u7535\u8DEF",
       "\u2026"
     ] }),
-    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "dt-empty", children: [
-      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CircuitBoard, { size: 38 }),
-      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
-      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
-      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
+    !loading && !error && !result.items.length && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-empty", children: [
+      tab === "drafts" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(FolderOpen, { size: 38 }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(CircuitBoard, { size: 38 }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h3", { children: tab === "drafts" ? "\u8349\u7A3F\u7BB1\u8FD8\u662F\u7A7A\u7684" : query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7535\u8DEF" : tab === "favorites" ? "\u8FD8\u6CA1\u6709\u6536\u85CF\u56FE\u7EB8" : "\u8FD8\u6CA1\u6709\u53D1\u5E03\u7535\u8DEF" }),
+      tab === "drafts" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u63A5\u597D\u7535\u8DEF\u540E\uFF0C\u70B9\u51FB\u201C\u4FDD\u5B58\u8349\u7A3F\u201D\u3002" }),
+      STATIC_DEMO && tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6210\u5458\u4F5C\u54C1\u4E0E\u6536\u85CF\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248\u3002" })
     ] }),
-    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
-      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
-      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
+    tab !== "drafts" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { ref: sentinel, className: "dt-profile-load-sentinel", children: [
+      !loading && !error && result.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: more ? "\u7EE7\u7EED\u5411\u4E0B\u6EDA\u52A8\u52A0\u8F7D" : `\u5DF2\u663E\u793A\u5168\u90E8 ${result.total} \u4E2A` }),
+      more && !loading && typeof IntersectionObserver === "undefined" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => changePage(result.page + 1), children: "\u52A0\u8F7D\u66F4\u591A" })
     ] })
   ] });
 }
 
 // app/simulator/gallery/Gallery.tsx
-var import_react21 = __toESM(require_react(), 1);
+var import_react24 = __toESM(require_react(), 1);
 
 // app/simulator/gallery/route.ts
 var emptyGalleryRoute = () => ({ query: "", page: 1 });
@@ -37561,7 +37661,7 @@ var GalleryRequestState = class {
 };
 
 // app/simulator/gallery/Gallery.tsx
-var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
 var date2 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function subscribeLocation(changed) {
   addEventListener("popstate", changed);
@@ -37574,24 +37674,24 @@ function subscribeLocation(changed) {
 var noopSubscribe = () => () => {
 };
 function Gallery({ request, onFork, onPractice, busy = false }) {
-  const ready = (0, import_react21.useSyncExternalStore)(noopSubscribe, () => true, () => false);
-  const routeSearch = (0, import_react21.useSyncExternalStore)(subscribeLocation, () => location.search, () => "");
+  const ready = (0, import_react24.useSyncExternalStore)(noopSubscribe, () => true, () => false);
+  const routeSearch = (0, import_react24.useSyncExternalStore)(subscribeLocation, () => location.search, () => "");
   const route = galleryRouteFromSearch(routeSearch);
-  const [searchState, setSearchState] = (0, import_react21.useState)({ query: route.query, value: route.query });
+  const [searchState, setSearchState] = (0, import_react24.useState)({ query: route.query, value: route.query });
   const search = searchState.query === route.query ? searchState.value : route.query;
-  const [page, setPage] = (0, import_react21.useState)(null);
-  const [loadedKey, setLoadedKey] = (0, import_react21.useState)("");
-  const [failure, setFailure] = (0, import_react21.useState)({ key: "", message: "" });
-  const [detail, setDetail] = (0, import_react21.useState)(null);
-  const [detailFailure, setDetailFailure] = (0, import_react21.useState)({ key: "", message: "" });
-  const [feedbackState, setFeedbackState] = (0, import_react21.useState)({ key: "", message: "" });
-  const [reload, setReload] = (0, import_react21.useState)(0);
-  const [pending, setPending] = (0, import_react21.useState)([]);
-  const pendingRef = (0, import_react21.useRef)(/* @__PURE__ */ new Set());
-  const requests = (0, import_react21.useRef)(new GalleryRequestState());
-  const mounted = (0, import_react21.useRef)(true);
-  const requestRef = (0, import_react21.useRef)(request);
-  (0, import_react21.useLayoutEffect)(() => {
+  const [page, setPage] = (0, import_react24.useState)(null);
+  const [loadedKey, setLoadedKey] = (0, import_react24.useState)("");
+  const [failure, setFailure] = (0, import_react24.useState)({ key: "", message: "" });
+  const [detail, setDetail] = (0, import_react24.useState)(null);
+  const [detailFailure, setDetailFailure] = (0, import_react24.useState)({ key: "", message: "" });
+  const [feedbackState, setFeedbackState] = (0, import_react24.useState)({ key: "", message: "" });
+  const [reload, setReload] = (0, import_react24.useState)(0);
+  const [pending, setPending] = (0, import_react24.useState)([]);
+  const pendingRef = (0, import_react24.useRef)(/* @__PURE__ */ new Set());
+  const requests = (0, import_react24.useRef)(new GalleryRequestState());
+  const mounted = (0, import_react24.useRef)(true);
+  const requestRef = (0, import_react24.useRef)(request);
+  (0, import_react24.useLayoutEffect)(() => {
     requestRef.current = request;
   }, [request]);
   const listKey = galleryListPath(route);
@@ -37602,7 +37702,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   const detailError = detailFailure.key === detailKey ? detailFailure.message : "";
   const feedback = feedbackState.key === galleryHref(route) ? feedbackState.message : "";
   const setFeedback = (message) => setFeedbackState({ key: galleryHref(route), message });
-  (0, import_react21.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     mounted.current = true;
     const requestState = requests.current;
     return () => {
@@ -37610,14 +37710,14 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       requestState.clear();
     };
   }, []);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     requests.current.retain([
       ...page?.items.map((item) => item.id) ?? [],
       ...route.publicationId ? [route.publicationId] : [],
       ...pending.map((key4) => key4.slice(0, key4.lastIndexOf(":")))
     ]);
   }, [page, route.publicationId, pending]);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!ready || STATIC_DEMO) return;
     const abort = new AbortController();
     let active = true;
@@ -37648,7 +37748,7 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       abort.abort();
     };
   }, [ready, listKey, reload, route.page, errorKey]);
-  (0, import_react21.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (!ready || !route.publicationId || STATIC_DEMO) return;
     const abort = new AbortController();
     let active = true;
@@ -37703,13 +37803,13 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
   }
   function reactions2(item) {
     const waiting = pending.some((value) => value.startsWith(`${item.id}:`));
-    return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Heart, { size: 16 }),
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { "aria-label": `\u70B9\u8D5E ${item.title}`, "aria-pressed": item.liked, className: item.liked ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "like"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Heart, { size: 16 }),
         item.likes
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Star, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { "aria-label": `\u6536\u85CF ${item.title}`, "aria-pressed": item.favorited, className: item.favorited ? "active" : "", disabled: waiting, onClick: () => void reactTo(item, "favorite"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Star, { size: 16 }),
         item.favorites
       ] })
     ] });
@@ -37722,75 +37822,75 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
       if (mounted.current) setFeedback("\u590D\u5236\u5931\u8D25\uFF0C\u53EF\u76F4\u63A5\u590D\u5236\u6D4F\u89C8\u5668\u5730\u5740\u680F\u4E2D\u7684\u4F5C\u54C1\u94FE\u63A5");
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("main", { className: "dt-page dt-gallery", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-page-heading", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("main", { className: "dt-page dt-gallery", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-page-heading", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h1", { children: "\u4EFF\u771F\u5E7F\u573A" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u5206\u4EAB\u4F60\u7684\u63A5\u7EBF\u4F5C\u54C1\uFF0C\u53D1\u73B0\u66F4\u591A\u7535\u8DEF\u601D\u8DEF" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { className: "dt-gallery-search", onSubmit: (event) => {
         event.preventDefault();
         go({ query: search.trim(), page: 1 });
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("input", { "aria-label": "\u641C\u7D22\u6210\u5458\u7535\u8DEF", placeholder: "\u641C\u7D22\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005", maxLength: 100, value: search, onChange: (event) => setSearchState({ query: route.query, value: event.target.value }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { type: "submit", className: "dt-primary", disabled: STATIC_DEMO, children: "\u641C\u7D22" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-tabs", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-tabs", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "active", onClick: () => go(emptyGalleryRoute()), children: "\u6210\u5458\u7535\u8DEF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("span", { children: [
         "\u6700\u65B0\u53D1\u5E03",
         shownPage ? ` \xB7 \u5171 ${shownPage.total} \u4E2A\u4F5C\u54C1` : ""
       ] })
     ] }),
-    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ShieldCheck, { size: 44 }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-      route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-gallery-query", children: [
+    STATIC_DEMO ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-empty", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ShieldCheck, { size: 44 }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h3", { children: "\u6210\u5458\u5E7F\u573A\u9700\u8981\u672C\u5730\u8D26\u53F7\u670D\u52A1" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: "\u9759\u6001\u6F14\u793A\u4E0D\u4E0A\u4F20\u3001\u4E0D\u5C55\u793A\u79C1\u4EBA\u8349\u7A3F\u3002" })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
+      route.query && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-gallery-query", children: [
         "\u641C\u7D22\u201C",
         route.query,
         "\u201D",
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => go(emptyGalleryRoute()), children: "\u6E05\u9664\u641C\u7D22" })
       ] }),
-      error ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
+      error ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-empty", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownPage ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-empty", role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u6210\u5458\u7535\u8DEF\u2026" }) : shownPage.items.length ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-card-grid", children: shownPage.items.map((item) => {
         const next = { ...route, publicationId: item.id };
-        return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "dt-circuit-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: item.document }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("article", { className: "dt-circuit-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("a", { className: "dt-card-preview", href: galleryHref(next), onClick: (event) => follow(event, next), "aria-label": `\u67E5\u770B ${item.title}`, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DocumentPreview, { document: item.document }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-card-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("a", { className: "dt-card-title", href: galleryHref(next), onClick: (event) => follow(event, next), children: item.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
               item.author?.name || item.author?.username,
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { children: date2(item.createdAt) })
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { children: date2(item.createdAt) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-card-actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-card-actions", children: [
               reactions2(item),
-              /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: busy, onClick: () => onFork(item.id), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Copy, { size: 16 }),
                 "\u590D\u5236\u7EC3\u4E60"
               ] })
             ] })
           ] })
         ] }, item.id);
-      }) }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-empty", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(CircuitBoard, { size: 45 }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
-        !route.query && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
+      }) }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-empty", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(CircuitBoard, { size: 45 }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h3", { children: route.query ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u7535\u8DEF" : "\u8FD9\u91CC\u8FD8\u6CA1\u6709\u7535\u8DEF" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: route.query ? "\u6362\u4E00\u4E2A\u6807\u9898\u3001\u8BF4\u660E\u6216\u4F5C\u8005\u5173\u952E\u8BCD\u8BD5\u8BD5\u3002" : "\u5728\u6A21\u62DF\u7535\u8DEF\u4E2D\u5B8C\u6210\u63A5\u7EBF\uFF0C\u518D\u53D1\u5E03\u5230\u6210\u5458\u5E7F\u573A\u3002" }),
+        !route.query && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", onClick: onPractice, children: "\u53BB\u63A5\u7EBF" })
       ] }),
-      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowLeft, { size: 16 }),
+      shownPage && shownPage.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("nav", { className: "dt-gallery-pagination", "aria-label": "\u5E7F\u573A\u5206\u9875", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: shownPage.page <= 1, onClick: () => go({ ...route, page: shownPage.page - 1, publicationId: void 0 }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ArrowLeft, { size: 16 }),
           "\u4E0A\u4E00\u9875"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("span", { children: [
           "\u7B2C ",
           shownPage.page,
           " / ",
@@ -37799,57 +37899,148 @@ function Gallery({ request, onFork, onPractice, busy = false }) {
           shownPage.pageSize,
           " \u4E2A"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { disabled: shownPage.page >= shownPage.totalPages, onClick: () => go({ ...route, page: shownPage.page + 1, publicationId: void 0 }), children: [
           "\u4E0B\u4E00\u9875",
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ArrowRight, { size: 16 })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(ArrowRight, { size: 16 })
         ] })
       ] })
     ] }),
-    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
-    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("header", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(X, { size: 20 }) })
+    feedback && !route.publicationId && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback }),
+    route.publicationId && !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Modal, { role: "dialog", title: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5", className: "dt-modal dt-gallery-detail", onClose: closeDetail, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { children: shownDetail?.title || "\u7535\u8DEF\u4F5C\u54C1\u8BE6\u60C5" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { "aria-label": "\u5173\u95ED\u4F5C\u54C1\u8BE6\u60C5", onClick: closeDetail, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(X, { size: 20 }) })
       ] }),
-      detailError ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: detailError }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
-      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { children: [
+      detailError ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { children: detailError }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { onClick: () => setReload((value) => value + 1), children: "\u91CD\u65B0\u52A0\u8F7D" })
+      ] }) : !shownDetail ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { role: "status", children: "\u6B63\u5728\u52A0\u8F7D\u4F5C\u54C1\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(import_jsx_runtime26.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("p", { children: [
           "\u4F5C\u8005\uFF1A",
           shownDetail.author.name,
           " \xB7 ",
           date2(shownDetail.createdAt)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DocumentPreview, { document: shownDetail.document }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(DocumentPreview, { document: shownDetail.document }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "dt-modal-actions", children: [
           reactions2(shownDetail),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("button", { onClick: () => void copyLink(), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Link, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("button", { onClick: () => void copyLink(), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Link, { size: 16 }),
             "\u590D\u5236\u94FE\u63A5"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => onFork(shownDetail.id), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
       ] }),
-      feedback && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
+      feedback && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "dt-gallery-feedback", role: "status", children: feedback })
     ] })
   ] });
 }
 
 // app/simulator/LessonSchematic.tsx
-var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
 function LessonSchematic({ lessonId = "motor-jog", compact: compact2 = false }) {
   const base = "/diantuo-zhixun/";
   const supported = ["motor-jog", "motor-self-hold", "lighting-single", "lighting-two-way"].includes(lessonId);
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", { className: `dt-schematic ${compact2 ? "compact" : ""}`, children: supported ? /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("img", { src: `${base}sim-assets/${lessonId}.png`, alt: `${getLesson(lessonId)?.title || "\u7535\u8DEF"}\u539F\u7AD9\u53C2\u8003\u56FE`, draggable: false }) : /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { children: "\u6682\u65E0\u539F\u7406\u56FE" }) });
+}
+
+// app/simulator/DrawingWindow.tsx
+var import_react25 = __toESM(require_react(), 1);
+var import_react_dom4 = __toESM(require_react_dom(), 1);
+var import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
+function useDrawingWindow(preview, scope, onNotice) {
+  const [target, setTarget] = (0, import_react25.useState)(null);
+  const owned = (0, import_react25.useRef)(null);
+  const shown = target?.pinned ?? preview;
+  const child = target?.window, targetScope = target?.scope;
+  const close = (0, import_react25.useCallback)(() => {
+    const child2 = owned.current;
+    owned.current = null;
+    child2?.close();
+    setTarget(null);
+  }, []);
+  (0, import_react25.useLayoutEffect)(() => () => {
+    owned.current?.close();
+    owned.current = null;
+  }, [scope]);
+  const open = (0, import_react25.useCallback)(() => {
+    if (!preview) {
+      onNotice("\u5F53\u524D\u6CA1\u6709\u53EF\u6253\u5F00\u7684\u56FE\u7EB8\uFF0C\u8BF7\u5148\u9009\u62E9\u6216\u4E0A\u4F20\u56FE\u7EB8\u3002");
+      return;
+    }
+    if (owned.current && !owned.current.closed && target?.scope === scope) {
+      owned.current.focus();
+      return;
+    }
+    const child2 = window.open("", `diantuo-drawing-${crypto.randomUUID()}`, "popup,width=900,height=760,resizable=yes,scrollbars=yes");
+    if (!child2) {
+      onNotice("\u6D4F\u89C8\u5668\u672A\u5141\u8BB8\u6253\u5F00\u72EC\u7ACB\u56FE\u7EB8\u7A97\u53E3\uFF0C\u4ECD\u53EF\u4F7F\u7528\u9875\u5185\u56FE\u7EB8\uFF1B\u5141\u8BB8\u5F39\u7A97\u540E\u518D\u6B21\u70B9\u51FB\u3002");
+      return;
+    }
+    try {
+      const doc = child2.document;
+      doc.title = preview.title;
+      const base = doc.createElement("base");
+      base.href = document.baseURI;
+      doc.head.appendChild(base);
+      for (const source of document.head.querySelectorAll('link[rel="stylesheet"],style')) {
+        const copy = source.cloneNode(true);
+        if (source instanceof HTMLLinkElement) copy.href = source.href;
+        doc.head.appendChild(copy);
+      }
+      doc.body.style.margin = "0";
+      const container = doc.createElement("div");
+      doc.body.appendChild(container);
+      owned.current = child2;
+      setTarget({ window: child2, container, scope, pinned: null });
+      child2.focus();
+    } catch {
+      child2.close();
+      onNotice("\u72EC\u7ACB\u7A97\u53E3\u521D\u59CB\u5316\u5931\u8D25\uFF0C\u9875\u5185\u56FE\u7EB8\u5DF2\u4FDD\u7559\u3002");
+    }
+  }, [preview, scope, target?.scope, onNotice]);
+  (0, import_react25.useEffect)(() => {
+    if (!child || targetScope !== scope) return;
+    const left = () => {
+      if (owned.current === child) owned.current = null;
+      setTarget((current) => current?.window === child ? null : current);
+    };
+    const parentLeft = () => child.close();
+    child.addEventListener("pagehide", left);
+    window.addEventListener("pagehide", parentLeft);
+    return () => {
+      child.removeEventListener("pagehide", left);
+      window.removeEventListener("pagehide", parentLeft);
+    };
+  }, [child, targetScope, scope]);
+  (0, import_react25.useEffect)(() => {
+    if (targetScope === scope && shown && owned.current && !owned.current.closed) owned.current.document.title = shown.title;
+  }, [targetScope, scope, shown]);
+  const drawingWindow = target && target.scope === scope && !target.window.closed ? (0, import_react_dom4.createPortal)(
+    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("main", { className: "dt-drawing-window", "aria-label": "\u72EC\u7ACB\u56FE\u7EB8\u7A97\u53E3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("strong", { children: shown?.title ?? "\u5F53\u524D\u6CA1\u6709\u56FE\u7EB8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("button", { type: "button", disabled: !shown, "aria-pressed": !!target.pinned, onClick: () => setTarget((current) => current ? { ...current, pinned: current.pinned ? null : shown } : current), children: target.pinned ? "\u6062\u590D\u8DDF\u968F" : "\u9501\u5B9A\u5F53\u524D\u56FE\u7EB8" }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("button", { type: "button", onClick: close, children: "\u5173\u95ED\u7A97\u53E3" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("p", { className: "dt-drawing-window-state", role: "status", children: [
+        target.pinned ? "\u5DF2\u9501\u5B9A\u5F53\u524D\u56FE\u7EB8" : "\u8DDF\u968F\u4E3B\u9875\u9762\u5F53\u524D\u56FE\u7EB8",
+        " \xB7 \u5728\u6B64\u7A97\u53E3\u7F29\u653E\u4E0D\u6539\u53D8\u4E3B\u9875\u9762"
+      ] }),
+      shown ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(DrawingViewer, { src: shown.src, type: shown.type, title: shown.title, contentKey: shown.key, children: shown.content }, shown.key) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { children: "\u5F53\u524D\u6CA1\u6709\u56FE\u7EB8\uFF0C\u8BF7\u5728\u4E3B\u9875\u9762\u9009\u62E9\u56FE\u7EB8\u3002" })
+    ] }),
+    target.container
+  ) : null;
+  return { openDrawingWindow: open, drawingWindow };
 }
 
 // app/simulator/core/wiring-workmanship.ts
 var same = (a, b) => terminalKey(a) === terminalKey(b);
 var includes = (wire, ref2) => same(wire.from, ref2) || same(wire.to, ref2);
 function assessWiringWorkmanship(document2, lessonId = document2.lessonId) {
-  const assignments = getCourseTerminalAssignments(lessonId);
+  const dual = !!document2.roles?.xt2 || document2.components.some((component2) => component2.id === "xt2");
+  const assignments = getCourseTerminalAssignments(lessonId, dual ? "dual" : "single");
   if (!assignments.length) return { status: "unsupported", checks: [], diagnostics: [] };
   const validation = validateDocument(document2);
   if (!validation.valid) return { status: "unsupported", checks: [], diagnostics: validation.errors.map((message) => ({ code: "INVALID_DOCUMENT", message, severity: "warning", componentIds: [], terminalIds: [], wireIds: [] })) };
@@ -37865,8 +38056,9 @@ function assessWiringWorkmanship(document2, lessonId = document2.lessonId) {
     const insideWires = document2.wires.filter((wire) => includes(wire, inside));
     const expectedOutsideCount = assignments.filter((item) => item.stripRole === assignment.stripRole && item.position === assignment.position && item.used).length;
     const passed = !!strip2 && terminalStripCapacity(strip2.type) >= assignment.position && externalWires.length === 1 && includes(externalWires[0], outside) && outsideWires.length === expectedOutsideCount && (!assignment.requiresInternal || insideWires.length > 0);
-    const stripLabel = "XT1";
-    const label = `${assignment.label} \u7ECF ${stripLabel} \u7B2C ${assignment.position} \u4F4D\u4E0A\u4E0B\u4E2D\u8F6C\uFF0C\u67DC\u5916\u7AEF\u5B50\u65E0\u65C1\u8DEF\u7EBF`;
+    const stripLabel = assignment.stripRole === "xt2" ? "XT2" : "XT1";
+    const direction = strip2?.rotation === 90 || strip2?.rotation === 270 ? "\u5DE6\u53F3" : "\u4E0A\u4E0B";
+    const label = `${assignment.label} \u7ECF ${stripLabel} \u7B2C ${assignment.position} \u4F4D${direction}\u4E2D\u8F6C\uFF0C\u67DC\u5916\u7AEF\u5B50\u65E0\u65C1\u8DEF\u7EBF`;
     checks.push({ id: `${assignment.stripRole}-${assignment.position}-${assignment.componentRole}-${assignment.terminalId}`, label, passed });
     if (!passed) diagnostics.push({ code: strip2 && isTerminalStrip(strip2.type) ? "TERMINAL_BOUNDARY_BYPASS" : "TERMINAL_STRIP_MISSING", message: label, severity: "warning", componentIds: [external.componentId, outside.componentId], terminalIds: [external, outside, inside].map(terminalKey), wireIds: [...new Set([...externalWires, ...outsideWires, ...insideWires].map((wire) => wire.id))] });
   }
@@ -37953,15 +38145,15 @@ function recoveryAfterSave(current, submitted, saved) {
 function parkRecovery(storage, ownerKey, state) {
   const key4 = `${ownerKey}:parked:${Date.now()}:${crypto.randomUUID()}`;
   persistRecovery(storage, key4, state);
-  if (storage.getItem(key4) !== JSON.stringify(state)) throw new Error("\u672C\u673A\u6682\u5B58\u5199\u5165\u672A\u786E\u8BA4\uFF0C\u8BF7\u4FDD\u5B58\u6216\u5BFC\u51FA\u5F53\u524D\u63A5\u7EBF");
+  if (storage.getItem(key4) !== JSON.stringify(state)) throw new Error("\u672C\u673A\u6682\u5B58\u5199\u5165\u672A\u786E\u8BA4\uFF0C\u8BF7\u4FDD\u5B58\u5F53\u524D\u8349\u7A3F");
   return key4;
 }
 function listParkedRecovery(storage, ownerKey) {
-  const prefix2 = `${ownerKey}:parked:`, result = [];
+  const prefix = `${ownerKey}:parked:`, result = [];
   for (let i = 0; i < storage.length; i++) {
     const key4 = storage.key(i);
-    if (!key4?.startsWith(prefix2) || key4.includes(":unreadable:")) continue;
-    const savedAt = Number(key4.slice(prefix2.length).split(":")[0]) || 0;
+    if (!key4?.startsWith(prefix) || key4.includes(":unreadable:")) continue;
+    const savedAt = Number(key4.slice(prefix.length).split(":")[0]) || 0;
     try {
       const state = readRecovery(storage.getItem(key4));
       if (state) result.push({ key: key4, title: state.document.title, savedAt, state });
@@ -37973,47 +38165,47 @@ function listParkedRecovery(storage, ownerKey) {
 }
 
 // app/simulator/SimulatorApp.tsx
-var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime29 = __toESM(require_jsx_runtime(), 1);
 var NAV = [{ id: "simulator", label: "\u6A21\u62DF\u7535\u8DEF", icon: House }, { id: "drawings", label: "\u56FE\u7EB8\u96C6", icon: BookOpen }, { id: "gallery", label: "\u4EFF\u771F\u5E7F\u573A", icon: Globe }, { id: "components", label: "\u5143\u5668\u4EF6\u767E\u79D1", icon: Boxes }, { id: "profile", label: "\u4E2A\u4EBA\u4E2D\u5FC3", icon: UserRound }];
 var date3 = (value) => new Date(value).toLocaleString("zh-CN", { hour12: false });
 function InviteStatus({ expiresAt, consumedBy }) {
-  const [now2, setNow] = (0, import_react22.useState)(Date.now);
-  (0, import_react22.useEffect)(() => {
+  const [now2, setNow] = (0, import_react26.useState)(Date.now);
+  (0, import_react26.useEffect)(() => {
     if (consumedBy || !Number.isFinite(expiresAt) || now2 >= expiresAt) return;
     const timer2 = setTimeout(() => setNow(Date.now()), Math.max(1, Math.min(expiresAt - Date.now() + 1, 2147483647)));
     return () => clearTimeout(timer2);
   }, [expiresAt, consumedBy, now2]);
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(import_jsx_runtime25.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_jsx_runtime29.Fragment, { children: consumedBy ? `\u5DF2\u88AB ${consumedBy} \u4F7F\u7528` : !Number.isFinite(expiresAt) ? "\u6709\u6548\u671F\u5F02\u5E38" : expiresAt <= now2 ? "\u5DF2\u8FC7\u671F" : "\u5F85\u4F7F\u7528" });
 }
 var LOCAL_KEY2 = "diantuo:simulator:demo:v1";
 var draftKey = (id2) => `diantuo:simulator:recovery:v1:${id2}`;
 function Modal2({ title, children: children2, close }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal, { title, onClose: close, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: title }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 20 }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal, { title, onClose: close, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { "aria-label": "\u5173\u95ED", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(X, { size: 20 }) })
     ] }),
     children2
   ] });
 }
 function Brand() {
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-brand", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u7535\u6C14\u6559\u5B66 \xB7 \u4E8C\u7EF4\u63A5\u7EBF\u4E0E\u4EFF\u771F" })
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-brand", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Bolt, { size: 30, strokeWidth: 2.5 }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("strong", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("small", { children: "\u7535\u6C14\u6559\u5B66 \xB7 \u4E8C\u7EF4\u63A5\u7EBF\u4E0E\u4EFF\u771F" })
     ] })
   ] });
 }
 function Login({ ready }) {
-  const [username, setUsername] = (0, import_react22.useState)("");
-  const [password, setPassword] = (0, import_react22.useState)("");
-  const [name, setName] = (0, import_react22.useState)("");
-  const [token, setToken] = (0, import_react22.useState)(() => typeof location === "undefined" ? "" : new URLSearchParams(location.search).get("token") || "");
-  const [inviteValid, setInviteValid] = (0, import_react22.useState)(false);
-  const [busy, setBusy] = (0, import_react22.useState)(false);
-  const [error, setError] = (0, import_react22.useState)("");
-  (0, import_react22.useEffect)(() => {
+  const [username, setUsername] = (0, import_react26.useState)("");
+  const [password, setPassword] = (0, import_react26.useState)("");
+  const [name, setName] = (0, import_react26.useState)("");
+  const [token, setToken] = (0, import_react26.useState)(() => typeof location === "undefined" ? "" : new URLSearchParams(location.search).get("token") || "");
+  const [inviteValid, setInviteValid] = (0, import_react26.useState)(false);
+  const [busy, setBusy] = (0, import_react26.useState)(false);
+  const [error, setError] = (0, import_react26.useState)("");
+  (0, import_react26.useEffect)(() => {
     if (token) api(`/invites/preview?token=${encodeURIComponent(token)}`).then(() => setInviteValid(true)).catch((e) => setError(e.message));
   }, [token]);
   async function submit(event) {
@@ -38036,48 +38228,48 @@ function Login({ ready }) {
       setBusy(false);
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-login", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("header", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Brand, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "\u6210\u5458\u5B9E\u8BAD\u5E73\u53F0" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-login-body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-login-intro", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("h1", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-login-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("section", { className: "dt-login-intro", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-eyebrow", children: "ELECTRICAL ENGINEERING SIMULATION" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("h1", { children: [
           "\u628A\u7535\u8DEF\u539F\u7406\uFF0C",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("br", {}),
           "\u63A5\u6210\u770B\u5F97\u89C1\u7684\u8FD0\u884C\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("p", { children: [
           "\u9009\u62E9\u5668\u4EF6\u3001\u5B8C\u6210\u63A5\u7EBF\u3001\u64CD\u4F5C\u4EFF\u771F\u3002",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("br", {}),
           "\u5728\u6BCF\u4E00\u6B21\u542F\u52A8\u4E0E\u505C\u6B62\u4E2D\uFF0C\u7406\u89E3\u7535\u8DEF\u7684\u5DE5\u4F5C\u8FC7\u7A0B\u3002"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u5341\u4E2A\u7535\u673A\u63A5\u7EBF\u8BFE\u7A0B \xB7 \u8054\u9501\u63A7\u5236 \xB7 \u5B9A\u65F6\u4E0E\u53D8\u901F" })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-login-preview", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(DocumentPreview, { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "\u5341\u4E2A\u7535\u673A\u63A5\u7EBF\u8BFE\u7A0B \xB7 \u8054\u9501\u63A7\u5236 \xB7 \u5B9A\u65F6\u4E0E\u53D8\u901F" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
-        token && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("form", { className: "dt-login-card", onSubmit: submit, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { children: token ? "\u63A5\u53D7\u9080\u8BF7" : "\u6B22\u8FCE\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: token ? "\u521B\u5EFA\u4F60\u7684\u6210\u5458\u8D26\u53F7\uFF0C\u5F00\u59CB\u5B9E\u8BAD\u3002" : "\u4F7F\u7528\u7BA1\u7406\u5458\u9080\u8BF7\u7684\u8D26\u53F7\u8FDB\u5165\u5B9E\u8BAD\u3002" }),
+        token && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { children: [
           "\u6635\u79F0",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { autoComplete: "nickname", value: name, onChange: (e) => setName(e.target.value), maxLength: 40 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { children: [
           "\u8D26\u53F7",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { autoComplete: "username", required: true, value: username, onChange: (e) => setUsername(e.target.value), placeholder: "\u8BF7\u8F93\u5165\u8D26\u53F7" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { children: [
           "\u5BC6\u7801",
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { autoComplete: token ? "new-password" : "current-password", required: true, type: "password", value: password, onChange: (e) => setPassword(e.target.value), minLength: 8, placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { role: "alert", className: "dt-error", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
+        error && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { role: "alert", className: "dt-error", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", disabled: busy || !!token && !inviteValid, children: busy ? "\u6B63\u5728\u5904\u7406\u2026" : token ? "\u521B\u5EFA\u8D26\u53F7\u5E76\u767B\u5F55" : "\u767B\u5F55" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("small", { children: "\u9080\u8BF7\u5236\u5F00\u653E \xB7 \u6CA1\u6709\u8D26\u53F7\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("footer", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("footer", { children: "\u7535\u6C14\u63A7\u5236\u5B9E\u8BAD\u4EFF\u771F\u7CFB\u7EDF \xB7 \u72EC\u7ACB\u7535\u6C14\u6559\u5B66\u4EFF\u771F\u5E73\u53F0" })
   ] });
 }
 var demoMember = { id: "demo", name: "\u9759\u6001\u6F14\u793A", username: "demo", role: "demo" };
@@ -38092,59 +38284,67 @@ function initialWorkspace() {
   return { state: fresh, recovered: false, error: "" };
 }
 function SimulatorApp({ initialSection = "simulator" }) {
-  const [startup] = (0, import_react22.useState)(initialWorkspace);
-  const [editorRunning, setEditorRunning] = (0, import_react22.useState)(false);
-  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react22.useState)(true);
-  const [section, setSection] = (0, import_react22.useState)(() => {
+  const [startup] = (0, import_react26.useState)(initialWorkspace);
+  const [editorRunning, setEditorRunning] = (0, import_react26.useState)(false);
+  const [referencePreviewAllowed, setReferencePreviewAllowed] = (0, import_react26.useState)(true);
+  const [section, setSection] = (0, import_react26.useState)(() => {
     if (typeof location === "undefined") return initialSection;
     const path = STATIC_DEMO ? location.hash.slice(1) : location.pathname.slice(1);
     return NAV.some((item) => item.id === path) ? path : initialSection;
   });
-  const [user, setUser] = (0, import_react22.useState)(STATIC_DEMO ? demoMember : null);
-  const [loading, setLoading] = (0, import_react22.useState)(!STATIC_DEMO);
-  const [document2, setDocument] = (0, import_react22.useState)(startup.state.document);
-  const [saved, setSaved] = (0, import_react22.useState)(startup.state.saved);
-  const [documentKey, setDocumentKey] = (0, import_react22.useState)("initial");
-  const [dirty, setDirty] = (0, import_react22.useState)(startup.state.dirty);
-  const [notice, setNotice] = (0, import_react22.useState)("");
-  const [error, setError] = (0, import_react22.useState)(startup.error);
-  const [busy, setBusy] = (0, import_react22.useState)(false);
-  const [query, setQuery] = (0, import_react22.useState)("");
-  const [category, setCategory] = (0, import_react22.useState)("all");
-  const [previewLesson, setPreviewLesson] = (0, import_react22.useState)("");
-  const [componentDetail, setComponentDetail] = (0, import_react22.useState)(null);
-  const [publication, setPublication] = (0, import_react22.useState)(null);
-  const [profileTab, setProfileTab] = (0, import_react22.useState)("publications");
-  const [refresh, setRefresh] = (0, import_react22.useState)(0);
-  const [profileEdit, setProfileEdit] = (0, import_react22.useState)(false);
-  const [name, setName] = (0, import_react22.useState)("");
-  const [bio, setBio] = (0, import_react22.useState)("");
-  const [invites, setInvites] = (0, import_react22.useState)([]);
-  const [members, setMembers] = (0, import_react22.useState)([]);
-  const [inviteUrl, setInviteUrl] = (0, import_react22.useState)("");
-  const [conflict, setConflict] = (0, import_react22.useState)(false);
-  const [confirmAction, setConfirmAction] = (0, import_react22.useState)(null);
-  const [boundary] = (0, import_react22.useState)(() => {
+  const [user, setUser] = (0, import_react26.useState)(STATIC_DEMO ? demoMember : null);
+  const [loading, setLoading] = (0, import_react26.useState)(!STATIC_DEMO);
+  const [document2, setDocument] = (0, import_react26.useState)(startup.state.document);
+  const [saved, setSaved] = (0, import_react26.useState)(startup.state.saved);
+  const [documentKey, setDocumentKey] = (0, import_react26.useState)("initial");
+  const [dirty, setDirty] = (0, import_react26.useState)(startup.state.dirty);
+  const [notice, setNotice] = (0, import_react26.useState)("");
+  const [error, setError] = (0, import_react26.useState)(startup.error);
+  const [busy, setBusy] = (0, import_react26.useState)(false);
+  const [query, setQuery] = (0, import_react26.useState)("");
+  const [category, setCategory] = (0, import_react26.useState)("all");
+  const [previewLesson, setPreviewLesson] = (0, import_react26.useState)("");
+  const [componentDetail, setComponentDetail] = (0, import_react26.useState)(null);
+  const [publication, setPublication] = (0, import_react26.useState)(null);
+  const [profileTab, setProfileTab] = (0, import_react26.useState)("publications");
+  const [refresh, setRefresh] = (0, import_react26.useState)(0);
+  const [profileEdit, setProfileEdit] = (0, import_react26.useState)(false);
+  const [name, setName] = (0, import_react26.useState)("");
+  const [bio, setBio] = (0, import_react26.useState)("");
+  const [invites, setInvites] = (0, import_react26.useState)([]);
+  const [members, setMembers] = (0, import_react26.useState)([]);
+  const [inviteUrl, setInviteUrl] = (0, import_react26.useState)("");
+  const [conflict, setConflict] = (0, import_react26.useState)(false);
+  const [confirmAction, setConfirmAction] = (0, import_react26.useState)(null);
+  const [boundary] = (0, import_react26.useState)(() => {
     const next = new WorkspaceBoundary();
     if (STATIC_DEMO) next.enter("demo");
     return next;
   });
-  const [placement, setPlacement] = (0, import_react22.useState)("automatic");
-  const [practiceRequest, setPracticeRequest] = (0, import_react22.useState)(null);
-  const [upgradeRequest, setUpgradeRequest] = (0, import_react22.useState)(null);
-  const publicationRequest = (0, import_react22.useRef)(0);
-  const working = (0, import_react22.useRef)({ document: document2, saved, dirty });
-  (0, import_react22.useLayoutEffect)(() => {
+  const [drawingPreview, setDrawingPreview] = (0, import_react26.useState)(null);
+  const previewToken = boundary.capture();
+  const { ownerId: previewOwner, session: previewSession, workspace: previewWorkspace } = previewToken;
+  const updateDrawingPreview = (0, import_react26.useCallback)((next) => {
+    if (!boundary.acceptsWorkspace({ ownerId: previewOwner, session: previewSession, workspace: previewWorkspace })) return;
+    setDrawingPreview((previous) => previous?.key === next?.key && previous?.src === next?.src && previous?.type === next?.type && previous?.title === next?.title ? previous : next);
+  }, [boundary, previewOwner, previewSession, previewWorkspace]);
+  const { openDrawingWindow, drawingWindow } = useDrawingWindow(drawingPreview, `${previewOwner ?? ""}:${previewSession}`, setNotice);
+  const [placement, setPlacement] = (0, import_react26.useState)("automatic");
+  const [practiceRequest, setPracticeRequest] = (0, import_react26.useState)(null);
+  const [upgradeRequest, setUpgradeRequest] = (0, import_react26.useState)(null);
+  const publicationRequest = (0, import_react26.useRef)(0);
+  const working = (0, import_react26.useRef)({ document: document2, saved, dirty });
+  (0, import_react26.useLayoutEffect)(() => {
     working.current = { document: document2, saved, dirty };
   }, [document2, saved, dirty]);
-  const [parked, setParked] = (0, import_react22.useState)(null);
-  const [hydratedFor, setHydratedFor] = (0, import_react22.useState)(STATIC_DEMO ? "demo" : null);
-  const referenceEntry = (0, import_react22.useRef)(null);
+  const [parked, setParked] = (0, import_react26.useState)(null);
+  const [hydratedFor, setHydratedFor] = (0, import_react26.useState)(STATIC_DEMO ? "demo" : null);
+  const referenceEntry = (0, import_react26.useRef)(null);
   function writeRecovery(ownerId, state) {
     try {
       persistRecovery(localStorage, draftKey(ownerId), state);
     } catch {
-      setError("\u6D4F\u89C8\u5668\u6062\u590D\u8BB0\u5F55\u65E0\u6CD5\u5199\u5165\uFF0C\u539F\u8BB0\u5F55\u5DF2\u4FDD\u7559\uFF1B\u8BF7\u53CA\u65F6\u4FDD\u5B58\u8349\u7A3F\u6216\u5BFC\u51FA\u7535\u8DEF");
+      setError("\u6D4F\u89C8\u5668\u6062\u590D\u8BB0\u5F55\u65E0\u6CD5\u5199\u5165\uFF0C\u539F\u8BB0\u5F55\u5DF2\u4FDD\u7559\uFF1B\u8BF7\u53CA\u65F6\u4FDD\u5B58\u8349\u7A3F");
     }
   }
   function switchAccount(next) {
@@ -38158,6 +38358,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }
     if (previous.ownerId && hydratedFor === previous.ownerId) writeRecovery(previous.ownerId, working.current);
     boundary.enter(next?.id ?? null);
+    setDrawingPreview(null);
     let fresh = { document: createLessonDocument(DEFAULT_LESSON_ID, { wired: true }), saved: null, dirty: false }, recoveryError = "";
     if (next) try {
       const recovered = readRecovery(localStorage.getItem(draftKey(next.id)));
@@ -38195,8 +38396,8 @@ function SimulatorApp({ initialSection = "simulator" }) {
     setUser(next);
     if (next && !STATIC_DEMO) referenceEntry.current?.();
   }
-  const sessionReady = (0, import_react22.useRef)(null);
-  (0, import_react22.useLayoutEffect)(() => {
+  const sessionReady = (0, import_react26.useRef)(null);
+  (0, import_react26.useLayoutEffect)(() => {
     sessionReady.current = switchAccount;
   });
   function enterReference() {
@@ -38312,7 +38513,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     if (!boundary.acceptsSession(token)) throw new Error("\u8D26\u53F7\u5DF2\u5207\u6362\uFF0C\u5DF2\u5FFD\u7565\u65E7\u8BF7\u6C42\u7ED3\u679C");
     return result;
   }
-  (0, import_react22.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     let active = true;
     const readLocation = () => {
       const path = STATIC_DEMO ? location.hash.slice(1) : location.pathname.slice(1);
@@ -38339,7 +38540,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
       removeEventListener(APP_LOCATION_CHANGED, readLocation);
     };
   }, []);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     if (!user || hydratedFor !== user.id || !dirty) return;
     const token = boundary.capture();
     const timer2 = setTimeout(() => {
@@ -38347,7 +38548,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     }, 350);
     return () => clearTimeout(timer2);
   }, [document2, user, hydratedFor, dirty, saved, boundary]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     const before = (event) => {
       const token = boundary.capture();
       if (working.current.dirty) {
@@ -38358,12 +38559,12 @@ function SimulatorApp({ initialSection = "simulator" }) {
     addEventListener("beforeunload", before);
     return () => removeEventListener("beforeunload", before);
   }, [hydratedFor, boundary]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     if (!notice) return;
     const t = setTimeout(() => setNotice(""), 4500);
     return () => clearTimeout(t);
   }, [notice]);
-  (0, import_react22.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     if (!user || STATIC_DEMO || section !== "profile" || profileTab !== "admin" || user.role !== "admin") return;
     const token = boundary.capture();
     let active = true;
@@ -38417,7 +38618,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
     try {
       persistRecovery(localStorage, draftKey(ownerId), next);
     } catch {
-      setError("\u672C\u673A\u6062\u590D\u8BB0\u5F55\u5199\u5165\u5931\u8D25\uFF0C\u5F53\u524D\u753B\u5E03\u5DF2\u4FDD\u7559\uFF1B\u8BF7\u5148\u4FDD\u5B58\u6216\u5BFC\u51FA\u3002");
+      setError("\u672C\u673A\u6062\u590D\u8BB0\u5F55\u5199\u5165\u5931\u8D25\uFF0C\u5F53\u524D\u753B\u5E03\u5DF2\u4FDD\u7559\uFF1B\u8BF7\u5148\u4FDD\u5B58\u8349\u7A3F\u3002");
       return;
     }
     boundary.replace();
@@ -38448,7 +38649,7 @@ function SimulatorApp({ initialSection = "simulator" }) {
   }
   async function save(asNew = false) {
     if (!user || hydratedFor !== user.id) throw new Error("\u5DE5\u4F5C\u533A\u6B63\u5728\u6062\u590D\uFF0C\u8BF7\u7A0D\u540E\u4FDD\u5B58");
-    const token = boundary.capture(), submitted = structuredClone(working.current.document), record2 = working.current.saved;
+    const token = boundary.capture(), submitted = cloneCircuitDocument(working.current.document), record2 = working.current.saved;
     const accept = (item) => {
       if (!boundary.acceptsWorkspace(token)) return;
       const next = recoveryAfterSave(working.current.document, submitted, item);
@@ -38519,73 +38720,73 @@ function SimulatorApp({ initialSection = "simulator" }) {
     setRefresh((value) => value + 1);
     setPublication((current) => current?.id === item.id ? result.publication : current);
   }
-  (0, import_react22.useLayoutEffect)(() => {
+  (0, import_react26.useLayoutEffect)(() => {
     referenceEntry.current = enterReference;
   });
   const filteredComponents = CATALOG.filter((c) => (category === "all" || c.category === category) && (c.name + c.description).includes(query));
-  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
+  if (loading) return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u6B63\u5728\u8FDE\u63A5\u5B9E\u8BAD\u5DE5\u4F5C\u53F0\u2026" })
   ] });
-  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Login, { ready: (member) => {
+  if (!user) return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(import_jsx_runtime29.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Login, { ready: (member) => {
       switchAccount(member);
       setSection(location.pathname === "/gallery" ? "gallery" : "simulator");
     } }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
+    error && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-global-error", role: "alert", children: error })
   ] });
-  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-loading", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
+  if (hydratedFor !== user.id) return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-loading", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Brand, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u6B63\u5728\u6062\u590D\u5F53\u524D\u8D26\u53F7\u7684\u5DE5\u4F5C\u533A\u2026" })
   ] });
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-site", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { className: "dt-header", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Brand, {}) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-site", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("header", { className: "dt-header", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-brand-button", onClick: () => navigate("simulator"), children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Brand, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("nav", { "aria-label": "\u4E3B\u5BFC\u822A", children: NAV.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("a", { href: STATIC_DEMO ? `#${id2}` : id2 === "simulator" ? "/" : `/${id2}`, "aria-current": section === id2 ? "page" : void 0, onClick: (e) => {
         e.preventDefault();
         navigate(id2);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Icon2, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Icon2, { size: 18 }),
         label
       ] }, id2)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: user.name })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { className: "dt-account", onClick: () => navigate("profile"), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "dt-avatar", children: user.name.slice(0, 1) }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: user.name })
       ] })
     ] }),
-    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
-    error && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-banner", role: "alert", children: [
+    STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-demo-notice", children: "\u9759\u6001\u6F14\u793A \xB7 \u7535\u8DEF\u4FDD\u5B58\u5728\u6B64\u6D4F\u89C8\u5668\uFF0C\u6210\u5458\u8D26\u53F7\u4E0E\u5E7F\u573A\u8BF7\u4F7F\u7528\u672C\u5730\u5B8C\u6574\u7248" }),
+    error && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-banner", role: "alert", children: [
       error,
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(X, { size: 16 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => setError(""), "aria-label": "\u5173\u95ED\u9519\u8BEF", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(X, { size: 16 }) })
     ] }),
-    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(import_jsx_runtime25.Fragment, { children: [
-      (document2.referenceDiagramId || document2.lessonId && !isSelectableLesson(document2.lessonId)) && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u5386\u53F2\u7EC3\u4E60 \xB7 \u5DF2\u6709\u63A5\u7EBF\u548C\u56FE\u7EB8\u4FDD\u7559\uFF0C\u53EF\u7EE7\u7EED\u7F16\u8F91\u4E0E\u4FDD\u5B58\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("summary", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(FilePlusCorner, { size: 16 }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("strong", { children: document2.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
+    section === "simulator" && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(import_jsx_runtime29.Fragment, { children: [
+      (document2.referenceDiagramId || document2.lessonId && !isSelectableLesson(document2.lessonId)) && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: "\u5386\u53F2\u7EC3\u4E60 \xB7 \u5DF2\u6709\u63A5\u7EBF\u548C\u56FE\u7EB8\u4FDD\u7559\uFF0C\u53EF\u7EE7\u7EED\u7F16\u8F91\u4E0E\u4FDD\u5B58\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("details", { className: "dt-document-bar dt-document-disclosure", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("summary", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(FilePlusCorner, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("strong", { children: document2.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "\u8BFE\u7A0B\u4E0E\u8349\u7A3F" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("fieldset", { className: "dt-document-controls", disabled: editorRunning, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { "aria-label": "\u7535\u8DEF\u6807\u9898", value: document2.title, maxLength: 100, onChange: (e) => editDocument({ ...document2, title: e.target.value }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "dt-save-state", children: dirty ? "\u6709\u672A\u4FDD\u5B58\u4FEE\u6539" : saved ? `\u5DF2\u4FDD\u5B58 \xB7 \u4FEE\u8BA2 ${saved.revision}` : "\u6559\u5B66\u793A\u4F8B" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("select", { "aria-label": "\u9009\u62E9\u8BAD\u7EC3\u8BFE\u7A0B", value: document2.lessonId || "", onChange: (e) => {
             const value = e.target.value;
             if (value) requestPractice(value);
             else replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] }));
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
-            document2.lessonId && !isSelectableLesson(document2.lessonId) && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("option", { value: document2.lessonId, disabled: true, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("option", { value: "", children: "\u81EA\u7531\u63A5\u7EBF" }),
+            document2.lessonId && !isSelectableLesson(document2.lessonId) && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("option", { value: document2.lessonId, disabled: true, children: [
               "\u5386\u53F2\u7EC3\u4E60 \xB7 ",
               getLesson(document2.lessonId)?.title ?? document2.lessonId
             ] }),
-            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("option", { value: l.id, children: l.title }, l.id))
+            LESSONS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("option", { value: l.id, children: l.title }, l.id))
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: !!document2.referenceDiagramId || !!document2.lessonId && !isSelectableLesson(document2.lessonId), onClick: () => requestPractice(document2.lessonId || DEFAULT_LESSON_ID), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: !isSelectableLesson(document2.lessonId), onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
-          document2.components.some((c) => c.type === "relay380" || c.type === "timer380") && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest({ document: structuredClone(working.current.document), token: boundary.capture(), snapshot: JSON.stringify(working.current.document) }), children: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { disabled: !!document2.referenceDiagramId || !!document2.lessonId && !isSelectableLesson(document2.lessonId), onClick: () => requestPractice(document2.lessonId || DEFAULT_LESSON_ID), children: "\u6E05\u7A7A\u63A5\u7EBF\u7EC3\u4E60" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { disabled: !isSelectableLesson(document2.lessonId), onClick: () => replace(() => practiceLesson(document2.lessonId, true)), children: "\u8F7D\u5165\u793A\u8303\u63A5\u7EBF" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), children: "\u65B0\u5EFA\u7535\u8DEF" }),
+          document2.components.some((c) => c.type === "relay380" || c.type === "timer380") && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest({ document: cloneCircuitDocument(working.current.document), token: boundary.capture(), snapshot: JSON.stringify(working.current.document) }), children: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => {
             try {
               setParked(listParkedRecovery(localStorage, draftKey(user.id)));
             } catch {
@@ -38594,40 +38795,40 @@ function SimulatorApp({ initialSection = "simulator" }) {
           }, children: "\u672C\u673A\u6682\u5B58" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(SimulatorEditor, { onChooseCourse: () => navigate("drawings"), clipboardScope: `${user.id}:${boundary.capture().session}`, referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(SimulatorEditor, { onOpenDrawingWindow: openDrawingWindow, onDrawingPreviewChange: updateDrawingPreview, onChooseCourse: () => navigate("drawings"), referenceVideoAllowed: referencePreviewAllowed, onRunningChange: setEditorRunning, document: document2, documentKey, onDocumentChange: editDocument, onSave: () => save().then(() => {
       }), onPublish: publish, onAssess: STATIC_DEMO ? async (doc) => ({ assessment: assessLesson(doc, doc.lessonId), workmanship: assessWiringWorkmanship(doc) }) : assessOnServer, onImportDrawing: async (file) => {
-        if (STATIC_DEMO) throw new Error("\u9759\u6001\u6F14\u793A\u8BF7\u4F7F\u7528\u7535\u8DEF JSON \u5BFC\u5165\uFF1B\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
+        if (STATIC_DEMO) throw new Error("\u9644\u4EF6\u4E0A\u4F20\u9700\u8981\u672C\u5730\u5B8C\u6574\u7248");
         const token = boundary.capture();
         const form = new FormData();
         form.append("file", file);
         const r = await accountApi("/media", { method: "POST", body: form });
         if (!boundary.acceptsWorkspace(token)) throw new Error("\u5DE5\u4F5C\u533A\u5DF2\u5207\u6362\uFF0C\u56FE\u7EB8\u672A\u5E94\u7528\u5230\u5F53\u524D\u7535\u8DEF");
         return r.media;
-      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(TrainingProjects, { viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: isSelectableLesson(document2.lessonId) ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" : "\u4ECE\u56FE\u7EB8\u96C6\u8FDB\u5165\u8BFE\u7A0B\uFF0C\u5373\u53EF\u67E5\u770B\u5BF9\u5E94\u539F\u7406\u56FE\u548C\u5143\u4EF6\u5E03\u7F6E\u56FE\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
+      }, drawingType: document2.drawingMediaType, drawingUrl: document2.drawingMediaId ? `/api/media/${document2.drawingMediaId}` : void 0, renderSchematic: (preview, selectionRevision, viewerControls, descriptor) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(TrainingProjects, { onPreviewChange: updateDrawingPreview, fallbackPreview: descriptor ?? (document2.lessonId && !isSelectableLesson(document2.lessonId) ? { key: document2.lessonId, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", content: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(LessonSchematic, { lessonId: document2.lessonId }) } : null), viewerControls, onPreviewContextChange: setReferencePreviewAllowed, documentKey: `${documentKey}:${document2.referenceDiagramId ?? ""}:${selectionRevision}:${document2.drawingMediaId ?? ""}`, user, readOnly: editorRunning, selectedProjectId: document2.trainingProjectId, currentDrawings: document2.projectDrawings ? Object.fromEntries(Object.entries(document2.projectDrawings).map(([kind, attachment]) => [kind, { id: attachment.mediaId, type: attachment.type, url: `/api/media/${attachment.mediaId}` }])) : void 0, currentKind: document2.drawingKind, onSelectCurrentDrawing: selectCurrentDrawing, onUseDrawing: useProjectDrawing, fallback: preview ?? (document2.lessonId ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(DrawingViewer, { compact: true, title: "\u8BFE\u7A0B\u539F\u7406\u56FE", contentKey: document2.lessonId, ...viewerControls, children: isSelectableLesson(document2.lessonId) ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: STATIC_DEMO ? "\u8BFE\u7A0B\u539F\u56FE\u9700\u767B\u5F55\u6210\u5458\u7AD9\u67E5\u770B\u3002" : "\u4ECE\u56FE\u7EB8\u96C6\u8FDB\u5165\u8BFE\u7A0B\uFF0C\u5373\u53EF\u67E5\u770B\u5BF9\u5E94\u539F\u7406\u56FE\u548C\u5143\u4EF6\u5E03\u7F6E\u56FE\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(LessonSchematic, { lessonId: document2.lessonId }) }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: "\u81EA\u7531\u63A5\u7EBF\u6CA1\u6709\u6307\u5B9A\u8BFE\u7A0B\uFF0C\u53EF\u4E0A\u4F20\u56FE\u7EB8\u4F5C\u4E3A\u53C2\u8003\u3002" })) }) })
     ] }),
-    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ReferenceDrawings, { onProjectPractice: (project2, wired) => wired ? replace(() => openProjectCourse(project2, true)) : requestPractice(project2.lessonId ?? "", project2) }),
-    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
+    section === "drawings" && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ReferenceDrawings, { onProjectPractice: (project2, wired) => wired ? replace(() => openProjectCourse(project2, true)) : requestPractice(project2.lessonId ?? "", project2) }),
+    section === "gallery" && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Gallery, { request: accountApi, busy, onPractice: () => navigate("simulator"), onFork: (id2) => replace(() => {
       void run(() => forkPublication(id2));
     }) }, user.id),
-    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-page", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-page-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
+    section === "components" && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("main", { className: "dt-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-page-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h1", { children: "\u5143\u5668\u4EF6\u767E\u79D1" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u8BA4\u8BC6\u5668\u4EF6\uFF0C\u7406\u89E3\u6BCF\u4E00\u4E2A\u7AEF\u5B50\u7684\u4F5C\u7528" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Search, { size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { className: "dt-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Search, { size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { placeholder: "\u641C\u7D22\u5143\u5668\u4EF6", value: query, onChange: (e) => setQuery(e.target.value) })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-encyclopedia", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: c.type }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h3", { children: c.name }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: c.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("small", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-encyclopedia", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("aside", { children: [["all", "\u5168\u90E8"], ["power", "\u7535\u6E90\u4FDD\u62A4"], ["industrial", "\u5DE5\u4E1A\u63A7\u5236"], ["lighting", "\u7167\u660E\u5668\u4EF6"], ["terminals", "\u63A5\u7EBF\u7AEF\u5B50"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: category === id2 ? "active" : "", onClick: () => setCategory(id2), children: label }, id2)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-device-grid", children: filteredComponents.map((c) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { className: "dt-device-card", onClick: () => setComponentDetail(c), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(DeviceArtwork, { type: c.type }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h3", { children: c.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: c.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("small", { children: [
               c.terminals.length,
               " \u4E2A\u53EF\u63A5\u7EBF\u7AEF\u5B50",
               "\u3000",
@@ -38637,91 +38838,91 @@ function SimulatorApp({ initialSection = "simulator" }) {
         ] }, c.type)) })
       ] })
     ] }),
-    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("main", { className: "dt-profile", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("aside", { className: "dt-profile-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(UserRound, { size: 58 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: user.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+    section === "profile" && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("main", { className: "dt-profile", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("aside", { className: "dt-profile-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-profile-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(UserRound, { size: 58 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { children: user.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("p", { children: [
           "@",
           user.username
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("dl", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("dl", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("dt", { children: "\u8D26\u53F7\u89D2\u8272" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("dd", { children: user.role === "admin" ? "\u7BA1\u7406\u5458" : user.role === "demo" ? "\u6F14\u793A\u8BBF\u5BA2" : "\u5B9E\u8BAD\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("dt", { children: "\u4E2A\u4EBA\u7B7E\u540D" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("dd", { children: user.bio || "\u8FD8\u6CA1\u6709\u586B\u5199\u7B7E\u540D" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => {
           setName(user.name);
           setBio(user.bio || "");
           setProfileEdit(true);
         }, children: "\u7F16\u8F91\u8D44\u6599" }),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
-        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ChangePassword, { request: accountApi, onChanged: () => setNotice("\u5BC6\u7801\u5DF2\u4FEE\u6539") }, user.id),
+        !STATIC_DEMO && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { onClick: () => run(async () => {
           await accountApi("/auth/sign-out", jsonBody({}));
           switchAccount(null);
         }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LogOut, { size: 16 }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(LogOut, { size: 16 }),
           "\u9000\u51FA\u767B\u5F55"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "dt-profile-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
-        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-admin", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("section", { className: "dt-profile-content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-tabs", children: [["publications", "\u6211\u7684\u7535\u8DEF"], ["drafts", "\u8349\u7A3F\u7BB1"], ["favorites", "\u6536\u85CF\u56FE\u7EB8"], ...user.role === "admin" ? [["admin", "\u9080\u8BF7\u4E0E\u6210\u5458"]] : []].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: profileTab === id2 ? "active" : "", onClick: () => setProfileTab(id2), children: label }, id2)) }),
+        profileTab === "admin" ? /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-admin", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { children: "\u9080\u8BF7\u6210\u5458" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u9080\u8BF7\u4E00\u6B21\u6709\u6548\uFF0C\u9ED8\u8BA4 7 \u5929\u540E\u8FC7\u671F\u3002" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", disabled: busy, onClick: () => run(async () => {
             const r = await accountApi("/invites", jsonBody({ expiresInHours: 168 }));
             setInviteUrl(r.invite.url);
             setRefresh((x) => x + 1);
           }), children: "\u521B\u5EFA\u9080\u8BF7" }),
-          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-invite-link", children: [
+          inviteUrl && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { className: "dt-invite-link", children: [
             "\u590D\u5236\u9080\u8BF7\u94FE\u63A5",
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { onClick: () => run(async () => {
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { readOnly: true, value: inviteUrl, onFocus: (e) => e.target.select() }),
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { onClick: () => run(async () => {
               await navigator.clipboard.writeText(inviteUrl);
               setNotice("\u9080\u8BF7\u94FE\u63A5\u5DF2\u590D\u5236");
             }), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Copy, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Copy, { size: 16 }),
               "\u590D\u5236"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u9080\u8BF7" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6709\u6548\u671F" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" })
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u9080\u8BF7" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u6709\u6548\u671F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u72B6\u6001" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: i.id.slice(0, 8) }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: date3(i.expiresAt) }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("tbody", { children: invites.map((i) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: i.id.slice(0, 8) }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: date3(i.expiresAt) }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(InviteStatus, { expiresAt: i.expiresAt, consumedBy: i.consumedBy }) })
             ] }, i.id)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u89D2\u8272" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u72B6\u6001" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u64CD\u4F5C" })
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { children: "\u6210\u5458\u7BA1\u7406" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u89D2\u8272" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u72B6\u6001" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u64CD\u4F5C" })
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("td", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("tbody", { children: members.map((m) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("td", { children: [
                 m.name,
                 "\uFF08",
                 m.username,
                 "\uFF09"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
-              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: m.role === "admin" ? "\u7BA1\u7406\u5458" : "\u6210\u5458" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: m.disabled ? "\u5DF2\u505C\u7528" : "\u6B63\u5E38" }),
+              /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: m.id !== user.id && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => run(async () => {
                 await accountApi(`/members/${m.id}`, jsonBody({ disabled: !m.disabled }, "PATCH"));
                 setRefresh((x) => x + 1);
               }), children: m.disabled ? "\u6062\u590D" : "\u505C\u7528" }) })
             ] }, m.id)) })
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(ProfileLibrary, { ownerId: user.id, tab: profileTab, refresh, busy, request: accountApi, onNew: () => replace(() => adopt({ schemaVersion: 1, title: "\u672A\u547D\u540D\u7535\u8DEF", components: [], wires: [] })), onOpenDraft: (item) => replace(() => {
           void run(() => openDraft(item));
         }), onOpenPublication: (id2) => {
           void run(() => viewPublication(id2));
@@ -38744,110 +38945,110 @@ function SimulatorApp({ initialSection = "simulator" }) {
         } }) }, `${user.id}:${profileTab}`)
       ] })
     ] }),
-    parked && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
-      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("b", { children: item.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("small", { children: date3(item.savedAt) }),
-        item.error ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+    parked && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: "\u672C\u673A\u6682\u5B58 \xB7 \u5F53\u524D\u8D26\u53F7", close: () => setParked(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: "\u5207\u6362\u7EC3\u4E60\u524D\u7684\u63A5\u7EBF\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u4E2D\u3002\u6062\u590D\u4E0D\u4F1A\u5220\u9664\u539F\u6682\u5B58\uFF0C\u4E5F\u4E0D\u4F1A\u8986\u76D6\u5176\u4ED6\u8D26\u53F7\u3002" }),
+      parked.length ? parked.map((item) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("b", { children: item.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("small", { children: date3(item.savedAt) }),
+        item.error ? /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { role: "alert", children: item.error }) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => {
           if (item.state) replace(() => {
             adopt(item.state.document, item.state.saved, item.state.dirty);
             setParked(null);
           });
         }, children: "\u6062\u590D\u63A5\u7EBF" })
-      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
+      ] }, item.key)) : /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u8FD8\u6CA1\u6709\u6682\u5B58\u8BB0\u5F55\u3002" })
     ] }),
-    practiceRequest && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u9009\u62E9\u7EC3\u4E60\u52A0\u8F7D\u65B9\u5F0F", close: () => setPracticeRequest(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: getLesson(practiceRequest.id)?.title }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-placement-option", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { type: "radio", name: "placement", checked: placement === "automatic", onChange: () => setPlacement("automatic") }),
+    practiceRequest && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: "\u9009\u62E9\u7EC3\u4E60\u52A0\u8F7D\u65B9\u5F0F", close: () => setPracticeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: getLesson(practiceRequest.id)?.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { type: "radio", name: "placement", checked: placement === "automatic", onChange: () => setPlacement("automatic") }),
         "\u81EA\u52A8\u52A0\u8F7D\u5143\u4EF6",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u9884\u6392\u8BFE\u7A0B\u5143\u4EF6\u3001\u5BFC\u8F68\u548C\u7EBF\u69FD\uFF0C\u521D\u59CB\u6CA1\u6709\u5BFC\u7EBF\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "\u9884\u6392\u8BFE\u7A0B\u5143\u4EF6\u3001\u5BFC\u8F68\u548C\u7EBF\u69FD\uFF0C\u521D\u59CB\u6CA1\u6709\u5BFC\u7EBF\u3002" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { className: "dt-placement-option", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { type: "radio", name: "placement", checked: placement === "manual", onChange: () => setPlacement("manual") }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { className: "dt-placement-option", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { type: "radio", name: "placement", checked: placement === "manual", onChange: () => setPlacement("manual") }),
         "\u624B\u52A8\u653E\u7F6E\u5143\u4EF6",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u53EA\u9884\u5E03\u5BFC\u8F68\u3001\u7EBF\u69FD\uFF1B\u4ECE\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355\u6DFB\u52A0\u5E76\u7ED1\u5B9A\u4F4D\u53F7\uFF0C\u81EA\u884C\u6446\u653E\u63A5\u7EBF\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: "\u53EA\u9884\u5E03\u5BFC\u8F68\u3001\u7EBF\u69FD\uFF1B\u4ECE\u8BFE\u7A0B\u5668\u4EF6\u6E05\u5355\u6DFB\u52A0\u5E76\u7ED1\u5B9A\u4F4D\u53F7\uFF0C\u81EA\u884C\u6446\u653E\u63A5\u7EBF\u3002" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setPracticeRequest(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: confirmPractice, children: "\u521B\u5EFA\u7EC3\u4E60" })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => setPracticeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: confirmPractice, children: "\u521B\u5EFA\u7EC3\u4E60" })
       ] })
     ] }),
-    upgradeRequest && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C", close: () => setUpgradeRequest(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "KA \u5347\u7EA7\u4E3A\u4E24\u5E38\u5F00\u3001\u4E24\u5E38\u95ED\u6559\u5B66\u7248\u672C\uFF1BKT \u5347\u7EA7\u4E3A\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u7248\u672C\u3002\u7AEF\u5B50\u6309\u529F\u80FD\u6620\u5C04\uFF0C\u4FDD\u7559\u5668\u4EF6\u3001\u5BFC\u7EBF ID\u3001\u4F4D\u53F7\u53CA\u56FE\u7EB8\u5173\u8054\u3002\u539F\u8349\u7A3F\u548C\u4F5C\u54C1\u4E0D\u4F1A\u8986\u76D6\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u65E7 KT \u4E24\u7EC4\u89E6\u70B9\u5728\u5347\u7EA7\u540E\u5747\u5EF6\u65F6\uFF1B\u8D85\u8FC7\u4E94\u5206\u949F\u7684\u65E7\u8BBE\u7F6E\u987B\u5148\u660E\u786E\u8C03\u6574\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: () => void run(confirmUpgrade), children: "\u5347\u7EA7\u5E76\u4FDD\u5B58\u526F\u672C" })
+    upgradeRequest && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: "\u5347\u7EA7\u7EE7\u7535\u5668\u5E76\u53E6\u5B58\u526F\u672C", close: () => setUpgradeRequest(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "KA \u5347\u7EA7\u4E3A\u4E24\u5E38\u5F00\u3001\u4E24\u5E38\u95ED\u6559\u5B66\u7248\u672C\uFF1BKT \u5347\u7EA7\u4E3A\u516B\u7AEF\u5B50\u53CC\u5EF6\u65F6\u7248\u672C\u3002\u7AEF\u5B50\u6309\u529F\u80FD\u6620\u5C04\uFF0C\u4FDD\u7559\u5668\u4EF6\u3001\u5BFC\u7EBF ID\u3001\u4F4D\u53F7\u53CA\u56FE\u7EB8\u5173\u8054\u3002\u539F\u8349\u7A3F\u548C\u4F5C\u54C1\u4E0D\u4F1A\u8986\u76D6\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u65E7 KT \u4E24\u7EC4\u89E6\u70B9\u5728\u5347\u7EA7\u540E\u5747\u5EF6\u65F6\uFF1B\u8D85\u8FC7\u4E94\u5206\u949F\u7684\u65E7\u8BBE\u7F6E\u987B\u5148\u660E\u786E\u8C03\u6574\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { disabled: busy, onClick: () => setUpgradeRequest(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", disabled: busy || editorRunning, onClick: () => void run(confirmUpgrade), children: "\u5347\u7EA7\u5E76\u4FDD\u5B58\u526F\u672C" })
       ] })
     ] }),
-    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: getLesson(previewLesson)?.objective }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => {
+    previewLesson && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: getLesson(previewLesson)?.title || "\u56FE\u7EB8\u9884\u89C8", close: () => setPreviewLesson(""), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-large-schematic", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(LessonSchematic, { lessonId: previewLesson }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: getLesson(previewLesson)?.objective }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           replace(() => adopt(createLessonDocument(id2, { wired: true })));
         }, children: "\u67E5\u770B\u793A\u8303\u63A5\u7EBF" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", onClick: () => {
           const id2 = previewLesson;
           setPreviewLesson("");
           requestPractice(id2);
         }, children: "\u8FDB\u5165\u7535\u8DEF\u914D\u7F6E" })
       ] })
     ] }),
-    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-component-detail", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DeviceArtwork, { type: componentDetail.type }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: componentDetail.description })
+    componentDetail && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: componentDetail.name, close: () => setComponentDetail(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-component-detail", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(DeviceArtwork, { type: componentDetail.type }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: componentDetail.description })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("table", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u6807\u8BC6" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("th", { children: "\u7528\u9014" })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("table", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u7AEF\u5B50 ID" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u6807\u8BC6" }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("th", { children: "\u7528\u9014" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: t.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("tbody", { children: componentDetail.terminals.map((t) => /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: t.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: t.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("td", { children: { phase: "\u76F8\u7EBF", neutral: "\u4E2D\u6027\u7EBF", earth: "\u4FDD\u62A4\u63A5\u5730", contact: "\u89E6\u70B9", coil: "\u7EBF\u5708", load: "\u8D1F\u8F7D" }[t.electrical || "contact"] })
         ] }, t.id)) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: "\u4EFF\u771F\u6309\u7AEF\u5B50\u5C5E\u6027\u4E0E\u8FDE\u63A5\u5173\u7CFB\u8BA1\u7B97\uFF1B\u6539\u53D8\u5BFC\u7EBF\u989C\u8272\u4E0D\u4F1A\u6539\u53D8\u76F8\u4F4D\u3002" })
     ] }),
-    publication && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: publication.title, close: () => {
+    publication && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: publication.title, close: () => {
       publicationRequest.current++;
       setPublication(null);
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("p", { children: [
         "\u4F5C\u8005\uFF1A",
         publication.author.name,
         " \xB7 ",
         date3(publication.createdAt)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DocumentPreview, { document: publication.document }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Heart, { size: 16 }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-publication-preview", children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(DocumentPreview, { document: publication.document }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "like")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Heart, { size: 16 }),
           publication.liked ? "\u5DF2\u70B9\u8D5E" : "\u70B9\u8D5E",
           " ",
           publication.likes
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Star, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("button", { disabled: busy, onClick: () => run(() => reactTo(publication, "favorite")), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Star, { size: 16 }),
           publication.favorited ? "\u5DF2\u6536\u85CF" : "\u6536\u85CF",
           " ",
           publication.favorites
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", onClick: () => replace(() => {
           void run(() => forkPublication(publication.id));
         }), children: "\u590D\u5236\u5230\u6211\u7684\u8349\u7A3F\u5E76\u6253\u5F00" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "dt-hint", children: "\u6B64\u4F5C\u54C1\u4FDD\u5B58\u7684\u662F\u53D1\u5E03\u65F6\u7684\u72EC\u7ACB\u63A5\u7EBF\u5FEB\u7167\u3002" })
     ] }),
-    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { onSubmit: (e) => {
+    profileEdit && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Modal2, { title: "\u7F16\u8F91\u4E2A\u4EBA\u8D44\u6599", close: () => setProfileEdit(false), children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("form", { onSubmit: (e) => {
       e.preventDefault();
       void run(async () => {
         if (STATIC_DEMO) setUser({ ...user, name, bio });
@@ -38859,54 +39060,66 @@ function SimulatorApp({ initialSection = "simulator" }) {
         setNotice("\u8D44\u6599\u5DF2\u66F4\u65B0");
       });
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { children: [
         "\u6635\u79F0",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("input", { required: true, value: name, maxLength: 40, onChange: (e) => setName(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("label", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("label", { children: [
         "\u4E2A\u4EBA\u7B7E\u540D",
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("textarea", { value: bio, maxLength: 500, onChange: (e) => setBio(e.target.value) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", disabled: busy, children: "\u4FDD\u5B58\u8D44\u6599" })
     ] }) }),
-    conflict && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => run(async () => {
+    conflict && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: "\u8349\u7A3F\u5B58\u5728\u66F4\u65B0", close: () => setConflict(false), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: "\u6B64\u8349\u7A3F\u5DF2\u5728\u5176\u4ED6\u7A97\u53E3\u4FEE\u6539\u3002\u5F53\u524D\u5185\u5BB9\u4E0D\u4F1A\u8986\u76D6\u65B0\u7684\u4FEE\u8BA2\u3002" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => run(async () => {
           await save(true);
           setConflict(false);
         }), children: "\u5C06\u5F53\u524D\u5185\u5BB9\u53E6\u5B58\u4E3A\u526F\u672C" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", onClick: () => run(async () => {
           if (saved) await openDraft(saved);
           setConflict(false);
         }), children: "\u52A0\u8F7D\u670D\u52A1\u5668\u6700\u65B0\u7248\u672C" })
       ] })
     ] }),
-    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { children: confirmAction.message }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "dt-modal-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "dt-primary", onClick: () => {
+    confirmAction && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Modal2, { title: confirmAction.title, close: () => setConfirmAction(null), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { children: confirmAction.message }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "dt-modal-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { onClick: () => setConfirmAction(null), children: "\u53D6\u6D88" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("button", { className: "dt-primary", onClick: () => {
           const action = confirmAction;
           setConfirmAction(null);
           action.run();
         }, children: "\u7EE7\u7EED" })
       ] })
     ] }),
-    notice && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "dt-toast", role: "status", children: notice })
+    notice && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "dt-toast", role: "status", children: notice }),
+    drawingWindow
   ] });
 }
 
 // app/page.tsx
-var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime30 = __toESM(require_jsx_runtime(), 1);
 function Home() {
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(SimulatorApp, {});
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(SimulatorApp, {});
 }
 
 // github-pages/main.tsx
-var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
-(0, import_client.createRoot)(document.getElementById("root")).render(
-  /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_react23.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Home, {}) })
+var import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
+function Ready() {
+  (0, import_react27.useEffect)(() => {
+    window.diantuoStartup?.complete();
+  }, []);
+  return null;
+}
+if (window.diantuoStartup?.supported !== false) (0, import_client.createRoot)(document.getElementById("root"), {
+  onUncaughtError: () => window.diantuoStartup?.failed()
+}).render(
+  /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(import_react27.default.StrictMode, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Home, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Ready, {})
+  ] })
 );
 /*! Bundled license information:
 
@@ -39009,7 +39222,6 @@ lucide-react/dist/esm/icons/chevron-left.mjs:
 lucide-react/dist/esm/icons/chevron-right.mjs:
 lucide-react/dist/esm/icons/circuit-board.mjs:
 lucide-react/dist/esm/icons/copy.mjs:
-lucide-react/dist/esm/icons/download.mjs:
 lucide-react/dist/esm/icons/external-link.mjs:
 lucide-react/dist/esm/icons/file-image.mjs:
 lucide-react/dist/esm/icons/file-plus-corner.mjs:
@@ -39029,7 +39241,6 @@ lucide-react/dist/esm/icons/minus.mjs:
 lucide-react/dist/esm/icons/panel-right-close.mjs:
 lucide-react/dist/esm/icons/play.mjs:
 lucide-react/dist/esm/icons/plus.mjs:
-lucide-react/dist/esm/icons/redo-2.mjs:
 lucide-react/dist/esm/icons/refresh-cw.mjs:
 lucide-react/dist/esm/icons/rotate-ccw.mjs:
 lucide-react/dist/esm/icons/rotate-cw.mjs:
@@ -39039,7 +39250,6 @@ lucide-react/dist/esm/icons/sliders-horizontal.mjs:
 lucide-react/dist/esm/icons/square.mjs:
 lucide-react/dist/esm/icons/star.mjs:
 lucide-react/dist/esm/icons/triangle-alert.mjs:
-lucide-react/dist/esm/icons/undo-2.mjs:
 lucide-react/dist/esm/icons/user-round.mjs:
 lucide-react/dist/esm/icons/video.mjs:
 lucide-react/dist/esm/icons/x.mjs:

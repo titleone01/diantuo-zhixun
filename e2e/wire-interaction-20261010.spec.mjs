@@ -1,3 +1,4 @@
+import { readWorkspaceDocument } from './workspace-fixtures.mjs';
 import { test, expect } from '@playwright/test';
 import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -41,12 +42,7 @@ async function open(page, document) {
   await page.getByLabel('线条样式', { exact: true }).selectOption('straight');
   return draft;
 }
-async function exported(page) {
-  await page.getByRole('button', { name: '导出图纸到本地', exact: true }).click();
-  const document = JSON.parse(await page.getByLabel('导出的电路 JSON', { exact: true }).inputValue());
-  await page.getByRole('button', { name: '关闭电路文件窗口', exact: true }).click();
-  return document;
-}
+async function exported(page) { return readWorkspaceDocument(page); }
 async function drag(page, from, to) {
   const first = terminal(page, from), last = terminal(page, to);
   await first.hover(); await last.hover();
@@ -207,8 +203,7 @@ test('supply mirrors and proximity switch rotates with connected world endpoints
   await page.getByRole('button', { name: '上下镜像', exact: true }).click();
   expect((await exported(page)).components.find(component => component.id === 'source').mirrored).toBe(true);
   expect(await endpoints(page)).not.toEqual(before);
-  await page.getByRole('button', { name: '撤销', exact: true }).click(); expect(await endpoints(page)).toEqual(before);
-  await page.getByRole('button', { name: '重做', exact: true }).click();
+
   await page.locator('[data-device-id="sq"]').click({ position: { x: 30, y: 35 } });
   await page.getByRole('button', { name: '旋转90°', exact: true }).click();
   expect((await exported(page)).components.find(component => component.id === 'sq').rotation).toBe(90);

@@ -20,11 +20,11 @@ export async function acquireTunnelLauncher(root) {
 }
 
 function networkIdentity(profile) {
-  return profile ? JSON.stringify([profile.interfaceIndex, profile.name, profile.address, profile.resolvers]) : "system-routing";
+  return profile ? JSON.stringify([profile.interfaceIndex, profile.name, profile.address, profile.resolvers, profile.proxy]) : "system-routing";
 }
 
 // Only connectors created here may be stopped. Never adopt an existing PID.
-export async function superviseTunnel({ selectNetwork, createDnsRelay, startConnector, signal, onState = () => {}, pollMs = 5000, wait = delay }) {
+export async function superviseTunnel({ selectNetwork, createDnsRelay, startConnector, signal, onState = () => {}, pollMs = 5000, unhealthyMs = 45000, now = Date.now, wait = delay }) {
   let connector;
   let relay;
   let identity;
@@ -32,6 +32,8 @@ export async function superviseTunnel({ selectNetwork, createDnsRelay, startConn
   let selectionError;
   let failures = 0;
   let startedAt;
+  let unhealthySince;
+  let attempt = 0;
   const pause = async ms => {
     try { await wait(ms, undefined, { signal }); }
     catch (error) { if (!signal.aborted) throw error; }
@@ -61,31 +63,47 @@ export async function superviseTunnel({ selectNetwork, createDnsRelay, startConn
       }
       if (signal.aborted) break;
       const nextIdentity = networkIdentity(network);
-      if (!connector || identity !== nextIdentity || exitResult) {
+      let unhealthy = false;
+      if (connector && identity === nextIdentity && !exitResult && connector.isHealthy) {
+        const healthy = await connector.isHealthy().catch(() => false);
+        if (healthy) unhealthySince = undefined;
+        else {
+          unhealthySince ??= now();
+          unhealthy = now() - unhealthySince >= unhealthyMs;
+        }
+      }
+      if (!connector || identity !== nextIdentity || exitResult || unhealthy) {
         const previousExit = exitResult;
         const changed = connector && identity !== nextIdentity;
         if (changed) onState({ type: "network-change", network });
+        if (unhealthy) {
+          attempt += 1;
+          onState({ type: "unhealthy", attempt });
+        }
         await stopOwned(); // Exit confirmation precedes DNS replacement and spawn.
         if (previousExit?.spawnError) throw new Error("无法运行 cloudflared；请检查程序和隧道日志。");
         if (previousExit && !changed) {
-          failures = Date.now() - startedAt >= 60000 ? 1 : failures + 1;
+          attempt += 1;
+          failures = now() - startedAt >= 60000 ? 1 : failures + 1;
           onState({ type: "retry", delayMs: Math.min(30000, pollMs * 2 ** Math.min(failures - 1, 4)) });
           await pause(Math.min(30000, pollMs * 2 ** Math.min(failures - 1, 4)));
           // Re-read the network after backoff, rather than using an old snapshot.
           continue;
         }
         if (signal.aborted) break;
-        try { relay = network ? await createDnsRelay(network) : undefined; }
+        if (changed) attempt = 0;
+        try { relay = network ? await createDnsRelay(network, { attempt }) : undefined; }
         catch (error) {
           onState({ type: "waiting", message: `DNS 转发暂不可用：${error.message}` });
           await pause(pollMs);
           continue;
         }
         if (signal.aborted) break;
-        connector = await startConnector(network, relay);
+        connector = await startConnector(network, relay, { attempt });
         identity = nextIdentity;
+        unhealthySince = undefined;
         if (changed) failures = 0;
-        startedAt = Date.now();
+        startedAt = now();
         const owned = connector;
         connector.exited.then(result => { if (connector === owned) exitResult = result; });
         onState({ type: "starting", network });

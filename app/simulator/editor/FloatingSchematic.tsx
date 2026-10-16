@@ -1,16 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type ReactNode, type RefObject } from "react";
-import { BookOpen, GripHorizontal, Maximize2, Minimize2, Minus, Plus, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
+import { BookOpen, ExternalLink, GripHorizontal, Maximize2, Minimize2, Minus, Plus, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import ReferenceVideoPlayer from "../reference-video/ReferenceVideoPlayer";
 import type { ReferenceVideo } from "../reference-video/catalog";
 
-type Props = { panelRef: RefObject<HTMLDivElement | null>; boardRef: RefObject<HTMLDivElement | null>; children: ReactNode; documentKey?: string; video?: ReferenceVideo; onChooseDrawing?: () => void; selectionDisabled?: boolean; zoom?: number; onZoomChange?: (zoom: number) => void };
+type Props = { panelRef: RefObject<HTMLDivElement | null>; boardRef: RefObject<HTMLDivElement | null>; children: ReactNode; documentKey?: string; video?: ReferenceVideo; onChooseDrawing?: () => void; onOpenDrawingWindow?: () => void; selectionDisabled?: boolean; zoom?: number; onZoomChange?: (zoom: number) => void };
 const DEFAULT_FRAME = { width: 560, height: 600 };
 const EDGES = { n: '上边', s: '下边', w: '左边', e: '右边', nw: '左上角', ne: '右上角', sw: '左下角', se: '右下角' };
 
 /** Window coordinates are presentation only; they never enter the circuit document. */
-export default function FloatingSchematic({ panelRef, boardRef, children, documentKey, video, onChooseDrawing, selectionDisabled, zoom: controlledZoom, onZoomChange }: Props) {
+export default function FloatingSchematic({ panelRef, boardRef, children, documentKey, video, onChooseDrawing, onOpenDrawingWindow, selectionDisabled, zoom: controlledZoom, onZoomChange }: Props) {
   const [open, setOpen] = useState(true);
   const [tab, setTab] = useState<"schematic" | "video" | "guide">("schematic");
   const [currentDocument, setCurrentDocument] = useState(documentKey);
@@ -25,14 +25,29 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ id: number; x: number; y: number; startX: number; startY: number } | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [bounds, setBounds] = useState({ width: 1200, height: 900, boardWidth: 1000, top: 0, right: 20, bottom: 70 });
+  useEffect(() => {
+    const measure = () => {
+      const board = boardRef.current, view = board?.ownerDocument?.defaultView;
+      const rect = board?.getBoundingClientRect?.();
+      const width = view?.innerWidth ?? board?.clientWidth ?? 1200, height = view?.innerHeight ?? board?.clientHeight ?? 900;
+      const next = { width, height, boardWidth: board?.clientWidth ?? width, top: rect?.top ?? 0, right: rect ? Math.max(8, width - rect.right + 20) : 20, bottom: rect ? Math.max(8, height - rect.bottom + 70) : 70 };
+      setBounds(previous => Object.keys(next).every(key => next[key as keyof typeof next] === previous[key as keyof typeof previous]) ? previous : next);
+    };
+    measure(); const observer = new ResizeObserver(measure);
+    if (boardRef.current) observer.observe(boardRef.current);
+    const view = boardRef.current?.ownerDocument?.defaultView;
+    view?.addEventListener("resize", measure);
+    return () => { observer.disconnect(); view?.removeEventListener("resize", measure); };
+  }, [boardRef]);
   const constrain = useCallback((point: { x: number; y: number }, size?: { width: number; height: number }) => {
-    const board = boardRef.current, panel = panelRef.current;
-    if (!board || !panel || fullscreen) return point;
+    const panel = panelRef.current;
+    if (!panel || fullscreen) return point;
     const width = size?.width ?? panel.offsetWidth, height = size?.height ?? panel.offsetHeight;
-    const left = board.clientWidth - 20 - width, top = board.clientHeight - 70 - height;
-    // Reserve the upper draft actions and the lower circuit-check action.
-    return { x: Math.max(8 - left, Math.min(Math.max(8, board.clientWidth - width - 8) - left, point.x)), y: Math.max(58 - top, Math.min(Math.max(58, board.clientHeight - height - 70) - top, point.y)) };
-  }, [boardRef, panelRef, fullscreen]);
+    const left = bounds.width - bounds.right - width, top = bounds.height - bounds.bottom - height;
+    // The whole page is available; keep the title reachable even when partly offscreen.
+    return { x: Math.max(8 - left, Math.min(Math.max(8, bounds.width - width - 8) - left, point.x)), y: Math.max(8 - top, Math.min(bounds.height - 40 - top, point.y)) };
+  }, [bounds, panelRef, fullscreen]);
   useEffect(() => {
     const clamp = () => setOffset(previous => { const next = constrain(previous); return next.x === previous.x && next.y === previous.y ? previous : next; });
     clamp(); const observer = new ResizeObserver(clamp);
@@ -62,10 +77,10 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     setDragging(true);
   }, [panelRef, offset, responsiveWidth]);
   function moveResize(event: PointerEvent<HTMLButtonElement>) {
-    const start = resizing.current, board = boardRef.current;
-    if (!start || start.id !== event.pointerId || !board) return;
+    const start = resizing.current;
+    if (!start || start.id !== event.pointerId) return;
     const edge=start.edge, dx=event.clientX-start.x, dy=event.clientY-start.y;
-    const maxWidth=Math.max(180,board.clientWidth-16), maxHeight=Math.max(160,board.clientHeight-132);
+    const maxWidth=Math.max(180,bounds.width-16), maxHeight=Math.max(160,bounds.height-16);
     const width=Math.min(maxWidth,Math.max(Math.min(320,maxWidth),start.width+(edge.includes('w')?-dx:edge.includes('e')?dx:0)));
     const height=Math.min(maxHeight,Math.max(Math.min(260,maxHeight),start.height+(edge.includes('n')?-dy:edge.includes('s')?dy:0)));
     setFrame({width,height});
@@ -73,7 +88,10 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
     setOffset(constrain({x:start.offset.x+(edge.includes('e')?width-start.width:0),y:start.offset.y+(edge.includes('s')?height-start.height:0)},{width,height}));
   }
   function lostResizeCapture() { resizing.current=null; setDragging(false); }
-  return <div ref={panelRef} className={`sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`} data-window-scale="1.0" data-drawing-zoom={zoom} role={fullscreen ? 'dialog' : undefined} aria-modal={fullscreen || undefined} aria-label={fullscreen ? '图纸大图查看' : undefined} style={fullscreen ? { transform: 'none' } : { transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? "min(560px, max(320px, calc(50% - 24px)))" : frame.width, height: open ? frame.height : undefined, maxWidth: 'calc(100% - 16px)', maxHeight: 'calc(100% - 132px)' }} onKeyDown={event => {
+  // The default frame leaves the workbench actions reachable at shorter heights.
+  // A manual resize can still use the whole page, and reset restores this fit.
+  const height = responsiveWidth ? Math.min(frame.height, Math.max(160, bounds.height - bounds.bottom - bounds.top - 80)) : frame.height;
+  return <div ref={panelRef} className={`sim-diagram ${open ? "" : "is-collapsed"} ${dragging ? "is-dragging" : ""} ${fullscreen ? "is-fullscreen" : ""}`} data-window-scale="1.0" data-drawing-zoom={zoom} role={fullscreen ? 'dialog' : undefined} aria-modal={fullscreen || undefined} aria-label={fullscreen ? '图纸大图查看' : undefined} style={fullscreen ? { transform: 'none' } : { position: "fixed", right: bounds.right, bottom: bounds.bottom, transform: `translate(${offset.x}px, ${offset.y}px)`, width: responsiveWidth ? `min(560px, max(320px, calc(${bounds.boardWidth}px / 2 - 24px)))` : frame.width, height: open ? height : undefined, maxWidth: 'calc(100vw - 16px)', maxHeight: 'calc(100dvh - 16px)' }} onKeyDown={event => {
     if (fullscreen && event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); setFullscreen(false); }
     if (fullscreen && event.key === 'Tab') {
       const items = [...event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')].filter(item => item.getClientRects().length);
@@ -93,6 +111,7 @@ export default function FloatingSchematic({ panelRef, boardRef, children, docume
       <button className={tab === "video" ? "active" : ""} onClick={() => { setTab("video"); setOpen(true); }}>教学视频</button>
       <button className="sim-diagram-drag" aria-label="拖动图纸窗口" title="拖动窗口；方向键移动，双击标题复位" onKeyDown={event => { const steps: Record<string, [number, number]> = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] }; const step = steps[event.key]; if (step) { event.preventDefault(); event.stopPropagation(); setOffset(value => constrain({ x: value.x + step[0], y: value.y + step[1] })); } }}><GripHorizontal size={18}/></button>
       <button className="sim-diagram-reset" aria-label="复位图纸窗口" title="复位位置和大小" onClick={reset}><RotateCcw size={15}/></button>
+      {onOpenDrawingWindow && <button className="sim-diagram-detach" aria-label="独立窗口查看图纸" title="独立窗口查看图纸" onClick={onOpenDrawingWindow}><ExternalLink size={15}/></button>}
       <button className="sim-diagram-fullscreen" aria-label={fullscreen ? "退出图纸大图" : "全屏查看图纸"} title={fullscreen ? "退出大图 · Esc" : "全屏查看图纸"} onClick={() => { setFullscreen(!fullscreen); setOpen(true); setTab('schematic'); }}>{fullscreen ? <Minimize2 size={16}/> : <Maximize2 size={16}/>}</button>
       <button className="sim-diagram-collapse" aria-label={open ? "收起图纸" : "展开图纸"} onClick={() => { setFullscreen(false); setOpen(!open); }}>{open ? <Minus size={19}/> : <Plus size={19}/>}</button>
     </div>

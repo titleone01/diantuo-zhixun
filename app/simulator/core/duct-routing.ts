@@ -24,7 +24,7 @@ const recentGeometry = new Map<string, NonNullable<ReturnType<typeof routeCache.
 const routeKey = (wire: CircuitWire) => `${wire.id}:${wire.from.componentId}:${wire.from.terminalId}:${wire.to.componentId}:${wire.to.terminalId}`;
 const automaticWire = (wire: CircuitWire) => wire.routing === "duct" || (wire.style as string) === "duct";
 const routingSide = (terminal: ReturnType<typeof resolveTerminal>["terminal"]) => terminal.routingSide ?? terminal.side;
-const cabinetEquipment = new Set(["breaker1", "breaker3", "knife-switch3", "contactor220", "contactor380", "overload", "fuse", "fuse2", "fuse3", "relay380", "relay380-jzc1-22", "timer380", "timer380-8pin", "auxiliary-no"]);
+const cabinetEquipment = new Set(["breaker1", "breaker2", "breaker3", "knife-switch3", "contactor220", "contactor380", "overload", "fuse", "fuse2", "fuse3", "relay380", "relay380-jzc1-22", "timer380", "timer380-8pin", "auxiliary-no"]);
 
 function networkFor(components: CircuitComponent[]): Network {
   const signature = components.filter(component => isWireDuct(component.type)).map(component => `${component.id}:${component.type}:${component.position.x}:${component.position.y}:${component.size?.width}:${component.size?.height}:${component.rotation??0}`).join("|");

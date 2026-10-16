@@ -24,7 +24,7 @@ function referenceFor(document: CircuitDocument): LayoutReference {
   const own = document.lessonId && TRAINING_LAYOUT_REFERENCES[document.lessonId];
   if (own) return own;
   const ids = (types: string[]) => document.components.filter(component => types.includes(component.type)).map(component => component.id);
-  const rows = [ids(["breaker3", "breaker1", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
+  const rows = [ids(["breaker3", "breaker1", "breaker2", "knife-switch3", "fuse3", "fuse", "fuse2"]), ids(["contactor220", "contactor380", "relay380", "timer380", "relay380-jzc1-22", "timer380-8pin", "auxiliary-no"]), ids(["overload", "terminal"])];
   return { file: TRAINING_LAYOUT_REFERENCES["motor-course-02"].file, rows, buttons: document.components.filter(component => buttonTypes.has(component.type)).map(component => component.id), limits: ids(["limit-switch"]) };
 }
 export const trainingLayoutReference = (document: CircuitDocument) => referenceFor(document).file;
@@ -67,9 +67,9 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
   const terminals = document.components.filter(component => !placed.has(component.id) && !isLayoutObject(component.type));
   const width = Math.max(terminalPractice ? 760 : 880, ...rows.map(row => rowWidth(row) + CLEARANCE * 2 + ductWidth), ...terminals.map(component => componentSize(component).width + 56));
   const limitsHeight = limits.reduce((sum,c,index)=>sum+componentSize(c).height+(index?40:0),0);
+  const sideLimitsHeight = xt2 ? Math.max(limitsHeight, componentSize(xt2).height) : limitsHeight;
+  const limitGap = limits.length > 1 ? (sideLimitsHeight - limits.reduce((sum, component) => sum + componentSize(component).height, 0)) / (limits.length - 1) : 0;
   const buttonsHeight = buttons.reduce((sum,c,index)=>sum+componentSize(c).height+(index?28:0),0);
-  const baseHeight = rows.reduce((sum,row,index)=>sum+ductWidth+CLEARANCE*2+Math.max(index===2?getDefinition("overload").height:getDefinition("contactor380").height,...row.map(c=>componentSize(c).height)),0);
-  const extraRowHeight = xt2 ? Math.max(0, limitsHeight + buttonsHeight + 140 - baseHeight) / rows.length : 0;
   const positions = new Map<string, { x: number; y: number }>();
   const channels: number[] = [0];
   const rails: CircuitComponent[] = [];
@@ -83,18 +83,25 @@ export function arrangeTrainingDucts(document: CircuitDocument): CircuitDocument
       x += componentSize(component).width;
     }
     if(row.length && !document.components.some(c=>c.type==="din-rail"))rails.push({id:`training-rail-${index+1}`,type:"din-rail",label:`导轨${index+1}`,position:{x:ductWidth/2,y:y+ductWidth/2+CLEARANCE+height/2-12},size:{width:width-ductWidth,height:24}});
-    y += ductWidth + CLEARANCE * 2 + height + extraRowHeight;
+    y += ductWidth + CLEARANCE * 2 + height;
     channels.push(y);
   }
   const bottom = y, sideX = width + ductWidth / 2 + 48;
   // The reference button box is outside the right duct, in the lower board area.
-  let buttonY = xt2 ? ductWidth/2+CLEARANCE+limitsHeight+60 : Math.max(56, bottom - buttonsHeight);
+  let buttonY = xt2 ? ductWidth/2+CLEARANCE+sideLimitsHeight+60 : Math.max(56, bottom - buttonsHeight);
   const controlsX = xt2 ? sideX + componentSize(xt2).width + 80 : sideX;
-  for (const component of buttons) { positions.set(component.id, { x: controlsX, y: buttonY }); buttonY += componentSize(component).height + 28; }
+  // Below the side strip, one button row fits within the SQ column's width.
+  // External controls must not stretch the cabinet's three internal rows.
+  let buttonX = sideX;
+  for (const component of buttons) {
+    positions.set(component.id, { x: xt2 ? buttonX : controlsX, y: buttonY });
+    if (xt2) buttonX += componentSize(component).width + 28;
+    else buttonY += componentSize(component).height + 28;
+  }
   let limitX = sideX;
   let limitY = ductWidth/2+CLEARANCE;
-  for (const component of limits) { positions.set(component.id, { x: xt2 ? controlsX : limitX, y: limitY }); if(xt2)limitY+=componentSize(component).height+40;else limitX += componentSize(component).width + 44; }
-  if(xt2)positions.set(xt2.id,{x:sideX,y:ductWidth/2+CLEARANCE+(limitsHeight-componentSize(xt2).height)/2});
+  for (const component of limits) { positions.set(component.id, { x: xt2 ? controlsX : limitX, y: limitY }); if(xt2)limitY+=componentSize(component).height+limitGap;else limitX += componentSize(component).width + 44; }
+  if(xt2)positions.set(xt2.id,{x:sideX,y:ductWidth/2+CLEARANCE+(sideLimitsHeight-componentSize(xt2).height)/2});
   let sourceX = 56;
   if(!terminalPractice)for (const component of sources) { positions.set(component.id, { x: sourceX, y: -componentSize(component).height - 65 }); sourceX += componentSize(component).width + 30; }
   const terminalRow = [...earths, ...terminals], terminalY = bottom + ductWidth / 2 + 32;

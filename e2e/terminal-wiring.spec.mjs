@@ -1,3 +1,4 @@
+import { readWorkspaceDocument } from './workspace-fixtures.mjs';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -39,11 +40,7 @@ async function drag(page,from,to) {
   await page.mouse.move(a.x+a.width/2,a.y+a.height/2);await page.mouse.down();
   await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:20});await page.mouse.up();
 }
-async function exported(page) {
-  await page.getByRole('button',{name:'导出图纸到本地',exact:true}).click();
-  const document=JSON.parse(await page.getByLabel('导出的电路 JSON',{exact:true}).inputValue());
-  await page.getByRole('button',{name:'关闭电路文件窗口',exact:true}).click();return document;
-}
+async function exported(page) { return readWorkspaceDocument(page); }
 async function endpoints(page) {
   const wires=await page.locator('.sim-wire').evaluateAll(elements=>elements.map(element=>({from:element.dataset.fromTerminal,to:element.dataset.toTerminal,fromWorld:JSON.parse(element.dataset.fromWorld),toWorld:JSON.parse(element.dataset.toWorld)})));
   for(const wire of wires)for(const [key,point] of [[wire.from,wire.fromWorld],[wire.to,wire.toWorld]]){
@@ -53,11 +50,18 @@ async function endpoints(page) {
 }
 async function selectWire(page, id) {
   const position=await page.locator(`[data-wire-id="${id}"] > .react-flow__edge-path`).evaluate(path=>{
-    const point=path.getPointAtLength(path.getTotalLength()*0.55); const screen=new DOMPoint(point.x,point.y).matrixTransform(path.getScreenCTM());return {x:screen.x,y:screen.y};
-  }); await page.mouse.click(position.x,position.y);
+    // Branch wires can share a run; click a visible segment of this wire.
+    for(const fraction of [0.55,0.25,0.75,0.1,0.9,0.4,0.6,0.8]) {
+      const point=path.getPointAtLength(path.getTotalLength()*fraction),screen=new DOMPoint(point.x,point.y).matrixTransform(path.getScreenCTM());
+      if(document.elementFromPoint(screen.x,screen.y)?.closest('[data-wire-id]')?.getAttribute('data-wire-id')===path.parentElement.dataset.wireId)return {x:screen.x,y:screen.y};
+    }
+    return null;
+  });
+  expect(position, `wire ${id} has a visible segment for a real pointer click`).not.toBeNull();
+  await page.mouse.click(position.x,position.y);
   await expect(page.locator(`[data-wire-id="${id}"]`)).toHaveClass(/is-selected/);
 }
-test('terminal color: top-bottom, reverse dragging, whole group undo, rotation and reload',async({page})=>{
+test('terminal color: top-bottom, reverse dragging, selected-wire recoloring, rotation and reload',async({page})=>{
   await login(page);const draft=await create(page,practice('Terminal color browser'));await open(page,draft);
   await drag(page,'source::L3','xt::T2');await expect(page.locator('.sim-wire')).toHaveCount(1);
   await drag(page,'a::A','xt::B2');await expect(page.locator('.sim-wire')).toHaveCount(2);
@@ -70,9 +74,8 @@ test('terminal color: top-bottom, reverse dragging, whole group undo, rotation a
   await expect(page.locator('.sim-wire.is-selected .sim-wire-selected-endpoint')).toHaveCount(2);
   await page.getByRole('button',{name:'设置导线颜色',exact:true}).click();
   await page.getByRole('button',{name:'选择导线颜色 #3478f6',exact:true}).click();
-  expect((await exported(page)).wires.map(w=>w.color)).toEqual(Array(4).fill('#3478f6'));
-  await page.getByRole('button',{name:'撤销',exact:true}).click();expect((await exported(page)).wires.map(w=>w.color)).toEqual(Array(4).fill('#f04452'));
-  await page.getByRole('button',{name:'重做',exact:true}).click();expect((await exported(page)).wires.map(w=>w.color)).toEqual(Array(4).fill('#3478f6'));
+  expect((await exported(page)).wires.map(w=>w.color)).toEqual(['#3478f6','#f04452','#f04452','#f04452']);
+  expect((await exported(page)).wires.map(w=>w.color)).toEqual(['#3478f6','#f04452','#f04452','#f04452']);
   const before=await endpoints(page);await page.locator('[data-device-id="xt"]').click({position:{x:35,y:40}});
   for(let i=0;i<3;i++)await page.getByRole('button',{name:'旋转90°',exact:true}).click();
   await page.locator('.react-flow__controls-fitview').click();document=await exported(page);expect(document.components.find(c=>c.id==='xt').rotation).toBe(270);
@@ -83,18 +86,22 @@ test('terminal color: top-bottom, reverse dragging, whole group undo, rotation a
   const saved=page.waitForResponse(r=>r.url().endsWith(`/api/circuits/${draft.id}`)&&r.request().method()==='PUT');
   await page.getByRole('button',{name:'保存草稿',exact:true}).click();expect((await saved).status()).toBe(200);
   await page.reload();await expect(page.locator('.sim-wire')).toHaveCount(4);expect(await endpoints(page)).toEqual(moved);
-  expect((await exported(page)).wires.map(w=>w.color)).toEqual(Array(4).fill('#3478f6'));
+  expect((await exported(page)).wires.map(w=>w.color)).toEqual(['#3478f6','#f04452','#f04452','#f04452']);
   await page.screenshot({path:path.join(process.env.DIANTUO_BROWSER_PRIVATE_OUTPUT,'terminal-colors-rotated.png')});
 });
-test('legacy draft retains mixed colors until the user resolves its group',async({page})=>{
+test('legacy draft retains mixed colors until individual wires are explicitly edited',async({page})=>{
   await login(page);const document=practice('Legacy terminal colors');document.wires=[
     {id:'red',from:ref('source','L3'),to:ref('xt','T2'),color:'#f04452'},
     {id:'green',from:ref('xt','B2'),to:ref('a','A'),color:'#20b963'},
   ];const draft=await create(page,document);await open(page,draft);
   expect((await exported(page)).wires).toEqual(document.wires);
   await drag(page,'xt::B2','b::A');await expect(page.locator('.sim-toast')).toContainText('不同线色');
-  await selectWire(page,'red');await page.getByRole('button',{name:'设置导线颜色',exact:true}).click();
+  // Color editing follows explicit selection; each mismatched wire is selected.
+  const current=await exported(page);
+  for(const wire of current.wires.filter(w=>w.color!=='#f04452')) {
+  await selectWire(page,wire.id);await page.getByRole('button',{name:'设置导线颜色',exact:true}).click();
   await page.getByRole('button',{name:'选择导线颜色 #f04452',exact:true}).click();
+  }
   expect((await exported(page)).wires.map(w=>w.color)).toEqual(Array(3).fill('#f04452'));
 });
 test('server reports terminal bypass separately from electrical lesson status',async({page})=>{
